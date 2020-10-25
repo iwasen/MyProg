@@ -1,0 +1,151 @@
+<?
+/******************************************************
+' System :Eco-footprint 管理ページ
+' Content:会員個人検索
+'******************************************************/
+
+$top = '../..';
+$inc = "$top/inc";
+include("$inc/login_check.php");
+include("$inc/header.php");
+$inc = "$top/../inc";
+include("$inc/common.php");
+include("$inc/define.php");
+include("$inc/select.php");
+
+set_global('member', '会員情報管理', '会員個人検索', BACK_TOP);
+?>
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<meta http-equiv="Pragma" content="no-cache">
+<title><?=$g_title?></title>
+<link rel="stylesheet" type="text/css" href="<?=$top?>/css/main.css">
+<script type="text/javascript">
+<!--
+function onsubmit_form1(f) {
+	if (f.birthday_y.value != '') {
+		if (f.birthday_y.value.length != 4 || !is_number(f.birthday_y.value)) {
+			alert("生年月日の年には４桁の数字を入力してください。");
+			f.birthday_y.focus();
+			return false;
+		}
+		if (!check_date(f.birthday_y.value, f.birthday_m.value, f.birthday_d.value)) {
+			alert("生年月日の指定が正しくありません。");
+			f.birthday_d.focus();
+			return false;
+		}
+	}
+	if (f.regist_y.value != '') {
+		if (f.regist_y.value.length != 4 || !is_number(f.regist_y.value)) {
+			alert("登録日の年には４桁の数字を入力してください。");
+			f.regist_y.focus();
+			return false;
+		}
+		if (!check_date(f.regist_y.value, f.regist_m.value, f.regist_d.value)) {
+			alert("登録日の指定が正しくありません。");
+			f.regist_d.focus();
+			return false;
+		}
+	}
+	return true;
+}
+function is_number(str) {
+	return !isNaN(parseInt(str));
+}
+function check_date(y, m, d) {
+	var dt = new Date(y, m - 1, d);
+	if (!isNaN(dt)) {
+		if (dt.getFullYear() == y && dt.getMonth() + 1 == m && dt.getDate() == d)
+			return true;
+	}
+	return false;
+}
+//-->
+</script>
+</head>
+<body>
+<? page_header() ?>
+
+<div align="center">
+<form method="post" name="form1" action="list.php" onsubmit="return onsubmit_form1(this)">
+<table border=0 cellspacing=2 cellpadding=3 width="80%">
+	<tr>
+		<td colspan=2>
+			<table border=0 cellspacing=0 cellpadding=0 width="100%">
+				<tr>
+					<td class="m0">■検索したい会員情報を入力してください</td>
+					<td align="right">
+						<input type="radio" name="and_or" value="A" checked>AND
+						<input type="radio" name="and_or" value="O">OR
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="m1" width="22%">会員ID</td>
+		<td class="n1">
+			<input class="number" type="text" name="member_id" size=20 maxlength=20>
+		</td>
+	</tr>
+	<tr>
+		<td class="m1" width="22%">メールアドレス</td>
+		<td class="n1">
+			<input class="alpha" type="text" name="mail_addr" size=40 maxlength=100>
+		</td>
+	</tr>
+	<tr>
+		<td class="m1">名前（漢字）</td>
+		<td class="n1">
+			<input class="kanji" type="text" name="name1" size=25 maxlength=25>姓
+			<br>
+			<input class="kanji" type="text" name="name2" size=25 maxlength=25>名
+		</td>
+	</tr>
+	<tr>
+		<td class="m1">名前（カナ）</td>
+		<td class="n1">
+			<input class="kanji" type="text" name="name1_kana" size=25 maxlength=25>姓
+			<br>
+			<input class="kanji" type="text" name="name2_kana" size=25 maxlength=25>名
+		</td>
+	</tr>
+	<tr>
+		<td class="m1">生年月日</td>
+		<td class="n1">
+			西暦<input class="number" type="text" name="birthday_y" size=4>年
+			<select name="birthday_m"><? select_month() ?></select>月
+			<select name="birthday_d"><? select_day() ?></select>日
+		</td>
+	</tr>
+	<tr>
+		<td class="m1">登録日</td>
+		<td class="n1">
+			西暦<input class="number" type="text" name="regist_y" size=4>年
+			<select name="regist_m"><? select_month() ?></select>月
+			<select name="regist_d"><? select_day() ?></select>日
+		</td>
+	</tr>
+	<tr>
+		<td class="m1">登録状況</td>
+		<td class="n1">
+			<font size=-1>
+			<input type="radio" name="step" value='' checked>全て
+			<input type="radio" name="step" value=1>仮登録１のみ
+			<input type="radio" name="step" value=2>仮登録２のみ
+			<input type="radio" name="step" value=3>本登録のみ
+			</font>
+		</td>
+	</tr>
+</table>
+<br>
+<input type="hidden" name="pset" value="1">
+<input type="submit" value="　検索　">
+<input type="button" value="キャンセル" onclick="history.back()">
+</form>
+</div>
+
+<? page_footer() ?>
+</body>
+</html>

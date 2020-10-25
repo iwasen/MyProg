@@ -1,0 +1,50 @@
+<!--注目ナビブロック開始-->
+<div class="box-border" style="margin:15px 0px 0px 0px;">
+<table border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td width="95" align="left" valign="top">
+			<img src="image/mi_chumokunavi.gif" width=63 height=16 alt="注目ナビ">
+		</td>
+		<td align="left" class="t14_15">
+			<b><a href="index.php?module=Navi&amp;navipage_id=<{$navi_todays_push.navipage_id}>"><{$navi_todays_push.title|escape}></a></b>&nbsp;
+		</td>
+	</tr>
+</table>
+</div>
+<div class="box-borderL">
+<div style="padding:8px 0px 0px 8px;">
+<table width="533" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td width=80 align="center" valign="top">
+			<a href="index.php?module=Navi&amp;navipage_id=<{$navi_todays_push.navipage_id}>">
+				<{if $navi_todays_push.photo_id > 0}>
+				<img src="image.php?id=<{$navi_todays_push.photo_id}>" width="60" height="60" border="0">
+				<{else}>
+				<img src="image/navi_ph.gif" width="60" border="0" />
+				<{/if}>
+			</a><br>
+			<span class="char140xxs">
+				ナビ：<{$navi_todays_push.navi_name|escape}><br>
+				<a href="index.php?module=Navi&amp;action=ShowProfile&amp;navipage_id=<{$navi_todays_push.navipage_id}>">自己紹介</a>
+			</span><br>
+		</td>
+		<td width="13"><img src="image/spacer.gif" width="13" height="1" alt=""></td>
+		<td valign="top" class="char120">
+			<span class="char140xxs">
+				<{$navi_todays_push.navi_outline|escape}>
+				<{if $navi_todays_push.navi_outline_flg == 1}>
+					・・・&nbsp;&nbsp;<a href="index.php?module=Navi&amp;navipage_id=<{$navi_todays_push.navipage_id}>">（続きはこちらから）</a>
+				<{/if}>
+				<br><br>
+				<font color="#999999">［最新記事］</font>
+			</span><br>
+			<{$navi_todays_push.last_body|escape}>
+			<{if $navi_todays_push.navi_body_flg == 1}>
+				・・・&nbsp;&nbsp;<a href="index.php?module=Blog&amp;action=ViewStory&amp;blog_story_id=<{$navi_todays_push.last_blog_id}>">（続きはこちらから）</a>
+			<{/if}>
+		</td>
+	</tr>
+</table>
+</div>
+</div>
+<!--注目ナビブロック終了-->

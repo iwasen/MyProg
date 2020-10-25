@@ -1,0 +1,973 @@
+.context RS232C
+:z3
+:n‚q‚r|‚Q‚R‚Q‚bƒ‰ƒCƒuƒ‰ƒŠ  ŠÖ”ˆê——
+:l50
+                                                                    \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  ƒ`ƒƒƒlƒ‹‚P§ŒäŠÖ”
+    †®†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†²
+    †¤  rs1_open()      rs1_reopen()    rs1_close()     rs1_rxc()     †¤
+    †¤  rs1_get()       rs1_clear()     rs1_put()       rs1_send()    †¤
+    †¤  rs1_sendreq()   rs1_swait()     rs1_flow()      rs1_pad()     †¤
+    †¤  rs1_rcvint()    rs1_ehm()       rs1_dsr()       rs1_cd()      †¤
+    †¤  rs1_cts()       rs1_ci()        rs1_dtr()       rs1_rts()     †¤
+    †¤  rs1_break()     rs1_cmd()       rs1_sts()                     †¤
+    †¶†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†º
+
+  ƒ`ƒƒƒlƒ‹‚Q§ŒäŠÖ”
+    †®†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†²
+    †¤  rs2_open()      rs2_reopen()    rs2_close()     rs2_rxc()     †¤
+    †¤  rs2_get()       rs2_clear()     rs2_put()       rs2_send()    †¤
+    †¤  rs2_sendreq()   rs2_swait()     rs2_flow()      rs2_pad()     †¤
+    †¤  rs2_rcvint()    rs2_ehm()       rs2_dsr()       rs2_cd()      †¤
+    †¤  rs2_cts()       rs2_ci()        rs2_dtr()       rs2_rts()     †¤
+    †¤  rs2_break()     rs2_cmd()       rs2_sts()                     †¤
+    †¶†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†º
+
+  ƒ`ƒƒƒlƒ‹‚R§ŒäŠÖ”
+    †®†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†²
+    †¤  rs3_open()      rs3_reopen()    rs3_close()     rs3_rxc()     †¤
+    †¤  rs3_get()       rs3_clear()     rs3_put()       rs3_send()    †¤
+    †¤  rs3_sendreq()   rs3_swait()     rs3_flow()      rs3_pad()     †¤
+    †¤  rs3_rcvint()    rs3_ehm()       rs3_dsr()       rs3_cd()      †¤
+    †¤  rs3_cts()       rs3_ci()        rs3_dtr()       rs3_rts()     †¤
+    †¤  rs3_break()     rs3_cmd()       rs3_sts()                     †¤
+    †¶†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†º
+
+  ƒ`ƒƒƒlƒ‹‚P`‚R§ŒäŠÖ”
+    †®†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†²
+    †¤  rsx_open()      rsx_reopen()    rsx_close()     rsx_rxc()     †¤
+    †¤  rsx_get()       rsx_clear()     rsx_put()       rsx_send()    †¤
+    †¤  rsx_sendreq()   rsx_swait()     rsx_flow()      rsx_pad()     †¤
+    †¤  rsx_rcvint()    rsx_ehm()       rsx_dsr()       rsx_cd()      †¤
+    †¤  rsx_cts()       rsx_ci()        rsx_dtr()       rsx_rts()     †¤
+    †¤  rsx_break()     rsx_cmd()       rsx_sts()                     †¤
+    †¶†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†º
+
+  ƒ^ƒCƒ}[§ŒäŠÖ”
+    †®†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†²
+    †¤  tm_open()       tm_set()        tm_check()      tm_stop()     †¤
+    †¤  tm_close()                                                    †¤
+    †¶†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†º
+
+                                  -E-
+.context RSPRM
+:z3
+:l20
+  \i<\p\aˆê——\vRS232C\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+/*      ‚q‚r|‚Q‚R‚Q‚bƒI[ƒvƒ“ƒpƒ‰ƒ[ƒ^        */
+struct  rsprm   {
+        int     sync_mode;      /* “¯Šúƒ‚[ƒh */
+        int     duplex;         /* “ñdƒ‚[ƒh */
+        int     blt;            /* ƒ{[ƒŒ[ƒg */
+        int     parity;         /* ƒpƒŠƒeƒB[ */
+        int     chr_len;        /* ƒLƒƒƒ‰ƒNƒ^’· */
+        int     stp_len;        /* ƒXƒgƒbƒvƒrƒbƒg’· */
+        int     flow_ctrl;      /* ƒtƒ[§Œä */
+        int     dtr;            /* ‚c‚s‚q§Œä */
+        int     syn_chr;        /* “¯ŠúƒLƒƒƒ‰ƒNƒ^ */
+        int     buf_size;       /* ŽóMƒoƒbƒtƒ@ƒTƒCƒY */
+        char    *bufp;          /* ŽóMƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^ */
+};
+typedef struct  rsprm   RSPRM;
+
+                                  -E-
+.context rs_open
+.context rs1_open
+.context rs2_open
+.context rs3_open
+.context rsx_open
+:z3
+:l20
+  \i<\p\aˆê——\vRS232C\v\i>\p \i<\p\a•â‘«à–¾\vrs_open.des\v\i>\p                                                 \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "rs232c.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   int    rsx_open(channel, rsprm)
+\p\p                 int    rs1_open(rsprm)
+\p\p                 int    rs2_open(rsprm)
+\p\p                 int    rs3_open(rsprm)
+
+  \bƒpƒ‰ƒ[ƒ^\p     int    channel        ƒ`ƒƒƒlƒ‹”Ô†
+\p\p                 RSPRM  *rsprm         ’ÊMƒpƒ‰ƒ[ƒ^i•â‘«à–¾ŽQÆj
+
+  \bƒŠƒ^[ƒ“’l\p     ƒGƒ‰[ƒR[ƒhi•â‘«à–¾ŽQÆj
+
+  \b‹@”\\p           Žw’è‚³‚ê‚½ƒpƒ‰ƒ[ƒ^‚É]‚Á‚Ä‚q‚r|‚Q‚R‚Q‚b‚ð‰Šú‰»‚·‚éB
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   rsx_reopen()  rs1_reopen()  rs2_reopen()  rs3_reopen()
+\p\p                 rsx_close()   rs1_close()   rs2_close()   rs3_close()
+                                  -E-
+.context rs_open.des
+:z3
+:nrs_open() •â‘«à–¾
+:l86
+  \i<\p\aˆê——\vRS232C\v\i>\p \i<\p\aŠT—v\vrs_open\v\i>\p                                                     \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  ’ÊMƒpƒ‰ƒ[ƒ^‚Ì\‘¢‚ÍŽŸ‚Ì’Ê‚è‚Å‚·B
+
+        struct  rsprm   {
+                int     sync_mode;      /* “¯Šúƒ‚[ƒh */
+                int     duplex;         /* “ñdƒ‚[ƒh */
+                int     blt;            /* ƒ{[ƒŒ[ƒg */
+                int     parity;         /* ƒpƒŠƒeƒB[ */
+                int     chr_len;        /* ƒLƒƒƒ‰ƒNƒ^’· */
+                int     stp_len;        /* ƒXƒgƒbƒvƒrƒbƒg’· */
+                int     flow_ctrl;      /* ƒtƒ[§Œä */
+                int     dtr;            /* ‚c‚s‚q§Œä */
+                int     syn_chr;        /* “¯ŠúƒLƒƒƒ‰ƒNƒ^ */
+                int     buf_size;       /* ŽóMƒoƒbƒtƒ@ƒTƒCƒY */
+                char    *bufp;          /* ŽóMƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^ */
+        };
+        typedef struct  rsprm   RSPRM;
+
+
+  sync_mode     ASYNC           ’²•à“¯Šúƒ‚[ƒh
+                SYNC            “¯Šúƒ‚[ƒh
+
+  duplex        DUPLEX_FULL     ‘S“ñdƒ‚[ƒh
+                DUPLEX_HALF     ”¼“ñdƒ‚[ƒh
+
+  blt           BLT_75          ‚V‚T‚‚‚‚“         ¦ƒ`ƒƒƒlƒ‹‚P‚Ì‚Ý—LŒø
+                BLT_150         ‚P‚T‚O‚‚‚‚“         ƒ`ƒƒƒlƒ‹‚QC‚R‚ÍŠg’£ƒ{
+                BLT_300         ‚R‚O‚O‚‚‚‚“         [ƒhã‚ÌƒfƒBƒbƒvƒXƒCƒb
+                BLT_600         ‚U‚O‚O‚‚‚‚“         ƒ`‚É‚Äƒ{[ƒŒ[ƒg‚ÌÝ’è
+                BLT_1200        ‚P‚Q‚O‚O‚‚‚‚“       ‚ðs‚¤B
+                BLT_2400        ‚Q‚S‚O‚O‚‚‚‚“
+                BLT_4800        ‚S‚W‚O‚O‚‚‚‚“
+                BLT_9600        ‚X‚U‚O‚O‚‚‚‚“
+
+  parity        PARITY_NONE     ƒpƒŠƒeƒB[–³‚µ
+                PARITY_EVEN     ‹ô”ƒpƒŠƒeƒB[
+                PARITY_ODD      Šï”ƒpƒŠƒeƒB[
+
+  chr_len       CHR_5           ‚Tƒrƒbƒg
+                CHR_6           ‚Uƒrƒbƒg
+                CHR_7           ‚Vƒrƒbƒg
+                CHR_8           ‚Wƒrƒbƒg
+
+  stp_len       STP_1           ‚Pƒrƒbƒg           ¦“¯Šúƒ‚[ƒh‚Å‚ÍŽw’è‚·‚é
+                STP_1_5         ‚PD‚Tƒrƒbƒg         •K—v‚Í‚È‚¢B
+                STP_2           ‚Qƒrƒbƒg
+
+  flow_ctrl     FLOW_NONE       ƒtƒ[§Œä–³‚µ
+                FLOW_SOFT       ‚w‚n‚m^‚w‚n‚e‚e§Œä
+                FLOW_HARD       ‚q‚s‚r^‚b‚s‚r§Œä
+  dtr           DTR_OFF         ‚c‚s‚qƒIƒt
+                DTR_ON          ‚c‚s‚qƒIƒ“
+
+  syc_chr       “¯ŠúƒLƒƒƒ‰ƒNƒ^  ‰ºˆÊ‚Wƒrƒbƒg‚ª‘æ‚P“¯ŠúƒLƒƒƒ‰ƒNƒ^
+                                ãˆÊ‚Wƒrƒbƒg‚ª‘æ‚Q“¯ŠúƒLƒƒƒ‰ƒNƒ^
+                                ¦’²•à“¯Šúƒ‚[ƒh‚Å‚ÍŽw’è‚·‚é•K—v‚Í‚È‚¢B
+                                  ‘æ‚Q“¯ŠúƒLƒƒƒ‰ƒNƒ^‚ðŽw’è‚µ‚È‚¢i‚Ojê‡
+                                  ‚ÍƒVƒ“ƒOƒ‹“¯Šú‚Æ‚·‚éB
+
+  buf_size      ŽóMƒoƒbƒtƒ@ƒTƒCƒY      ¦‚P•¶Žš‚É•t‚«‚QƒoƒCƒgŽg—p‚·‚é‚½‚ß
+                                          •K—v‚È•¶Žš”‚Ì‚Q”{‚ðŽw’è‚·‚éB
+
+  bufp          ŽóMƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^    ¦‚m‚t‚k‚k‚ðÝ’è‚µ‚½ê‡‚Íƒ‰ƒCƒuƒ‰ƒŠ
+                                          ‘¤‚Åƒoƒbƒtƒ@‚ðŠm•Û‚·‚éB
+
+
+
+  ƒGƒ‰[ƒR[ƒh‚ÍŽŸ‚Ì’Ê‚è‚Å‚·B
+  †®†¢†¢†¢†¢†¢†¢†Î†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†²
+  †¤ƒGƒ‰[ƒR[ƒh†¤               ˆÓ      –¡               †¤
+  †¾†¢†¢†¢†¢†¢†¢†Þ†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†Æ
+  †¤      ‚O    †¤  ³í                                  †¤
+  †¤      ‚P    †¤  ƒI[ƒvƒ“Ï‚Ý                          †¤
+  †¤      ‚Q    †¤  “¯Šúƒ‚[ƒhƒpƒ‰ƒ[ƒ^ƒGƒ‰[            †¤
+  †¤      ‚R    †¤  “ñdƒ‚[ƒhƒpƒ‰ƒ[ƒ^ƒGƒ‰[            †¤
+  †¤      ‚S    †¤  ƒ{[ƒŒ[ƒgƒpƒ‰ƒ[ƒ^ƒGƒ‰[            †¤
+  †¤      ‚T    †¤  ƒpƒŠƒeƒB[ƒpƒ‰ƒ[ƒ^ƒGƒ‰[            †¤
+  †¤      ‚U    †¤  ƒLƒƒƒ‰ƒNƒ^’·ƒpƒ‰ƒ[ƒ^ƒGƒ‰[          †¤
+  †¤      ‚V    †¤  ƒXƒgƒbƒvƒrƒbƒg’·ƒpƒ‰ƒ[ƒ^ƒGƒ‰[      †¤
+  †¤      ‚W    †¤  ƒtƒ[§Œäƒpƒ‰ƒ[ƒ^ƒGƒ‰[            †¤
+  †¤      ‚X    †¤  ‚c‚s‚q§Œäƒpƒ‰ƒ[ƒ^ƒGƒ‰[            †¤
+  †¤    ‚P‚O    †¤  ŽóMƒoƒbƒtƒ@Šm•ÛŽ¸”s                  †¤
+  †¶†¢†¢†¢†¢†¢†¢†Ö†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†º
+                                  -E-
+.context rs_reopen
+.context rs1_reopen
+.context rs2_reopen
+.context rs3_reopen
+.context rsx_reopen
+:z3
+:l21
+  \i<\p\aˆê——\vRS232C\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "rs232c.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   int    rsx_reopen(channel, rsprm)
+\p\p                 int    rs1_reopen(rsprm)
+\p\p                 int    rs2_reopen(rsprm)
+\p\p                 int    rs3_reopen(rsprm)
+
+  \bƒpƒ‰ƒ[ƒ^\p     int    channel        ƒ`ƒƒƒlƒ‹”Ô†
+\p\p                 RSPRM  *rsprm         ’ÊMƒpƒ‰ƒ[ƒ^
+
+  \bƒŠƒ^[ƒ“’l\p     ƒGƒ‰[ƒR[ƒh
+
+  \b‹@”\\p           ‚·‚Å‚ÉƒI[ƒvƒ“‚³‚ê‚Ä‚¢‚éƒ|[ƒg‚Ì’ÊMƒpƒ‰ƒ[ƒ^‚ð•ÏX‚·
+\p\p                 ‚éB‚½‚¾‚µAŽóMƒoƒbƒtƒ@ƒTƒCƒY‚ÆŽóMƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^‚Í•Ï
+\p\p                 X‚·‚é‚±‚Æ‚Í‚Å‚«‚È‚¢B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   rsx_open()  rs1_open()  rs2_open()  rs3_open()
+                                  -E-
+.context rs_close
+.context rsx_close
+.context rs1_close
+.context rs2_close
+.context rs3_close
+:z3
+:l19
+  \i<\p\aˆê——\vRS232C\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "rs232c.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   rsx_close(channel)
+\p\p                 void   rs1_close()
+\p\p                 void   rs2_close()
+\p\p                 void   rs3_close()
+
+  \bƒpƒ‰ƒ[ƒ^\p     int    channel        ƒ`ƒƒƒlƒ‹”Ô†
+
+  \b‹@”\\p           ‚q‚r|‚Q‚R‚Q‚bƒ|[ƒg‚ÌƒNƒ[ƒY‚ðs‚¤BƒI[ƒvƒ“ˆ—‚ÅŠ„‚è
+\p\p                 ž‚ÝƒxƒNƒ^‚ð‘‚«Š·‚¦‚Ä‚¢‚é‚½‚ßAƒNƒ[ƒY‚¹‚¸‚ÉƒvƒƒOƒ‰ƒ€
+\p\p                 ‚ðI—¹‚³‚¹‚½ê‡A‚»‚ÌŒã‚Ì“®ì‚Í•ÛØ‚Å‚«‚È‚¢‚Ì‚Å’ˆÓ‚·‚é
+\p\p                 ‚±‚ÆB
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   rsx_open()  rs1_open()  rs2_open()  rs3_open()
+                                  -E-
+.context rs_rxc
+.context rsx_rxc
+.context rs1_rxc
+.context rs2_rxc
+.context rs3_rxc
+:z3
+:l19
+  \i<\p\aˆê——\vRS232C\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "rs232c.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   int    rsx_rxc(channel)
+\p\p                 int    rs1_rxc()
+\p\p                 int    rs2_rxc()
+\p\p                 int    rs3_rxc()
+
+  \bƒpƒ‰ƒ[ƒ^\p     int    channel        ƒ`ƒƒƒlƒ‹”Ô†
+
+  \bƒŠƒ^[ƒ“’l\p     ŽóM•¶Žš”
+
+  \b‹@”\\p           Œ»ÝŽóMƒoƒbƒtƒ@‚ÉŠi”[‚³‚ê‚Ä‚¢‚éŽóMƒf[ƒ^‚Ì•¶Žš”‚ð’²‚×
+\p\p                 ‚éB
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   rsx_get()  rs1_get()  rs2_get()  rs3_get()
+                                  -E-
+.context rs_get
+.context rsx_get
+.context rs1_get
+.context rs2_get
+.context rs3_get
+:z3
+:l30
+  \i<\p\aˆê——\vRS232C\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "rs232c.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   int    rsx_get(channel)
+\p\p                 int    rs1_get()
+\p\p                 int    rs2_get()
+\p\p                 int    rs3_get()
+
+  \bƒpƒ‰ƒ[ƒ^\p     int    channel        ƒ`ƒƒƒlƒ‹”Ô†
+
+  \bƒŠƒ^[ƒ“’l\p     ‰ºˆÊ‚WƒrƒbƒgFŽóMƒf[ƒ^
+\p\p                 ãˆÊ‚WƒrƒbƒgFƒGƒ‰[ƒrƒbƒg
+\p\p                   15  14  13  12  11  10   9   8
+\p\p                 †®†¢†Î†¢†Î†¢†Î†¢†Î†¢†Î†¢†Î†¢†Î†¢†²
+\p\p                 †¶†¢†Ö†¢†Ö†¢†Ö†¢†Ö†¢†Ö†¢†Ö†¢†Ö†¢†º
+\p\p                           †¤  †¤  †¤
+\p\p                           †¤  †¤  †¶†¢ƒpƒŠƒeƒB[ƒGƒ‰[
+\p\p                           †¤  †¶†¢†¢†¢ƒI[ƒo[ƒ‰ƒ“ƒGƒ‰[
+\p\p                           †¶†¢†¢†¢†¢†¢ƒtƒŒ[ƒ~ƒ“ƒOƒGƒ‰[
+
+\p\p                   ƒrƒbƒg‚WC‚XC‚P‚OC‚P‚SC‚P‚T‚Íí‚É‚O
+
+  \b‹@”\\p           ŽóMƒoƒbƒtƒ@‚æ‚è‚P•¶ŽšŽæ‚èo‚·B‚P•¶Žš‚àŽóM‚³‚ê‚Ä‚¢‚È‚¢
+\p\p                 ê‡‚ÍAŽóM‚·‚é‚Ü‚Å‘Ò‚ÂB
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   rsx_rxc()  rs1_rxc()  rs2_rxc()  rs3_rxc()
+\p\p                 rsx_put()  rs1_put()  rs2_put()  rs3_put()
+                                  -E-
+.context rs_clear
+.context rsx_clear
+.context rs1_clear
+.context rs2_clear
+.context rs3_clear
+:z3
+:l16
+  \i<\p\aˆê——\vRS232C\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "rs232c.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   rsx_clear(channel)
+\p\p                 void   rs1_clear()
+\p\p                 void   rs2_clear()
+\p\p                 void   rs3_clear()
+
+  \bƒpƒ‰ƒ[ƒ^\p     int    channel        ƒ`ƒƒƒlƒ‹”Ô†
+
+  \b‹@”\\p           ŽóMƒoƒbƒtƒ@‚ðƒNƒŠƒA‚·‚éBiŽóMÏ‚Ý‚Ìƒf[ƒ^‚ðŽÌ‚Ä‚éj
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   rsx_get()  rs1_get()  rs2_get()  rs3_get()
+                                  -E-
+.context rs_put
+.context rsx_put
+.context rs1_put
+.context rs2_put
+.context rs3_put
+:z3
+:l21
+  \i<\p\aˆê——\vRS232C\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "rs232c.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   rsx_put(channel, c)
+\p\p                 void   rs1_put(c)
+\p\p                 void   rs2_put(c)
+\p\p                 void   rs3_put(c)
+
+  \bƒpƒ‰ƒ[ƒ^\p     int    channel        ƒ`ƒƒƒlƒ‹”Ô†
+\p\p                 int    c              ‘—M•¶Žš
+
+  \b‹@”\\p           ‚P•¶Žš‘—M‚ðs‚¤B‚q‚s‚r‚Ì§Œä‚ðs‚Á‚Ä‚¢‚È‚¢‚½‚ßA”¼“ñd
+\p\p                 ƒ‚[ƒh‚Å‚ÍŽg—p‚Å‚«‚È‚¢Bƒn[ƒhƒEƒFƒA‚ÌŽd—l‚É‚æ‚è‚b‚s‚r‚ª
+\p\p                 ‚n‚e‚e‚Ìê‡‚Í‘—M‚Å‚«‚È‚¢B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   rsx_get()   rs1_get()   rs2_get()   rs3_get()
+\p\p                 rsx_send()  rs1_send()  rs2_send()  rs3_send()
+\p\p                 rsx_sendreq() rs1_sendreq() rs2_sendreq() rs3_sendreq()
+                                  -E-
+.context rs_send
+.context rsx_send
+.context rs1_send
+.context rs2_send
+.context rs3_send
+:z3
+:l23
+  \i<\p\aˆê——\vRS232C\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "rs232c.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   rsx_send(channel, s, len)
+\p\p                 void   rs1_send(s, len)
+\p\p                 void   rs2_send(s, len)
+\p\p                 void   rs3_send(s, len)
+
+  \bƒpƒ‰ƒ[ƒ^\p     int    channel        ƒ`ƒƒƒlƒ‹”Ô†
+\p\p                 char   *s             ‘—MƒuƒƒbƒNæ“ªƒ|ƒCƒ“ƒ^
+\p\p                 int    len            ‘—MƒuƒƒbƒN“àƒoƒCƒg”
+
+  \b‹@”\\p           ‚PƒuƒƒbƒN‚Ìƒf[ƒ^‚ð‘—M‚·‚éB”¼“ñd‚Ìê‡A‚q‚s‚r‚ð‚n‚m
+\p\p                 ‚É‚µ‚ÄƒuƒƒbƒN‚ð‘—M‚µA‘—MŒã‚n‚e‚e‚É‚·‚éBrs_pad()‚Å‚o
+\p\p                 ‚`‚c•¶Žš—ñ‚ªÝ’è‚³‚ê‚Ä‚¢‚éê‡‚ÍAƒuƒƒbƒN‚Ìæ“ª‚É‚ÍƒŠ[
+\p\p                 ƒfƒCƒ“ƒO‚o‚`‚cAÅŒã‚É‚ÍƒgƒŒ[ƒŠƒ“ƒO‚o‚`‚c‚ð•t‰Á‚·‚éBƒu
+\p\p                 ƒƒbƒN“à‚Ì‘S‚Ä‚Ìƒf[ƒ^‚ð‘—MŒãAƒŠƒ^[ƒ“‚·‚éB
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   rsx_put()   rs1_put()   rs2_put()   rs3_put()
+\p\p                 rsx_sendreq() rs1_sendreq() rs2_sendreq() rs3_sendreq()
+                                  -E-
+.context rs_sendreq
+.context rsx_sendreq
+.context rs1_sendreq
+.context rs2_sendreq
+.context rs3_sendreq
+:z3
+:l24
+  \i<\p\aˆê——\vRS232C\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "rs232c.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   rsx_sendreq(channel, s, len)
+\p\p                 void   rs1_sendreq(s, len)
+\p\p                 void   rs2_sendreq(s, len)
+\p\p                 void   rs3_sendreq(s, len)
+
+  \bƒpƒ‰ƒ[ƒ^\p     int    channel        ƒ`ƒƒƒlƒ‹”Ô†
+\p\p                 char   *s             ‘—MƒuƒƒbƒNæ“ªƒ|ƒCƒ“ƒ^
+\p\p                 int    len            ‘—MƒuƒƒbƒN“àƒoƒCƒg”
+
+  \b‹@”\\p           ‚PƒuƒƒbƒN‚Ìƒf[ƒ^‚ð‘—M‚·‚éB”¼“ñd‚Ìê‡A‚q‚s‚r‚ð‚n‚m
+\p\p                 ‚É‚µ‚ÄƒuƒƒbƒN‚ð‘—M‚µA‘—MŒã‚n‚e‚e‚É‚·‚éBrs_pad()‚Å‚o
+\p\p                 ‚`‚c•¶Žš—ñ‚ªÝ’è‚³‚ê‚Ä‚¢‚éê‡‚ÍAƒuƒƒbƒN‚Ìæ“ª‚É‚ÍƒŠ[
+\p\p                 ƒfƒCƒ“ƒO‚o‚`‚cAÅŒã‚É‚ÍƒgƒŒ[ƒŠƒ“ƒO‚o‚`‚c‚ð•t‰Á‚·‚éBÅ
+\p\p                 ‰‚Ì‚P•¶Žš‚ð‘—MŒãƒŠƒ^[ƒ“‚µAŽc‚è‚Ìƒf[ƒ^‚Í‘—M‰ÂŠ„‚èž
+\p\p                 ‚Ý‚É‚æ‚è‡ŽŸ‘—M‚·‚éB
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   rsx_put()   rs1_put()   rs2_put()   rs3_put()
+\p\p                 rsx_send()  rs1_send()  rs2_send()  rs3_send()
+                                  -E-
+.context rs_swait
+.context rsx_swait
+.context rs1_swait
+.context rs2_swait
+.context rs3_swait
+:z3
+:l20
+  \i<\p\aˆê——\vRS232C\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "rs232c.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   rsx_swait(channel)
+\p\p                 void   rs1_swait()
+\p\p                 void   rs2_swait()
+\p\p                 void   rs3_swait()
+
+  \bƒpƒ‰ƒ[ƒ^\p     int    channel        ƒ`ƒƒƒlƒ‹”Ô†
+
+  \b‹@”\\p           ‘—M‚ªŠ®‘S‚ÉI—¹‚·‚é‚Ì‚ð‘Ò‚ÂBrs_put(), rs_send(),
+\p\p                 rs_sendreq()‚É‚æ‚è‘—M‚µ‚½ƒf[ƒ^‚ªŠ®‘S‚É‘—M‚µI‚í‚é‚Ì‚ð
+\p\p                 ‘Ò‚Á‚ÄƒŠƒ^[ƒ“‚·‚éB
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   rsx_put()   rs1_put()   rs2_put()   rs3_put()
+\p\p                 rsx_send()  rs1_send()  rs2_send()  rs3_send()
+\p\p                 rsx_sendreq() rs1_sendreq() rs2_sendreq() rs3_sendreq()
+                                  -E-
+.context rs_flow
+.context rsx_flow
+.context rs1_flow
+.context rs2_flow
+.context rs3_flow
+:z3
+:l20
+  \i<\p\aˆê——\vRS232C\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "rs232c.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   rsx_flow(channel, ctrl)
+\p\p                 void   rs1_flow(ctrl)
+\p\p                 void   rs2_flow(ctrl)
+\p\p                 void   rs3_flow(ctrl)
+
+  \bƒpƒ‰ƒ[ƒ^\p     int    channel        ƒ`ƒƒƒlƒ‹”Ô†
+\p\p                 int    ctrl           ƒtƒ[§Œä•ûŽ®
+\p\p                                         FLOW_NONE  ƒtƒ[§Œä–³‚µ
+\p\p                                         FLOW_SOFT  ‚w‚n‚m^‚w‚n‚e‚e§Œä
+\p\p                                         FLOW_HARD  ‚q‚s‚r^‚b‚s‚r§Œä
+
+  \b‹@”\\p           Œ»Ý‚Ìƒtƒ[§Œä•ûŽ®‚ð•ÏX‚·‚éB
+
+  \bŠÖ˜A‚·‚éŠÖ”\p
+                                  -E-
+.context rs_pad
+.context rsx_pad
+.context rs1_pad
+.context rs2_pad
+.context rs3_pad
+:z3
+:l24
+  \i<\p\aˆê——\vRS232C\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "rs232c.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   rsx_pad(channel, lpad, lpadsize, tpad, tpadsize)
+\p\p                 void   rs1_pad(lpad, lpadsize, tpad, tpadsize)
+\p\p                 void   rs2_pad(lpad, lpadsize, tpad, tpadsize)
+\p\p                 void   rs3_pad(lpad, lpadsize, tpad, tpadsize)
+
+  \bƒpƒ‰ƒ[ƒ^\p     int    channel        ƒ`ƒƒƒlƒ‹”Ô†
+\p\p                 char   *lpad          ƒŠ[ƒfƒBƒ“ƒO‚o‚`‚cƒf[ƒ^
+\p\p                 int    lpadsize       ƒŠ[ƒfƒBƒ“ƒO‚o‚`‚cƒf[ƒ^’·
+\p\p                 char   *tpad          ƒgƒŒ[ƒŠƒ“ƒO‚o‚`‚cƒf[ƒ^
+\p\p                 int    tpadsize       ƒgƒŒ[ƒŠƒ“ƒO‚o‚`‚cƒf[ƒ^’·
+
+  \b‹@”\\p           ƒŠ[ƒfƒBƒ“ƒO‚o‚`‚cAƒgƒŒ[ƒŠƒ“ƒO‚o‚`‚c‚ðÝ’è‚·‚éBˆÈ~A
+\p\p                 rs_send(), rs_sendreq() ‚ÅƒuƒƒbƒN‘—M‚ðs‚¤‚ÆAƒuƒƒbƒN
+\p\p                 ‚Ì‘O‚ÉƒŠ[ƒfƒBƒ“ƒO‚o‚`‚cAŒã‚ë‚ÉƒgƒŒ[ƒŠƒ“ƒO‚o‚`‚c‚ª•t‰Á
+\p\p                 ‚³‚ê‚Ä‘—M‚³‚ê‚éB
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   rsx_send()  rs1_send()  rs2_send()  rs3_send()
+\p\p                 rsx_sendreq() rs1_sendreq() rs2_sendreq() rs3_sendreq()
+                                  -E-
+.context rs_rcvint
+.context rsx_rcvint
+.context rs1_rcvint
+.context rs2_rcvint
+.context rs3_rcvint
+:z3
+:l23
+  \i<\p\aˆê——\vRS232C\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "rs232c.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   rsx_rcvint(channel, func)
+\p\p                 void   rs1_rcvint(func)
+\p\p                 void   rs2_rcvint(func)
+\p\p                 void   rs3_rcvint(func)
+
+  \bƒpƒ‰ƒ[ƒ^\p     int    channel        ƒ`ƒƒƒlƒ‹”Ô†
+\p\p                 int    (*func)(int)   ƒ†[ƒUŽóMŠ„‚èž‚ÝŠÖ”
+\p\p                                         Ý’è‚ð‰ðœ‚µ‚½‚¢ê‡‚Í‚m‚t‚k‚kƒ|
+\p\p                                         ƒCƒ“ƒ^‚ðÝ’è‚·‚éB
+
+  \b‹@”\\p           ƒ†[ƒUŽóMŠ„‚èž‚ÝŠÖ”‚ðÝ’è‚·‚éBˆÈ~AŽóMŠ„‚èž‚Ý‚ª”­
+\p\p                 ¶‚·‚é“x‚ÉÝ’è‚³‚ê‚½ŠÖ”‚ªŒÄ‚Î‚ê‚éBŠÖ”‚É‚Íˆø”‚Æ‚µ‚ÄŽó
+\p\p                 Mƒf[ƒ^‚ª“n‚³‚êA‚»‚ÌŠÖ”‚Ì•Ô’l‚ªŽóMƒoƒbƒtƒ@‚ÉŠi”[‚³‚ê
+\p\p                 ‚éB‚½‚¾‚µA|‚P‚ð•Ô’l‚Æ‚µ‚Ä•Ô‚µ‚½ê‡‚ÍŽóMƒoƒbƒtƒ@‚Ö‚Ì
+\p\p                 Ši”[‚Ís‚í‚È‚¢B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p
+                                  -E-
+.context rs_ehm
+.context rsx_ehm
+.context rs1_ehm
+.context rs2_ehm
+.context rs3_ehm
+:z3
+:l18
+  \i<\p\aˆê——\vRS232C\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "rs232c.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   rsx_ehm(channel)
+\p\p                 void   rs1_ehm()
+\p\p                 void   rs2_ehm()
+\p\p                 void   rs3_ehm()
+
+  \bƒpƒ‰ƒ[ƒ^\p     int    channel        ƒ`ƒƒƒlƒ‹”Ô†
+
+  \b‹@”\\p           “¯Šúƒ‚[ƒh‚É‚¨‚¢‚ÄAƒGƒ“ƒ^[ƒnƒ“ƒgƒ‚[ƒhiƒLƒƒƒ‰ƒNƒ^“¯Šú
+\p\p                 ‚ð‰ðœ‚µAV‚½‚É‚r‚x‚m‚bƒR[ƒh‚É‚æ‚è“¯Šú‚ðŽæ‚è’¼‚·j‚ÉˆÚ
+\p\p                 s‚³‚¹‚éB
+
+  \bŠÖ˜A‚·‚éŠÖ”\p
+                                  -E-
+.context rs_dsr
+.context rsx_dsr
+.context rs1_dsr
+.context rs2_dsr
+.context rs3_dsr
+:z3
+:l20
+  \i<\p\aˆê——\vRS232C\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "rs232c.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   int    rsx_dsr(channel)
+\p\p                 int    rs1_dsr()
+\p\p                 int    rs2_dsr()
+\p\p                 int    rs3_dsr()
+
+  \bƒpƒ‰ƒ[ƒ^\p     int    channel        ƒ`ƒƒƒlƒ‹”Ô†
+
+  \bƒŠƒ^[ƒ“’l\p     ‚OF‚c‚r‚qƒIƒt  ‚PF‚c‚r‚qƒIƒ“
+
+  \b‹@”\\p           Œ»Ý‚Ì‚c‚r‚q‚Ì‚n‚m^‚n‚e‚eó‘Ô‚ð’²‚×‚éB
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   rsx_cts()  rs1_cts()  rs2_cts()  rs3_cts()
+\p\p                 rsx_cd()   rs1_cd()   rs2_cd()   rs3_cd()
+\p\p                 rsx_ci()   rs1_ci()   rs2_ci()   rs3_ci()
+                                  -E-
+.context rs_cd
+.context rsx_cd
+.context rs1_cd
+.context rs2_cd
+.context rs3_cd
+:z3
+:l20
+  \i<\p\aˆê——\vRS232C\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "rs232c.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   int    rsx_cd(channel)
+\p\p                 int    rs1_cd()
+\p\p                 int    rs2_cd()
+\p\p                 int    rs3_cd()
+
+  \bƒpƒ‰ƒ[ƒ^\p     int    channel        ƒ`ƒƒƒlƒ‹”Ô†
+
+  \bƒŠƒ^[ƒ“’l\p     ‚OF‚b‚cƒIƒt  ‚PF‚b‚cƒIƒ“
+
+  \b‹@”\\p           Œ»Ý‚Ì‚b‚c‚Ì‚n‚m^‚n‚e‚eó‘Ô‚ð’²‚×‚éB
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   rsx_dsr()  rs1_dsr()  rs2_dsr()  rs3_dsr()
+\p\p                 rsx_cts()  rs1_cts()  rs2_cts()  rs3_cts()
+\p\p                 rsx_ci()   rs1_ci()   rs2_ci()   rs3_ci()
+                                  -E-
+.context rs_cts
+.context rsx_cts
+.context rs1_cts
+.context rs2_cts
+.context rs3_cts
+:z3
+:l20
+  \i<\p\aˆê——\vRS232C\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "rs232c.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   int    rsx_cts(channel)
+\p\p                 int    rs1_cts()
+\p\p                 int    rs2_cts()
+\p\p                 int    rs3_cts()
+
+  \bƒpƒ‰ƒ[ƒ^\p     int    channel        ƒ`ƒƒƒlƒ‹”Ô†
+
+  \bƒŠƒ^[ƒ“’l\p     ‚OF‚b‚s‚rƒIƒt  ‚PF‚b‚s‚rƒIƒ“
+
+  \b‹@”\\p           Œ»Ý‚Ì‚b‚s‚r‚Ì‚n‚m^‚n‚e‚eó‘Ô‚ð’²‚×‚éB
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   rsx_dsr()  rs1_dsr()  rs2_dsr()  rs3_dsr()
+\p\p                 rsx_cd()   rs1_cd()   rs2_cd()   rs3_cd()
+\p\p                 rsx_ci()   rs1_ci()   rs2_ci()   rs3_ci()
+                                  -E-
+.context rs_ci
+.context rsx_ci
+.context rs1_ci
+.context rs2_ci
+.context rs3_ci
+:z3
+:l20
+  \i<\p\aˆê——\vRS232C\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "rs232c.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   int    rsx_ci(channel)
+\p\p                 int    rs1_ci()
+\p\p                 int    rs2_ci()
+\p\p                 int    rs3_ci()
+
+  \bƒpƒ‰ƒ[ƒ^\p     int    channel        ƒ`ƒƒƒlƒ‹”Ô†
+
+  \bƒŠƒ^[ƒ“’l\p     ‚OF‚b‚hƒIƒt  ‚PF‚b‚hƒIƒ“
+
+  \b‹@”\\p           Œ»Ý‚Ì‚b‚hi”íŒÄ•\Ž¦j‚Ì‚n‚m^‚n‚e‚eó‘Ô‚ð’²‚×‚éB
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   rsx_dsr()  rs1_dsr()  rs2_dsr()  rs3_dsr()
+\p\p                 rsx_cts()  rs1_cts()  rs2_cts()  rs3_cts()
+\p\p                 rsx_cd()   rs1_cd()   rs2_cd()   rs3_cd()
+                                  -E-
+.context rs_dtr
+.context rsx_dtr
+.context rs1_dtr
+.context rs2_dtr
+.context rs3_dtr
+:z3
+:l17
+  \i<\p\aˆê——\vRS232C\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "rs232c.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   rsx_dtr(channel, sw)
+\p\p                 void   rs1_dtr(sw)
+\p\p                 void   rs2_dtr(sw)
+\p\p                 void   rs3_dtr(sw)
+
+  \bƒpƒ‰ƒ[ƒ^\p     int    channel        ƒ`ƒƒƒlƒ‹”Ô†
+\p\p                 int    sw             ‚OF‚c‚s‚qƒIƒt  ‚‚OF‚c‚s‚qƒIƒ“
+
+  \b‹@”\\p           ‚c‚s‚q‚Ì‚n‚m^‚n‚e‚e‚ðÝ’è‚·‚éB
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   rsx_rts()  rs1_rts()  rs2_rts()  rs3_rts()
+                                  -E-
+.context rs_rts
+.context rsx_rts
+.context rs1_rts
+.context rs2_rts
+.context rs3_rts
+:z3
+:l17
+  \i<\p\aˆê——\vRS232C\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "rs232c.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   rsx_rts(channel, sw)
+\p\p                 void   rs1_rts(sw)
+\p\p                 void   rs2_rts(sw)
+\p\p                 void   rs3_rts(sw)
+
+  \bƒpƒ‰ƒ[ƒ^\p     int    channel        ƒ`ƒƒƒlƒ‹”Ô†
+\p\p                 int    sw             ‚OF‚q‚s‚rƒIƒt  ‚‚OF‚q‚s‚rƒIƒ“
+
+  \b‹@”\\p           ‚q‚s‚r‚Ì‚n‚m^‚n‚e‚e‚ðÝ’è‚·‚éB
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   rsx_dtr()  rs1_dtr()  rs2_dtr()  rs3_dtr()
+                                  -E-
+.context rs_break
+.context rsx_break
+.context rs1_break
+.context rs2_break
+.context rs3_break
+:z3
+:l18
+  \i<\p\aˆê——\vRS232C\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "rs232c.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   rsx_break(channel, sw)
+\p\p                 void   rs1_break(sw)
+\p\p                 void   rs2_break(sw)
+\p\p                 void   rs3_break(sw)
+
+  \bƒpƒ‰ƒ[ƒ^\p     int    channel        ƒ`ƒƒƒlƒ‹”Ô†
+\p\p                 int    sw               ‚OFƒuƒŒ[ƒNM†ƒIƒt
+\p\p                                       ‚‚OFƒuƒŒ[ƒNM†ƒIƒ“
+
+  \b‹@”\\p           ƒuƒŒ[ƒNM†‚ð‘—o‚·‚éB
+
+  \bŠÖ˜A‚·‚éŠÖ”\p
+                                  -E-
+.context rs_cmd
+.context rsx_cmd
+.context rs1_cmd
+.context rs2_cmd
+.context rs3_cmd
+:z3
+:l22
+  \i<\p\aˆê——\vRS232C\v\i>\p \i<\p\a•â‘«à–¾\vrs_cmd.des\v\i>\p                                                 \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "rs232c.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   rsx_cmd(channel, cmd, mask)
+\p\p                 void   rs1_cmd(cmd, mask)
+\p\p                 void   rs2_cmd(cmd, mask)
+\p\p                 void   rs3_cmd(cmd, mask)
+
+  \bƒpƒ‰ƒ[ƒ^\p     int    channel        ƒ`ƒƒƒlƒ‹”Ô†
+\p\p                 int    cmd            ‚W‚Q‚T‚P‚`‚ÌƒRƒ}ƒ“ƒhƒŒƒWƒXƒ^‚ÉÝ’è
+\p\p                                       ‚·‚éƒf[ƒ^
+\p\p                 int    mask           cmd ‚Ìƒ}ƒXƒNƒf[ƒ^i‚P‚Ìƒrƒbƒg‚ª—L
+\p\p                                       Œøj
+
+  \b‹@”\\p           ‚W‚Q‚T‚P‚`i‚q‚r|‚Q‚R‚Q‚b§Œä—p‚k‚r‚hj‚ÌƒRƒ}ƒ“ƒhƒŒƒWƒX
+\p\p                 ƒ^‚É‘Î‚µ‚Ä’¼Úƒf[ƒ^‚ðÝ’è‚·‚éB’Êí‚Í‘¼‚ÌŠÖ”‚É‚æ‚è§Œä
+\p\p                 ‚ªs‚í‚ê‚Ä‚¢‚é‚½‚ßA‚±‚ÌŠÖ”‚ðŽg‚¤•K—v‚Í–³‚¢B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   rsx_sts()  rs1_sts()  rs2_sts()  rs3_sts()
+                                  -E-
+.context rs_cmd.des
+:z3
+:nrs_cmd() •â‘«à–¾
+:l35
+  \i<\p\aˆê——\vRS232C\v\i>\p \i<\p\aŠT—v\vrs_cmd\v\i>\p                                                     \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  ‚W‚Q‚T‚P‚`‚ÌƒRƒ}ƒ“ƒhƒŒƒWƒXƒ^
+
+         ‚V    ‚U    ‚T    ‚S    ‚R    ‚Q    ‚P    ‚O
+      †®†¢†¢†Î†¢†¢†Î†¢†¢†Î†¢†¢†Î†¢†¢†Î†¢†¢†Î†¢†¢†Î†¢†¢†²
+      †¤ EH †¤ IR †¤RTS †¤ ER †¤SBRK†¤RXE †¤DTR †¤TXEN†¤
+      †¶†Î†¢†Ö†Î†¢†Ö†Î†¢†Ö†Î†¢†Ö†Î†¢†Ö†Î†¢†Ö†Î†¢†Ö†Î†¢†º
+        †¤    †¤    †¤    †¤    †¤    †¤    †¤    †¤
+        †¤    †¤    †¤    †¤    †¤    †¤    †¤    †¶†¢‘—M“®ì
+        †¤    †¤    †¤    †¤    †¤    †¤    †¤          ‚OF‘—M‹ÖŽ~
+        †¤    †¤    †¤    †¤    †¤    †¤    †¤          ‚OF‘—M‹–‰Â
+        †¤    †¤    †¤    †¤    †¤    †¤    †¤
+        †¤    †¤    †¤    †¤    †¤    †¤    †¶†¢‚c‚s‚q§Œä  ‚OF‚n‚e‚e
+        †¤    †¤    †¤    †¤    †¤    †¤                    ‚PF‚n‚m
+        †¤    †¤    †¤    †¤    †¤    †¤
+        †¤    †¤    †¤    †¤    †¤    †¶†¢ŽóM“®ì  ‚OFŽóM‹ÖŽ~
+        †¤    †¤    †¤    †¤    †¤                  ‚PFŽóM‹–‰Â
+        †¤    †¤    †¤    †¤    †¤
+        †¤    †¤    †¤    †¤    †¶†¢ƒuƒŒ[ƒNM†‘—o  ‚OFƒuƒŒ[ƒNM†‚n‚e‚e
+        †¤    †¤    †¤    †¤                          ‚PFƒuƒŒ[ƒNM†‚n‚m
+        †¤    †¤    †¤    †¤
+        †¤    †¤    †¤    †¶†¢ƒGƒ‰[ƒŠƒZƒbƒg  ‚OFƒGƒ‰[ƒtƒ‰ƒO‚ÌƒŠƒZƒbƒg–³‚µ
+        †¤    †¤    †¤                        ‚PFƒGƒ‰[ƒtƒ‰ƒO‚ÌƒŠƒZƒbƒg—L‚è
+        †¤    †¤    †¤
+        †¤    †¤    †¶†¢‚q‚s‚r§Œä  ‚OF‚n‚e‚e
+        †¤    †¤                    ‚PF‚n‚m
+        †¤    †¤
+        †¤    †¶†¢“à•”ƒŠƒZƒbƒg  ‚OFƒŠƒZƒbƒg‚µ‚È‚¢
+        †¤                      ‚PFƒŠƒZƒbƒg‚·‚é
+        †¤
+        †¶†¢ƒGƒ“ƒ^[ƒnƒ“ƒgƒ‚[ƒh  ‚OFƒnƒ“ƒgƒ‚[ƒh‚É‚µ‚È‚¢
+              i“¯Šúƒ‚[ƒh‚Ì‚Ýj  ‚PFƒnƒ“ƒgƒ‚[ƒh‚É‚·‚é
+                                  -E-
+.context rs_sts
+.context rsx_sts
+.context rs1_sts
+.context rs2_sts
+.context rs3_sts
+:z3
+:l19
+  \i<\p\aˆê——\vRS232C\v\i>\p \i<\p\a•â‘«à–¾\vrs_sts.des\v\i>\p                                                 \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "rs232c.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   int    rsx_sts(channel)
+\p\p                 int    rs1_sts()
+\p\p                 int    rs2_sts()
+\p\p                 int    rs3_sts()
+
+  \bƒpƒ‰ƒ[ƒ^\p     int    channel        ƒ`ƒƒƒlƒ‹”Ô†
+
+  \bƒŠƒ^[ƒ“’l\p     ƒXƒe[ƒ^ƒXƒŒƒWƒXƒ^‚Ì“à—e
+
+  \b‹@”\\p           ‚W‚Q‚T‚P‚`i‚q‚r|‚Q‚R‚Q‚b§Œä—p‚k‚r‚hj‚ÌƒXƒe[ƒ^ƒXƒŒƒW
+\p\p                 ƒXƒ^‚ð“Ç‚Ýž‚ÞB
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   rsx_cmd()  rs1_cmd()  rs2_cmd()  rs3_cmd()
+                                  -E-
+.context rs_sts.des
+:z3
+:nrs_sts() •â‘«à–¾
+:l37
+  \i<\p\aˆê——\vRS232C\v\i>\p \i<\p\aŠT—v\vrs_sts\v\i>\p                                                     \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  ‚W‚Q‚T‚P‚`‚ÌƒXƒe[ƒ^ƒXƒŒƒWƒXƒ^
+
+         ‚V    ‚U    ‚T    ‚S    ‚R    ‚Q    ‚P    ‚O
+      †®†¢†¢†Î†¢†¢†Î†¢†¢†Î†¢†¢†Î†¢†¢†Î†¢†¢†Î†¢†¢†Î†¢†¢†²
+      †¤DSR †¤SYN †¤ FE †¤ OE †¤ PE †¤TXE †¤RRDY†¤TRDY†¤
+      †¶†Î†¢†Ö†Î†¢†Ö†Î†¢†Ö†Î†¢†Ö†Î†¢†Ö†Î†¢†Ö†Î†¢†Ö†Î†¢†º
+        †¤    †¤    †¤    †¤    †¤    †¤    †¤    †¤
+        †¤    †¤    †¤    †¤    †¤    †¤    †¤    †¶†¢‘—M‰Â^•s‰Â
+        †¤    †¤    †¤    †¤    †¤    †¤    †¤          ‚OF‘—M•s‰Â
+        †¤    †¤    †¤    †¤    †¤    †¤    †¤          ‚PF‘—M‰Â
+        †¤    †¤    †¤    †¤    †¤    †¤    †¤
+        †¤    †¤    †¤    †¤    †¤    †¤    †¶†¢ŽóMƒf[ƒ^—L–³
+        †¤    †¤    †¤    †¤    †¤    †¤          ‚OFŽóMƒf[ƒ^–³‚µ
+        †¤    †¤    †¤    †¤    †¤    †¤          ‚PFŽóMƒf[ƒ^—L‚è
+        †¤    †¤    †¤    †¤    †¤    †¤
+        †¤    †¤    †¤    †¤    †¤    †¶†¢‘—Mƒoƒbƒtƒ@  ‚OF‘—M’†
+        †¤    †¤    †¤    †¤    †¤                      ‚PF‘—Mƒoƒbƒtƒ@‹ó
+        †¤    †¤    †¤    †¤    †¤
+        †¤    †¤    †¤    †¤    †¶†¢ƒpƒŠƒeƒB[ƒGƒ‰[  ‚OFƒGƒ‰[–³‚µ
+        †¤    †¤    †¤    †¤                          ‚PFƒGƒ‰[—L‚è
+        †¤    †¤    †¤    †¤
+        †¤    †¤    †¤    †¶†¢ƒI[ƒo[ƒ‰ƒ“ƒGƒ‰[  ‚OFƒGƒ‰[–³‚µ
+        †¤    †¤    †¤                            ‚PFƒGƒ‰[—L‚è
+        †¤    †¤    †¤
+        †¤    †¤    †¶†¢ƒtƒŒ[ƒ~ƒ“ƒOƒGƒ‰[  ‚OFƒGƒ‰[–³‚µ
+        †¤    †¤                            ‚PFƒGƒ‰[—L‚è
+        †¤    †¤
+        †¤    †¶†¢‚r‚x‚m‚bi“¯Šúƒ‚[ƒhj^‚a‚q‚d‚`‚ji’²•à“¯Šúƒ‚[ƒhjŒŸo
+        †¤          ‚OF‚r‚x‚m‚b‚Ü‚½‚Í‚a‚q‚d‚`‚jŒŸo–³‚µ
+        †¤          ‚PF‚r‚x‚m‚b‚Ü‚½‚Í‚a‚q‚d‚`‚jŒŸo—L‚è
+        †¤
+        †¶†¢‚c‚r‚q  ‚OF‚n‚e‚e
+                    ‚PF‚n‚m
+                                  -E-
+.context tm_open
+:z3
+:l14
+  \i<\p\aˆê——\vRS232C\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "rs232c.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   int    tm_open()
+
+  \bƒŠƒ^[ƒ“’l\p     ‚OF³í    ‚PFƒI[ƒvƒ“Ï‚Ý
+
+  \b‹@”\\p           ƒ^ƒCƒ}[‚ðŽg—p‚·‚é€”õ‚ð‚·‚éBƒ^ƒCƒ}[‚ðŽg—p‚·‚éê‡‚ÍÅ
+\p\p                 ‰‚É•K‚¸ŒÄ‚Î‚È‚¯‚ê‚Î‚È‚ç‚È‚¢B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   tm_set()  tm_check()  tm_stop()  tm_close()
+                                  -E-
+.context tm_set
+:z3
+:l18
+  \i<\p\aˆê——\vRS232C\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "rs232c.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   int    tm_set(no, tm)
+
+  \bƒpƒ‰ƒ[ƒ^\p     int    no             ƒ^ƒCƒ}[”Ô†i‚O`‚U‚T‚T‚R‚Tj
+\p\p                 int    tm             ƒ^ƒCƒ}[’li‚P‚O‚‚“’PˆÊj
+
+  \bƒŠƒ^[ƒ“’l\p     ‚OF³í  ‚PF–¢ƒI[ƒvƒ“  ‚QFƒ[ƒNƒGƒŠƒA‚ªŠm•ÛŽ¸”s
+
+  \b‹@”\\p           ƒ^ƒCƒ}[‚ð‹N“®‚·‚éBƒ^ƒCƒ}[‚Í•¡”“¯Žž‚É‹N“®‚Å‚«Aƒ^ƒC
+\p\p                 ƒ}[”Ô†(no)‚É‚æ‚Á‚Ä‹æ•Ê‚·‚éBƒ^ƒCƒ}[”Ô†‚Í”CˆÓ‚Ì”Ô†‚ð
+\p\p                 Žw’è‚Å‚«‚éB
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   tm_open()  tm_check()  tm_stop()  tm_close()
+                                  -E-
+.context tm_check
+:z3
+:l18
+  \i<\p\aˆê——\vRS232C\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "rs232c.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   int    tm_check(no)
+
+  \bƒpƒ‰ƒ[ƒ^\p     int    no             ƒ^ƒCƒ}[”Ô†
+\p\p                                       itm_set()‚ÅƒZƒbƒg‚µ‚½”Ô†j
+
+  \bƒŠƒ^[ƒ“’l\p     ‚OFƒ^ƒCƒ€ƒAƒEƒg‚µ‚Ä‚¢‚È‚¢
+\p\p                 ‚PFƒ^ƒCƒ€ƒAƒEƒg‚µ‚½i‚Ü‚½‚Íƒ^ƒCƒ}[‚ªƒZƒbƒg‚³‚ê‚Ä‚¢‚È‚¢j
+
+  \b‹@”\\p           tm_set() ‚ÅƒZƒbƒg‚µ‚½ƒ^ƒCƒ}[‚ªƒ^ƒCƒ€ƒAƒEƒg‚µ‚½‚©‚Ç‚¤‚©‚ð
+\p\p                 ’²‚×‚éB
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   tm_open()  tm_set()  tm_stop()  tm_close()
+                                  -E-
+.context tm_stop
+:z3
+:l14
+  \i<\p\aˆê——\vRS232C\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "rs232c.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   int    tm_stop(no)
+
+  \bƒpƒ‰ƒ[ƒ^\p     int    no             ƒ^ƒCƒ}[”Ô†
+\p\p                                       itm_set()‚ÅƒZƒbƒg‚µ‚½”Ô†j
+
+  \b‹@”\\p           Žw’è‚³‚ê‚½ƒ^ƒCƒ}[‚ð’âŽ~‚³‚¹‚éB
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   tm_open()  tm_set()  tm_check()  tm_close()
+                                  -E-
+.context tm_close
+:z3
+:l14
+  \i<\p\aˆê——\vRS232C\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "rs232c.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   tm_close()
+
+  \b‹@”\\p           ƒ^ƒCƒ}[‚Ì“®ì‚ð’âŽ~‚³‚¹‚éBƒ^ƒCƒ}[‚ª“®ì‚µ‚½‚Ü‚Ü‚Åƒvƒ
+\p\p                 ƒOƒ‰ƒ€‚ðI—¹‚³‚¹‚é‚ÆƒvƒƒOƒ‰ƒ€‚ª–\‘–‚·‚é‹°‚ê‚ª‚ ‚é‚Ì‚ÅA
+\p\p                 ƒ^ƒCƒ}[‚ðŽg‚Á‚½ê‡‚ÍƒvƒƒOƒ‰ƒ€‚ðI—¹‚³‚¹‚é‘O‚É•K‚¸‚±‚Ì
+\p\p                 ŠÖ”‚ðŒÄ‚Ô‚±‚ÆB
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   tm_open()  tm_set()  tm_check()  tm_stop()
+                                  -E-
+

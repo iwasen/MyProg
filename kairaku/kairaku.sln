@@ -1,0 +1,13 @@
+Microsoft Visual Studio Solution File, Format Version 1.00
+Project("{66355F20-A65B-11D0-BFB5-00A0C91EBFA0}") = "kairaku", "kairaku.vjp", "{C2080177-9798-4CF3-AE74-47E27471B48E}"
+EndProject
+Global
+	GlobalSection(LocalDeployment) = postSolution
+		StartupProject = {C2080177-9798-4CF3-AE74-47E27471B48E}
+	EndGlobalSection
+	GlobalSection(BuildOrder) = postSolution
+		0 = {C2080177-9798-4CF3-AE74-47E27471B48E}
+	EndGlobalSection
+	GlobalSection(DeploymentRoot) = postSolution
+	EndGlobalSection
+EndGlobal

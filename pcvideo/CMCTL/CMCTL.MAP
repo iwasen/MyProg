@@ -1,0 +1,941 @@
+
+ CMCTL
+
+ Start     Length     Name                   Class
+ 0001:0000 00000H     CMCTL_TEXT             CODE 16-bit
+ 0001:0000 00000H     LOCAL_TEXT             CODE 16-bit
+ 0001:0000 00000H     WINMAIN_TEXT           CODE 16-bit
+ 0001:0000 00000H     DATA_TEXT              CODE 16-bit
+ 0001:0000 00000H     REMOTE_TEXT            CODE 16-bit
+ 0001:0000 00958H     _TEXT                  CODE 16-bit
+           at offset 00000H 000FEH bytes from c:\msvc\lib\ldllcew.lib (windows\crt0.asm)
+           at offset 000FEH 0003BH bytes from c:\msvc\lib\ldllcew.lib (strncmp.asm)
+           at offset 0013AH 00003H bytes from c:\msvc\lib\ldllcew.lib (atoi.asm)
+           at offset 0013EH 000A7H bytes from c:\msvc\lib\ldllcew.lib (strtok.asm)
+           at offset 001E6H 0009AH bytes from c:\msvc\lib\ldllcew.lib (ldiv.asm)
+           at offset 00280H 00032H bytes from c:\msvc\lib\ldllcew.lib (lmul.asm)
+           at offset 002B2H 0002CH bytes from c:\msvc\lib\ldllcew.lib (windows\stubmain.asm)
+           at offset 002DEH 000E3H bytes from c:\msvc\lib\ldllcew.lib (dos\crt0dat.asm)
+           at offset 003C2H 00023H bytes from c:\msvc\lib\ldllcew.lib (dos\crt0msg.asm)
+           at offset 003E6H 00097H bytes from c:\msvc\lib\ldllcew.lib (dos\stdenvp.asm)
+           at offset 0047EH 00056H bytes from c:\msvc\lib\ldllcew.lib (atox.asm)
+           at offset 004D4H 0004EH bytes from c:\msvc\lib\ldllcew.lib (dos\nmsghdr.asm)
+           at offset 00522H 00006H bytes from c:\msvc\lib\ldllcew.lib (crt0fp.asm)
+           at offset 00528H 0002DH bytes from c:\msvc\lib\ldllcew.lib (dos\stdalloc.asm)
+           at offset 00556H 00010H bytes from c:\msvc\lib\ldllcew.lib (windows\windgrp.asm)
+           at offset 00566H 00001H bytes from c:\msvc\lib\ldllcew.lib (nearstub.asm)
+           at offset 00568H 0004CH bytes from c:\msvc\lib\ldllcew.lib (windows\fatal.asm)
+           at offset 005B4H 00117H bytes from c:\msvc\lib\ldllcew.lib (growseg.asm)
+           at offset 006CCH 00014H bytes from c:\msvc\lib\ldllcew.lib (windows\windgrpx.c)
+           at offset 006E0H 000C8H bytes from c:\msvc\lib\ldllcew.lib (fmalloc.asm)
+           at offset 007A8H 00081H bytes from c:\msvc\lib\ldllcew.lib (newseg.asm)
+           at offset 0082AH 0000DH bytes from c:\msvc\lib\ldllcew.lib (fdata.asm)
+           at offset 00838H 0007CH bytes from c:\msvc\lib\ldllcew.lib (searchsg.asm)
+           at offset 008B4H 0002AH bytes from c:\msvc\lib\ldllcew.lib (freelist.asm)
+           at offset 008DEH 00034H bytes from c:\msvc\lib\ldllcew.lib (initseg.asm)
+           at offset 00912H 00036H bytes from c:\msvc\lib\ldllcew.lib (linkseg.asm)
+
+ 0001:0960 02276H     COMDAT_SEG1            CODE 16-bit
+           at offset 00000H 000CFH bytes from CMCTL.OBJ (w:\aizawa\pcvideo\dll\cmctl.cpp)
+           at offset 000D0H 00072H bytes from CMCTL.OBJ (w:\aizawa\pcvideo\dll\cmctl.cpp)
+           at offset 00142H 0006DH bytes from CMCTL.OBJ (w:\aizawa\pcvideo\dll\cmctl.cpp)
+           at offset 001B0H 0006FH bytes from CMCTL.OBJ (w:\aizawa\pcvideo\dll\cmctl.cpp)
+           at offset 00220H 0006FH bytes from CMCTL.OBJ (w:\aizawa\pcvideo\dll\cmctl.cpp)
+           at offset 00290H 00090H bytes from CMCTL.OBJ (w:\aizawa\pcvideo\dll\cmctl.cpp)
+           at offset 00320H 000C4H bytes from CMCTL.OBJ (w:\aizawa\pcvideo\dll\cmctl.cpp)
+           at offset 003E4H 0007DH bytes from CMCTL.OBJ (w:\aizawa\pcvideo\dll\cmctl.cpp)
+           at offset 00462H 0007DH bytes from CMCTL.OBJ (w:\aizawa\pcvideo\dll\cmctl.cpp)
+           at offset 004E0H 00098H bytes from CMCTL.OBJ (w:\aizawa\pcvideo\dll\cmctl.cpp)
+           at offset 00578H 0006DH bytes from CMCTL.OBJ (w:\aizawa\pcvideo\dll\cmctl.cpp)
+           at offset 005E6H 000A8H bytes from CMCTL.OBJ (w:\aizawa\pcvideo\dll\cmctl.cpp)
+           at offset 0068EH 000AAH bytes from CMCTL.OBJ (w:\aizawa\pcvideo\dll\cmctl.cpp)
+           at offset 00738H 00064H bytes from CMCTL.OBJ (w:\aizawa\pcvideo\dll\cmctl.cpp)
+           at offset 0079CH 00060H bytes from CMCTL.OBJ (w:\aizawa\pcvideo\dll\cmctl.cpp)
+           at offset 007FCH 00004H bytes from CMCTL.OBJ (w:\aizawa\pcvideo\dll\cmctl.cpp)
+           at offset 00800H 00004H bytes from CMCTL.OBJ (w:\aizawa\pcvideo\dll\cmctl.cpp)
+           at offset 00804H 00104H bytes from LOCAL.OBJ (w:\aizawa\pcvideo\dll\local.cpp)
+           at offset 00908H 00067H bytes from LOCAL.OBJ (w:\aizawa\pcvideo\dll\local.cpp)
+           at offset 00970H 000ECH bytes from LOCAL.OBJ (w:\aizawa\pcvideo\dll\local.cpp)
+           at offset 00A5CH 00032H bytes from LOCAL.OBJ (w:\aizawa\pcvideo\dll\local.cpp)
+           at offset 00A8EH 00064H bytes from LOCAL.OBJ (w:\aizawa\pcvideo\dll\local.cpp)
+           at offset 00AF2H 00056H bytes from LOCAL.OBJ (w:\aizawa\pcvideo\dll\local.cpp)
+           at offset 00B48H 00065H bytes from LOCAL.OBJ (w:\aizawa\pcvideo\dll\local.cpp)
+           at offset 00BAEH 0005DH bytes from LOCAL.OBJ (w:\aizawa\pcvideo\dll\local.cpp)
+           at offset 00C0CH 000AEH bytes from LOCAL.OBJ (w:\aizawa\pcvideo\dll\local.cpp)
+           at offset 00CBAH 00059H bytes from LOCAL.OBJ (w:\aizawa\pcvideo\dll\local.cpp)
+           at offset 00D14H 00036H bytes from LOCAL.OBJ (w:\aizawa\pcvideo\dll\local.cpp)
+           at offset 00D4AH 0005EH bytes from LOCAL.OBJ (w:\aizawa\pcvideo\dll\local.cpp)
+           at offset 00DA8H 00187H bytes from LOCAL.OBJ (w:\aizawa\pcvideo\dll\local.cpp)
+           at offset 00F30H 0008EH bytes from LOCAL.OBJ (w:\aizawa\pcvideo\dll\local.cpp)
+           at offset 00FBEH 0001CH bytes from LOCAL.OBJ (w:\aizawa\pcvideo\dll\local.cpp)
+           at offset 00FDAH 00019H bytes from LOCAL.OBJ (w:\aizawa\pcvideo\dll\local.cpp)
+           at offset 00FF4H 000CBH bytes from LOCAL.OBJ (w:\aizawa\pcvideo\dll\local.cpp)
+           at offset 010C0H 0034AH bytes from LOCAL.OBJ (w:\aizawa\pcvideo\dll\local.cpp)
+           at offset 0140AH 00228H bytes from LOCAL.OBJ (w:\aizawa\pcvideo\dll\local.cpp)
+           at offset 01632H 00009H bytes from LOCAL.OBJ (w:\aizawa\pcvideo\dll\local.cpp)
+           at offset 0163CH 0000AH bytes from LOCAL.OBJ (w:\aizawa\pcvideo\dll\local.cpp)
+           at offset 01646H 0000AH bytes from LOCAL.OBJ (w:\aizawa\pcvideo\dll\local.cpp)
+           at offset 01650H 0000DH bytes from LOCAL.OBJ (w:\aizawa\pcvideo\dll\local.cpp)
+           at offset 0165EH 00005H bytes from LOCAL.OBJ (w:\aizawa\pcvideo\dll\local.cpp)
+           at offset 01664H 0000AH bytes from LOCAL.OBJ (w:\aizawa\pcvideo\dll\local.cpp)
+           at offset 0166EH 00006H bytes from LOCAL.OBJ (w:\aizawa\pcvideo\dll\local.cpp)
+           at offset 01674H 0000CH bytes from LOCAL.OBJ (w:\aizawa\pcvideo\dll\local.cpp)
+           at offset 01680H 00011H bytes from LOCAL.OBJ (w:\aizawa\pcvideo\dll\local.cpp)
+           at offset 01692H 0000EH bytes from LOCAL.OBJ (w:\aizawa\pcvideo\dll\local.cpp)
+           at offset 016A0H 00009H bytes from LOCAL.OBJ (w:\aizawa\pcvideo\dll\local.cpp)
+           at offset 016AAH 00001H bytes from LOCAL.OBJ (w:\aizawa\pcvideo\dll\local.cpp)
+           at offset 016ACH 00002H bytes from LOCAL.OBJ (w:\aizawa\pcvideo\dll\local.cpp)
+           at offset 016AEH 00003H bytes from LOCAL.OBJ (w:\aizawa\pcvideo\dll\local.cpp)
+           at offset 016B2H 0000CH bytes from LOCAL.OBJ (w:\aizawa\pcvideo\dll\local.cpp)
+           at offset 016BEH 00006H bytes from WINMAIN.OBJ (w:\aizawa\pcvideo\dll\winmain.cpp)
+           at offset 016C4H 00022H bytes from WINMAIN.OBJ (w:\aizawa\pcvideo\dll\winmain.cpp)
+           at offset 016E6H 00141H bytes from REMOTE.OBJ (w:\aizawa\pcvideo\dll\remote.cpp)
+           at offset 01828H 000D7H bytes from REMOTE.OBJ (w:\aizawa\pcvideo\dll\remote.cpp)
+           at offset 01900H 00016H bytes from REMOTE.OBJ (w:\aizawa\pcvideo\dll\remote.cpp)
+           at offset 01916H 000C8H bytes from REMOTE.OBJ (w:\aizawa\pcvideo\dll\remote.cpp)
+           at offset 019DEH 00092H bytes from REMOTE.OBJ (w:\aizawa\pcvideo\dll\remote.cpp)
+           at offset 01A70H 000EBH bytes from REMOTE.OBJ (w:\aizawa\pcvideo\dll\remote.cpp)
+           at offset 01B5CH 00068H bytes from REMOTE.OBJ (w:\aizawa\pcvideo\dll\remote.cpp)
+           at offset 01BC4H 000C9H bytes from REMOTE.OBJ (w:\aizawa\pcvideo\dll\remote.cpp)
+           at offset 01C8EH 00026H bytes from REMOTE.OBJ (w:\aizawa\pcvideo\dll\remote.cpp)
+           at offset 01CB4H 0006AH bytes from REMOTE.OBJ (w:\aizawa\pcvideo\dll\remote.cpp)
+           at offset 01D1EH 0003FH bytes from REMOTE.OBJ (w:\aizawa\pcvideo\dll\remote.cpp)
+           at offset 01D5EH 0009DH bytes from REMOTE.OBJ (w:\aizawa\pcvideo\dll\remote.cpp)
+           at offset 01DFCH 000E9H bytes from REMOTE.OBJ (w:\aizawa\pcvideo\dll\remote.cpp)
+           at offset 01EE6H 0006AH bytes from REMOTE.OBJ (w:\aizawa\pcvideo\dll\remote.cpp)
+           at offset 01F50H 00042H bytes from REMOTE.OBJ (w:\aizawa\pcvideo\dll\remote.cpp)
+           at offset 01F92H 00056H bytes from REMOTE.OBJ (w:\aizawa\pcvideo\dll\remote.cpp)
+           at offset 01FE8H 0004CH bytes from REMOTE.OBJ (w:\aizawa\pcvideo\dll\remote.cpp)
+           at offset 02034H 0017CH bytes from REMOTE.OBJ (w:\aizawa\pcvideo\dll\remote.cpp)
+           at offset 021B0H 0000CH bytes from REMOTE.OBJ (w:\aizawa\pcvideo\dll\remote.cpp)
+           at offset 021BCH 0000BH bytes from REMOTE.OBJ (w:\aizawa\pcvideo\dll\remote.cpp)
+           at offset 021C8H 0000BH bytes from REMOTE.OBJ (w:\aizawa\pcvideo\dll\remote.cpp)
+           at offset 021D4H 00010H bytes from REMOTE.OBJ (w:\aizawa\pcvideo\dll\remote.cpp)
+           at offset 021E4H 00013H bytes from REMOTE.OBJ (w:\aizawa\pcvideo\dll\remote.cpp)
+           at offset 021F8H 00016H bytes from REMOTE.OBJ (w:\aizawa\pcvideo\dll\remote.cpp)
+           at offset 0220EH 00007H bytes from REMOTE.OBJ (w:\aizawa\pcvideo\dll\remote.cpp)
+           at offset 02216H 0000CH bytes from REMOTE.OBJ (w:\aizawa\pcvideo\dll\remote.cpp)
+           at offset 02222H 00008H bytes from REMOTE.OBJ (w:\aizawa\pcvideo\dll\remote.cpp)
+           at offset 0222AH 0000CH bytes from REMOTE.OBJ (w:\aizawa\pcvideo\dll\remote.cpp)
+           at offset 02236H 00006H bytes from REMOTE.OBJ (w:\aizawa\pcvideo\dll\remote.cpp)
+           at offset 0223CH 0000AH bytes from REMOTE.OBJ (w:\aizawa\pcvideo\dll\remote.cpp)
+           at offset 02246H 00005H bytes from REMOTE.OBJ (w:\aizawa\pcvideo\dll\remote.cpp)
+           at offset 0224CH 00005H bytes from REMOTE.OBJ (w:\aizawa\pcvideo\dll\remote.cpp)
+           at offset 02252H 0000BH bytes from REMOTE.OBJ (w:\aizawa\pcvideo\dll\remote.cpp)
+           at offset 0225EH 00009H bytes from REMOTE.OBJ (w:\aizawa\pcvideo\dll\remote.cpp)
+           at offset 02268H 0000EH bytes from REMOTE.OBJ (w:\aizawa\pcvideo\dll\remote.cpp)
+
+ 0002:0000 00150H     LOCAL5_DATA            FAR_DATA 16-bit
+           at offset 00000H 00150H bytes from LOCAL.OBJ (w:\aizawa\pcvideo\dll\local.cpp)
+
+ 0003:0000 00010H     NULL                   BEGDATA 16-bit
+           at offset 00000H 00010H bytes from c:\msvc\lib\ldllcew.lib (windows\crt0.asm)
+
+ 0003:0010 000CEH     _DATA                  DATA 16-bit
+           at offset 00000H 00012H bytes from LOCAL.OBJ (w:\aizawa\pcvideo\dll\local.cpp)
+           at offset 00012H 00046H bytes from DATA.OBJ (w:\aizawa\pcvideo\dll\data.cpp)
+           at offset 00058H 00015H bytes from c:\msvc\lib\ldllcew.lib (windows\crt0.asm)
+           at offset 0006EH 00004H bytes from c:\msvc\lib\ldllcew.lib (strtok.asm)
+           at offset 00072H 00044H bytes from c:\msvc\lib\ldllcew.lib (dos\crt0dat.asm)
+           at offset 000B6H 00004H bytes from c:\msvc\lib\ldllcew.lib (dos\crt0msg.asm)
+           at offset 000BAH 00002H bytes from c:\msvc\lib\ldllcew.lib (growseg.asm)
+           at offset 000BCH 00004H bytes from c:\msvc\lib\ldllcew.lib (fmalloc.asm)
+           at offset 000C0H 0000EH bytes from c:\msvc\lib\ldllcew.lib (fdata.asm)
+
+ 0003:00DE 0000EH     CDATA                  DATA 16-bit
+           at offset 00000H 0000EH bytes from c:\msvc\lib\ldllcew.lib (dos\crt0dat.asm)
+
+ 0003:00EC 00000H     XIFB                   DATA 16-bit
+ 0003:00EC 00000H     XIF                    DATA 16-bit
+ 0003:00EC 00000H     XIFE                   DATA 16-bit
+ 0003:00EC 00000H     XIB                    DATA 16-bit
+ 0003:00EC 00000H     XI                     DATA 16-bit
+ 0003:00EC 00000H     XIE                    DATA 16-bit
+ 0003:00EC 00000H     XPB                    DATA 16-bit
+ 0003:00EC 00000H     XP                     DATA 16-bit
+ 0003:00EC 00000H     XPE                    DATA 16-bit
+ 0003:00EC 00000H     XCB                    DATA 16-bit
+ 0003:00EC 00000H     XC                     DATA 16-bit
+ 0003:00EC 00000H     XCE                    DATA 16-bit
+ 0003:00EC 00000H     XCFB                   DATA 16-bit
+ 0003:00EC 00000H     XCFCRT                 DATA 16-bit
+ 0003:00EC 00000H     XCF                    DATA 16-bit
+ 0003:00EC 00000H     XCFE                   DATA 16-bit
+ 0003:00EC 00000H     XIFCB                  DATA 16-bit
+ 0003:00EC 00000H     XIFU                   DATA 16-bit
+ 0003:00EC 00000H     XIFL                   DATA 16-bit
+ 0003:00EC 00000H     XIFM                   DATA 16-bit
+ 0003:00EC 00000H     XIFCE                  DATA 16-bit
+ 0003:00EC 00000H     DBDATA                 DATA 16-bit
+ 0003:00EC 00002H     CONST                  CONST 16-bit
+           at offset 00000H 00002H bytes from LOCAL.OBJ (w:\aizawa\pcvideo\dll\local.cpp)
+
+ 0003:00EE 00008H     HDR                    MSG 16-bit
+           at offset 00000H 00008H bytes from c:\msvc\lib\ldllcew.lib (dos\nmsghdr.asm)
+
+ 0003:00F6 000D4H     MSG                    MSG 16-bit
+           at offset 00000H 000A5H bytes from c:\msvc\lib\ldllcew.lib (dos\crt0msg.asm)
+           at offset 000A5H 0002FH bytes from c:\msvc\lib\ldllcew.lib (crt0fp.asm)
+
+ 0003:01CA 00002H     PAD                    MSG 16-bit
+           at offset 00000H 00002H bytes from c:\msvc\lib\ldllcew.lib (dos\crt0msg.asm)
+           at offset 00000H 00002H bytes from c:\msvc\lib\ldllcew.lib (dos\nmsghdr.asm)
+           at offset 00000H 00002H bytes from c:\msvc\lib\ldllcew.lib (crt0fp.asm)
+
+ 0003:01CC 00001H     EPAD                   MSG 16-bit
+           at offset 00000H 00001H bytes from c:\msvc\lib\ldllcew.lib (dos\nmsghdr.asm)
+
+ 0003:01CE 004F6H     _BSS                   BSS 16-bit
+           at offset 00000H 004A2H bytes from CMCTL.OBJ (w:\aizawa\pcvideo\dll\cmctl.cpp)
+           at offset 004A2H 00012H bytes from LOCAL.OBJ (w:\aizawa\pcvideo\dll\local.cpp)
+           at offset 004B4H 00002H bytes from DATA.OBJ (w:\aizawa\pcvideo\dll\data.cpp)
+           at offset 004B6H 00040H bytes from REMOTE.OBJ (w:\aizawa\pcvideo\dll\remote.cpp)
+
+ 0003:06C4 00000H     XOB                    BSS 16-bit
+ 0003:06C4 00000H     XO                     BSS 16-bit
+ 0003:06C4 00000H     XOE                    BSS 16-bit
+ 0003:06C4 00000H     XOFB                   BSS 16-bit
+ 0003:06C4 00000H     XOF                    BSS 16-bit
+ 0003:06C4 00000H     XOFE                   BSS 16-bit
+
+ Origin   Group
+ 0003:0   DGROUP
+
+ Address   Export                  Alias
+
+ 0001:1954 ?TimerProc@@ZCXIIIK@Z   ?TimerProc@@ZCXIIIK@Z
+ 0001:0F46 CMCaptureVideo          CMCaptureVideo
+ 0001:0A30 CMClose                 CMClose
+ 0001:0AA2 CMControl               CMControl
+ 0001:0FEE CMDraw                  CMDraw
+ 0001:0B10 CMGetCameraOpt          CMGetCameraOpt
+ 0001:0DC2 CMGetCameraPos          CMGetCameraPos
+ 0001:0BF0 CMGetPreset             CMGetPreset
+ 0001:0ED8 CMLock                  CMLock
+ 0001:0D44 CMMovePreset            CMMovePreset
+ 0001:0960 CMOpen                  CMOpen
+ 0001:0B80 CMSetCameraOpt          CMSetCameraOpt
+ 0001:0E40 CMSetCameraPos          CMSetCameraPos
+ 0001:0C80 CMSetPreset             CMSetPreset
+ 0001:2024 WEP                     WEP
+ 0001:06DC ___ExportedStub         ___ExportedStub
+
+  Address         Publics by Name
+
+ 0001:200A       ??_C@_00A@?$AA@
+                    ??_C@_00A@?$AA@
+
+ 0001:200C       ??_C@_01KMAE@?0?$AA@
+                    ??_C@_01KMAE@?0?$AA@
+
+ 0001:200E       ??_C@_02MECO@?$CFd?$AA@
+                    ??_C@_02MECO@?$CFd?$AA@
+
+ 0001:1160       ??_C@_03DJOB@com?$AA@
+                    ??_C@_03DJOB@com?$AA@
+
+ 0001:115C       ??_C@_03PMIG@COM?$AA@
+                    ??_C@_03PMIG@COM?$AA@
+
+ 0001:1FBE       ??_C@_04LNAG@TRUE?$AA@
+                    ??_C@_04LNAG@TRUE?$AA@
+
+ 0001:2BA6       ??_C@_04NJFL@recv?$AA@
+                    ??_C@_04NJFL@recv?$AA@
+
+ 0001:2BAC       ??_C@_04PJAD@send?$AA@
+                    ??_C@_04PJAD@send?$AA@
+
+ 0001:1FCE       ??_C@_05LLOB@FALSE?$AA@
+                    ??_C@_05LLOB@FALSE?$AA@
+
+ 0001:2B96       ??_C@_05MHGE@htons?$AA@
+                    ??_C@_05MHGE@htons?$AA@
+
+ 0001:2B6E       ??_C@_06KDPK@socket?$AA@
+                    ??_C@_06KDPK@socket?$AA@
+
+ 0001:2B82       ??_C@_07DHIJ@connect?$AA@
+                    ??_C@_07DHIJ@connect?$AA@
+
+ 0001:1F92       ??_C@_08CPPJ@PanSpeed?$AA@
+                    ??_C@_08CPPJ@PanSpeed?$AA@
+
+ 0001:2BBE       ??_C@_08DHEI@shutdown?$AA@
+                    ??_C@_08DHEI@shutdown?$AA@
+
+ 0001:2000       ??_C@_08JOLE@Preset?$CFd?$AA@
+                    ??_C@_08JOLE@Preset?$CFd?$AA@
+
+ 0001:1FA6       ??_C@_09BMBH@ZoomSpeed?$AA@
+                    ??_C@_09BMBH@ZoomSpeed?$AA@
+
+ 0001:1F9C       ??_C@_09CCBM@TiltSpeed?$AA@
+                    ??_C@_09CCBM@TiltSpeed?$AA@
+
+ 0001:1FC4       ??_C@_09CHGE@AutoFocus?$AA@
+                    ??_C@_09CHGE@AutoFocus?$AA@
+
+ 0001:2B9C       ??_C@_09NHDB@inet_addr?$AA@
+                    ??_C@_09NHDB@inet_addr?$AA@
+
+ 0001:2B34       ??_C@_0BA@OODD@WSAGetLastError?$AA@
+                    ??_C@_0BA@OODD@WSAGetLastError?$AA@
+
+ 0001:1FE0       ??_C@_0BB@BKBE@AutoWhiteBalance?$AA@
+                    ??_C@_0BB@BKBE@AutoWhiteBalance?$AA@
+
+ 0001:2B44       ??_C@_0BD@MBIF@WSASetBlockingHook?$AA@
+                    ??_C@_0BD@MBIF@WSASetBlockingHook?$AA@
+
+ 0001:2B58       ??_C@_0BG@CMHC@WSAUnhookBlockingHook?$AA@
+                    ??_C@_0BG@CMHC@WSAUnhookBlockingHook?$AA@
+
+ 0001:2B1C       ??_C@_0L@BKPI@WSAStartup?$AA@
+                    ??_C@_0L@BKPI@WSAStartup?$AA@
+
+ 0001:2B28       ??_C@_0L@KLBB@WSACleanup?$AA@
+                    ??_C@_0L@KLBB@WSACleanup?$AA@
+
+ 0001:2BB2       ??_C@_0L@PCGG@setsockopt?$AA@
+                    ??_C@_0L@PCGG@setsockopt?$AA@
+
+ 0001:2B76       ??_C@_0M@BGOH@closesocket?$AA@
+                    ??_C@_0M@BGOH@closesocket?$AA@
+
+ 0001:2B10       ??_C@_0M@GJEA@WINSOCK?4DLL?$AA@
+                    ??_C@_0M@GJEA@WINSOCK?4DLL?$AA@
+
+ 0001:2012       ??_C@_0M@HGKD@?$CFd?0?$CFd?0?$CFd?0?$CFs?$AA@
+                    ??_C@_0M@HGKD@?$CFd?0?$CFd?0?$CFd?0?$CFs?$AA@
+
+ 0001:1FD4       ??_C@_0M@JDFK@LightAdjust?$AA@
+                    ??_C@_0M@JDFK@LightAdjust?$AA@
+
+ 0001:2B8A       ??_C@_0M@LOFA@ioctlsocket?$AA@
+                    ??_C@_0M@LOFA@ioctlsocket?$AA@
+
+ 0001:1FB0       ??_C@_0N@BHJO@ShutterSpeed?$AA@
+                    ??_C@_0N@BHJO@ShutterSpeed?$AA@
+
+ 0001:2BC8       ??_C@_0O@BLIP@gethostbyname?$AA@
+                    ??_C@_0O@BLIP@gethostbyname?$AA@
+
+ 0001:1FF2       ??_C@_0O@PINO@WideConverter?$AA@
+                    ??_C@_0O@PINO@WideConverter?$AA@
+
+ 0003:0022       ?colorTable@@3QEHE
+                    int __far* __far colorTable
+
+ 0003:0682       ?hWinSock@@3IE
+                    unsigned int __far hWinSock
+
+ 0001:16AA       ?LocalCaptureVideo@@ZAHPEUCCB@@PEUCAPTUREMODE@@PID@Z
+                    int __far __cdecl LocalCaptureVideo(struct CCB __far*,struct CAPTUREMODE __far*,char __huge*)
+
+ 0001:1268       ?LocalClose@@ZAHPEUCCB@@@Z
+                    int __far __cdecl LocalClose(struct CCB __far*)
+
+ 0001:12D0       ?LocalControl@@ZAHPEUCCB@@H@Z
+                    int __far __cdecl LocalControl(struct CCB __far*,int)
+
+ 0001:13BC       ?LocalGetCameraOpt@@ZAHPEUCCB@@PEUCAMERAOPT@@@Z
+                    int __far __cdecl LocalGetCameraOpt(struct CCB __far*,struct CAMERAOPT __far*)
+
+ 0001:156C       ?LocalGetCameraPos@@ZAHPEUCCB@@PEUCAMERAPOS@@@Z
+                    int __far __cdecl LocalGetCameraPos(struct CCB __far*,struct CAMERAPOS __far*)
+
+ 0001:1452       ?LocalGetPreset@@ZAHPEUCCB@@PEUPRESET@@@Z
+                    int __far __cdecl LocalGetPreset(struct CCB __far*,struct PRESET __far*)
+
+ 0001:1674       ?LocalLock@@ZAHPEUCCB@@H@Z
+                    int __far __cdecl LocalLock(struct CCB __far*,int)
+
+ 0001:150E       ?LocalMovePreset@@ZAHPEUCCB@@H@Z
+                    int __far __cdecl LocalMovePreset(struct CCB __far*,int)
+
+ 0001:1164       ?LocalOpen@@ZAHPEUCCB@@PEDH@Z
+                    int __far __cdecl LocalOpen(struct CCB __far*,char __far*,int)
+
+ 0001:13EE       ?LocalSetCameraOpt@@ZAHPEUCCB@@PEUCAMERAOPT@@@Z
+                    int __far __cdecl LocalSetCameraOpt(struct CCB __far*,struct CAMERAOPT __far*)
+
+ 0001:161A       ?LocalSetCameraPos@@ZAHPEUCCB@@PEUCAMERAPOS@@@Z
+                    int __far __cdecl LocalSetCameraPos(struct CCB __far*,struct CAMERAPOS __far*)
+
+ 0001:14A8       ?LocalSetPreset@@ZAHPEUCCB@@PEUPRESET@@H@Z
+                    int __far __cdecl LocalSetPreset(struct CCB __far*,struct PRESET __far*,int)
+
+ 0001:275C       ?NetCaptureVideo@@ZAHPEUCCB@@PEUCAPTUREMODE@@PID@Z
+                    int __far __cdecl NetCaptureVideo(struct CCB __far*,struct CAPTUREMODE __far*,char __huge*)
+
+ 0001:2260       ?NetClose@@ZAHPEUCCB@@@Z
+                    int __far __cdecl NetClose(struct CCB __far*)
+
+ 0001:2276       ?NetControl@@ZAHPEUCCB@@H@Z
+                    int __far __cdecl NetControl(struct CCB __far*,int)
+
+ 0001:233E       ?NetGetCameraOpt@@ZAHPEUCCB@@PEUCAMERAOPT@@@Z
+                    int __far __cdecl NetGetCameraOpt(struct CCB __far*,struct CAMERAOPT __far*)
+
+ 0001:2614       ?NetGetCameraPos@@ZAHPEUCCB@@PEUCAMERAPOS@@@Z
+                    int __far __cdecl NetGetCameraPos(struct CCB __far*,struct CAMERAPOS __far*)
+
+ 0001:24BC       ?NetGetPreset@@ZAHPEUCCB@@PEUPRESET@@@Z
+                    int __far __cdecl NetGetPreset(struct CCB __far*,struct PRESET __far*)
+
+ 0001:26BE       ?NetLock@@ZAHPEUCCB@@H@Z
+                    int __far __cdecl NetLock(struct CCB __far*,int)
+
+ 0001:25EE       ?NetMovePreset@@ZAHPEUCCB@@H@Z
+                    int __far __cdecl NetMovePreset(struct CCB __far*,int)
+
+ 0001:2046       ?NetOpen@@ZAHPEUCCB@@PED1H@Z
+                    int __far __cdecl NetOpen(struct CCB __far*,char __far*,char __far*,int)
+
+ 0001:23D0       ?NetSetCameraOpt@@ZAHPEUCCB@@PEUCAMERAOPT@@@Z
+                    int __far __cdecl NetSetCameraOpt(struct CCB __far*,struct CAMERAOPT __far*)
+
+ 0001:267E       ?NetSetCameraPos@@ZAHPEUCCB@@PEUCAMERAPOS@@@Z
+                    int __far __cdecl NetSetCameraPos(struct CCB __far*,struct CAMERAPOS __far*)
+
+ 0001:2524       ?NetSetPreset@@ZAHPEUCCB@@PEUPRESET@@H@Z
+                    int __far __cdecl NetSetPreset(struct CCB __far*,struct PRESET __far*,int)
+
+ 0001:1954       ?TimerProc@@ZCXIIIK@Z
+                    void __far __pascal TimerProc(unsigned int,unsigned int,unsigned int,unsigned long)
+
+ 0003:0028       ?videoSize@@3QEUVIDEOSIZE@@E
+                    struct VIDEOSIZE __far* __far videoSize
+
+ 0001:0F46       CMCaptureVideo
+ 0001:0A30       CMClose
+ 0001:0AA2       CMControl
+ 0001:0FEE       CMDraw
+ 0001:0B10       CMGetCameraOpt
+ 0001:0DC2       CMGetCameraPos
+ 0001:0BF0       CMGetPreset
+ 0001:0ED8       CMLock
+ 0001:0D44       CMMovePreset
+ 0001:0960       CMOpen
+ 0001:0B80       CMSetCameraOpt
+ 0001:0E40       CMSetCameraPos
+ 0001:0C80       CMSetPreset
+ 0000:0000  Imp  DOS3CALL             (KERNEL.102)
+ 0000:0000  Imp  FATALAPPEXIT         (KERNEL.137)
+ 0000:0000  Imp  FATALEXIT            (KERNEL.1)
+ 0000:0000  Imp  FREELIBRARY          (KERNEL.96)
+ 0000:0000  Imp  GETDOSENVIRONMENT    (KERNEL.131)
+ 0000:0000  Imp  GETMODULEUSAGE       (KERNEL.48)
+ 0000:0000  Imp  GETPRIVATEPROFILEINT (KERNEL.127)
+ 0000:0000  Imp  GETPRIVATEPROFILESTRING (KERNEL.128)
+ 0000:0000  Imp  GETPROCADDRESS       (KERNEL.50)
+ 0000:0000  Imp  GETVERSION           (KERNEL.3)
+ 0000:0000  Imp  GLOBALALLOC          (KERNEL.15)
+ 0000:0000  Imp  GLOBALFREE           (KERNEL.17)
+ 0000:0000  Imp  GLOBALLOCK           (KERNEL.18)
+ 0000:0000  Imp  GLOBALREALLOC        (KERNEL.16)
+ 0000:0000  Imp  GLOBALSIZE           (KERNEL.20)
+ 0000:0000  Imp  GLOBALUNLOCK         (KERNEL.19)
+ 0000:0000  Imp  INITTASK             (KERNEL.91)
+ 0000:0000  Imp  KILLTIMER            (USER.12)
+ 0001:201E       LIBMAIN
+ 0000:0000  Imp  LOADLIBRARY          (KERNEL.95)
+ 0000:0000  Imp  LOCALINIT            (KERNEL.4)
+ 0000:0000  Imp  LOCKSEGMENT          (KERNEL.23)
+ 0000:0000  Imp  LSTRCPY              (KERNEL.88)
+ 0000:0000  Imp  PEEKMESSAGE          (USER.109)
+ 0003:0004       rsrvptrs
+ 0000:0000  Imp  SETTIMER             (USER.10)
+ 0000:0000  Imp  STRETCHDIBITS        (GDI.439)
+ 0000:0000  Imp  VCC1CLOSE            (VCC1.VCC1CLOSE)
+ 0000:0000  Imp  VCC1FOCUSAF          (VCC1.VCC1FOCUSAF)
+ 0000:0000  Imp  VCC1FOCUSFAR         (VCC1.VCC1FOCUSFAR)
+ 0000:0000  Imp  VCC1FOCUSMANUAL      (VCC1.VCC1FOCUSMANUAL)
+ 0000:0000  Imp  VCC1FOCUSNEAR        (VCC1.VCC1FOCUSNEAR)
+ 0000:0000  Imp  VCC1GETPANPOS        (VCC1.VCC1GETPANPOS)
+ 0000:0000  Imp  VCC1GETSTATUS        (VCC1.VCC1GETSTATUS)
+ 0000:0000  Imp  VCC1GETTILTPOS       (VCC1.VCC1GETTILTPOS)
+ 0000:0000  Imp  VCC1GETZOOMPOS       (VCC1.VCC1GETZOOMPOS)
+ 0000:0000  Imp  VCC1HOME             (VCC1.VCC1HOME)
+ 0000:0000  Imp  VCC1HOSEIOFF         (VCC1.VCC1HOSEIOFF)
+ 0000:0000  Imp  VCC1HOSEION          (VCC1.VCC1HOSEION)
+ 0000:0000  Imp  VCC1INIT2            (VCC1.VCC1INIT2)
+ 0000:0000  Imp  VCC1OPEN             (VCC1.VCC1OPEN)
+ 0000:0000  Imp  VCC1PANLEFT          (VCC1.VCC1PANLEFT)
+ 0000:0000  Imp  VCC1PANRIGHT         (VCC1.VCC1PANRIGHT)
+ 0000:0000  Imp  VCC1POWEROFF         (VCC1.VCC1POWEROFF)
+ 0000:0000  Imp  VCC1POWERON          (VCC1.VCC1POWERON)
+ 0000:0000  Imp  VCC1RESET            (VCC1.VCC1RESET)
+ 0000:0000  Imp  VCC1SETPANPOS        (VCC1.VCC1SETPANPOS)
+ 0000:0000  Imp  VCC1SETPANSPEED      (VCC1.VCC1SETPANSPEED)
+ 0000:0000  Imp  VCC1SETTILTPOS       (VCC1.VCC1SETTILTPOS)
+ 0000:0000  Imp  VCC1SETTILTSPEED     (VCC1.VCC1SETTILTSPEED)
+ 0000:0000  Imp  VCC1SETZOOMPOS       (VCC1.VCC1SETZOOMPOS)
+ 0000:0000  Imp  VCC1SHUT100          (VCC1.VCC1SHUT100)
+ 0000:0000  Imp  VCC1SHUT60           (VCC1.VCC1SHUT60)
+ 0000:0000  Imp  VCC1SHUTPRO          (VCC1.VCC1SHUTPRO)
+ 0000:0000  Imp  VCC1STOP             (VCC1.VCC1STOP)
+ 0000:0000  Imp  VCC1TILTDOWN         (VCC1.VCC1TILTDOWN)
+ 0000:0000  Imp  VCC1TILTUP           (VCC1.VCC1TILTUP)
+ 0000:0000  Imp  VCC1WHITELOCK        (VCC1.VCC1WHITELOCK)
+ 0000:0000  Imp  VCC1WHITENORMAL      (VCC1.VCC1WHITENORMAL)
+ 0000:0000  Imp  VCC1ZOOMSTOP         (VCC1.VCC1ZOOMSTOP)
+ 0000:0000  Imp  VCC1ZOOMTELE         (VCC1.VCC1ZOOMTELE)
+ 0000:0000  Imp  VCC1ZOOMWIDE         (VCC1.VCC1ZOOMWIDE)
+ 0000:0000  Imp  VIDEOCLOSE           (MSVIDEO.29)
+ 0000:0000  Imp  VIDEOCONFIGURE       (MSVIDEO.32)
+ 0000:0000  Imp  VIDEOFRAME           (MSVIDEO.31)
+ 0000:0000  Imp  VIDEOOPEN            (MSVIDEO.28)
+ 0001:2024       WEP
+ 0000:0000  Imp  WRITEPRIVATEPROFILESTRING (KERNEL.129)
+ 0003:0077       _aseghi
+ 0003:0075       _aseglo
+ 0001:014A       _atoi
+ 0003:01CE       _edata
+ 0003:06C4       _end
+ 0003:0090       _errno
+ 0003:0068       _STKHQQ
+ 0001:010E       _strncmp
+ 0001:014E       _strtok
+ 0000:0000  Imp  _wsprintf            (USER.420)
+ 0000:9876  Abs  __acrtmsg
+ 0000:9876  Abs  __acrtused
+ 0000:D6D6  Abs  __aDBdoswp
+ 0003:00C6       __adbgmsg
+ 0000:D6D6  Abs  __aDBused
+ 0001:01F6       __aFldiv
+ 0001:0290       __aFlmul
+ 0001:0290       __aFulmul
+ 0000:0000  Imp  __AHSHIFT            (KERNEL.113)
+ 0003:0082       __aintdiv
+ 0003:00CA       __amblksiz
+ 0001:0582       __amsg_exit
+ 0001:0054       __astart
+ 0001:048E       __catox
+ 0001:0336       __cexit
+ 0003:00C3       __child
+ 0001:02EE       __cinit
+ 0001:0578       __cintDIV
+ 0003:009B       __cpumode
+ 0001:0395       __ctermsub
+ 0001:0347       __c_exit
+ 0003:0074       __dllinit
+ 0003:009C       __doserrno
+ 0003:01CE       __edata
+ 0003:06C4       __end
+ 0003:00BA       __environ
+ 0003:00C5       __exitflag
+ 0003:0086       __fac
+ 0001:06F0       __ffree
+ 0001:03D2       __FF_MSGBANNER
+ 0003:00D0       __fheap
+ 0001:06BB       __findlast
+ 0001:0711       __fmalloc
+ 0003:00E0       __fpinit
+ 0000:9876  Abs  __fptaskdata
+ 0001:0532       __fptrap
+ 0001:083A       __freefarheap
+ 0001:08C4       __freelist
+ 0001:0566       __GetDGROUP
+ 0001:05C4       __growseg
+ 0003:006A       __hModule
+ 0001:0655       __incseg
+ 0001:08EE       __initseg
+ 0001:0922       __linkseg
+ 0003:0070       __lpszCmdLine
+ 0001:0538       __myalloc
+ 0001:0576       __nearstub
+ 0001:07B8       __newseg
+ 0003:009E       __nfile
+ 0001:04E4       __NMSG_TEXT
+ 0001:051B       __NMSG_WRITE
+ 0001:00F6       __nomain
+ 0003:009C       __oserr
+ 0003:00A0       __osfile
+ 0003:0097       __osmajor
+ 0003:0096       __osminor
+ 0003:009A       __osmode
+ 0003:0096       __osver
+ 0003:0098       __osversion
+ 0003:00BE       __pgmptr
+ 0003:00CC       __pnhFarHeap
+ 0001:0848       __searchseg
+ 0001:03F6       __setenvp
+ 0000:0001  Abs  __sizec
+ 0000:0001  Abs  __sized
+ 0001:02C2       __stubmain
+ 0003:0092       __umaskval
+ 0003:006C       __wDataSeg
+ 0001:0010       __wflags
+ 0003:006E       __wHeapSize
+ 0000:0000  Imp  __WINFLAGS           (KERNEL.178)
+ 0003:0095       __winmajor
+ 0003:0094       __winminor
+ 0003:0094       __winver
+ 0003:007B       ___aDBrterr
+ 0003:0079       ___aDBswpflg
+ 0003:00B4       ___argc
+ 0003:00B6       ___argv
+ 0001:06DC       ___ExportedStub
+
+  Address         Publics by Value
+
+ 0000:0000  Imp  VCC1STOP             (VCC1.VCC1STOP)
+ 0000:0000  Imp  VCC1HOSEIOFF         (VCC1.VCC1HOSEIOFF)
+ 0000:0000  Imp  GLOBALUNLOCK         (KERNEL.19)
+ 0000:0000  Imp  GETPROCADDRESS       (KERNEL.50)
+ 0000:0000  Imp  VCC1SHUT100          (VCC1.VCC1SHUT100)
+ 0000:0000  Imp  GLOBALFREE           (KERNEL.17)
+ 0000:0000  Imp  VCC1POWEROFF         (VCC1.VCC1POWEROFF)
+ 0000:0000  Imp  VCC1WHITELOCK        (VCC1.VCC1WHITELOCK)
+ 0000:0000  Imp  VIDEOFRAME           (MSVIDEO.31)
+ 0000:0000  Imp  VCC1SETPANSPEED      (VCC1.VCC1SETPANSPEED)
+ 0000:0000  Imp  VCC1WHITENORMAL      (VCC1.VCC1WHITENORMAL)
+ 0000:0000  Imp  FATALEXIT            (KERNEL.1)
+ 0000:0000  Imp  VCC1SETPANPOS        (VCC1.VCC1SETPANPOS)
+ 0000:0000  Imp  VCC1GETTILTPOS       (VCC1.VCC1GETTILTPOS)
+ 0000:0000  Imp  VCC1SHUTPRO          (VCC1.VCC1SHUTPRO)
+ 0000:0000  Imp  DOS3CALL             (KERNEL.102)
+ 0000:0000  Imp  VCC1SETTILTPOS       (VCC1.VCC1SETTILTPOS)
+ 0000:0000  Imp  GETMODULEUSAGE       (KERNEL.48)
+ 0000:0000  Imp  VCC1RESET            (VCC1.VCC1RESET)
+ 0000:0000  Imp  __WINFLAGS           (KERNEL.178)
+ 0000:0000  Imp  VCC1TILTDOWN         (VCC1.VCC1TILTDOWN)
+ 0000:0000  Imp  VCC1ZOOMWIDE         (VCC1.VCC1ZOOMWIDE)
+ 0000:0000  Imp  VCC1PANRIGHT         (VCC1.VCC1PANRIGHT)
+ 0000:0000  Imp  VCC1GETSTATUS        (VCC1.VCC1GETSTATUS)
+ 0000:0000  Imp  VCC1OPEN             (VCC1.VCC1OPEN)
+ 0000:0000  Imp  VCC1FOCUSAF          (VCC1.VCC1FOCUSAF)
+ 0000:0000  Imp  VCC1CLOSE            (VCC1.VCC1CLOSE)
+ 0000:0000  Imp  VCC1ZOOMTELE         (VCC1.VCC1ZOOMTELE)
+ 0000:0000  Imp  SETTIMER             (USER.10)
+ 0000:0000  Imp  GETPRIVATEPROFILESTRING (KERNEL.128)
+ 0000:0000  Imp  VCC1ZOOMSTOP         (VCC1.VCC1ZOOMSTOP)
+ 0000:0000  Imp  __AHSHIFT            (KERNEL.113)
+ 0000:0000  Imp  GETPRIVATEPROFILEINT (KERNEL.127)
+ 0000:0000  Imp  PEEKMESSAGE          (USER.109)
+ 0000:0000  Imp  STRETCHDIBITS        (GDI.439)
+ 0000:0000  Imp  GLOBALSIZE           (KERNEL.20)
+ 0000:0000  Imp  GETDOSENVIRONMENT    (KERNEL.131)
+ 0000:0000  Imp  LOCKSEGMENT          (KERNEL.23)
+ 0000:0000  Imp  VCC1TILTUP           (VCC1.VCC1TILTUP)
+ 0000:0000  Imp  WRITEPRIVATEPROFILESTRING (KERNEL.129)
+ 0000:0000  Imp  VIDEOCONFIGURE       (MSVIDEO.32)
+ 0000:0000  Imp  VCC1SETZOOMPOS       (VCC1.VCC1SETZOOMPOS)
+ 0000:0000  Imp  VCC1GETZOOMPOS       (VCC1.VCC1GETZOOMPOS)
+ 0000:0000  Imp  VCC1FOCUSMANUAL      (VCC1.VCC1FOCUSMANUAL)
+ 0000:0000  Imp  GLOBALLOCK           (KERNEL.18)
+ 0000:0000  Imp  VCC1INIT2            (VCC1.VCC1INIT2)
+ 0000:0000  Imp  VIDEOCLOSE           (MSVIDEO.29)
+ 0000:0000  Imp  LSTRCPY              (KERNEL.88)
+ 0000:0000  Imp  LOADLIBRARY          (KERNEL.95)
+ 0000:0000  Imp  GLOBALALLOC          (KERNEL.15)
+ 0000:0000  Imp  VIDEOOPEN            (MSVIDEO.28)
+ 0000:0000  Imp  GLOBALREALLOC        (KERNEL.16)
+ 0000:0000  Imp  VCC1HOME             (VCC1.VCC1HOME)
+ 0000:0000  Imp  VCC1HOSEION          (VCC1.VCC1HOSEION)
+ 0000:0000  Imp  _wsprintf            (USER.420)
+ 0000:0000  Imp  VCC1SETTILTSPEED     (VCC1.VCC1SETTILTSPEED)
+ 0000:0000  Imp  INITTASK             (KERNEL.91)
+ 0000:0000  Imp  GETVERSION           (KERNEL.3)
+ 0000:0000  Imp  VCC1FOCUSNEAR        (VCC1.VCC1FOCUSNEAR)
+ 0000:0000  Imp  VCC1FOCUSFAR         (VCC1.VCC1FOCUSFAR)
+ 0000:0000  Imp  FATALAPPEXIT         (KERNEL.137)
+ 0000:0000  Imp  LOCALINIT            (KERNEL.4)
+ 0000:0000  Imp  FREELIBRARY          (KERNEL.96)
+ 0000:0000  Imp  VCC1SHUT60           (VCC1.VCC1SHUT60)
+ 0000:0000  Imp  VCC1GETPANPOS        (VCC1.VCC1GETPANPOS)
+ 0000:0000  Imp  VCC1PANLEFT          (VCC1.VCC1PANLEFT)
+ 0000:0000  Imp  KILLTIMER            (USER.12)
+ 0000:0000  Imp  VCC1POWERON          (VCC1.VCC1POWERON)
+ 0000:0001  Abs  __sized
+ 0000:0001  Abs  __sizec
+ 0000:9876  Abs  __acrtused
+ 0000:9876  Abs  __acrtmsg
+ 0000:9876  Abs  __fptaskdata
+ 0000:D6D6  Abs  __aDBdoswp
+ 0000:D6D6  Abs  __aDBused
+ 0001:0010       __wflags
+ 0001:0054       __astart
+ 0001:00F6       __nomain
+ 0001:010E       _strncmp
+ 0001:014A       _atoi
+ 0001:014E       _strtok
+ 0001:01F6       __aFldiv
+ 0001:0290       __aFulmul
+ 0001:0290       __aFlmul
+ 0001:02C2       __stubmain
+ 0001:02EE       __cinit
+ 0001:0336       __cexit
+ 0001:0347       __c_exit
+ 0001:0395       __ctermsub
+ 0001:03D2       __FF_MSGBANNER
+ 0001:03F6       __setenvp
+ 0001:048E       __catox
+ 0001:04E4       __NMSG_TEXT
+ 0001:051B       __NMSG_WRITE
+ 0001:0532       __fptrap
+ 0001:0538       __myalloc
+ 0001:0566       __GetDGROUP
+ 0001:0576       __nearstub
+ 0001:0578       __cintDIV
+ 0001:0582       __amsg_exit
+ 0001:05C4       __growseg
+ 0001:0655       __incseg
+ 0001:06BB       __findlast
+ 0001:06DC       ___ExportedStub
+ 0001:06F0       __ffree
+ 0001:0711       __fmalloc
+ 0001:07B8       __newseg
+ 0001:083A       __freefarheap
+ 0001:0848       __searchseg
+ 0001:08C4       __freelist
+ 0001:08EE       __initseg
+ 0001:0922       __linkseg
+ 0001:0960       CMOpen
+ 0001:0A30       CMClose
+ 0001:0AA2       CMControl
+ 0001:0B10       CMGetCameraOpt
+ 0001:0B80       CMSetCameraOpt
+ 0001:0BF0       CMGetPreset
+ 0001:0C80       CMSetPreset
+ 0001:0D44       CMMovePreset
+ 0001:0DC2       CMGetCameraPos
+ 0001:0E40       CMSetCameraPos
+ 0001:0ED8       CMLock
+ 0001:0F46       CMCaptureVideo
+ 0001:0FEE       CMDraw
+ 0001:115C       ??_C@_03PMIG@COM?$AA@
+                    ??_C@_03PMIG@COM?$AA@
+
+ 0001:1160       ??_C@_03DJOB@com?$AA@
+                    ??_C@_03DJOB@com?$AA@
+
+ 0001:1164       ?LocalOpen@@ZAHPEUCCB@@PEDH@Z
+                    int __far __cdecl LocalOpen(struct CCB __far*,char __far*,int)
+
+ 0001:1268       ?LocalClose@@ZAHPEUCCB@@@Z
+                    int __far __cdecl LocalClose(struct CCB __far*)
+
+ 0001:12D0       ?LocalControl@@ZAHPEUCCB@@H@Z
+                    int __far __cdecl LocalControl(struct CCB __far*,int)
+
+ 0001:13BC       ?LocalGetCameraOpt@@ZAHPEUCCB@@PEUCAMERAOPT@@@Z
+                    int __far __cdecl LocalGetCameraOpt(struct CCB __far*,struct CAMERAOPT __far*)
+
+ 0001:13EE       ?LocalSetCameraOpt@@ZAHPEUCCB@@PEUCAMERAOPT@@@Z
+                    int __far __cdecl LocalSetCameraOpt(struct CCB __far*,struct CAMERAOPT __far*)
+
+ 0001:1452       ?LocalGetPreset@@ZAHPEUCCB@@PEUPRESET@@@Z
+                    int __far __cdecl LocalGetPreset(struct CCB __far*,struct PRESET __far*)
+
+ 0001:14A8       ?LocalSetPreset@@ZAHPEUCCB@@PEUPRESET@@H@Z
+                    int __far __cdecl LocalSetPreset(struct CCB __far*,struct PRESET __far*,int)
+
+ 0001:150E       ?LocalMovePreset@@ZAHPEUCCB@@H@Z
+                    int __far __cdecl LocalMovePreset(struct CCB __far*,int)
+
+ 0001:156C       ?LocalGetCameraPos@@ZAHPEUCCB@@PEUCAMERAPOS@@@Z
+                    int __far __cdecl LocalGetCameraPos(struct CCB __far*,struct CAMERAPOS __far*)
+
+ 0001:161A       ?LocalSetCameraPos@@ZAHPEUCCB@@PEUCAMERAPOS@@@Z
+                    int __far __cdecl LocalSetCameraPos(struct CCB __far*,struct CAMERAPOS __far*)
+
+ 0001:1674       ?LocalLock@@ZAHPEUCCB@@H@Z
+                    int __far __cdecl LocalLock(struct CCB __far*,int)
+
+ 0001:16AA       ?LocalCaptureVideo@@ZAHPEUCCB@@PEUCAPTUREMODE@@PID@Z
+                    int __far __cdecl LocalCaptureVideo(struct CCB __far*,struct CAPTUREMODE __far*,char __huge*)
+
+ 0001:1954       ?TimerProc@@ZCXIIIK@Z
+                    void __far __pascal TimerProc(unsigned int,unsigned int,unsigned int,unsigned long)
+
+ 0001:1F92       ??_C@_08CPPJ@PanSpeed?$AA@
+                    ??_C@_08CPPJ@PanSpeed?$AA@
+
+ 0001:1F9C       ??_C@_09CCBM@TiltSpeed?$AA@
+                    ??_C@_09CCBM@TiltSpeed?$AA@
+
+ 0001:1FA6       ??_C@_09BMBH@ZoomSpeed?$AA@
+                    ??_C@_09BMBH@ZoomSpeed?$AA@
+
+ 0001:1FB0       ??_C@_0N@BHJO@ShutterSpeed?$AA@
+                    ??_C@_0N@BHJO@ShutterSpeed?$AA@
+
+ 0001:1FBE       ??_C@_04LNAG@TRUE?$AA@
+                    ??_C@_04LNAG@TRUE?$AA@
+
+ 0001:1FC4       ??_C@_09CHGE@AutoFocus?$AA@
+                    ??_C@_09CHGE@AutoFocus?$AA@
+
+ 0001:1FCE       ??_C@_05LLOB@FALSE?$AA@
+                    ??_C@_05LLOB@FALSE?$AA@
+
+ 0001:1FD4       ??_C@_0M@JDFK@LightAdjust?$AA@
+                    ??_C@_0M@JDFK@LightAdjust?$AA@
+
+ 0001:1FE0       ??_C@_0BB@BKBE@AutoWhiteBalance?$AA@
+                    ??_C@_0BB@BKBE@AutoWhiteBalance?$AA@
+
+ 0001:1FF2       ??_C@_0O@PINO@WideConverter?$AA@
+                    ??_C@_0O@PINO@WideConverter?$AA@
+
+ 0001:2000       ??_C@_08JOLE@Preset?$CFd?$AA@
+                    ??_C@_08JOLE@Preset?$CFd?$AA@
+
+ 0001:200A       ??_C@_00A@?$AA@
+                    ??_C@_00A@?$AA@
+
+ 0001:200C       ??_C@_01KMAE@?0?$AA@
+                    ??_C@_01KMAE@?0?$AA@
+
+ 0001:200E       ??_C@_02MECO@?$CFd?$AA@
+                    ??_C@_02MECO@?$CFd?$AA@
+
+ 0001:2012       ??_C@_0M@HGKD@?$CFd?0?$CFd?0?$CFd?0?$CFs?$AA@
+                    ??_C@_0M@HGKD@?$CFd?0?$CFd?0?$CFd?0?$CFs?$AA@
+
+ 0001:201E       LIBMAIN
+ 0001:2024       WEP
+ 0001:2046       ?NetOpen@@ZAHPEUCCB@@PED1H@Z
+                    int __far __cdecl NetOpen(struct CCB __far*,char __far*,char __far*,int)
+
+ 0001:2260       ?NetClose@@ZAHPEUCCB@@@Z
+                    int __far __cdecl NetClose(struct CCB __far*)
+
+ 0001:2276       ?NetControl@@ZAHPEUCCB@@H@Z
+                    int __far __cdecl NetControl(struct CCB __far*,int)
+
+ 0001:233E       ?NetGetCameraOpt@@ZAHPEUCCB@@PEUCAMERAOPT@@@Z
+                    int __far __cdecl NetGetCameraOpt(struct CCB __far*,struct CAMERAOPT __far*)
+
+ 0001:23D0       ?NetSetCameraOpt@@ZAHPEUCCB@@PEUCAMERAOPT@@@Z
+                    int __far __cdecl NetSetCameraOpt(struct CCB __far*,struct CAMERAOPT __far*)
+
+ 0001:24BC       ?NetGetPreset@@ZAHPEUCCB@@PEUPRESET@@@Z
+                    int __far __cdecl NetGetPreset(struct CCB __far*,struct PRESET __far*)
+
+ 0001:2524       ?NetSetPreset@@ZAHPEUCCB@@PEUPRESET@@H@Z
+                    int __far __cdecl NetSetPreset(struct CCB __far*,struct PRESET __far*,int)
+
+ 0001:25EE       ?NetMovePreset@@ZAHPEUCCB@@H@Z
+                    int __far __cdecl NetMovePreset(struct CCB __far*,int)
+
+ 0001:2614       ?NetGetCameraPos@@ZAHPEUCCB@@PEUCAMERAPOS@@@Z
+                    int __far __cdecl NetGetCameraPos(struct CCB __far*,struct CAMERAPOS __far*)
+
+ 0001:267E       ?NetSetCameraPos@@ZAHPEUCCB@@PEUCAMERAPOS@@@Z
+                    int __far __cdecl NetSetCameraPos(struct CCB __far*,struct CAMERAPOS __far*)
+
+ 0001:26BE       ?NetLock@@ZAHPEUCCB@@H@Z
+                    int __far __cdecl NetLock(struct CCB __far*,int)
+
+ 0001:275C       ?NetCaptureVideo@@ZAHPEUCCB@@PEUCAPTUREMODE@@PID@Z
+                    int __far __cdecl NetCaptureVideo(struct CCB __far*,struct CAPTUREMODE __far*,char __huge*)
+
+ 0001:2B10       ??_C@_0M@GJEA@WINSOCK?4DLL?$AA@
+                    ??_C@_0M@GJEA@WINSOCK?4DLL?$AA@
+
+ 0001:2B1C       ??_C@_0L@BKPI@WSAStartup?$AA@
+                    ??_C@_0L@BKPI@WSAStartup?$AA@
+
+ 0001:2B28       ??_C@_0L@KLBB@WSACleanup?$AA@
+                    ??_C@_0L@KLBB@WSACleanup?$AA@
+
+ 0001:2B34       ??_C@_0BA@OODD@WSAGetLastError?$AA@
+                    ??_C@_0BA@OODD@WSAGetLastError?$AA@
+
+ 0001:2B44       ??_C@_0BD@MBIF@WSASetBlockingHook?$AA@
+                    ??_C@_0BD@MBIF@WSASetBlockingHook?$AA@
+
+ 0001:2B58       ??_C@_0BG@CMHC@WSAUnhookBlockingHook?$AA@
+                    ??_C@_0BG@CMHC@WSAUnhookBlockingHook?$AA@
+
+ 0001:2B6E       ??_C@_06KDPK@socket?$AA@
+                    ??_C@_06KDPK@socket?$AA@
+
+ 0001:2B76       ??_C@_0M@BGOH@closesocket?$AA@
+                    ??_C@_0M@BGOH@closesocket?$AA@
+
+ 0001:2B82       ??_C@_07DHIJ@connect?$AA@
+                    ??_C@_07DHIJ@connect?$AA@
+
+ 0001:2B8A       ??_C@_0M@LOFA@ioctlsocket?$AA@
+                    ??_C@_0M@LOFA@ioctlsocket?$AA@
+
+ 0001:2B96       ??_C@_05MHGE@htons?$AA@
+                    ??_C@_05MHGE@htons?$AA@
+
+ 0001:2B9C       ??_C@_09NHDB@inet_addr?$AA@
+                    ??_C@_09NHDB@inet_addr?$AA@
+
+ 0001:2BA6       ??_C@_04NJFL@recv?$AA@
+                    ??_C@_04NJFL@recv?$AA@
+
+ 0001:2BAC       ??_C@_04PJAD@send?$AA@
+                    ??_C@_04PJAD@send?$AA@
+
+ 0001:2BB2       ??_C@_0L@PCGG@setsockopt?$AA@
+                    ??_C@_0L@PCGG@setsockopt?$AA@
+
+ 0001:2BBE       ??_C@_08DHEI@shutdown?$AA@
+                    ??_C@_08DHEI@shutdown?$AA@
+
+ 0001:2BC8       ??_C@_0O@BLIP@gethostbyname?$AA@
+                    ??_C@_0O@BLIP@gethostbyname?$AA@
+
+ 0003:0004       rsrvptrs
+ 0003:0022       ?colorTable@@3QEHE
+                    int __far* __far colorTable
+
+ 0003:0028       ?videoSize@@3QEUVIDEOSIZE@@E
+                    struct VIDEOSIZE __far* __far videoSize
+
+ 0003:0068       _STKHQQ
+ 0003:006A       __hModule
+ 0003:006C       __wDataSeg
+ 0003:006E       __wHeapSize
+ 0003:0070       __lpszCmdLine
+ 0003:0074       __dllinit
+ 0003:0075       _aseglo
+ 0003:0077       _aseghi
+ 0003:0079       ___aDBswpflg
+ 0003:007B       ___aDBrterr
+ 0003:0082       __aintdiv
+ 0003:0086       __fac
+ 0003:0090       _errno
+ 0003:0092       __umaskval
+ 0003:0094       __winver
+ 0003:0094       __winminor
+ 0003:0095       __winmajor
+ 0003:0096       __osminor
+ 0003:0096       __osver
+ 0003:0097       __osmajor
+ 0003:0098       __osversion
+ 0003:009A       __osmode
+ 0003:009B       __cpumode
+ 0003:009C       __doserrno
+ 0003:009C       __oserr
+ 0003:009E       __nfile
+ 0003:00A0       __osfile
+ 0003:00B4       ___argc
+ 0003:00B6       ___argv
+ 0003:00BA       __environ
+ 0003:00BE       __pgmptr
+ 0003:00C3       __child
+ 0003:00C5       __exitflag
+ 0003:00C6       __adbgmsg
+ 0003:00CA       __amblksiz
+ 0003:00CC       __pnhFarHeap
+ 0003:00D0       __fheap
+ 0003:00E0       __fpinit
+ 0003:01CE       _edata
+ 0003:01CE       __edata
+ 0003:0682       ?hWinSock@@3IE
+                    unsigned int __far hWinSock
+
+ 0003:06C4       _end
+ 0003:06C4       __end
+
+Program entry point at 0001:0054

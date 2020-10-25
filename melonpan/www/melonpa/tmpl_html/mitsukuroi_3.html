@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>みつくろい依頼</TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600">
+<form name = "TaiForm4" method="post" action = "mitsukuroi_4.php">
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="513" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+<TD>
+<p><font color="#99CCFF">■</font><b><font color="#003399">みつくろい依頼【確認】</font></b></p>
+<p>　</p>
+<p class="text01">下記の内容で依頼してよろしいですか？　修正する場合は「戻る」ボタンでお戻りください。</p>
+<div align=center>
+<TABLE WIDTH="483" BORDER="0" CELLSPACING="0" CELLPADDING="0" BGCOLOR="#003399">
+<TR>
+<TD>
+<TABLE WIDTH="483" BORDER="0" CELLSPACING="1" CELLPADDING="3">
+<TR>
+<TD WIDTH="139" BGCOLOR="#99CCFF" CLASS="text9ptnoColor">
+<DIV ALIGN="RIGHT"><FONT COLOR="#003399"><B>依頼するめろんパイ</B></FONT></DIV>
+</TD>
+<TD WIDTH="344" BGCOLOR="#FFFFFF"><? echo $melonpai_nic ?></TD>
+</TR>
+<TR>
+<TD WIDTH="139" BGCOLOR="#99CCFF" VALIGN="top" CLASS="text9ptnoColor">
+<DIV ALIGN="RIGHT"><FONT COLOR="#003399"><B>タイトル</B></FONT></DIV>
+</TD>
+<TD WIDTH="344" BGCOLOR="#FFFFFF"><? echo $com_title ?></TD>
+</TR>
+<TR>
+<TD WIDTH="139" BGCOLOR="#99CCFF" VALIGN="top" CLASS="text9ptnoColor">
+<DIV ALIGN="RIGHT"><FONT COLOR="#003399"><B>リクエスト</B></FONT></DIV>
+</TD>
+<TD WIDTH="344" BGCOLOR="#FFFFFF"><? echo $com_text ?></TD>
+</TR>
+<TR>
+<TD WIDTH="139" BGCOLOR="#99CCFF" CLASS="text9ptnoColor">
+<DIV ALIGN="RIGHT"><FONT COLOR="#003399"><B>返信先</B></FONT></DIV>
+</TD>
+<TD WIDTH="344" BGCOLOR="#FFFFFF"><? echo $send_mail_addr ?> </TD>
+</TR>
+<TR BGCOLOR="#FFFFFF">
+<TD COLSPAN="2" ALIGN="RIGHT">
+<INPUT TYPE="submit" NAME="TaiBot4" VALUE="　依　頼　" >
+<INPUT TYPE="button" NAME="Submit2" VALUE="戻る" onClick="history.back()">
+<input type="hidden" value="<? echo $melonpai_id ?> " name="melonpai_id">
+<input type="hidden" value="<? echo $melonpai_pro ?> " name="melonpai_pro">
+<input type="hidden" value="<? echo $send_mail_addr ?> " name="send_mail_addr">
+<input type="hidden" value="<? echo $com_title ?> " name="com_title">
+<input type="hidden" value="<? echo $com_text ?> " name="com_text">
+<input type="hidden" value="<? echo $mail_addr ?> " name="mail_addr">
+<input type="hidden" value="<? echo trim($mail_addr); ?> " name="mail_addr">
+<input type="hidden" value="<? echo trim($reader_id); ?>" name="reader_id">
+<input type="hidden" value="<? echo trim($reader_pswd); ?>" name="reader_pswd">
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE></div>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD valign="top" colspan="3" align="right">
+<HR size="1" width="750">
+</TD>
+</TR>
+<TR>
+<TD valign="top" width="200"> <IMG src="../img/shim.gif" width="200" height="1">
+</TD>
+<TD valign="middle" align="center" width="350">
+<div align="center"><FONT size="2"><IMG src="../img/shim.gif" width="350" height="1"><BR>
+Copyright &copy; 2000 xxxxxxx, Co.,Ltd. All rights reserved. <br>
+<a href="http://www.xxxxxxx.co.jp/" target="mm_window"><img src="../img/logo_do.gif" width="50" height="45" border="0"></a>
+</FONT></div>
+</TD>
+<TD valign="top" width="200" align="right"><IMG src="../img/shim.gif" width="200" height="1"></TD>
+</TR>
+</TABLE>
+</form>
+</body>
+</html>
+

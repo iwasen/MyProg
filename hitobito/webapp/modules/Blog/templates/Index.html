@@ -1,0 +1,77 @@
+<!-- 記事blogTOP　記事一覧 -->
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td ><img src="image/new_blog_ttl.gif" width="113" height="14" alt="ナビ記事最新投稿"></td>
+    <td align="right"><a href="index.php?module=RSS&amp;action=Stories<{$listUrlAddParameter}>"><img src="image/new_blog_rss.gif" width="36" height="13" alt="RSS" border="0"></a></td>
+  </tr>
+  <tr>
+    <td colspan="2"><img src="image/spacer.gif" width="1" height="4"></td>
+  </tr>
+  <tr>
+    <td colspan="2"><img src="image/new_blog_split360.gif" width="100%" height="1"></td>
+  </tr>
+</table>
+<!-- ○月の記事ヘッダ -->
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td class="char120"><p class="ind1010"><span class="charblog"><{$listTitle}></span></p></td>
+  </tr>
+  <tr>
+    <td><img src="image/spacer.gif" width="1" height="2"></td>
+  </tr>
+  <tr>
+    <td><img src="image/new_blog_split360.gif" width="100%" height="1"></td>
+  </tr>
+
+</table>
+<!--ナビ記事最新投稿ここからループ-->
+<{foreach item=item from=$stories}>
+<{assign var=navipage value=$item->getNaviPageInfo()}>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:10px;">
+    <tr>
+        <td width="10px"></td>
+        <td>
+          <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:10px;">
+              <tr>
+                  <td class="char120"><!-- タイトル -->
+                      <a href="index.php?module=Blog&amp;action=ViewStory&amp;blog_story_id=<{$item->getId()}>"><{$item->getTitle()|escape}></a></td>
+                  <td align="right" class="char120"><!-- 日付 -->
+                      <span class="char999999"><{$item->getAttribute('bla_date')|HNbDate:"m"}></span></td>
+              </tr>
+          </table>
+          <div style="margin-bottom:10px">
+              <div class="char120">
+                  <!-- 画像サムネイル --><a href="index.php?module=Blog&amp;action=ViewStory&amp;blog_story_id=<{$item->getId()}>"><img src="blogimage.php?id=<{$item->getImageId()}>" width="75" border="0" style="float:right"></a>
+                  <!-- 記事内容 --><{$item->getBody()|strip_tags|mbwordwrap:40:"\n":4|nl2br}>
+              </div>
+              <div class="char120" style="clear:both; text-align:right; margin-top:5px; ">
+                  <a href="index.php?module=Navi&amp;navipage_id=<{$navipage->getId()}>"><{$navipage->getNaviName()|escape}></a><span class="char999999"> 
+                   | </span><a href="index.php?module=Navi&amp;navipage_id=<{$navipage->getId()}>"><{$navipage->getTitle()|escape}></a><span class="char999999"> 
+                   | </span><a href="index.php?module=Blog&amp;navipage_id=<{$navipage->getId()}>&amp;blog_category_id=<{$item->getBlogCategoryId()}>"><{$item->getBlogCategoryName()|escape}></a><span class="char999999"> 
+                   | </span><a href="index.php?navipage_id=<{$navipage->getId()}>&amp;module=Blog&amp;action=ViewStory&amp;blog_story_id=<{$item->getId()}>#comment">コメント( <{$item->getCommentsNum()}> )</a><span class="char999999"> 
+                   | </span><a href="index.php?navipage_id=<{$navipage->getId()}>&amp;module=Blog&amp;action=ViewStory&amp;blog_story_id=<{$item->getId()}>#trackback">TB( <{$item->getTrackbacksNum()}> )</a>
+              </div>
+          </div>
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                  <td background="image/new_blog_split350.gif"></td>
+              </tr>
+          </table>
+      </td>
+    </tr>
+</table>
+<{/foreach}>
+<!--ナビ記事最新投稿ループここまで-->
+
+<!--ナビ記事ナビゲーション-->
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:10px; margin-bottom:20px;">
+    <td>
+      <img src="image/blog_link_top.gif" width="12" height="12" align="absmiddle" hspace="2"><span class="char120"><a href="index.php?module=Blog&amp;action=Index&amp;navipage_id=<{$navipage_id}>" class="cblack">ナビ記事トップ</a></span>
+    </td>
+    <td align="right">
+      <{if $navigation.prev.url}><img src="image/blog_link_pre.gif" width="12" height="12" align="absmiddle" hspace="2"><span class="char120"><a href="<{$navigation.prev.url}>" class="cblack"><{$navigation.prev.text}></a></span><{/if}>
+      <{if $navigation.next.url && $navigation.prev.url}><span class="char999999"> | </span><{/if}>
+      <{if $navigation.next.url}><img src="image/blog_link_next.gif" width="12" height="12" align="absmiddle" hspace="2"><span class="char120"><a href="<{$navigation.next.url}>" class="cblack"><{$navigation.next.text}></a></span><{/if}> 
+    </td>
+  </table>  
+<!-- ナビ記事ナビゲーションここまで -->

@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>発行者登録を解除する 【確認】</TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600">
+<? include("header.php"); ?>
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="513" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+<TD>
+                  <table width="501" border="0" cellspacing="0" cellpadding="0">
+                    <tr> 
+                      <td width="251"><font color="#006600"><b>■発行者登録を解除する 【確認】</b></font> 
+                      </td>
+                      <td width="250" align="right"> 
+                        <form method="post" action="pub_index.php" name="fom_index">
+                          <a href="JavaScript:document.fom_index.submit();"> <font size="2">管理ページTOPへ</font></a> 
+                          <input type="hidden" value="<? echo $publisher_id ?>" name="publisher_id">
+                          <input type="hidden" value="<? echo $owner_pswd ?>" name="owner_pswd_r2">
+                        </form>
+                      </td>
+                    </tr>
+                  </table>
+                  <p><SPAN CLASS="text01">もしよろしければ発行者登録を解除する理由を教えてください。</SPAN><br>
+<br>
+<form name = "Sform11" action="publisher.php"  method="post">
+<input type="radio" name="reason_sel" value="発行が面倒だからやめる">
+発行が面倒だからやめる<br>
+<input type="radio" name="reason_sel" value="操作が面倒だからやめる">
+操作が面倒だからやめる<br>
+<input type="radio" name="reason_sel" value="忙しいからやめる">
+忙しいからやめる<br>
+<input type="radio" name="reason_sel" value="他のメルマガ発行サイトで発行する">
+他のメルマガ発行サイトで発行する<br>
+<input type="radio" name="reason_sel" value="その他">
+その他
+<input type="text" name="reason" size="60">
+<br>
+<br>
+<p><SPAN CLASS="text01">確認のためにパスワードを入力してください。</SPAN><br>
+<input type="password" name="OWNER_PSWD_I" value= "" >
+</p>
+<p>本当にやめますか？<br>
+</p>
+<p>
+<input type="submit" name="pub_del_kan" value="やめる">
+<input type="hidden" value="<? echo trim($owner_pswd) ?>" name="owner_pswd">
+<input type="hidden" value="<? echo $publisher_id ?>" name="publisher_id">
+<input type="hidden" value="<? echo $next_job_flg; ?>" name="job_flg">
+</form>
+<form name = "Sform11" action="pub_index.php"  method="post">
+<input type="hidden" value="<? echo trim($owner_pswd) ?>" name="owner_pswd_r">
+<input type="hidden" value="<? echo $publisher_id ?>" name="publisher_id">
+<input type="submit" name="Submit2" value="やっぱり思い直して、もう少し考えてみる">
+<input type="hidden" value="<? echo $publisher_id ?>" name="publisher_id">
+</form>
+<p></p>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<? include("footer.php"); ?>
+</TABLE>
+</body>
+</html>

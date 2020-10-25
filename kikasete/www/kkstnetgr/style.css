@@ -1,0 +1,23 @@
+
+a:link {  color: #292864; text-decoration: none;}
+a:visited {  color: #292864; text-decoration: none;}
+a:hover {  color: #DF2237; text-decoration: underline;}
+
+.t10 {font-size: 10px; font-family: Osaka, '£Í£Ó £Ð¥´¥·¥Ã¥¯', sans-serif ; line-height:130%; color:#333333;}
+.t12 {font-size: 12px; font-family: Osaka, '£Í£Ó £Ð¥´¥·¥Ã¥¯', sans-serif ; line-height:130%; color:#333333;}
+.t14 {font-size: 14px; font-family: Osaka, '£Í£Ó £Ð¥´¥·¥Ã¥¯', sans-serif ; line-height:130%; color:#333333;}
+.t16 {font-size: 16px; font-family: Osaka, '£Í£Ó £Ð¥´¥·¥Ã¥¯', sans-serif ; line-height:130%; color:#333333;}
+
+.t10g {font-size: 10px; font-family: Osaka, '£Í£Ó £Ð¥´¥·¥Ã¥¯', sans-serif ; line-height:130%; color:#999999;}
+.t12g {font-size: 12px; font-family: Osaka, '£Í£Ó £Ð¥´¥·¥Ã¥¯', sans-serif ; line-height:130%; color:#999999;}
+.t14g {font-size: 14px; font-family: Osaka, '£Í£Ó £Ð¥´¥·¥Ã¥¯', sans-serif ; line-height:130%; color:#999999;}
+.t16g {font-size: 16px; font-family: Osaka, '£Í£Ó £Ð¥´¥·¥Ã¥¯', sans-serif ; line-height:130%; color:#999999;}
+
+.t12red {font-size: 12px; font-family: Osaka, '£Í£Ó £Ð¥´¥·¥Ã¥¯', sans-serif ; line-height:130%; color:#DF2237;}
+
+.t14m {font-size: 14px; font-family: Osaka, '£Í£Ó £Ð¥´¥·¥Ã¥¯', sans-serif ; line-height:130%; color:#DF2237;}
+
+.t12r {font-size: 12px; font-family: Osaka, '£Í£Ó £Ð¥´¥·¥Ã¥¯', sans-serif ; line-height:130%; color:#660000;}
+
+.fotter {font-size: 10px; font-family: Osaka, '£Í£Ó £Ð¥´¥·¥Ã¥¯', sans-serif ; line-height:130%; color:#999999; }
+.menu {font-size: 12px; font-family: Osaka, '£Í£Ó £Ð¥´¥·¥Ã¥¯', sans-serif ; line-height:180%; }

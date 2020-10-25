@@ -1,0 +1,92 @@
+<!-- ナビランキング＆人気ランキング -->
+<table width="200" border="0" cellspacing="0" cellpadding="0">
+	<!-- ナビランキングタイトル -->
+	<tr>
+		<td colspan="5"><img src="image/menu_rank1_ttl.gif" width="200" height="35" alt="ナビランキング"></td>
+	</tr>
+	<tr>
+		<td width="2" bgcolor="#82ADFD"><img src="image/spacer.gif" width="2" height="1"></td>
+		<td width="3"><img src="image/spacer.gif" width="3" height="1"></td>
+		<td width="190">
+	<!-- ナビランキング1位-->
+			<table width="190" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td width="60" valign="top"><a href="index.php?module=Navi&amp;action=ShowNaviPage&amp;navipage_id=<{$navi_ranking_top.id}>">
+					  <{if $navi_ranking_top.photo > 0}>
+					  <img src="image.php?id=<{$navi_ranking_top.photo}>" width="60" height="60" border="0">
+					  <{else}>
+					  <img src="image/navi_ph.gif" width="60" border="0" />
+					  <{/if}>
+					</a></td>
+					<td width="4"><img src="image/spacer.gif" width="4" height="1"></td>
+					<td valign="top"><img src="image/menu_rank1_1.gif" width="15" height="12" align="absmiddle"><span class="char110"><a href="index.php?module=Navi&amp;action=ShowNaviPage&amp;navipage_id=<{$navi_ranking_top.id}>"><{$navi_ranking_top.title|escape}></a><br>ナビ : <{$navi_ranking_top.navi_name|escape}><br><{$navi_ranking_top.description|escape}></span></td>
+				</tr>
+			
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="5"></td>
+				</tr>
+			</table>
+		<!-- end　1位 -->
+		
+		<!-- start ナビランキング　2位以下 -->
+			<table width="190" border="0" cellspacing="0" cellpadding="2">
+			<!-- startループ -->
+			<{foreach item=navi_item from=$navi_navi_ranking}>
+				<tr>
+					<td align="right" valign="top" bgcolor="#FFFFFF"><{$navi_item.rank}></td>
+					<td class="char120" bgcolor="#FFFFFF"><a href="index.php?module=Navi&amp;action=ShowNaviPage&amp;navipage_id=<{$navi_item.id}>"><{$navi_item.title|escape}></a><br>
+					ナビ : <{$navi_item.navi_name|escape}></td>
+				</tr>
+			<{/foreach}>
+			<!-- endループ -->
+			</table>
+		</td>
+		<td width="3"><img src="image/spacer.gif" width="3" height="1"></td>
+		<td width="2" bgcolor="#82ADFD"><img src="image/spacer.gif" width="2" height="1"></td>
+	</tr>
+	<!-- 人気記事ランキング -->
+		<!-- タイトル部 -->
+	<tr>
+		<td colspan="5"><img src="image/menu_rank2_ttl.gif" width="200" height="38" alt="人気記事ランキング"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#82ADFD"><img src="image/spacer.gif" width="2" height="1"></td>
+		<td><img src="image/spacer.gif" width="3" height="1"></td>
+		<td>
+		<!-- 人気記事ランキング　ループ部 -->
+			<table width="190" border="0" cellspacing="0" cellpadding="2">
+			<!-- start　人気記事ランキング ループ -->
+			<{foreach item=navi_story from=$navi_story_ranking key=rank}>
+				<tr>
+					<td align="right" valign="top" bgcolor="#FFFFFF">
+					<{if $rank == 1 }>
+					  <{* 一位だけ画像 *}>
+						<img src="image/menu_rank1_1.gif" width="12" height="12">
+					<{else}>
+						<{$rank}>
+					<{/if}>
+					</td>
+					<td class="char120" bgcolor="#FFFFFF"><a href="index.php?module=Blog&amp;action=ViewStory&amp;blog_story_id=<{$navi_story.story_id}>"><{$navi_story.title|escape}></a><br>
+					ナビ : <{$navi_story.navi_name|escape}></td>
+				</tr>
+			<{/foreach}>
+			<!-- end　人気記事ランキングループ -->
+			</table>
+			<!-- ランキングループ終わり -->
+		</td>
+		<td><img src="image/spacer.gif" width="3" height="1"></td>
+		<td bgcolor="#82ADFD"><img src="image/spacer.gif" width="2" height="1"></td>
+		</tr>
+		<tr>
+			<td bgcolor="#82ADFD"><img src="image/spacer.gif" width="2" height="1"></td>
+			<td colspan="3"><img src="image/spacer.gif" width="1" height="3"></td>
+			<td bgcolor="#82ADFD"><img src="image/spacer.gif" width="2" height="1"></td>
+		</tr>
+		<tr>
+			<td colspan="5"><img src="image/menu_rank_foot.gif" width="200" height="12"></td>
+		</tr>
+		<tr>
+			<td colspan="5"><img src="image/spacer.gif" width="1" height="10"></td>
+		</tr>
+</table>
+<!-- ナビランキング＆人気ランキングブロック終わり -->

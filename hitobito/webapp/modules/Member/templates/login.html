@@ -1,0 +1,94 @@
+<!-- ログインエラー画面 -->
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+	<tr bgcolor="#F5E156">
+		<td colspan="3"><img src="image/menu_mem_ttl.gif" width="200" height="26" hspace="10" alt="メンバーログイン"></td>
+	</tr>
+	<tr>
+		<td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+		<td width="555">
+			<table width="555" border="0" cellspacing="0" cellpadding="0">
+				<{if count($member_errors) >0}>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="15"></td>
+				</tr>
+				<tr>
+					<td class="char120">入力項目にエラーがあります。 </td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="25"></td>
+				</tr>
+				<tr>
+					<td><img src="image/member_split555.gif" width="555" height="1"></td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="25"></td>
+				</tr>
+				<tr>
+					<td class="error">
+					  <ul>
+					  <{foreach item=item from=$member_errors}>
+					    <li><{$item}></li>
+					  <{/foreach}>
+					  </ul>
+					</td>
+				</tr>
+				<{/if}>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="25"></td>
+				</tr>
+				<tr>
+					<td><img src="image/member_split555.gif" width="555" height="1"></td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="25"></td>
+				</tr>
+			</table>
+			<form name="form2" method="post" action="index.php?module=Member&amp;action=Login">
+			<table width="555" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td width="130" class="char120">メールアドレス</td>
+					<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+					<td width="415"><input type="text" name="member_login_mail" size="12" style="width:180px;"></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="6"></td>
+				</tr>
+				<tr>
+					<td class="char120">パスワード</td>
+					<td><img src="image/spacer.gif" width="10" height="1"></td>
+					<td><input type="password" name="member_login_pass" size="12" style="width:100px;"><input type="image" border="0" name="imageField" src="image/menu_mem_btn.gif" width="64" height="20" alt="登録情報更新"></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="20"></td>
+				</tr>
+				<tr bgcolor="#666666">
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="5"></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="20"></td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<table width="188" border="0" cellspacing="0" cellpadding="2">
+								<tr>
+									<td><p class="menuind16"><img src="image/menu_mem_link.gif" width="12" height="12" hspace="2" align="absmiddle"><span class="char110"><a href="index.php?module=Member&action=remindPassword" class="cblack">パスワードをお忘れの方</a></span></p></td>
+								</tr>
+								<tr>
+									<td><p class="menuind16"><img src="image/menu_mem_link.gif" width="12" height="12" hspace="2" align="absmiddle"><span class="char110"><a href="index.php?module=contents&content_id=3" class="cblack">メンバー登録をすると…</a></span></p></td>
+								</tr>
+								<tr>
+									<td><p class="menuind16"><img src="image/menu_mem_link.gif" width="12" height="12" hspace="2" align="absmiddle"><span class="char110"><a href="index.php?module=Member&amp;action=Regist" class="cblack">新規登録はこちら</a></span></p></td>
+								</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+			</table>
+			</form>
+		</td>
+		<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+	</tr>
+</table>
+<!-- ログインエラー画面　ここまで -->

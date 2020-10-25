@@ -1,0 +1,124 @@
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+	<tr bgcolor="#5B94FD">
+		<td colspan="3"><img src="image/naviedit_waiwai_general_ttl.gif" width="212" height="25" hspace="10" alt="ワイワイ会議への質問管理"></td>
+	</tr>
+	<tr>
+		<td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+		<td width="555" valign="top">
+			<table width="555" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="15"></td>
+				</tr>
+				<tr>
+					<td><img src="image/naviedit_waiwai_general_sttl_detail.gif" width="54" height="14" alt="投稿詳細"></td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="15"></td>
+				</tr>
+			</table>
+			<table width="555" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td bgcolor="#CCCCCC" width="1"><img src="image/spacer.gif" width="1" height="1"></td>
+					<td bgcolor="#CCCCCC" width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+					<td bgcolor="#CCCCCC" width="523"><img src="image/spacer.gif" width="523" height="1"></td>
+					<td bgcolor="#CCCCCC" width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+					<td bgcolor="#CCCCCC" width="1"><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+					<td><img src="image/spacer.gif" width="15" height="1"></td>
+					<td>
+						<table width="523" border="0" cellspacing="0" cellpadding="0">
+<{if $waiwai_public.msg}>
+							<tr>
+								<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+							</tr>
+							<tr>
+								<td colspan="3" class="error"><{$waiwai_public.msg|escape}></td>
+							</tr>
+<{/if}>
+							<tr>
+								<td colspan="3"><img src="image/spacer.gif" width="1" height="15"></td>
+							</tr>
+							<tr>
+								<td width="395" class="char120"><{$waiwai_public.title|escape}></td>
+								<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+								<td width="118" align="right" class="char120" valign="top"><{$waiwai_public.date}></td>
+							</tr>
+							<tr>
+								<td colspan="3"><img src="image/spacer.gif" width="1" height="8"></td>
+							</tr>
+						</table>
+						<table width="523" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td class="char120"><{$waiwai_public.nickname|escape}></td>
+							</tr>
+							<tr>
+								<td><img src="image/spacer.gif" width="1" height="8"></td>
+							</tr>
+						</table>
+						<table width="523" border="0" cellspacing="0" cellpadding="8">
+							<tr>
+								<td bgcolor="#EEEEEE" class="char140">メールアドレス : <{$waiwai_public.mail_addr|escape}></td>
+							</tr>
+						</table>
+						<table width="523" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td><img src="image/spacer.gif" width="1" height="15"></td>
+							</tr>
+						</table>
+					</td>
+					<td><img src="image/spacer.gif" width="15" height="1"></td>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+				<tr>
+					<td colspan="5" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="15"></td>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+					<td><img src="image/spacer.gif" width="15" height="1"></td>
+					<td class="char130"><{$waiwai_public.content|escape|nl2br}></td>
+					<td><img src="image/spacer.gif" width="15" height="1"></td>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="15"></td>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+				<tr>
+					<td colspan="5" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+				<tr>
+					<td colspan="5"><img src="image/spacer.gif" width="1" height="30"></td>
+				</tr>
+			</table>
+			<table width="555" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td bgcolor="#5B94FD"><img src="image/spacer.gif" width="1" height="5"></td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="20"></td>
+				</tr>
+				<tr>
+					<td>
+						<table width="310" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td width="90"><a href="?module=Waiwai&action=ListPublic&navipage_id=<{$navi_page_id}>"><img src="image/naviedit_inquiry_btn_cancel.gif" width="90" height="20" alt="一覧に戻る" border="0"></a></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+			</table>
+		</td>
+		<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+	</tr>
+</table>

@@ -1,0 +1,28 @@
+<{foreach from=$mailmag_list_ary key=key item=contents}>
+<tr>
+	<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	<td align="center">
+		<input type="radio" name="contents_id" value="<{$contents.contents_id}>" <{if $mailmag_current_contents_id == $contents.contents_id}>checked<{/if}>>
+	</td>
+	<td bgcolor="#E6F2FF" align="center" class="char120">
+		<p class="ind0804"><{$contents.contents_id}></p>
+	</td>
+	<td class="char120">
+		<p class="ind0804"><{$contents.subject|escape}></p>
+	</td>
+	<td bgcolor="#E6F2FF" align="center" class="char120" nowrap>
+		<p class="ind0804"><{$contents.send_date}></p>
+	</td>
+	<td align="center" class="char120">
+		<p class="ind0804"><{$contents.status}></p>
+	</td>
+	<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+</tr>
+<tr bgcolor="#CCCCCC">
+	<td colspan="7"><img src="image/spacer.gif" width="450" height="1"></td>
+</tr>
+<{foreachelse}>
+<tr>
+	<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+</tr>
+<{/foreach}>

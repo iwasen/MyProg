@@ -1,0 +1,239 @@
+	title	overlay controll
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; module name	: overlay to 8000h
+; creation date :
+;		by t.sakai
+; revised date  :
+;	01-Oct-85	--> change disk error code.
+;
+;		by DoI.fumiaki
+;
+;	input a=module # (decimal)
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+	public		overlay
+
+	extrn		xconin
+;
+	BDOS		equ	5	;
+	FCB		equ	05ch	;
+	DMA		equ	080h	;
+	FCB_SIZE	equ	33	;
+	H_OVERLAY	equ	8000h	;
+	L_DRIVE		equ	02h	; LOAD DRIVE
+;
+	RET		equ	0dh
+	ESC		equ	1bh
+;
+	CONOUT		equ	0eb0ch
+	BEEP		equ	0eb39h
+	DISKBNK		equ	0f52eh
+	BIOSERR		equ	0f52bh
+	CALLX		equ	0eb69h
+
+	.z80
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; overlay
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+overlay:
+	ld	hl,(ovlsp)
+	inc	hl
+	ld	(hl),a
+	ld	(ovlsp),hl
+	call	readprg
+	call	H_OVERLAY
+	ld	hl,(ovlsp)
+	dec	hl
+	ld	a,(hl)
+	ld	(ovlsp),hl
+	call	readprg
+	ret
+
+readprg:
+	push	af
+	ld	ix,0012h
+	ld	a,0ffh
+	ld	(DISKBNK),a
+	call	CALLX			; set error
+	pop	af
+; set drive
+	ld	c,L_DRIVE		; d: drive
+	ld	hl,FCB
+	ld	(hl),c			; set drive
+
+; set module#
+	ld	e,30h
+ov20:	cp	10
+	jr	c,ov30
+	inc	e
+	sub	10
+	jr	ov20
+ov30:	or	30h
+	ld	d,a
+	ex	de,hl
+	ld	(ov_nmb),hl		; set module#
+; set module name
+	inc	de
+	ld	hl,ov_name		; head of overlay module name:
+	ld	bc,8+3
+	ldir
+; other FCB 00h clear
+	ex	de,hl
+	ld	(hl),0			;
+	ld	d,h			;
+	ld	e,l			;
+	inc	de
+	ld	bc,FCB_SIZE-13
+	ldir				; clear FCB.
+;
+; open ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+opn10:	ld	de,FCB			;
+	ld	c,15			; open file.
+	call	BDOS			;
+	cp	255			; can't open ?
+	jr	z,opn_err
+;
+; read ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+	ld	a,1
+	ld	(FCB+32),a		; 1st rec skip
+	ld	de,H_OVERLAY
+readsec:
+	push	de		;
+	ld	c,26		; set DMA.
+	call	BDOS		;
+	ld	de,FCB		;
+	ld	c,20		; sequential read.
+	call	BDOS		;
+	pop	de		;
+	or	a		; EOF ?
+	jr	nz,readfin	;
+	ld	hl,080h		;
+	add	hl,de		;
+	ld	d,h		;
+	ld	e,l		;
+	jr	readsec		;
+;
+readfin:
+	ld	a,(BIOSERR)
+	or	a
+	jr	nz,red_err	; jmp if io error
+;
+;ld	hl,0
+;ld	(extk_tbl),hl
+;ld	(extk_fnt),hl
+	ret
+;
+; error ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+opn_err:
+;
+red_err:
+	push	af
+;;;;;;;;;;;;;;;;;		; &&& 01-Oct-85
+;	and	0f0h
+;	rrca
+;	rrca
+;	rrca
+;	rrca
+;	add	a,30h
+;	cp	3ah
+;	jr	c,re10
+;	add	a,7
+
+	ld	a,h
+	and	0fh
+	or	'0'
+	cp	'9'+1
+	jr	c,re10
+	add	a,7
+;;;;;;;;;;;;;;;;;
+re10:
+	ld	(bad_select+44),a
+	pop	af
+	and	0fh
+	add	a,30h
+	cp	3ah
+	jr	c,re20
+	add	a,7
+re20:	ld	(bad_select+45),a
+	ld	a,'V'
+	ld	(bad_select+43),a
+	ld	hl,bad_select
+	call	chr_disp
+opn20:	ld	bc,1601h
+	call	BEEP
+	call	xconin
+	cp	RET
+	jp	z,opn10
+	cp	'E'
+	jr	nz,opn20
+	call	xconin
+	cp	'P'
+	jr	nz,opn20
+	call	xconin
+	cp	'S'
+	jr	nz,opn20
+	call	xconin
+	cp	'O'
+	jr	nz,opn20
+	call	xconin
+	cp	'N'
+	jr	nz,opn20
+;
+	ld	sp,(BDOS+1)	; reset sp
+	ld	a,0
+	jp	overlay
+;
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;  character display
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;
+chr_disp:
+m10:	ld	a,(hl)
+	cp	-1
+	ret	z
+;
+	ld	c,a
+	inc	hl
+	push	hl
+	call	CONOUT 		; display
+	pop	hl
+	jr	m10
+;
+;
+;
+;
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; work & constant
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+ov_name:
+	db	'MEGANE'
+ov_nmb: db	'00'
+	db	'OVL'
+;
+bad_select:
+	db	ESC,'=',27h,20h
+	db	ESC,'0'		; reverse on
+	db	0cch,0dbh,0afh,0cbh,0dfh,0b0h,' ',0a6h,' ',0c0h
+	db	0c0h,0deh,0bch,0b8h,' ',0beh,0afh,0c4h,' ',0bch
+	db	0c3h,' ',0e1h,' ',0a6h,' ',0b5h,0bch,0c3h,0b8h
+	db	0c0h,0deh,0bbh,0b2h,'      '
+	db	ESC,'1',-1	; reverse off
+;
+ovlsp:	dw	ovlstack
+ovlstack:
+	ds	10
+;
+	end

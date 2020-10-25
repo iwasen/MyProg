@@ -1,0 +1,73 @@
+<table width="360" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="260"><img src="image/new_board_ttl.gif" width="132" height="14" alt="ワイワイ会議室最新投稿"></td>
+		<td width="100" align="right"><a href="index.php?module=contents&content_id=6"><img src="image/new_board_help.gif" width="91" height="13" alt="ワイワイ会議室ヘルプ" border="0"></a></td>
+  </tr>
+  <tr>
+    <td colspan="2"><img src="image/spacer.gif" width="1" height="4"></td>
+  </tr>
+  <tr>
+    <td colspan="2"><img src="image/new_blog_split360.gif" width="360" height="1"></td>
+  </tr>
+</table>
+<table width="360" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td class="char120"><p class="ind1010"><span class="charblog"></span></p></td>
+	</tr>
+	<tr>
+		<td><img src="image/spacer.gif" width="1" height="2"></td>
+	</tr>
+	<tr>
+		<td><img src="image/new_blog_split360.gif" width="360" height="1"></td>
+	</tr>
+
+</table>
+<{foreach from=$waiwai_list_ary item=waiwai_list}>
+<table width="360" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+		<td width="350" bgcolor="<{$waiwai_list.bgcolor}>">
+			<table width="350" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td colspan="2"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+          <td width="265" class="char120"><a href="?module=Waiwai&action=Browse&navipage_id=<{$waiwai_list.navi_page_id}>&waiwai_id=<{$waiwai_list.seq_no}>#waiwai"><{$waiwai_list.subject|escape}></a></td>
+					<td width="85" align="right" class="char120"><span class="char999999"><{$waiwai_list.date}></span></td>
+				</tr>
+			</table>
+			<table width="350" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td class="char120"><{$waiwai_list.content|escape|nl2br}>（<{$waiwai_list.nickname|escape}>）</td>
+				</tr>
+				<tr>
+          <td class="char120" align="right"><span class="char999999">ナビ : </span><a href="?module=Navi&action=ShowNaviPage&navipage_id=<{$waiwai_list.navi_page_id}>" class="cblack"><{$waiwai_list.navi_name|escape}></a><span class="char999999">
+            | </span><a href="?module=Waiwai&action=Browse&navipage_id=<{$waiwai_list.navi_page_id}>&waiwai_id=<{$waiwai_list.seq_no}>" class="cblack"><{$waiwai_list.room_name|escape}></a></td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td><img src="image/new_board_split350.gif" width="350" height="1"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<{/foreach}>
+<table width="360" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+	</tr>
+	<tr>
+		<td width="150"><img src="image/blog_link_top.gif" width="12" height="12" align="absmiddle" hspace="2"><span class="char120"><a href="<{$waiwai_page.top}>" class="cblack">最新投稿トップ</a></span></td>
+		<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+		<td align="right" width="200">
+		  <{if $waiwai_page.prev}><img src="image/blog_link_pre.gif" width="12" height="12" align="absmiddle" hspace="2"><span class="char120"><a href="<{$waiwai_page.prev}>" class="cblack">前の投稿</a></span><{/if}>
+		  <{if $waiwai_page.next && $waiwai_page.prev}><span class="char999999"> | </span><{/if}>
+		  <{if $waiwai_page.next}><img src="image/blog_link_next.gif" width="12" height="12" align="absmiddle" hspace="2"><span class="char120"><a href="<{$waiwai_page.next}>" class="cblack">次の投稿</a></span><{/if}> </td>
+	</tr>
+	<tr>
+		<td colspan="3"><img src="image/spacer.gif" width="1" height="20"></td>
+	</tr>
+</table>

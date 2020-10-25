@@ -1,0 +1,47 @@
+<!--今日のいちおしナビブロック-->
+<table width="360" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td colspan="4"><img src="image/new_navi_ttl_top.gif" width="360" height="35" alt="注目ナビ"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#FFCC33" width="3"><img src="image/spacer.gif" width="3" height="1"></td>
+		<td width="14"><img src="image/spacer.gif" width="14" height="1"></td>
+		<td width="340">
+		<!-- start記事ループ -->
+		<{foreach item=item from=$navi_todays_push}>
+			<table width="340" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td width="60" valign="top"><a href="index.php?module=Navi&amp;navipage_id=<{$item.navipage_id}>">
+					  <{if $item.photo_id > 0}>
+					  <img src="image.php?id=<{$item.photo_id}>" width="60" height="60" border="0">
+					  <{else}>
+					  <img src="image/navi_ph.gif" width="60" border="0" />
+					  <{/if}>
+					</a></td>
+ 					<td valign="top" width="280" class="char120">
+						<p class="ind1515"><a href="index.php?module=Navi&amp;navipage_id=<{$item.navipage_id}>"><{$item.title|escape}></a><br>
+						<span class="char999999">ナビ : </span><{$item.navi_name|escape}><br>
+						<{if $item.last_title }>
+						最新記事 : <span class="char999999"><{$item.last_update|HNbDate:"m"}></span><br>
+						<{$item.last_title|escape}>
+						<{/if}>
+				      </p>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2"><img src="image/spacer.gif" width="1" height="6"></td>
+				</tr>
+			</table>
+		<{/foreach}>
+		<!-- end 記事ループ -->
+		</td>
+		<td bgcolor="#FFCC33" width="3"><img src="image/spacer.gif" width="3" height="1"></td>
+	</tr>
+	<tr>
+		<td colspan="4"><img src="image/new_navi_foot.gif" width="360" height="6"></td>
+	</tr>
+	<tr>
+		<td colspan="4"><img src="image/spacer.gif" width="1" height="20"></td>
+	</tr>
+</table>
+<!--今日のいちおしナビブロックここまで-->

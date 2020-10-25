@@ -1,0 +1,117 @@
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+	<tr bgcolor="#5B94FD">
+		<td colspan="3"><img src="image/naviedit_mail_ttl.gif" width="103" height="25" hspace="10" alt="メルマガ管理"></td>
+	</tr>
+	<tr>
+		<td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+		<td width="555" valign="top">
+			<form method="post">
+				<input type="hidden" name="form_data" value="edit">
+				<table width="555" border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td colspan="2"><img src="image/spacer.gif" width="1" height="15"></td>
+					</tr>
+<{if $mailmag_error_ary}>
+					<tr>
+						<td colspan="3" class="error">・<{$mailmag_error_ary.contents_id|escape}><br></td>
+					</tr>
+					<tr>
+						<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+					</tr>
+<{/if}>
+					<tr>
+						<td colspan="2"><img src="image/naviedit_mail_sttl_mail.gif" width="84" height="14" alt="メルマガ一覧"></td>
+					</tr>
+					<tr>
+						<td width="450"><img src="image/spacer.gif" width="450" height="1"></td>
+						<td width="105"><img src="image/spacer.gif" width="105" height="1"></td>
+					</tr>
+					<tr>
+						<td colspan="2"><img src="image/spacer.gif" width="1" height="7"></td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<table width="450" border="0" cellspacing="0" cellpadding="0">
+								<tr bgcolor="#666666">
+									<td colspan="7"><img src="image/spacer.gif" width="450" height="1"></td>
+								</tr>
+								<tr>
+									<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+									<td width="35" align="center">　</td>
+									<td width="35" bgcolor="#E6F2FF" align="center" class="char120">
+										<p class="ind0804">No.</p>
+									</td>
+									<td width="198" align="center" class="char120">
+										<p class="ind0804">タイトル</p>
+									</td>
+									<td width="90" bgcolor="#E6F2FF" align="center" class="char120">
+										<p class="ind0804">配信日</p>
+									</td>
+									<td width="90" align="center" class="char120" nowrap>
+										<p class="ind0804">ステータス</p>
+									</td>
+									<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+								</tr>
+								<tr bgcolor="#666666">
+									<td colspan="7"><img src="image/spacer.gif" width="450" height="1"></td>
+								</tr>
+<{include file="_MailMagList.html"}>
+							</table>
+						</td>
+						<td valign="top" align="center">
+							<table width="65" border="0" cellspacing="0" cellpadding="0">
+								<tr>
+									<td><a href="index.php?module=MailMag&action=EditContents&navipage_id=<{$navi_page_id}>"><img src="image/naviedit_btn_new.gif" width="65" height="20" alt="新規追加" border="0"></a></td>
+								</tr>
+								<tr>
+									<td><img src="image/spacer.gif" width="1" height="15"></td>
+								</tr>
+								<tr>
+									<td><input type="image" src="image/naviedit_btn_edit.gif" name="mailmag_edit_btn" width="65" height="20" alt="編集" border="0"></td>
+								</tr>
+								<tr>
+									<td><img src="image/spacer.gif" width="1" height="15"></td>
+								</tr>
+								<tr>
+									<td><a href="index.php?module=MailMag&action=SettingMailMag&navipage_id=<{$navi_page_id}>"><img src="image/naviedit_mail_btn_setting.gif" width="65" height="20" alt="基本設定" border="0"></a></td>
+								</tr>
+								<tr>
+									<td><img src="image/spacer.gif" width="1" height="15"></td>
+								</tr>
+								<tr>
+									<td><a href="index.php?module=MailMag&action=DeleteMailMagMember&navipage_id=<{$navi_page_id}>"><img src="image/naviedit_mail_btn_delete.gif" width="65" height="20" alt="代理解除" border="0"></a></td>
+								</tr>
+								<tr>
+									<td><img src="image/spacer.gif" width="1" height="15"></td>
+								</tr>
+								<tr>
+									<td><input type="image" src="image/naviedit_btn_count.gif" name="mailmag_show_click_btn" width="65" height="20" alt="クリック数" border="0"></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2"><img src="image/spacer.gif" width="1" height="30"></td>
+					</tr>
+				</table>
+				<table width="555" border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td bgcolor="#5B94FD"><img src="image/spacer.gif" width="1" height="5"></td>
+					</tr>
+					<tr>
+						<td><img src="image/spacer.gif" width="1" height="20"></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="index.php?module=MailMag&action=ListMailMag&navipage_id=<{$navi_page_id}>"><img border="0" name="imageField2" src="image/naviedit_btn_reflesh.gif" width="90" height="20" alt="登録情報更新"></a>
+						</td>
+					</tr>
+					<tr>
+						<td><img src="image/spacer.gif" width="1" height="10"></td>
+					</tr>
+				</table>
+				</form>
+		</td>
+		<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+	</tr>
+</table>

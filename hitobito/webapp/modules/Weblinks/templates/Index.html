@@ -1,0 +1,88 @@
+<table width="585" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><img src="image/search_sttl_links.gif" width="126" height="14" alt="おすすめリンク一覧"></td>
+  </tr>
+  <tr>
+    <td><img src="image/spacer.gif" width="1" height="4"></td>
+  </tr>
+  <tr>
+    <td bgcolor="#2B9CF9"><img src="image/spacer.gif" width="585" height="1"></td>
+  </tr>
+  <tr>
+    <td bgcolor="#DAEFFE" align="right" class="char120">
+      <p class="ind1003"><{$total}>件中 <{$start_num}> - <{$end_num}>件目</p></td>
+  </tr>
+  <tr>
+    <td class="char120"><img src="image/spacer.gif" width="1" height="8"></td>
+  </tr>
+</table>
+
+<{* category navigation *}>
+<table width="565" border="0" cellspacing="0" cellpadding="0" ID="Table1">
+  <tr>
+    <td>
+    <img src="image/spacer.gif" width="1" height="10">
+    </td>
+  </tr>
+  <tr>
+    <td class="char140">
+    <{if $weblinks_current_category_name}>
+        <{$weblinks_current_category_name|escape}> カテゴリを一覧表示
+    <{else}>
+        すべてを一覧表示
+    <{/if}>
+    </td>
+  </tr>
+  <tr>
+    <td><img src="image/search_split_links565.gif" width="565" height="1"></td>
+  </tr>
+  <tr>
+    <td><img src="image/spacer.gif" width="1" height="10"></td>
+  </tr>
+</table>
+<{* /category navigation *}>
+
+<{foreach item=item from=$itemlist}>
+<{assign var=navipage value=$item->getNaviPageInfo()}>
+<table width="565" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><img src="image/spacer.gif" width="1" height="8"></td>
+  </tr>
+  <tr>
+    <td class="char140"><a href="visit.php?id=<{$item->getId()}>" target="_blank"><{$item->getTitle()|escape}></a><{if $item->getAttribute('nol_pickup') > 0}><span class="charlinks">　PICK UP !</span><{/if}></td>
+  </tr>
+  <tr>
+    <td class="char120"><{$item->getAttribute('nol_link_outline')|escape|nl2br}></td>
+  </tr>
+  <tr>
+    <td align="right" class="char120">
+        <span class="char999999">カテゴリ : </span><a href="index.php?module=Weblinks&amp;weblinks_category_id=<{$item->getCategoryId()}><{if $hitobitoNaviPageInfo->getId()}>&amp;navipage_id=<{$hitobitoNaviPageInfo->getId()}><{/if}>"><{$item->getCategoryName()|escape}></a><span class="char999999"> | </span>
+        <span class="char999999">ナビ : </span><{$navipage->getNaviName()|escape}><span class="char999999"> | </span>
+        <a href="index.php?module=Navi&amp;navipage_id=<{$navipage->getId()}>"><{$navipage->getTitle()|escape}></a>
+    </td>
+  </tr>
+  <tr>
+    <td><img src="image/spacer.gif" width="1" height="8"></td>
+  </tr>
+  <tr>
+    <td><img src="image/search_split_links565.gif" width="565" height="1"></td>
+  </tr>
+</table>
+<{/foreach}>
+
+<table width="565" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td colspan="2"><img src="image/spacer.gif" width="1" height="8"></td>
+  </tr>
+  <tr>
+    <td width="360" class="char120">
+        <{$navigation->getListNavigation()}>
+    </td>
+    <td align="right" width="205">
+        <{$navigation->getMoveNavigation()}>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2"><img src="image/spacer.gif" width="1" height="20"></td>
+  </tr>
+</table>

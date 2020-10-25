@@ -1,0 +1,26 @@
+<div style="font-size:16px; background:#f5e156; color:#333333; font-weight:bold; padding:3px; ">
+  ワイワイ会議室未回答アンケート
+</div>
+<p class="char120">
+下記のアンケートにご協力お願い致します。
+</p>
+<table width=100% style="border-top:1px solid #666666" cellspacing="0">
+  <tr>
+    <td class="char120" style="background:#e6f2ff; border-bottom:1px solid #666666">No.</td>
+    <td class="char120" style=" border-bottom:1px solid #666666">会議室名</td>
+    <td class="char120" style="background:#e6f2ff; border-bottom:1px solid #666666">アンケート名</td>
+  </tr>
+<{foreach item=item from=$enquete_list}>
+  <tr>
+    <td class="char120" style="background:#e6f2ff; border-bottom:1px solid #666666">
+      <{counter}>
+    </td>
+    <td class="char120" style=" border-bottom:1px solid #666666">
+      <a href="index.php?module=Waiwai&amp;action=Browse&amp;navipage_id=<{$item->getNaviPageId()}>"><{$item->getRoomTitle()|HNbEscape}></a>
+    </td>
+    <td class="char120" style="background:#e6f2ff; border-bottom:1px solid #666666">
+      <a href="index.php?module=Waiwai&amp;action=Enquete&amp;navipage_id=<{$item->getNaviPageId()}>"><{$item->getAttribute('ren_title')|HNbEscape}></a>
+    </td>
+  </tr>
+<{/foreach}>
+</table>

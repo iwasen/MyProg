@@ -1,0 +1,64 @@
+#define	COMMAND_Open		1
+#define	COMMAND_Close		2
+#define	COMMAND_Reset		3
+#define	COMMAND_Home		4
+#define	COMMAND_Stop		5
+#define	COMMAND_PanRight	6
+#define	COMMAND_PanLeft		7
+#define	COMMAND_TiltUp		8
+#define	COMMAND_TiltDown	9
+#define	COMMAND_ZoomStop	10
+#define	COMMAND_ZoomWide	11
+#define	COMMAND_ZoomTele	12
+#define	COMMAND_PowerOn		13
+#define	COMMAND_PowerOff	14
+#define	COMMAND_FocusAf		15
+#define	COMMAND_FocusManual	16
+#define	COMMAND_FocusNear	17
+#define	COMMAND_FocusFar	18
+#define	COMMAND_ShutPro		19
+#define	COMMAND_Shut60		20
+#define	COMMAND_Shut100		21
+#define	COMMAND_Init1		22
+#define	COMMAND_Init2		23
+#define	COMMAND_HoseiOff	24
+#define	COMMAND_HoseiOn		25
+#define	COMMAND_WhiteNormal	26
+#define	COMMAND_WhiteLock	27
+#define	COMMAND_ControlerOn	28
+#define	COMMAND_ControlerOff	29
+#define	COMMAND_ThrowOn		30
+#define	COMMAND_ThrowOff	31
+#define	COMMAND_SetPos		32
+#define	COMMAND_Lock		33
+#define	COMMAND_MovePreset	34
+
+/* 設定コマンド */
+#define	COMMAND_SetPanSpeed	50
+#define	COMMAND_SetTiltSpeed	51
+#define	COMMAND_SetPanPos	52
+#define	COMMAND_SetTiltPos	53
+#define	COMMAND_SetZoomPos	54
+#define	COMMAND_SavePos		55
+#define	COMMAND_RestorePos	56
+
+/* 要求コマンド */
+#define	COMMAND_GetPanSpeed	60
+#define	COMMAND_GetTiltSpeed	61
+#define	COMMAND_GetPanPos	62
+#define	COMMAND_GetTiltPos	63
+#define	COMMAND_GetZoomPos	64
+#define	COMMAND_GetStatus	65
+#define	COMMAND_GetPresetStatus	66
+
+#define	STATUS_NOSUPPORT 0x01
+#define	STATUS_LOCKED	0x02
+#define	STATUS_DENY	0x04
+#define	STATUS_PORTERR	0x08
+#define	STATUS_BUSY	0x10
+#define	STATUS_INIT	0x20
+#define	STATUS_POS	0x40
+#define	STATUS_INFO	0x80
+#define	STATUS_ERROR	(STATUS_DENY | STATUS_PORTERR | STATUS_NOSUPPORT | STATUS_LOCKED)
+
+#define	INFO_INIT	0x01

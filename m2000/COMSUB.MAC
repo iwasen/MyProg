@@ -1,0 +1,166 @@
+		title	comsub
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; module name	: communication subroutine
+; creation date	: 86:03:17
+; revised date  : 
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+		.z80
+
+		include	MEMORY.INC
+
+		extrn	clrbuf
+		extrn	chr_disp
+		extrn	bin_chr
+
+;
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	line conxxxt
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+connct::
+		PUSH	BC
+		PUSH	DE
+		LD	HL,RS232C
+		LD	DE,RETINF
+		LD	BC,09H
+		LDIR
+		LD	B,10h
+		LD	HL,RETINF
+		CALL	RSIOX
+		POP	DE
+		POP	BC
+;
+		RET
+; 
+RS232C:		DW	RSBUFF
+		DW	512
+		DB	0Ah
+		DB	2
+		DB	3
+		DB	1
+		DB	11111111B
+;
+retinf:		ds	9
+;
+rsbuff:		ds	512
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	line disconxxxt
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+discon::
+		PUSH	AF
+		PUSH	BC
+		LD	B,20h
+		CALL	RSIOX
+		POP	BC
+		POP	AF
+;
+		RET
+SRC:
+		PUSH	DE
+		LD	DE,(0001h)	
+		ADD	IY,DE
+		LD	(LOC+1),IY
+		POP	DE
+;
+loc:			
+		JP	0000h
+;
+	RSIOXPT		EQU	51h
+;
+rsiox:
+		PUSH	BC
+		PUSH	DE
+		PUSH	HL
+		PUSH	IX
+		PUSH	IY
+		LD	IY,RSIOXPT
+		CALL	SRC
+		POP	IY
+		POP	IX
+		POP	HL
+		POP	DE
+		POP	BC
+		RET
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	data send routine
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;
+prexmt::
+		ret
+pstxmt::
+		ret
+;
+wrsts::
+		ld	a,0ffh
+		or	a
+		ret
+;
+wrcom::
+		PUSH	de
+		LD	B,40h
+		LD	HL,RETINF
+		CALL	RSIOX
+		pop	de
+		or	a
+		jr	z,wrcom
+
+		ld	c,e
+		LD	B,60h
+		LD	HL,RETINF
+		CALL	RSIOX
+		ret
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	data receive check routine
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+rdsts::
+		PUSH	BC
+		PUSH	HL
+		LD	B,30h
+		LD	HL,RETINF
+		CALL	RSIOX
+		POP	HL
+		POP	BC
+		or	a
+		RET
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	data receive routine
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+rdcom::
+		PUSH	BC
+		PUSH	HL
+		LD	B,50h
+		LD	HL,RETINF
+		CALL	RSIOX
+		POP	HL
+		POP	BC
+		RET
+;
+;
+mdcd::
+		ld	a,1
+		or	a
+		ret
+
+		end

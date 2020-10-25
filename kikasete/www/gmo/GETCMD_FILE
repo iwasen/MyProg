@@ -1,0 +1,6 @@
+user namiki linuxmuzui 
+cd /tmp 
+lcd /tmp 
+bin 
+put batch.csv 
+quit 

@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>メルマガ配信修正</TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600">
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="650" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="650" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+<TD>
+<p><FONT color="#006600"><B>■メルマガ配信修正／予約取り消し</B></FONT></p>
+<form name="form1" action="./mag-haishin.php" method="post">
+<p> <b><FONT color="#669900">●配信予約の修正</FONT></b></p>
+<p CLASS="text01">該当箇所を修正後、[修正]ボタンをクリックしてください。 <br>
+<span class="text9pt">※修正した場合は再度テスト配信を行なってください。</span></p>
+<table width="650" border="0" cellpadding="3" cellspacing="1" align="center">
+<tr>
+<td width="120" valign="top" align="right" bgcolor="#006600" CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">メルマガID</FONT></B></td>
+<td width="530">
+<p><? echo $mag_id; ?></p>
+</td>
+</tr>
+<tr>
+<td width="120" valign="top" align="right" bgcolor="#006600" CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">発行メルマガ</FONT></B></td>
+<td width="530"><? echo $mag_nm; ?></td>
+</tr>
+<tr>
+<td width="120" valign="top" align="right" bgcolor="#006600" CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">発行日</FONT></B></td>
+<td width="530">
+<select name="resrv_month">
+<? make_date_box("mon", (int)$resrv_month); ?>
+</select>
+月
+<select name="resrv_day">
+<? make_date_box("mday", (int)$resrv_day); ?>
+</select>
+日</td>
+</tr>
+<tr>
+<td width="120" valign="top" align="right" bgcolor="#006600" CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">配信時間</FONT></B></td>
+<td width="530"> <!--
+<select name="resrv_hour_ampm">
+<? make_ampm_box($resrv_hour_ampm); ?>
+-->
+<select name="resrv_hour_h">
+<? make_date_box("hours_a", (int)$resrv_hour_h); ?>
+</select>
+：
+<select name="resrv_hour_m">
+<? make_minutes10_box( (int)$resrv_hour_m ); ?>
+</select>
+</td>
+</tr>
+<tr>
+<td width="120" valign="top" align="right" bgcolor="#006600" CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">タイトル</FONT></B></td>
+<td width="530">
+<input type="text" name="mag_titl" value="<? echo $mag_titl; ?>" size="40">
+</td>
+</tr>
+<tr>
+<td width="120" valign="top" align="right" bgcolor="#006600" CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">本文</FONT></B></td>
+<td width="530">
+<textarea name="mag_body" cols="80" rows="40" class="pfont"><? echo $mag_body; ?></textarea>
+</td>
+</tr>
+</table>
+<div align="right">
+<input type="Submit" name="edit_reserv_ok" value="修　正">
+</div>
+<table width="100%" border="0">
+<tr>
+<td>
+<P><B><FONT color="#669900">●配信予約の取り消し</FONT></B></P>
+<P CLASS="text01">この配信予約を取り消します。再度配信を行なう場合は、もう一度はじめから配信手続きを行なってください。</P>
+</td>
+</tr>
+<tr>
+<td>
+<div align="right">
+<INPUT type="Submit" name="edit_reserv_can" value="予約取り消し" >
+</div>
+</td>
+</tr>
+</table>
+<input type="hidden" value="<? echo $index_id ?>" name="index_id">
+<input type="hidden" value="<? echo $owner_pswd ?>" name="owner_pswd">
+<input type="hidden" value="<? echo $publisher_id ?>" name="publisher_id">
+<input type="hidden" value="<? echo $mag_id ?>" name="mag_id">
+<input type="hidden" value="<? echo $mag_nm ?>" name="mag_nm">
+<input type="hidden" value="<? echo $body_id ?>" name="body_id">
+<input type="hidden" value=0 name="resrv_flg">
+
+</form>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td class="text9pt">
+※おことわり　　今回配信されるメルマガには下記のフッターが自動的に挿入されますので、ご了承ください。</td>
+</tr>
+<tr>
+<td class="pfont" bgcolor="#e8e8e8">
+<?php echo $admin_msg; ?>
+</td>
+</tr>
+</table>
+
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD valign="top" colspan="3" align="right">
+<HR size="1" width="750">
+</TD>
+</TR>
+<TR>
+<TD valign="top" width="200"> <IMG src="../img/shim.gif" width="200" height="1">
+</TD>
+<TD valign="middle" align="center" width="350">
+<div align="center"><FONT size="2"><IMG src="../img/shim.gif" width="350" height="1"><BR>
+Copyright &copy; 2000 xxxxxxx, Co.,Ltd. All rights reserved. <br>
+<a href="http://www.xxxxxxx.co.jp/" target="mm_window"><img src="../img/logo_do.gif" width="50" height="45" border="0"></a>
+</FONT></div>
+</TD>
+<TD valign="top" width="200" align="right"><IMG src="../img/shim.gif" width="200" height="1"></TD>
+</TR>
+</TABLE>
+</body>
+</html>

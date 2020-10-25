@@ -1,0 +1,128 @@
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+  <tr bgcolor="#5B94FD">
+    <td colspan="3"><img src="image/naviedit_assist_ttl.gif" width="128" height="25" hspace="10" alt="アシストナビ管理"></td>
+  </tr>
+  <tr>
+    <td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+    <td width="555" valign="top">
+      <table width="555" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	  <td><img src="image/spacer.gif" width="1" height="15"></td>
+	</tr>
+	<tr>
+	  <td><img src="image/naviedit_assist_sttl_edit.gif" width="111" height="14" alt="アシストナビ編集"></td>
+	</tr>
+	<tr>
+	  <td><img src="image/spacer.gif" width="1" height="4"></td>
+	</tr>
+	<tr>
+	  <td bgcolor="#5B94FD"><img src="image/spacer.gif" width="555" height="1"></td>
+	</tr>
+	<tr>
+	  <td><img src="image/spacer.gif" width="1" height="20"></td>
+	</tr>
+      </table>
+      <{$editform->getHtmlErrors()}>
+      <form name="form3" method="post" action="" enctype="multipart/form-data">
+
+	<table width="555" border="0" cellspacing="0" cellpadding="0">
+	  <tr>
+	    <td width="75" class="char120">名前</td>
+	    <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+	    <td width="470">
+	      <input type="text"  name="navi_name1" value="<{$editform->navi_name1|escape}>"  size="10" style="width:90px;">
+	      <input type="text"  name="navi_name2" value="<{$editform->navi_name2|escape}>"  size="10" style="width:90px;">
+	    </td>
+	  </tr>
+	  <tr>
+	    <td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+	  </tr>
+	  <tr>
+	    <td width="75" class="char120">アドレス</td>
+	    <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+	    <td width="470">
+	      <{if $hide_email_input}>
+	      <{$obj->getEmail()|escape}>
+	      <{else}>
+	      <input type="text"  name="navi_email" value="<{$editform->navi_email|escape}>"  size="20" style="width:180px;">
+	      <{/if}>
+	    </td>
+	  </tr>
+	  <tr>
+	    <td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+	  </tr>
+	  <tr>
+	    <td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+	  </tr>
+	  <tr>
+	    <td class="char120" valign="top" nowrap>ナビ写真</td>
+	    <td><img src="image/spacer.gif" width="10" height="1"></td>
+	    <td>
+	      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+		  <td width="80">
+		    <{if $editform->navi_image_id > 0}>
+		    <img src="image.php?id=<{$editform->navi_image_id}>" width="80" >
+		    <{else}>
+		    <img src="image/navi_ph.gif" width="80" />
+		    <{/if}>
+		  </td>
+		  <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+		  <td valign="top">
+		    <input type="file" name="navi_photo" style="width:240px;">
+		  </td>
+		</tr>
+	      </table>
+	    </td>
+	  </tr>
+	  <tr>
+	    <td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+	  </tr>
+	  <tr>
+	    <td class="char120" valign="top">紹介文</td>
+	    <td><img src="image/spacer.gif" width="10" height="1"></td>
+	    <td>
+	      <textarea name="navi_self_introduction" rows="3" cols="50" style="width:360px;"><{$editform->navi_self_introduction|escape}></textarea>
+	    </td>
+	  </tr>
+	  <tr>
+	    <td colspan="3"><img src="image/spacer.gif" width="1" height="20"></td>
+	  </tr>
+	  <tr>
+	    <td class="char120">ステータス</td>
+	    <td><img src="image/spacer.gif" width="10" height="1"></td>
+	    <td class="char120">
+	      <{html_radios name=navi_status options=$navi_status_options selected=$editform->navi_status}>
+	    </td>
+	  </tr>
+	  <tr>
+	    <td colspan="3"><img src="image/spacer.gif" width="1" height="20"></td>
+	  </tr>
+	</table>
+	<table width="555" border="0" cellspacing="0" cellpadding="0">
+	  <tr>
+	    <td bgcolor="#5B94FD"><img src="image/spacer.gif" width="1" height="5"></td>
+	  </tr>
+	  <tr>
+	    <td><img src="image/spacer.gif" width="1" height="20"></td>
+	  </tr>
+	  <tr>
+	    <td>
+	      <table width="180" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+		  <td width="50"><input type="image" border="0" name="imageField" src="image/naviedit_btn_regist.gif" width="50" height="20" alt="登録"></td>
+		  <td width="10"><img src="image/spacer.gif" width="20" height="1"></td>
+		  <td width="110"><a href="index.php?module=Navi&amp;action=adminAssist&amp;navipage_id=<{$hitobitoNaviPageInfo->getId()}>"><img src="image/naviedit_btn_cancel.gif" width="110" height="20" border="0" alt="登録しないで戻る"></a></td>
+		</tr>
+	      </table>
+	    </td>
+	  </tr>
+	  <tr>
+	    <td><img src="image/spacer.gif" width="1" height="10"></td>
+	  </tr>
+	</table>
+      </form>
+    </td>
+    <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+  </tr>
+</table>

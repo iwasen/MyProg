@@ -1,0 +1,407 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 日本語 resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+#ifdef _WIN32
+LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
+#pragma code_page(932)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 17, 1\r\n"
+    "#pragma code_page(932)\r\n"
+    "#endif\r\n"
+    "#include ""res\\Capture.rc2""  // Microsoft Visual C++ 以外のツールで編集されたリソース\r\n"
+    "#include ""l.jpn\\afxres.rc""          // 標準のコンポーネント\r\n"
+    "#endif\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\Capture.ico"
+IDR_CAPTURTYPE          ICON    DISCARDABLE     "res\\CaptDoc.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP  MOVEABLE PURE   "res\\Toolbar.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR DISCARDABLE  19, 17
+BEGIN
+    BUTTON      ID_SET_FILE
+    SEPARATOR
+    BUTTON      ID_MODE_AUTO
+    BUTTON      ID_MODE_PREVIEW
+    BUTTON      ID_MODE_STOP
+    SEPARATOR
+    BUTTON      ID_APP_ABOUT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU PRELOAD DISCARDABLE 
+BEGIN
+    POPUP "ﾌｧｲﾙ(&F)"
+    BEGIN
+        MENUITEM "出力ﾌｧｲﾙ設定(&F)...",         ID_SET_FILE
+        MENUITEM SEPARATOR
+        MENUITEM "ｱﾌﾟﾘｹｰｼｮﾝの終了(&X)",         ID_APP_EXIT
+    END
+    POPUP "ﾋﾞﾃﾞｵ(&D)"
+    BEGIN
+        MENUITEM "ﾋﾞﾃﾞｵ形式(&V)...",            ID_SET_VIDEO_FORMAT
+        MENUITEM "ﾋﾞﾃﾞｵｿｰｽ(&S)...",             ID_SET_VIDEO_SOURCE
+        MENUITEM "ﾃﾞｨｽﾌﾟﾚｲ(&D)...",             ID_SET_DISPLAY
+    END
+    POPUP "表示(&V)"
+    BEGIN
+        MENUITEM "ﾂｰﾙ ﾊﾞｰ(&T)",                 ID_VIEW_TOOLBAR
+        MENUITEM "ｽﾃｰﾀｽ ﾊﾞｰ(&S)",               ID_VIEW_STATUS_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "常に手前に表示(&A)",          ID_VIEW_TOPMOST
+    END
+    POPUP "ﾓｰﾄﾞ(&M)"
+    BEGIN
+        MENUITEM "自動ﾌｧｲﾙ出力(&A)",            ID_MODE_AUTO
+        MENUITEM "ﾌﾟﾚﾋﾞｭｰ(&P)",                 ID_MODE_PREVIEW
+        MENUITEM "停止(&S)",                    ID_MODE_STOP
+    END
+    POPUP "ﾍﾙﾌﾟ(&H)"
+    BEGIN
+        MENUITEM "ﾊﾞｰｼﾞｮﾝ情報(Capture) (&A)...", ID_APP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS PRELOAD MOVEABLE PURE 
+BEGIN
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY 
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 217, 55
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "ﾊﾞｰｼﾞｮﾝ情報(Capture)"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "Capture Version 1.0",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 1997",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "OK",IDOK,178,7,32,14,WS_GROUP
+END
+
+IDD_SET_FILE DIALOG DISCARDABLE  0, 0, 263, 139
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "出力ファイル設定"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    GROUPBOX        "出力ファイル",IDC_STATIC,6,2,196,50,WS_GROUP
+    LTEXT           "フルサイズ",IDC_STATIC,12,18,33,8
+    EDITTEXT        IDC_OUTPUT_FILE,56,14,104,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "参照(&F)...",IDC_SELECT_FILE,164,14,32,14
+    LTEXT           "ハーフサイズ",IDC_STATIC,12,34,40,8
+    EDITTEXT        IDC_OUTPUT_FILE2,56,30,104,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "参照(&H)...",IDC_SELECT_FILE2,164,30,32,14
+    GROUPBOX        "画像品質（圧縮率）",IDC_STATIC,6,62,96,68,WS_GROUP
+    CONTROL         "低画質（高圧縮率）",IDC_LOW_QUALITY,"Button",
+                    BS_AUTORADIOBUTTON,17,76,71,10
+    CONTROL         "標準",IDC_NORMAL_QUALITY,"Button",BS_AUTORADIOBUTTON,17,
+                    88,30,10
+    CONTROL         "高画質",IDC_HIGH_QUALITY,"Button",BS_AUTORADIOBUTTON,17,
+                    100,37,10
+    CONTROL         "最高画質（低圧縮率）",IDC_HIGHEST_QUALITY,"Button",
+                    BS_AUTORADIOBUTTON,17,112,78,10
+    LTEXT           "出力間隔",IDC_STATIC,114,62,28,8
+    EDITTEXT        IDC_OUTPUT_RATE,146,60,28,12,ES_AUTOHSCROLL
+    LTEXT           "秒",IDC_STATIC,178,62,8,8
+    GROUPBOX        "起動時のモード",IDC_STATIC,109,78,93,52,WS_GROUP
+    CONTROL         "自動ﾌｧｲﾙ出力",IDC_MODE_AUTO,"Button",BS_AUTORADIOBUTTON,
+                    120,90,59,10
+    CONTROL         "ﾌﾟﾚﾋﾞｭｰ",IDC_MODE_PREVIEW,"Button",BS_AUTORADIOBUTTON,
+                    120,102,39,10
+    CONTROL         "停止",IDC_MODE_STOP,"Button",BS_AUTORADIOBUTTON,120,114,
+                    30,10
+    DEFPUSHBUTTON   "OK",IDOK,208,8,50,14,WS_GROUP
+    PUSHBUTTON      "ｷｬﾝｾﾙ",IDCANCEL,208,25,50,14
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041104B0"
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "CAPTURE MFC ｱﾌﾟﾘｹｰｼｮﾝ\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "CAPTURE\0"
+            VALUE "LegalCopyright", "Copyright (C) 1997\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "CAPTURE.EXE\0"
+            VALUE "ProductName", "CAPTURE ｱﾌﾟﾘｹｰｼｮﾝ\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x411, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 210
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_SET_FILE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 256
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 132
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    IDR_MAINFRAME           "Capture\n\nCaptur\n\n\nCapture.Document\nCaptur Document"
+END
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "Capture"
+    AFX_IDS_IDLEMESSAGE     "ﾚﾃﾞｨ"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "上書"
+    ID_INDICATOR_REC        "記録"
+    ID_INDICATOR_KANA       "ｶﾅ"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_NEW             "新規にﾌｧｲﾙを作成\n新規ﾌｧｲﾙ"
+    ID_FILE_OPEN            "既存のﾌｧｲﾙを開く\n開く"
+    ID_FILE_CLOSE           "作業中のﾌｧｲﾙを閉じる\n閉じる"
+    ID_FILE_SAVE            "作業中のﾌｧｲﾙを保存\n保存"
+    ID_FILE_SAVE_AS         "作業中のﾌｧｲﾙに名前を付けて保存\n名前をつけて保存"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_APP_ABOUT            "ﾌﾟﾛｸﾞﾗﾑの情報、ﾊﾞｰｼﾞｮﾝそして著作権を表示\nﾊﾞｰｼﾞｮﾝ情報"
+    ID_APP_EXIT             "ｱﾌﾟﾘｹｰｼｮﾝを終了し、ﾌｧｲﾙの保存を指示\n終了"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_NEXT_PANE            "次のｳｨﾝﾄﾞｳに切り替える\n次ﾍﾟｰｼﾞ"
+    ID_PREV_PANE            "前のｳｨﾝﾄﾞｳに切り替える\n前ﾍﾟｰｼﾞ"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_WINDOW_SPLIT         "作業中のｳｨﾝﾄﾞｳを分割\n分割"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_EDIT_CLEAR           "選択範囲を消去\n消去"
+    ID_EDIT_CLEAR_ALL       "すべて消去\nすべて消去"
+    ID_EDIT_COPY            "選択範囲をｺﾋﾟｰしてｸﾘｯﾌﾟﾎﾞｰﾄﾞに保存\nｺﾋﾟ-"
+    ID_EDIT_CUT             "選択範囲を切り取ってｸﾘｯﾌﾟﾎﾞｰﾄﾞに保存\n切り取り"
+    ID_EDIT_FIND            "指定した文字列の検索\n検索"
+    ID_EDIT_PASTE           "ｸﾘｯﾌﾟﾎﾞｰﾄﾞの内容を貼り付け\n貼り付け"
+    ID_EDIT_REPEAT          "直前に行った動作を繰り返す\nﾘﾋﾟｰﾄ"
+    ID_EDIT_REPLACE         "指定した文字列を他の文字列で置換\n置換"
+    ID_EDIT_SELECT_ALL      "ﾌｧｲﾙ全体を選択\nすべて選択"
+    ID_EDIT_UNDO            "直前に行った動作を元に戻す\n元に戻す"
+    ID_EDIT_REDO            "直前に行った動作を繰り返す\nやり直し"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "ﾂｰﾙ ﾊﾞｰの表示/非表示\nﾂｰﾙ ﾊﾞｰの表示/非表示"
+    ID_VIEW_STATUS_BAR      "ｽﾃｰﾀｽ ﾊﾞｰの表示/非表示\nｽﾃｰﾀｽ ﾊﾞｰの表示/非表示"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "ｳｨﾝﾄﾞｳのｻｲｽﾞを変更"
+    AFX_IDS_SCMOVE          "ｳｨﾝﾄﾞｳの位置を変更"
+    AFX_IDS_SCMINIMIZE      "ｳｨﾝﾄﾞｳをｱｲｺﾝ化する"
+    AFX_IDS_SCMAXIMIZE      "ｳｨﾝﾄﾞｳを最大表示にする"
+    AFX_IDS_SCNEXTWINDOW    "次のｳｨﾝﾄﾞｳに切り替える"
+    AFX_IDS_SCPREVWINDOW    "前のｳｨﾝﾄﾞｳに切り替える"
+    AFX_IDS_SCCLOSE         "作業中のｳｨﾝﾄﾞｳを閉じ、変更したﾌｧｲﾙの保存を指示"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "ｳｨﾝﾄﾞｳを通常のｻｲｽﾞに戻す"
+    AFX_IDS_SCTASKLIST      "ｱﾌﾟﾘｹｰｼｮﾝの切り替え"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_SET_VIDEO_FORMAT     "ﾋﾞﾃﾞｵｷｬﾌﾟﾁｬ形式の設定\nﾋﾞﾃﾞｵ形式"
+    ID_SET_VIDEO_SOURCE     "ﾋﾞﾃﾞｵｿｰｽに関する設定\nﾋﾞﾃﾞｵｿｰｽ"
+    ID_SET_FILE             "出力ﾌｧｲﾙの設定\n出力ﾌｧｲﾙ設定"
+    ID_SET_DISPLAY          "ﾃﾞｨｽﾌﾟﾚｲに関する設定\nﾃﾞｨｽﾌﾟﾚｲ"
+    ID_MODE_AUTO            "一定周期で自動的にﾌｧｲﾙに出力\n自動ﾌｧｲﾙ出力"
+    ID_MODE_PREVIEW         "ｷｬﾌﾟﾁｬ画像のﾌﾟﾚﾋﾞｭｰ （ﾌｧｲﾙ出力なし）\nﾌﾟﾚﾋﾞｭｰ"
+    ID_MODE_STOP            "ｷｬﾌﾟﾁｬの停止\n停止"
+    ID_VIEW_TOPMOST         "ｳｨﾝﾄﾞｳを常に手前に表示\n手前に表示"
+END
+
+#endif    // 日本語 resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+#ifdef _WIN32
+LANGUAGE 17, 1
+#pragma code_page(932)
+#endif
+#include "res\Capture.rc2"  // Microsoft Visual C++ 以外のツールで編集されたリソース
+#include "l.jpn\afxres.rc"          // 標準のコンポーネント
+#endif
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

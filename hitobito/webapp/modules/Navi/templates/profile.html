@@ -1,0 +1,128 @@
+			<table width="510" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td width="130"><img src="image/navi_profile_border.gif" width="130" height="1"></td>
+					<td width="15" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="15" height="1"></td>
+					<td width="349" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="349" height="1"></td>
+					<td width="15" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="15" height="1"></td>
+					<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+				<tr>
+					<td valign="top" background="image/navi_profile_bg.gif"><table width="130" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td><img src="image/navi_profile_ttl.gif" width="129" height="29" alt="ナビプロファイル"></td>
+							</tr>
+							<tr>
+								<td><img src="image/navi_profile_bg.gif" width="130" height="5"></td>
+							</tr>
+							<tr>
+								<td align="right">
+								  <{if $navipage->getAttribute('nvp_image_id') > 0}>
+								  <img src="image.php?id=<{$navipage->getAttribute('nvp_image_id')}>">
+								  <{else}>
+								  <img src="image/navi_ph.gif" width="80" />
+								  <{/if}>
+								</td>
+							</tr>
+						</table></td>
+					<td><img src="image/spacer.gif" width="15" height="1"></td>
+					<td valign="top">
+						<table width="349" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td><img src="image/spacer.gif" width="1" height="15"></td>
+							</tr>
+							<tr>
+								<td class="char120"><{$navipage->getNaviName()|escape}><br>
+									<{* TODO フリガナ *}>
+								</td>
+							</tr>
+							<tr>
+								<td><img src="image/spacer.gif" width="1" height="10"></td>
+							</tr>
+							<tr>
+								<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="349" height="1"></td>
+							</tr>
+							<tr>
+								<td><img src="image/spacer.gif" width="1" height="10"></td>
+							</tr>
+							<tr>
+								<td class="char120"><{$navipage->getAttribute('nvp_copy')|escape}></td>
+							</tr>
+							<tr>
+								<td><img src="image/spacer.gif" width="1" height="15"></td>
+							</tr>
+							<tr>
+								<td><img src="image/navi_profile_link01.gif" width="15" height="12" align="absmiddle"><span class="char120"><a href="index.php?module=Contact&amp;navipage_id=<{$hitobitoNaviPageInfo->getId()}>&amp;contact_form_id=1">このナビに仕事・取材を依頼</a></span></td>
+							</tr>
+							<tr>
+								<td><img src="image/spacer.gif" width="1" height="5"></td>
+							</tr>
+							<tr>
+								<td><img src="image/navi_profile_link01.gif" width="15" height="12" align="absmiddle"><span class="char120"><a href="index.php?module=Contact&amp;navipage_id=<{$hitobitoNaviPageInfo->getId()}>&amp;contact_form_id=2">このナビへ問い合わせ</a></span></td>
+							</tr>
+							<tr>
+								<td><img src="image/spacer.gif" width="1" height="15"></td>
+							</tr>
+						</table>
+					</td>
+					<td><img src="image/spacer.gif" width="15" height="1"></td>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+			</table>
+			
+			<table width="510" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+					<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+					<td width="15" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="15" height="1"></td>
+					<td width="468" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="468" height="1"></td>
+					<td width="15" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="15" height="1"></td>
+					<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="10" height="1"></td>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+					<td><img src="image/spacer.gif" width="15" height="1"></td>
+					<td>
+						<table width="468" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td><img src="image/spacer.gif" width="1" height="10"></td>
+							</tr>
+							<tr>
+								<td><img src="image/navi_profile_sttl_greeting.gif" width="40" height="13" alt="ご挨拶"></td>
+							</tr>
+							<tr>
+								<td><img src="image/spacer.gif" width="1" height="8"></td>
+							</tr>
+							<tr>
+								<td class="char130">
+								  <{$navipage->getAttribute('nvp_self_introduction')|escape}>
+								</td>
+							      </tr>
+							<tr>
+								<td><img src="image/spacer.gif" width="1" height="15"></td>
+							</tr>
+						</table>
+					</td>
+					<td><img src="image/spacer.gif" width="15" height="1"></td>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="10" height="1"></td>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+					<td colspan="3" bgcolor="#FCD219"><img src="image/spacer.gif" width="1" height="3"></td>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="10" height="1"></td>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+					<td colspan="3" bgcolor="#F5E156"><img src="image/spacer.gif" width="1" height="3"></td>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="10" height="1"></td>
+					<td colspan="5" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="500" height="1"></td>
+				</tr>
+				<tr>
+					<td colspan="6"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+			</table>

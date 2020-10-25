@@ -1,0 +1,59 @@
+<!-- メンバーメニュー -->
+<table width="200" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFCC33">
+	<tr>
+		<td colspan="3"><img src="image/m_memu_ttl.gif" width="200" height="28" alt="メンバーメニュー"></td>
+	</tr>
+	<tr>
+		<td width="3"><img src="image/spacer.gif" width="3" height="1"></td>
+		<td width="194">
+			
+      <table width="194" border="0" cellspacing="0" cellpadding="3">
+        <!-- Start メンバーメニューループ -->
+        <tr> 
+          <td bgcolor="#FFFFFF"><img src="image/m_menu_link01.gif" width="12" height="12" hspace="2" align="absmiddle"><a href="index.php?module=Member" class="chanel">メンバー登録情報編集</a></td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFFFF"><img src="image/m_menu_link02.gif" width="17" height="12" hspace="2" align="absmiddle"><a href="index.php?module=Member&amp;action=Edit" class="chanel">基本情報の変更</a></td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFFFF"><img src="image/m_menu_link02.gif" width="17" height="12" hspace="2" align="absmiddle"><a href="index.php?module=Member&amp;action=changeMailStatus" class="chanel">メール配信の変更</a></td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFFFF"><img src="image/m_menu_link02.gif" width="17" height="12" hspace="2" align="absmiddle"><a href="index.php?module=MailMag&amp;action=SubscriptionList" class="chanel">メルマガ　確認 
+            / 解除</a></td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFFFF"><img src="image/m_menu_link02.gif" width="17" height="12" hspace="2" align="absmiddle"><a href="index.php?module=Waiwai&amp;action=EntryList" class="chanel">ワイワイ会議　確認 
+            / 解除</a></td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFFFF"><img src="image/m_menu_link02.gif" width="17" height="12" hspace="2" align="absmiddle"><a href="index.php?module=Member&amp;action=Resign" class="chanel">ひとびと・netからの退会</a></td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFFFF"><img src="image/m_menu_link02.gif" width="17" height="12" hspace="2" align="absmiddle"><a href="index.php?module=Member&amp;action=Logout" class="chanel">ログアウト</a></td>
+        </tr>
+        <!-- end メンバーメニューループ -->
+	<{* waiwai アンケート *}>
+	<{if count($enquete_list) > 0}>
+        <tr> 
+          <td bgcolor="#FFFFFF"><img src="image/m_menu_link01.gif" width="12" height="12" hspace="2" align="absmiddle"><a href="index.php?module=Waiwai&amp;action=EnqueteList" class="chanel" style="color:#FF0000;">アンケートにお答えください</a></td>
+        </tr>
+	<{foreach item=item from=$enquete_list}>
+        <tr> 
+          <td bgcolor="#FFFFFF"><img src="image/m_menu_link02.gif" width="17" height="12" hspace="2" align="absmiddle"><a href="index.php?module=Waiwai&amp;action=Enquete&amp;navipage_id=<{$item->getNaviPageId()}>" class="chanel" ><{$item->getAttribute('ren_title')|HNbEscape}></a></td>
+        </tr>
+	<{/foreach}>
+	<{/if}>
+
+	<{* /waiwai アンケート *}>
+	
+	
+      </table>
+		</td>
+		<td width="3"><img src="image/spacer.gif" width="3" height="1"></td>
+	</tr>
+	<tr>
+		<td colspan="3"><img src="image/m_memu_foot.gif" width="200" height="6"></td>
+	</tr>
+</table>
+<!-- メンバーメニューここまで -->

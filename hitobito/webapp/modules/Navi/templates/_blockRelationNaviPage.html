@@ -1,0 +1,63 @@
+<!-- 関連テーマナビブロックスタート -->
+			<table width="210" border="0" cellspacing="0" cellpadding="0">
+			  <tr>
+			    <td colspan="4"><img src="image/side_related_ttl.gif" width="210" height="35" alt="関連テーマナビ"></td>
+			  </tr>
+			  <tr>
+			    <td width="2" bgcolor="#82ADFD"><img src="image/spacer.gif" width="2" height="1"></td>
+			    <td width="8"><img src="image/spacer.gif" width="8" height="1"></td>
+			    <td width="198">
+			      <table width="198" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+				  <td width="190" class="char120">このテーマに関連するほかのナビをご紹介！</td>
+				  <td width="8"><img src="image/spacer.gif" width="8" height="1"></td>
+				</tr>
+				<tr>
+				  <td colspan="2"><img src="image/spacer.gif" width="1" height="8"></td>
+				</tr>
+			      </table>
+			      <!--ループ-->
+			      <{foreach item=item from=$itemlist}>
+			      <table width="198" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+				  <td width="50" valign="top"><a href="index.php?module=Navi&amp;navipage_id=<{$item->getId()}>">
+				    <{if $item->getPhotoId() > 0}>
+				    <img src="image.php?id=<{$item->getPhotoId()}>" width="50" height="50" border="0">
+				    <{else}>
+				    <img src="image/navi_ph.gif" width="50" border="0" />
+				    <{/if}>
+				  </a></td>
+				  <td width="148" valign="top" class="char120">
+				    <p class="ind0505"><a href="index.php?module=Navi&amp;navipage_id=<{$item->getId()}>"><{$item->getTitle()|escape}></a><br>
+				      <span class="char999999">ナビ : </span><{$item->getNaviName()|escape}><br>
+				      <span class="char999999">最新記事 : </span><br>
+				      <{assign var=story value=$item->getLastStory()}>
+				      <{if is_object($story)}>
+				      <{$story->getTitle()|escape}>
+				      <{/if}>
+				    </p>
+				  </td>
+				</tr>
+				<tr>
+				  <td colspan="2"><img src="image/spacer.gif" width="1" height="5"></td>
+				</tr>
+			      </table>
+			    <{/foreach}>
+			      <!--ループ-->
+
+			    </td>
+			    <td width="2" bgcolor="#82ADFD"><img src="image/spacer.gif" width="2" height="1"></td>
+			  </tr>
+			  <tr>
+			    <td bgcolor="#82ADFD"><img src="image/spacer.gif" width="2" height="1"></td>
+			    <td colspan="2"><img src="image/spacer.gif" width="1" height="5"></td>
+			    <td bgcolor="#82ADFD"><img src="image/spacer.gif" width="2" height="1"></td>
+			  </tr>
+			  <tr>
+			    <td colspan="4"><img src="image/side_related_foot.gif" width="210" height="12"></td>
+			  </tr>
+			  <tr>
+			    <td colspan="4"><img src="image/spacer.gif" width="1" height="10"></td>
+			  </tr>
+			</table>
+			<!-- 関連テーマナビここまで -->

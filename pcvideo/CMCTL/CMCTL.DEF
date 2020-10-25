@@ -1,0 +1,26 @@
+LIBRARY		CMCTL
+
+DESCRIPTION	'cmctl.lib'
+
+EXETYPE		WINDOWS
+
+CODE		PRELOAD FIXED
+DATA		PRELOAD FIXED SINGLE
+
+HEAPSIZE	128
+
+EXPORTS
+        WEP			@1 RESIDENTNAME
+	CMOpen			@2
+	CMClose			@3
+	CMControl		@4
+	CMGetCameraOpt		@5
+	CMSetCameraOpt		@6
+	CMGetPreset		@7
+	CMSetPreset		@8
+	CMMovePreset		@9
+	CMGetCameraPos		@10
+	CMSetCameraPos		@11
+	CMLock			@12
+	CMCaptureVideo		@13
+	CMDraw			@14

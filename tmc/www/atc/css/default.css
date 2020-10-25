@@ -1,0 +1,120 @@
+.titlefont{
+	font-family: "Osaka";
+	font-size: 20px;
+	font-weight: bold;
+	line-height: 200%;
+}
+
+.text12{
+	font-family: "Osaka";
+	font-size: 12px;
+	line-height: 130%;
+}
+
+.text12b{
+	font-family: "Osaka";
+	font-size: 12px;
+	line-height: 130%;
+	font-weight: bold;
+}
+
+.text14{
+	font-family: "Osaka";
+	font-size: 14px;
+	line-height: 130%;
+}
+
+.text14b{
+	font-family: "Osaka";
+	font-size: 14px;
+	line-height: 130%;
+	font-weight: bold;
+}
+
+
+
+.copyright{
+	font-family: "Verdana", "Arial", "Helvetica", "sans-serif";
+	font-size: 12px;
+}
+
+.textbox{
+	font-family: "Osaka";
+	font-size: 12px;
+}
+
+.button{
+	font-family: "Osaka";
+	font-size: 12px;
+}
+
+#list .off{
+	background-color: #e8f7ff;
+}
+
+#list .on{
+	background-color: #ffffff;
+}
+
+#mail .off{
+	background-color: #fefada;
+}
+
+#mail .on{
+	background-color: #ffffff;
+}
+
+
+#mail .read_sub{
+	background-color: #fefada;
+	font-weight: bold;
+}
+
+#mail .read_main{
+	background-color: #fefada;
+}
+
+pre{
+	font-family:  "OsakaÅ|ìôïù","ÇlÇr ÉSÉVÉbÉN";
+	line-height: 125%;
+}
+
+a:link{
+	text-decoration: none;
+	color: #0000ff;
+}
+
+a:visited{
+	text-decoration: none;
+	color: #0000ff;
+}
+
+a:hover{
+	text-decoration: underline;
+	color: #ff0000;
+}
+
+a:active{
+	text-decoration: underline;
+	color: #ff0000;
+}
+
+#mail a:link{
+	text-decoration: none;
+	color: #0000ff;
+}
+
+#mail a:visited{
+	text-decoration: none;
+	color: #6666ff;
+}
+
+#mail a:hover{
+	text-decoration: underline;
+	color: #ff0000;
+}
+
+#mail a:active{
+	text-decoration: underline;
+	color: #ff0000;
+}

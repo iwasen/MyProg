@@ -1,0 +1,8 @@
+csample.dmy : csample.exe
+
+csample.obj : csample.c
+	qcl /c /AL /Zp /J csample.c
+
+csample.exe : csample.obj isaml.lib
+	link /st:8192 csample,,,isaml
+

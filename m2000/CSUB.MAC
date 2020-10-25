@@ -1,0 +1,181 @@
+	title	csub
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; module name	: common subroutine
+; creation date	: 86:01:13
+; revised date  : 
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+	.z80
+;
+		include	MEMORY.INC
+
+		public	gdmsg
+		public 	chr_disp
+		public	csr_on
+		public	csr_off
+		public	clrbuf
+		public	bin_chr
+		public	zbin_ch
+;	
+;
+  	CONOUT  equ	0eb0ch
+;
+	ESC	equ	1bh		 ; esc
+	CLRSCR	equ	0ch
+;
+;	guide message display
+;
+gdmsg:
+		ld	a,(hl)
+		add	a,1fh
+		ld	(m_guide+5),a
+		inc	hl
+		ld	b,(hl)
+		inc	hl
+		ld	a,(hl)
+		push	af
+		ld	de,m_guide+7
+gdmsg10:
+		ld	a,(hl)
+		cp	-1
+		jr	z,gdmsg20
+		ld	(de),a
+		inc	de
+		inc	hl
+		dec	b
+		jr	gdmsg10
+gdmsg20:
+		dec	b
+		jp	m,gdmsg30
+		ld	a,' '
+		ld	(de),a
+		inc	de
+		jr	gdmsg20
+gdmsg30:
+		pop	af
+		ld	hl,m_norm
+		ld	bc,3
+		ldir
+
+		ld	hl,m_guide
+		inc	a
+		jr	nz,chr_disp
+		inc	hl
+		inc	hl
+;
+;	text display
+;
+chr_disp:
+m10:		ld	a,(hl)
+		cp	-1
+		ret	z
+;
+		ld	c,a
+    		inc	hl
+		push	hl
+		call	CONOUT 		; display
+		pop	hl
+		jr	m10
+;
+;	screen & cursor off
+;
+csr_off:
+		ld	c,ESC
+		call	CONOUT
+		ld	c,'2'
+		call	CONOUT		; cusor off
+		ld	c,CLRSCR	
+		call	CONOUT		; clear screen
+		ret
+;
+;	cursor on
+;
+csr_on:
+		ld	hl,m_csr
+		call	chr_disp
+		ld	c,ESC
+		call	CONOUT
+		ld	c,'3'
+		call	CONOUT		; cusor on
+		ret	
+;
+;	buffer clear
+;
+clrbuf:
+		ld	d,a
+clrbuf10:
+		ld	(hl),d
+		inc	hl
+		dec	bc
+		ld	a,b
+		or	c
+		jr	nz,clrbuf10
+		ret
+;
+;	binary to character convert
+;
+zbin_ch:
+		ld	a,' '
+		jr	bin_chr05
+bin_chr:
+		ld	a,'0'
+bin_chr05:
+		ld	(binwork),a
+		push	ix
+		ld	ix,dectbl
+		push	hl
+		ld	l,b
+		ld	h,0
+		add	hl,hl
+		ex	de,hl
+		add	ix,de
+		ex	de,hl
+		pop	hl
+bin_chr10:
+		push	hl
+		ex	de,hl
+		ld	d,(ix-1)
+		ld	e,(ix-2)
+		sub	a
+bin_chr20:
+		sbc	hl,de
+		inc	a
+		jr	nc,bin_chr20
+
+		add	hl,de
+		ex	de,hl
+		dec	a
+		ld	h,a
+		jr	nz,bin_chr25
+		ld	a,b
+		dec	a
+		jr	nz,bin_chr30
+bin_chr25:
+		ld	a,'0'
+		ld	(binwork),a
+bin_chr30:
+		ld	a,(binwork)
+		or	h
+		pop	hl
+		ld	(hl),a
+		inc	hl
+		dec	ix
+		dec	ix
+		djnz	bin_chr10
+		pop	ix
+		ret
+
+dectbl:		dw	1,10,100,1000,10000
+
+binwork:	db	0
+
+m_csr:		db	ESC,'=',27h,47h,-1
+
+m_guide:	db	ESC,'0',ESC,'=',27h,00h,' '
+		ds	40
+m_norm:		db	ESC,'1',-1
+;
+;
+	END

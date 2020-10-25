@@ -1,0 +1,32 @@
+<!--#INCLUDE FILE="../inc/common.asp"-->
+<!--#INCLUDE FILE="../inc/database.asp"-->
+<!--#INCLUDE FILE="../inc/sub.asp"-->
+<!--#INCLUDE FILE="../inc/login.asp"-->
+<!--#INCLUDE FILE="../inc/point.asp"-->
+<%
+Dim sql, ds, count
+
+count = 0
+If Not IsEmpty(Request.Form("exec")) Then
+	sql = "select PR_member_id,MM_regist_date from T_MEMBER,T_PR where MM_pr_id=PR_pr_id and PR_baitai_id='03' and PR_member_id is not null"
+	Set ds = CreateDynaset(sql, ORADYN_READONLY)
+	Do Until ds.EOF
+		AddPoint2 ds("PR_member_id").Value, "04", 100, Null, ds("MM_regist_date").Value
+		ds.MoveNext
+		count = count + 1
+	Loop
+End If
+%>
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=x-sjis">
+</HEAD>
+<BODY>
+
+<form method="post">
+<%=count%>
+<P><input type="submit" name="exec" value="ŽÀs"></P>
+</form>
+
+</BODY>
+</HTML>

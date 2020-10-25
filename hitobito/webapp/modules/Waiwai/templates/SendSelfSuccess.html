@@ -1,0 +1,94 @@
+<{include file="_WaiwaiHeader.html"}>
+<{include file="_WaiwaiPageInfo.html" waiwai_new_post_action="PostNew"}>
+<{include file="_WaiwaiList.html" waiwai_select_remark_action="Browse"}>
+<a name="waiwai"></a>
+<form method="post">
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td colspan="5"><img src="image/spacer.gif" width="1" height="15"></td>
+	</tr>
+	<tr>
+		<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td width="20" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="20" height="1"></td>
+		<td width="538" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="538" height="1"></td>
+		<td width="20" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="20" height="1"></td>
+		<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td><img src="image/spacer.gif" width="20" height="1"></td>
+		<td>
+			<table width="538" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td class="char120"><font color="#2BB906"><b>投稿ID[<{$waiwai_contents.seq_no}>]を<{$waiwai_member.nickname}>さんのメールアドレス宛に送信</b></font></td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+			</table>
+		</td>
+		<td><img src="image/spacer.gif" width="20" height="1"></td>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td colspan="5" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td><img src="image/spacer.gif" width="20" height="1"></td>
+		<td>
+			<table width="538" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="15"></td>
+				</tr>
+				<tr>
+					<td colspan="3" class="error">送信しました。</td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="15"></td>
+				</tr>
+				<tr>
+					<td width="70" valign="top" class="char120" nowrap>SUBJECT</td>
+					<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+					<td width="458" class="char120">[<{$waiwai_contents.seq_no}>] <{$waiwai_contents.subject|escape}><br>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td valign="top" class="char120" nowrap>本文</td>
+					<td><img src="image/spacer.gif" width="10" height="1"></td>
+					<td class="char130">投稿者 : <{$waiwai_contents.nickname|escape}><br>
+						投稿日時 : <{$waiwai_contents.date}><br>
+					<br><{$waiwai_contents.content|escape}></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="20"></td>
+				</tr>
+			</table>
+		</td>
+		<td><img src="image/spacer.gif" width="20" height="1"></td>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td colspan="5" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td bgcolor="#E3F7DF"><img src="image/spacer.gif" width="20" height="1"></td>
+		<td bgcolor="#E3F7DF" align="right">　 </td>
+		<td bgcolor="#E3F7DF"><img src="image/spacer.gif" width="20" height="1"></td>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td colspan="5" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td colspan="5"><img src="image/spacer.gif" width="1" height="20"></td>
+	</tr>
+</table>
+</form>

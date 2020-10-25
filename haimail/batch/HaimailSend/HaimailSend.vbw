@@ -1,0 +1,7 @@
+modMain = 198, 119, 858, 576, 
+modDeliveryMail = 44, 44, 704, 501, 
+modBirthdayMail = 66, 66, 722, 592, 
+modReminder = 110, 110, 766, 636, 
+modClickResponse = 166, 126, 822, 652, 
+modReportMail = 132, 132, 799, 691, Z
+clsSendMail = 132, 132, 799, 691, 

@@ -1,0 +1,59 @@
+<!-- ユーザーログイン -->
+			<table width="200" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFCC33">
+				<tr>
+					<td><img src="image/menu_mem_ttl.gif" width="200" height="28" alt="メンバーログイン"></td>
+				</tr>
+				<tr>
+					<td>
+						<form name="form2" method="post" action="index.php?module=Member&amp;action=Login">
+							<table width="180" border="0" cellspacing="0" cellpadding="0" align="center">
+								<tr>
+									<td class="char110">メールアドレス</td>
+								</tr>
+								<tr>
+									<td>
+										<input type="text" name="member_login_mail" size="12" style="width:180px;">
+									</td>
+								</tr>
+								<tr>
+									<td class="char110">パスワード</td>
+								</tr>
+							</table>
+							<table width="180" border="0" cellspacing="0" cellpadding="0" align="center">
+								<tr>
+									<td>
+										<input type="password" name="member_login_pass" size="12" style="width:100px;">
+									</td>
+									<td><img src="image/spacer.gif" width="10" height="1"></td>
+									<td width="98%">
+										<input type="image" border="0" name="imageField" src="image/menu_mem_btn.gif" width="64" height="20" >
+									</td>
+								</tr>
+							</table>
+							<table width="188" border="0" cellspacing="0" cellpadding="2" align="center">
+								<tr>
+									<td><p class="menuind16"><img src="image/menu_mem_link.gif" width="12" height="12" hspace="2" align="absmiddle"><span class="char110"><a href="index.php?module=Member&amp;action=remindPassword" class="cblack">パスワードをお忘れの方</a></span></p></td>
+								</tr>
+								<tr>
+									<td>
+              <p class="menuind16"><img src="image/menu_mem_link.gif" width="12" height="12" hspace="2" align="absmiddle"><span class="char110"><a href="index.php?module=contents&content_id=31" class="cblack">メンバー登録について</a></span></p>
+            </td>
+								</tr>
+								<tr>
+									<td><p class="menuind16"><img src="image/menu_mem_link.gif" width="12" height="12" hspace="2" align="absmiddle"><span class="char110"><a href="index.php?module=Member&amp;action=Regist" class="cblack">新規登録はこちら</a></span></p></td>
+								</tr>
+							</table>
+							<{if $redirect_url}>
+							<input type="hidden" name="redirect_url" value="<{$redirect_url}>" />
+							<{/if}>
+						</form>
+					</td>
+				</tr>
+				<tr>
+					<td><img src="image/menu_mem_foot.gif" width="200" height="5"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#FFFFFF"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+</table>
+			<!-- ログインここまで -->

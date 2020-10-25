@@ -1,0 +1,18 @@
+a	{text-decoration: none; color: #0066FF}
+a:hover	{text-decoration: none; color: #FF6666}
+form	{margin-top: 0px;margin-bottom: 0px }
+
+.copyright {  font-size: 10px; line-height: 120%; color: #666666}
+
+.t10 {font-size: 10px; line-height: 120%}
+.t11 {font-size: 11px; line-height: 120%}
+.t12 {font-size: 12px; line-height: 130%}
+.t13 {font-size: 13px; line-height: 130%}
+.t14 {font-size: 14px; line-height: 130%}
+.t15 {font-size: 15px; line-height: 130%}
+.t16 {font-size: 16px; line-height: 130%}
+.t18 {font-size: 18px; line-height: 130%}
+.t20 {font-size: 20px; line-height: 130%}
+.err {font-size: 12px; color: #CC0000}
+.t21 {background-color: #a3b2c1; color: white; }
+.t22 {font-size: 12px; color: #336699}

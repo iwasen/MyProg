@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>メルマガ基本情報　修正</TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600">
+<? include("header.php"); ?>
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="513" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+<TD>
+                  <table width="501" border="0" cellspacing="0" cellpadding="0">
+                    <tr> 
+                      <td width="251"><font color="#006600"><b>■メルマガ基本情報　修正</b></font> 
+                      </td>
+                      <td width="250" align="right"> 
+                        <form method="post" action="pub_index.php" name="fom_index">
+                          <a href="JavaScript:document.fom_index.submit();"> <font size="2">管理ページTOPへ</font></a> 
+                          <input type="hidden" value="<? echo $publisher_id ?>" name="publisher_id">
+                          <input type="hidden" value="<? echo $owner_pswd ?>" name="owner_pswd_r">
+                        </form>
+                      </td>
+                    </tr>
+                  </table>
+                  <p><SPAN CLASS="text01">すでに登録されているメルマガ基本情報の内容を修正することができます。修正したいメルマガを下記より選択してください。</SPAN></p>
+<SPAN CLASS="text01"><!-- <form> --> </SPAN>
+<table width="500" border="0">
+<tr align="center">
+<td CLASS="text9ptnoColor" BGCOLOR="#336600" width="98"><B><FONT COLOR="#FFFFCC">メルマガID</FONT></B></td>
+<td CLASS="text9ptnoColor" BGCOLOR="#336600" width="338"><B><FONT COLOR="#FFFFCC">タイトル</FONT></B></td>
+<td width="50">　</td>
+</tr>
+<? make_sel_maglist($publisher_id, $mail_add_main, $owner_pswd); ?>
+</table>
+<!-- </form> -->
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<? include("footer.php"); ?>
+</TABLE>
+</body>
+</html>
+

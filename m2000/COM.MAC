@@ -1,0 +1,1180 @@
+		title	com
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; module name	: communication
+; creation date	: 86:03:11
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+		.z80
+
+		include	MEMORY.INC
+
+		public	sdflag
+		public	sdptr1
+		public	sdptr2
+
+		extrn	connct
+		extrn	discon
+		extrn	gettime
+		extrn	dtdisp
+		extrn	putchr
+		extrn	getchr
+		extrn	datasd
+		extrn	rxcheck
+		extrn	sdedit
+		extrn	erase
+		extrn	mdcd
+
+	OVFHOOK	equ	0ffd8h
+
+	STX	equ	02h
+	ETX	equ	03h
+	EOT	equ	04h
+	ENQ	equ	05h
+	ACK	equ	06h
+	SO	equ	0eh
+	SI	equ	0fh
+	DLE	equ	10h
+	NAK	equ	15h
+	ETB	equ	17h
+;
+;	common area
+;
+	sflag		equ	M_PARAM+0
+	rst		equ	M_PARAM+1
+	tflag		equ	M_PARAM+3
+	blkadr		equ	M_PARAM+4
+	recno		equ	M_PARAM+6
+	hinmoku		equ	M_PARAM+7
+	sdtime		equ	M_PARAM+9
+	denpyono	equ	M_PARAM+11
+	rst1		equ	M_PARAM+13
+;
+;	error code
+;
+	E_MDOFF		equ	001h
+	E_VANM		equ	101h
+	E_TO1		equ	201h
+	E_TO3		equ	203h
+	E_TO4		equ	204h
+	E_TO5		equ	205h
+	E_TO6		equ	206h
+	E_TO7		equ	207h
+	E_EOT4		equ	214h
+	E_EOT6		equ	216h
+	E_EOT7		equ	217h
+	E_DE1		equ	221h
+	E_DE2		equ	222h
+	E_DE3		equ	223h
+	E_DE5		equ	225h
+	E_DE6		equ	226h
+	E_DE7		equ	227h
+	E_NC		equ	231h
+	E_RTRYS		equ	301h
+	E_RTRYR		equ	302h
+	E_TEL		equ	401h
+	E_ENQ		equ	402h
+	E_TID		equ	403h
+	E_DATA		equ	601h
+	E_HCPWOF	equ	701h
+	E_RDATA		equ	801h
+	E_ERRM		equ	901h
+	E_BFOVF		equ	-1
+
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; 	communication main routine
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+com:
+		ld	hl,0
+		ld	(rst1),hl
+com05:
+		ld	hl,0		; clear return status
+		ld	(rst),hl	;
+
+		call	prmchk		; parameter check
+		ret	c		; * error
+
+		call	lixxx		; line conxxxt
+		jr	c,com20		; * error
+
+		call	gettime
+
+		call	initim		; initialize timer
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		LD	HL,M_DUMP+4
+		LD	(M_DUMP),HL
+		LD	(M_DUMP+2),HL
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+		call	pstart
+com10:
+		call	waitev		; wait character receive or time out
+		call	pcom
+
+		ld	a,(status)
+		or	a
+		jr	nz,com10
+
+		call	unitim		; uninitialize timer
+
+		call	discon		; disconxxxt
+
+		call	dtdisp		; time display
+com20:
+		call	rtychk		; retry check
+		jr	c,com05
+
+		ret
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	wait character receive or time out
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+waitev:
+		sub	a
+		ld	(esflag),a
+waitev10:
+		in	a,(84h)
+		bit	1,a
+		jp	z,we_pwoff
+
+		ld	hl,(timcnt)	;
+		ld	a,h		;
+		or	l		; time out ?
+		jp	z,we_to		; * yes
+
+		call	rxcheck		;
+		or	a		; character receive ?
+		jr	z,waitev10	; * no
+
+		call	getchr		; get receive character
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		LD	DE,(M_DUMP+2)
+		LD	(DE),A
+		INC	DE
+		LD	HL,M_DUMP+1000H
+		OR	A
+		SBC	HL,DE
+		JR	NZ,DEBUG10
+		LD	DE,M_DUMP+4
+	DEBUG10:
+		LD	(M_DUMP+2),DE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		ld	c,a
+		ld	a,(hparity)
+		xor	c
+		ld	(hparity),a
+
+		ld	a,(esflag)
+		dec	a
+		jr	z,we_etbs
+		dec	a
+		jr	z,we_etxs
+		dec	a
+		jr	z,we_eots
+		dec	a
+		jr	z,we_dles
+waitev20:
+		ld	a,c
+		cp	ENQ
+		jr	z,we_enq
+		cp	STX
+		jp	z,we_stx
+		cp	ETB
+		jr	z,we_etb
+		cp	ETX
+		jr	z,we_etx
+		cp	EOT
+		jr	z,we_eot
+		cp	DLE
+		jr	z,we_dle
+		cp	SI
+		jp	z,we_si
+		cp	SO
+		jp	z,we_so
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 87.08.04
+		cp	080h		; error code ?
+		jp	z,we_err	; * yes
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		cp	21h
+		jr	c,waitev30
+
+		ld	a,(rdshift)
+		or	c
+waitev30:
+		ld	(rxchr),a
+		ld	e,2
+		ret
+we_to:
+		ld	e,12
+		ret
+we_etbs:
+		ld	e,3
+		ret
+we_etxs:
+		ld	e,4
+		ret
+we_eots:
+		ld	a,c
+		cp	EOT		; EOT,EOT ?
+		jr	nz,waitev20	; * no
+		ld	a,NAK
+		ld	(acknak),a
+		ld	e,6
+		ret
+we_dles:
+		ld	a,c
+		cp	ACK		; DLE,ACK ?
+		jr	z,dle10		; * yes
+		cp	NAK		; DLE,NAK ?
+		jr	nz,dle20	; * no
+dle10:
+		ld	hl,acknak
+		cp	(hl)
+		ld	(hl),a
+		ld	e,7
+		ret	nz
+		ld	e,8
+		ret
+dle20:
+		cp	'{'		; DLE,"{" ?
+		jr	nz,dle30	; * no
+		ld	e,9
+		ret
+dle30:
+		cp	'?'		; DLE,"?" ?
+		jr	nz,dle40	; * no
+		ld	e,10
+		ret
+dle40:
+		cp	EOT		; DLE,EOT ?
+		jr	nz,waitev20	; * no
+		ld	e,11
+		ret
+we_enq:
+		ld	e,0
+		ret
+we_etb:
+		ld	a,1
+sfset:
+		ld	(esflag),a
+		jp	waitev10
+we_stx:
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 87.08.04
+		xor	a
+		ld	(err_flag),a	; reset error flag
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		ld	e,1
+		ret
+we_etx:
+		ld	a,2
+		jr	sfset
+we_eot:
+		ld	a,3
+		jr	sfset
+we_dle:
+		ld	a,4
+		jr	sfset
+we_si:
+		sub	a
+		jr	setshift
+we_so:
+		ld	a,80h
+setshift:
+		ld	(rdshift),a
+		jp	waitev10
+we_pwoff:
+		ld	e,13
+		ret
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 87.08.04
+we_err:
+		ld	a,1
+		ld	(err_flag),a	; set error flag
+		jp	waitev10
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	shori routine call
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+pcom:
+		ld	a,(status)	;
+		dec	a		;
+		ld	l,a		;
+		ld	h,0		;
+		add	hl,hl		;
+		add	hl,hl		; shori routine address keisan
+		add	hl,hl		;
+		add	hl,hl		;
+		ld	d,0		;
+		add	hl,de		;
+		add	hl,hl		;
+		ld	de,dectbl	;
+		add	hl,de		;
+
+		ld	a,(hl)
+		inc	hl
+		ld	h,(hl)
+		ld	l,a
+		jp	(hl)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	tsuushin shori routine
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+pstart:
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 87.08.24
+		ld	hl,(rbufsv)	;
+		ld	(rbufad),hl	;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 88.10.14
+		xor	a		;
+		ld	(rlink),a	;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+		ld	a,NAK
+		ld	(acknak),a
+
+		ld	a,10		; set ENQ retry counter
+		ld	(rcount1),a	;
+
+		ld	hl,R_ENQ	;
+		ld	de,s_enqseq	; set ENQ data
+		ld	bc,8		;
+		ldir			;
+
+		ld	hl,s_enqseq	; send ENQ seq.
+		call	putchr		;
+
+		ld	bc,30		; set 3 sec. timer
+		call	timset		;
+
+		ld	a,1		; set status
+		ld	(status),a	;
+		ret
+;
+;
+p1_ack:
+		ld	bc,5		; set 0.5 sec. timer
+		call	timset		;
+
+		ld	a,2		; set status
+		ld	(status),a	;
+		ret
+;
+;
+p1_nak:
+		ld	hl,E_VANM
+disc:
+		ld	(rst),hl	; set return status
+disc1:
+		ld	hl,s_dleeot	; send DLE,EOT
+		call	putchr		;
+
+		sub	a		; set status
+		ld	(status),a	;
+		ret
+;
+;
+p1_que:
+p3_que:
+		ld	a,10		; set ENQ retry counter
+		ld	(rcount1),a	;
+
+		ld	bc,30		; set 3 sec. timer
+		call	timset		;
+		ret
+;
+;
+p1_de:
+		ld	hl,E_DE1
+		jp	disc
+;
+;
+p1_to:
+		ld	a,(rcount1)
+		dec	a
+		ld	(rcount1),a
+		jr	nz,p1_to10
+
+		ld	hl,E_VANM
+		jp	disc
+p1_to10:
+		ld	hl,s_enqseq	; send ENQ seq.
+		call	putchr		;
+
+		ld	bc,30		; set 3 sec. timer
+		call	timset		;
+		ret
+;
+;
+p2_de:
+		ld	hl,E_DE2
+		jp	disc
+;
+;
+p2_to:
+		call	sdedit		; edit header
+		jp	c,p5_eot10
+
+		jp	datasend	; send data
+;
+;
+p3_ack:
+		ld	a,(sdflag)
+		or	a
+		jr	nz,p3_ack10
+
+		ld	hl,(sdptr2)
+		jp	datasend1	; send data
+p3_ack10:
+		call	sd_eot		; send EOT,EOT
+
+		ld	bc,1800		; set 3 min. timer
+		call	timset		;
+
+		ld	a,4		; set retry counter
+		ld	(rcount2),a	;
+
+		ld	a,4		; set status
+		ld	(status),a	;
+		ret
+;
+;
+p3_nak:
+		ld	hl,rcount2	;
+		dec	(hl)		; dec. retry counter
+
+		jr	nz,p3_nak10
+
+		ld	hl,E_RTRYS
+		jp	disc
+p3_nak10:
+		call	datasd		; data send
+
+		ld	bc,30		; set 3 sec. timer
+		call	timset		;
+
+		ld	a,10		; set ENQ retury counter
+		ld	(rcount1),a	;
+		ret
+;
+;
+p3_de:
+		ld	hl,E_DE3
+		jp	disc
+;
+;
+p3_to:
+		ld	hl,rcount1	;
+		dec	(hl)		; dec. retry counter
+		jr	nz,p3_to10
+
+		ld	hl,E_TO3
+		jp	disc
+p3_to10:
+		ld	hl,s_enqenq	; send ENQ,ENQ
+		call	putchr		;
+
+		ld	bc,30		; set 3 sec. timer
+		call	timset		;
+		ret
+;
+;
+p4_enq:
+		call	sd_ack1		; send ACK
+
+		ld	bc,300		; set 30 sec. timer
+		call	timset		;
+
+		ld	a,1		; receive link flag on
+		ld	(rlink),a	;
+
+		ld	a,5		; set status
+		ld	(status),a	;
+		ret
+;
+;
+p4_stx:
+		ld	a,(rlink)
+		or	a
+		ret	z
+
+		jp	p5_stx
+;
+;
+p4_de:
+		jp	disc1
+;
+;
+p4_to:
+		ld	hl,E_TO4
+		jp	disc
+;
+;
+p4_eot:
+		ld	a,(rst)
+		or	a
+		jp	nz,disc1
+
+		call	sdedit		; edit send data
+		jr	c,p4_eot10	; * data nashi
+
+		ld	hl,M_CBUFF-430*2
+		ld	de,(rbufad)	;
+		sbc	hl,de		; receive buffer over flow ?
+		jr	c,p4_eot20	; * yes
+datasend:
+		ld	hl,M_CBUFF
+datasend1:
+		ld	(sdptr1),hl
+		call	datasd		; data send
+
+		ld	bc,30		; set 3 sec. timer
+		call	timset		;
+
+		ld	a,10		; set ENQ retry counter
+		ld	(rcount1),a	;
+
+		ld	a,4		; set data send retry counter
+		ld	(rcount2),a	;
+
+		ld	a,3		; set status
+		ld	(status),a	;
+		ret
+p4_eot10:
+		ld	hl,E_EOT4
+		jp	disc
+p4_eot20:
+		ld	hl,E_BFOVF
+		jp	disc
+;
+;
+p5_enq:
+		jp	p4_enq
+;
+;
+p5_stx:
+		ld	hl,(rbufad)
+		ld	(rbufhp),hl
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		LD	HL,(M_DUMP+2)
+		DEC	HL
+		LD	(M_DUMP),HL
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+p5_stx10:
+		sub	a
+		ld	(hparity),a
+
+		ld	a,(rdshift)
+		ld	(rdsftsv),a
+
+		ld	hl,0		; clear receive data length
+		ld	(rlength),hl	;
+		ld	(rlensv),hl	;
+
+		ld	hl,(rbufad)	; set receive buffer pointer
+		ld	(rbufp),hl	;
+
+		ld	bc,300		; set 30 sec. timer
+		call	timset		;
+
+		ld	a,6		; set status
+		ld	(status),a	;
+		ret
+;
+;
+p5_eot:
+		ld	a,(rst)
+		or	a
+		jr	nz,p5_eot10
+
+		call	sdedit		; edit send data
+		jr	c,p5_eot10	; * data nashi
+
+		ld	hl,M_CBUFF-430*2
+		ld	de,(rbufad)	;
+		sbc	hl,de		; receive buffer over flow ?
+		jr	c,p5_eot20	; * yes
+
+		jp	datasend
+p5_eot10:
+		call	sd_eot		; send EOT,EOT
+
+		ld	bc,300		; set 30 sec. timer
+		call	timset		;
+
+		ld	a,4		; set status
+		ld	(status),a	;
+		ret
+p5_eot20:
+		ld	hl,E_BFOVF
+		ld	(rst),hl
+		jr	p5_eot10
+;
+;
+p5_de:
+		ld	hl,E_DE5
+		jp	disc
+;
+;
+p5_to:
+		ld	hl,E_TO5
+		jp	disc
+;
+;
+p6_enq:
+		ld	hl,(rbufad)
+		ld	(rbufp),hl
+
+		ld	de,(rbufhp)
+		or	a
+		sbc	hl,de
+		ld	a,5
+		jr	z,p6_enq10
+		ld	a,7
+p6_enq10:
+		ld	(status),a
+		ret
+;
+;
+p6_stx:
+		jp	p5_stx10
+;
+;
+p6_chr:
+		ld	hl,(rlength)	;
+		ld	a,h		;
+		or	l		; receive data length = 0 ?
+		jr	nz,p6_chr30	; * no
+
+		ld	a,(rxchr)	;
+		cp	12h		; receive data = 12h ?
+		jr	nz,p6_chr10	; * no
+
+		ld	a,1
+		jr	p6_chr20
+p6_chr10:
+		sub	a
+p6_chr20:
+		ld	(ermflag),a	; set error message flag
+p6_chr30:
+		inc	hl		;
+		ld	(rlength),hl	; set reveive data length
+
+		ld	a,(ermflag)	;
+		or	a		; error message flag on ?
+		jr	nz,p6_chr40	; * yes
+
+		ld	de,16
+		or	a
+		sbc	hl,de
+		jr	c,p6_chr50
+p6_chr40:
+		ld	a,(rxchr)	;
+		ld	hl,(rbufp)	;
+		ld	(hl),a		; reveive character save
+		inc	hl		;
+		ld	(rbufp),hl	;
+p6_chr50:
+		ld	bc,300		; set 30 sec. timer
+		call	timset		;
+		ret
+;
+;
+p6_etb:
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 87.08.04
+		ld	a,(err_flag)	;
+		or	a		; data receive error ?
+		jr	nz,p6_etb10	; * yes
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+		ld	a,(hparity)	;
+		or	a		; bcc check
+		jr	nz,p6_etb10	; * bcc error
+
+		ld	hl,(rbufp)
+		ld	(rbufad),hl
+
+		ld	hl,(rlength)
+		ld	(rlensv),hl
+
+		call	sd_ack		; send ACK
+
+		ld	bc,300		; set 30 sec. timer
+		call	timset		;
+
+		ld	a,7		; set status
+		ld	(status),a	;
+		ret
+p6_etb10:
+		ld	hl,(rlensv)
+		ld	(rlength),hl
+
+		ld	a,(rdsftsv)
+		ld	(rdshift),a
+
+		call	sd_nak		; send NAK
+
+		ld	bc,300		; set 30 sec. timer
+		call	timset		;
+
+		ld	hl,(rbufad)	; set receive buffer pointer
+		ld	(rbufp),hl	;
+
+		ld	a,7		; set status
+		ld	(status),a	;
+		ret
+;
+;
+p6_etx:
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 87.08.04
+		ld	a,(err_flag)	;
+		or	a		; data receive error ?
+		jr	nz,p6_etx10	; * yes
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+		ld	a,(hparity)	;
+		or	a		; bcc check
+		jr	nz,p6_etx10	; * bcc error
+
+		ld	hl,(rbufp)
+		ld	(rbufad),hl
+
+		ld	a,(ermflag)	;
+		or	a		; error message receive flag on ?
+		jp	nz,p6_etx20	; * yes
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 88.10.14
+		ld	hl,(rbufhp)	;
+p6_etx00:
+		push	hl
+		ld	de,(rbufad)
+		or	a
+		sbc	hl,de
+		pop	hl
+		jr	nc,p6_etx001
+
+		push	hl
+		call	rdcheck		; receive data check
+		pop	hl
+		jr	c,p6_etx04
+
+		ld	de,430
+		add	hl,de
+		jr	p6_etx00
+p6_etx001:
+		jr	nz,p6_etx04	;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;			
+
+		ld	ix,recno
+		ld	hl,(rbufhp)
+p6_etx01:
+		push	hl
+		ld	de,(rbufad)
+		or	a
+		sbc	hl,de
+		pop	hl
+		jr	nc,p6_etx05
+
+		push	hl
+		push	ix
+		call	erase
+		pop	ix
+		jr	nc,p6_etx02
+		ld	hl,E_DATA	; set return status
+		ld	(rst),hl
+p6_etx02:
+		pop	hl
+		ld	de,430
+		add	hl,de
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 87.08.24
+		inc	(ix)		;
+		ld	(rbufsv),hl	;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		jr	p6_etx01
+p6_etx04:
+		ld	hl,E_RDATA
+		jp	disc
+p6_etx05:
+		call	sd_ack		; send ACK
+
+		ld	bc,300		; set 30 sec. timer
+		call	timset		;
+
+		ld	a,5		; set status
+		ld	(status),a	;
+		ret
+p6_etx10:
+		ld	hl,(rlensv)
+		ld	(rlength),hl
+
+		ld	a,(rdsftsv)
+		ld	(rdshift),a
+
+		call	sd_nak		; send NAK
+
+		ld	bc,300		; set 30 sec. timer
+		call	timset		;
+
+		ld	hl,(rbufad)	; set receive buffer pointer
+		ld	(rbufp),hl	;
+
+		ld	a,7		; set status
+		ld	(status),a	;
+		ret
+p6_etx20:
+		ld	hl,(rbufhp)	;
+		ld	de,M_WORK	; save error message
+		ld	bc,(rlength)	;
+		ldir			;
+		ld	a,-1		;
+		ld	(de),a		;
+
+		ld	hl,E_ERRM
+		ld	(rst),hl
+		jr	p6_etx05
+;
+;
+p6_eot:
+		ld	hl,E_EOT6
+		jp	disc
+;
+;
+p6_de:
+		ld	hl,E_DE6
+		jp	disc
+;
+;
+p6_to:
+		ld	hl,E_TO6
+		jp	disc
+;
+;
+p7_stx:
+		sub	a
+		ld	(hparity),a
+
+		ld	a,(rdshift)
+		ld	(rdsftsv),a
+
+		ld	bc,300		; set 30 sec. timer
+		call	timset		;
+
+		ld	a,6		; set status
+		ld	(status),a	;
+		ret
+;
+;
+p7_eot:
+		ld	hl,E_EOT7
+		jp	disc
+;
+;
+p7_de:
+		ld	hl,E_DE7
+		jp	disc
+;
+;
+p7_to:
+		ld	hl,E_TO7
+		jp	disc
+;
+;
+p_pwoff:
+		ld	hl,E_HCPWOF
+		ld	(rst),hl
+
+		sub	a
+		ld	(status),a
+		ret
+;
+;
+np:
+		ret
+;
+;
+sd_ack1:
+		ld	a,ACK
+		jr	sd_ack10
+sd_ack:
+		ld	a,(acknak)
+		xor	13h
+sd_ack10:
+		ld	(acknak),a
+sd_nak:
+		ld	hl,s_acknak
+		jp	putchr
+;
+;
+sd_eot:
+		sub	a
+		ld	(rdshift),a
+
+		ld	a,NAK
+		ld	(acknak),a
+		ld	hl,s_eoteot
+		jp	putchr
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	parameter check
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+prmchk:
+		ld	de,E_TEL
+		ld	a,(R_VANTEL1)
+		cp	' '
+		jr	z,prmchk10	; TEL No. misettei
+
+		ld	de,E_ENQ
+		ld	a,(R_ENQ)
+		cp	' '
+		jr	z,prmchk10	; ENQ code misettei
+
+		ld	de,E_TID
+		ld	a,(R_TID)
+		cp	' '
+		jr	z,prmchk10	; TID misettei
+
+		or	a		; no error
+		ret
+prmchk10:
+		ld	(rst),de	; set error code
+		scf
+		ret
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	line conxxxt
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+lixxx:
+		ld	hl,R_VANTEL1
+		ld	a,(retryf)
+		or	a
+		jr	z,lixxx10
+
+		ld	hl,R_VANTEL2
+lixxx10:
+		ld	a,(R_LNTYP)
+		call	connct
+		or	a
+		ret	z
+
+		cp	1
+		jr	z,lixxx20
+
+		ld	hl,E_MDOFF
+		jr	lixxx30
+lixxx20:
+		call	discon
+		ld	hl,E_NC
+lixxx30:
+		ld	(rst),hl
+		scf
+		ret
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	timer subroutine
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+initim:
+		di
+		ld	hl,(OVFHOOK+1)		; Save system vector.
+		ld	(sysovf),hl
+		ld	hl,ovfint		; Set vector.
+		ld	(OVFHOOK+1),hl
+		ei
+		ret
+;
+unitim:
+		di
+		ld	hl,(sysovf)		; Remove interrupt vector for OVF.
+		ld	(OVFHOOK+1),hl
+		ei
+		ret
+;
+timset:
+		ld	(timcnt),bc
+		ret
+;
+ovfint:
+		ld	hl,(timcnt)		; timcnt is 0 ?
+		ld	a,h
+		or	l
+		ret	z			; Yes, no counting.
+
+		dec	hl			; Decrement.
+		ld	(timcnt),hl
+		ret
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	retry check
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+rtychk:
+		ld	a,(retryf)	;
+		or	a		; retry flag on ?
+		ret	nz		; * yes
+
+		inc	a		; set retry flag
+		ld	(retryf),a	;
+
+		ld	a,(rst+1)	;
+		cp	1		; center hoshuchuu ?
+		jr	z,rtychk10	; * yes
+		cp	2		; time out ?
+		jr	z,rtychk10	; * yes
+		cp	3		; retry over ?
+		jr	z,rtychk10	; * yes
+
+		or	a
+		ret
+rtychk10:
+		ld	a,(R_VANTEL2)	;
+		cp	' '		; van tel2 ari ?
+		ret	z		; * no
+
+		ld	hl,(rst)	; save return status 1
+		ld	(rst1),hl	;
+
+		ld	b,6		;
+rtychk20:				;
+		ld	hl,0		;
+rtychk30:				;
+		dec	hl		; 3 sec. wait
+		ld	a,h		;
+		or	l		;
+		jr	nz,rtychk30	;
+		djnz	rtychk20	;
+
+		scf
+		ret
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	receive data cehck
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+rdcheck:
+		ld	a,(hl)		;
+		cp	'2'		; ID = '2' ?
+		jr	nz,rdcheck40	; * no
+
+		inc	hl		;
+		ld	a,(hl)		;
+		cp	'1'		; format ID = '1' ?
+		jr	z,rdcheck10	; * yes
+		cp	'2'		; format ID = '2' ?
+		jr	nz,rdcheck40	; * no
+rdcheck10:
+		ld	de,377		;
+		add	hl,de		;
+		ld	a,(hl)		;
+		cp	' '		; error mark = ' ' ?
+		jr	z,rdcheck20	; * yes
+		cp	'1'		; error mark = '1' ?
+		jr	nz,rdcheck40	; * no
+rdcheck20:
+		inc	hl
+		ld	b,6
+rdcheck30:
+		ld	a,(hl)		;
+		cp	'0'		;
+		jr	c,rdcheck40	;
+		cp	'9'+1		; error No. check
+		jr	nc,rdcheck40	;
+		inc	hl		;
+		djnz	rdcheck30	;
+		or	a
+		ret
+rdcheck40:
+		scf
+		ret
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	data
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+dectbl:
+		dw	np,np,np,np,np,np,np,p1_ack
+		dw	p1_nak,np,p1_que,p1_de,p1_to,p_pwoff,np,np
+
+		dw	np,np,np,np,np,np,np,np
+		dw	np,np,np,p2_de,p2_to,p_pwoff,np,np
+
+		dw	np,np,np,np,np,np,np,p3_ack
+		dw	p3_nak,np,p3_que,p3_de,p3_to,p_pwoff,np,np
+
+		dw	p4_enq,p4_stx,np,np,np,np,p4_eot,np
+		dw	np,np,np,p4_de,p4_to,p_pwoff,np,np
+
+		dw	p5_enq,p5_stx,np,np,np,np,p5_eot,np
+		dw	np,np,np,p5_de,p5_to,p_pwoff,np,np
+
+		dw	p6_enq,p6_stx,p6_chr,p6_etb,p6_etx,np,p6_eot,np
+		dw	np,np,np,p6_de,p6_to,p_pwoff,np,np
+
+		dw	np,p7_stx,np,np,np,np,p7_eot,np
+		dw	np,np,np,p7_de,p7_to,p_pwoff,np,np
+;
+;	send data
+;
+s_enqseq:	db	0,0,0,0,0,0,0,0,ENQ,-1
+s_acknak:	db	DLE
+acknak:		db	NAK,-1
+s_eoteot:	db	EOT,EOT,-1
+s_dleeot:	db	DLE,EOT,-1
+s_enqenq:	db	ENQ,ENQ,-1
+;
+;	work area
+;
+status:		db	0		; status
+esflag:		db	0		; escape sequence flag
+rxchr:		db	0		; receive character
+rlength:	dw	0		; receive data length
+rlensv:		dw	0		; receive data length save area
+rbufad:		dw	0		; receive buffer address
+rbufp:		dw	0		; receive buffer pointer
+rbufhp:		dw	0		; receive buffer head pointer
+rbufsv:		dw	M_RBUFF		; receive buffer save area
+hparity:	db	0		; parity
+rcount1:	db	0		; retry counter 1
+rcount2:	db	0		; retry counter 2
+rlink:		db	0		; receive link flag
+timcnt:		dw	0		; timer counter
+sysovf:		dw	0		; system ovf interrupt address
+retryf:		db	0		; retry flag
+rdshift:	db	0		; receive data shift flag
+rdsftsv:	db	0		; receive data shift flag save area
+sdflag:		db	0		; send data flag
+sdptr1:		dw	0		; send data pointer 1
+sdptr2:		dw	0		; send data pointer 2
+ermflag:	db	0		; error message receive flag
+;;;;;;;;;;;;;;;;;;;;;;;;;;;; 87.08.04
+err_flag:	db	0		; data receive error flag
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		end	com

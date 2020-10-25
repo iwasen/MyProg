@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>おすすめ／危ないよメルマガ　検索メニュー</TITLE>
+<LINK REL="stylesheet" HREF="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600" leftmargin="0" marginwidth="0">
+
+<? draw_head2(".."); ?>
+
+<br>
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="513" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+<TD>
+<p class="midashi14"><FONT COLOR="#99CCFF">■</FONT><B><FONT COLOR="#003399">おすすめ／危ないよメルマガ　検索メニュー</FONT></B></p>
+<p CLASS="text01">まず、マガジンを検索してください。</p>
+<TABLE WIDTH="100%" BORDER="0" CELLSPACING="0" CELLPADDING="0" BGCOLOR="#003399">
+<TR>
+<TD>
+<TABLE WIDTH="600" BORDER="0" CELLSPACING="1" CELLPADDING="3">
+<TR>
+<FORM NAME="form1">
+<TD WIDTH="127" ALIGN="center" BGCOLOR="#99CCFF" CLASS="text9ptnoColor">
+<DIV ALIGN="CENTER"> <FONT COLOR="#003399"><B>キーワード検索</B></FONT> </DIV>
+</TD>
+</FORM>
+<FORM NAME="formSearch" ACTION="mp-mag-list.php" METHOD="post">
+<TD BGCOLOR="#FFFFFF" WIDTH="456" CLASS="text9ptnoColor">
+<DIV ALIGN="LEFT">キーワードを入力して抽出します。　　　　　　
+<INPUT TYPE="text" NAME="keyword">
+<INPUT TYPE="submit" NAME="Submit22" VALUE="検索">
+<input type="hidden" value="<? echo $melonpai_id ?>" name="melonpai_id">
+<input type="hidden" value="<? echo $melonpai_pswd ?>" name="melonpai_pswd">
+<input type="hidden" value="<? echo $melonpai_name ?>" name="melonpai_name">
+<input type="hidden" value=1 name="page_no">
+</DIV>
+</TD>
+</FORM>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+<form name="mypage" action="mypage.php" method="post">
+<a href="JavaScript:document.mypage.submit();">
+&lt;&lt;&lt;　メルマガナビ　マイページへ戻る </a>
+<input type="hidden" value="<? echo $melonpai_id ?>" name="melonpai_id">
+<input type="hidden" value="<? echo $melonpai_pswd ?>" name="melonpai_pswd">
+<input type="hidden" value="<? echo $melonpai_name ?>" name="melonpai_name">
+</form>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+<table>
+<br>
+<br>
+</table>
+</TD>
+</TR>
+
+<? draw_footer2(".."); ?>
+
+</TABLE>
+</body>
+</html>

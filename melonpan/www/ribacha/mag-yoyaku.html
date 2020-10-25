@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>メルマガ配信予約</TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600">
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="650" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="650" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+<TD><FONT color="#006600"><B>■メルマガ配信予約</B></FONT><BR>
+<BR>
+<BR>
+<form name="form1" action="mag-haishin.php" method="post">
+<table width="650" border="0" cellpadding="3" cellspacing="1">
+<tr>
+<td width="100" bgcolor="#006600"><FONT color="#FFFFCC"><B class="text9ptnoColor">発行メルマガ
+</B> </FONT></td>
+<td width="550"> <? echo $mag_id; ?>　<? echo $mag_nm; ?></td>
+</tr>
+</table>
+<p><span class="text01">タイトルおよび本文を入力して、[テスト配信]ボタンをクリックすると、登録していただいた基本メールアドレスのみにテストメールが配信されます（まだ本番配信ではありません）。</span><br>
+<font color="#ff0000"> 内容を修正した場合も、必ず一度テスト配信してください。テスト配信しないと変更が反映されません。</font>
+</p>
+<table width="650" border="0" cellspacing="1" cellpadding="3" align="center">
+<tr>
+<td width="100" valign="top" align="right" bgcolor="#669900" nowrap class="text9ptnoColor"><B><FONT color="#FFFFCC">タイトル</FONT></B></td>
+<td width="500">
+<input type="text" name="mag_titl" size="54" value="<?php echo $mag_titl; ?>">
+</td>
+</tr>
+<tr>
+<td width="100" valign="top" align="right" bgcolor="#669900" nowrap><B><FONT color="#FFFFCC" class="text9ptnoColor">本文</FONT></B></td>
+<td width="500">
+<textarea name="mag_body" cols="80" rows="40" class="pfont"><?php echo $mag_body; ?></textarea>
+</td>
+</tr>
+<tr>
+<td width="100" valign="top" align="right" nowrap>　</td>
+<td width="500">
+<DIV align="right">
+<input type="submit" name="TestSubmit" value="テスト配信">
+<input type="hidden" value="<? echo $publisher_id ?>" name="publisher_id">
+<input type="hidden" value="<? echo $owner_pswd ?>" name="owner_pswd">
+<input type="hidden" value="<? echo $mag_id ?>" name="mag_id">
+<input type="hidden" value="<? echo trim($mag_nm); ?>" name="mag_nm">
+<input type="hidden" value="<? echo $index_id ?>" name="index_id">
+<input type="hidden" value="<? echo $body_id ?>" name="body_id">
+<span class="text9pt"><br>
+※１回だけクリックしてください。</span></DIV>
+</td>
+</tr>
+</table>
+</form>
+<p class="text01"> <br>
+テスト配信で内容を確認できましたら、今度は本番の配信予約をしましょう。<br>
+翌月末までの予約が可能です。ただし、サーバの混雑具合によって予約時間のとおりに配信されないこともありますので、ご了承ください。</p>
+<form name="form2" action="mag-haishin.php" method="post">
+<br>
+<table width="500" border="0" cellpadding="3" cellspacing="1">
+<tr>
+<td width="80" bgcolor="#669900" CLASS="text9ptnoColor">
+<DIV ALIGN="RIGHT"><B><FONT color="#FFFFCC">配信日</FONT></B></DIV>
+</td>
+<td WIDTH="420">
+<select name="resrv_month">
+<? make_date_box("mon", -1); ?>
+</select>
+月
+<select name="resrv_day">
+<? make_date_box("mday", -1); ?>
+</select>
+日 </td>
+</tr>
+<tr>
+<td width="80" bgcolor="#669900" CLASS="text9ptnoColor">
+<DIV ALIGN="RIGHT"><B><FONT color="#FFFFCC">配信時間</FONT></B></DIV>
+</td>
+<td WIDTH="420"> <!--
+<select name="resrv_hour_ampm">
+<? make_ampm_box("0"); ?>
+</select>
+　：
+-->
+<select name="resrv_hour_h">
+<? make_date_box("hours_a", -1); ?>
+</select>
+時
+<select name="resrv_hour_m">
+<? make_minutes10_box( -1 ); ?>
+</select>
+分 </td>
+</tr>
+<tr>
+<td width="80" CLASS="text9ptnoColor">　</td>
+<td WIDTH="420">
+<INPUT TYPE="submit" NAME="OKSubmit" VALUE="本番配信予約">
+<INPUT TYPE="hidden" VALUE="<? echo $publisher_id ?>" NAME="publisher_id">
+<INPUT TYPE="hidden" VALUE="<? echo $owner_pswd ?>" NAME="owner_pswd">
+<INPUT TYPE="hidden" VALUE="<? echo $mag_nm ?>" NAME="mag_nm">
+<INPUT TYPE="hidden" VALUE="<? echo $mag_id ?>" NAME="mag_id">
+<INPUT TYPE="hidden" VALUE="<? echo $index_id ?>" NAME="index_id">
+<INPUT TYPE="hidden" VALUE="<? echo $body_id ?>" NAME="body_id">
+（<SPAN CLASS="text9pt">※本番の配信予約です</SPAN>）</td>
+</tr>
+</table>
+</form>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td class="text9pt">
+※おことわり　　今回配信されるメルマガには下記のフッターが自動的に挿入されますので、ご了承ください。</td>
+</tr>
+<tr>
+<td class="pfont" bgcolor="#e8e8e8">
+<?php echo $admin_msg; ?>
+</td>
+</tr>
+</table>
+
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD valign="top" colspan="3" align="right">
+<HR size="1" width="750">
+</TD>
+</TR>
+<TR>
+<TD valign="top" width="200"> <IMG src="../img/shim.gif" width="200" height="1">
+</TD>
+<TD valign="middle" align="center" width="350">
+<div align="center"><FONT size="2"><IMG src="../img/shim.gif" width="350" height="1"><BR>
+Copyright &copy; 2000 xxxxxxx, Co.,Ltd. All rights reserved. <br>
+<a href="http://www.xxxxxxx.co.jp/" target="mm_window"><img src="../img/logo_do.gif" width="50" height="45" border="0"></a>
+</FONT></div>
+</TD>
+<TD valign="top" width="200" align="right"><IMG src="../img/shim.gif" width="200" height="1"></TD>
+</TR>
+</TABLE>
+</body>
+</html>

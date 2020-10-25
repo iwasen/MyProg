@@ -1,0 +1,31 @@
+<!-- チャンネル一覧ブロック -->
+<table width="200" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFCC33">
+	<!-- チャンネル一覧タイトル -->
+	<tr>
+		<td colspan="3"><img src="image/menu_ch_ttl.gif" width="200" height="28" alt="チャネル一覧"></td>
+	</tr>
+	<tr>
+		<td width="3"><img src="image/spacer.gif" width="3" height="1"></td>
+		<td width="194">
+		<!-- チャンネル一覧ループテーブル -->
+			<table width="194" border="0" cellspacing="0" cellpadding="3">
+			<!-- start Loop -->
+			<{foreach item=category_item from=$category_main_categories}>
+				<tr>
+					<td bgcolor="#FFFFFF"><a href="index.php?module=Category&amp;action=ShowMainCategory&amp;category_id=<{$category_item->getId()}>" class="chanel"><{$category_item->getTitle()|escape}></a></td>
+				</tr>
+			<{/foreach}>
+			<!-- end Loop -->
+			</table>
+		<!-- チャンネル一覧ループテーブル終わり -->
+		</td>
+		<td width="3"><img src="image/spacer.gif" width="3" height="1"></td>
+	</tr>
+	<tr>
+		<td colspan="3"><img src="image/menu_mem_foot.gif" width="200" height="5"></td>
+	</tr>
+				<tr bgcolor="#FFFFFF">
+				  <td colspan="3"><img src="image/spacer.gif" width="1" height="5"></td>
+			  </tr>
+</table>
+<!-- チャンネル一覧ブロックここまで -->

@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>教えて？に答えるコミュニティ ｜ ひとびと・net</title>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<meta http-equiv="Content-Type" content="text/css">
+<meta name="keywords" content="人々,ナビ,教えて,Q&A,質問,解決,ブログ,コミュニティ,ML">
+<meta name="description" content="ひとびと・netは、人の知識や経験を「教えられたり教えたり」しながら共有する開かれたコミュニティです。">
+<link rel="stylesheet" href="css/default.css" type="text/css">
+<script type="text/javascript" src="js/common.js"></script>
+</head><body bgcolor="#FFFFFF" text="#333333" topmargin="0" marginheight="0"><{foreach item=file from=$HNbJavaScriptFile}>
+<script type="text/javascript" src="<{$file}>"></script>
+<{/foreach}>
+<link href="css/win-ie.css" rel="stylesheet" type="text/css">
+
+
+<{$HNbHeader}>
+<!-- パンくずエリア -->
+<!-- パンくずエリア -->
+<table width="800" border="0" cellspacing="0" cellpadding="0" align="center">
+	<tr>
+		<td><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td class="hbtrack" background="index.html">
+			<!--パンくずここから-->
+			<p class="htrack"><a href="index.php">トップ</a> <{$hitobito2_breadcrumb}></p>
+			<!--パンくずここまで-->
+		</td>
+	</tr>
+</table>
+<!--パンくずエリアここまで-->
+<{foreach item=block from=$HNbHeadBlocks}>
+<{$block}>
+<{/foreach}>
+<table width="800" border="0" cellspacing="0" cellpadding="0" align="center">
+	<tr>
+	<!-- 左カラムここから -->
+		<td width="200" valign="top">
+		  <{foreach item=block from=$HNbLeftBlocks}>
+		  <{$block}>
+		  <{/foreach}>
+		<!-- チャンネル一覧ブロック -->
+		<!-- ユーザーログインブロック -->
+        <!-- ナビランキング＆人気ランキング -->
+        <!-- ナビランキング＆人気ランキングブロック終わり -->
+        <!-- アンケート実施中ブロック -->
+	  	</td>
+	<!-- 左カラム終了 -->
+		<td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+		<!-- start　センターカラム -->
+		<td width="<{if $HNb_show_right_block}>360<{else}>585<{/if}>" valign="top">
+		  <{foreach item=block from=$HNbCenterBlocks}>
+		  <{$block}>
+		  <{/foreach}>
+			<!--今日のいちおしナビブロック-->
+        	<!-- ナビ記事最新投稿ブロック-->			
+			<!-- ワイワイ会議室最新投稿ブロック -->
+			<!-- ナビセレクト最新投稿ブロック -->
+			<{$content}>
+        	<!-- センターカラム終了 -->
+		</td>
+
+		<{if $HNb_show_right_block == TRUE}>
+		<td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+		<td width="210" valign="top">
+		<!-- start右カラム -->
+		  <{foreach item=block from=$HNbRightBlocks}>
+		  <{$block}>
+		  <{/foreach}>
+			<!-- 事務局blogブロック -->
+			<!-- ナビになろうブロック -->
+			<!-- 特集記事ブロック -->
+			<!-- 最新クチコミ情報ブロックここから -->
+		<!-- 右カラム終了 -->
+		</td>
+		<{/if}>
+	</tr>
+</table>
+<!-- フッターナビゲーション -->
+<!-- フッターナビゲーション -->
+<div align="center" style="margin:35px 0px 0px 0px;">
+<table width="800" border="0" cellspacing="0" cellpadding="0" align="center">
+	<tr>
+		<td><img src="image/spacer.gif" width="1" height="10"></td>
+	</tr>
+	<tr>
+		
+    <td align="right" class="char110"> <a href="index.php?module=contents&amp;content_id=8">利用規約</a>
+      | <a href="index.php?module=contents&amp;content_id=4">プライバシーポリシー</a> 
+      | <a href="index.php?module=Contact&navipage_id=<{$hitobitoSystemMaster.admin_navipage_id}>&contact_form_id=2">お問い合わせ</a> 
+      | <a href="index.php?module=contents&amp;content_id=5">プレスリリース</a> | <a href="index.php?module=Contact&navipage_id=<{$hitobitoSystemMaster.admin_navipage_id}>&contact_form_id=1">お仕事・取材の依頼</a>　</td>
+	</tr>
+	<tr>
+		<td><img src="image/spacer.gif" width="1" height="8"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#F5E156"><img src="image/spacer.gif" width="1" height="5"></td>
+	</tr>
+</table>
+<!-- フッターナビゲーションここまで -->
+<br>
+<!-- フッター -->
+<div align="center" style="padding:10px; margin:15px 0px 0px 0px; border:2px solid #CCCCCC; width:800px;">
+<table width="820" border="0" cellpadding="1" cellspacing="0">
+    <tr>
+        <td width="50" valign="top"><a href="http://privacymark.jp" target="_blank"><img src= ./image/pmark.gif hspace="0" vspace="0" border="0" align="left"></a></td>
+        <td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+        <td align="left" class="char140xxs">株式会社○○○○○○はプライバシーマークを取得しています。<br>当社の「個人情報保護方針」は<a href="http://www.xxxxxxx.co.jp/info/privacypolicy.html" target="_blank">こちら</a>です。
+            <div style="margin:3px 0px 8px 0px;">
+            <table border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td width="12"><img src="http://www.xxxxxxx.co.jp/images/f_arrow.gif" width="12" height="12"></td>
+                    <td width="2"><img src="image/spacer.gif" width="2" height="1"></td>
+                    <td valign="middle" class="char140xxs"><a href="http://www.xxxxxxx.co.jp/" target="_blank">マーケターの皆様へ（会社概要）</a></td>
+                    <td width="5"><img src="image/spacer.gif" width="5" height="1"></td>
+                    <td width="12"><img src="http://www.xxxxxxx.co.jp/images/f_arrow.gif" width="12" height="12"></td>
+                    <td width="2"><img src="image/spacer.gif" width="2" height="1"></td>
+                    <td class="char140xxs"><a href="http://www.xxxxxxx.co.jp/monitor/" target="_blank">生活者の皆様へ（モニター登録）</a></td>
+                    <td width="5"><img src="image/spacer.gif" width="5" height="1"></td>
+                    <td width="12"><img src="http://www.xxxxxxx.co.jp/images/f_arrow.gif" width="12" height="12"></td>
+                    <td width="2"><img src="image/spacer.gif" width="2" height="1"></td>
+                    <td class="char140xxs"><a href="index.php?module=contents&content_id=4">ウェブサイトプライバシーポリシー</a></td>
+                </tr>
+            </table>
+            </div>
+              Copyright 2009 xx xxxxx Inc. All Rights Reserved. 本サイトは、<a href="http://www.xxxxxxx.co.jp/" target="_blank">株式会社○○○○○○</a>により運営されております。</td>
+    </tr>
+</table>
+</div>
+<br>
+<!-- フッターここまで -->
+</div>
+</body>
+</html>

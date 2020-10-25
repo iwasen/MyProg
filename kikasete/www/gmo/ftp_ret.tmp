@@ -1,0 +1,13 @@
+Connected to 211.133.248.151 (211.133.248.151).
+220 (vsFTPd 2.0.5)
+331 Please specify the password.
+230 Login successful.
+250 Directory successfully changed.
+Local directory now /tmp
+200 Switching to Binary mode.
+local: batch.csv remote: batch.csv
+227 Entering Passive Mode (211,133,248,151,164,2)
+150 Ok to send data.
+226 File receive OK.
+13981614 bytes sent in 1.06 secs (1.3e+04 Kbytes/sec)
+221 Goodbye.

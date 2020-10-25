@@ -1,0 +1,515 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>メルマガ基本情報</TITLE>
+<script language="JavaScript">
+<!--
+function MM_openBrWindow(theURL,winName,features) { //v2.0
+  window.open(theURL,winName,features);
+}
+//-->
+</script>
+<link rel="stylesheet" href="../css/melonpan.css">
+<style type="text/css">
+<!--
+.catmidashi {  font-size: 10pt; font-weight: bold; color: #006600}
+.catcont {  font-size: 9pt; line-height: 150%; color: #666666}
+-->
+</style>
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600">
+<? include("header.php"); ?>
+<form name="form1" action="magazine.php" method="post">
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="650" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="100%" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+<TD>
+<p><font color="#006600"><b><font color="#006600"><b>■メルマガ基本情報</b></font></b></font>
+<div align="right"><a href="#"  class="text9ptnoColor" onClick="MM_openBrWindow('../index.php','','scrollbars=yes,resizable=yes,width=700,height=400')">[他のメルマガを参考にしてみる]</a></div>
+<P></p>
+
+<p class="text01">　つづいて、あなたの発行するメルマガの特徴について教えてください。めろんぱんは、みなさんの作る素晴らしいメルマガをよりわかりやすく、よりたくさんの読者の人たちに伝えようと思っています。紹介文等に不備がありますと、『仮登録』審査がおりない場合がありますのでご注意ください。</p>
+<table border="0" cellspacing="1" width="644" cellpadding="3" align="center">
+<tr>
+<td width="18" bgcolor="#006600" align="center"><b><font color="#FFFFCC">1</font></b></td>
+<td valign="top" width="201" bgcolor="#E8E8E8"><b><font color="#006600"><SPAN CLASS="text9ptnoColor">基本メールアドレス</SPAN><br>
+</font></b><font class="text9pt">（事務局連絡用・非公開） </font></td>
+<td width="425" bgcolor="#E8E8E8"> <? echo $mail_add_main; ?></td>
+</tr>
+<tr>
+<td width="18" bgcolor="#006600" align="center"><b><font color="#FFFFCC">2</font></b></td>
+<td valign="top" width="201"><b><font color="#006600" CLASS="text9ptnoColor">めるめる・net　ID</font></b></td>
+<td width="425">
+<input type="text" name="melmel_id" size="6" maxlength="5">
+<br>
+<span class="text9pt">※半角数字で入力してください。</span> <span class="text9pt"><br>
+※めるめる・netとは、株式会社○○○○○○の別事業で優良５行広告配信サービスです。もし既にそちらのメルマガIDをお持ちの方はご記入ください。お持ちでない方は空欄のままで結構です。</span>
+</td>
+</tr>
+
+
+
+<tr>
+<td width="18" bgcolor="#006600" align="center"><b><font color="#FFFFCC">3</font></b></td>
+<td valign="top" width="201" bgcolor="#E8E8E8">
+<p><b><font color="#006600"><SPAN CLASS="text9ptnoColor">メルマガ発行元メールアドレス</SPAN></font></b><br>
+<span class="text9pt">（読者向け・公開）</span></p>
+</td>
+<td width="425" bgcolor="#E8E8E8">
+<input type="text" name="mail_add_publish" value="<? echo $mail_add_main; ?>" size="44">
+<br>
+<span class="text9pt">※半角英数で入力してください </span><br>
+<span class="text9pt">※基本メールアドレスと同じでもかまいません</span> </td>
+</tr>
+
+<tr>
+<td width="18" bgcolor="#006600" align="center"><b><font color="#FFFFCC">4</font></b></td>
+<td valign="top" width="201">
+<p><b><font color="#006600"><SPAN CLASS="text9ptnoColor">メルマガタイトル</SPAN><br>
+<img src="../img/shim.gif" width="170" height="1"> </font></b></p>
+<p class="text9pt">　</p>
+<p><a href="#" onClick="MM_openBrWindow('kisyumoji.html','','width=300,height=400')" class="text9pt">[使用可能な記号・文字一覧]</a></p>
+</td>
+<td width="425">
+<textarea name="mag_nm" cols="44" rows="3" wrap="VIRTUAL"></textarea>
+<br>
+<span class="text9pt">※送信時のSUBJECTはNo.19で指定するか、配信予約時に入力します。<br>※半角80字、全角40字まで。<br>
+※半角カナは使用できません。半角カナを入力しても自動的に全角に変換されます</span></td>
+</tr>
+
+
+<tr>
+<td width="18" bgcolor="#006600" align="center"><b><font color="#FFFFCC">5</font></b></td>
+<td valign="top" width="201" bgcolor="#E8E8E8">
+<p><b><font color="#006600"><SPAN CLASS="text9ptnoColor">メルマガ紹介文[ロング]</SPAN></font></b><br>
+<span class="text9pt">（全角250文字以内）</span></p>
+</td>
+<td width="425" bgcolor="#E8E8E8">
+<textarea name="mag_intro_long" cols="44" rows="6" wrap="VIRTUAL"></textarea>
+<br>
+<span class="text9pt">※メルマガの内容がわかりやすいようにアピールしましょう！　内容に関する単語も入れておくと検索時にヒットしやすくなります<BR>
+※半角カナは使用できません。半角カナを入力しても自動的に全角に変換されます</span></td>
+</tr>
+
+<tr>
+<td width="18" bgcolor="#006600" align="center"><b><font color="#FFFFCC">6</font></b></td>
+<td valign="top" width="201">
+<p><b><font color="#006600"><SPAN CLASS="text9ptnoColor">メルマガ紹介文[ショート]</SPAN></font></b><br>
+<span class="text9pt">（全角50文字以内）</span></p>
+</td>
+<td width="425">
+<textarea name="mag_intro_short" cols="44" rows="3" wrap="VIRTUAL"></textarea>
+<BR>
+<SPAN CLASS="text9pt">※半角カナは使用できません。半角カナを入力しても自動的に全角に変換されます</SPAN> </td>
+</tr>
+
+<tr>
+<td width="18" bgcolor="#006600" align="center"><b><font color="#FFFFCC">7</font></b></td>
+<td valign="top" width="201" bgcolor="#E8E8E8">
+<p><b><font color="#006600" CLASS="text9ptnoColor">ホームページURL(任意)</font></b></p>
+<p class="text9pt">　</p>
+</td>
+<td width="425" bgcolor="#E8E8E8">
+<input type="text" name="mag_hp" size="44" value="http://">
+<br>
+<span class="text9pt">※メルマガの説明が書いてあるWEBページがあれば、そちらを記入してください</span> <br>
+<span class="text9pt">※半角英数で入力してください </span> </td>
+</tr>
+
+<tr>
+<td width="18" bgcolor="#006600" align="center"><b><font color="#FFFFCC">8</font></b></td>
+<td valign="top" width="201">
+<p><b><font color="#006600"><SPAN CLASS="text9ptnoColor">タイプ</SPAN></font></b>
+</p>
+</td>
+<td width="425"> <? make_type_box("00000000"); ?> <span class="text9pt"><BR>
+                          ※ 現在は「テキストのみ」しか選択できません。</span></td>
+
+<tr>
+<td width="18" bgcolor="#006600" align="center"><b><font color="#FFFFCC">9</font></b></td>
+<td valign="top" width="201" bgcolor="#E8E8E8">
+<p><font color="#006600"><b CLASS="text9ptnoColor">発行周期</b></font></p>
+<p class="text9pt">　</p>
+</td>
+<td width="425" bgcolor="#E8E8E8">
+<p>
+<input type="text" name="mag_cycle_day" size="40">
+</p>
+<p class="text9pt">記入例：日刊、週刊、月刊、月水金、毎週○曜日、 　　　<br>
+　　　　　毎月○日、週○回、月○回、不定期　etc<BR>
+<BR>
+<SPAN CLASS="text9pt">※半角カナは使用できません。半角カナを入力しても自動的に全角に変換されます</SPAN><br>
+※全角20文字以内で入力してください。 </p>
+</td>
+</tr>
+
+
+<tr>
+<td colspan="3" bgcolor="#FFFFFF">
+<hr size="1">
+<span class="text9pt">めろんぱんでは、読者の方へカテゴリ・気分・対象でメルマガを選んでいただ けるようになっています。あなたのメルマガはどんな人に読んでもらいたいですか？（これで、読者が限定されてしまうわけではありません。あくまで目安です。 ただ、読者の方が選びやすくなるというメリットがあるのでご協力ください。）</span></td>
+</tr>
+
+<tr>
+<td rowspan="2" bgcolor="#006600" align="center"><b><font color="#FFFFCC">10</font></b></td>
+<td valign="top" colspan="2" bgcolor="#E8E8E8">
+<p><b><font color="#006600"><SPAN CLASS="text9ptnoColor">カテゴリ</SPAN></font></b><SPAN CLASS="text9ptnoColor"><font color="#006600">　（20カテゴリ／273項目）</font></SPAN></p>
+<p class="text9pt">※<font color="#CC0000">全273項目の中から合計2項目</font>選択してください。違うカテゴリから選択すると、紹介される機会がより増えます。
+</p>
+</td>
+</tr>
+
+
+<tr>
+<td valign="top" colspan="2">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr bgcolor="#E8FFD0">
+<td class="catmidashi">■ニュース</td>
+</tr>
+<tr>
+<td class="catcont"> <? make_catg_box("01", "0000", "0000"); ?> <br>
+<br>
+</td>
+</tr>
+<tr bgcolor="#E8FE9A">
+<td class="catmidashi">■エンターテイメント</td>
+</tr>
+<tr>
+<td class="catcont"> <? make_catg_box("02", "0000", "0000"); ?> <br>
+<br>
+</td>
+</tr>
+<tr bgcolor="#E8FFD0">
+<td class="catmidashi">■スポーツ・レジャー</td>
+</tr>
+<tr>
+<td class="catcont"> <? make_catg_box("03", "0000", "0000"); ?> <br>
+<br>
+</td>
+</tr>
+<tr bgcolor="#E8FE9A">
+<td class="catmidashi">■アート・文芸</td>
+</tr>
+<tr>
+<td class="catcont"> <? make_catg_box("04", "0000", "0000"); ?> <br>
+<br>
+</td>
+</tr>
+<tr bgcolor="#E8FFD0">
+<td class="catmidashi">■ファッション・美容</td>
+</tr>
+<tr>
+<td class="catcont"> <? make_catg_box("05", "0000", "0000"); ?> <br>
+<br>
+</td>
+</tr>
+<tr bgcolor="#E8FE9A">
+<td class="catmidashi">■ショッピング</td>
+</tr>
+<tr>
+<td class="catcont" height="77"> <? make_catg_box("06", "0000", "0000"); ?> <br>
+<br>
+</td>
+</tr>
+<tr bgcolor="#E8FFD0">
+<td class="catmidashi">■暮らしと健康</td>
+</tr>
+<tr>
+<td class="catcont"> <? make_catg_box("07", "0000", "0000"); ?> <br>
+<br>
+</td>
+</tr>
+<tr bgcolor="#E8FE9A">
+<td class="catmidashi">■旅行</td>
+</tr>
+<tr>
+<td class="catcont"> <? make_catg_box("08", "0000", "0000"); ?> <br>
+<br>
+</td>
+</tr>
+<tr bgcolor="#E8FFD0">
+<td class="catmidashi">■グルメ・レストラン</td>
+</tr>
+<tr>
+<td class="catcont"> <? make_catg_box("09", "0000", "0000"); ?> <br>
+<br>
+</td>
+</tr>
+<tr bgcolor="#E8FE9A">
+<td class="catmidashi">■趣味</td>
+</tr>
+<tr>
+<td class="catcont"> <? make_catg_box("10", "0000", "0000"); ?> <br>
+<br>
+</td>
+</tr>
+<tr bgcolor="#E8FFD0">
+<td class="catmidashi">■企業・ビジネス</td>
+</tr>
+<tr>
+<td class="catcont"> <? make_catg_box("11", "0000", "0000"); ?> <br>
+<br>
+</td>
+</tr>
+<tr bgcolor="#E8FE9A">
+<td height="13" class="catmidashi">■就職・転職</td>
+</tr>
+<tr>
+<td class="catcont"> <? make_catg_box("12", "0000", "0000"); ?> <br>
+<br>
+</td>
+</tr>
+<tr bgcolor="#E8FFD0">
+<td class="catmidashi">■コンピュータ・インターネット</td>
+</tr>
+<tr>
+<td class="catcont"> <? make_catg_box("13", "0000", "0000"); ?> <br>
+<br>
+</td>
+</tr>
+<tr bgcolor="#E8FE9A">
+<td class="catmidashi">■学習・資格</td>
+</tr>
+<tr>
+<td class="catcont"> <? make_catg_box("14", "0000", "0000"); ?> <br>
+<br>
+</td>
+</tr>
+<tr bgcolor="#E8FFD0">
+<td class="catmidashi">■情報源</td>
+</tr>
+<tr>
+<td class="catcont"> <? make_catg_box("15", "0000", "0000"); ?> <br>
+<br>
+</td>
+</tr>
+<tr bgcolor="#E8FE9A">
+<td class="catmidashi">■地域／タウン情報</td>
+</tr>
+<tr>
+<td class="catcont"> <? make_catg_box("16", "0000", "0000"); ?> <br>
+<br>
+</td>
+</tr>
+<tr bgcolor="#E8FFD0">
+<td class="catmidashi">■学校など</td>
+</tr>
+<tr>
+<td class="catcont"> <? make_catg_box("17", "0000", "0000"); ?> <br>
+<br>
+</td>
+</tr>
+<tr bgcolor="#E8FE9A">
+<td class="catmidashi">■出会い</td>
+</tr>
+<tr>
+<td class="catcont">
+<p> <? make_catg_box("18", "0000", "0000"); ?> <br>
+<br>
+</p>
+</td>
+</tr>
+<tr bgcolor="#E8FFD0">
+<td class="catmidashi">■科学・技術</td>
+</tr>
+<tr>
+<td class="catcont"> <? make_catg_box("19", "0000", "0000"); ?> <br>
+<br>
+</td>
+</tr>
+<tr bgcolor="#E8FE9A">
+<td class="catmidashi">■政治・行政</td>
+</tr>
+<tr>
+<td class="catcont"> <? make_catg_box("20", "0000", "0000"); ?> <br>
+<br>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+<table width="644">
+<tr>
+<td>
+<!-- 読む背景から下-->
+<table width="644" cellpadding="3" cellspacing="1" border="0">
+<tr>
+<td rowspan="2" bgcolor="#006600" align="center" width="18"><b><font color="#FFFFCC">11</font></b></td>
+<td valign="top" colspan="2" bgcolor="#E8E8E8">
+<p><b><font color="#006600"><SPAN CLASS="text9ptnoColor">読む背景（気分で選ぶ）　</SPAN></font></b><SPAN CLASS="text9ptnoColor"><font color="#006600">（40項目）</font>
+</SPAN>
+<p><font class="text9pt">※<font color="#CC0000">全40項目の中から合計2項目</font>選択してください</font></p>
+</td>
+</tr>
+<tr bgcolor="#CCFFCC">
+<td valign="top" colspan="2" bgcolor="#FFFFFF">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="50%" valign="top">
+<table width="100%" border="0" cellpadding="0" cellspacing="1">
+<tr>
+<td> <? make_bg_box("01", "00000", "00000", "#FEF7D1"); ?> <? make_bg_box("02", "00000", "00000", "#FEE29A"); ?>
+<? make_bg_box("03", "00000", "00000", "#FEF7D1"); ?> <? make_bg_box("04", "00000", "00000", "#FEE29A"); ?>
+</td>
+</tr>
+</table>
+</td>
+<td width="50%">
+<table width="100%" border="0" cellpadding="0" cellspacing="1">
+<tr>
+<td> <? make_bg_box("05", "00000", "00000", "#FEF7D1"); ?> <? make_bg_box("06", "00000", "00000", "#FEE29A"); ?>
+<? make_bg_box("07", "00000", "00000", "#FEF7D1"); ?> </td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<tr>
+<td bgcolor="#006600" align="center" width="18"><b><font color="#FFFFCC">12</font></b></td>
+<td valign="top" width="216"  bgcolor="#E8E8E8" CLASS="text9ptnoColor"><b><font color="#006600">とくに読んでもらいたい性別</font></b></td>
+<td width="378" bgcolor="#E8E8E8"> <? make_sex_box("0"); ?> </td>
+</tr>
+<tr>
+<td bgcolor="#006600" align="center" width="18"><b><font color="#FFFFCC">13</font></b></td>
+<td valign="top" width="216" CLASS="text9ptnoColor"><b><font color="#006600">とくに読んでもらいたい年代</font></b></td>
+<td width="378"> <? make_age_box("00"); ?> </td>
+</tr>
+<tr>
+<td bgcolor="#006600" align="center" width="18"><b><font color="#FFFFCC">14</font></b></td>
+<td valign="top" width="216" bgcolor="#E8E8E8" CLASS="text9ptnoColor"><b><font color="#006600">とくに読んでもらいたいエリア</font></b></td>
+<td width="378" bgcolor="#E8E8E8"> <? make_area_box("00000000"); ?> </td>
+</tr>
+<tr>
+<td bgcolor="#006600" align="center" width="18"><b><font color="#FFFFCC">15</font></b></td>
+<td valign="top" width="216" CLASS="text9ptnoColor"><b><font color="#006600">とくに読んでもらいたい職業</font></b></td>
+<td width="378">
+<select name="mag_reader_occup">
+<option>選択してください</option>
+<? make_occup_box("00000000"); ?>
+</select>
+</td>
+</tr>
+
+<tr>
+<td bgcolor="#006600" align="center" width="18"><b><font color="#FFFFCC">16</font></b></td>
+<td valign="top" width="216" bgcolor="#E8E8E8" CLASS="text9ptnoColor">
+<p><b><font color="#006600">バックナンバーの公開／非公開</font></b></p>
+</td>
+<td width="378" bgcolor="#E8E8E8">
+<p> <? make_bn_pub_box("0"); ?> </p>
+</td>
+</tr>
+
+<tr>
+<td bgcolor="#006600" align="center" width="18"><b><font color="#FFFFCC">17</font></b></td>
+<td valign="top" width="216" CLASS="text9ptnoColor">
+<p><b><font color="#006600">プレゼント応募券の挿入</font></b></p>
+</td>
+<td width="378">
+<p> <? make_present_ins_box("1"); ?><br>
+<span class="text9pt">※めろんぱんでは定期的に読者プレゼントを行なっております。「挿入する」をチェックされた場合は、読者プレゼントを
+行なう際に、メルマガのフッターをお借りしまして、応募券を挿入させていただきます。挿入を希望されない方は、
+「挿入しない」をチェックしてください。</span></p>
+</td>
+</tr>
+<!------------------>
+<tr>
+<td bgcolor="#006600" align="center" width="18"><b><font color="#FFFFCC">18</font></b></td>
+<td valign="top" width="216" bgcolor="#E8E8E8" CLASS="text9ptnoColor">
+<p><font color="#006600"><b>配信メルマガのfromアドレス</b>(任意)</font><br>
+<span class="text9pt">（全角50文字以内）</span></p>
+</td>
+<td width="378" bgcolor="#E8E8E8">
+<input type="text" name="mag_from_addr" maxlength=100 size="44">
+<br>
+<span class="text9pt">※めろんぱんのメルマガは全て &ltmagazine@melonpan.net&gt から届きます。こちらに入力していただくと、
+&ltmagazine@melonpan.net&gtの前に、メルマガ名や発行者名など、送信元名を指定していただくことができます。
+<br>
+ex ．めろんぱんレター&ltmagazine@melonpan.net&gt
+<br>
+　　　中島　明&ltmagazine@melonpan.net&gt</span><br></td>
+</tr>
+
+<tr>
+<td bgcolor="#006600" align="center" width="18"><b><font color="#FFFFCC">19</font></b></td>
+<td valign="top" width="216" CLASS="text9ptnoColor">
+<p><font color="#006600"><b>配信メルマガのサブジェクト</b>(任意)</font><br>
+<span class="text9pt">（全角40文字以内）</span></p>
+</td>
+<td width="378">
+<input type="text" name="mag_subject_tmpl" maxlength=80 size="55">
+<br>
+<span class="text9pt">※メルマガサブジェクト（件名）をあらかじめ指定しておくことができます。配信予約時に変更することも可能です。半角カナは使用できません。</span> </td>
+</tr>
+
+<tr>
+<td bgcolor="#006600" align="center" width="18"><b><font color="#FFFFCC">20</font></b></td>
+<td valign="top" width="216" bgcolor="#E8E8E8" CLASS="text9ptnoColor">
+<p><font color="#006600"><b>メルマガヘッダのテンプレート</b>(任意)</font><BR>
+<span class="text9pt">（全角2000文字以内）</span></p>
+</td>
+<td width="378" bgcolor="#E8E8E8">
+<textarea name="mag_header_tmpl" cols="50" rows="4" maxlength=4000 wrap="VIRTUAL"></textarea>
+<br>
+<span class="text9pt">※メルマガのヘッダをあらかじめ指定しておくことができます。配信予約時に変更することも可能です。半角カナは使用できません。</span></td>
+</tr>
+
+<tr>
+<td bgcolor="#006600" align="center" width="18"><b><font color="#FFFFCC">21</font></b></td>
+<td valign="top" width="216" CLASS="text9ptnoColor">
+<p><font color="#006600"><b>メルマガフッタのテンプレート</b>(任意)</font><BR>
+<span class="text9pt">（全角2000文字以内）</span></p>
+</td>
+<td width="378">
+<textarea name="mag_footer_tmpl" cols="50" rows="6" maxlength=4000 wrap="VIRTUAL"></textarea>
+<br>
+<span class="text9pt">※メルマガのフッタをあらかじめ指定しておくことができます。配信予約時に変更することも可能です。半角カナは使用できません。</span></td>
+</tr>
+
+<tr>
+<td bgcolor="#006600" align="center" width="18"><b><font color="#FFFFCC">22</font></b></td>
+<td valign="top" width="216" bgcolor="#E8E8E8" CLASS="text9ptnoColor">
+<p><b><font color="#006600">めろんぱんオリジナル</font></b></p>
+</td>
+<td width="378" bgcolor="#E8E8E8">
+<p> <? make_original_box("2"); ?> </p></td>
+</tr>
+<tr>
+<td bgcolor="#006600" align="center" width="18"><b><font color="#FFFFCC">23</font></b></td>
+<td valign="top" width="216" CLASS="text9ptnoColor">
+<p><b><font color="#006600">配信結果通知メール</font></b></p>
+</td>
+<td width="378">
+<p> <? make_send_notice_box("2"); ?> </p></td>
+</tr>
+<!------------------>
+</table>
+<p><span class="text01">すべて入力し終わりましたか？　登録内容は、発行者用管理ページでいつでも変更ができます。記入漏れや間違いがなければ、下の[登録確認]ボタンを押してください。</span></p>
+<div align="right">
+<input type="submit" value="登録確認" name="mm_insert">
+<input type="hidden" value="<? echo $owner_pswd; ?>" name="owner_pswd">
+<input type="hidden" value="<? echo $publisher_id; ?>" name="publisher_id">
+<input type="hidden" value="<? echo $mag_id; ?>" name="mag_id">
+<input type="hidden" value="<? echo $mail_add_main; ?>" name="mail_add_main">
+<input type="hidden" value="<? echo $next_job_flg; ?>" name="job_flg">
+</div>
+</table>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<? include("footer.php"); ?>
+</TABLE></form>
+</body>
+</html>

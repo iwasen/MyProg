@@ -1,0 +1,24 @@
+[PropertyInfo]
+attribute,String[],false,false, , ,true,<default>
+attributeFlg,boolean,false,false, , ,true,<default>
+category,String,false,false, , ,true,<default>
+condition,String,false,false, , ,true,<default>
+corner,String,false,false, , ,true,<default>
+cornerdepth,String,false,false, , ,true,<default>
+dateFrom,String,false,false, , ,true,<default>
+dateTo,String,false,false, , ,true,<default>
+fromDateD,String,false,false, , ,true,<default>
+fromDateM,String,false,false, , ,true,<default>
+fromDateY,String,false,false, , ,true,<default>
+group,String,false,false, , ,true,<default>
+order,String,false,false, , ,true,<default>
+page,String,false,false, , ,true,<default>
+table,String,false,false, , ,true,<default>
+toDateD,String,false,false, , ,true,<default>
+toDateM,String,false,false, , ,true,<default>
+toDateY,String,false,false, , ,true,<default>
+[IconNames]
+
+
+
+

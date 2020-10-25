@@ -1,0 +1,93 @@
+BODY {
+	FONT-SIZE: 12px; FONT-FAMILY: "Osaka"
+}
+FORM {
+	MARGIN: 0px
+}
+.form {
+	FONT-SIZE: 12px; FONT-FAMILY: "Osaka"
+}
+.textbox {
+	FONT-SIZE: 12px; FONT-FAMILY: "Osaka"
+}
+.textbox10 {
+	FONT-SIZE: 10px; FONT-FAMILY: "Osaka"
+}
+.button {
+	FONT-SIZE: 12px; FONT-FAMILY: "Osaka"
+}
+.button_s {
+	FONT-SIZE: 10px; FONT-FAMILY: "Osaka"
+}
+.text10 {
+	FONT-SIZE: 10px; LINE-HEIGHT: 125%; FONT-FAMILY: "Osaka"
+}
+.text12 {
+	FONT-SIZE: 12px; LINE-HEIGHT: 125%; FONT-FAMILY: "Osaka"
+}
+.text12b {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; LINE-HEIGHT: 125%; FONT-FAMILY: "Osaka"
+}
+.text14 {
+	FONT-SIZE: 14px; LINE-HEIGHT: 125%; FONT-FAMILY: "Osaka"
+}
+.text14b {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; LINE-HEIGHT: 125%; FONT-FAMILY: "Osaka"
+}
+.text16 {
+	FONT-SIZE: 16px; LINE-HEIGHT: 125%; FONT-FAMILY: "Osaka"
+}
+.text16b {
+	FONT-WEIGHT: bold; FONT-SIZE: 16px; LINE-HEIGHT: 200%; FONT-FAMILY: "Osaka"
+}
+PRE {
+	FONT-SIZE: 12px; LINE-HEIGHT: 140%; FONT-FAMILY: "OsakaÅ|ìôïù","ÇlÇr ÉSÉVÉbÉN"
+}
+PRE A:link {
+	COLOR: #0000a0; TEXT-DECORATION: none
+}
+PRE A:visited {
+	COLOR: #2f2fff; TEXT-DECORATION: none
+}
+PRE A:hover {
+	COLOR: #ff0000; BACKGROUND-COLOR: #fbfed1; TEXT-DECORATION: underline
+}
+PRE A:active {
+	COLOR: #ff0000; BACKGROUND-COLOR: #fbfed1; TEXT-DECORATION: underline
+}
+#viewoption A:link {
+	COLOR: #0000a0; TEXT-DECORATION: none
+}
+#viewoption A:visited {
+	COLOR: #0000a0; TEXT-DECORATION: none
+}
+#viewoption A:hover {
+	COLOR: #0000a0; TEXT-DECORATION: underline
+}
+#viewoption A:active {
+	COLOR: #0000a0; TEXT-DECORATION: underline
+}
+#backtotop A:link {
+	FONT-SIZE: 12px; COLOR: #0000a0; TEXT-DECORATION: none
+}
+#backtotop A:visited {
+	FONT-SIZE: 12px; COLOR: #0000a0; TEXT-DECORATION: none
+}
+#backtotop A:hover {
+	FONT-SIZE: 12px; COLOR: #0000a0; TEXT-DECORATION: underline
+}
+#backtotop A:active {
+	FONT-SIZE: 12px; COLOR: #0000a0; TEXT-DECORATION: underline
+}
+.line0 {
+	BACKGROUND-COLOR: #ffffff
+}
+.line1 {
+	BACKGROUND-COLOR: #e4e8f8
+}
+.line2 {
+	BACKGROUND-COLOR: #9df9b7
+}
+.red {
+	COLOR: #ff0000
+}

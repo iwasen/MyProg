@@ -1,0 +1,57 @@
+<html>
+<body>
+<pre>
+<h1>ﾋﾞﾙﾄﾞのﾛｸﾞ</h1>
+<h3>
+--------------------構成: CapDll - Win32 Release_Eng--------------------
+</h3>
+<h3>ｺﾏﾝﾄﾞ ﾗｲﾝ</h3>
+Creating command line "rc.exe /l 0x409 /fo"Release_Eng/Capdll.res" /d "NDEBUG" /d "AFX_RESOURCE_DLL" /d "AFX_TARG_NEU" /d "AFX_TARG_ENU" "D:\AIZAWA\MMLib\CapDll\Capdll.rc"" 
+一時ﾌｧｲﾙ "C:\DOCUME~1\aizawa\LOCALS~1\Temp\RSP185.tmp" を作成し、次の内容を記録します
+[
+/nologo /MT /W3 /WX /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /Fp"Release_Eng/CapDll.pch" /YX /Fo"Release_Eng/" /Fd"Release_Eng/" /FD /c 
+"D:\AIZAWA\MMLib\CapDll\AUDPLAY.C"
+"D:\AIZAWA\MMLib\CapDll\CAPDLL.C"
+"D:\AIZAWA\MMLib\CapDll\DIALOGS.C"
+"D:\AIZAWA\MMLib\CapDll\DIB.C"
+"D:\AIZAWA\MMLib\CapDll\MULDIVAV.C"
+]
+Creating command line "cl.exe @C:\DOCUME~1\aizawa\LOCALS~1\Temp\RSP185.tmp" 
+一時ﾌｧｲﾙ "C:\DOCUME~1\aizawa\LOCALS~1\Temp\RSP186.tmp" を作成し、次の内容を記録します
+[
+kernel32.lib user32.lib gdi32.lib winmm.lib vfw32.lib largeint.lib libcmt.lib /nologo /subsystem:windows /dll /incremental:no /pdb:"Release_Eng/CapDll32.pdb" /machine:I386 /nodefaultlib /def:".\CAPDLL.DEF" /out:"Release_Eng\CapDll32.dll" /implib:"Release_Eng/CapDll32.lib" 
+.\Release_Eng\AUDPLAY.OBJ
+.\Release_Eng\CAPDLL.OBJ
+.\Release_Eng\DIALOGS.OBJ
+.\Release_Eng\DIB.OBJ
+.\Release_Eng\MULDIVAV.OBJ
+.\Release_Eng\Capdll.res
+]
+ｺﾏﾝﾄﾞ ﾗｲﾝ "link.exe @C:\DOCUME~1\aizawa\LOCALS~1\Temp\RSP186.tmp" の作成中
+一時ﾌｧｲﾙ "C:\DOCUME~1\aizawa\LOCALS~1\Temp\RSP187.bat" を作成し、次の内容を記録します
+[
+@echo off
+copy .\Release_Eng\CapDll32.dll ..
+]
+ｺﾏﾝﾄﾞ ﾗｲﾝ "C:\DOCUME~1\aizawa\LOCALS~1\Temp\RSP187.bat" の作成中
+ﾘｿｰｽをｺﾝﾊﾟｲﾙ中...
+ｺﾝﾊﾟｲﾙ中...
+AUDPLAY.C
+CAPDLL.C
+DIALOGS.C
+DIB.C
+MULDIVAV.C
+ﾘﾝｸ中...
+   ﾗｲﾌﾞﾗﾘ Release_Eng/CapDll32.lib とｵﾌﾞｼﾞｪｸﾄ Release_Eng/CapDll32.exp を作成中
+LINK : warning LNK4089: "AVIFIL32.dll" へのすべての参照は /OPT:REF によって廃棄されます
+<h3>ｱｳﾄﾌﾟｯﾄ ｳｨﾝﾄﾞｳ</h3>
+ｶｽﾀﾑ ﾋﾞﾙﾄﾞ ｽﾃｯﾌﾟを実行中 -  .\Release_Eng\CapDll32.dll
+        1 個のファイルをコピーしました。
+
+
+
+<h3>結果</h3>
+CapDll32.dll - ｴﾗｰ 0、警告 1
+</pre>
+</body>
+</html>

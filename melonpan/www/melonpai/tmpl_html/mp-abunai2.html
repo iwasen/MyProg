@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<title></title>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600" leftmargin="0" marginwidth="0">
+
+<? draw_head2(".."); ?>
+
+<br>
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="513" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+<TD>
+<table width="500" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr>
+<td>
+<P><B><FONT COLOR="#99CCFF">■</FONT><FONT COLOR="#003399">危ないよメルマガ解除</FONT></B>
+</P>
+<P>【処理結果】<? echo $kekka_msg; ?></P>
+<P><? echo $last_msg; ?></P>
+<P>
+<table><tr><td>
+<form name="fom_sarch" action="mp-abunai-list.php" method="post">
+<input type="hidden" value="<? echo $melonpai_id ?>" name="melonpai_id">
+<input type="hidden" value="<? echo $melonpai_pswd ?>" name="melonpai_pswd">
+<input type="hidden" value="<? echo $melonpai_name ?>" name="melonpai_name">
+<input type="hidden" value=<? echo $page_no ?> name="page_no">
+<A HREF="JavaScript:document.fom_sarch.submit();">
+&lt;&lt;&lt;　あぶないよ一覧に戻る
+</A></form>
+</td><td>
+<form name="mypage" action="mypage.php" method="post">
+<input type="hidden" value="<? echo $melonpai_id ?>" name="melonpai_id">
+<input type="hidden" value="<? echo $melonpai_pswd ?>" name="melonpai_pswd">
+<input type="hidden" value="<? echo $melonpai_name ?>" name="melonpai_name">
+<a href="JavaScript:document.mypage.submit();">
+　　&lt;&lt;&lt;　メルマガナビ　マイページへ戻る </a>
+</form>
+</td></tr></table>
+</P>
+</td>
+</tr>
+</table>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+<table>
+<br>
+<br>
+</table>
+</TD>
+</TR>
+
+<? draw_footer2(".."); ?>
+
+</TABLE>
+</body>
+</html>

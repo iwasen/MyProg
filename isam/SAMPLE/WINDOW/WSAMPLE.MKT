@@ -1,0 +1,6 @@
+wsample.exe : wsample.obj isaml.lib gwll.lib
+	$(CC) -ml -K wsample.obj isaml.lib gwll.lib
+
+wsample.obj : wsample.c
+	$(CC) -c -ml -K wsample.c
+

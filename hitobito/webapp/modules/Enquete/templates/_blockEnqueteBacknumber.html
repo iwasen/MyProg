@@ -1,0 +1,43 @@
+<table width="200" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td colspan="5"><img src="image/menu_navi_enq_ttl.gif" width="200" height="35" alt="アンケート実施中"></td>
+	</tr>
+	<tr>
+		<td width="2" bgcolor="#FFCC33"><img src="image/spacer.gif" width="2" height="1"></td>
+		<td width="8"><img src="image/spacer.gif" width="8" height="1"></td>
+		<td width="180">
+			<table width="180" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td colspan="2" class="char120">ナビが実施中のアンケートにご協力ください。</td>
+				</tr>
+				<tr>
+					<td width="16"><img src="image/spacer.gif" width="16" height="1"></td>
+					<td width="164"><img src="image/spacer.gif" width="164" height="1"></td>
+				</tr>
+				<tr>
+					<td colspan="2"><img src="image/spacer.gif" width="1" height="7"></td>
+				</tr>
+<{foreach from=$enquete_list_ary item=enquete_list}>
+				<tr>
+					<td valign="top"><img src="image/menu_enq_point.gif" width="16" height="12"></td>
+					<td valign="top" class="char120"><a href="?module=Enquete&action=AnswerEnquete&navipage_id=<{$enquete_list.navi_page_id}>&enquete_id=<{$enquete_list.enquete_id}>"><{$enquete_list.title|escape}></a></td>
+				</tr>
+<{/foreach}>
+				<tr>
+					<td colspan="2"><img src="image/spacer.gif" width="1" height="8"></td>
+				</tr>
+				<tr align="right">
+					<td colspan="2"><a href="?module=Enquete&action=ListEnquete&navipage_id=<{$navi_page_id}>"><img src="image/menu_navi_enq_btn_all.gif" width="80" height="16" border="0" alt="すべて表示"></a></td>
+				</tr>
+			</table>
+		</td>
+		<td width="8"><img src="image/spacer.gif" width="8" height="1"></td>
+		<td width="2" bgcolor="#FFCC33"><img src="image/spacer.gif" width="2" height="1"></td>
+	</tr>
+	<tr bgcolor="#FFCC33">
+		<td colspan="5"><img src="image/spacer.gif" width="1" height="2"></td>
+  </tr>
+	<tr>
+		<td colspan="5"><img src="image/spacer.gif" width="1" height="2"></td>
+  </tr>
+</table>

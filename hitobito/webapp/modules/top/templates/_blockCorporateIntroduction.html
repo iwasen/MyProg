@@ -1,0 +1,39 @@
+<!-- バナー広告エリア -->
+<div align="center">
+<table>
+	<tr>
+		<td align="center"><{if $hitobito2_banner}><a href="<{$hitobito2_banner.url}>" target="_blank"><img src="<{$hitobito2_banner.image|escape}>" border="0" /></a><{/if}></td>
+	</tr>
+</table>
+</div>
+<!-- 検索エリア -->
+<div style="margin:15px 0px 0px 0px; border:1px solid #227A22;">
+<table width="542" border="0" cellpadding="0" cellspacing="6">
+	<!-- 検索スクリプト -->
+	<script type="text/javascript">
+	<!--
+	function ask_serch(){
+		var search_word_value = document.form1.search_word.value;
+
+		param = '?o=0&qsrc=8&ie=UTF-8&q=' + encodeURIComponent(search_word_value);
+		window.open('http://ask.jp/web.asp' + param,'','');
+	}
+	// -->
+	</script>
+	<tr>
+		<td align="center"><img src="image/mi_search.gif" alt="検索" width=29 height=14></td>
+		<form name="form1" action="index.php" method="GET">
+		<td width="300"><input type="text" name="search_word" size="40" class="fbdr" style="width:300px; height:17px;"></td>
+		<td width="88">
+			<input type="image" id="hito" src="image/btn_search-hito.gif" alt="ひとびとで検索" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('hito','','image/btn_search-hitoOv.gif',1)" width="88" height="17">
+			<!-- xxxessary tool for hitobito Search -->
+			<input type="hidden" name="module" value="hitobito2">
+			<input type="hidden" name="action" value="Search">
+			<input type="hidden" name="search_target" value="both"><!-- 記事検索：story、ワイワイ会議室検索：room、両方からの検索：both -->
+			<!-- xxxessary tool for hitobito Search -->
+		</td>
+		</form>
+		<td width="88" valign="top"><a onClick="ask_serch()" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('ask','','image/btn_search-askOv.gif',1)"><img src="image/btn_search-ask.gif" alt="askで検索" name="ask" width="88" height="17" border="0" id="ask"></a></td>
+	</tr>
+</table>
+</div>

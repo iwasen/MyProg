@@ -1,0 +1,71 @@
+<!-- ナビ記事最新投稿ブロック -->
+    <!-- タイトル -->
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td width="100%"><img src="image/new_blog_ttl.gif" width="113" height="14" alt="ナビ記事最新投稿"></td>
+            <td width="100" align="right"><a href="<{$rssUrl}>"><img src="image/new_blog_rss.gif" width="36" height="13" alt="RSS" border="0"></a></td>
+        </tr>
+        <tr>
+            <td colspan="2"><img src="image/spacer.gif" width="1" height="4"></td>
+        </tr>
+        <tr>
+            <td colspan="2"><img src="image/new_blog_split360.gif" width="100%" height="1"></td>
+        </tr>
+    </table>
+    <!-- タイトルここまで -->
+    <!--startナビ記事最新投稿 Loop-->
+    
+    <{foreach item=item from=$blog_new_stories}>
+    <{assign var=navipage value=$item->getNaviPageInfo()}>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+            <td>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td colspan="2"><img src="image/spacer.gif" width="1" height="10"></td>
+                    </tr>
+                    <tr>
+                        <td width="455" class="char120"><a href="index.php?module=Blog&amp;action=ViewStory&amp;blog_story_id=<{$item->getId()}>"><{$item->getTitle()|escape}></a></td>
+                        <td width="105" align="right" class="char120"><span class="char999999"><{$item->getDate()|HNbDate:"m"}></span></td>
+                    </tr>
+                </table>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr> 
+                        <td width="475" valign="top" class="char120"> <{$item->getBody()|strip_tags|mbwordwrap:40:"\n":4|nl2br}></td>
+                        <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+                        <td width="75" valign="top"><a href="index.php?module=Blog&amp;action=ViewStory&amp;blog_story_id=<{$item->getId()}>"><img src="blogimage.php?id=<{$item->getImageId()}>" width="75" border="0"></a></td>
+                    </tr>
+                    <tr align="left"> 
+                        <td colspan="3" class="char120"><a href="index.php?module=Navi&amp;navipage_id=<{$navipage->getId()}>"><{$navipage->getNaviName()|escape}></a><span class="char999999"> 
+                         | </span><a href="index.php?module=Navi&amp;navipage_id=<{$navipage->getId()}>"><{$navipage->getTitle()|escape}></a><span class="char999999"> 
+                         | </span><a href="index.php?module=Blog&amp;navipage_id=<{$navipage->getId()}>&amp;blog_category_id=<{$item->getBlogCategoryId()}>"><{$item->getBlogCategoryName()|escape}></a><span class="char999999"> 
+                         | </span><a href="index.php?navipage_id=<{$navipage->getId()}>&amp;module=Blog&amp;action=ViewStory&amp;blog_story_id=<{$item->getId()}>#comment">コメント( <{$item->getCommentsNum()}> )</a><span class="char999999"> 
+                         | </span><a href="index.php?navipage_id=<{$navipage->getId()}>&amp;module=Blog&amp;action=ViewStory&amp;blog_story_id=<{$item->getId()}>#trackback">TB( <{$item->getTrackbacksNum()}> )</a></td>
+                    </tr>
+                    <tr align="left"> 
+                        <td colspan="3" class="char120"><img src="image/spacer.gif" width="1" height="10"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><img src="image/new_blog_split350.gif" width="100%" height="1"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <{/foreach}>
+    <!--endナビ記事最新投稿 Loop-->
+    
+    <!--最新記事一覧へのリンク-->
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td><img src="image/spacer.gif" width="1" height="10"></td>
+        </tr>
+        <tr>
+            <td align="right"><img src="image/new_blog_link.gif" width="12" height="12" align="absmiddle" hspace="2"><span class="char120"><a href="index.php?module=Blog<{$listUrlAddParameter}>" class="cblack">最新投稿一覧</a></span></td>
+        </tr>
+        <tr>
+            <td><img src="image/spacer.gif" width="1" height="20"></td>
+        </tr>
+    </table>
+<!-- ナビ記事最新投稿ブロック終了 -->

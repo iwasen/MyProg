@@ -1,0 +1,88 @@
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+				<tr bgcolor="#5B94FD">
+					
+          <td colspan="3"><img src="image/naviedit_upload_ttl.gif" width="200" height="25" hspace="10" alt="記事投稿管理"></td>
+				</tr>
+				<tr>
+					<td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+					<td width="555" valign="top">
+						<form name="form3" method="post"  enctype="multipart/form-data">
+						  <{$editform->getHtmlErrors()}>
+              <table width="555" border="0" cellspacing="0" cellpadding="0">
+                <tr> 
+                  <td colspan="2"><img src="image/spacer.gif" width="1" height="15"></td>
+                </tr>
+                <tr> 
+                  <td valign="top"> 
+                    <table width="400" border="0" cellspacing="0" cellpadding="0">
+                      <tr bgcolor="#CCCCCC"> 
+                        <td colspan="4"><img src="image/spacer.gif" width="450" height="2"></td>
+                      </tr>
+                      <tr> 
+                        <td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+                        <td class="char120" width="200">画像名称</td>
+                        <td class="char120" width="200"> 
+                          <p class="ind0804"> 
+<{*			    <input type="hidden" name="MAX_FILE_SIZE" value="1000" /> *}>
+                            <input type="text" name="blog_image_title" value="<{$editform->blog_image_title|escape}>" size="20" style="width:180px;">
+                          </p>
+                        </td>
+                        <td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+                      </tr>
+                      <tr bgcolor="#CCCCCC"> 
+                        <td colspan="4"><img src="image/spacer.gif" width="450" height="1"></td>
+                      </tr>
+                      <tr> 
+                        <td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+                        <td class="char120">ファイルを選択</td>
+                        <td class="char120"> 
+                          <p class="ind0804"> 
+                            <input type="file" name="blog_image_file" size="20" style="width:180px;">
+                          </p>
+                        </td>
+                        <td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+                      </tr>
+                      <tr bgcolor="#CCCCCC"> 
+                        <td colspan="4"><img src="image/spacer.gif" width="450" height="1"></td>
+                      </tr>
+                      <tr> 
+                        <td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+                        <td class="char120">リサイズ<br>
+                          <font size="1">右のサイズ以内の大きさに変更します。<br>
+						  横・縦の比率は変りません</font></td>
+                        <td class="char120"> 
+			  <{html_radios options=$resize_options name=blog_execute_resize selected=$editform->blog_execute_resize separator="<br />" }>
+                        </td>
+                        <td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+                      </tr>
+                      <tr bgcolor="#CCCCCC"> 
+                        <td colspan="4"><img src="image/spacer.gif" width="450" height="2"></td>
+                      </tr>
+                    </table>
+                  </td>
+                  <td valign="top" align="center">　 </td>
+                </tr>
+                <tr> 
+                  <td colspan="2"><img src="image/spacer.gif" width="1" height="30"></td>
+                </tr>
+              </table>
+							<table width="555" border="0" cellspacing="0" cellpadding="0">
+								<tr>
+									<td bgcolor="#5B94FD"><img src="image/spacer.gif" width="1" height="5"></td>
+								</tr>
+								<tr>
+									<td><img src="image/spacer.gif" width="1" height="20"></td>
+								</tr>
+								<tr>
+									
+                  <td> <input type="image"  width="50" height="20" hspace="10" alt="記事投稿管理" src="image/naviedit_btn_regist.gif" border="0"></td>
+								</tr>
+								<tr>
+									<td><img src="image/spacer.gif" width="1" height="10"></td>
+								</tr>
+							</table>
+							</form>
+					</td>
+					<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+				</tr>
+			</table>

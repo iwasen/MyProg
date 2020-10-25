@@ -1,0 +1,93 @@
+        <table width="<{$_form_table_width|default:555}>" border="0" cellspacing="0" cellpadding="5">
+          <tr> 
+            <td width="130" class="char120">メールアドレス<span style="color:#FF0000">（必須）</span></td>
+            <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+            <td width="415"> 
+              <input type="text" name="member_mail" size="12" style="width:180px;" value="<{$editform->member_mail|escape}>" />
+            </td>
+          </tr>
+          <tr> 
+            <td class="char120">パスワード<span style="color:#FF0000">（必須）</span></td>
+            <td><img src="image/spacer.gif" width="10" height="1"></td>
+            <td> 
+              <input type="password" name="member_password" size="12" style="width:100px;" value="<{$editform->member_password|escape}>">
+            </td>
+          </tr>
+          <tr> 
+            <td class="char120" nowrap>パスワード（確認用）<span style="color:#FF0000">（必須）</span></td>
+            <td><img src="image/spacer.gif" width="10" height="1"></td>
+            <td> 
+              <input type="password" name="member_confirm_password" size="12" style="width:100px;" value="<{$editform->member_confirm_password|escape}>">
+            </td>
+          </tr>
+<{* 2006/6 add st *}>
+	<tr>
+		<td colspan=3><img src="image/member_split555.gif" width="<{$_form_table_width|default:555}>" height="1"></td>
+	</tr>
+          <tr> 
+            <td width="130" class="char120">お名前<{if $require_item.name}><span style="color:#FF0000">（必須）</span><{/if}></td>
+            <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+            <td width="415"> 
+              <input type="text" name="member_name" size="12" style="width:180px;" value="<{$editform->member_name|escape}>" />
+            </td>
+          </tr>
+          <tr> 
+            <td width="130" class="char120">ふりがな<{if $require_item.name_kana}><span style="color:#FF0000">（必須）</span><{/if}></td>
+            <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+            <td width="415"> 
+              <input type="text" name="member_name_kana" size="12" style="width:180px;" value="<{$editform->member_name_kana|escape}>" />
+            </td>
+          </tr>
+          <tr> 
+            <td width="130" class="char120">性別<{if $require_item.sex_cd}><span style="color:#FF0000">（必須）</span><{/if}></td>
+            <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+            <td width="415" class="char120"> 
+<{html_radios name="member_sex_cd" options=$editform->getSexOptions() selected=$editform->member_sex_cd separator="&nbsp;"}>
+            </td>
+          </tr>
+         <tr> 
+            <td width="130" class="char120">生年月日<{if $require_item.birthday}><span style="color:#FF0000">（必須）</span><{/if}></td>
+            <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+            <td width="415"> 
+ <{html_options name=member_birth_year options=$editform->getYearOptions() selected=$editform->member_birth_year}>
+ <{html_options name=member_birth_month options=$editform->getMonthOptions() selected=$editform->member_birth_month}>
+ <{html_options name=member_birth_day options=$editform->getDayOptions() selected=$editform->member_birth_day}>
+            </td>
+          </tr>
+          <tr> 
+            <td width="130" class="char120">郵便番号<{if $require_item.zip_cd}><span style="color:#FF0000">（必須）</span><{/if}></td>
+            <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+            <td width="415"> 
+              <input type="text" name="member_zip_cd1"  size="5" maxlength="3" value="<{$editform->member_zip_cd1|escape}>" />-<input type="text" name="member_zip_cd2"  size="6" maxlength="4" value="<{$editform->member_zip_cd2|escape}>" />
+            </td>
+          </tr>
+         <tr> 
+            <td width="130" class="char120">都道府県<{if $require_item.address1}><span style="color:#FF0000">（必須）</span><{/if}></td>
+            <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+            <td width="415"> 
+ <{html_options name=member_address1 options=$editform->getAddress1Options() selected=$editform->member_address1}>
+            </td>
+          </tr>
+          <tr> 
+            <td width="130" class="char120">都道府県以下<{if $require_item.address2}><span style="color:#FF0000">（必須）</span><{/if}></td>
+            <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+            <td width="415"> 
+              <input type="text" name="member_address2"  size="33" value="<{$editform->member_address2|escape}>" />
+            </td>
+          </tr>
+          <tr> 
+            <td width="130" class="char120">電話番号<{if $require_item.tel}><span style="color:#FF0000">（必須）</span><{/if}></td>
+            <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+            <td width="415"> 
+              <input type="text" name="member_tel1"  size="5" maxlength="6" value="<{$editform->member_tel1|escape}>" />-<input type="text" name="member_tel2"  size="5" maxlength="4" value="<{$editform->member_tel2|escape}>" />-<input type="text" name="member_tel3"  size="5" maxlength="4" value="<{$editform->member_tel3|escape}>" />
+            </td>
+          </tr>
+          <tr> 
+            <td width="130" class="char120">自己紹介<{if $require_item.self_introduction}><span style="color:#FF0000">（必須）</span><{/if}></td>
+            <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+            <td width="415"> 
+              <textarea name="member_self_introduction" cols="30" rows="10"><{$editform->member_self_introduction}></textarea>
+            </td>
+          </tr>
+	</table>
+<{* 2006/6 add en *}>

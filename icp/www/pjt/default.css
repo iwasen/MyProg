@@ -1,0 +1,136 @@
+body{
+	font-family: "Osaka";
+	margin: 0px;
+	padding: 0px;
+}
+
+form{
+	margin: 0px;
+}
+
+.header .pjt{
+	font-family: "Osaka";
+	font-size: 18px;
+	font-weight: bold;
+	color: #ffffff;
+	background-image: url( img/title_1.gif );
+	line-height: 160%;
+}
+
+.header .name{
+	font-family: "Osaka";
+	font-size: 12px;
+	font-weight: normal;
+	color: #000000;
+	background-image: url( img/title_3.gif );
+	line-height: 120%;
+}
+.pankuzu{
+	font-family: "Osaka";
+	font-size: 12px;
+	font-weight: normal;
+	color: #000000;
+	background-image: url( img/pan_bg.gif );
+	line-height: 120%;
+}
+
+.regist{
+	font-family: "Osaka";
+	font-size: 12px;
+	font-weight: normal;
+	color: #000000;
+	background-color: #ffffff;
+	line-height: 120%;
+}
+
+.main .contents{
+	font-family: "Osaka";
+	font-size: 12px;
+	font-weight: normal;
+	color: #000000;
+	line-height: 120%;
+}
+
+.copyright{
+	font-family: "Verdana", "Arial", "Helvetica", "sans-serif";
+	font-size: 10px;
+	font-weight: normal;
+	color: #000000;
+	line-height: 120%;
+	margin-top: 5px;
+	border-top-width: 3px;
+	border-top-style: double;
+	border-top-color: #808080;
+	padding-top: 5px;
+}
+
+.btn{
+	font-family: "Osaka";
+	font-size: 12px;
+}
+.form{
+	font-family: "Osaka";
+	font-size: 12px;
+}
+.login{
+	font-family: "Osaka";
+	font-size: 12px;
+	font-weight: normal;
+	color: #000000;
+	background-color: #ffffff;
+	line-height: 120%;
+}
+
+.login th{
+	background-color: #ffbb77;
+}
+
+.login td{
+	background-color: #ffe4ca;
+}
+
+.main .list{
+	font-family: "Osaka";
+	font-size: 12px;
+	font-weight: normal;
+	color: #000000;
+	line-height: 120%;
+}
+
+.list th{
+	color: #ffffff;
+	background-color: #8d4747;
+}
+.list .line0{
+	background-color: #ffffff;
+}
+
+.list .line1{
+	background-color: #c6eefd;
+}
+
+.list .warning{
+	color: #ff0000;
+	font-weight:bold;
+}
+
+
+.main .card{
+	font-family: "Osaka";
+	font-size: 12px;
+	font-weight: normal;
+	color: #000000;
+	line-height: 120%;
+}
+
+.card th{
+	color: #ffffff;
+	background-color: #7a3446;
+}
+.card .line0{
+	background-color: #ffffff;
+}
+
+.card .line1{
+	background-image: url( img/list_bg.gif );
+}

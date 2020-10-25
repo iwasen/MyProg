@@ -1,0 +1,114 @@
+<table width="585" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td><img src="image/search_sttl_select.gif" width="107" height="14" alt="ナビセレクト一覧"></td>
+            </tr>
+            <tr>
+              <td><img src="image/spacer.gif" width="1" height="4"></td>
+            </tr>
+            <tr>
+              <td bgcolor="#EE615E"><img src="image/spacer.gif" width="585" height="1"></td>
+            </tr>
+            <tr>
+              <td bgcolor="#FEF1F1" align="right" class="char120">
+                <p class="ind1003"><{$total}>件中 <{$start_num}> - <{$end_num}>件目</p></td>
+            </tr>
+            <tr>
+              <td class="char120"><img src="image/spacer.gif" width="1" height="8"></td>
+            </tr>
+          </table>
+
+<{*======================== *}>
+
+
+  <table width="565" border="0" cellspacing="0" cellpadding="0">
+    <{section name=itemlist loop=$itemlist max=6}>
+    <{assign var=item value=$itemlist[itemlist]}>
+    <{if $smarty.section.itemlist.iteration is odd}>
+    <tr>
+      <{/if}>
+              <td width="275" valign="top">
+		<{assign var=navipage value=$item->getNaviPageInfo()}>
+                <table width="275" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td colspan="3"><img src="image/spacer.gif" width="1" height="8"></td>
+                  </tr>
+                  <tr>
+                    
+          <td colspan="3" class="char140"><a href="index.php?navipage_id=<{$navipage->getId()}>&amp;module=Blog&amp;action=ViewStory&blog_story_id=<{$item->getId()}>"><{$item->getTitle()|escape}></a></td>
+                  </tr>
+                  <tr>
+                    <td width="190" valign="top" class="char120"><{$item->getShortText()}></td>
+                    <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+          <td width="75" valign="top"><a href="index.php?navipage_id=<{$navipage->getId()}>&amp;module=Blog&amp;action=ViewStory&blog_story_id=<{$item->getId()}>"><img src="blogimage.php?id=<{$item->getImageId()}>" width="75" border="0"></a></td>
+                  </tr>
+                  <tr>
+                    <td colspan="3"><img src="image/spacer.gif" width="1" height="6"></td>
+                  </tr>
+                  <tr>
+                      <td colspan="3" class="char120"><a href="index.php?module=Navi&amp;navipage_id=<{$navipage->getId()}>"><{$navipage->getNaviName()|escape}></a><span class="char999999"> 
+                        | </span><a href="index.php?module=Navi&amp;navipage_id=<{$navipage->getId()}>"><{$navipage->getTitle()|escape}></a><span class="char999999"> 
+                        | </span><a href="index.php?module=Blog&amp;navipage_id=<{$navipage->getId()}>&amp;blog_category_id=<{$item->getBlogCategoryId()}>"><{$item->getBlogCategoryName()|escape}></a><span class="char999999"> 
+                        | </span><a href="index.php?navipage_id=<{$navipage->getId()}>&amp;module=Blog&amp;action=ViewStory&amp;blog_story_id=<{$item->getId()}>#comment">コメント( <{$item->getCommentsNum()}> )</a><span class="char999999"> 
+                        | </span><a href="index.php?navipage_id=<{$navipage->getId()}>&amp;module=Blog&amp;action=ViewStory&amp;blog_story_id=<{$item->getId()}>#trackback">TB( <{$item->getTrackbacksNum()}> )</a></td>
+                  </tr>
+                  <tr>
+                    <td colspan="3"><img src="image/spacer.gif" width="1" height="3"></td>
+                  </tr>
+                  <tr>
+                    <td colspan="3"><img src="image/search_split_select270.gif" width="275" height="1"></td>
+                  </tr>
+                </table>
+	      </td>
+    <{if $smarty.section.itemlist.iteration is even}>
+	    </tr>
+    <{/if}>
+    <{/section}>
+    <{if $smarty.section.itemlist.total is odd }>
+    <td>&nbsp;</td></tr>
+    <{/if}>
+  </table>
+  
+<{*======================== *}>
+  <{section name=itemlist loop=$itemlist start=6}>
+  <{assign var=item value=$itemlist[itemlist]}>
+  <{assign var=navipage value=$item->getNaviPageInfo()}>
+  
+  <table width="565" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td><img src="image/spacer.gif" width="1" height="8"></td>
+            </tr>
+            <tr>
+              <td class="char140"><a href="index.php?navipage_id=<{$navipage->getId()}>&amp;module=Blog&amp;action=ViewStory&amp;blog_story_id=<{$item->getId()}>"><{$item->getTitle()|escape}></a></td>
+            </tr>
+            <tr>
+              <td class="char120"><{$item->getShortText()}></td>
+            </tr>
+            <tr>
+              <td align="right" class="char120"><span class="char999999">ナビ : </span><{$navipage->getNaviName()|escape}><span class="char999999"> | </span><a href="index.php?module=Navi&amp;navipage_id=<{$navipage->getId()}>"><{$navipage->getTitle()|escape}></a></td>
+            </tr>
+            <tr>
+              <td><img src="image/spacer.gif" width="1" height="8"></td>
+            </tr>
+            <tr>
+              <td><img src="image/search_split_select565.gif" width="565" height="1"></td>
+            </tr>
+          </table>
+<{/section}>
+  <{*======================== *}>
+  
+<table width="565" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td colspan="2"><img src="image/spacer.gif" width="1" height="8"></td>
+            </tr>
+            <tr>
+              <td width="360" class="char120">
+		<{$navigation->getListNavigation()}>
+	      </td>
+              <td align="right" width="205">
+		<{$navigation->getMoveNavigation()}>
+	      </td>
+            </tr>
+            <tr>
+              <td colspan="2"><img src="image/spacer.gif" width="1" height="20"></td>
+            </tr>
+          </table>

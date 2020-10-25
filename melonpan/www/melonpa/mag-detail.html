@@ -1,0 +1,271 @@
+<?php
+include("../sub/head.inc");
+?>
+<html><!-- #BeginTemplate "/Templates/index.dwt" -->
+<head>
+<!-- #BeginEditable "doctitle" -->
+<title>めろんぱん || よりすぐりメルマガサイト</title>
+<!-- #EndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<script LANGUAGE="javascript">
+<!--
+var click_flag = false;
+function click_check(){
+	var c = click_flag;
+	click_flag = true;
+	return !c;
+}
+function check_agreement() {
+	var f = document.subscribe;
+	f.sub_d.disabled = !(f.agreement1.checked && f.agreement2.checked);
+}
+function onload_body() {
+	var f = document.subscribe;
+	f.agreement1.checked = false;
+	f.agreement2.checked = false;
+	f.sub_d.disabled = true;
+}
+-->
+</script>
+</head>
+<body bgcolor="#FFFFFF" text="#666666" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" vlink="#666600" link="#336600" onload="onload_body()">
+<?php	draw_head( ".." );	?>
+<table width="753" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center">
+      <table width="620" border="0" cellspacing="0" cellpadding="0" align="center">
+        <tr>
+          <td width="21"><!-- #BeginEditable "1" --><img src="../letter/img/letter1.gif" width="21" height="21"><!-- #EndEditable --></td>
+          <td width="21"><!-- #BeginEditable "3" --><img src="../letter/img/letter3.gif" width="21" height="21"><!-- #EndEditable --></td>
+          <td width="557"><!-- #BeginEditable "title1" --><!-- #EndEditable --></td>
+          <td width="21">　</td>
+        </tr>
+        <tr>
+          <td width="21"><!-- #BeginEditable "2" --><img src="../letter/img/letter2.gif" width="21" height="21"><!-- #EndEditable --></td>
+          <td width="21" bgcolor="#90c84b"><!-- #BeginEditable "4" --><img src="../letter/img/letter4.gif" width="21" height="21"><!-- #EndEditable --></td>
+          <td width="557" bgcolor="#90c84b"><!-- #BeginEditable "title2" --><img src="../letter/img/syosai.gif" width="89" height="21"><!-- #EndEditable --></td>
+          <td width="21"><img src="../common/c_rihgt_top.gif" width="21" height="21"></td>
+        </tr>
+        <tr bgcolor="#ffffd3">
+          <td colspan="4" bgcolor="#ffffd3" height="21"><!-- #BeginEditable "sub" -->
+      <p>　</p>
+      <p>　</p>
+      <!-- #EndEditable --></td>
+        </tr>
+        <tr>
+          <td width="21" bgcolor="#ffffd3">　</td>
+          <td width="21" bgcolor="#ffffd3">　</td>
+          <td width="557" bgcolor="#ffffd3"><!-- #BeginEditable "%90%7D" -->
+      <table width="513" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td bgcolor="#91c741">
+            <table width="513" border="0" cellspacing="1" cellpadding="5">
+              <tr bgcolor="white">
+                <td>
+                  <table width="500" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td>
+                        <table width="100%" border="0" cellspacing="1" cellpadding="2">
+                          <tr bgcolor="#e2f0c9">
+<!-- TITLE -->
+<td colspan="5" bgcolor="#91c741">
+<font color="#336600"><b>【</b></font><b><font color="white">ID
+<?php echo $resarray[0]; ?>：</font>
+<font color="black">
+<?php echo trim(htmlspecialchars($resarray[1])); ?></font><font color="#336600">】
+</font></b></td>
+<!---->
+                          </tr>
+                          <tr bgcolor="#e2f0c9">
+                            <td width="140" align="center" valign="middle"><font size="2" color="#336600">カテゴリ</font></td>
+                            <td width="100" align="center" valign="middle"><font size="2" color="#336600">発行周期</font></td>
+                            <td width="80" align="center" valign="middle"><font size="2" color="#336600">発行回数</font></td>
+                            <td width="80" align="center" valign="middle"><font size="2" color="#336600">読者数</font></td>
+                            <td width="100" align="center" valign="middle"><font size="2" color="#336600">最終発行日時</font></td>
+                          </tr>
+                          <tr>
+                            <td width="140">
+<center><font size="2"><?php echo trim($resarray[8])."<br>".trim($resarray[9])."\n"; ?></font></center>
+                            </td>
+                            <td width="100">
+<center><font size="2"><?php echo trim(htmlspecialchars($resarray[3]))."\n"; ?></font></center>
+                            </td>
+                            <td width="80">
+<center><font size="2"><?php echo trim($resarray[6])."\n"; ?></font></center>
+                            </td>
+                            <td width="80">
+<center><font size="2"><?php echo $resarray_mail[0]."人\n"; ?></font></center>
+                            </td>
+                            <td width="100">
+                              <center>
+<font size="2">
+<?php
+	if ( mbsubstr(trim($resarray[7]), 0, 10 ) == "2000/01/01") {
+		echo "未発行";
+	} else {
+		echo trim($resarray[7])."\n";
+	}
+?>
+</font>
+                              </center>
+                            </td>
+                          </tr>
+                        </table>
+                        <table width="100%" border="0" cellpadding="2" cellspacing="1">
+                          <tr align="left" valign="top">
+                            <td bordercolor="#990000" bgcolor="#e2f0c9"><font size="2" color="#336600">説明</font></td>
+                          </tr>
+                          <tr align="left" valign="top">
+                            <td bordercolor="#990000">
+<?php
+	echo trim(htmlspecialchars($resarray[2]))."\n";
+?>
+                              <br>
+                              <br>
+                            </td>
+                          </tr>
+                        </table>
+                        <table width="524" border="0" cellpadding="2" cellspacing="1">
+                          <tr>
+                            <td bgcolor="#e2f0c9" bordercolor="#990000" align="left" valign="top">
+                            <div align="left"><font size="2" color="#336600">読む背景</font>
+							  </div>
+                            </td>
+                            <td bordercolor="#990000" width="313" align="left" valign="top">
+<font size="2">
+<?php
+	echo trim($resarray[13])."／".trim($resarray[14])."\n";
+?>
+</font>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td bgcolor="#e2f0c9" bordercolor="#990000" align="left" valign="top">
+                              <div align="left"> <font size="2" color="#336600">ホームページ</font></div>
+                            </td>
+                            <td bordercolor="#990000" width="313" align="left" valign="top">
+<?php
+	if (trim($resarray[10]) == "http://") {
+		print "<font size=\"2\" color=\"#336600\">ありません</font>";
+	} else {
+		print "<a href=\"" .trim($resarray[10]) ."\" target='_blank'><font size=\"2\" color=\"#336600\">";
+//		print trim($resarray[10]);
+		if ( strlen($resarray[10]) <= 64 ){
+			echo trim(htmlspecialchars($resarray[10]));
+		}else{
+			echo substr(htmlspecialchars($resarray[10]), 0, 64);
+			echo "<BR>";
+			echo substr(htmlspecialchars($resarray[10]), 64, 80-64);
+		}
+		print "</font></a>\n";
+	}
+?>
+							</td>
+                          </tr>
+                          <tr>
+                            <td bgcolor="#e2f0c9" bordercolor="#990000" align="left" valign="top">
+                              <div align="left"> <font size="2" color="#336600">最新のバックナンバー
+                                </font></div>
+                            </td>
+                            <td bordercolor="#990000" width="313" align="left" valign="top">
+<p><font size="2">
+<?php
+	if ($resarray[19] == 1) {
+		if ( $back_num[0] != "" ) {
+			echo "｜<a href=\"../letter/backnumber.php?back_rid=".$back_num[0]."\">最新号</a>\n｜";
+		}
+		if ( $back_num[1] != "" ) {
+			echo "<a href=\"../letter/backnumber_all.php?back_rid=".$back_num[1]."\">それ以前</a>\n｜";
+		}
+	} elseif ($resarray[19] == 3) {
+		if ( $back_num[0] != "" ) {
+			echo "｜<a href=\"../letter/backnumber.php?back_rid=".$back_num[0]."\">最新号</a>\n｜";
+		}
+	} else {
+		echo "非公開";
+	}
+
+?>
+</font></p>
+							</td>
+                          </tr>
+                          <tr>
+                            <td bgcolor="#feca5b" bordercolor="#990000" align="left"><font size="2" color="#336600">購読登録</font></td>
+														<form name="subscribe" action="../melonpa/mel_reg_one.php" method="post" onsubmit="return click_check()">
+                            <td width="313">
+															<font size="2">
+															<input type="hidden" name="reader_id" value="<?php echo $reader_id; ?>" size="30">
+															<input type="hidden" name="reader_pswd" value="<?php echo $reader_pswd; ?>" size="30">
+															<input type="hidden" name="mail_addr" value="<?php echo $mail_addr; ?>" size="30">
+															メールアドレス入力欄<br>
+															<input type="text" name="email" size="30" value="<?php echo $mail_addr; ?>">
+															<input type="hidden" name="read_chk" value="<?php echo $resarray[0]; ?>">
+															<input type="submit" name="sub_d" value="購読する"><br>
+															<input type="checkbox" name="agreement1" onclick="check_agreement()">規約に同意します。（規約は<a href="http://www.melonpan.net/rule_reader.html">こちら</a>）<br>
+															<input type="checkbox" name="agreement2" onclick="check_agreement()">広告・宣伝受取に同意します。
+															</font>
+                            </td>
+														</form>
+                          </tr>
+                          <tr>
+                            <td bgcolor="#b3a4c0" bordercolor="#990000" align="left"><font size="2" color="#336600">購読解除</font></td>
+														<form name="unsubscribe" action="../melonpa/mel_reg_one.php" method="post" onsubmit="return click_check()">
+                            <td width="313">
+															<font size="2">
+															<input type="hidden" name="reader_id" value="<?php echo $reader_id; ?>" size="30">
+															<input type="hidden" name="reader_pswd" value="<?php echo $reader_pswd; ?>" size="30">
+															<input type="hidden" name="mail_addr" value="<?php echo $mail_addr; ?>" size="30">
+															メールアドレス入力欄<br>
+															<input type="text" name="email" size="30" value="<?php echo $mail_addr; ?>">
+															<input type="hidden" name="read_chk" value="<?php echo $resarray[0]; ?>">
+															<input type="submit" name="sub_d" value="購読解除する">
+															</font>
+                            </td>
+														</form>
+                          </tr>
+                        </table>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                          <tr bgcolor="#ccffcc" height="20">
+                            <td height="20" bgcolor="#e2f0c9"><span class="midashi14"><font size="2" color="#336600">このメルマガの読者推薦文
+（<?php echo $nrows; ?>件あります）</font></span></td>
+                          </tr>
+                          <tr valign="top">
+                            <td>
+<?php
+	echo $reco_data;
+?>
+<p></p>
+<?php
+	echo $reco_res;
+?>
+							</td>
+                          </tr>
+                        </table>
+                        <input type="button" name="Submit3" value="&lt;&lt;&lt;　戻る" onClick="history.back()">
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <br>
+      <br>
+      <!-- #EndEditable --></td>
+          <td width="21" bgcolor="#ffffd3">　</td>
+        </tr>
+        <tr>
+          <td width="21"><img src="../common/c_left_bottom.gif" width="21" height="21"></td>
+          <td width="21" bgcolor="#90c84b">　</td>
+          <td width="557" bgcolor="#90c84b">　</td>
+          <td width="21"><img src="../common/c_right_bottom.gif" width="21" height="21"></td>
+        </tr>
+<?php draw_footer( ".." ); ?>
+      </table>
+    </td>
+  </tr>
+</table>
+</body>
+<!-- #EndTemplate --></html>

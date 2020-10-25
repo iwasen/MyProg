@@ -1,0 +1,103 @@
+<form method="post">
+<input type="hidden" name="enquete_id" value="<{$enquete_data.enquete_id}>">
+<table width="540" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td width="20" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="20" height="1"></td>
+		<td width="498" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="498" height="1"></td>
+		<td width="20" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="20" height="1"></td>
+		<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td><img src="image/spacer.gif" width="20" height="1"></td>
+		<td align="center"><img src="image/enquete_answer_ttl.gif" width="80" height="15" vspace="10" alt="アンケート"></td>
+		<td><img src="image/spacer.gif" width="20" height="1"></td>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td colspan="5" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="498" height="1"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td><img src="image/spacer.gif" width="20" height="1"></td>
+		<td>
+			<table width="498" border="0" cellspacing="0" cellpadding="0">
+<{if $enquete_error_ary}>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td colspan="3" class="error"><{foreach from=$enquete_error_ary item=enquete_error}>・<{$enquete_error|escape}><br><{/foreach}></td>
+				</tr>
+<{/if}>
+				<tr>
+					<td width="340"><img src="image/spacer.gif" width="340" height="1"></td>
+					<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+					<td width="148"><img src="image/spacer.gif" width="148" height="1"></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="20"></td>
+				</tr>
+				<tr>
+					<td colspan="3" class="char130"><b><{$enquete_data.title|escape}></b></td>
+				</tr>
+				<tr>
+					<td class="char130">回答期間 : <{$enquete_data.start_date}> - <{$enquete_data.end_date}></td>
+					<td><img src="image/spacer.gif" width="10" height="1"></td>
+					<td align="right"><img src="image/enquete_btn_next.gif" width="12" height="12" align="absmiddle" hspace="2"><span class="char120"><a href="?module=Enquete&action=ListEnquete&navipage_id=<{$navi_page_id}>" class="cblack">アンケート一覧</a></span></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="20"></td>
+				</tr>
+				<tr>
+					<td colspan="3" class="char120"><{$enquete_data.question_text|HNbEscape}></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="20"></td>
+				</tr>
+			</table>
+			<table width="498" border="0" cellspacing="0" cellpadding="0">
+<{foreach from=$enquete_data.option_ary item=enquete_option}>
+				<tr>
+					<td width="38" bgcolor="<{$enquete_option.bgcolor}>" align="center"><input type="<{$enquete_option.input_type}>" name="enquete_option[]" value="<{$enquete_option.option_no}>"></td>
+					<td width="460" bgcolor="<{$enquete_option.bgcolor}>" class="char120"><p class="ind0603"><{$enquete_option.option_no}>. <{$enquete_option.option_text|escape}></p></td>
+				</tr>
+<{/foreach}>
+			</table>
+			<table width="498" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td colspan="2"><img src="image/spacer.gif" width="1" height="20"></td>
+				</tr>
+				<tr>
+					<td width="70">
+						<input type="image" border="0" src="image/enquete_btn_answer.gif" width="70" height="20">
+					</td>
+					<td align="right" width="428"><img src="image/enquete_btn_next.gif" width="12" height="12" align="absmiddle" hspace="2"><span class="char120"><a href="?module=Enquete&action=ShowResult&navipage_id=<{$navi_page_id}>&enquete_id=<{$enquete_data.enquete_id}>" class="cblack">回答閲覧</a></span></td>
+				</tr>
+				<tr>
+					<td colspan="2"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+			</table>
+		</td>
+		<td><img src="image/spacer.gif" width="20" height="1"></td>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td colspan="3" bgcolor="#669BFD"><img src="image/spacer.gif" width="1" height="3"></td>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td colspan="3" bgcolor="#82ADFD"><img src="image/spacer.gif" width="1" height="2"></td>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr bgcolor="#CCCCCC">
+		<td colspan="5"><img src="image/spacer.gif" width="540" height="1"></td>
+	</tr>
+	<tr>
+		<td colspan="5"><img src="image/spacer.gif" width="1" height="10"></td>
+	</tr>
+</table>
+</form>

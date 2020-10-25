@@ -1,0 +1,84 @@
+
+ 10 Rem ************************
+ 20 Rem * T3.PGM
+ 30 Rem ************************
+ 40 Rem
+ 45 Open #4,"COM2:"
+ 50 Access "RAM:PCMEXT.BIN"
+ 60 Access "RAM:PCMEXT.PGM"
+ 70 Access "RAM:WRITE_ID.PGM"
+ 80 Access "RAM:READ_ID.PGM"
+
+ 90 Rem Define variables
+100 Def integer "A-Z"
+110 Def integer GR_INPST
+120 Def integer GR_LS2
+130 Dim integer GR_DLLSEQ(80)
+140 Dim string NEPID$(25)
+150 Dim string DBG_NEPID$(25)
+
+160 Rem Assign global register
+170 SYSLINK GR_LS2,"%R3612",INT16
+180 SYSLINK GR_INPST,"%R3601",INT16
+190 SYSLINK GR_DLLSEQ,"%R3514",INT16
+200 SYSLINK DBG_NEPID$,"%R3650"
+
+210 Rem ************************
+220 Rem * Main process
+230 Rem ************************
+240 START:
+
+250 Rem Initialize
+260 GR_DLLSEQ(0)=0
+
+270 Rem Main loop
+280 MAIN_LOOP:
+
+290 Rem Wait dolly
+300 SYSREAD GR_LS2;If GR_LS2=0 then 300
+310 GR_LS2=0;SYSWRITE GR_LS2
+
+320 Rem Read NEPID
+330 Gosub READ_NEPID;If EROR<>0 then MAIN_LOOP
+340 DLLNO=val(NEPID$(1:2))
+
+350 Rem Set dolly sequence
+360 If GR_DLLSEQ(0)=0 then [
+370   GR_DLLSEQ(1)=DLLNO
+380   GR_DLLSEQ(0)=GR_DLLSEQ(0)+1
+390 ] Else [
+400   For I=GR_DLLSEQ(0) to 1 by -1
+410     If GR_DLLSEQ(I)=DLLNO then [
+420       GR_DLLSEQ(0)=I-1
+430       Exit
+440     ]
+450   Next
+460   If GR_DLLSEQ(0)>0 then [
+470     For I=GR_DLLSEQ(0) to 1 by -1
+480       GR_DLLSEQ(I+1)=GR_DLLSEQ(I)
+490     Next
+500   ]
+510   GR_DLLSEQ(1)=DLLNO
+520   GR_DLLSEQ(0)=GR_DLLSEQ(0)+1
+530 ]
+
+540 Rem Write dolly sequence
+550 SYSWRITE GR_DLLSEQ
+560 Goto MAIN_LOOP
+
+570 Rem ************************
+580 Rem * Read NEPID data
+590 Rem ************************
+600 READ_NEPID:
+610 EROR=0
+
+620 READ_ID EROR,NEPID$
+630 If EROR<>0 then [
+640   GR_INPSP=1;SYSWRITE GR_INPSP
+650 ]
+
+660 Rem for debug
+670 Rem SYSREAD DBG_NEPID$
+680 Rem NEPID$=DBG_NEPID$
+690 Return
+

@@ -1,0 +1,70 @@
+	title		(( dummy ))
+;
+;		meganet	2000		dummy-gamen
+;		86-01-22	xxxxxxxxx electronic inc.
+;				Toshxxxde-Yutani.
+;
+
+
+
+			.z80
+
+	include		SUBR.INC
+
+	public		dummy
+
+	extrn		gdmsg
+	extrn		csr_off
+	extrn		csr_on
+
+
+		BEEP	equ	0eb39h
+		ENDKEY	equ	0f7h
+		DEND	equ	0efh
+		ESC	equ	1bh
+
+dummy:
+
+		call	csr_off
+
+		ld	hl,m_dummy
+		call	kmsg
+
+		ld	hl,g_dummy
+		call	gdmsg
+
+		call	csr_on
+	keyin$dummy:
+		call	xconin
+		cp	ENDKEY
+		ret	z
+		cp	DEND
+		ret	z
+
+		ld	bc,1601h
+		call	BEEP
+
+		jr	keyin$dummy
+
+;****************************************
+;*
+;*		data
+;*
+;****************************************
+
+m_dummy:
+		dw	0,201h
+		dw	967bh,8b40h,945ch,82cdh
+		dw	0,203h
+		dw	8ce3h,93fah,92f1h,8b9fh,82b3h,82eah
+		dw	82dch,82b7h,8142h,-1
+
+g_dummy:
+		db	23,15
+		db	0bch,0adh,0b3h,0d8h,0aeh,0b3h,0b7h,0b0h,0a6h,0b5h,0bdh
+		db	-1
+
+		end	dummy
+
+
+

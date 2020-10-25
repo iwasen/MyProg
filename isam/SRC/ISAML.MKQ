@@ -1,0 +1,28 @@
+isaml.dmy : isaml.lib
+
+db_l.obj : db.c isam.h
+	qcl /c /AL /Zp /J /Fodb_l db.c
+
+dbf_l.obj : dbf.c isam.h
+	qcl /c /AL /Zp /J /Fodbf_l dbf.c
+
+idx_l.obj : idx.c isam.h
+	qcl /c /AL /Zp /J /Foidx_l idx.c
+
+sort_l.obj : sort.c isam.h
+	qcl /c /AL /Zp /J /Fosort_l sort.c
+
+func_l.obj : func.c isam.h
+	qcl /c /AL /Zp /J /Fofunc_l func.c
+
+csub_l.obj : csub.c isam.h
+	qcl /c /AL /Zp /J /Focsub_l csub.c
+
+data_l.obj : data.c isam.h
+	qcl /c /AL /Zp /J /Fodata_l data.c
+
+isaml.lib : db_l.obj dbf_l.obj idx_l.obj sort_l.obj \
+	   func_l.obj csub_l.obj data_l.obj
+	command /c del isaml.lib
+	lib isaml+db_l+dbf_l+idx_l+sort_l+func_l+csub_l+data_l;
+

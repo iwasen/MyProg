@@ -1,0 +1,582 @@
+		title	print
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; module name	: print shori
+; creation date	: 86:02:14
+; revised date  : 
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+		.z80
+
+		include	MEMORY.INC
+		include	SUBR.INC
+
+		public	print
+
+		extrn	gdmsg
+		extrn	zbin_ch
+		extrn	chr_disp
+		extrn	csr_off
+		extrn	clrbuf
+
+    	CONOUT		equ	0eb0ch
+	BEEP		equ	0eb39h
+;
+	RET		equ	0dh 	; return key code
+	ESC		equ	1bh	; escape key code
+	GAMEN		equ	0f7h	; gamen shuuryou key code
+	DEND		equ	0efh	; denpyou shuuryou key code
+	LEFT		equ	0e5h	; left key code
+	RIGHT		equ	0e6h	; right key code
+	LUP		equ	0edh	; up key code
+	LDOWN		equ	0eeh	; down key code
+
+	c_func		equ	M_PARAM+0
+	c_blkadr	equ	M_PARAM+1
+	c_rno		equ	M_PARAM+3
+	rlflag		equ	M_PARAM+3
+	c_pflag		equ	M_PARAM+4
+
+	s_buff		equ	M_RBUFF
+
+	o_jdata		equ	67
+	s_jdata		equ	30
+	o_tdata		equ	19
+	s_tdata		equ	82
+
+;
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	print shori
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+print:
+		call	dnoget
+
+		ld	hl,(max_no)
+		ld	a,h
+		or	l
+		ret	z
+
+		call	keyin
+		ret	c
+
+		call	list
+		ret
+;
+;	denpyou No. get
+;
+dnoget:
+		ld	hl,M_ORDER
+		ld	de,s_buff
+		ld	b,10
+dnoget10:
+		push	bc
+		push	hl
+		push	de
+		ld	a,(hl)
+		ld	(de),a
+		inc	de
+		or	a		; free block ?
+		jr	z,dnoget50	; * yes
+
+		dec	a		; joubi ?
+		jr	nz,dnoget30	; * no
+
+		ld	bc,o_jdata
+		add	hl,bc
+		ld	b,8
+dnoget20:
+		ld	a,(hl)
+		or	a
+		jr	z,dnoget45
+		push	bc
+		ld	bc,3
+		ldir
+		ld	bc,s_jdata-3
+		add	hl,bc
+		pop	bc
+		djnz	dnoget20
+		jr	dnoget50
+dnoget30:
+		ld	bc,o_tdata
+		add	hl,bc
+		ld	b,2
+dnoget40:
+		push	bc
+		ld	bc,3
+		ldir
+		ld	bc,s_tdata-3
+		add	hl,bc
+		pop	bc
+		djnz	dnoget40
+dnoget45:
+		ld	a,-1
+		ld	(de),a
+dnoget50:
+		pop	de
+		ld	hl,25
+		add	hl,de
+		ex	de,hl
+		pop	hl
+		ld	bc,320
+		add	hl,bc
+		pop	bc
+		djnz	dnoget10
+;
+dnosrch:
+		ld	hl,999
+		ld	(min_no),hl
+		ld	hl,0
+		ld	(max_no),hl
+
+		ld	b,10
+		ld	hl,s_buff
+dnosrch10:
+		push	bc
+		push	hl
+		ld	a,(hl)
+		or	a
+		jr	z,dnosrch50
+
+		inc	hl
+		ld	b,8
+dnosrch20:
+		ld	a,(hl)
+		cp	-1
+		jr	z,dnosrch50
+
+		inc	hl
+		ld	e,(hl)
+		inc	hl
+		ld	d,(hl)
+		inc	hl
+
+		push	hl
+		ld	hl,(min_no)
+		or	a
+		sbc	hl,de
+		jr	c,dnosrch30
+		ld	(min_no),de
+dnosrch30:
+		ld	hl,(max_no)
+		or	a
+		sbc	hl,de
+		jr	nc,dnosrch40
+		ld	(max_no),de
+dnosrch40:
+		pop	hl
+		djnz	dnosrch20
+dnosrch50:
+		pop	hl
+		ld	bc,25
+		add	hl,bc
+		pop	bc
+		djnz	dnosrch10
+
+		ld	hl,m_minno+4
+		ld	de,(min_no)
+		ld	b,3
+		call	zbin_ch
+
+		ld	hl,m_maxno+4
+		ld	de,(max_no)
+		ld	b,3
+		call	zbin_ch
+
+		ret
+
+;
+;	key in shori
+;
+keyin:
+		call	csr_off		; screen & cursor off
+		ld	hl,m_print
+		call	kmsg		; display kanji
+keyin01:
+		ld	hl,(min_no)
+		ld	(st_no),hl
+		ld	hl,(max_no)
+		ld	(end_no),hl
+
+		ld	a,'_'		;
+		ld	hl,m_stno+4	;
+		ld	(hl),a		;
+		inc	hl		;
+		ld	(hl),a		;
+		inc	hl		; input area initilize
+		ld	(hl),a		;
+		ld	hl,m_endno+4	;
+		ld	(hl),a		;
+		inc	hl		;
+		ld	(hl),a		;
+		inc	hl		;
+		ld	(hl),a		;
+
+		ld	hl,m_stno	;
+		call	chr_disp	;
+		ld	hl,m_endno	; denpyou No. display
+		call	chr_disp	;
+		ld	hl,m_minno	;
+		call	chr_disp	;
+
+		ld	a,'1'
+		ld	(m_print1+5),a
+keyin10:
+		ld	hl,m_print1
+		call	chr_disp
+
+		call	xconin
+		cp	GAMEN
+		scf
+		ret	z
+		cp	DEND
+		scf
+		ret	z
+		cp	RET
+		jr	z,keyin40
+		cp	'1'
+		jr	z,keyin30
+		cp	'2'
+		jr	z,keyin30
+keyin20:
+		ld	bc,1601h
+		call	BEEP
+		jr	keyin10
+keyin30:
+		ld	(m_print1+5),a
+		jr	keyin10
+keyin40:
+		ld	a,(m_print1+5)
+		cp	'1'
+		ret	z
+		cp	'2'
+		jr	nz,keyin20
+
+		ld	hl,m_minno+4
+		ld	de,m_stno+4
+		ld	bc,3
+		ldir
+		ld	hl,m_maxno+4
+		ld	de,m_endno+4
+		ld	bc,3
+		ldir
+pr_stno:
+		sub	a
+pr_stno10:
+		ld	hl,p_stno
+		call	kbin		; insatsu kaishi No. input
+		cp	RET		; return key ?
+		jr	z,st_ret	; * yes
+		cp	LUP		; up key ?
+		jp	z,keyin01	; * yes
+		cp	GAMEN		; gamen shuuryou key ?
+		scf			;
+		ret	z		; * yes
+		cp	DEND		; denpyou shuuryou key ?
+		scf			;
+		ret	z		; * yes
+
+		ld	bc,1601h
+		call	BEEP
+		ld	a,1
+		jr	pr_stno10
+
+st_ret:
+		ld	hl,m_stno
+		call	chr_disp
+
+		ld	hl,m_stno+4
+		ld	b,3
+		call	chr_bin
+		ld	(st_no),hl
+
+		ld	de,(max_no)
+		scf
+		sbc	hl,de
+		jr	c,pr_endno
+
+		ld	bc,1601h
+		call	BEEP
+		jr	pr_stno
+;
+pr_endno:
+		sub	a
+pr_endno10:
+		ld	hl,p_endno
+		call	kbin		; insatsu shuuryou No. input
+		cp	RET		; return key ?
+		jr	z,ed_ret	; * yes
+		cp	LUP		; up key ?
+		jp	z,keyin01	; * yes
+		cp	LEFT		; left key ?
+		jp	z,pr_stno	; * yes
+		cp	GAMEN		; gamen shuuryou key ?
+		scf			;
+		ret	z		; * yes
+		cp	DEND		; denpyou shuuryou key ?
+		scf			;
+		ret	z		; * yes
+
+		ld	bc,1601h
+		call	BEEP
+		ld	a,1
+		jr	pr_endno10
+
+ed_ret:
+		ld	hl,m_endno
+		call	chr_disp
+
+		ld	hl,m_endno+4
+		ld	b,3
+		call	chr_bin
+		ld	(end_no),hl
+
+		push	hl
+		ld	de,(min_no)
+		or	a
+		sbc	hl,de
+		pop	hl
+		jr	c,ed_ret10
+
+		ld	de,(st_no)
+		or	a
+		sbc	hl,de
+		ret	nc
+ed_ret10:
+		ld	bc,1601h
+		call	BEEP
+		jr	pr_endno
+;
+;	insatsu shori
+;
+list:
+		ld	hl,c_flag
+		ld	bc,17
+		ld	a,0
+		call	clrbuf
+
+		ld	a,2
+		ld	(c_func),a
+		call	csr_off		; screen ,cursor off
+		ld	hl,m_insatsu	; insatsu chuu
+		call	kmsg		;
+
+		ld	de,(st_no)	; insatsu kaishi No.
+list10:
+		ld	hl,(end_no)	;
+		or	a		; shuuryou check
+		sbc	hl,de		;
+		ret	c		;
+
+		push	de
+		call	search
+		jr	c,list50
+
+		push	hl
+		ld	a,(c_flag)	;
+		cp	(hl)		; flag check
+		jr	nz,list30	;
+
+		inc	hl		;
+		ld	de,c_choai	;
+		ld	b,8		; choai saki check
+		call	strcmp		;
+		jr	nz,list30	;
+
+		ld	a,(c_flag)	;
+		cp	2		; tokuchu ?
+		jr	z,list20	; * yes
+
+		ld	de,8		;
+		add	hl,de		;
+		ld	de,c_hachu	; hachuu saki check
+		ld	b,8		;
+		call	strcmp		;
+		jr	nz,list30	;
+list20:
+		ld	c,1
+		jr	list40
+list30:
+		pop	hl
+		push	hl
+		ld	a,(hl)		; flag save
+		ld	(c_flag),a	;
+
+		inc	hl
+		ld	de,c_choai	;
+		ld	bc,8		; choai saki save
+		ldir			;
+
+		cp	2		; tokuchu ?
+		jr	z,list35	; * yes
+
+		ld	bc,8		;
+		add	hl,bc		; hachuu saki save
+		ld	de,c_hachu	;
+		ldir			;
+list35:
+		ld	c,0
+list40:
+		ld	a,c
+		ld	(c_pflag),a
+		pop	hl
+		ld	(c_blkadr),hl
+		ld	a,(hl)
+		add	a,10
+		call	overlay		; print out
+		ld	a,(c_pflag)
+		inc	a
+		jr	nz,list60
+list50:
+		pop	de
+		inc	de
+		jp	list10
+list60:
+		pop	de
+		ret
+;
+;	denpyou No. search
+;
+search:
+		ld	hl,M_ORDER
+		ld	b,10
+		ld	ix,s_buff
+search10:
+		ld	a,(ix)
+		or	a
+		jr	z,search40
+
+		push	ix
+		inc	ix
+		ld	c,8
+search20:
+		ld	a,(ix)
+		cp	-1
+		jr	z,search30
+
+		push	hl
+		ld	l,(ix+1)
+		ld	h,(ix+2)
+		or	a
+		sbc	hl,de
+		pop	hl
+		jr	z,search50
+
+		inc	ix
+		inc	ix
+		inc	ix
+		dec	c
+		jr	nz,search20
+search30:
+		pop	ix
+search40:
+		push	bc
+		ld	bc,25
+		add	ix,bc
+		ld	bc,320
+		add	hl,bc
+		pop	bc	
+		djnz	search10
+		scf
+		ret
+search50:
+		pop	ix
+		ld	(ix),0
+		ret
+;
+;	character to binary convert
+;
+chr_bin:
+		ex	de,hl
+		ld	hl,0
+chr_bin10:
+		push	bc
+		add	hl,hl
+		ld	b,h
+		ld	c,l
+		add	hl,hl
+		add	hl,hl
+		add	hl,bc
+		ld	a,(de)
+		and	0fh
+		ld	c,a
+		ld	b,0
+		add	hl,bc
+		inc	de
+		pop	bc
+		djnz	chr_bin10
+		ret
+;
+;	string compare
+;
+strcmp:
+		ld	a,(de)
+		cp	(hl)
+		ret	nz
+		inc	de
+		inc	hl
+		djnz	strcmp
+		ret
+;
+;	data
+;
+m_print:	dw	0,0101h
+		dw	1b30h,88f3h,8dfch,1b31h
+		dw	0,0103h
+		dw	88f3h,8dfch,82cdh,8148h
+		dw	0,0105h
+		dw	88f3h,8dfch,8a4ah,8e6eh,826dh,828fh
+		dw	0,1005h
+		dw	88f3h,8dfch,8f49h,97b9h,826dh,828fh
+		dw	0,0107h
+		dw	9360h,955bh,82cdh,826dh,828fh
+		dw	0,0e07h
+		dw	82a9h,82e7h,826dh,828fh
+		dw	0,1907h
+		dw	82dch,82c5h,-1
+
+m_print1:	db	ESC,'=',23h,2bh
+		db	':1 (1:',0bdh,0cdh,0deh,0c3h
+		db	' 2:No',0bch,0c3h,0b2h,')'
+		db	ESC,'=',23h,2ch,ESC,'3',-1
+
+m_stno:		db	ESC,'=',25h,30h,'___',-1
+m_endno:	db	ESC,'=',25h,45h,'___',-1
+m_minno:	db	ESC,'=',27h,2eh,'000'
+m_maxno:	db	ESC,'=',27h,3ch,'000',-1
+
+m_insatsu:	dw	0,0101h
+		dw	1b30h,88f3h,8dfch,9286h,1b31h
+		dw	0,0103h
+		dw	88f3h,8dfch,82cch,9286h,9266h,82cdh,8183h,88f3h
+		dw	8dfch,9286h,9266h,8184h,834ch,817ch
+		dw	0,0105h
+		dw	88f3h,8dfch,82cch,8dc4h,8a4ah,82cdh,8183h,88f3h
+		dw	8dfch,8dc4h,8a4ah,8184h,834ch,817ch
+		dw	0,0107h
+		dw	88f3h,8dfch,82cch,9286h,8e7eh,82cdh,8183h,834ch
+		dw	8383h,8393h,835ah,838bh,8184h,834ch,817ch,-1
+
+p_stno:		db	25h,30h,33h,08h
+		dw	m_stno+4
+		db	0
+
+p_endno:	db	25h,45h,48h,08h
+		dw	m_endno+4
+		db	0
+
+min_no:		dw	0		; denpyou saishou No.
+max_no:		dw	0		; denpyou saidai No.
+
+st_no		equ	M_WORK+0	; insatsu kaishi No.
+end_no		equ	M_WORK+2	; insatsu shuuryou No.
+
+c_flag		equ	M_WORK+4	; flag (0:joubi 1:tokuchu) save area
+c_choai		equ	M_WORK+5	; chouai saki save area
+c_hachu		equ	M_WORK+13	; hachuu saki save area
+
+		end	print

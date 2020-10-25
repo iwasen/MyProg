@@ -1,0 +1,46 @@
+<?
+/******************************************************
+' System :Eco-footprint ²ñ°÷¥Ú¡¼¥¸
+' Content:¥¨¥³¿ÇÃÇ·×»»ÍÑÄê¿ô
+'******************************************************/
+
+// kWh¤«¤éMcal¤Ø¤Î´¹»»
+define('KWH_MCAL', 0.86);
+
+// µ¨Àá¤´¤È¤ÎÆü¿ô
+define('DAYS_WINTER', 117);
+define('DAYS_SUMMER', 65);
+define('DAYS_SP_AUT', 183);
+
+// µ¨Àá¤´¤È¤Î¿å²¹[¡î]
+define('TMP_WINTER', 7);
+define('TMP_SUMMER', 24);
+define('TMP_SP_AUT', 15);
+
+// µ¡´ï¸úÎ¨
+define('EFF_GAS', 0.8);
+define('EFF_ELE', 1.0);
+define('EFF_OIL', 0.8);
+
+// Ê¿¶ÑÆþÍá»þ´Ö[Ê¬]
+define('NYUUYOKU_JIKAN', 20);
+
+// Åò²¹Äã²¼Î¨
+define('TEIKA_FUTAARI', 0.7);
+define('TEIKA_FUTANASHI', 2.4);
+
+// Ç¯´ÖÎäÃÈË¼Æü¿ô
+define('DAYS_REIBOU', 77);
+define('DAYS_DANBOU', 107);
+
+// À²Å·¡¢±«Å·¤ÎÆü¿ô
+define('DAYS_FAIR', 275);
+define('DAYS_RAIN', 90);
+
+// Ê¿Æü¤ÈµÙÆü¤ÎÆü¿ô
+define('DAYS_WEEKDAY', 240);
+define('DAYS_HOLIDAY', 125);
+
+// »°³Ñ¥³¡¼¥Ê¡¼¤ÎÍÆÎÌ[kg]
+define('SINK_CORNER', 0.7);
+?>

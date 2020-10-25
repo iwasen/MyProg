@@ -1,0 +1,160 @@
+DIV.page
+{
+		PAGE-BREAK-BEFORE: always
+}
+A:link
+{
+		COLOR: blue
+}
+A:visited
+{
+		COLOR: blue
+}
+A:active
+{
+		COLOR: blue
+}
+A:hover
+{
+		COLOR: red
+}
+HR.footer
+{
+		COLOR: #5673fc
+}
+HR.print
+{
+		COLOR: #0000ff
+}
+XMP.print
+{
+		FONT-FAMILY: 'ÇlÇr ÉSÉVÉbÉN'
+}
+TABLE.print
+{
+		FONT-WEIGHT: bolder
+}
+TD.m1
+{
+		FONT-WEIGHT: bolder;
+		COLOR: white;
+		WHITE-SPACE: nowrap;
+		BACKGROUND-COLOR: #3366aa
+}
+TD.m2
+{
+		FONT-WEIGHT: bolder;
+		COLOR: white;
+		WHITE-SPACE: nowrap;
+		BACKGROUND-COLOR: peru
+}
+TD.n2
+{
+		BACKGROUND-COLOR: #f8e0d0
+}
+TD.m3
+{
+		FONT-WEIGHT: bolder;
+		COLOR: white;
+		WHITE-SPACE: nowrap;
+		BACKGROUND-COLOR: #888888
+}
+TD.n3
+{
+		BACKGROUND-COLOR: #e0e0e0
+}
+TD.m4
+{
+		FONT-WEIGHT: bolder;
+		COLOR: white;
+		WHITE-SPACE: nowrap;
+		BACKGROUND-COLOR: #66bb66
+}
+TD.n4
+{
+		BACKGROUND-COLOR: #eeeedd
+}
+.np
+{
+		FONT-SIZE: 10.5pt;
+		FONT-FAMILY: 'ÇlÇr ÉSÉVÉbÉN'
+}
+.info
+{
+		FONT-SIZE: 12px
+}
+TD.n1
+{
+		BACKGROUND-COLOR: #d0e0f8
+}
+TD.menu
+{
+		BORDER-RIGHT: ridge;
+		BORDER-TOP: ridge;
+		FONT-WEIGHT: bold;
+		BORDER-LEFT: ridge;
+		CURSOR: hand;
+		COLOR: white;
+		BORDER-BOTTOM: ridge;
+		BACKGROUND-COLOR: #3366aa
+}
+.small
+{
+		FONT-SIZE: smaller
+}
+.hc
+{
+		FONT-SIZE: smaller;
+		COLOR: navy
+}
+TD.m0
+{
+		COLOR: slateblue
+}
+.tc0
+{
+		BACKGROUND-COLOR: #ffffff
+}
+.tc1
+{
+		BACKGROUND-COLOR: #fff0e0
+}
+.tc2
+{
+		BACKGROUND-COLOR: #fffff0
+}
+.note
+{
+		FONT-SIZE: smaller;
+		COLOR: forestgreen
+}
+H1.title
+{
+		BORDER-RIGHT: cadetblue 0px solid;
+		PADDING-RIGHT: 0px;
+		BORDER-TOP: cadetblue 0px solid;
+		PADDING-LEFT: 0px;
+		FONT-SIZE: 17pt;
+		PADDING-BOTTOM: 0px;
+		MARGIN: 0px;
+		BORDER-LEFT: cadetblue 0px solid;
+		WIDTH: 100%;
+		COLOR: darkslateblue;
+		PADDING-TOP: 0px;
+		BORDER-BOTTOM: cadetblue 0px solid
+}
+HR.headerA
+{
+		COLOR: peru;
+		HEIGHT: 7px
+}
+HR.headerC
+{
+		COLOR: mediumseagreen;
+		HEIGHT: 7px
+}
+HR.headerG
+{
+		COLOR: cornflowerblue;
+		HEIGHT: 7px
+}

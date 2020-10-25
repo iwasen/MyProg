@@ -1,0 +1,483 @@
+		title	jrlist
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; module name	: joubi jushin list
+; creation date	: 86:01:24
+; revised date  : 
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+		.z80
+
+		include	MEMORY.INC
+		include SUBR.INC
+
+		public	jrlist
+		public	jrlste
+
+		extrn	prm_yy
+		extrn	zbin_ch
+		extrn	trlste
+
+;
+	CR		equ	0dh	; return key code
+	ESC		equ	1bh	; escape key code
+;
+	hinmoku		equ	M_PARAM+7
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	joubi jushin list
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+jrlist:
+		ex	de,hl
+
+		ld	hl,43		;
+		add	hl,de		;
+		ld	a,(hl)		;
+		inc	hl		; set shukkabi kaitou flag
+		or	(hl)		;
+		sub	'0'		;
+		ld	(skflag),a	;
+
+		ld	hl,255		;
+		add	hl,de		;
+		ld	a,(hl)		;
+		ld	hl,k_nouki	;
+		cp	'1'		; midashi print out
+		jr	z,jrlist10	;
+		ld	hl,k_jlens	;
+		ld	a,(skflag)	;
+		or	a		;
+		jr	z,jrlist10	;
+		ld	hl,k_tlens##	;
+jrlist10:				;
+		call	k16list		;
+
+		ld	hl,prm_yy	;
+		ld	b,8		; date
+		call	clist		;
+		call	crout
+
+		ld	a,(R_TANTO)	;
+		cp	'2'		;
+		jr	nz,jrlist15	;
+		ld	hl,c_sosain	; sousain
+		call	k8list		;
+		ld	hl,C_TANTO	;
+		ld	b,5		;
+		call	clist		;
+		call	crout		
+jrlist15:
+		ld	hl,378		;
+		add	hl,de		;
+		ld	a,(hl)		;
+		cp	' '		; error mark off ?
+		jr	z,jrlist18	; * yes
+
+		push	de		;
+		inc	hl		;
+		push	hl		;
+		ld	hl,385		;
+		add	hl,de		;
+		ex	de,hl		;
+		pop	hl		;
+		ld	b,3		;
+jrlist16:				;
+		ld	a,(hl)		;
+		inc	hl		; print error message
+		or	(hl)		;
+		cp	'0'		;
+		jr	z,jrlist17	;
+		dec	hl		;
+		push	bc		;
+		push	de		;
+		ld	de,c_error+4	;
+		ld	bc,2		;
+		ldir			;
+		ex	(sp),hl		;
+		inc	de		;
+		ld	bc,15		;
+		ldir			;
+		push	hl		;
+		ld	hl,c_error	;
+		call	k8lmsg		;
+		pop	de		;
+		pop	hl		;
+		pop	bc		;
+		djnz	jrlist16	;
+jrlist17:
+		pop	de
+jrlist18:
+		ld	hl,k_recvno	; jushin No.
+		call	k16list		;
+		ld	hl,28		;
+		add	hl,de		;
+		ld	b,2		;
+		call	clist		;
+		push	hl		;
+		push	de		;
+		ld	de,'-'		;
+		call	klist		;
+		pop	de		;
+		pop	hl		;
+		ld	b,5		;
+		call	clist		;
+
+		push	de		;
+		ld	hl,k_uketuke	;
+		call	k16list		;
+		ld	hl,39		;
+		add	hl,de		;
+		ld	de,c_jikoku	;
+		ld	b,2		; uketsuke jikoku
+		call	zset		;
+		ld	de,c_jikoku+4	;
+		ld	b,2		;
+		call	zset		;
+		ld	hl,c_jikoku	;
+		call	k8lmsg		;
+		pop	de		;
+
+		ld	hl,k_sendno	;
+		call	k16list		;
+		ld	hl,50		;
+		add	hl,de		;
+		ld	b,12		;
+		call	clist		; hasshin No.
+		push	hl		;
+		push	de		;
+		ld	de,'-'		;
+		call	klist		;
+		pop	de		;
+		pop	hl		;
+		ld	b,3		;
+		call	clist		;
+		call	crout
+
+		ld	hl,k_choai	;
+		call	k16list		;
+		ld	hl,276		;
+		add	hl,de		; chouai saki
+		ld	a,(hl)		;
+		cp	' '		;
+		jr	z,jrlist20	;
+		ld	b,20		;
+		call	clist		;
+		jr	jrlist30	;
+jrlist20:				;
+		ld	hl,20		;
+		add	hl,de		;
+		ld	b,8		;
+		call	clist		;
+jrlist30:
+		call	crout
+
+		ld	hl,k_hachu	;
+		call	k16list		;
+		ld	hl,256		;
+		add	hl,de		; hacchuu saki code
+		ld	a,(hl)		;
+		cp	' '		;
+		jr	z,jrlist40	;
+		ld	b,20		;
+		call	clist		;
+		jr	jrlist50	;
+jrlist40:				;
+		ld	hl,12		;
+		add	hl,de		;
+		ld	b,8		;
+		call	clist		;
+jrlist50:
+		call	crout
+
+		ld	a,(R_CHOKUSO)	;
+		cp	'1'		;
+		jr	z,jrlist55	;
+		ld	hl,c_chokuso	; print chokusou saki
+		call	k8list		;
+		ld	hl,10		;
+		add	hl,de		;
+		ld	b,2		;
+		call	clist		;
+		call	crout
+jrlist55:
+		ld	hl,k_hinmei	;
+		call	k16list		;
+		ld	hl,296		;
+		add	hl,de		; hinmei code
+		ld	a,(hl)		;
+		cp	' '		;
+		jr	z,jrlist60	;
+		ld	b,30		;
+		call	clist		;
+		jr	jrlist70	;
+jrlist60:				;
+		ld	hl,85		;
+		add	hl,de		;
+		ld	b,13		;
+		call	clist		;
+jrlist70:
+		call	crout
+
+		ld	hl,k_gyoban	; gyouban-basho
+		ld	a,(skflag)
+		or	a
+		jr	z,jrlist75
+		ld	hl,k_gyoban1	; gyouban-kazu
+jrlist75:
+		call	k16list		;
+
+		ld	hl,1
+		ld	(w_gyoban),hl
+		ld	hl,98
+		add	hl,de
+		ld	b,8
+jrlist80:
+		push	bc
+		push	de
+		push	hl
+		ld	de,(w_gyoban)	;
+		ld	hl,c_gyoban	; gyouban set
+		ld	b,2		;
+		call	zbin_ch		;
+
+		pop	hl
+		ld	de,c_sdosu	;
+		ldi
+		ld	b,2		;
+		call	zset		; s-dosuu set
+		inc	de		;
+		ld	bc,2		;
+		ldir			;
+
+		ld	de,c_cdosu	;
+		ld	b,4		;
+		call	zcheck		;
+		ld	bc,2		;
+		ldir			; c-dosuu set
+		inc	de		;
+		ld	bc,2		;
+		ldir			;
+
+		ld	de,c_kazu	;
+		ld	b,3		; kazu set
+		call	zset		;
+		ld	a,c
+
+		cp	' '		; kazu = 0 ?
+		jr	z,jrlist85	; * yes
+
+		pop	de
+		push	de
+		push	hl
+		ld	hl,356		;
+		add	hl,de		;
+		ld	de,c_basho	; basho set
+		ld	bc,7		;
+		ldir			;
+
+		ld	hl,c_data
+		call	k8lmsg
+
+		ld	hl,(w_gyoban)	;
+		inc	hl		; gyouban +1
+		ld	(w_gyoban),hl	;
+
+		ld	hl,(hinmoku)	;
+		inc	hl		; hinmoku +1
+		ld	(hinmoku),hl	;
+
+		pop	hl
+jrlist85:
+		pop	de
+		pop	bc
+		djnz	jrlist80
+jrlist90:
+		ld	hl,c_biko	;
+		call	k8list		;
+		ld	hl,65		; bikou
+		add	hl,de		;
+		ld	b,20		;
+		call	clist		;
+
+		call	crout
+
+		ld	hl,378		;
+		add	hl,de		;
+		ld	a,(hl)		;
+		ld	hl,k_msg4	;
+		cp	' '		; error mark on ?
+		jr	nz,jrlste10	; * yes
+
+		ld	hl,k_msg1
+		call	k16list
+
+		ld	a,(skflag)
+		or	a
+		jp	nz,trlste
+jrlste:
+		ld	hl,255
+		add	hl,de
+		ld	a,(hl)
+		cp	'1'
+		ld	hl,k_msg2
+		jr	nz,jrlste10
+		ld	hl,k_msg3
+jrlste10:
+		call	k16list
+
+		ld	hl,c_aster
+		ld	b,40
+		call	clist
+		ret
+;
+;
+k8list:
+		push	de
+		call	k8lmsg
+		pop	de
+		ret
+;
+;
+k16list:
+		push	de
+		call	k16lmsg
+		pop	de
+		ret
+;
+;
+clist:
+		push	de
+clist10:
+		ld	e,(hl)
+		ld	d,0
+		inc	hl
+		push	hl
+		push	bc
+		call	klist
+		pop	bc
+		pop	hl
+		djnz	clist10
+		pop	de
+		ret
+;
+;
+crout:
+		push	hl
+		push	de
+		ld	de,CR
+		call	klist
+		pop	de
+		pop	hl
+		ret
+;
+;
+zset:
+		ld	c,' '
+zset10:
+		ld	a,(hl)
+		cp	'0'
+		jr	nz,zset20
+		push	bc
+		dec	b
+		pop	bc
+		jr	z,zset30
+		ld	a,c
+		jr	zset30
+zset20:
+		ld	c,'0'
+zset30:
+		ld	(de),a
+		inc	de
+		inc	hl
+		djnz	zset10
+		ret
+;
+;
+zcheck::
+		push	hl
+		push	bc
+		ld	a,'0'
+zcheck10:
+		or	(hl)
+		inc	hl
+		djnz	zcheck10
+		pop	bc
+		pop	hl
+		cp	'0'
+		ret	nz
+
+		push	hl
+zcheck20:
+		ld	(hl),' '
+		inc	hl
+		djnz	zcheck20
+		pop	hl
+		ret
+;
+;	data
+;
+k_jlens::	dw	8fedh,94f5h,838ch,8393h,8359h,8ef3h,904dh
+		dw	838ah,8358h,8367h,8140h,0020h,-1
+
+k_nouki::	dw	945bh,8afah,96e2h,8d87h,82b9h,8ef3h,904dh
+		dw	838ah,8358h,8367h,8140h,0020h,-1
+
+k_recvno::	dw	8140h,8ef3h,904dh,826dh,828fh,0020h,-1
+
+k_uketuke::	dw	8140h,8ef3h,9574h,0020h,-1
+
+k_sendno::	dw	8140h,94adh,904dh,826dh,828fh,0020h,-1
+
+k_choai::	dw	8140h,92a0h,8d87h,90e6h,8140h,0020h,-1
+
+k_hachu:	dw	8140h,94adh,928dh,90e6h,8140h,0020h,-1
+
+k_hinmei:	dw	8140h,9569h,96bch,0020h,-1
+
+k_gyoban:	dw	8d73h,94d4h,8140h,8140h,9378h,9094h,8140h
+		dw	8140h,8140h,0020h,0020h,9094h,8140h,8feah,8f8ah,CR,-1
+
+k_gyoban1:	dw	8d73h,94d4h,8140h,8140h,9378h,9094h,8140h
+		dw	8140h,8140h,0020h,0020h,9094h,CR,-1
+
+k_msg1::	dw	82a0h,82e8h,82aah,82c6h,82a4h,82b2h,82b4h
+		dw	82a2h,82dch,82b5h,82bdh,8142h,CR,-1
+
+k_msg2:		dw	92cah,8fedh,82c7h,82a4h,82e8h,82a8h,9197h
+		dw	82e8h,9276h,82b5h,82dch,82b7h,8142h,CR,-1
+
+k_msg3:		dw	92cah,8fedh,82c7h,82a4h,82e8h,82a8h,9197h
+		dw	82e8h,82c5h,82abh,82dch,82b7h,8142h,CR,-1
+
+k_msg4::	dw	9360h,955bh,93e0h,9765h,82f0h,82a8h,8a6dh
+		dw	82a9h,82dfh,82adh,82beh,82b3h,82a2h,8142h
+		dw	CR,-1
+
+c_sosain::	db	'  ',0bfh,0b3h,0bbh,0b2h,0ddh,'      ',-1
+
+c_jikoku::	db	'hh',0bch,0deh,'mm',0cch,0ddh,CR,-1
+
+c_chokuso::	db	'  ',0c1h,0aeh,0b8h,0bfh,0b3h,0bbh,0b7h,020h,-1
+
+c_data:		db	'  '
+c_gyoban:	db	'00   S' 
+c_sdosu:	db	'+00.00  C'
+c_cdosu:	db	'+0.00   '
+c_kazu:		db	'000   '
+c_basho:	db	'xxxxxxx',CR,-1
+
+c_biko:		db	'  ',0cbh,0deh,0bah,0b3h,'  ',-1
+
+c_aster::	db	'****************************************',-1
+
+c_error::	db	'*** 99 xxxxxxxxxxxxxxx *****************',-1
+
+w_gyoban:	dw	0
+
+skflag:		db	0
+
+		end

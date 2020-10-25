@@ -1,0 +1,109 @@
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+  <tr bgcolor="#5B94FD">
+
+    <td colspan="3"><img src="image/naviedit_prohibition_ttl.gif" width="168" height="25" hspace="10" alt="禁止URL/ﾜｰﾄﾞ管理"></td>
+  </tr>
+  <tr>
+    <td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+    <td width="555" valign="top">
+      <form name="form3" method="post" action="" enctype="multipart/form-data">
+
+	<table width="555" border="0" cellspacing="0" cellpadding="0">
+	  <tr>
+	    <td colspan="2"><img src="image/spacer.gif" width="1" height="15"></td>
+	  </tr>
+	  <tr>
+	    <td colspan="2"><img src="image/naviedit_prohibition_list_ttl.gif" width="132" height="14" alt="禁止URL/ワード一覧"></td>
+	  </tr>
+	  <tr>
+	    <td width="450"><img src="image/spacer.gif" width="450" height="1"></td>
+	    <td width="105"><img src="image/spacer.gif" width="105" height="1"></td>
+	  </tr>
+	  <tr>
+	    <td colspan="2"><img src="image/spacer.gif" width="1" height="7"></td>
+	  </tr>
+	  <tr>
+	    <td valign="top">
+	      <table width="450" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+		  <td colspan="8" bgcolor="#666666"><img src="image/spacer.gif" width="450" height="1"></td>
+		</tr>
+		<tr>
+		  <td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		  <td width="35" align="center">　</td>
+		  <td width="35" bgcolor="#E6F2FF" align="center" class="char120">
+		    <p class="ind0804">No.</p>
+		  </td>
+		  <td width="80" align="center" class="char120">項目</td>
+		  <td width="120" align="center" class="char120" bgcolor="#E6F2FF">
+		    <p class="ind0804">詳細</p>
+		  </td>
+		  <td width="60" align="center" class="char120">
+		    <p class="ind0804">設定日</p>
+		  </td>
+		  <td width="50" align="center" class="char120" nowrap bgcolor="#E6F2FF">
+		    <p class="ind0804">ステータス</p>
+		  </td>
+		  <td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		</tr>
+		<tr>
+		  <td colspan="8" bgcolor="#666666"><img src="image/spacer.gif" width="450" height="1"></td>
+		</tr>
+		<{foreach item=item from=$itemlist name=itemlist}>
+		<!-- 禁止ワードここから -->
+		<tr>
+		  <td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		  <td align="center">
+		    <input type="radio" name="blog_ngword_id" value="<{$item->getId()}>" />
+		  </td>
+		  <td bgcolor="#E6F2FF" align="center" class="char120">
+		    <p class="ind0804"><{$smarty.foreach.itemlist.iteration}></p>
+		  </td>
+		  <td class="char120" align="center"><{if $item->getAttribute('bng_type')==1}>URL<{elseif $item->getAttribute('bng_type')==2}>ワード<{/if}></td>
+		  <td class="char120" align="center" bgcolor="#E6F2FF">
+		    <p class="ind0804"><{$item->getAttribute('bng_word')|escape}></p>
+		  </td>
+		  <td align="center" class="char120" nowrap>
+		    <p class="ind0804"><{$item->getAttribute('bng_date')|HNbDate:"s"}></p>
+		  </td>
+		  <td align="center" class="char120" bgcolor="#E6F2FF">
+		    <p class="ind0804"><{if $item->getAttribute('bng_status')==1}>有効<{elseif $item->getAttribute('bng_status')==9}>無効<{/if}></p>
+		  </td>
+		  <td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		</tr>
+		<!-- 禁止ワードここまで-->
+		<{/foreach}>
+		<tr>
+		  <td colspan="8" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="450" height="1"></td>
+		</tr>
+	      </table>
+	    </td>
+	    <td valign="top" align="center">
+	      <table width="65" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+		  <td><a href="index.php?module=Blog&amp;action=modifyNgword&amp;navipage_id=<{$hitobitoNaviPageInfo->getId()}>"><img src="image/naviedit_btn_new.gif" width="65" height="20" alt="新規" border="0"></a></td>
+		</tr>
+		<tr>
+		  <td><img src="image/spacer.gif" width="1" height="15"></td>
+		</tr>
+		<tr>
+		  <td><input type="image" name="blog_modifyNgword" src="image/naviedit_btn_edit.gif" width="65" height="20" alt="編集" border="0"></td>
+		</tr>
+		<tr>
+		  <td><img src="image/spacer.gif" width="1" height="15"></td>
+		</tr>
+		<tr>
+		  <td><input type="image" name="blog_deleteNgword" src="image/naviedit_btn_delete.gif" width="65" height="20" alt="削除" border="0"></td>
+		</tr>
+	      </table>
+	    </td>
+	  </tr>
+	  <tr>
+	    <td colspan="2"><img src="image/spacer.gif" width="1" height="30"></td>
+	  </tr>
+	</table>
+      </form>
+    </td>
+    <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+  </tr>
+</table>

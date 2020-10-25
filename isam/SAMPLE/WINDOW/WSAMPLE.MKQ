@@ -1,0 +1,8 @@
+wsample.dmy : wsample.exe
+
+wsample.obj : wsample.c
+	qcl /c /AL /Zp /J wsample.c
+
+wsample.exe : wsample.obj isaml.lib gwll.lib
+	link /st:8192 wsample,,,isaml gwll;
+

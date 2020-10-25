@@ -1,0 +1,132 @@
+<!-- ナビエディット -->
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+  <tr bgcolor="#5B94FD">
+    <td colspan="5"><img src="image/naviedit_edit_ttl.gif" width="110" height="25" hspace="10" alt="ナビエディット"></td>
+  </tr>
+  <tr>
+    <td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+    <td width="270"><img src="image/spacer.gif" width="270" height="1"></td>
+    <td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+    <td width="270"><img src="image/spacer.gif" width="270" height="1"></td>
+    <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+  </tr>
+  <tr>
+    <td colspan="5"><img src="image/spacer.gif" width="1" height="14"></td>
+  </tr>
+  <tr>
+    <td><img src="image/spacer.gif" width="15" height="1"></td>
+    <td colspan="3" class="char120">ナビエディットページへようこそ！<br>
+      編集したいナビページを選択してください。</td>
+    <td><img src="image/spacer.gif" width="10" height="1"></td>
+  </tr>
+  <tr>
+    <td colspan="5"><img src="image/spacer.gif" width="1" height="25"></td>
+  </tr>
+  <tr>
+    <td><img src="image/spacer.gif" width="15" height="1"></td>
+    <td valign="top">
+      <table width="270" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	  <td><img src="image/naviedit_edit_sttl_navipage.gif" width="71" height="14" alt="ナビページ"></td>
+	</tr>
+	<tr>
+	  <td><img src="image/spacer.gif" width="1" height="4"></td>
+	</tr>
+	<tr>
+	  <td bgcolor="#666666"><img src="image/spacer.gif" width="270" height="1"></td>
+	</tr>
+      </table>
+      <table width="270" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td><img src="image/spacer.gif" width="1" height="15"></td>
+        </tr>
+        <tr>
+          <td>
+            <p class="menuind15"><img src="image/member_link01.gif" width="15" height="12" align="absmiddle"><span class="char120">あなたが管理するナビページ</span></p>
+            <span class="char120">
+	      <ul>
+		<{foreach item=item from=$member_my_navipages}>
+		<li><a href="index.php?module=Navi&action=ShowNaviEdit&navipage_id=<{$item->getId()}>"><{$item->getTitle()|escape}></a></li>
+		<{/foreach}>
+	      </ul>
+	    </span>
+	    <{if count($member_assist_navipages) > 0}>
+            <p class="menuind15"><img src="image/member_link01.gif" width="15" height="12" align="absmiddle"><span class="char120">あなたがアシストナビをしているナビページ</span></p>
+            <span class="char120">
+	      <ul>
+		<{foreach item=item from=$member_assist_navipages}>
+		<li><a href="index.php?module=Navi&action=ShowNaviEdit&navipage_id=<{$item->getId()}>"><{$item->getTitle()|escape}></a></li>
+		<{/foreach}>
+	      </ul>
+	    </span>
+	    <{/if}>
+	  </td>
+        </tr>
+        <tr>
+          <td><img src="image/naviedit_split270.gif" width="270" height="1" vspace="10"></td>
+        </tr>        <tr>
+          <td class="char120">事務局で承認作業を行なわないと、ナビページが表示されません。表示されない方は承認までいましばらくお待ちください。</td>
+        </tr>
+      </table>
+    </td>
+    <td><img src="image/spacer.gif" width="15" height="1"></td>
+    <td width="270" valign="top">
+      <table width="270" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	  <td><img src="image/naviedit_edit_sttl_profile.gif" width="79" height="13" alt="プロファイル"></td>
+	</tr>
+	<tr>
+	  <td><img src="image/spacer.gif" width="1" height="4"></td>
+	</tr>
+	<tr>
+	  <td bgcolor="#666666"><img src="image/spacer.gif" width="270" height="1"></td>
+	</tr>
+      </table>
+      <table width="270" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	  <td><img src="image/spacer.gif" width="1" height="15"></td>
+	</tr>
+	<tr>
+	  <td>
+	    <p class="menuind15"><img src="image/member_link01.gif" width="15" height="12" align="absmiddle"><span class="char120"><a href="index.php?module=Member&amp;action=ModifyProfile">ナビ登録情報の編集</a></span></p>
+	    <p class="ind15"><span class="char120">ナビ登録情報情報の登録・更新を行ないます。</span></p>
+	  </td>
+	</tr>
+	<tr>
+	  <td><img src="image/naviedit_split270.gif" width="270" height="1" vspace="10"></td>
+	</tr>
+      </table>
+      <table width="270" border="0" cellspacing="0" cellpadding="0" bgcolor="#E6F2FF">
+	<tr>
+	  <td width="10"><img src="image/member_top_box_lt.gif" width="10" height="10"></td>
+	  <td width="250"><img src="image/spacer.gif" width="250" height="1"></td>
+	  <td width="10"><img src="image/member_top_box_rt.gif" width="10" height="10"></td>
+	</tr>
+	<tr>
+	  <td><img src="image/spacer.gif" width="10" height="1"></td>
+	  <td>
+	    <table width="250" border="0" cellspacing="0" cellpadding="0">
+	      <tr>
+		<td>
+		          <p class="menuind15"><img src="image/member_link01.gif" width="15" height="12" align="absmiddle"><span class="char120"><a href="index.php?module=Contact&navipage_id=194&contact_form_id=2">お問い合わせ</a></span></p>
+		  <p class="ind15"><span class="char120">事務局へ問い合わせを行ないます。</span></p>
+		</td>
+	      </tr>
+	    </table>
+	  </td>
+	  <td><img src="image/spacer.gif" width="10" height="1"></td>
+	</tr>
+	<tr>
+	  <td><img src="image/member_top_box_lb.gif" width="10" height="10"></td>
+	  <td><img src="image/spacer.gif" width="250" height="1"></td>
+	  <td><img src="image/member_top_box_rb.gif" width="10" height="10"></td>
+	</tr>
+      </table>
+    </td>
+    <td><img src="image/spacer.gif" width="10" height="1"></td>
+  </tr>
+  <tr>
+    <td colspan="5"><img src="image/spacer.gif" width="1" height="40"></td>
+  </tr>
+</table>
+<!-- ナビエディットここまで -->

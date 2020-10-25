@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>メルマガ休刊手続き</TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600">
+<? include("header.php"); ?>
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="513" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+                <TD> 
+                  <table width="501" border="0" cellspacing="0" cellpadding="0">
+                    <tr> 
+                      <td width="251"><font color="#006600"><b>■メルマガ休刊手続き</b></font></td>
+                      <td width="250" align="right"> 
+                        <form method="post" action="pub_index.php" name="fom_index">
+                          <a href="JavaScript:document.fom_index.submit();"> <font size="2">管理ページTOPへ</font></a> 
+                          <input type="hidden" value="<? echo $publisher_id ?>" name="publisher_id">
+                          <input type="hidden" value="<? echo $owner_pswd ?>" name="owner_pswd_r2">
+                        </form>
+                      </td>
+                    </tr>
+                  </table>
+                  <form name="form1" action = "magazine.php" method="post">
+                    <p class="midashi14"><span class="text01">休刊理由を選択してください。</span><br>
+                      <br>
+                      <input type="radio" name="reason_sel" value="忙しくなった。">
+                      1. 忙しくなった。<br>
+                      <input type="radio" name="reason_sel" value="興味がなくなった。">
+                      2. 興味がなくなった。<br>
+                      <input type="radio" name="reason_sel" value="書くことがなくなった。">
+                      3. 書くことがなくなった。<br>
+                      <input type="radio" name="reason_sel" value="読者が減った。いじめられた。">
+                      4. 読者が減った。いじめられた。 <br>
+                      <input type="radio" name="reason_sel" value="その他">
+                      5. その他 
+                      <input type="text" name="reason" size="50">
+                    </p>
+<p>確認のためにパスワードを入力してください。<br>
+<input type="password" name="OWNER_PSWD_I" value= "">
+</p>
+<p class="text01">本当に休刊にしてもよろしいですか？</p>
+<input type="submit" value="休　刊" name="mag_kyu11">
+<input type="hidden" value="<? echo $publisher_id ?>" name="publisher_id">
+<input type="hidden" value="<? echo trim($owner_pswd); ?>" name="owner_pswd">
+<input type="hidden" value="<? echo $mag_id ?>" name="mag_id">
+<input type="hidden" value="<? echo $mag_nm ?>" name="mag_nm">
+<input type="hidden" value="<? echo $next_job_flg; ?>" name="job_flg">
+</form>
+<form name="form1" action = "pub_index.php" method="post">
+<input type="submit" value="やっぱり休刊を思いとどまって、もう一度がんばって発行してみる" name="mag_kyu22">
+<input type="hidden" value="<? echo $publisher_id ?>" name="publisher_id">
+<input type="hidden" value="<? echo trim($owner_pswd); ?>" name="owner_pswd_r">
+</form>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<? include("footer.php"); ?>
+</TABLE>
+</body>
+</html>

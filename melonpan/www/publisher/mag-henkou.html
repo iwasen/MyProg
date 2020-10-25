@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>メルマガ基本情報修正・休廃刊</TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600">
+<? include("header.php"); ?>
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="513" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+                <TD> 
+                  <table width="501" border="0" cellspacing="0" cellpadding="0">
+                    <tr> 
+                      <td width="251"><font color="#006600"><b>■メルマガ基本情報修正・休廃刊</b></font></td>
+                      <td width="250" align="right"> 
+                        <form method="post" action="pub_index.php" name="fom_index">
+                          <a href="JavaScript:document.fom_index.submit();"> <font size="2">管理ページTOPへ</font></a> 
+                          <input type="hidden" value="<? echo $publisher_id ?>" name="publisher_id">
+                          <input type="hidden" value="<? echo $owner_pswd ?>" name="owner_pswd_r">
+                        </form>
+                      </td>
+                    </tr>
+                  </table>
+                  <br>
+                  <br>
+                  <br>
+                  <BR>
+                  <BR>
+<table width="400" border="0" cellpadding="3" cellspacing="1" align="center">
+<tr>
+<td bgcolor="#669900" nowrap width="180">
+<div align="center"><B><FONT color="#FFFFCC" class="text9ptnoColor">メルマガ基本情報の修正</FONT></B></div>
+</td><form name=$fom_name action="./mag-henkou.php" method="post">
+<td width="220">
+<input type="submit" name="mag_edit_sel" value="修　正">
+<input type="hidden" value="<? echo $owner_pswd ?>" name="owner_pswd">
+<input type="hidden" value="<? echo $publisher_id ?>" name="publisher_id">
+<input type="hidden" value="<? echo $mail_add_main ?>" name="mail_add_main">
+</td></form>
+</tr>
+<tr>
+
+<td colspan="2">
+<span class="text01">メルマガの紹介文や属性などの修正ができます。</span><br>　
+</td>
+</tr>
+<tr>
+<td bgcolor="#669900" width="180">
+<div align="center"><B><font color="#FFFFCC" class="text9ptnoColor">メルマガ休刊／廃刊</font></B></div
+>
+</td>
+<form name=$fom_name action="./magazine.php" method="post">
+<td width="203">
+<input type="submit" name="mag_stop_sel" value="休刊/廃刊/復刊">
+<input type="hidden" value="<? echo $owner_pswd ?>" name="owner_pswd">
+<input type="hidden" value="<? echo $publisher_id ?>" name="publisher_id">
+<input type="hidden" value="Stop1" name="job_flg">
+
+</td>
+</form>
+</tr>
+<tr>
+<td colspan="2">
+<span class="text01">メルマガの発行を一時停止したり、廃刊にする場合はこちらから。また現在休刊中のメルマガを復刊させるのもこちらです。</span>
+</td>
+</tr>
+</table>
+<p align="center">
+<input type="button" name="Submit3" value="戻る" onClick="history.back()">
+</p>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<? include("footer.php"); ?>
+</TABLE>
+</body>
+</html>
+

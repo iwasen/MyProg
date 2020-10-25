@@ -1,0 +1,149 @@
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+	<tr bgcolor="#5B94FD">
+		<td colspan="3"><img src="image/naviedit_menu_preview_ttl.gif" width="124" height="25" hspace="10" alt="メルマガ管理"></td>
+	</tr>
+	<tr>
+		<td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+		<td width="555" valign="top">
+			<table width="555" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="15"></td>
+				</tr>
+				<tr class="char120">
+					<td><{$mailmag_contents_data.subject|escape}></td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="4"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#5B94FD"><img src="image/spacer.gif" width="555" height="1"></td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="20"></td>
+				</tr>
+			</table>
+			<form name="mailmag_form" method="post">
+			<input type="hidden" name="mailmag_contents_id" value="<{$mailmag_contents_data.contents_id}>">
+			<input type="hidden" name="mailmag_subject" value="<{$mailmag_contents_data.subject|escape}>">
+			<input type="hidden" name="mailmag_body" value="<{$mailmag_contents_data.body|escape}>">
+			<input type="hidden" name="mailmag_footer" value="<{$mailmag_contents_data.footer|escape}>">
+			<input type="hidden" name="mailmag_send_year" value="<{$mailmag_contents_data.send_year}>">
+			<input type="hidden" name="mailmag_send_month" value="<{$mailmag_contents_data.send_month}>">
+			<input type="hidden" name="mailmag_send_day" value="<{$mailmag_contents_data.send_day}>">
+			<input type="hidden" name="mailmag_send_hour" value="<{$mailmag_contents_data.send_hour}>">
+			<input type="hidden" name="mailmag_send_minute" value="<{$mailmag_contents_data.send_minute}>">
+			<input type="hidden" name="mailmag_open_flag" value="<{$mailmag_contents_data.open_flag}>">
+			<input type="hidden" name="mailmag_comment_flag" value="<{$mailmag_contents_data.comment_flag}>">
+			<input type="hidden" name="mailmag_trackback_flag" value="<{$mailmag_contents_data.trackback_flag}>">
+			<input type="hidden" name="mailmag_status" value="<{$mailmag_contents_data.status}>">
+			<input type="hidden" name="mailmag_click_counter" value="<{$mailmag_contents_data.click_counter|escape}>">
+			<table width="555" border="0" cellspacing="0" cellpadding="0">
+				<tr class="char120">
+					<td class="char120" valign="top" colspan="3"><{$mailmag_contents_data.body|escape|nl2br}><br><{$mailmag_contents_data.footer|escape|nl2br}></td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td>　</td>
+					<td>　</td>
+				</tr>
+				<tr>
+					<td colspan="3" bgcolor="#5B94FD"><img src="image/spacer.gif" width="555" height="1"></td>
+				</tr>
+				<tr>
+					<td width="70">　</td>
+					<td width="10">　</td>
+					<td width="400">　</td>
+				</tr>
+				<tr class="char120">
+					<td>配信メンバー</td>
+					<td><img src="image/spacer.gif" width="10" height="8"></td>
+					<td>メルマガメンバー</td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="555" height="2"></td>
+				</tr>
+				<tr class="char120">
+					<td>配信日</td>
+					<td><img src="image/spacer.gif" width="10" height="8"></td>
+					<td><{$mailmag_contents_data.send_year}>年　 <{$mailmag_contents_data.send_month}>月　 <{$mailmag_contents_data.send_day}>日</td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="555" height="2"></td>
+				</tr>
+				<tr class="char120">
+					<td>配信時間</td>
+					<td><img src="image/spacer.gif" width="10" height="8"></td>
+					<td><{$mailmag_contents_data.send_hour}>時　 <{$mailmag_contents_data.send_minute}>分</td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="555" height="2"></td>
+				</tr>
+				<tr class="char120">
+					<td>バックナンバー</td>
+					<td><img src="image/spacer.gif" width="10" height="8"></td>
+					<td><{$mailmag_open_flag[$mailmag_contents_data.open_flag]}></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="555" height="2"></td>
+				</tr>
+				<tr class="char120">
+					<td>トラックバック</td>
+					<td><img src="image/spacer.gif" width="10" height="8"></td>
+					<td><{$mailmag_trackback_flag[$mailmag_contents_data.trackback_flag]}></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="555" height="2"></td>
+				</tr>
+				<tr class="char120">
+					<td>コメント</td>
+					<td><img src="image/spacer.gif" width="10" height="8"></td>
+					<td><{$mailmag_comment_flag[$mailmag_contents_data.comment_flag]}></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="555" height="2"></td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="6"></td>
+					<td>　</td>
+					<td>　</td>
+				</tr>
+			</table>
+			<table width="555" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td bgcolor="#5B94FD"><img src="image/spacer.gif" width="1" height="5"></td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr class="char120">
+					<td><font color="#FF0000"><{if $mailmag_contents_data.status != 2}>よろしくければ配信予約ボタンを押して下さい。<{else}>配信済みです。<{/if}></font></td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td>
+						<table border="0" cellspacing="0" cellpadding="0">
+							<tr>
+<{if $mailmag_contents_data.status != 2}>
+								<td width="65"><input type="image" name="reserve_btn" src="image/naviedit_btn_reserve.gif" width="65" height="20" border="0" alt="配信予約"></td>
+								<td width="10"><img src="image/spacer.gif" width="20" height="8"></td>
+								<td width="110"><input type="image" name="cancel_btn" src="image/naviedit_btn_cancel.gif" width="110" height="20" border="0" alt="登録しないで戻る"></td>
+								<td width="10"><img src="image/spacer.gif" width="20" height="8"></td>
+								<td width="65"><input type="image" name="immediate_btn" src="image/naviedit_btn_atonce.gif" width="65" height="20" border="0" alt="即時配信"></td>
+<{else}>
+								<td width="50"><input type="image" name="cancel_btn" src="image/naviedit_delete_btn_cancel.gif" width="39" height="20" border="0" alt="戻る"></td>
+<{/if}>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+			</table>
+			</form>
+		</td>
+		<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+	</tr>
+</table>

@@ -1,0 +1,22 @@
+/************************************************************************
+ *									*
+ *		ＯＳ／２　オンラインユーザサポートシステム		*
+ *			ＰＣ－ＮＥＴ／２				*
+ *									*
+ *		名称		: リソースインクルードファイル		*
+ *		ファイル名	: pcnet.rc				*
+ *		作成者		: s.aizawa				*
+ *									*
+ ************************************************************************/
+
+#define	INCL_NLS
+#include <os2.h>
+#include "define.h"
+#include "dlg.h"
+
+ICON	ID_RESOURCE_MAIN 	pcnet.ico
+
+rcinclude	menu.rc
+rcinclude	acceltbl.rc
+rcinclude	dlg.dlg
+rcinclude	help.rc

@@ -1,0 +1,822 @@
+
+  10 Rem ************************
+  20 Rem * T1.PGM
+  30 Rem ************************
+  40 Rem
+  45 Open #4,"COM2:"
+  50 Access "RAM:PCMEXT.BIN"
+  60 Access "RAM:PCMEXT.PGM"
+  70 Access "RAM:WRITE_ID.PGM"
+  80 Access "RAM:READ_ID.PGM"
+
+  90 Rem Define variables
+ 100 Def integer "A-Z"
+ 110 Def integer DLLNO
+ 120 Def integer GR_LS1
+ 130 Def integer GR_INPSP
+ 140 Def integer GR_INPST
+ 150 Def integer GR_RESCHDL
+ 160 Def integer GR_CDOLLYRELEASED
+ 170 Def integer GR_ISEQSIZE
+ 180 Def integer GR_ISEQNUMBER
+ 190 Def integer GR_CMD1
+ 200 Def integer GR_CMD2
+ 210 Def integer GR_AICOAT
+ 220 Dim integer INPFLG(249)
+ 230 Dim integer GR_CDFIDX(79)
+ 240 Dim integer GR_CDRIDX(79)
+ 250 Dim integer GR_CDFQTY(79)
+ 260 Dim integer GR_CDRQTY(79)
+ 270 Dim integer GR_CDCOL(79)
+ 280 Dim integer GR_CDSNUM(79)
+ 290 Dim integer GR_INPRLT(659)
+ 300 Dim integer GR_INPDLL(249)
+
+ 310 Rem Dim integer GR_INPFCT(249)
+ 320 Rem Dim integer GR_INPRCT(249)
+ 330 Rem Dim integer GR_INPFBT(249)
+ 340 Rem Dim integer GR_INPRBT(249)
+ 350 Dim integer GR_INPCOL(249)
+
+ 360 Rem Dim integer GR_INPFN(249)
+ 370 Rem Dim integer GR_INPRN(249)
+ 380 Dim integer GR_AICOATNSEQ(249)
+ 390 Dim string GR_NEPID$(20)
+ 400 Dim integer GR_DLLSEQ(80)
+ 410 Dim string DBG_NEPID$(25)
+
+ 420 Rem Assign global register
+ 430 SYSLINK GR_CDFIDX,"%R1",INT16
+ 440 SYSLINK GR_CDRIDX,"%R81",INT16
+ 450 SYSLINK GR_CDFQTY,"%R161",INT16
+ 460 SYSLINK GR_CDRQTY,"%R241",INT16
+ 470 SYSLINK GR_CDCOL,"%R321",INT16
+ 480 SYSLINK GR_CDSNUM,"%R401",INT16
+ 490 SYSLINK GR_INPRLT,"%R481",INT16
+ 500 SYSLINK GR_INPDLL,"%R1501",INT16
+
+ 510 Rem SYSLINK GR_INPFCT,"%R1751",INT16
+ 520 Rem SYSLINK GR_INPRCT,"%R2001",INT16
+ 530 Rem SYSLINK GR_INPFBT,"%R2251",INT16
+ 540 Rem SYSLINK GR_INPRBT,"%R2501",INT16
+ 550 SYSLINK GR_INPCOL,"%R2751",INT16
+
+ 560 Rem SYSLINK GR_INPFN,"%R3001",INT16
+ 570 Rem SYSLINK GR_INPRN,"%R3251",INT16
+ 580 SYSLINK GR_LS1,"%R3611",INT16
+ 590 SYSLINK GR_INPSP,"%R3600",INT16
+ 600 SYSLINK GR_INPST,"%R3601",INT16
+ 610 SYSLINK GR_RESCHDL,"%R3605",INT16
+ 620 SYSLINK GR_CDOLLYRELEASED,"%R3604",INT16
+ 630 SYSLINK GR_ISEQSIZE,"%R3603",INT16
+ 640 SYSLINK GR_ISEQNUMBER,"%R3602",INT16
+ 650 SYSLINK GR_AICOATNSEQ,"%R3701",INT16;Rem "%R4501"
+ 660 SYSLINK GR_NEPID$,"%R3501"
+ 670 SYSLINK GR_CMD1,"%R3511",INT16
+ 680 SYSLINK GR_CMD2,"%R3512",INT16
+ 690 SYSLINK GR_AICOAT,"%R3513",INT16
+ 700 SYSLINK GR_DLLSEQ,"%R3514",INT16
+ 710 SYSLINK DBG_NEPID$,"%R3650"
+
+ 720 Rem ************************
+ 730 Rem * Main process
+ 740 Rem ************************
+ 750 Rem 
+ 760 START:
+
+ 770 Rem Clear tounyuu shiji sousuu (ISEQSIZE)
+ 780 GR_ISEQSIZE=0;SYSWRITE GR_ISEQSIZE
+
+ 790 Rem Main loop
+ 800 LOOP1:
+
+ 810 Rem Read tounyuu shiji
+ 820 SYSREAD GR_INPDLL
+
+ 830 Rem SYSREAD GR_INPFCT
+ 840 Rem SYSREAD GR_INPRCT
+ 850 Rem SYSREAD GR_INPFBT
+ 860 Rem SYSREAD GR_INPRBT
+ 870 SYSREAD GR_INPCOL
+
+ 880 Rem SYSREAD GR_INPFN
+ 890 Rem SYSREAD GR_INPRN
+ 900 SYSREAD GR_AICOATNSEQ
+
+ 910 Rem Clear tounyuu shiji flag
+ 920 For I=0 to 249
+ 930   INPFLG(I)=0
+ 940 Next
+ 950 LOOP2:
+
+ 960 Rem Check sagyou kaishi flag
+ 970 SYSREAD GR_INPST
+ 980 If GR_INPST<>0 then [
+ 990   GR_INPST=0;SYSWRITE GR_INPST
+1000   Goto START
+1010 ]
+
+1020 Rem Check re-schedule flag
+1030 SYSREAD GR_RESCHDL
+1040 If GR_RESCHDL<>0 then [
+1050   GR_RESCHDL=0;SYSWRITE GR_RESCHDL
+1060   Goto LOOP1
+1070 ]
+
+1080 Rem Wait dolly
+1090 SYSREAD GR_LS1;If GR_LS1=0 then LOOP2
+1100 GR_LS1=0;SYSWRITE GR_LS1
+
+1110 Rem Read NEPID data
+1120 Gosub READ_NEPID;If EROR<>0 then LOOP2
+
+1130 Rem Get dolly No.
+1140 DLLNO=val(GR_NEPID$(1:2))
+
+1150 Rem Search dolly No.
+1160 READPTR=-1
+1170 For I=0 to 249
+1180   If GR_INPDLL(I)=DLLNO and INPFLG(I)=0 then [
+1190     INPFLG(I)=1
+1200     READPTR=I
+1210     Exit
+1220   ]
+1230 Next
+1240 If READPTR=-1 then [
+
+1250   Rem Make color code
+1260   Gosub MAKE_INPDAT
+1270 ] Else [
+
+1280   Rem Set tounyuu shiji pointer
+1290   GR_ISEQNUMBER=READPTR+1;SYSWRITE GR_ISEQNUMBER
+
+1300   Rem count up tounyuu shiji sousuu
+1310   GR_ISEQSIZE+=1;SYSWRITE GR_ISEQSIZE
+
+1320   Rem Set tounyuu shiji data 
+1330   Gosub SET_INPDAT
+1340 ]
+
+1350 Rem Set current dolly No.
+1360 GR_CDOLLYRELEASED=DLLNO;SYSWRITE GR_CDOLLYRELEASED
+
+1370 Rem Write NEPID
+1380 Gosub WRITE_NEPID;If EROR<>0 then LOOP2
+
+1390 Rem display & input touch panel
+1400 SYSWRITE GR_NEPID$
+1410 SYSWRITE GR_AICOAT
+1420 GR_CMD1=1;SYSWRITE GR_CMD1
+
+1430 Rem Get NEPID data
+1440 While 1
+
+1450   Rem Check L/S
+1460   SYSREAD GR_LS1;If GR_LS1<>0 then Exit
+
+1470   Rem Check touch panel
+1480   SYSREAD GR_CMD2;If GR_CMD2=1 then [
+1490     GR_CMD2=0;SYSWRITE GR_CMD2
+1500     SYSREAD GR_NEPID$
+1510     Gosub WRITE_NEPID;If EROR<>0 then LOOP2
+1520     Exit
+1530   ]
+1540 Next
+
+1550 Rem Set tracking data
+1560 Gosub SET_TRACKING
+
+1570 Rem Count up tounyuu jisseki
+1580 Gosub COUNT_UP
+1590 Goto LOOP2
+
+1600 Rem ************************
+1610 Rem * Make tounyuu shiji data
+1620 Rem ************************
+1630 MAKE_INPDAT:
+
+1640 Rem Set color code (white)
+1650 GR_NEPID$(8:3)="531"
+1660 GR_NEPID$(17:3)="531"
+
+1670 Rem Make bumper honsuu
+1680 Rem If val(GR_NEPID$(11:1))+val(GR_NEPID$(20:1))=0 then [
+1690   GR_NEPID$(11:1)="3"
+1700   GR_NEPID$(20:1)="3"
+
+1710 Rem ]
+1720 Rem 
+1730 GR_AICOAT=1
+1740 Return
+
+1750 Rem ************************
+1760 Rem * Set tounyuu shiji data
+1770 Rem ************************
+1780 SET_INPDAT:
+
+1790 Rem Set color code
+1800 COLOR=GR_INPCOL(READPTR);Gosub CVS_COLOR;GR_NEPID$(8:3)=COLOR$;GR_NEPID$(17:3)=COLOR$
+
+1810 Rem Bumper honsuu
+1820 GR_NEPID$(11:1)="3";Rem str$(GR_INPFN(READPTR),"1I")
+1830 GR_NEPID$(20:1)="3";Rem str$(GR_INPRN(READPTR),"1I")
+
+1840 Rem
+1850 GR_AICOAT=GR_AICOATNSEQ(READPTR)
+1860 Return
+
+1870 Rem ************************
+1880 Rem * Read NEPID data
+1890 Rem ************************
+1900 READ_NEPID:
+1910 EROR=0
+
+1920 READ_ID EROR,NEPID$
+1930 If EROR=0 then [
+1940   GR_NEPID$=NEPID$
+1950 ] Else [
+1960   GR_INPSP=1;SYSWRITE GR_INPSP
+1970 ]
+
+1980 Rem for debug
+1990 Rem SYSREAD DBG_NEPID$
+2000 Rem GR_NEPID$=DBG_NEPID$
+2010 Return
+
+2020 Rem ************************
+2030 Rem * Write NEPID data
+2040 Rem ************************
+2050 WRITE_NEPID:
+2060 RXD$="     ";EROR=0
+2070 NEPID$=GR_NEPID$
+
+2080 WRITE_ID EROR,RXD$,NEPID$
+2090 If EROR<>0 then [
+2100   GR_INPST=1;SYSWRITE GR_INPSP
+2110 ]
+2120 Rem Print "NEPID WRITE DATA : ",NEPID$
+2130 Return
+
+2140 Rem ************************
+2150 Rem * Set tracking data
+2160 Rem ************************
+2170 SET_TRACKING:
+
+2180 Rem Read dolly sequence
+2190 SYSREAD GR_DLLSEQ
+
+2200 Rem Search dolly No.
+2210 J=0
+2220 For I=1 to GR_DLLSEQ(0)
+2230   If GR_DLLSEQ(I)=DLLNO then [
+2240     J=I
+2250     Exit
+2260   ]
+2270 Next
+
+2280 Rem Set dolly sequence to GR
+2290 If J<>0 then [
+2300   For I=0 to 79
+2310     GR_CDSNUM(I)=0
+2320   Next
+2330   K=1
+2340   For I=1 to GR_DLLSEQ(0)
+2350     GR_CDSNUM(GR_DLLSEQ(J)-1)=K
+2360     K+=1
+2370     J-=1
+2380     If J=0 then J=GR_DLLSEQ(0)
+2390   Next
+2400   SHASHU$=GR_NEPID$(3:3);SHAGATA$=GR_NEPID$(6:2);Gosub CV_DOLLY;GR_CDFIDX(DLLNO-1)=DOLLY_ID
+2410   Print "DOLLY_ID=",DOLLY_ID
+2420   SHASHU$=GR_NEPID$(12:3);SHAGATA$=GR_NEPID$(15:2);Gosub CV_DOLLY;GR_CDRIDX(DLLNO-1)=DOLLY_ID+1
+2430   Print "DOLLY_ID=",DOLLY_ID+1
+2440   GR_CDFQTY(DLLNO-1)=val(GR_NEPID$(11:1))
+2450   GR_CDRQTY(DLLNO-1)=val(GR_NEPID$(20:1))
+2460   COLOR$=GR_NEPID$(8:3);Gosub CVB_COLOR;GR_CDCOL(DLLNO-1)=COLOR
+
+2470   Rem Write tracking data
+2480   SYSWRITE GR_CDFIDX
+2490   SYSWRITE GR_CDRIDX
+2500   SYSWRITE GR_CDFQTY
+2510   SYSWRITE GR_CDRQTY
+2520   SYSWRITE GR_CDCOL
+2530   SYSWRITE GR_CDSNUM
+2540 ]
+
+2550 Rem for debug
+2560 Print "DOLLY No=",DLLNO
+2570 For I=0 to 79
+2580   Print GR_CDSNUM(I),
+2590 Next
+2600 Print
+2610 Return
+
+2620 Rem *****************************
+2630 Rem * convert color (bin to str)
+2640 Rem *****************************
+2650 CVS_COLOR:
+2660 If COLOR=0 then [
+2670   COLOR$=""
+2680   Return
+2690 ]
+2700 Restore TBL_COLOR
+2710 While 1
+2720   Read COLOR$,I
+2730   If COLOR$="" or I=COLOR or I=COLOR-100 then Exit
+2740 Next
+2750 Return
+2760 TBL_COLOR:
+2770 Data "426",1
+2780 Data "449",2
+2790 Data "462",0
+2800 Data "463",3
+2810 Data "465",4
+2820 Data "505",5
+2830 Data "526",0
+2840 Data "531",6
+2850 Data "549",7
+2860 Data "624",0
+2870 Data "628",8
+2880 Data "AG2",9
+2890 Data "AH3",10
+2900 Data "BG3",11
+2910 Data "BG6",12
+2920 Data "CJ7",13
+2930 Data "DH3",14
+2940 Data "DJ3",15
+2950 Data "EH7",16
+2960 Data "KH3",17
+2970 Data "KJ1",18
+2980 Data "KJ5",19
+2990 Data "LJ0",20
+3000 Data "TH1",21
+3010 Data "",0
+
+3020 Rem *****************************
+3030 Rem * convert color (str to bin)
+3040 Rem *****************************
+3050 CVB_COLOR:
+3060 Restore TBL_COLOR
+3070 While 1
+3080   Read A$,COLOR
+3090   If A$="" or A$=COLOR$ then Exit
+3100 Next
+3110 Return
+
+3120 Rem ********************************
+3130 Rem * shagata - dolly shurui henkan
+3140 Rem ********************************
+3150 CV_DOLLY:
+3160 Restore TBL_DOLLY
+3170 While 1
+3180   Read A$,B$,DOLLY_ID
+3190   If A$="" or (A$=SHASHU$ and B$=SHAGATA$) then Exit
+3200 Next
+3210 Return
+3220 TBL_DOLLY:
+3230 Data "B13","22",100
+3240 Data "B13","77",120
+3250 Data "B13","66",140
+3260 Data "B13","44",144
+3270 Data "B13","CC",150
+3280 Data "B13","GP",160
+3290 Data "B13","RO",164
+3300 Data "B13","SS",180
+3310 Data "B13","TW",184
+3320 Data "R10","55",200
+3330 Data "R10","A5",204
+3340 Data "R10","85",220
+3350 Data "R10","Y5",224
+3360 Data "B12","?S",300
+3370 Data "B12","?H",340
+3380 Data "722","55",400
+3390 Data "722","?1",420
+3400 Data "722","88",440
+3410 Data "722","EJ",460
+3420 Data "","",0
+
+3430 Rem ***************************
+3440 Rem * Count up tounyuu jisseki
+3450 Rem ***************************
+3460 COUNT_UP:
+
+3470 Rem front bumper
+3480 SHASHU$=GR_NEPID$(3:3)
+3490 SHAGATA$=GR_NEPID$(6:2)
+3500 COLOR$=GR_NEPID$(8:3)
+3510 FR=0
+3520 Gosub GET_SSCY
+3530 Print "FRONT SSCY =",SSCY
+3540 If SSCY<>0 then GR_INPRLT(SSCY-1)+=val(GR_NEPID$(11:1))
+
+3550 Rem rear bumper
+3560 SHASHU$=GR_NEPID$(12:3)
+3570 SHAGATA$=GR_NEPID$(15:2)
+3580 COLOR$=GR_NEPID$(17:3)
+3590 FR=1
+3600 Gosub GET_SSCY
+3610 Print "REAR  SSCY =",SSCY
+3620 If SSCY<>0 then GR_INPRLT(SSCY-1)+=val(GR_NEPID$(20:1))
+3625 SYSWRITE GR_INPRLT
+3630 Return
+
+3640 Rem tounyuu jisseki address
+3650 GET_SSCY:
+3660 Restore TBL_SHASHU
+3670 While 1
+3680   Read A$,IDX
+3690   If A$="" or A$=SHASHU$ then Exit
+3700 Next
+3710 If IDX<>0 then [
+3720   On IDX restore TBL_B13,TBL_722,TBL_R10,TBL_B12
+3730   While 1
+3740     Read A$,FIDX,RIDX
+3750     If A$="" or A$=SHAGATA$ then Exit
+3760   Next
+3770   If FR=0 then IDX=FIDX else IDX=RIDX
+3780   If IDX<>0 then [
+3790     On IDX restore S1,S2,S3,S4,S5,S6,S7,S8,S9,S10,S11,S12,S13,S14,S15,S16,S17,S18,S19,S20,S21,S22,S23,S24,S25,S26,S27,S28,S29,S30,S31,S32,S33,S34,S35,S36,S37,S38,S39,S40,S41,S42,S43
+3800     While 1
+3810       Read A$,SSCY
+3820       If A$="" or A$=COLOR$ then Exit
+3830     Next
+3840   ]
+3850 ]
+3860 Return
+
+3870 Rem shashu table
+3880 TBL_SHASHU:
+3890 Data "B13",1
+3900 Data "722",2
+3910 Data "R10",3
+3920 Data "B12",4
+3930 Data "",0
+3940 TBL_B13:
+3950 Data "22",1,2
+3960 Data "66",3,4
+3970 Data "CC",5,6
+3980 Data "GP",7,8
+3990 Data "44",9,10
+4000 Data "RO",11,12
+4010 Data "TW",13,14
+4020 Data "77",15,16
+4030 Data "SS",17,18
+4040 Data "",0,0
+4050 TBL_722:
+4060 Data "55",21,22
+4070 Data "EJ",23,24
+4080 Data "88",25,26
+4090 Data "?1",27,28
+4100 TBL_R10:
+4110 Data "55",35,36
+4120 Data "A5",37,0
+4130 Data "85",38,0
+4140 Data "Y5",39,0
+4150 TBL_B12:
+4160 Data "?S",40,41
+4170 Data "?H",42,43
+4180 Data "",0,0
+4190 Data "",0.0
+
+4200 Rem shashu,shiyou,oro betu table
+4210 S1:
+4220 Data "AH3",1
+4230 Data "BG6",2
+4240 Data "DJ3",3
+4250 Data "463",4
+4260 Data "KJ1",5
+4270 Data "KJ5",6
+4280 Data "LJ0",7
+4290 Data "531",8
+4300 Data "TH1",9
+4310 Data "",0
+4320 S2:
+4330 Data "AH3",16
+4340 Data "BG6",17
+4350 Data "DJ3",18
+4360 Data "463",19
+4370 Data "KJ1",20
+4380 Data "KJ5",21
+4390 Data "LJ0",22
+4400 Data "531",23
+4410 Data "TH1",24
+4420 Data "",0
+4430 S3:
+4440 Data "AG2",31
+4450 Data "AH3",32
+4460 Data "BG6",33
+4470 Data "EH7",34
+4480 Data "KJ5",35
+4490 Data "LJ0",36
+4500 Data "531",37
+4510 Data "TH1",38
+4520 Data "KH3",39
+4530 Data "",0
+4540 S4:
+4550 Data "AG2",46
+4560 Data "AH3",47
+4570 Data "BG6",48
+4580 Data "EH7",49
+4590 Data "KJ5",50
+4600 Data "LJ0",51
+4610 Data "531",52
+4620 Data "TH1",53
+4630 Data "KH3",54
+4640 Data "",0
+4650 S5:
+4660 Data "AH3",61
+4670 Data "BG6",62
+4680 Data "DJ3",63
+4690 Data "463",64
+4700 Data "KJ1",65
+4710 Data "KJ5",66
+4720 Data "LJ0",67
+4730 Data "531",68
+4740 Data "AG2",69
+4750 Data "KH3",70
+4760 Data "549",71
+4770 Data "TH1",72
+4780 Data "",0
+4790 S6:
+4800 Data "AH3",76
+4810 Data "BG6",77
+4820 Data "DJ3",78
+4830 Data "463",79
+4840 Data "KJ1",80
+4850 Data "KJ5",81
+4860 Data "LJ0",82
+4870 Data "531",83
+4880 Data "AG2",84
+4890 Data "KH3",85
+4900 Data "549",86
+4910 Data "TH1",87
+4920 Data "",0
+4930 S7:
+4940 Data "AG2",91
+4950 Data "AH3",92
+4960 Data "BG6",93
+4970 Data "EH7",94
+4980 Data "KJ5",95
+4990 Data "LJ0",96
+5000 Data "531",97
+5010 Data "TH1",98
+5020 Data "KH3",99
+5030 Data "",0
+5040 S8:
+5050 Data "AG2",106
+5060 Data "AH3",107
+5070 Data "BG6",108
+5080 Data "EH7",109
+5090 Data "KJ5",110
+5100 Data "LJ0",111
+5110 Data "531",112
+5120 Data "TH1",113
+5130 Data "KH3",114
+5140 Data "",0
+5150 S9:
+5160 Data "AG2",121
+5170 Data "KJ5",122
+5180 Data "531",123
+5190 Data "TH1",124
+5200 Data "KH3",125
+5210 Data "",0
+5220 S10:
+5230 Data "AG2",135
+5240 Data "KJ5",136
+5250 Data "531",137
+5260 Data "TH1",138
+5270 Data "KH3",139
+5280 Data "",0
+5290 S11:
+5300 Data "AG2",151
+5310 Data "KJ5",152
+5320 Data "531",153
+5330 Data "TH1",154
+5340 Data "KH3",155
+5350 Data "",0
+5360 S12:
+5370 Data "AG2",165
+5380 Data "KJ5",166
+5390 Data "531",167
+5400 Data "TH1",168
+5410 Data "KH3",169
+5420 Data "",0
+5430 S13:
+5440 Data "AG2",181
+5450 Data "KJ5",182
+5460 Data "531",183
+5470 Data "TH1",184
+5480 Data "KH3",185
+5490 Data "",0
+5500 S14:
+5510 Data "AG2",195
+5520 Data "KJ5",196
+5530 Data "531",197
+5540 Data "TH1",198
+5550 Data "KH3",199
+5560 Data "",0
+5570 S15:
+5580 Data "AH3",211
+5590 Data "531",212
+5600 Data "DJ3",213
+5610 Data "TH1",214
+5620 Data "KJ5",215
+5630 Data "463",216
+5640 Data "BG6",217
+5650 Data "LJ0",218
+5660 Data "463",219
+5670 Data "KJ1",220
+5680 Data "",0
+5690 S16:
+5700 Data "AH3",226
+5710 Data "531",227
+5720 Data "DJ3",228
+5730 Data "TH1",229
+5740 Data "KJ5",230
+5750 Data "463",231
+5760 Data "BG6",232
+5770 Data "LJ0",233
+5780 Data "463",234
+5790 Data "KJ1",235
+5800 Data "",0
+5810 S17:
+5820 Data "AG2",241
+5830 Data "AH3",242
+5840 Data "BG6",243
+5850 Data "EH7",244
+5860 Data "KJ5",245
+5870 Data "LJ0",246
+5880 Data "531",247
+5890 Data "KH3",248
+5900 Data "TH1",249
+5910 Data "",0
+5920 S18:
+5930 Data "AG2",256
+5940 Data "AH3",257
+5950 Data "BG6",258
+5960 Data "EH7",259
+5970 Data "KJ5",260
+5980 Data "LJ0",261
+5990 Data "531",262
+6000 Data "KH3",263
+6010 Data "TH1",264
+6020 Data "",0
+6030 S19:
+6040 Data "",0
+6050 S20:
+6060 Data "",0
+6070 S21:
+6080 Data "449",301
+6090 Data "463",302
+6100 Data "465",303
+6110 Data "531",304
+6120 Data "549",305
+6130 Data "628",306
+6140 Data "234",307
+6150 Data "624",308
+6160 Data "505",309
+6170 Data "",0
+6180 S22:
+6190 Data "449",316
+6200 Data "463",317
+6210 Data "465",318
+6220 Data "531",319
+6230 Data "549",320
+6240 Data "628",321
+6250 Data "234",322
+6260 Data "624",323
+6270 Data "505",324
+6280 Data "",0
+6290 S23:
+6300 Data "463",331
+6310 Data "463",332
+6320 Data "426",333
+6330 Data "449",334
+6340 Data "465",335
+6350 Data "531",336
+6360 Data "549",337
+6370 Data "505",338
+6380 Data "628",339
+6390 Data "AG2",340
+6400 Data "TH1",341
+6410 Data "",0
+6420 S24:
+6430 Data "463",346
+6440 Data "463",347
+6450 Data "426",348
+6460 Data "449",349
+6470 Data "465",350
+6480 Data "531",351
+6490 Data "549",352
+6500 Data "505",353
+6510 Data "628",354
+6520 Data "AG2",355
+6530 Data "TH1",356
+6540 Data "",0
+6550 S25:
+6560 Data "",0
+6570 S26:
+6580 Data "465",361
+6590 Data "505",362
+6600 Data "531",363
+6610 Data "549",364
+6620 Data "",0
+6630 S27:
+6640 Data "505",391
+6650 Data "106",392
+6660 Data "531",393
+6670 Data "463",394
+6680 Data "465",395
+6690 Data "526",396
+6700 Data "624",397
+6710 Data "",0
+6720 S28:
+6730 Data "505",406
+6740 Data "106",407
+6750 Data "531",408
+6760 Data "463",409
+6770 Data "465",410
+6780 Data "526",411
+6790 Data "624",412
+6800 Data "",0
+6810 S29:
+6820 Data "",0
+6830 S30:
+6840 Data "",0
+6850 S31:
+6860 Data "",0
+6870 S32:
+6880 Data "",0
+6890 S33:
+6900 Data "",0
+6910 S34:
+6920 Data "",0
+6930 S35:
+6940 Data "AH3",511
+6950 Data "BG6",512
+6960 Data "CJ7",513
+6970 Data "DH3",514
+6980 Data "KJ1",515
+6990 Data "KJ5",516
+7000 Data "LJ0",517
+7010 Data "TH1",518
+7020 Data "531",519
+7030 Data "",0
+7040 S36:
+7050 Data "AH3",526
+7060 Data "BG6",527
+7070 Data "CJ7",528
+7080 Data "DH3",529
+7090 Data "KJ1",530
+7100 Data "KJ5",531
+7110 Data "LJ0",532
+7120 Data "TH1",533
+7130 Data "531",534
+7140 Data "",0
+7150 S37:
+7160 Data "AH3",541
+7170 Data "BG6",542
+7180 Data "CJ7",543
+7190 Data "DH3",544
+7200 Data "KJ1",545
+7210 Data "KJ5",546
+7220 Data "LJ0",547
+7230 Data "TH1",548
+7240 Data "531",549
+7250 Data "",0
+7260 S38:
+7270 Data "AH3",556
+7280 Data "BG6",557
+7290 Data "CJ7",558
+7300 Data "DH3",559
+7310 Data "KJ1",560
+7320 Data "KJ5",561
+7330 Data "LJ0",562
+7340 Data "TH1",563
+7350 Data "531",564
+7360 Data "",0
+7370 S39:
+7380 Data "AH3",571
+7390 Data "BG6",572
+7400 Data "CJ7",573
+7410 Data "DH3",574
+7420 Data "KJ1",575
+7430 Data "KJ5",576
+7440 Data "LJ0",577
+7450 Data "TH1",578
+7460 Data "531",579
+7470 Data "",0
+7480 S40:
+7490 Data "531",387
+7500 Data "",0
+7510 S41:
+7520 Data "531",388
+7530 Data "",0
+7540 S42:
+7550 Data "531",389
+7560 Data "",0
+7570 S43:
+7580 Data "531",390
+7590 Data "",0
+

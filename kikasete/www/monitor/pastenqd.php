@@ -1,0 +1,1 @@
+<?header("Location: ./thousand_enq/pastenqd.php")?>

@@ -1,0 +1,248 @@
+	title	meganet
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; module name	: title display (MEGANET2000)
+; creation date	: 86:01:13
+; revised date  : 
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+		.z80
+
+		include	MEMORY.INC
+		include	SUBR.INC
+
+		extrn	gdmsg
+		extrn	mgmenu
+		extrn	date_dsp
+		extrn	chr_disp
+		extrn	csr_on
+		extrn	csr_off
+
+		public	meganet
+
+	RWITEMTOP	equ	0cc00h
+	CHGSRIGT	equ	0f32ch
+	ISYSREG		equ	0f01eh
+
+	CONIN		equ	0eb09h
+    	CONOUT		equ	0eb0ch
+	BEEP		equ	0eb39h
+	AUTOST		equ	0eb84h
+	RESIDENT	equ	0eb87h
+	CONTINUE	equ	0eb8ah
+	ATSHUTOFF	equ	0ef40h
+;
+	CR		equ	0dh 	; return key code
+	ESC		equ	1bh	; escape code
+;
+	psbuff		equ	M_CBUFF	; password input buffer
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; 1st display (MEGANET2000)
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+meganet:
+;	set initial value
+;	sub	a
+;	ld	(ATSHUTOFF),a	; not auto power off 
+;	ld	hl,m_auto
+;	ld	c,01h
+;	call	AUTOST		; set auto start
+;	ld	c,01h
+;	call	RESIDENT	; resident on 
+		ld	c,03h
+		call	CONTINUE	; continue
+;	stop,ctrl/stop disable
+;	ld	a,(ISYSREG)
+;	and	0fch
+;	ld	(ISYSREG),a
+;	display start up
+m05:
+		call	csr_off
+		ld	hl,m_meganet	; head of message
+		call	kmsg
+
+		ld	hl,m_verno	; display version No.
+		call	chr_disp	;
+
+		call	date_dsp	; display date
+
+		ld	a,(R_PASSWDF)	; password ari ?
+		cp	'2'		;
+		jp	z,passwd	; * yes
+
+		ld	hl,g_ret	;
+		call	gdmsg		; press ret message out
+;
+; wait "xxxxx" or "return"
+;	
+m10:		call	csr_on		; cursor on
+		call	xconin		; key in
+		cp	CR		; return ?
+		jr	nz,m20		; * no
+
+m_mgmenu:
+		call	mgmenu		; meganet gyoumu sentaku menu
+		jr	m05
+;
+m20:
+		cp  	'E' 		
+		jr	nz,m30
+		call	xconin
+		cp	'P'
+		jr	nz,m30
+		call	xconin
+		cp	'S'
+		jr	nz,m30
+		call	xconin
+		cp	'O'
+		jr	nz,m30
+		call	xconin
+		cp	'N'
+		jr	nz,m30
+;
+		ld	c,00h
+		call	RESIDENT
+		ld	c,00h
+		call	CONTINUE
+		jp 	0
+;
+m30:		ld      bc,1601h
+		call	BEEP  		; bell
+		jr	m10
+;
+;	password input
+;
+passwd:
+		ld	hl,g_passwd	; password input guide message
+		call	gdmsg		;
+pass05:
+		ld	hl,m_passwd	; password input message
+		call	chr_disp	;
+
+		ld	hl,psbuff	; set password input buffer address
+		ld	b,6
+pass10:
+		push	bc
+		push	hl
+		call	xconin		; key in
+		pop	hl
+		pop	bc
+		cp	CR		; CR key ?
+		jr	z,pass70	; * yes
+		ld	(hl),a		; data save
+		inc	hl
+		ld	c,'*'		;
+		push	bc		;
+		push	hl		;
+		call	CONOUT		; '*' display
+		pop	hl		;
+		pop	bc		;
+		djnz	pass10
+
+		ld	c,1dh		; cursor left
+		call	CONOUT
+pass20:
+		call	xconin		; wait ret key
+		cp	CR		; ret key ?
+		jr	nz,pass20	; * no
+pass30:
+		ld	hl,psbuff	;
+		ld	de,R_PASSWD	;
+		ld	b,6		;
+pass40:					;
+		ld	a,(de)		; pass word check
+		cp	(hl)		;
+		jr	nz,pass50	;
+		inc	hl		;
+		inc	de		;
+		djnz	pass40		;
+		jp	m_mgmenu
+pass50:
+		ld	hl,psbuff	;
+		ld	de,C_SPASS	;
+		ld	b,6		;
+pass60:					;
+		ld	a,(de)		; super pass word check
+		cp	(hl)		;
+		jr	nz,passerr	;
+		inc	hl		;
+		inc	de		;
+		djnz	pass60		;
+		jp	m_mgmenu
+
+pass70:
+		push	bc
+		push	hl
+		ld	c,'*'		; display "*"
+		call	CONOUT		;
+		pop	hl
+		pop	bc
+		ld	(hl),' '
+		inc	hl
+		djnz	pass70
+		jr	pass30
+
+passerr:
+		ld	bc,1601h
+		call	BEEP
+		ld	hl,g_pserr	; pass word input error message
+		call	gdmsg		;
+		jr	pass05
+
+;
+; auto start 
+;	
+m_auto:
+;		db	0ah		; length
+;		db	'B:MEGANET'
+;		db	0dh,'      ' 
+;		db	'                ' 
+	;
+; start	up message
+;
+m_meganet:	dw	0h
+		dw	0403h		; x*256 + y
+		dw	0826ch		; M
+		dw	08264h		; E
+		dw	08266h		; G
+		dw	08260h		; A
+		dw	0826dh		; N
+		dw	08264h		; E
+		dw	08273h		; T
+		dw	08251h		; 2
+		dw	0824fh		; 0
+		dw	0824fh		; 0
+		dw	0824fh		; 0
+		dw	-1
+;
+;	password input message
+;
+m_passwd:	db	ESC,'=',20h+5,20h+21
+		db	0cah,0dfh,0bdh,0dch,0b0h,0c4h,0deh
+		db	' : ______',ESC,'=',20h+5,20h+31,ESC,'3',-1
+;
+;	version No.
+;
+m_verno:
+;		db	ESC,'=',20h,20h,'ver 1.12',-1	; on line (87.08.04)
+		db	ESC,'=',20h,20h,'ver 1.13',-1	; on line (88.10.14)
+;		db	ESC,'=',20h,20h,'ver X.03',-1	; demo
+;
+;	guide message
+;
+g_passwd:	db	23,15
+		db	0cah,0dfh,0bdh,0dch,0b0h,0c4h,0deh,0a6h
+		db	0b2h,0dah,0c3h,0e1h,0a6h,0b5h,0bdh,-1
+
+g_pserr:	db	23,15
+		db	0cah,0dfh,0bdh,0dch,0b0h,0c4h,0deh,0b6h
+		db	0deh,0c1h,0b6h,0deh,0b2h,0cfh,0bdh,-1
+
+g_ret:		db	23,15
+		db	0e1h,0b7h,0b0h,0a6h,0b5h,0bdh,-1
+
+		end	meganet

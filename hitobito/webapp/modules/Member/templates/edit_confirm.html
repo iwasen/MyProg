@@ -1,0 +1,88 @@
+<!-- 更新登録変更確認画面 -->
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+	<tr bgcolor="#F5E156">
+		<td colspan="3"><img src="image/member_ttl_sign.gif" width="177" height="25" hspace="10" alt="基本情報の登録 / 変更"></td>
+	</tr>
+	<tr>
+		<td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+		<td width="555">
+			<table width="555" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="15"></td>
+				</tr>
+				<tr>
+					<td class="char120">更新内容を確認して「登録情報更新」ボタンを押してください。</td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="25"></td>
+				</tr>
+				<tr>
+					<td><img src="image/member_split555.gif" width="555" height="1"></td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="25"></td>
+				</tr>
+			</table>
+			<form name="form2" method="post" action="index.php?module=Member&amp;action=UpdateAccount">
+			<table width="555" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td width="130" class="char120">メールアドレス</td>
+					<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+					<td width="415"><{$editform->mail|escape}></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="6"></td>
+				</tr>
+				<{*
+				<tr>
+					<td class="char120">パスワード</td>
+					<td><img src="image/spacer.gif" width="10" height="1"></td>
+					<td>********</td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="6"></td>
+				</tr>
+				<tr>
+					<td class="char120" nowrap>パスワード（確認用）</td>
+					<td><img src="image/spacer.gif" width="10" height="1"></td>
+					<td>********</td>
+				</tr>
+				*}>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="6"></td>
+				</tr>
+				<tr>
+					<td class="char120">ひとびと便り</td>
+					<td><img src="image/spacer.gif" width="10" height="1"></td>
+					<td class="char120"><{if $editform->hitobito_letter == 1}>購読<{else}>購読解除<{/if}></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="6"></td>
+				</tr>
+				<tr>
+					<td class="char120">状態</td>
+					<td><img src="image/spacer.gif" width="10" height="1"></td>
+					<td class="char120"><{if $editform->status == 1}>有効<{else}>一時停止<{/if}></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="20"></td>
+				</tr>
+				<tr bgcolor="#666666">
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="5"></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="20"></td>
+				</tr>
+				<tr>
+					<td colspan="3"><input type="image" border="0" name="imageField" src="image/member_sign_btn_submit.gif" width="95" height="20" alt="登録情報更新" ></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+			</table>
+			</form>
+		</td>
+		<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+	</tr>
+</table>
+<!-- 更新登録変更確認画面 ここまで-->

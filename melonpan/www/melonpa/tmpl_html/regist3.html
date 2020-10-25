@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>Myめろんぱん登録〜登録内容の確認</TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600">
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="513" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+<TD>
+<p><img src="../img/t_melonpatouroku.gif" width="511" height="27"></p>
+<p> <span class="text01">以下の内容で間違いありませんか？</span></p>
+<p><span class="text01">登録していただいた内容については責任をもって管理させて頂きます。</span></p>
+<form name="rmform31" action = "MelonpanDef.php" method= "post" >
+<table width="310" border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="#336600">
+<tr>
+<td>
+<table width="310" border="0" cellpadding="3" cellspacing="1">
+<tr>
+<td width="102" bgcolor="#FFCC33" class="text9ptnoColor"><b><font color="#336600">メールアドレス</font></b></td>
+<td width="208" bgcolor="#FFFFCC"> <?echo $mail_addr ?></td>
+</tr>
+<tr>
+<td width="102" bgcolor="#FFCC33" class="text9ptnoColor"><b><font color="#336600">パスワード</font></b></td>
+<td width="208" bgcolor="#FFFFCC"> <?echo $reader_pswd ?></td>
+</tr>
+<tr>
+<td width="102" bgcolor="#FFCC33" class="text9ptnoColor"><b><font color="#336600">生年月日</font></b></td>
+<td width="208" bgcolor="#FFFFCC"> <?echo  $wk_year . "年" . $wk_month . "月" . $wk_day . "日" ?></td>
+</tr>
+<tr>
+<td width="102" bgcolor="#FFCC33" class="text9ptnoColor"><b><font color="#336600">性別</font></b></td>
+<td width="208" bgcolor="#FFFFCC"> <? echo pub_mm_sex ("$reader_sex"); ?> </td>
+</tr>
+<tr>
+<td width="102" bgcolor="#FFCC33" class="text9ptnoColor"><b><font color="#336600">未既婚</font></b></td>
+<td width="208" bgcolor="#FFFFCC"> <? echo pub_mm_mrg("$reader_mrg"); ?></td>
+</tr>
+<tr>
+<td width="102" bgcolor="#FFCC33" class="text9ptnoColor"><b><font color="#336600">郵便番号</font></b></td>
+<td width="208" bgcolor="#FFFFCC"> <?echo $reader_zip1 . "-" . $reader_zip2 ?></td>
+</tr>
+<tr>
+<td width="102" bgcolor="#FFCC33" class="text9ptnoColor"><b><font color="#336600">職業</font></b></td>
+<td width="208" bgcolor="#FFFFCC"> <? check_occup_box($reader_occup); ?></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<br>
+<table width="100%" border="0" cellspacing="0">
+<tr>
+<td>
+<div align="center">
+<input type="submit" name="rmbott0301" value="　登　録　">
+　
+<input type="button" name="rmbott0302" value="　戻　る　" onClick="history.back()">
+</div>
+　 </td>
+</tr>
+</table>
+<input type="hidden" value="<? echo $reader_id ?>" name="reader_id">
+<input type="hidden" value="<? echo $mail_addr ?>" name="mail_addr">
+<input type="hidden" value="<? echo $reader_pswd ?>" name="reader_pswd">
+<input type="hidden" value="<? echo $reader_birth ?>" name="reader_birth">
+<input type="hidden" value="<? echo $reader_sex ?>" name="reader_sex">
+<input type="hidden" value="<? echo $reader_mrg ?>" name="reader_mrg">
+<input type="hidden" value="<? echo $reader_zip1 ?>" name="reader_zip1">
+<input type="hidden" value="<? echo $reader_zip2 ?>" name="reader_zip2">
+<input type="hidden" value="<? echo $reader_occup ?>" name="reader_occup">
+</form>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD valign="top" colspan="3" align="right">
+<HR size="1" width="750">
+</TD>
+</TR>
+<TR>
+<TD valign="top" width="200"> <IMG src="../img/shim.gif" width="200" height="1">
+</TD>
+<TD valign="middle" align="center" width="350">
+<div align="center"><FONT size="2"><IMG src="../img/shim.gif" width="350" height="1"><BR>
+Copyright &copy; 2000 xxxxxxx, Co.,Ltd. All rights reserved. <br>
+<a href="http://www.xxxxxxx.co.jp/" target="mm_window"><img src="../img/logo_do.gif" width="50" height="45" border="0"></a>
+</FONT></div>
+</TD>
+<TD valign="top" width="200" align="right"><IMG src="../img/shim.gif" width="200" height="1"></TD>
+</TR>
+</TABLE>
+</body>
+</html>

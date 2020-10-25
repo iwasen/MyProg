@@ -1,0 +1,97 @@
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+	<tr bgcolor="#F5E156">
+		<td colspan="3"><img src="image/member_ttl_mail.gif" width="166" height="25" hspace="10" alt="メルマガの確認 / 解除"></td>
+	</tr>
+	<tr>
+		<td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+		<td width="555">
+			<table width="555" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="15"></td>
+				</tr>
+				<tr>
+					<td class="char120">購読メールマガジン一覧を参照することができます。<br>
+					「解除」ボタンを押すことにより登録を解除することができます。</td>
+				</tr>
+<{if $mailmag_msg}>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td class="error"><{$mailmag_msg|escape}></td>
+				</tr>
+<{/if}>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="25"></td>
+				</tr>
+			</table>
+			<form name="mailmag_subscription_list_form" method="post">
+			<table width="555" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td colspan="6" bgcolor="#666666"><img src="image/spacer.gif" width="555" height="1"></td>
+				</tr>
+				<tr>
+					<td align="center" bgcolor="#E6F2FF" width="35" class="char110">
+						<p class="ind0804">No.</p>
+					</td>
+					<td align="center" class="char110" width="212">
+						<p class="ind0804">メルマガタイトル</p>
+					</td>
+					<td align="center" bgcolor="#E6F2FF" width="100" class="char110">
+						<p class="ind0804">ナビ</p>
+					</td>
+					<td align="center" width="60" class="char110">
+						<p class="ind0804">読者数</p>
+					</td>
+					<td align="center" bgcolor="#E6F2FF" width="90" class="char110">
+						<p class="ind0804">最終投稿日</p>
+					</td>
+					<td align="center" width="58">　</td>
+				</tr>
+				<tr>
+					<td colspan="6" bgcolor="#666666"><img src="image/spacer.gif" width="555" height="1"></td>
+				</tr>
+<{foreach from=$mailmag_subscription_list_ary item=mailmag_subscription_list name=mailmag_subscription_name}>
+				<tr>
+					<td bgcolor="#E6F2FF" align="center" class="char110">
+						<p class="ind0804"><{$mailmag_subscription_list.seq_no}></p>
+					</td>
+					<td class="char110">
+						<p class="ind0804"><a href="?module=MailMag&action=BacknumberList&navipage_id=<{$mailmag_subscription_list.navi_page_id}>"><{$mailmag_subscription_list.melmaga_name|escape}></a></p>
+					</td>
+					<td bgcolor="#E6F2FF">
+						<table border="0" cellspacing="4" cellpadding="0">
+							<tr>
+								<td><img src="<{$mailmag_subscription_list.image_url}>" width="30" height="30"></td>
+								<td nowrap class="char110"><a href="?module=Navi&action=ShowNaviPage&navipage_id=<{$mailmag_subscription_list.navi_page_id}>"><{$mailmag_subscription_list.navi_name|escape}></a></td>
+							</tr>
+						</table>
+					</td>
+					<td align="center" class="char110">
+						<p class="ind0804"><{$mailmag_subscription_list.reader_cnt}></p>
+					</td>
+					<td align="center" bgcolor="#E6F2FF" class="char110">
+						<p class="ind0804"><{$mailmag_subscription_list.last_publish_date}></p>
+					</td>
+					<td align="center">
+						<input type="image" border="0" name="mailmag_cancel_<{$mailmag_subscription_list.melmaga_id}>_btn" src="image/member_btn_release.gif" width="42" height="20" alt="解除" onclick="return confirm('メルマガを解除します。よろしいですか？')">
+					</td>
+				</tr>
+<{if !$smarty.foreach.mailmag_subscription_name.last}>
+				<tr>
+					<td colspan="6"><img src="image/member_split555.gif" width="555" height="1"></td>
+				</tr>
+<{/if}>
+<{/foreach}>
+				<tr>
+					<td colspan="6" bgcolor="#666666"><img src="image/spacer.gif" width="555" height="1"></td>
+				</tr>
+				<tr>
+					<td colspan="6"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+			</table>
+			</form>
+		</td>
+		<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+	</tr>
+</table>

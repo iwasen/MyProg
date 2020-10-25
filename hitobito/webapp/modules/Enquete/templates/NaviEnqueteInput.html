@@ -1,0 +1,145 @@
+<form method="post">
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+	<tr bgcolor="#5B94FD">
+		<td colspan="3"><img src="image/naviedit_enquete_ttl.gif" width="117" height="25" hspace="10" alt="アンケート管理"></td>
+	</tr>
+	<tr>
+		<td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+		<td width="555" valign="top">
+			<table width="555" border="0" cellspacing="0" cellpadding="0">
+<{if $enquete_error_ary}>
+				<tr>
+					<td colspan="2"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td colspan="2" class="error"><{foreach from=$enquete_error_ary item=enquete_error}>・<{$enquete_error|escape}><br><{/foreach}></td>
+				</tr>
+<{/if}>
+				<tr>
+					<td colspan="2"><img src="image/spacer.gif" width="1" height="15"></td>
+				</tr>
+				<tr>
+					<td colspan="2"><img src="image/naviedit_enquete_sttl_enquete.gif" width="127" height="14" alt="ナビアンケート一覧"></td>
+				</tr>
+				<tr>
+					<td width="450"><img src="image/spacer.gif" width="450" height="1"></td>
+					<td width="105"><img src="image/spacer.gif" width="105" height="1"></td>
+				</tr>
+				<tr>
+					<td colspan="2"><img src="image/spacer.gif" width="1" height="7"></td>
+				</tr>
+				<tr>
+					<td valign="top">
+						<table width="450" border="0" cellspacing="0" cellpadding="0">
+							<tr bgcolor="#666666">
+								<td colspan="7"><img src="image/spacer.gif" width="450" height="1"></td>
+							</tr>
+							<tr>
+								<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+								<td width="35" align="center">　</td>
+								<td width="35" bgcolor="#E6F2FF" align="center" class="char120">
+									<p class="ind0804">No.</p>
+								</td>
+								<td width="198" align="center" class="char120">
+									<p class="ind0804">タイトル</p>
+								</td>
+								<td width="90" bgcolor="#E6F2FF" align="center" class="char120">
+									<p class="ind0804">公開日</p>
+								</td>
+								<td width="90" align="center" class="char120" nowrap>
+									<p class="ind0804">ステータス</p>
+								</td>
+								<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+							</tr>
+							<tr bgcolor="#666666">
+								<td colspan="7"><img src="image/spacer.gif" width="450" height="1"></td>
+							</tr>
+<{foreach from=$enquete_list_ary item=enquete_list}>
+							<tr>
+								<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+								<td align="center">
+									<input type="radio" name="enquete_id" value="<{$enquete_list.enquete_id}>" <{if $enquete_id == $enquete_list.enquete_id}>checked<{/if}>>
+								</td>
+								<td bgcolor="#E6F2FF" align="center" class="char120">
+									<p class="ind0804"><{$enquete_list.no}></p>
+								</td>
+								<td class="char120">
+									<p class="ind0804"><{$enquete_list.title|escape}></p>
+								</td>
+								<td bgcolor="#E6F2FF" align="center" class="char120" nowrap>
+									<p class="ind0804"><{$enquete_list.start_date}></p>
+								</td>
+								<td align="center" class="char120">
+									<p class="ind0804"><{$enquete_list.status}></p>
+								</td>
+								<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+							</tr>
+							<tr bgcolor="#CCCCCC">
+								<td colspan="7"><img src="image/spacer.gif" width="450" height="1"></td>
+							</tr>
+<{/foreach}>
+						</table>
+					</td>
+					<td valign="top" align="center">
+						<table width="65" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td><input type="image" name="enquete_new_btn" src="image/naviedit_btn_new.gif" width="65" height="20" alt="新規追加" border="0"></td>
+							</tr>
+							<tr>
+								<td><img src="image/spacer.gif" width="1" height="15"></td>
+							</tr>
+							<tr>
+								<td><input type="image" name="enquete_edit_btn" src="image/naviedit_btn_edit.gif" width="65" height="20" alt="編集" border="0"></td>
+							</tr>
+							<tr>
+								<td><img src="image/spacer.gif" width="1" height="8"></td>
+							</tr>
+							<tr>
+								<td><input type="image" name="enquete_up_btn" src="image/naviedit_btn_up.gif" width="65" height="20" alt="上へ移動" border="0"></td>
+							</tr>
+							<tr>
+								<td><img src="image/spacer.gif" width="1" height="8"></td>
+							</tr>
+							<tr>
+								<td><input type="image" name="enquete_down_btn" src="image/naviedit_btn_down.gif" width="65" height="20" alt="下へ移動" border="0"></td>
+							</tr>
+							<tr>
+								<td><img src="image/spacer.gif" width="1" height="15"></td>
+							</tr>
+							<tr>
+								<td><input type="image" name="enquete_delete_btn" src="image/naviedit_btn_delete.gif" width="65" height="20" alt="削除" border="0"></td>
+							</tr>
+							<tr>
+								<td><img src="image/spacer.gif" width="1" height="15"></td>
+							</tr>
+							<tr>
+	              <td><input type="image" name="enquete_csv_btn" src="image/naviedit_btn_csv.gif" width="65" height="20" alt="CSV取得" border="0"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2"><img src="image/spacer.gif" width="1" height="30"></td>
+				</tr>
+			</table>
+			<table width="555" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td bgcolor="#5B94FD"><img src="image/spacer.gif" width="1" height="5"></td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="20"></td>
+				</tr>
+				<tr>
+					<td>
+						<input type="image" border="0" src="image/naviedit_btn_reflesh.gif" width="90" height="20" alt="登録情報更新">
+					</td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+			</table>
+		</td>
+		<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+	</tr>
+</table>
+</form>

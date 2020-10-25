@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<title>メール入稿用テンプレート</title>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<body bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600">
+<? include("header.php"); ?>
+<table width="750" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top" colspan="3" align="center">
+<table width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<tr>
+<td>
+<table width="513" border="0" cellspacing="1" cellpadding="5">
+<tr bgcolor="#FFFFFF">
+<td>
+<p class="midashi14"><font color="#006600"><b>■メール入稿用テンプレート</b></font></p>
+<table width="600" border="0" cellpadding="3" cellspacing="1">
+<tr>
+<td colspan="3" bgcolor="#006600"><font color="#FFFFCC"><b><? echo "【" . $mag_id . "：" . htmlspecialchars(stripcslashes($mag_nm)). "】"; ?></b></font></td>
+</tr>
+<tr>
+<td colspan="3">
+<form name="form1" >
+<div align="center">
+<p align="left">　</p>
+<p align="left">
+メール入稿用テンプレートをあなたの基本メールアドレスに送信しました。<BR>
+配信予約をするには、配信予約日、サブジェクト、本文を記述しsend@melonpan.net宛てへ送信してください。
+</p>
+</div>
+</form>
+</td>
+</tr>
+</table>
+<form method="post" action="mail_tmpl_list.php" name="fom_return">
+<p class="text9ptnoColor"> <a href="JavaScript:document.fom_return.submit();">
+&lt;&lt;&lt;　メルマガ一覧へ戻る</a>
+<input type="hidden" value="<? echo $publisher_id ?>" name="publisher_id">
+<input type="hidden" value="<? echo $owner_pswd ?>" name="owner_pswd">
+</form>
+<form method="post" action="pub_index.php" name="fom_index">
+<p class="text9ptnoColor"><a href="JavaScript:document.fom_index.submit();">
+&lt;&lt;&lt;　発行者管理ページへ戻る</a></p>
+<input type="hidden" value="<? echo $publisher_id ?>" name="publisher_id">
+<input type="hidden" value="<? echo $owner_pswd ?>" name="owner_pswd_r">
+</form>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<? include("footer.php"); ?>
+</TABLE>
+</body>
+</html>

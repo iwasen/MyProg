@@ -1,0 +1,7 @@
+[OPTIONS]
+REPORT=Yes
+CONTENTS=index
+TITLE=カメラコントロール DLL ヘルプ
+
+[FILES]
+cmctl.rtf

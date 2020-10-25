@@ -1,0 +1,135 @@
+<table width="580" border="0" cellspacing="0" cellpadding="0" bgcolor="#E3F7DF">
+	<tr>
+		<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td width="15" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="15" height="1"></td>
+		<td width="548" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="548" height="1"></td>
+		<td width="15" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="15" height="1"></td>
+		<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td colspan="3"><img src="image/spacer.gif" width="1" height="6"></td>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+</table>
+<table width="580" border="0" cellspacing="0" cellpadding="0" bgcolor="#E3F7DF">
+	<tr>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td><img src="image/spacer.gif" width="15" height="1"></td>
+		<td colspan="5" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="548" height="1"></td>
+		<td><img src="image/spacer.gif" width="15" height="1"></td>
+		<td><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+		<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td width="15" bgcolor="#FFFFFF"><img src="image/spacer.gif" width="15" height="1"></td>
+		<td bgcolor="#FFFFFF" width="516" align="center">
+			<form method="post">
+			<table width="516" border="0" cellspacing="0" cellpadding="0">
+			<input type="hidden" name="waiwai_enq_title" value="<{$waiwai_enq_ary.0.title}>">
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="15"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#5FCA44" align="center" height="24"><strong><font color="#FFFFFF" size="4">※※※※※　<{$waiwai_enq_ary.0.title}>　※※※※※</font></strong></td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="15"></td>
+				</tr>
+			</table>
+			<table width="500" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td width="35"><img src="image/spacer.gif" width="35" height="1"></td>
+					<td width="430" class="char120"><{$waiwai_enq_ary.0.enquete_text|nl2br}></td>
+					<td width="35"><img src="image/spacer.gif" width="35" height="1"></td>
+				</tr>
+			</table>
+			<br>
+<{foreach from=$waiwai_enq_ary item=waiwai_enq}>
+			<table width="500" border="0" cellspacing="0" cellpadding="0">
+				<input type="hidden" name="waiwai_question_no_ary[]" value="<{$waiwai_enq.question_no}>">
+				<input type="hidden" name="waiwai_type-<{$waiwai_enq.question_no}>" value="<{$waiwai_enq.type}>">
+				<input type="hidden" name="waiwai_free_flag-<{$waiwai_enq.question_no}>" value="<{$waiwai_enq.free_flag}>">
+				<tr>
+					<td align="left">
+						<table border="0" cellpadding="0" cellspacing="0">
+							<tr>
+								<td width="65" align="right" valign="top" class="char120">Q<{$waiwai_enq.question_no}>.&nbsp;&nbsp;</td>
+								<td class="char120"><{$waiwai_enq.question_text|nl2br}></td>
+							</tr>
+						</table>
+					</td>
+					<td width="35"><img src="image/spacer.gif" width="35" height="1"></td>
+				</tr>
+				<tr>
+					<td colspan="2"><img src="image/spacer.gif" width="1" height="15"></td>
+				</tr>
+				<tr>
+					<td align="left">
+						<table border="0" cellpadding="0" cellspacing="0">
+<{foreach from=$waiwai_enq.ans_text item=waiwai_ans}>
+							<tr>
+								<td width="50"><img src="image/spacer.gif" width="65" height="1"></td>
+								<td class="char120"><{$waiwai_ans.option_text|escape|nl2br}></td>
+								<input type="hidden" name="waiwai_ans-<{$waiwai_enq.question_no}>[]" value="<{$waiwai_ans.option_no}>">
+								<input type="hidden" name="waiwai_free_ans-<{$waiwai_enq.question_no}>" value="<{$waiwai_ans.option_text}>">
+							</tr>
+<{/foreach}>
+<{if $waiwai_enq.ans_free != ''}>
+							<tr>
+								<td width="50"><img src="image/spacer.gif" width="65" height="1"></td>
+								<td class="char120">その他（<{$waiwai_enq.ans_free|escape|nl2br}>）</td>
+								<input type="hidden" name="waiwai_ans-<{$waiwai_enq.question_no}>[]" value="999">
+								<input type="hidden" name="waiwai_ans-<{$waiwai_enq.question_no}>-f" value="<{$waiwai_enq.ans_free}>">
+							</tr>
+<{/if}>
+						</table>
+					</td>
+					<td width="35"><img src="image/spacer.gif" width="35" height="1"></td>
+				</tr>
+				<tr>
+					<td colspan="2"><img src="image/spacer.gif" width="1" height="25"></td>
+				</tr>
+			</table>
+<{/foreach}>
+			<table width="500" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td align="center"><input type="image" border="0" name="contribute_btn" src="image/navi_ask_navi_btn_submit.gif" width="50" height="20" alt="送信" >&nbsp;&nbsp;<input type="image" border="0" name="cancel_btn" src="image/naviedit_delete_btn_cancel.gif" width="39" height="20" alt="戻る" ></td>
+				</tr>
+				<tr>
+					<td width="500" colspan="3"><img src="image/spacer.gif" width="1" height="25"></td>
+				</tr>
+			</table>
+			</form>
+		</td>
+		<td width="15" bgcolor="#FFFFFF"><img src="image/spacer.gif" width="15" height="1"></td>
+		<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+		<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td><img src="image/spacer.gif" width="15" height="1"></td>
+		<td colspan="5" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="548" height="1"></td>
+		<td><img src="image/spacer.gif" width="15" height="1"></td>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td colspan="7"><img src="image/spacer.gif" width="1" height="15"></td>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr bgcolor="#CCCCCC">
+		<td colspan="9"><img src="image/spacer.gif" width="550" height="1"></td>
+	</tr>
+	<tr bgcolor="#FFFFFF">
+		<td colspan="9"><img src="image/spacer.gif" width="1" height="10"></td>
+	</tr>
+</table>

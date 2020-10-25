@@ -1,0 +1,38 @@
+			<table width="580" border="0" cellspacing="0" cellpadding="0">
+			  <tr bgcolor="#5B94FD">
+
+			    <td colspan="3">エラー</td>
+			  </tr>
+			  <tr>
+			    <td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+			    <td width="555" valign="top">
+
+			      <table width="555" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+				  <td><img src="image/spacer.gif" width="1" height="15"></td>
+				</tr>
+				<tr>
+				  <td class="char120"><{if $message }><{$message}><{else}>エラー<{/if}></td>
+				</tr>
+				<tr>
+				  <td><img src="image/spacer.gif" width="1" height="4"></td>
+				</tr>
+				<tr>
+				  <td bgcolor="#5B94FD"><img src="image/spacer.gif" width="555" height="1"></td>
+				</tr>
+				<tr>
+				  <td>　</td>
+				</tr>
+				<tr>
+				  <td><img src="image/spacer.gif" width="1" height="20">
+				    <{if $return_url}>
+				    <a href="<{$return_url}>"><img src="image/naviedit_delete_btn_cancel.gif" width="39" height="20" alt="戻る" border=0></a>
+				    <{else}>
+				    <a href="index.php?module=Navi&amp;action=adminAssist&amp;navipage_id=<{$hitobitoNaviPageInfo->getId()}>"><img src="image/naviedit_delete_btn_cancel.gif" width="39" height="20" alt="戻る" border=0></a>
+				    <{/if}>
+				  </td>
+				</tr>
+			      </table>
+			    </td>
+			  </tr>
+			</table>

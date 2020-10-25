@@ -1,0 +1,90 @@
+	TITLE	<>  PINE-MODEM  AUTO ANSWER & HAND SHAKE <>
+;
+;	*************************************************
+;	*						*
+;	*	AUTO ANSWER & HANDSHAKE			*
+;	*						*
+;	*************************************************
+;
+	.Z80
+;
+	PUBLIC	MDSHAK
+;
+	EXT	MDCD, MSLRD, MDTCON
+	EXT	DELAY, WAT10
+
+;
+	PAGE
+;	*************************************************
+;	*						*
+;	*	HAND SHAKE ( CALLER )			*
+;	*						*
+;	*************************************************
+;
+MDSHAK:
+	LD	B,46		; 460 ms
+	CALL	STIMER
+	JR	NC,CSH40	; OK
+	CP	1
+	RET	Z
+	CALL	MDTCON
+	RET
+CSH40:
+	CALL	MDTCON		; CARRIER ON
+;
+	LD	B,255		; 2.55 s ( CD DELAY + 270+40 ) 
+	CALL	STIMER
+	JR	C,CSH45
+	SCF
+	RET
+CSH45:
+	CP	1
+	RET	Z
+;
+	CALL	MSLRD		; SELECT SCR. "1" CHECK MODE
+;
+	LD	B,27		; 270 ms
+	CALL	STIMER
+	RET	C
+;
+CSH50:
+	LD	B,76		; 760 ms
+	CALL	STIMER
+	RET
+;
+	PAGE
+;	*************************************************
+;	*						*
+;	*   SPECIAL TIMER				*
+;	*     ENTRY  : B= WAIT TIME ( 10ms UNIT )	*
+;	*     RETURN : Cy=ON - ERROR , Cy=OFF - NORMAL	*
+;	*						*
+;	*************************************************
+;
+STIMER:
+	PUSH	BC
+	CALL	WAT10		; WAIT 10 ms
+	POP	BC
+;
+	CALL	MDCD
+	LD	A,1
+	JR	Z,TMER		; NO
+	CALL	DELAY
+	CALL	MDRD
+	LD	A,2
+	JR	Z,TMER		; NO
+;
+	DJNZ	STIMER
+	XOR	A
+	RET
+;
+TMER:
+	SCF
+	RET
+;
+MDRD:
+	IN	A,(86H)
+	BIT	2,A
+	RET
+;
+	END

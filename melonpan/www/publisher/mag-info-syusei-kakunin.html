@@ -1,0 +1,260 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>メルマガ基本情報【確認】</TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600">
+<? include("header.php"); ?>
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="513" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+                <TD> 
+                  <table width="501" border="0" cellspacing="0" cellpadding="0">
+                    <tr> 
+                      <td width="251"><font color="#006600"><b>■メルマガ基本情報【確認】</b></font></td>
+                      <td width="250" align="right"> 
+                        <form method="post" action="pub_index.php" name="fom_index">
+                          <a href="JavaScript:document.fom_index.submit();"> <font size="2">管理ページTOPへ</font></a> 
+                          <input type="hidden" value="<? echo $publisher_id ?>" name="publisher_id">
+                          <input type="hidden" value="<? echo $owner_pswd ?>" name="owner_pswd_r">
+                        </form>
+                      </td>
+                    </tr>
+                  </table>
+                  <br>
+                  <br>
+                  <form name="form1" action="magazine.php" method="post">
+<span class="text01"> 以下の内容で修正登録してもよろしいですか？ 　よろしければ[修正]ボタンを押してください。<br>
+<br>
+<font color="#CC0000"><? if ($name_msg != "") {print $name_msg;} ?></font>
+</span>
+
+<table border="0" cellspacing="1" width="500" cellpadding="3" align="center">
+<tr>
+<td bgcolor="#006600" align="center" width="18"><B><FONT color="#FFFFCC">1</FONT></B></td>
+<td valign="top" bgcolor="#e8e8e8" CLASS="text9ptnoColor"><font color="#006600"><B>基本メールアドレス</B></font></td>
+<td bgcolor="#e8e8e8"> <? echo $mail_add_main; ?> </td>
+<input type="hidden" value="<? echo $mail_add_main; ?>" name="mail_add_main">
+</tr>
+<tr>
+<td bgcolor="#006600" align="center" width="18"><b><font color="#FFFFCC">2</font></b></td>
+<td valign="top" width="220" CLASS="text9ptnoColor"><font color="#006600"><b>めるめる・net　ID</b></font></td>
+<td width="243"><? echo $melmel_id; ?></td>
+<input type="hidden" value="<? echo $melmel_id; ?>" name="melmel_id">
+</tr>
+<tr>
+<td bgcolor="#006600" align="center" width="18"><b><font color="#FFFFCC">3</font></b></td>
+<td valign="top" bgcolor="#e8e8e8" CLASS="text9ptnoColor"> <font color="#006600"><B>メルマガ発行元メールアドレス</B>
+</font></td>
+<td bgcolor="#e8e8e8"> <? echo $mail_add_publish; ?> </td>
+<input type="hidden" value="<? echo $mail_add_publish; ?>" name="mail_add_publish">
+</tr>
+<tr>
+<td bgcolor="#006600" align="center" width="18"><b><font color="#FFFFCC">4</font></b></td>
+<td valign="top" width="220" CLASS="text9ptnoColor"> <font color="#006600"><B>メルマガタイトル</B>
+</font></td>
+<td width="243"> <? echo $mag_nm; ?></td>
+<input type="hidden" value="<? echo $mag_nm; ?>" name="mag_nm">
+</tr>
+<tr>
+<td bgcolor="#006600" align="center" width="18"><b><font color="#FFFFCC">5</font></b></td>
+<td valign="top" bgcolor="#e8e8e8" CLASS="text9ptnoColor"> <font color="#006600"><B>メルマガ紹介文[ロング]</B>
+</font></td>
+<td bgcolor="#e8e8e8"> <? echo $mag_intro_long; ?> </td>
+<input type="hidden" value="<? echo $mag_intro_long; ?>" name="mag_intro_long">
+</tr>
+<tr>
+<td bgcolor="#006600" align="center" width="18"><b><font color="#FFFFCC">6</font></b></td>
+<td valign="top" width="220" CLASS="text9ptnoColor"> <font color="#006600"><B>メルマガ紹介文[ショート]</B>
+</font></td>
+<td width="243"> <? echo $mag_intro_short; ?></td>
+<input type="hidden" value="<? echo $mag_intro_short; ?>" name="mag_intro_short">
+</tr>
+<tr>
+<td bgcolor="#006600" align="center" width="18"><b><font color="#FFFFCC">7</font></b></td>
+<td valign="top" bgcolor="#e8e8e8" CLASS="text9ptnoColor"> <font color="#006600"><B>ホームページURL</B>(任意)
+</font></td>
+<td bgcolor="#e8e8e8">
+<?php
+//echo $mag_hp; 
+$mag_hp = htmlspecialchars($mag_hp);
+if ( strlen($mag_hp) < 50 ){
+	echo trim($mag_hp);
+}else{
+	echo substr($mag_hp, 0, 50);
+	echo "<BR>";
+	echo substr($mag_hp, 50, 80-50);
+}
+?>
+</td>
+<input type="hidden" value="<? echo $mag_hp; ?>" name="mag_hp">
+</tr>
+<tr>
+<td bgcolor="#006600" align="center" width="18"><b><font color="#FFFFCC">8</font></b></td>
+<td valign="top" width="220" CLASS="text9ptnoColor"><font color="#006600"><B>タイプ<br>
+</B></font></td>
+<td width="243"><?php echo pub_mm_type ($mag_type); ?></td>
+<input type="hidden" value="<? echo $mag_type; ?>" name="mag_type">
+</tr>
+<tr>
+<td bgcolor="#006600" align="center" width="18"><b><font color="#FFFFCC">9</font></b></td>
+<td valign="top" bgcolor="#e8e8e8" CLASS="text9ptnoColor"> <font color="#006600"><B>発行周期</B>
+</font></td>
+<td bgcolor="#e8e8e8"> <? echo htmlspecialchars($mag_cycle_day); ?></td>
+<input type="hidden" value="<? echo $mag_cycle_day; ?>" name="mag_cycle_day">
+<input type="hidden" value="<? echo $mag_cycle; ?>" name="mag_cycle">
+</tr>
+<tr>
+<td bgcolor="#006600" align="center" width="18"><b><font color="#FFFFCC">10</font></b></td>
+<td valign="top" width="220" CLASS="text9ptnoColor"> <font color="#006600"><B>カテゴリ</B>
+</font></td>
+<td width="243"> <? echo pub_mm_catg($mag_catg_1) . "，" . pub_mm_catg($mag_catg_2); ?></td>
+<input type="hidden" value="<? echo $mag_catg_1; ?>" name="mag_catg_1">
+<input type="hidden" value="<? echo $mag_catg_2; ?>" name="mag_catg_2">
+</tr>
+<tr>
+<td bgcolor="#006600" align="center" width="18"><b><font color="#FFFFCC">11</font></b></td>
+<td valign="top" bgcolor="#e8e8e8" CLASS="text9ptnoColor"> <font color="#006600"><B>読む背景</B>（気分で選ぶ）
+</font></td>
+<td bgcolor="#e8e8e8"> <? echo pub_mm_bg($mag_bg_1) ."<br>" . pub_mm_bg($mag_bg_2); ?>　
+</td>
+<input type="hidden" value="<? echo $mag_bg_1; ?>" name="mag_bg_1">
+<input type="hidden" value="<? echo $mag_bg_2; ?>" name="mag_bg_2">
+</tr>
+<tr>
+<td bgcolor="#006600" align="center" width="18"><b><font color="#FFFFCC">12</font></b></td>
+<td valign="top" width="220" CLASS="text9ptnoColor"><font color="#006600"><B>とくに読んでもらいたい性別</B></font></td>
+<td width="243"> <? echo pub_mm_sex($mag_reader_sex); ?></td>
+<input type="hidden" value="<? echo $mag_reader_sex; ?>" name="mag_reader_sex">
+</tr>
+<tr>
+<td bgcolor="#006600" align="center" width="18"><b><font color="#FFFFCC">13</font></b></td>
+<td valign="top" bgcolor="#e8e8e8" CLASS="text9ptnoColor"><font color="#006600"><B>とくに読んでもらいたい年代</B></font></td>
+<td bgcolor="#e8e8e8"> <? echo $mag_reader_age . "代"; ?> </td>
+<input type="hidden" value="<? echo $mag_reader_age; ?>" name="mag_reader_age">
+</tr>
+<tr>
+<td bgcolor="#006600" align="center" width="18"><b><font color="#FFFFCC">14</font></b></td>
+<td valign="top" width="220" CLASS="text9ptnoColor"><font color="#006600"><B>とくに読んでもらいたいエリア</B></font></td>
+<td width="243"> <? echo pub_mm_area($mag_reader_area); ?>　 </td>
+<input type="hidden" value="<? echo $mag_reader_area; ?>" name="mag_reader_area">
+</tr>
+<tr>
+<td bgcolor="#006600" align="center" width="18"><b><font color="#FFFFCC">15</font></b></td>
+<td valign="top" bgcolor="#e8e8e8" CLASS="text9ptnoColor"><font color="#006600"><B>とくに読んでもらいたい職業</B></font></td>
+<td bgcolor="#e8e8e8"> <? echo pub_mm_occup($mag_reader_occup); ?> </td>
+<input type="hidden" value="<? echo $mag_reader_occup; ?>" name="mag_reader_occup">
+</tr>
+<tr>
+<td bgcolor="#006600" align="center" width="18"><B><FONT color="#FFFFCC">16</FONT></B></td>
+<td valign="top" width="220" CLASS="text9ptnoColor"> <font color="#006600"><B>バックナンバー公開／非公開</B>
+</font></td>
+<td width="243"> <? echo pub_mm_bn_pub($mag_bn_pub); ?></td>
+<input type="hidden" value="<? echo $mag_bn_pub; ?>" name="mag_bn_pub">
+</tr>
+
+<tr>
+<td bgcolor="#006600" align="center" width="18"><B><FONT color="#FFFFCC">17</FONT></B></td>
+<td valign="top" bgcolor="#e8e8e8" CLASS="text9ptnoColor"> <font color="#006600"><B>プレゼント応募券の挿入</B>
+</font></td>
+<td bgcolor="#e8e8e8"> <? echo pub_mm_present_ins($mag_present_ins); ?></td>
+<input type="hidden" value="<? echo $mag_present_ins; ?>" name="mag_present_ins">
+</tr>
+<!------->
+<tr>
+<td bgcolor="#006600" align="center" width="18"><b><font color="#FFFFCC">18</font></b></td>
+<td valign="top" CLASS="text9ptnoColor"> <font color="#006600"><B>配信メルマガのfromアドレス</B>(任意)
+</font></td>
+<td> <? echo $mag_from_addr; ?> </td>
+<input type="hidden" value="<? echo $mag_from_addr; ?>" name="mag_from_addr">
+</tr>
+
+<tr>
+<td bgcolor="#006600" align="center" width="18"><b><font color="#FFFFCC">19</font></b></td>
+<td valign="top" bgcolor="#e8e8e8" CLASS="text9ptnoColor"> <font color="#006600"><B>配信メルマガのサブジェクト</B>(任意)
+</font></td>
+<td bgcolor="#e8e8e8"> <? echo $mag_subject_tmpl; ?> </td>
+<input type="hidden" value="<? echo $mag_subject_tmpl; ?>" name="mag_subject_tmpl">
+</tr>
+
+<tr>
+<td bgcolor="#006600" align="center" width="18"><b><font color="#FFFFCC">20</font></b></td>
+<td valign="top" CLASS="text9ptnoColor"> <font color="#006600"><B>メルマガヘッダのテンプレート</B>(任意)
+</font></td>
+<td>
+<?php
+if (trim($mag_header_tmpl)==""){
+ echo "(指定なし)";
+}else{
+ echo "(指定あり)";
+}
+?>
+</td>
+<input type="hidden" value="<? echo $mag_header_tmpl; ?>" name="mag_header_tmpl">
+</tr>
+
+<tr>
+<td bgcolor="#006600" align="center" width="18"><b><font color="#FFFFCC">21</font></b></td>
+<td valign="top" bgcolor="#e8e8e8" CLASS="text9ptnoColor"> <font color="#006600"><B>メルマガフッタのテンプレート</B>(任意)
+</font></td>
+<td bgcolor="#e8e8e8">
+<?php
+if (trim($mag_footer_tmpl)==""){
+ echo "(指定なし)";
+}else{
+ echo "(指定あり)";
+}
+?>
+</td>
+<input type="hidden" value="<? echo $mag_footer_tmpl; ?>" name="mag_footer_tmpl">
+</tr>
+
+<tr>
+<td bgcolor="#006600" align="center" width="18"><b><font color="#FFFFCC">22</font></b></td>
+<td valign="top" CLASS="text9ptnoColor"> <font color="#006600"><B>めろんぱんオリジナル</B>
+</font></td>
+<td> <? echo pub_mm_original($mag_original_flg); ?> </td>
+<input type="hidden" value="<? echo $mag_original_flg; ?>" name="mag_original_flg">
+</tr>
+<tr>
+<td bgcolor="#006600" align="center" width="18"><b><font color="#FFFFCC">23</font></b></td>
+<td valign="top" bgcolor="#e8e8e8" CLASS="text9ptnoColor"> <font color="#006600"><B>配信結果通知メール</B>
+</font></td>
+<td bgcolor="#e8e8e8"> <? echo pub_mm_send_notice($send_notice_flg); ?> </td>
+<input type="hidden" value="<? echo $send_notice_flg; ?>" name="send_notice_flg">
+</tr>
+<!------->
+
+</table>
+<p class="text01">間違いがなければ修正ボタンを、戻って入力しなおす場合は戻るボタンを押してください。</p>
+<div align="right">
+<input type="submit" value="修正">
+<input type="button" value="戻る" onClick="history.back()" name="button2">
+<input type="hidden" value="<? echo $owner_pswd; ?>" name="owner_pswd">
+<input type="hidden" value="<? echo $publisher_id; ?>" name="publisher_id">
+<input type="hidden" value="<? echo $mag_id; ?>" name="mag_id">
+<input type="hidden" value="<? echo $owner_nm_kanj; ?>" name="owner_nm_kanj">
+<input type="hidden" value="<? echo $mail_add_main; ?>" name="mail_add_main">
+<input type="hidden" value="<? echo $next_job_flg; ?>" name="job_flg">
+</div>
+</form>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<? include("footer.php"); ?>
+</TABLE>
+</body>
+</html>
+

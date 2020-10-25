@@ -1,0 +1,107 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<meta http-equiv="Content-Language" content="ja">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>めるめる</title>
+</head>
+
+<body bgcolor="#FF9999">
+
+<p><!--webbot bot="PurpleText"
+PREVIEW="フィードバック フォーム - 以下のフォームをカスタマイズして、必要な情報を収集します。標準では、フォームのデータは FrontPage 結果保存コンポーネントを使って Web サーバーのテキスト ファイルに保存されます。この設定を変更するには、フォームのプロパティを変更します。"
+-->
+</p>
+<hr>
+<p><a href="../index.html"><img src="images/head_logo.gif" border="0" alt="めるめる・net ロゴ" vspace="1" hspace="1" width="252" height="96"></a></p>
+<p align="left"><font size="3" color="#000080"><b>めるめる･net読者向けページＯＰＥＮを記念して、プレゼントを差し上げます。</b></font></p>
+<p align="left"><font size="3" color="#800080">抽選で１０名様に、<u><i>「Ｅメールマーケティグ実践講座」<br>
+</i></u>さらに１００名様に、<i><u>「めるめるちゃんシールセット」</u></i></font></p>
+<p align="left"><font size="3" color="#000080">があたります。下記のアンケートにお応えください。<br>
+応募受付期間：2000年12月15日まで。<br>
+抽選・発表：2000年12月20日。商品の発送を持って発表に変えさせていただきます。</font></p>
+<form action="../_derived/nortbots.htm" method="POST" onSubmit="location.href='../_derived/nortbots.htm';return false;" webbot-action="--WEBBOT-SELF--" WEBBOT-onSubmit>
+  <!--webbot bot="SaveResults" startspan S-Label-Fields="TRUE"
+  S-Builtin-Fields="Date Time REMOTE_NAME REMOTE_USER HTTP_USER_AGENT"
+  S-Form-Fields U-File="_private/present.txt" S-Format="TEXT/TSV"
+  S-Email-Address="office@melmel.net" S-Email-Format="TEXT/PRE" --><strong>[FrontPage 結果保存 コンポーネント]</strong><!--webbot
+  bot="SaveResults" endspan i-checksum="38700" -->
+  <p align="center"><strong><br>
+  メールマガジンを購読になりましたか？</strong></p>
+  <dl>
+    <dd>
+      <p align="center"><input type="radio" name="MessageType" value="Complaint">はい－３誌以上 
+      <input type="radio" name="MessageType" value="Problem">はい－２誌 <input type="radio" checked name="MessageType" value="Suggestion">はい－１誌 
+      <input type="radio" name="MessageType" value="Praise">いいえ</dd>
+  </dl>
+  <p align="center"><strong>何かあればご記入ください。:</strong></p>
+  <dl>
+    <dd>
+      <p align="center"><textarea name="Comments" rows="5" cols="65"></textarea></dd>
+  </dl>
+  <p align="center"><strong>連絡先を入力してください :</strong></p> 
+  <dl> 
+    <dd> 
+      <table width="489"> 
+        <tr> 
+          <td width="133" align="left"> 
+            <p align="center">お名前 
+          <td width="447" align="left"> 
+            <p align="center"><input type="text" size="35" maxlength="256" name="Username"> 
+        </tr> 
+        <tr> 
+          <td width="133" align="left"> 
+            <p align="center">電子メールアドレス 
+          <td width="447" align="left"> 
+            <p align="center"><input type="text" size="57" maxlength="256" name="UserEmail"> 
+        </tr> 
+        <tr> 
+          <td width="133" align="left"> 
+            <p align="center">住所 
+          <td width="447" align="left"> 
+            <p align="center"><input type="text" size="66" maxlength="256" name="UserTel"> 
+        </tr> 
+        <tr> 
+          <td width="133" align="left"> 
+            <p align="center">電話番号 
+          <td width="447" align="left"> 
+            <p align="center"><input type="text" size="35" maxlength="256" name="UserFAX"> 
+        </tr> 
+      </table> 
+    </dd> 
+  </dl> 
+  <p align="center"><input type="submit" value="プレゼントに応募"> <input type="reset" value="キャンセル"></p> 
+</form> 
+ 
+<div align="center"> 
+ 
+<table border="0" cellpadding="0" cellspacing="0" width="600"> 
+ 
+<tr><td valign="top" bgcolor="#0099ff"> 
+<table border="0" cellpadding="0" cellspacing="0" width="600" bgcolor="#ffffff"> 
+ 
+<tr><td align="center"> 
+    <p align="center"><font size="2">□ めるめる・net事務局 □</font><br><a href="mailto:info@melmel.net"><font size="2">info@melmel.net</font></a></p>  
+  </td></tr>   
+<tr><td align="center"><img src="images/spacer.gif" width="470" height="20"></td></tr><!-----  mail/END  ----->   
+   
+</table></td></tr><!-----  ベース・ホワイト/END  ----->   
+   
+<!----  Bottom Line  ---->   
+<tr><td align="center" bgcolor="#0099ff"><img src="images/spacer.gif" width="600" height="7"></td></tr>   
+</table><!----  外枠・ブルー/END  ---->   
+   
+<!-----  bottom logo・(c)  ----->   
+<table border="0" cellpadding="0" cellspacing="0">   
+<tr>   
+<td rowspan="2" align="center" valign="bottom" width="135"><a href="http://www.melmel.net"><img src="images/cara_s.gif" border="0" alt="めるめる イメージ" width="66" height="49"></a></td>  
+<td valign="bottom" width="300" height="42" align="center"><a href="http://www.melmel.net"><img src="images/logo_s.gif" border="0" alt="めるめる・net ロゴ" width="155" height="42"></a></td>  
+<tr><td valign="top" height="22" align="center"><font size="1">Copyright (C) 2000 DO HOUSE CO,LTD. All rights reserved.</font></td></tr>  
+</table><!-----  bottom logo・(c)/END  ----->  
+</div>  
+  
+</body>  
+  
+</html>  

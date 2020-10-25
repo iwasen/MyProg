@@ -1,0 +1,132 @@
+<?
+include ("../inc/header_jmk.php");
+include ("../inc/footer_jmk.php");
+include ("../inc/common.php");
+include ("../inc/database_inc.php");
+include ("../inc/admin_inc.php");
+include ("../inc/sub_func_inc.php");
+include ("../inc/code.php");
+
+/******************************************************
+' System :めろんぱん事務局用ページ
+' Content:広告クリックカウンタ設定
+'******************************************************/
+
+$title_text = $TT_click;
+$title_color = $TC_OTHER;
+
+// クリック率取得
+function info_rate($click,$all) {
+	if ($all > 0) {
+		echo number_format(($click/$all)*100, 3).'%';
+	} else {
+		echo '-';
+	}
+}
+
+//*** main ***
+$order_by = order_by(1, 0, 'cc_ct_id', 'cc_click_name', 'cc_client_name','cc_ct_id','cc_click_num','cc_all_num','rate');
+$sql = "SELECT cc_ct_id,cc_click_name,cc_client_name,cc_jump_url,cc_all_num,cc_click_num,((cc_click_num*1000)/cc_all_num) as rate"
+			." FROM t_click_counter $order_by";
+$result = db_exec($sql);
+$nrow = pg_numrows($result);
+?>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<meta HTTP-EQUIV="Pragma" Content="no-cache">
+<title><?= $title_text ?></title>
+<link rel="stylesheet" type="text/css" href="../css/melonpan.css">
+<script type="text/javascript">
+<!--
+function sort_list(sort, dir) {
+	var f = document.form1;
+	f.sort_col.value = sort;
+	f.sort_dir.value = dir;
+	f.submit();
+}
+function onclick_time() {
+	document.form1.target = "";
+	document.form1.action = "click_time.php";
+	document.form1.submit();
+}
+function onclick_date() {
+	document.form1.target = "";
+	document.form1.action = "click_date.php";
+	document.form1.submit();
+}
+function OnClick_info(url) {
+  var win;
+  win = window.open(url, "check_url", "scrollbars=yes,resizable=yes,toolbar=yes,menubar=yes,location=yes");
+  win.focus();
+}
+//-->
+</script>
+</head>
+<body>
+
+<? header_jmk($title_text,$title_color,0); ?>
+
+<center>
+<form method="post" name="form1" style="margin:0">
+<table border=0 cellspacing=0 cellpadding=0 width='100%'>
+	<tr>
+		<td>■広告一覧<font size="-1">（表示したい広告を選択して右のボタンをクリックしてください）</font>
+		</td>
+		<td align="right">
+			<input type="button" value="日付別" OnClick='JavaScript:onclick_date()'>
+			<input type="button" value="時間別" OnClick='JavaScript:onclick_time()'>　　
+			<input type="button" value=" 新規登録 " onclick="location.href='click1.php'">
+		</td>
+	</tr>
+</table>
+<input type="hidden" name="sort_col" <?=value($sort_col)?>>
+<input type="hidden" name="sort_dir" <?=value($sort_dir)?>>
+<table border=1 cellspacing=0 cellpadding=2 width='100%'>
+	<tr bgcolor="ffcc99">
+<?
+		sort_header(1, '広告ID');
+		sort_header(2, '広告名');
+		sort_header(3, 'クライアント名');
+		sort_header(4, 'ｶｳﾝﾀ設定後URL');
+		sort_header(5, 'ｸﾘｯｸ数');
+		sort_header(6, '全体数');
+		sort_header(7, 'ｸﾘｯｸ率');
+		sort_header(0, '選択');
+
+?>
+	</tr>
+<?php
+for ($i = 0; $i < $nrow; $i++) {
+	$fetch = pg_fetch_object($result, $i);
+	$cc_ct_id = $fetch->cc_ct_id;
+	$cc_click_name = $fetch->cc_click_name;
+	$cc_client_name = $fetch->cc_client_name;
+	$cc_all_num = $fetch->cc_all_num;
+	$cc_jump_url = $fetch->cc_jump_url;
+	$cc_click_num = $fetch->cc_click_num;
+?>
+	<tr class="tc<?= $line % 2; ?>">
+		<td align="center"><a href=""><a href='click2.php?ct_id=<?= $cc_ct_id ?>' title="登録内容を修正します"><?= $cc_ct_id ?></a></td>
+		<td align="left"><?= htmlspecialchars($cc_click_name) ?></td>
+		<td align="left"><?= htmlspecialchars($cc_client_name) ?></td>
+		<td align="left"><a href='JavaScript:OnClick_info("<?= set_url($cc_ct_id) ?>")'><?= htmlspecialchars(set_url($cc_ct_id)) ?></a></td>
+		<td align="right"><?= number_format($cc_click_num) ?></td>
+		<td align="right"><?= number_format($cc_all_num) ?></td>
+		<td align="right"><?= info_rate($cc_click_num,$cc_all_num) ?></td>
+		<td align="center"><input type="radio" name="sel_id" <?= value($cc_ct_id) ?> <?= value_checked(0,$i) ?>></td>
+		<input type="hidden" name="click_name[<?=$cc_ct_id?>]" <?= value($cc_click_name) ?>>
+	</tr>
+<?php
+	$line++;
+}
+?>
+	</tr>
+</table>
+</form>
+</center>
+
+<? footer_jmk(0); ?>
+
+</body>
+</html>

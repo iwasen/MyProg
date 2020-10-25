@@ -1,0 +1,91 @@
+<!-- ナビ登録 -->
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+  <tr bgcolor="#5B94FD">
+    <td colspan="3"><img src="image/navising_ttl.gif" width="67" height="25" hspace="10" alt="ナビ登録"></td>
+  </tr>
+  <tr>
+    <td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+    <td width="555" valign="top">
+      <table width="555" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	  <td><img src="image/spacer.gif" width="1" height="15"></td>
+	</tr>
+	<tr>
+
+          <td class="char120">
+            <!--
+	      <{$navi_touroku_setumei}>
+	      -->
+            ナビ応募を希望される方は、以下のナビ応募フォームより申請してください。後ほど事務局よりメールにてご連絡を差し上げます。</td>
+	</tr>
+	<tr>
+	  <td><img src="image/spacer.gif" width="1" height="25"></td>
+	</tr>
+	<tr>
+	  <td bgcolor="#5B94FD"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+	  <td><img src="image/spacer.gif" width="1" height="20"></td>
+	</tr>
+	<tr>
+	  <td><{$editform->getHtmlErrors()}></td>
+	</tr>
+      </table>
+      <form name="form3" method="post"  enctype="multipart/form-data">
+	<table width="555" border="0" cellspacing="0" cellpadding="0">
+	  <tr>
+	    <td width="90" class="char120" nowrap>応募カテゴリ</td>
+	    <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+	    <td width="455">
+	      <{html_options name="member_navipage_category" options=$category_options selected=$editform->member_navipage_category}>
+	    </td>
+	  </tr>
+	  <tr>
+	    <td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+	  </tr>
+	  <tr>
+	    <td class="char120" valign="top">タイトル</td>
+	    <td><img src="image/spacer.gif" width="10" height="1"></td>
+	    <td><input type="text" name="member_navipage_title" size="20" style="width:180px;" value="<{$editform->member_navipage_title|escape}>" /></td>
+	  </tr>
+	  <tr>
+	    <td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+	  </tr>
+	  <tr>
+	    <td class="char120" valign="top">概要</td>
+	    <td><img src="image/spacer.gif" width="10" height="1"></td>
+	    <td>
+	      <textarea name="member_navipage_description" rows="3" cols="50" style="width:360px;"><{$editform->member_navipage_description|escape}></textarea>
+	    </td>
+	  </tr>
+	  <tr>
+	    <td colspan="3"><img src="image/spacer.gif" width="1" height="20"></td>
+	  </tr>
+	  <tr bgcolor="#5B94FD">
+	    <td colspan="3"><img src="image/spacer.gif" width="1" height="5"></td>
+	  </tr>
+	</table>
+	<{* navi なら個人情報は入力しない?*}>
+
+	<{include file="_navi_profile_form.inc.html"}>
+
+	<table width="555" border="0" cellspacing="0" cellpadding="0">
+	  <tr>
+	    <td bgcolor="#5B94FD"><img src="image/spacer.gif" width="1" height="5"></td>
+	  </tr>
+	  <tr>
+	    <td><img src="image/spacer.gif" width="1" height="20"></td>
+	  </tr>
+	  <tr>
+	    <td><input type="image" border="0" name="imageField" src="image/navisign_btn_submit.gif" width="80" height="20" alt="ナビに応募" ></td>
+	  </tr>
+	  <tr>
+	    <td><img src="image/spacer.gif" width="1" height="10"></td>
+	  </tr>
+	</table>
+      </form>
+    </td>
+    <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+  </tr>
+</table>
+<!-- ナビ登録ここまで -->

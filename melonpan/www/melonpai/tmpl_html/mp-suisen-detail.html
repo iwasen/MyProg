@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>処理待ち推薦文一覧</TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600" leftmargin="0" marginwidth="0">
+
+<? draw_head2(".."); ?>
+
+<br>
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="500" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="500" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+<TD>
+<p class="midashi14"><B><FONT COLOR="#99CCFF">■</FONT><FONT COLOR="#003399">処理待ち推薦文一覧</FONT></B></p>
+ <p class="text01">この推薦文の「処理」を決めてください。公開してもいい場合は[公開する]、ポイントをあげる場合はポイント数を、不適切だと思われる場合は[削除する]ボタンを押してください。</p>
+<FORM NAME="form2" action="mp-suisen-detail2.php" method="post">
+<TABLE WIDTH="100%" BORDER="0" CELLSPACING="0" CELLPADDING="0" BGCOLOR="#003399">
+<TR>
+<TD>
+<TABLE WIDTH="500" BORDER="0" CELLSPACING="1" CELLPADDING="3">
+<TR>
+<TD BGCOLOR="#99CCFF" CLASS="text9ptnoColor" WIDTH="140">
+<DIV ALIGN="CENTER"><FONT COLOR="#003399"><B>投稿日</B></FONT></DIV>
+</TD>
+<TD CLASS="text9ptnoColor" VALIGN="MIDDLE" WIDTH="443" BGCOLOR="#FFFFFF"><? echo $recomend_day ?></TD>
+<input type="hidden" value="<? echo $recomend_day ?>" name="recomend_day">
+</TR>
+<TR>
+<TD BGCOLOR="#99CCFF" CLASS="text9ptnoColor" WIDTH="140">
+<DIV ALIGN="CENTER"><B><FONT COLOR="#003399">カテゴリ</FONT></B></DIV>
+</TD>
+<TD CLASS="text9ptnoColor" VALIGN="MIDDLE" WIDTH="443" BGCOLOR="#FFFFFF">
+<? echo pub_mm_catg($mag_catg_1) . "<br>" . pub_mm_catg($mag_catg_2) ?>
+<input type="hidden" value="<? echo $mag_catg_1 ?>" name="mag_catg_1">
+<input type="hidden" value="<? echo $mag_catg_2 ?>" name="mag_catg_2">
+</TD>
+</TR>
+<TR>
+<TD BGCOLOR="#99CCFF" CLASS="text9ptnoColor" WIDTH="140">
+<DIV ALIGN="CENTER"><B><FONT COLOR="#003399">対象メルマガ名</FONT></B></DIV>
+</TD>
+<TD CLASS="text9ptnoColor" VALIGN="MIDDLE" WIDTH="443" BGCOLOR="#FFFFFF">
+<?
+	print "<a href=\"mp-mag-detail3.php?melonpai_id=$melonpai_id&melonpai_pswd=$melonpai_pswd&melonpai_name=$melonpai_name&mag_id=$mag_id\">\n";
+	print htmlspecialchars($mag_nm);
+	print "</a>\n";
+ ?>
+</TD>
+<input type="hidden" value="<? echo $mag_nm ?>" name="mag_nm">
+</TR>
+<TR>
+<TD BGCOLOR="#99CCFF" CLASS="text9ptnoColor" WIDTH="140">
+<DIV ALIGN="CENTER"><B><FONT COLOR="#003399">タイトル</FONT></B></DIV>
+</TD>
+<TD CLASS="text9ptnoColor" VALIGN="MIDDLE" WIDTH="443" BGCOLOR="#FFFFFF"><? echo htmlspecialchars($recom_titl) ?></TD>
+<input type="hidden" value="<? echo $recom_titl ?>" name="recom_titl">
+</TR>
+<TR>
+<TD CLASS="text9ptnoColor" VALIGN="MIDDLE" WIDTH="140" BGCOLOR="#99CCFF">
+<DIV ALIGN="CENTER"><FONT COLOR="#003399"><B>本文</B></FONT></DIV>
+</TD>
+<TD CLASS="text9ptnoColor" VALIGN="MIDDLE" WIDTH="443" BGCOLOR="#FFFFFF">
+<P><? echo htmlspecialchars($recom_text) ?></P>
+<input type="hidden" value="<? echo $recom_text ?>" name="recom_text">
+</TD>
+</TR>
+<TR>
+<TD CLASS="text9ptnoColor" VALIGN="MIDDLE" WIDTH="140" BGCOLOR="#99CCFF">
+<DIV ALIGN="CENTER"><B><FONT COLOR="#003399">投稿者ニックネーム</FONT></B></DIV>
+</TD>
+<TD CLASS="text9ptnoColor" VALIGN="MIDDLE" WIDTH="443" BGCOLOR="#FFFFFF"><? echo htmlspecialchars($recom_nic) ?></TD>
+<input type="hidden" value="<? echo $recom_nic ?>" name="recom_nic">
+</TR>
+<TR BGCOLOR="#FFFFFF">
+<TD CLASS="text9ptnoColor" VALIGN="BOTTOM" COLSPAN="2" HEIGHT="57" ALIGN="RIGHT">
+ポイントを
+<INPUT TYPE="radio" NAME="radi_point" VALUE="0">
+あげない　
+<INPUT TYPE="radio" NAME="radi_point" VALUE="1"  checked>
+あげる
+<INPUT TYPE="text" NAME="recom_point" SIZE="4" MAXLENGTH="3" VALUE="0">
+/<? echo $melonpai_point ?> pt 　<BR><BR>
+<font color="#ff3333" size=-1>*確認画面が出ませんので慎重に！</font>
+<INPUT TYPE="submit" NAME="OPEN" VALUE="公開する">
+<INPUT TYPE="submit" NAME="CLOSE" VALUE="削除する">
+<input type="hidden" value="<? echo $recom_titl ?>" name="recom_titl">
+<input type="hidden" value="<? echo $mag_id ?>" name="mag_id">
+<input type="hidden" value="<? echo $recomend_id ?>" name="recomend_id">
+<input type="hidden" value="<? echo $melonpai_id ?>" name="melonpai_id">
+<input type="hidden" value="<? echo $melonpai_pswd ?>" name="melonpai_pswd">
+<input type="hidden" value="<? echo $melonpai_name ?>" name="melonpai_name">
+<input type="hidden" value="<? echo $melonpai_point ?>" name="melonpai_point">
+<input type="hidden" value="<? echo $page_no ?>" name="page_no">
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</FORM>
+<form name="suisen" action="mp-suisen-list.php" method="post">
+<div align="left">
+<A HREF="JavaScript:document.suisen.submit();">
+&lt;&lt;「推薦文」チェック待ち一覧へ戻る</A></div>
+<input type="hidden" value="<?php echo $melonpai_id ?>" name="melonpai_id">
+<input type="hidden" value="<?php echo $melonpai_pswd ?>" name="melonpai_pswd">
+<input type="hidden" value="<?php echo $melonpai_name ?>" name="melonpai_name">
+<input type="hidden" value="<?php echo $page_no ?>" name="page_no">
+</form>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+<table>
+<br>
+<br>
+</table>
+</TD>
+</TR>
+
+<? draw_footer2(".."); ?>
+
+</TABLE>
+</body>
+</html>

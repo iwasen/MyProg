@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--JBuilder XML プロジェクト-->
+<project>
+  <property category="jsp" name="userColors" value="255,200,0:255,255,192:192,192,192:192,192,192:192,192,192:192,192,192:192,192,192:192,192,192:"/>
+  <property category="runtime.0" name="RunnableType" value="com.borland.jbuilder.runtime.JspRunner"/>
+  <property category="runtime.0" name="jsprunner.jspfile" value="defaultroot/ClickStreamFC2.jsp"/>
+  <property category="runtime.0" name="jsprunner.launchuri" value="/menu1.html"/>
+  <property category="runtime.0" name="test.harness" value="junit.textui.TestRunner"/>
+  <property category="sys" name="AuthorLabel" value="@author"/>
+  <property category="sys" name="BackupPath" value="bak"/>
+  <property category="sys" name="BeansInstantiate" value="false"/>
+  <property category="sys" name="BraceStyle" value="0"/>
+  <property category="sys" name="CheckStable" value="1"/>
+  <property category="sys" name="Company" value=""/>
+  <property category="sys" name="CompanyLabel" value="\u4f1a\u793e\u540d:"/>
+  <property category="sys" name="Copyright" value="Copyright (c) 2003"/>
+  <property category="sys" name="CopyrightLabel" value="\u8457\u4f5c\u6a29:"/>
+  <property category="sys" name="DefaultPath" value="src"/>
+  <property category="sys" name="Description" value=""/>
+  <property category="sys" name="DescriptionLabel" value="\u8aac\u660e:"/>
+  <property category="sys" name="DocPath" value="doc"/>
+  <property category="sys" name="EventMatch" value="false"/>
+  <property category="sys" name="EventStyle" value="1"/>
+  <property category="sys" name="ExcludeClassEnabled" value="0"/>
+  <property category="sys" name="IncludeTestPath" value="1"/>
+  <property category="sys" name="InstanceVisibility" value="0"/>
+  <property category="sys" name="JDK" value="java 1.4.2_01-b06"/>
+  <property category="sys" name="LastTag" value="1"/>
+  <property category="sys" name="Libraries" value="Tomcat 4.0 Servlet;oracle"/>
+  <property category="sys" name="MakeStable" value="0"/>
+  <property category="sys" name="OutPath" value="classes"/>
+  <property category="sys" name="ServletContentType" value="HTML"/>
+  <property category="sys" name="SourcePath" value="src;test"/>
+  <property category="sys" name="TestPath" value="test"/>
+  <property category="sys" name="Title" value=""/>
+  <property category="sys" name="TitleLabel" value="\u30bf\u30a4\u30c8\u30eb:"/>
+  <property category="sys" name="Version" value="1.0"/>
+  <property category="sys" name="VersionLabel" value="@version"/>
+  <property category="sys" name="WorkingDirectory" value="."/>
+  <property category="webserver" name="servletEngine" value="Tomcat 4.0"/>
+  <node name="images" type="Folder"/>
+  <node name="" type="WebContext">
+    <property category="archiving" name="archiverClass" value="com.borland.jbuilder.wizard.webapp.WarArchiver"/>
+    <property category="archiving" name="buildWithProject" value="0"/>
+    <property category="archiving" name="defaultLibraryState" value="3"/>
+    <property category="archiving" name="targetPath" value="Default.war"/>
+    <property category="webapp" name="docroot" value="defaultroot"/>
+  </node>
+  <file path="src/nec/AllAccess.java">
+    <property category="servletrun" name="servlet.ContextRunDebug" value="true"/>
+  </file>
+  <file path="src/base/AttributeGenerate.java"/>
+  <file path="defaultroot/CategoryAccess.jsp"/>
+  <file path="defaultroot/CategoryGraph.jsp"/>
+  <file path="src/nec/CategoryGraphBean.java"/>
+  <file path="src/base/CategorySelect.java"/>
+  <file path="defaultroot/ClickStream.jsp"/>
+  <file path="src/nec/ClickStreamBean.java"/>
+  <file path="defaultroot/ClickStreamFC.jsp"/>
+  <file path="defaultroot/ClickStreamFC1.jsp"/>
+  <file path="defaultroot/ClickStreamFC2.jsp"/>
+  <file path="src/nec/ClickStreamFCBean.java"/>
+  <file path="src/base/CodeToName.java"/>
+  <file path="src/base/CommonSql.java"/>
+  <file path="defaultroot/CondAttribute.jsp">
+    <property category="jspc" name="checkEnabled" value="0"/>
+  </file>
+  <file path="defaultroot/CondCategory.jsp">
+    <property category="jspc" name="checkEnabled" value="0"/>
+  </file>
+  <file path="defaultroot/CondDateD.jsp">
+    <property category="jspc" name="checkEnabled" value="0"/>
+  </file>
+  <file path="defaultroot/CondDateDH.jsp">
+    <property category="jspc" name="checkEnabled" value="0"/>
+  </file>
+  <file path="defaultroot/CondDateMWD.jsp">
+    <property category="jspc" name="checkEnabled" value="0"/>
+  </file>
+  <file path="defaultroot/CornerAccess.jsp"/>
+  <file path="src/nec/CornerAccessBean.java"/>
+  <file path="defaultroot/CornerGraph.jsp"/>
+  <file path="defaultroot/CornerGraphAccess.jsp"/>
+  <file path="src/nec/CornerGraphAccessBean.java"/>
+  <file path="src/nec/CornerGraphBean.java"/>
+  <file path="src/base/CornerSelect.java"/>
+  <file path="defaultroot/CrossCategoryAccess.jsp"/>
+  <file path="src/nec/CrossCategoryAccessBean.java"/>
+  <file path="defaultroot/CrossCornerAccess.jsp"/>
+  <file path="src/base/DateGenerate.java"/>
+  <file path="src/base/DateSelect.java"/>
+  <file path="defaultroot/EndPage.jsp"/>
+  <file path="src/nec/EndPageBean.java"/>
+  <file path="src/base/GroupSelect.java"/>
+  <file path="src/base/I_Access_Page.java"/>
+  <file path="defaultroot/index.html"/>
+  <file path="src/base/LevelSelect.java"/>
+  <file path="src/base/NavigatorGenerate.java"/>
+  <file path="NEC.html"/>
+  <file path="src/base/Param.java"/>
+  <file path="defaultroot/RefererIn.jsp"/>
+  <file path="src/nec/RefererInBean.java"/>
+  <file path="defaultroot/RefererOut.jsp"/>
+  <file path="src/nec/RefererOutBean.java"/>
+  <file path="defaultroot/StartPage.jsp"/>
+  <file path="src/nec/StartPageBean.java"/>
+  <file path="defaultroot/TargetAccess.jsp"/>
+  <file path="src/nec/TargetAccessBean.java"/>
+  <file path="defaultroot/TargetGraph.jsp"/>
+  <file path="defaultroot/TargetGraphAccess.jsp"/>
+  <file path="src/nec/TargetGraphAccessBean.java"/>
+  <file path="src/nec/TargetGraphBean.java"/>
+  <file path="defaultroot/total_view_rank.html"/>
+  <file path="defaultroot/UrlAccess.jsp"/>
+  <file path="src/nec/UrlAccessBean.java"/>
+</project>

@@ -1,0 +1,6 @@
+csample.exe : csample.obj isaml.lib
+	$(CC) -ml -K csample.obj isaml.lib
+
+csample.obj : csample.c
+	$(CC) -c -ml -K csample.c
+

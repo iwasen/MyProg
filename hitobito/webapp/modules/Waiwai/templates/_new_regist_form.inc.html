@@ -1,0 +1,38 @@
+						<table width="516" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td><img src="image/spacer.gif" width="1" height="10"></td>
+							</tr>
+							<tr>
+								<td class="char120">こんにちは、ゲストさん。あなたは未ログインまたは未登録状態です。</td>
+							</tr>
+							<tr>
+								<td><img src="image/spacer.gif" width="1" height="4"></td>
+							</tr>
+						</table>
+						<form name="form3" method="post" action="index.php?module=Member&amp;action=Login">
+						  <input type="hidden" name="redirect_url" value="<{$redirect_url}>" />
+						<table width="516" border="0" cellspacing="0" cellpadding="0">
+								<tr>
+									<td nowrap class="char120">メールアドレス
+										<input type="text" name="member_login_mail" size="12" style="width:100px;">
+										パスワード
+										<input type="password" name="member_login_pass" size="12" style="width:100px;">
+									</td>
+									<td><img src="image/spacer.gif" width="10" height="1"></td>
+									<td width="98%">
+										<input type="image" border="0" name="imageField2" src="image/waiwai_btn_login.gif" width="64" height="20" alt="ログイン" >
+									</td>
+								</tr>
+						</table>
+						</form>
+						<table width="516" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td><img src="image/spacer.gif" width="1" height="6"></td>
+							</tr>
+							<tr>
+								<td><img src="image/waiwai_btn_next.gif" width="12" height="12" align="absmiddle" hspace="2"><span class="char120"><a href="index.php?module=Waiwai&amp;action=NewRegistStep1&amp;navipage_id=<{$hitobitoNaviPageInfo->getId()}>" class="cblack">新規登録はこちら</a>　</span><img src="image/waiwai_btn_next.gif" width="12" height="12" align="absmiddle" hspace="2"><span class="char120"><a href="index.php?module=Member&amp;action=remindPassword"class="cblack">パスワードをお忘れの方</a></span></td>
+							</tr>
+							<tr>
+								<td><img src="image/spacer.gif" width="1" height="10"></td>
+							</tr>
+						</table>

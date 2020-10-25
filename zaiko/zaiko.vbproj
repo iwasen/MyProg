@@ -1,0 +1,474 @@
+<VisualStudioProject>
+    <VisualBasic
+        ProjectType = "Local"
+        ProductVersion = "7.0.9466"
+        SchemaVersion = "1.0"
+        ProjectGuid = "{5BF28DF5-8954-428E-A79A-D808734957A7}"
+    >
+        <Build>
+            <Settings
+                ApplicationIcon = "ATLConsumer.ico"
+                AssemblyKeyContainerName = ""
+                AssemblyName = "zaiko"
+                AssemblyOriginatorKeyFile = ""
+                AssemblyOriginatorKeyMode = "None"
+                DefaultClientScript = "JScript"
+                DefaultHTMLPageLayout = "Grid"
+                DefaultTargetSchema = "IE50"
+                DelaySign = "false"
+                OutputType = "WinExe"
+                OptionCompare = "Binary"
+                OptionExplicit = "On"
+                OptionStrict = "Off"
+                RootNamespace = "zaiko"
+                StartupObject = ""
+            >
+                <Config
+                    Name = "Debug"
+                    BaseAddress = "285212672"
+                    ConfigurationOverrideFile = ""
+                    DefineConstants = ""
+                    DefineDebug = "true"
+                    DefineTrace = "true"
+                    DebugSymbols = "true"
+                    IncrementalBuild = "true"
+                    Optimize = "false"
+                    OutputPath = "Debug\"
+                    RegisterForComInterop = "false"
+                    RemoveIntegerChecks = "false"
+                    TreatWarningsAsErrors = "false"
+                    WarningLevel = "1"
+                />
+                <Config
+                    Name = "Release"
+                    BaseAddress = "285212672"
+                    ConfigurationOverrideFile = ""
+                    DefineConstants = ""
+                    DefineDebug = "false"
+                    DefineTrace = "true"
+                    DebugSymbols = "false"
+                    IncrementalBuild = "false"
+                    Optimize = "true"
+                    OutputPath = "Release\"
+                    RegisterForComInterop = "false"
+                    RemoveIntegerChecks = "false"
+                    TreatWarningsAsErrors = "false"
+                    WarningLevel = "1"
+                />
+            </Settings>
+            <References>
+                <Reference
+                    Name = "System"
+                    AssemblyName = "System"
+                />
+                <Reference
+                    Name = "System.Data"
+                    AssemblyName = "System.Data"
+                />
+                <Reference
+                    Name = "System.Drawing"
+                    AssemblyName = "System.Drawing"
+                />
+                <Reference
+                    Name = "System.Windows.Forms"
+                    AssemblyName = "System.Windows.Forms"
+                />
+                <Reference
+                    Name = "System.XML"
+                    AssemblyName = "System.Xml"
+                />
+                <Reference
+                    Name = "crystaldecisions.windows.forms"
+                    AssemblyName = "CrystalDecisions.Windows.Forms"
+                    HintPath = "c:\windows\assembly\gac\crystaldecisions.windows.forms\9.1.3300.0__692fbea5521e1304\crystaldecisions.windows.forms.dll"
+                />
+                <Reference
+                    Name = "CrystalDecisions.Shared"
+                    AssemblyName = "CrystalDecisions.Shared"
+                    HintPath = "C:\Program Files\Common Files\Crystal Decisions\1.0\Managed\CrystalDecisions.Shared.dll"
+                />
+                <Reference
+                    Name = "CrystalDecisions.ReportSource"
+                    AssemblyName = "CrystalDecisions.ReportSource"
+                    HintPath = "C:\Program Files\Common Files\Crystal Decisions\1.0\Managed\CrystalDecisions.ReportSource.dll"
+                />
+                <Reference
+                    Name = "System.Web.Services"
+                    AssemblyName = "System.Web.Services"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.0.3705\System.Web.Services.dll"
+                />
+                <Reference
+                    Name = "CrystalDecisions.CrystalReports.Engine"
+                    AssemblyName = "CrystalDecisions.CrystalReports.Engine"
+                    HintPath = "C:\Program Files\Common Files\Crystal Decisions\1.0\Managed\CrystalDecisions.CrystalReports.Engine.dll"
+                />
+            </References>
+            <Imports>
+                <Import Namespace = "Microsoft.VisualBasic" />
+                <Import Namespace = "System" />
+                <Import Namespace = "System.Collections" />
+                <Import Namespace = "System.Data" />
+                <Import Namespace = "System.Drawing" />
+                <Import Namespace = "System.Diagnostics" />
+                <Import Namespace = "System.Windows.Forms" />
+                <Import Namespace = "CrystalDecisions.CrystalReports.Engine" />
+            </Imports>
+        </Build>
+        <Files>
+            <Include>
+                <File
+                    RelPath = "AssemblyInfo.vb"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ATLConsumer.ico"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Common.vb"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "DataGridComboBoxColumn.vb"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "DataGridComboBoxColumn.resx"
+                    DependentUpon = "DataGridComboBoxColumn.vb"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "dsTable.xsd"
+                    BuildAction = "Content"
+                    Generator = "MSDataSetGenerator"
+                    LastGenOutput = "dsTable.vb"
+                />
+                <File
+                    RelPath = "dsTable.vb"
+                    DependentUpon = "dsTable.xsd"
+                    SubType = "code"
+                    BuildAction = "Compile"
+                    DesignTime = "True"
+                    AutoGen = "True"
+                />
+                <File
+                    RelPath = "dsTable.xsx"
+                    DependentUpon = "dsTable.xsd"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "dsWork.xsd"
+                    BuildAction = "Content"
+                    Generator = "MSDataSetGenerator"
+                    LastGenOutput = "dsWork.vb"
+                />
+                <File
+                    RelPath = "dsWork.vb"
+                    DependentUpon = "dsWork.xsd"
+                    SubType = "code"
+                    BuildAction = "Compile"
+                    DesignTime = "True"
+                    AutoGen = "True"
+                />
+                <File
+                    RelPath = "dsWork.xsx"
+                    DependentUpon = "dsWork.xsd"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "JuchuFile.vb"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "JuchuInput.vb"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "JuchuInput.resx"
+                    DependentUpon = "JuchuInput.vb"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "JuchuMisumi.vb"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "JuchuMisumi.resx"
+                    DependentUpon = "JuchuMisumi.vb"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "JuchuSankyo.vb"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "JuchuSankyo.resx"
+                    DependentUpon = "JuchuSankyo.vb"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "KeikokuList.rpt"
+                    BuildAction = "EmbeddedResource"
+                    Generator = "CrystalDecisions.VSShell.CodeGen.ReportCodeGenerator"
+                    LastGenOutput = "KeikokuList1.vb"
+                />
+                <File
+                    RelPath = "KeikokuList1.vb"
+                    DependentUpon = "KeikokuList.rpt"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                    DesignTime = "True"
+                    AutoGen = "True"
+                />
+                <File
+                    RelPath = "KeikokuList.vb"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "KeikokuList.resx"
+                    DependentUpon = "KeikokuList.vb"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "KeikokuList2.vb"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "KeikokuList2.resx"
+                    DependentUpon = "KeikokuList2.vb"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "KeppinList.rpt"
+                    BuildAction = "EmbeddedResource"
+                    Generator = "CrystalDecisions.VSShell.CodeGen.ReportCodeGenerator"
+                    LastGenOutput = "KeppinList1.vb"
+                />
+                <File
+                    RelPath = "KeppinList1.vb"
+                    DependentUpon = "KeppinList.rpt"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                    DesignTime = "True"
+                    AutoGen = "True"
+                />
+                <File
+                    RelPath = "KeppinList.vb"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "KeppinList.resx"
+                    DependentUpon = "KeppinList.vb"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "KeyCheck.vb"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Login.vb"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Login.resx"
+                    DependentUpon = "Login.vb"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "MasterMaintenance.vb"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "MasterMaintenance.resx"
+                    DependentUpon = "MasterMaintenance.vb"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Menu.vb"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Menu.resx"
+                    DependentUpon = "Menu.vb"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "MyDataGrid.vb"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "MyDataGrid.resx"
+                    DependentUpon = "MyDataGrid.vb"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "NyuuShukko.vb"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "NyuuShukko.resx"
+                    DependentUpon = "NyuuShukko.vb"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "PartsTenkai.vb"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "PartsTenkai.resx"
+                    DependentUpon = "PartsTenkai.vb"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "PartsZaikoList.rpt"
+                    BuildAction = "EmbeddedResource"
+                    Generator = "CrystalDecisions.VSShell.CodeGen.ReportCodeGenerator"
+                    LastGenOutput = "PartsZaikoList1.vb"
+                />
+                <File
+                    RelPath = "PartsZaikoList1.vb"
+                    DependentUpon = "PartsZaikoList.rpt"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                    DesignTime = "True"
+                    AutoGen = "True"
+                />
+                <File
+                    RelPath = "PartsZaikoList.vb"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "PartsZaikoList.resx"
+                    DependentUpon = "PartsZaikoList.vb"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "PickingList.rpt"
+                    BuildAction = "EmbeddedResource"
+                    Generator = "CrystalDecisions.VSShell.CodeGen.ReportCodeGenerator"
+                    LastGenOutput = "PickingList1.vb"
+                />
+                <File
+                    RelPath = "PickingList1.vb"
+                    DependentUpon = "PickingList.rpt"
+                    SubType = "Component"
+                    BuildAction = "Compile"
+                    DesignTime = "True"
+                    AutoGen = "True"
+                />
+                <File
+                    RelPath = "PickingList.vb"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "PickingList.resx"
+                    DependentUpon = "PickingList.vb"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Print.vb"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Print.resx"
+                    DependentUpon = "Print.vb"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "ShukkoData.vb"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ShukkoData.resx"
+                    DependentUpon = "ShukkoData.vb"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "Tanaoroshi.vb"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Tanaoroshi.resx"
+                    DependentUpon = "Tanaoroshi.vb"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "MasterMaintenance\Kokyaku.vb"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "MasterMaintenance\Kokyaku.resx"
+                    DependentUpon = "Kokyaku.vb"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "MasterMaintenance\PartsShubetsu.vb"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "MasterMaintenance\PartsShubetsu.resx"
+                    DependentUpon = "PartsShubetsu.vb"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "MasterMaintenance\PartsTenkai.vb"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "MasterMaintenance\PartsTenkai.resx"
+                    DependentUpon = "PartsTenkai.vb"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "MasterMaintenance\PartsZaiko.vb"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "MasterMaintenance\PartsZaiko.resx"
+                    DependentUpon = "PartsZaiko.vb"
+                    BuildAction = "EmbeddedResource"
+                />
+                <File
+                    RelPath = "MasterMaintenance\User.vb"
+                    SubType = "Form"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "MasterMaintenance\User.resx"
+                    DependentUpon = "User.vb"
+                    BuildAction = "EmbeddedResource"
+                />
+            </Include>
+        </Files>
+        <StartupServices>
+            <Service ID = "{CF845C55-C321-4742-B673-E6212D061ED9}" />
+        </StartupServices>
+    </VisualBasic>
+</VisualStudioProject>
+

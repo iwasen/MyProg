@@ -1,0 +1,68 @@
+					<!-- ここからコメント投稿フォーム -->
+						<form name="form4" method="post" action="#comment_form">
+						<table width="498" border="0" cellspacing="0" cellpadding="0" id="comment_form">
+							<tr>
+								<td colspan="3"><img src="image/blog_split498.gif" width="498" height="1"></td>
+							</tr>
+							<tr>
+								<td colspan="3"><img src="image/spacer.gif" width="1" height="15"></td>
+							</tr>
+							<tr>
+							  <td colspan="3">
+							    <{$result_message}>
+							    <{$editform->getHtmlErrors()}>
+							  </td>
+							</tr>
+							<tr>
+								<td width="50" valign="top" nowrap class="char120">名前</td>
+								<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+								<td width="438">
+									<input type="text" name="blog_comment_name" value="<{$editform->blog_comment_name|escape}>" size="12" style="width:180px;">
+								</td>
+								</tr>
+							<tr>
+								<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+							</tr>
+							<tr>
+								<td valign="top" nowrap class="char120">コメント</td>
+								<td><img src="image/spacer.gif" width="10" height="1"></td>
+								<td>
+									<textarea name="blog_comment_text" rows="5" cols="50" style="width:360px;"><{$editform->blog_comment_text|escape}></textarea>
+								</td>
+								</tr>
+							<tr>
+								<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+							</tr>
+							<tr>
+								<td>　</td>
+								<td><img src="image/spacer.gif" width="10" height="1"></td>
+								<td>
+									<table border="0" cellspacing="0" cellpadding="0">
+										<tr>
+											<td><img src="captcha/index.php?<{php}>echo session_name()<{/php}>=<{php}>echo session_id()<{/php}>" width="120" height="56"></td>
+											<td><img src="image/spacer.gif" width="10" height="1"></td>
+											<td class="char120">
+												<input type="text" name="blog_key_string">
+												<input type="submit" name="blog_key_change" value="画像変更"><br>
+												画像内の文字列を入力して下さい
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+							</tr>
+							<tr>
+								<td>　</td>
+								<td><img src="image/spacer.gif" width="10" height="1"></td>
+								<td>
+									<!-- submitボタン --><input type="image" border="0" name="imageField2" src="image/blog_com_btn_submit.gif" width="71" height="20" alt="書き込む">
+								</td>
+							</tr>
+							<tr>
+								<td colspan="3"><img src="image/spacer.gif" width="1" height="15"></td>
+								</tr>
+						</table>
+						</form>
+						<!-- コメント投稿フォームここまで -->

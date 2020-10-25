@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>（メルマガのIDとタイトル）</TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600" leftmargin="0" marginwidth="0">
+
+<? draw_head2(".."); ?>
+
+<br>
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="513" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+<TD>
+<p class="midashi14"><font color="#003399"><b>■メルマガ詳細</b></font></p>
+<table border="0" cellspacing="3" width="500" cellpadding="3">
+<tr>
+<td bgcolor="#99CCFF" width="18">
+<div align="center"><font color="#003399"><b>1</b></font></div>
+</td>
+<td valign="top" width="156" bgcolor="#e8e8e8">基本メールアドレス</td>
+<td width="293" bgcolor="#e8e8e8"><? echo $mail_add_main; ?> </td>
+</tr>
+<tr>
+<td bgcolor="#99CCFF" width="18">
+<div align="center"><font color="#003399"><b>2</b></font></div>
+</td>
+<td valign="top" width="156">めるめる・net　ID</td>
+<td width="293"> <? echo $melmel_id; ?> </td>
+</tr>
+<tr>
+<td bgcolor="#99CCFF" width="18">
+<div align="center"><font color="#003399"><b>3</b></font></div>
+</td>
+<td valign="top" width="156" bgcolor="#E8E8E8">メルマガ発行元メールアドレス</td>
+<td width="293" bgcolor="#E8E8E8"> <? echo $mail_add_publish; ?> </td>
+</tr>
+<tr>
+<td bgcolor="#99CCFF" width="18">
+<div align="center"><font color="#003399"><b>4</b></font></div>
+</td>
+<td valign="top" width="156">メルマガ／ＭＬ名</td>
+<td width="293"> <? echo $mag_nm; ?> </td>
+</tr>
+<tr>
+<td bgcolor="#99CCFF" width="18">
+<div align="center"><font color="#003399"><b>5</b></font></div>
+</td>
+<td valign="top" width="156" bgcolor="#E8E8E8">メルマガ紹介（ロング−250文字以内）</td>
+<td width="293" bgcolor="#E8E8E8"> <? echo $mag_intro_long; ?> </td>
+</tr>
+<tr>
+<td bgcolor="#99CCFF" width="18">
+<div align="center"><font color="#003399"><b>6</b></font></div>
+</td>
+<td valign="top" width="156">メルマガ紹介（ショート−50文字以内）</td>
+<td width="293"> <? echo $mag_intro_short; ?> </td>
+</tr>
+<tr>
+<td bgcolor="#99CCFF" width="18">
+<div align="center"><font color="#003399"><b>7</b></font></div>
+</td>
+<td valign="top" width="156" bgcolor="#E8E8E8">ホームページURL</td>
+<td width="293" bgcolor="#E8E8E8"> <? print "<a href=\"$mag_hp \">$mag_hp  </a></td>" ?>
+</tr>
+<tr>
+<td bgcolor="#99CCFF" width="18">
+<div align="center"><font color="#003399"><b>8</b></font></div>
+</td>
+<td valign="top" width="156">タイプ</td>
+<td width="293"> <?echo  pub_mm_type($mag_type); ?> </td>
+</tr>
+<tr>
+<td bgcolor="#99CCFF" width="18">
+<div align="center"><font color="#003399"><b>9</b></font></div>
+</td>
+<td valign="top" width="156" bgcolor="#E8E8E8">発行周期</td>
+<td width="293" bgcolor="#E8E8E8"> <? echo $mag_cycle_day; ?> </td>
+</tr>
+<tr>
+<td bgcolor="#99CCFF" width="18">
+<div align="center"><font color="#003399"><b>10</b></font></div>
+</td>
+<td valign="top" width="156">カテゴリ</td>
+<td width="293"> <?echo pub_mm_catg ($mag_catg_1)."、". pub_mm_catg ($mag_catg_2)?>
+</td>
+</tr>
+<tr>
+<td bgcolor="#99CCFF" width="18">
+<div align="center"><font color="#003399"><b>11</b></font></div>
+</td>
+<td valign="top" width="156" bgcolor="#E8E8E8">読む背景（気分で選ぶ）</td>
+<td width="293" bgcolor="#E8E8E8"> <?echo pub_mm_bg ($mag_bg_1) . "、" . pub_mm_bg ($mag_bg_2) ?>
+</td>
+</tr>
+<tr>
+<td bgcolor="#99CCFF" width="18">
+<div align="center"><font color="#003399"><b>12</b></font></div>
+</td>
+<td valign="top" width="156">とくに読んでもらいたい性別</td>
+<td width="293"> <? echo pub_mm_sex ($mag_reader_sex) ?> </td>
+</tr>
+<tr>
+<td bgcolor="#99CCFF" width="18">
+<div align="center"><font color="#003399"><b>13</b></font></div>
+</td>
+<td valign="top" width="156" bgcolor="#E8E8E8">とくに読んでもらいたい年代</td>
+<td width="293" bgcolor="#E8E8E8"> <? echo $mag_reader_age . "代" ?> </td>
+</tr>
+<tr>
+<td bgcolor="#99CCFF" width="18">
+<div align="center"><font color="#003399"><b>14</b></font></div>
+</td>
+<td valign="top" width="156">とくに読んでもらいたいエリア</td>
+<td width="293"> <? echo pub_mm_area ($mag_reader_area) ?> </td>
+</tr>
+<tr>
+<td bgcolor="#99CCFF" width="18">
+<div align="center"><font color="#003399"><b>15</b></font></div>
+</td>
+<td valign="top" width="156" bgcolor="#E8E8E8">とくに読んでもらいたい職業</td>
+<td width="293" bgcolor="#E8E8E8"> <? echo pub_mm_occup  ($mag_reader_occup) ?>
+</td>
+</tr>
+<tr>
+<td bgcolor="#99CCFF" width="18">
+<div align="center"><font color="#003399"><b>16</b></font></div>
+</td>
+<td valign="top" width="156">バックナンバー公開／非公開</td>
+<td width="293"> <? echo pub_mm_bn_pub  ($mag_bn_pub) ?> </td>
+</tr>
+</table>
+<p align=center>
+<form>
+<input type=button value="　戻　る　" onClick="history.back();">
+</form></p>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+<table>
+<br>
+<br>
+</table>
+</TD>
+</TR>
+
+<? draw_footer2(".."); ?>
+
+</TABLE>
+</body>
+</html>

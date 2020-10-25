@@ -1,0 +1,249 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<title>【新☆◎|ID00000｜（マガジン名）】</title>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600" leftmargin="0" marginwidth="0">
+
+<? draw_head2(".."); ?>
+
+<br>
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="513" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+<TD>
+<table width="500" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr>
+<td>
+<div align="right"> </div>
+<table border=0 cellpadding=3 cellspacing=1 width=500>
+<tr align=left valign=top>
+<td colspan="12" bordercolor="#990000">
+<p><FONT COLOR="#003399">【
+<?php
+		$mark = "";
+		if ($resarray[15] == 1) { $mark = "<img src=\"../img/mark-rec.gif\">";}
+		if ($resarray[16] > $mae) { $mark .= "<img src=\"../img/mark-new.gif\">";}
+		if ($resarray[17] == "01") { $mark .= "<img src=\"../img/mark-kari.gif\">";}
+		if ($resarray[18] == 1) { $mark .= "<img src=\"../img/mark-rib.gif\">";}
+		print $mark;
+?>
+ |
+<?php
+	echo "ID ".$resarray[0]." | ".trim($resarray[1]);
+	$mag_id = $resarray[0];
+?>
+】</FONT></p>
+</td>
+</tr>
+</table>
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+<tr bgcolor="#99CCFF" CLASS="text9ptnoColor">
+<td width="140">
+<div align="center"><FONT COLOR="#003399"><b><b>カテゴリー</b></b></FONT></div>
+</td>
+<td width="100">
+<div align="center"><FONT COLOR="#003399"><b>発行周期</b></FONT></div>
+</td>
+<td width="80">
+<div align="center"><FONT COLOR="#003399"><b>発行部数</b></FONT></div>
+</td>
+<td width="80">
+<div align="center"><FONT COLOR="#003399"><b>読者数</b></FONT></div>
+</td>
+<td width="100">
+<div align="center"><FONT COLOR="#003399"><b>最終発行日</b></FONT></div>
+</td>
+</tr>
+<tr>
+<td width="100">
+<div align="center">
+<?php
+	echo trim($resarray[8])."<br>".trim($resarray[9])."\n";
+?>
+</div>
+</td>
+<td width="100">
+<div align="center">
+<?php
+	echo trim($resarray[3])."\n";
+?>
+</div>
+</td>
+<td width="80">
+<div align="right">
+<?php
+	echo trim($resarray[6])."\n";
+?>
+部</div>
+</td>
+<td width="80">
+<div align="right">
+<?php
+	echo $resarray_mail[0]."\n";
+?>
+人</div>
+</td>
+<td width="100">
+<div align="center">
+<?php
+	echo trim($resarray[7])."\n";
+?>
+</div>
+</td>
+</tr>
+</table>
+<table>
+<tr align=left valign=top BGCOLOR="#99CCFF">
+<td colspan="7" bordercolor="#990000"><b><FONT COLOR="#003399" CLASS="text9ptnoColor">説明[ロング]</FONT></b></td>
+</tr>
+<tr align=left valign=top>
+<td colspan="7" bordercolor="#990000">
+<?php
+	echo trim($resarray[2])."\n";
+?>
+</tr>
+</table>
+<table width="500">
+<tr>
+<td  bgcolor="#99CCFF" bordercolor="#990000" align="left" valign="top" WIDTH="124" CLASS="text9ptnoColor">
+<div align="left"><FONT COLOR="#003399"><b>読む背景</b></FONT></div>
+</td>
+<td bordercolor="#990000" width="364" align="left" valign="top">
+<?php
+	echo trim($resarray[13])."／".trim($resarray[14])."\n";
+?>
+</td>
+</tr>
+<tr>
+<td  bgcolor="#99CCFF" bordercolor="#990000" align="left" valign="top" WIDTH="124" CLASS="text9ptnoColor">
+<div align="left"><FONT COLOR="#003399"><b>ホームページ</b></FONT></div>
+</td>
+<td  bordercolor="#990000" width="364" align="left" valign="top">
+<?php
+	if (trim($resarray[10]) == "http://") {
+		print "ありません";
+	} else {
+		print "<a href=\"";
+		print trim($resarray[10]);
+		print "\" target=_blank>";
+		print trim($resarray[10]);
+		print "</a>\n";
+	}
+?>
+</td>
+</tr>
+<tr>
+<td bgcolor="#99CCFF" bordercolor="#990000" align="left" valign="top" WIDTH="124" CLASS="text9ptnoColor">
+<div align="left"><FONT COLOR="#003399"><b>最新のバックナンバー </b></FONT></div>
+</td>
+<td  bordercolor="#990000" width="364" align="left" valign="top">
+<p><font size="2">
+<?php
+//	if ($resarray[19] == 1) {
+		if ( $back_num[0] != "" ) {
+			echo "｜";
+			echo "<a href=\"backnumber.php?index_id=".$back_num[0]."\">前号</a>\n";
+			echo "｜";
+		}
+		if ( $back_num[1] != "" ) {
+			echo "<a href=\"backnumber.php?index_id=".$back_num[1]."\">前々号</a>\n";
+			echo "｜";
+		}
+		if ( $back_num[2] != "" ) {
+			echo "<a href=\"backnumber.php?index_id=".$back_num[2]."\">前々々号</a>\n";
+			echo "｜";
+		}
+//	} else {
+//			echo "非公開";
+//	}
+
+?>
+</font><span class="comment">
+</span></p>
+</td>
+</tr>
+<tr>
+<td bgcolor="#6699FF" bordercolor="#990000" WIDTH="124" CLASS="text9ptnoColor" VALIGN="TOP">
+
+<FONT COLOR="#003399"><b>処理</b> </FONT></td>
+<td width="364" BGCOLOR="#E8F0FF">
+<form name="fom_name" action="mp-mag-detail2.php" method="post">
+<div align="left">
+<P CLASS="text01"><font color="#003399">現在のステイタス：</font>
+<?php
+	if ($resarray[20] == "01") {
+		echo "〈危ないよ〉";
+	} elseif ($resarray[20] == "02") {
+		echo "〈レッド〉";
+	} elseif ($resarray[21] == 1) {
+		echo "〈おすすめ〉";
+	}
+?>
+</P>
+<P><font size="2">理由：<BR>
+<TEXTAREA NAME="osusume_reason" COLS="40" ROWS="6"><? echo $resarray[22]; ?></TEXTAREA>
+</font> </P>
+<INPUT TYPE="hidden" NAME="osusme_point" VALUE="0">
+<INPUT TYPE="hidden" NAME="point_val" SIZE="4" MAXLENGTH="3" VALUE="0" VALUE="0">
+<P ALIGN="CENTER">
+<input type="submit" name="OSUSUME" value="おすすめリストに加える">
+<input type="submit" name="ABUNAI" value="危ないよリストに加える">
+<input type="hidden" value="<? echo $melonpai_id ?>" name="melonpai_id">
+<input type="hidden" value="<? echo $melonpai_pswd ?>" name="melonpai_pswd">
+<input type="hidden" value="<? echo $melonpai_name ?>" name="melonpai_name">
+<input type="hidden" value="<? echo $mag_id ?>" name="mag_id">
+<input type="hidden" value="<? echo $keyword ?>" name="keyword">
+<input type="hidden" value="<? echo $melonpai_point ?>" name="melonpai_point">
+</P>
+</div></form>
+</td>
+</tr>
+</table>
+<p> <table><tr><td>
+<FORM NAME="formSearch" ACTION="mp-mag-list.php" METHOD="post">
+<INPUT TYPE="hidden" NAME="keyword" value="<? echo $keyword ?>">
+<a href="JavaScript:document.formSearch.submit();">
+&lt;&lt;&lt;　検索一覧へ戻る </a>
+<input type="hidden" value="<? echo $melonpai_id ?>" name="melonpai_id">
+<input type="hidden" value="<? echo $melonpai_pswd ?>" name="melonpai_pswd">
+<input type="hidden" value="<? echo $melonpai_name ?>" name="melonpai_name">
+<input type="hidden" value="<? echo $page_no ?>" name="page_no">
+</form>
+</td><td>
+<form name="mypage" action="mypage.php" method="post">
+<a href="JavaScript:document.mypage.submit();">
+　　&lt;&lt;&lt;　メルマガナビ　マイページへ戻る </a>
+<input type="hidden" value="<? echo $melonpai_id ?>" name="melonpai_id">
+<input type="hidden" value="<? echo $melonpai_pswd ?>" name="melonpai_pswd">
+<input type="hidden" value="<? echo $melonpai_name ?>" name="melonpai_name">
+</form>
+</td></tr></table>
+</p>
+</tr>
+</table>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+<table>
+<br>
+<br>
+</table>
+</TD>
+</TR>
+
+<? draw_footer2(".."); ?>
+
+</TABLE>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>メルマガ　ステイタス確認</TITLE>
+<LINK rel="stylesheet" href="../css/melonpan.css">
+</HEAD>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600">
+<? include("header.php"); ?>
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="680" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="680" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+<TD>
+<FORM>
+<P><FONT color="#006600"><B>■メルマガ　ステイタス確認</B></FONT></P>
+<P class="text01">現在あなたが発行しているメルマガの状況です。</P>
+<DIV align="left" class="text9pt">
+<P>＊「読者属性の属性」は、あなたのメルマガの読者の中で、『Ｍｙめろんぱん登録している方のみ』のものとなります</P>
+</DIV>
+<TABLE width="680" border="0" cellpadding="3" cellspacing="0" align="center">
+<TR>
+<TD width="65" align="center" bgcolor="#006600">
+<P><B><FONT color="#FFFFCC" class="text9ptnoColor">メルマガID</FONT></B></P>
+</TD>
+<TD align="right" bgcolor="#e8e8e8" class="text9ptnoColor" width="50"><? echo $mag_id ?></TD>
+<TD align="center" bgcolor="#006600" width="90"><B><FONT color="#FFFFCC" class="text9ptnoColor">タイトル</FONT></B></TD>
+<TD bgcolor="#e8e8e8" class="text9ptnoColor">
+<? echo htmlspecialchars(stripcslashes($mag_nm)) ?>
+</TD>
+<TD align="center" bgcolor="#006600" width="90"><B><FONT  COLOR="#FFFFCC" class="text9ptnoColor" width="150">現在の読者数</FONT></B></TD>
+<TD align="right" bgcolor="#e8e8e8" class="text9ptnoColor" width="60"><? echo number_format($scnt); ?>人</TD>
+</TR>
+</TABLE>
+<TABLE width="680" cellpadding="3" cellspacing="1" border="0">
+<TR>
+<TD align="center" width="410" bgcolor="#006600"><B><FONT color="#FFFFCC" class="text9ptnoColor" width="150">読者属性の集計
+</FONT></B></TD>
+<TD width="270" bgcolor="#006600">
+<DIV align="CENTER"><B><FONT color="#FFFFCC" class="text9ptnoColor" width="150">解除理由</FONT></B></DIV>
+</TD>
+</TR>
+<TR>
+<TD width="410">
+<TABLE width="390" border="0" cellspacing="1" cellpadding="0">
+<TR>
+<TD width="90" class="text8ptnoColor">
+<DIV align="right">性別</DIV>
+</TD>
+<TD width="300">
+<TABLE width="100%" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<? reader_sexcnt($conn, $mag_id); ?>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD width="90" class="text8ptnoColor">
+<DIV align="right">未既婚</DIV>
+</TD>
+<TD width="300">
+<TABLE width="100%" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<? reader_mrgcnt($conn, $mag_id); ?>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD width="90" class="text8ptnoColor">
+<DIV align="right">職業</DIV>
+</TD>
+<TD width="300" class="text8ptnoColor">
+<TABLE width="20%" border="0" cellspacing="0" cellpadding="0">
+<!--
+<TR bgcolor="#CCCCFF">
+<TD width="50%" class="text8ptnoColor">2</TD>
+</TR>
+-->
+</TABLE>
+</TD>
+</TR>
+<? reader_occupcnt($conn, $mag_id); ?>
+<!---------平均年齢-------->
+<TABLE width="390" border="0" cellspacing="1" cellpadding="0">
+<TR>
+<TD width="90" class="text8ptnoColor">
+<DIV align="right">平均年齢</DIV>
+</TD>
+<TD width="300">
+<TABLE width="100%" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<?php 
+$age = reader_average_age($conn, $mag_id); 
+//echo "<TD width=\"300\" bgcolor=\"#CCFFFF\" class=\"text8ptnoColor\">男性</TD>\n";
+//echo $age;
+$age=sprintf ("%01.1f", $age). " 才";
+echo "<TD bgcolor=\"white\" class=\"text8ptnoColor\">".$age."</TD>\n";
+?>
+</TR>
+</TABLE>
+<!------------------------->
+</TABLE>
+<br><font size=2>
+　*1　弁護士・会計士・医師など<br>
+　*2　SOHO・デザイナー・クリエイターなど
+</font>
+</TD>
+<TD width="280" valign="top">
+<TABLE width="280" border="0" cellspacing="1" cellpadding="0">
+
+<? reader_reason($conn, $mag_id); ?>
+
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<INPUT type="button" name="Submit" value="戻る" onClick="history.back()">
+  </FORM>
+</TD>
+  </TR>
+</TABLE>
+  </TD>
+</TR>
+  </TABLE>
+</TD>
+  </TR>
+  <TR>
+<TD valign="top" colspan="3" align="center">　</TD>
+  </TR>
+<? include("footer.php"); ?>
+</table>
+</BODY>
+</HTML>
+

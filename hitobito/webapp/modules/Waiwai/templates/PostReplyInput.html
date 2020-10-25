@@ -1,0 +1,111 @@
+<{include file="_WaiwaiHeader.html"}>
+<{include file="_WaiwaiPageInfo.html" waiwai_new_post_action="PostNew"}>
+<{include file="_WaiwaiList.html" waiwai_select_remark_action="Browse"}>
+<a name="waiwai"></a>
+<form method="post" action="#waiwai">
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td colspan="5"><img src="image/spacer.gif" width="1" height="15"></td>
+	</tr>
+	<tr>
+		<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td width="20" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="20" height="1"></td>
+		<td width="538" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="538" height="1"></td>
+		<td width="20" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="20" height="1"></td>
+		<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td><img src="image/spacer.gif" width="20" height="1"></td>
+		<td>
+			<table width="538" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td width="70"><img src="image/waiwai_sttl_reply.gif" width="50" height="13" alt="返信投稿"></td>
+					<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+					<td width="458" class="char120">[<{$waiwai_contents.seq_no}>] <{$waiwai_contents.subject|escape}><span class="char999999"> by </span><{$waiwai_contents.nickname|escape}>さんへの返信</td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+			</table>
+		</td>
+		<td><img src="image/spacer.gif" width="20" height="1"></td>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td colspan="5" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td><img src="image/spacer.gif" width="20" height="1"></td>
+		<td>
+			
+        <table width="538" border="0" cellspacing="0" cellpadding="0">
+          <{if $waiwai_error_ary}> 
+          <tr> 
+            <td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+          </tr>
+          <tr> 
+            <td colspan="3" class="error"><{foreach from=$waiwai_error_ary item=waiwai_error}>・<{$waiwai_error|escape}><br>
+              <{/foreach}></td>
+          </tr>
+          <{/if}> 
+          <tr> 
+            <td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+          </tr>
+          <tr> 
+            <td width="70" valign="top" class="char120" nowrap>SUBJECT</td>
+            <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+            <td width="458"> 
+              <input type="text" name="waiwai_subject" size="12" style="width:300px;" value="<{$waiwai_post.subject|escape}>">
+            </td>
+          </tr>
+          <tr> 
+            <td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+          </tr>
+          <tr> 
+            <td valign="top" class="char120" nowrap>本文</td>
+            <td><img src="image/spacer.gif" width="10" height="1"></td>
+            <td> 
+              <textarea name="waiwai_content" rows="15" cols="80" style="width:500px;"><{$waiwai_post.content|escape}></textarea>
+            </td>
+          </tr>
+          <tr> 
+            <td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+          </tr>
+          <tr> 
+            <td>　</td>
+            <td><img src="image/spacer.gif" width="10" height="1"></td>
+            <td class="char120" nowrap>投稿は３０文字前後を目安として改行してください。 </td>
+          </tr>
+          <tr> 
+            <td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+          </tr>
+          <tr> 
+            <td>　</td>
+            <td><img src="image/spacer.gif" width="10" height="1"></td>
+            <td> 
+              <input type="image" border="0" name="confirm_btn" src="image/menu_mem_confirm.gif" width="50" height="20" alt="確認する">
+            </td>
+          </tr>
+          <tr> 
+            <td colspan="3"><img src="image/spacer.gif" width="1" height="15"></td>
+          </tr>
+        </table>
+		</td>
+		<td><img src="image/spacer.gif" width="20" height="1"></td>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td colspan="5" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td colspan="5"><img src="image/spacer.gif" width="1" height="20"></td>
+	</tr>
+</table>
+<input type="hidden" name="waiwai_original_content" value="<{$waiwai_post.content|escape}>">
+<input type="hidden" name="waiwai_back_flag" value="<{$waiwai_post.back_flag}>">
+</form>

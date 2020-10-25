@@ -1,0 +1,153 @@
+	title	start
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; module name	: start up
+; creation date	: 86:01:13
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+		.z80
+
+		include	MEMORY.INC
+
+		extrn	kmsg
+		extrn	k16lmsg
+		extrn	k8lmsg		;
+		extrn	overlay
+		extrn	klist
+		extrn	xconst
+		extrn	xconin
+		extrn	shftinit
+		extrn	kbin
+		extrn	ramdisk
+
+	BDOS	equ	0005h
+	CONOUT	equ	0eb0ch
+	CONIN	equ	0eb09h
+	WBOOT	equ	0
+	ESC	equ	1bh
+
+kanadb	macro	strings
+	irpc	x,strings
+		db	'&x'+80h
+	endm
+endm
+	
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; 	start up
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+start:
+		ld	sp,(BDOS+1)		; set sp
+
+		ld	hl,0ef2ch	; SIZRAM & USERBIOS size.
+		ld	a,(hl)
+		cp	2		; SIZRAM = 2 ?
+		jr	nz,failer
+		inc	hl
+		ld	a,(hl)
+		or	a		; USERBIOS = 0 ?
+		jr	z,okin
+failer:
+		ld	hl,restart	; error message display
+		call	chr_disp	;
+
+		call	CONIN
+		jp	WBOOT
+
+restart:
+		db	'>'+80h
+		kanadb	</C26^>
+		db	' '
+		kanadb	<OA6^/C2YIC^>
+		db	' ','<'+80h
+		kanadb	<^/:3C^7O>
+		db	'>'+80h,']'+80h,'!'+80h
+		db	-1
+
+okin:
+;
+; set jmp table
+		ld	hl,jmpvct
+		ld	de,M_JMPVCT
+		ld	bc,16*3
+		ldir
+; common area clear
+		ld	hl,M_CDATA
+		ld	(hl),0
+;
+		ld	bc,M_RPROG-M_CDATA
+		ld	e,l
+		ld	d,h
+		inc	de
+		ldir
+
+		ld	hl,spasswd	;
+		ld	de,C_SPASS	; set super password
+		ld	bc,6		;
+		ldir			;
+
+		call	ramdisk		; RAM disk read
+
+		ld	hl,outdata	; LED off, gaiji teigi
+		call	chr_disp	;
+
+		call	shftinit	; shift joutai initialize
+
+		ld	a,0feh		; set "00" code
+		ld	(0f0f2h),a	;
+
+		ld	a,0		; display "meganet 2000"
+		jp	overlay		;
+;
+;	character display
+chr_disp:
+		ld	a,(hl)
+		inc	hl
+		cp	-1
+		ret	z
+		ld	c,a
+		push	hl
+		call	CONOUT
+		pop	hl
+		jr	chr_disp
+;
+;
+outdata:
+		db	ESC,0a1h
+		db	ESC,0e0h,0e2h
+		db	0,0,3eh,22h,14h,08h,0,0,-1
+;
+;	super password
+;
+spasswd:
+		db	'E9P8S7'
+
+;
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; jmp table (100h)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
+;
+jmpvct:
+		jp	start		; 0
+		jp	kmsg		; 1
+		jp	k16lmsg		; 2
+		jp	k8lmsg		; 3
+		jp	overlay		; 4
+		jp 	klist		; 5
+		jp	xconst		; 6
+		jp 	xconin		; 7
+		jp	kbin		; 8
+		jp	shftinit	; 9
+		db	0,0,0		; 10
+		db 	0,0,0		; 11
+		db	0,0,0		; 12
+		db 	0,0,0		; 13
+		db	0,0,0		; 14
+		db 	0,0,0		; 15
+
+		end	start

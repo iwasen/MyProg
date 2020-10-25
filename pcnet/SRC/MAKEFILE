@@ -1,0 +1,45 @@
+## **********************************************************************
+## *									*
+## *		ＯＳ／２　オンラインユーザサポートシステム		*
+## *			ＰＣ－ＮＥＴ／２				*
+## *									*
+## *		名称		: メイクファイル			*
+## *		ファイル名	: makefile				*
+## *		作成者		: s.aizawa				*
+## *									*
+## **********************************************************************
+
+all : pcnet.exe pcnet.hlp
+
+# Abbreviations
+#
+CC	=	cl -c -W3 -MT -G2s -Zp -J
+LF	=	/align:16
+HDR	=	pcnet.h
+OBJ	=	main.obj operate.obj user.obj sales.obj bbs.obj mail.obj settei.obj monitor.obj terminal.obj com.obj xmodem.obj login.obj csub.obj file.obj hoshu.obj isam.obj data.obj
+
+# Inference Rules
+#
+.c.obj:
+    $(CC) $*.c
+
+.rc.res:
+    rc -r $*.rc
+
+# Main files:  PCNET.EXE,
+#
+pcnet.exe: makefile pcnet.def $(OBJ) pcnet.res
+    link $(LF) $(OBJ),pcnet.exe,,os2,pcnet.def
+    rc pcnet.res pcnet.exe
+
+# Resources
+#
+pcnet.res: pcnet.rc pcnet.ico menu.rc acceltbl.rc dlg.dlg help.rc
+
+# C files
+#
+$(OBJ):		$(HDR) $(SRC)
+
+pcnet.hlp: pcnet.itl
+     ipfc    pcnet.itl /l=JPN /codepage=932 /country=81
+

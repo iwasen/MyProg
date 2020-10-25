@@ -1,0 +1,99 @@
+<?php include("../sub/head.inc"); ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>推薦文投稿</TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600">
+<?php draw_head( ".." ); ?>
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="513" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+<TD>
+<font color="#336600"><b>■推薦文投稿フォーム</b></font>
+<p class="text01">下の内容で投稿してよろしいですか？</p>
+<form name="rmform601" action="MelonpanRef.php" method="post">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr bgcolor="#336600">
+<td>
+<table width="500" border="0" cellpadding="3" cellspacing="1">
+<tr>
+<td width="158" bgcolor="#FFCC33" class="text9pt"><font color="#336600"><b> 推薦するメルマガ</b></font></td>
+<td width="425" bgcolor="#FFFFCC"> <? echo $mag_nm ?>（ID:<? echo $mag_id ?>)</td>
+</tr>
+<tr>
+<td width="158" valign="top" bgcolor="#FFCC33" class="text9pt"><font color="#336600"><b>
+タイトル</b></font></td>
+<td width="425" valign="top" bgcolor="#FFFFCC"><? echo htmlspecialchars(stripcslashes($recom_title)) ?></td>
+</tr>
+<tr>
+<td width="158" valign="top" bgcolor="#FFCC33" class="text9pt"><font color="#336600"><b>
+推薦文</b></font></td>
+<td width="425" valign="top" bgcolor="#FFFFCC"><? echo htmlspecialchars(stripcslashes($recom_text)) ?> </td>
+</tr>
+<tr>
+<td width="158" bgcolor="#FFCC33" class="text9pt"><font color="#336600"><b> ニックネーム</b></font></td>
+<td width="425" bgcolor="#FFFFCC"><? echo htmlspecialchars(stripcslashes($recom_nic)) ?> </td>
+</tr>
+<tr>
+<td width="158" bgcolor="#FFCC33" class="text9pt"><font color="#336600"><b> サンキューチップ額</b></font></td>
+<td width="425" bgcolor="#FFFFCC"><? echo $sanks_tip_point ?></td>
+</tr>
+<tr bgcolor="#FFFFCC">
+<td colspan="2">
+<div align="right">
+<input type="submit" name="rmbott60101" value="　O　K　" onClick="location.href = 'index.html'">
+<!--<input type="submit" name="rmbott60102" value="キャンセル" onClick="location.href = 'recomend1.html'">-->
+<input type="button"  value="キャンセル" onClick="history.back()">
+</div>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+<input type="hidden" value="<? echo $mag_id ?>" name="mag_id">
+<input type="hidden" value="<? echo $reader_id?>" name="reader_id">
+<input type="hidden" value="<? echo $mail_addr?>" name="mail_addr">
+<input type="hidden" value="<? echo $reader_pswd?>" name="reader_pswd">
+<input type="hidden" value="<? echo $sanks_tip_point?>" name="sanks_tip_point">
+<input type="hidden" value="<? echo $recom_text?>" name="recom_text">
+<input type="hidden" value="<? echo $recom_nic?>" name="recom_nic">
+<input type="hidden" value="<? echo $recom_title?>" name="recom_title">
+</form>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD valign="top" colspan="3" align="right">
+<HR size="1" width="750">
+</TD>
+</TR>
+<TR>
+<TD valign="top" width="200"> <IMG src="../img/shim.gif" width="200" height="1">
+</TD>
+<TD valign="middle" align="center" width="350">
+<div align="center"><FONT size="2"><IMG src="../img/shim.gif" width="350" height="1"><BR>
+Copyright &copy; 2000 xxxxxxx, Co.,Ltd. All rights reserved. <br>
+<a href="http://www.xxxxxxx.co.jp/" target="mm_window"><img src="../img/logo_do.gif" width="50" height="45" border="0"></a>
+</FONT></div>
+</TD>
+<TD valign="top" width="200" align="right"><IMG src="../img/shim.gif" width="200" height="1"><A href="../index.html"><BR>
+</A></TD>
+</TR>
+</TABLE>
+</body>
+</html>

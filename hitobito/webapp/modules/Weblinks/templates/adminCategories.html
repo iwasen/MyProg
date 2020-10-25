@@ -1,0 +1,85 @@
+
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+  <tr bgcolor="#5B94FD">
+
+    <td><font color="#FFFFFF"><b><font size="+2">リンクカテゴリー管理</font></b></font></td>
+  </tr>
+  <tr>
+    <td align="center">
+
+      <form method="POST" name="waiwai_enq" id="waiwai_enq">
+	<table width="500" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	  <td>
+	    <{$editform->getHtmlErrors()}>
+	  </td>
+	</tr>
+      </table>
+	  
+	<table width="500" border="0" cellspacing="0" cellpadding="0">
+	  <tr>
+	    <td align="left"><img src="image/spacer.gif" width="1" height="15"></td>
+	  </tr>
+	  <tr>
+	    <td>
+	      <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #CCCCCC;">
+		<tr bgcolor="#6699FF" style="color:#FFFFFF">
+		  <td class="char120" style="border-bottom:1px solid #CCCCCC;color:#FFFFFF">
+		    リンクカテゴリータイトル
+		  </td>
+		  <td class="char120" style="border-bottom:1px solid #CCCCCC;color:#FFFFFF">
+		    並び順
+		  </td>
+		  <td class="char120" style="border-bottom:1px solid #CCCCCC;color:#FFFFFF">
+		    削除
+		  </td>
+		</tr>
+		
+		<!--loop-->
+		<{foreach item=item from=$editform->weblinks_itemlist}>
+		<tr>
+		  <td class="char120" style="border-bottom:1px solid #CCCCCC">
+		    <p class="ind0804">
+		      　<input type="text" name="weblinks_itemlist[<{$item.id}>][title]" value="<{$item.title}>" size="70">
+		    </p>
+		  </td>
+		  <td class="char120" style="border-bottom:1px solid #CCCCCC">
+		    <input type="text" name="weblinks_itemlist[<{$item.id}>][order]" size="4" value="<{$item.order}>">
+		  </td>
+		  <td class="char120" style="border-bottom:1px solid #CCCCCC">
+		    <{if $item.can_delete ==TRUE }>
+		    <input type="checkbox" name="weblinks_delete_id_list[]" value="<{$item.id}>" />
+		    <{else}>
+		    不可
+		    <{/if}>
+		  </td>
+		</tr>
+		<{/foreach}>
+		<!--/loop-->
+		<tr>
+		  <td colspan="3" align="right">
+		    <input type="image" border="0" name="weblinks_deleteCategory" src="image/naviedit_btn_delete.gif" width="65" height="20" alt="削除" onClick="return confirm('削除してもよろしいですか')">
+		  </td>
+		</tr>
+	      </table>
+
+	      タイトルを変更したり、並び順を変更したら、最後に「登録」ボタンを押してください。<br>
+	      並び順は数字の小さいものから大きいものへと、上から下へ並びます。<br>
+	      <br>
+	    </td>
+	  </tr>
+	</table>
+	<table width="500" border="0" cellspacing="0" cellpadding="0">
+	  <tr>
+	    <td align="center"><input type="image" border="0" name="imageField" src="image/naviedit_btn_regist.gif" width="50" height="20" alt="登録" >
+	      &nbsp;&nbsp; </td>
+	  </tr>
+	  <tr>
+	    <td width="500" colspan="3"><img src="image/spacer.gif" width="1" height="25"></td>
+	  </tr>
+	</table>
+      </form>
+
+    </td>
+  </tr>
+</table>

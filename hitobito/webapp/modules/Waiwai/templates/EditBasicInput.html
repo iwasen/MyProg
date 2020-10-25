@@ -1,0 +1,151 @@
+<form method="post">
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+	<tr bgcolor="#5B94FD">
+		<td colspan="3"><img src="image/naviedit_waiwai_basic_ttl.gif" width="69" height="25" hspace="10" alt="基本設定"></td>
+	</tr>
+	<tr>
+		<td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+		<td width="555" valign="top">
+			<table width="555" border="0" cellspacing="0" cellpadding="0">
+<{if $waiwai_error_ary}>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td colspan="3" class="error"><{foreach from=$waiwai_error_ary item=waiwai_error}>・<{$waiwai_error|escape}><br><{/foreach}></td>
+				</tr>
+<{/if}>
+				<tr>
+					<td colspan="3" class="char120"><img src="image/spacer.gif" width="1" height="20"></td>
+				</tr>
+				<tr>
+					<td width="105" class="char120" nowrap>ナビニックネーム</td>
+					<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+					<td width="440">
+						<input type="text" name="waiwai_nickname" size="20" style="width:180px;" value="<{$waiwai_basic.nickname|escape}>">
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td class="char120">会議室名</td>
+					<td><img src="image/spacer.gif" width="10" height="1"></td>
+					<td>
+						<input type="text" name="waiwai_name" size="20" style="width:180px;" value="<{$waiwai_basic.name|escape}>">
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+<{*
+				<tr>
+					<td class="char120">ML-NAME</td>
+					<td><img src="image/spacer.gif" width="10" height="1"></td>
+					<td class="char120">
+						<input type="text" name="waiwai_room_code" size="20" style="width:180px;" value="<{$waiwai_basic.room_code|escape}>"> (半角小文字英数字)
+						<br>※ML-NAMEはワイワイ会議投稿での件名やアドレスに表示されます。
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+*}>
+				<tr>
+					<td class="char120" valign="top">会議室概要</td>
+					<td><img src="image/spacer.gif" width="10" height="1"></td>
+					<td>
+						<textarea name="waiwai_outline" rows="3" cols="50" style="width:360px;"><{$waiwai_basic.outline|escape}></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+			</table>
+			<table width="555" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td width="105" class="char120">公開設定</td>
+					<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+					<td width="80" class="char120"><input type="radio" name="waiwai_status" value="1" <{if $waiwai_basic.status == 1}>checked<{/if}>>公開</td>
+					<td width="360" class="char120"><input type="radio" name="waiwai_status" value="2" <{if $waiwai_basic.status == 2}>checked<{/if}>>非公開　　<input type="radio" name="waiwai_status" value="9" <{if $waiwai_basic.status == 9}>checked<{/if}>>閉鎖</td>
+				</tr>
+				<tr>
+					<td colspan="4"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td width="105" class="char120">入会メール</td>
+					<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+					<td width="80" class="char120"><input type="radio" name="waiwai_regist_mail_flag" value="1" <{if $waiwai_basic.regist_mail_flag == 1}>checked<{/if}>>送る　</td>
+					<td width="360" class="char120"><input type="radio" name="waiwai_regist_mail_flag" value="0" <{if $waiwai_basic.regist_mail_flag == 0}>checked<{/if}>>送らない</td>
+				</tr>
+				<tr>
+					<td colspan="4"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td class="char120">退会メール</td>
+					<td><img src="image/spacer.gif" width="10" height="1"></td>
+					<td class="char120"><input type="radio" name="waiwai_resign_mail_flag" value="1" <{if $waiwai_basic.resign_mail_flag == 1}>checked<{/if}>>送る　</td>
+					<td class="char120"><input type="radio" name="waiwai_resign_mail_flag" value="0" <{if $waiwai_basic.resign_mail_flag == 0}>checked<{/if}>>送らない</td>
+				</tr>
+				<tr>
+					<td colspan="4"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td class="char120">ヘッダ</td>
+					<td><img src="image/spacer.gif" width="10" height="1"></td>
+					<td class="char120"><input type="radio" name="waiwai_header_flag" value="1" <{if $waiwai_basic.header_flag == 1}>checked<{/if}>>つける　</td>
+					<td class="char120"><input type="radio" name="waiwai_header_flag" value="0" <{if $waiwai_basic.header_flag == 0}>checked<{/if}>>つけない</td>
+				</tr>
+				<tr>
+					<td colspan="4"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td class="char120">フッタ</td>
+					<td><img src="image/spacer.gif" width="10" height="1"></td>
+					<td class="char120"><input type="radio" name="waiwai_footer_flag" value="1" <{if $waiwai_basic.footer_flag == 1}>checked<{/if}>>つける　</td>
+					<td class="char120"><input type="radio" name="waiwai_footer_flag" value="0" <{if $waiwai_basic.footer_flag == 0}>checked<{/if}>>つけない</td>
+				</tr>
+				<tr>
+					<td colspan="4"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td class="char120">ゲスト登録通知</td>
+					<td><img src="image/spacer.gif" width="10" height="1"></td>
+					<td class="char120"><input type="radio" name="waiwai_guest_regist_notify_flag" value="1" <{if $waiwai_basic.guest_regist_notify_flag == 1}>checked<{/if}>>送る　</td>
+					<td class="char120"><input type="radio" name="waiwai_guest_regist_notify_flag" value="0" <{if $waiwai_basic.guest_regist_notify_flag == 0}>checked<{/if}>>送らない</td>
+				</tr>
+				<tr>
+					<td colspan="4"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td class="char120" nowrap>一般ユーザーから<br>
+					の投稿通知</td>
+					<td><img src="image/spacer.gif" width="10" height="1"></td>
+					<td class="char120"><input type="radio" name="waiwai_public_user_notify_flag" value="1" <{if $waiwai_basic.public_user_notify_flag == 1}>checked<{/if}>>送る　</td>
+					<td class="char120"><input type="radio" name="waiwai_public_user_notify_flag" value="0" <{if $waiwai_basic.public_user_notify_flag == 0}>checked<{/if}>>送らない</td>
+				</tr>
+				<tr>
+					<td colspan="4"><img src="image/spacer.gif" width="1" height="20"></td>
+				</tr>
+			</table>
+			<table width="555" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td bgcolor="#5B94FD"><img src="image/spacer.gif" width="1" height="5"></td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="20"></td>
+				</tr>
+				<tr>
+					<td>
+						<input type="image" border="0" src="image/naviedit_btn_reflesh.gif" width="90" height="20" alt="登録情報更新">
+					</td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+			</table>
+		</td>
+		<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+	</tr>
+</table>
+</form>

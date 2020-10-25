@@ -1,0 +1,330 @@
+		title	(( hlens ))
+;
+;		meganet 2000	lans-hachu-gamen.
+;		86-01-16	xxxxxxxxx electronic inc.
+;				Toshxxxde-Yutani.
+
+				.z80
+
+		include		MEMORY.INC
+		include		SUBR.INC
+
+
+		public		hlens
+
+		extrn		sosain
+		extrn		chr_disp
+		extrn		csr_off
+		extrn		csr_on
+		extrn		date_dsp
+		extrn		clrbuf
+		extrn		reverse
+		extrn		gdmsg
+
+		extrn		edit
+		extrn		print
+
+	CR	equ	0dh
+	ESC	equ	1bh
+	BEEP	EQU	0eb39h
+
+	ENDKEY	equ	0f7h
+	DEND	equ	0efh
+
+	c_func	equ	M_PARAM+0
+
+;*****************************************
+;*
+;*	#hachulans#
+;*					86-01-20
+;*					T.yutani.
+;*****************************************
+
+hlens:
+		call	csr_off		; cursor off
+
+		call	date_dsp	; y,m,d write
+
+		ld	hl,m_lgmenu
+		call	kmsg		; gamen write
+
+		call	sosain		; sousain input
+		ret	c
+	hlens$10:
+
+		ld	a,1
+
+		ld	(gflag),a
+
+	sndlns10:
+		sub	a
+		ld	(gaid),a
+
+	lensmenu$10:
+		ld	bc,lrev_lng
+		ld	hl,lrev_add	; new revers line address
+		call	rev_dsp		; guide	reverse
+
+	lensguide:
+
+		call	gaid_dsp		; guide write
+
+		call	csr_on			; cursor on
+
+		call	xconin
+
+		cp	ENDKEY		; shuuriro ?
+		ret 	z
+		cp	DEND
+		ret	z
+
+		cp	CR		; ENTER ?
+		jr	z,datamenu	; 
+
+		cp	'1'
+		jr	c,sndlsbeep	; keyin err
+
+		cp	'7'
+		jr	nc,sndlsbeep	; keyin err
+		ld	bc,lrev_lng
+		ld	hl,lrev_add	; old reverse line address
+		call	rev_dsp
+
+		sub	'0'
+
+		ld	(gflag),a
+
+		jr	sndlns10
+
+	sndlsbeep:
+
+		ld	bc,1601h
+
+		call	BEEP
+
+		ld	a,1
+		ld	(gaid),a
+
+		jr	lensguide
+
+	datamenu:
+
+		ld	a,(gflag)
+
+		dec	a		; keyin 1 ?
+ 		jr	nz,datamenu$10
+
+		sub	a
+		ld	(c_func),a
+		ld	a,11
+		call	overlay
+		jr	datamenu$50
+
+	datamenu$10:
+		dec	a		; keyin 2 ?
+		jr	nz,datamenu$20
+
+		sub	a
+		ld	(c_func),a
+		ld	a,12
+		call	overlay
+		jr	datamenu$50
+
+	datamenu$20:
+		dec	a		; keyin 3 ?
+		jr	nz,datamenu$30
+
+		call	edit
+		jr	datamenu$50
+
+	datamenu$30:
+		dec	a		; keyin 4 ?
+		jr	nz,datamenu$35
+	
+		ld	a,1
+		jr	datamenu$45
+
+	datamenu$35:
+		dec	a		; keyin	5 ?
+		jr	nz,datamenu$40	;
+		call	print
+		jr	datamenu$50	;
+
+	datamenu$40:
+		sub	a
+	datamenu$45:
+		ld	(c_func),a
+		ld	a,16 		;
+		call	overlay
+		call	dpcheck
+
+	datamenu$50:
+		jp	hlens
+
+
+;****************************************
+;*
+;*	#gaid_dsp#
+;*			in	(gaid) = 0	ok
+;*				       = 1	not
+;*					86-01-20
+;*					T,yutani.
+;****************************************
+
+gaid_dsp:
+		push	af
+		push	hl
+
+		ld	a,(gaid)
+		or	a
+		jr	nz,gaidwrite$10
+
+		ld	hl,g_okgaid
+		call	gdmsg		; ok gaid write
+		jr	gaidwrite$20
+
+	gaidwrite$10:
+		ld	hl,g_nogaid
+		call	gdmsg		; not gaid write
+
+	gaidwrite$20:
+		ld	a,(gflag)
+		add	a,30h		; hex -> ascii
+		
+		ld	(m_gyono+6),a
+		ld	hl,m_gyono
+		call	chr_disp		; gyomu No.write
+
+		pop	hl
+		pop	af
+
+		ret
+
+;****************************************
+;*
+;*	#rev_dsp#
+;*				in	a = conin data
+;*					(gflag) = old select gyoumu
+;*					86-01-20
+;*					T,yutani.
+;****************************************
+
+rev_dsp:
+
+		push	af
+		push	hl
+		
+		ld	a,(gflag)	; old reverse data
+	
+		dec	a
+
+		ld	l,a
+		ld	h,0
+		add	hl,bc
+
+		ld	b,(hl)		; b=revers length
+
+		add	a,a
+
+		ld	e,a
+		ld	d,0
+		
+		pop	hl
+
+		add	hl,de
+
+		call	reverse		; line reverse
+
+		pop	af
+
+		ret
+;
+;	denpyou check
+;
+dpcheck::
+		ld	hl,M_ORDER
+		ld	de,320
+		ld	b,10
+	dpcheck10:
+		ld	a,(hl)
+		or	a
+		ret	nz
+		add	hl,de
+		djnz	dpcheck10
+
+		ld	hl,led_off	; hachu data LED off
+		call	chr_disp	;
+
+		ld	hl,0		; denpyou No. reset
+		ld	(C_DNO),hl	;
+		ret
+
+;*****************************************
+;*
+;*	data
+;*
+;*****************************************
+
+m_lgmenu:
+		dw	0,201h
+		dw	838ch,8393h,8359h,94adh,928dh,8bc6h,96b1h,9149h
+		dw	91f0h
+		dw	0,103h
+		dw	8250h,8fedh,94f5h,93fch,97cdh
+		dw	0,105h
+		dw	8251h,93c1h,928dh,93fch,97cdh
+		dw	0,107h
+		dw	8252h,8f43h,90b3h,8dedh,8f9ch
+		dw	0,1103h
+		dw	8253h,945bh,8afah,96e2h,8d87h,82b9h
+		dw	0,1105h
+		dw	8254h,88f3h,8dfch 
+		dw	0,1805h
+		dw	8255h,9197h,904dh 
+		dw	-1
+
+
+lrev_add:
+		dw	103h
+		dw	105h
+		dw	107h
+		dw	1103h
+		dw	1105h
+		dw	1805h
+		
+lrev_lng:
+		db	10
+		db	10
+		db	10
+		db	12
+		db	6
+		db	6
+
+g_okgaid:
+		db	23,15
+		db	0b7h,0deh,0aeh,0b3h,0d1h,04eh,06fh,0a6h,0b2h,0dah
+		db	0c3h,0e1h,0a6h,0b5h,0bdh	
+		db	-1
+
+g_nogaid:
+		db	23,15
+		db	0b7h,0deh,0aeh,0b3h,0d1h,04eh,06fh,0b6h,0deh,0c1h
+		db	0b6h,0deh,0b2h,0cfh,0bdh
+		db	-1
+
+m_gyono:
+		db	ESC,'0'
+		db	ESC,"=",' '+7,' '+39
+		db	'1'
+		db	ESC,'2'
+		db	ESC,"1",-1
+
+gaid:		db	0
+
+gflag:		db	0
+
+gkeyin:		db	0
+
+led_off:	db	ESC,0a1h,-1
+
+		end	hlens

@@ -1,0 +1,271 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>発行者用メルマガ管理ページ</TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600" topmargin="0" marginheight="0" marginwidth="0">
+<span class="text9pt"></span>
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+  <TR align="center">
+	<TD valign="top">
+	  <TABLE width="750" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+		<TR>
+		  <TD>
+			<TABLE width="750" border="0" cellspacing="1" cellpadding="5">
+			  <TR bgcolor="#FFFFFF">
+				<TD>
+					<TABLE width="100%" border="0" cellspacing="0" cellpadding="5" bgcolor="#006600">
+					  <TR>
+						<TD><B><FONT color="#FFFFCC">■<? echo $p_owner_nm_kanj; ?>さんの管理ページ <リバッチャユーザ></FONT></B></TD>
+					  </TR>
+					</TABLE>
+				
+<table width="750" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="320" valign="top">
+<table width="320" border="0" cellspacing="1" cellpadding="3">
+<tr bgcolor="#FEE9C2">
+<td>
+<div align="left"><b><font color="#660000" class="text01">事務局からのお知らせ</font></b></div>
+</td>
+</tr>
+<tr>
+<td><? echo $mdm_msg; ?></td>
+</tr>
+</table>
+<br>
+<table width="320" border="0" cellpadding="3" cellspacing="1">
+<tr>
+<td colspan="3" class="text9ptnoColor">
+<p>「現在の読者数」をクリックすると、あなたのメルマガを読んでいる読者の属性がわかります。</p>
+</td>
+</tr>
+<tr>
+<td colspan="2" bgcolor="#669900" width="220">
+<div align="center"><b><font color="#FFFFCC" class="text01">あなたが発行しているメルマガ</font></b></div>
+</td>
+<td width="100" bgcolor="#669900">
+<div align="center"><b><font color="#FFFFCC" class="text01">現在の読者数</font></b></div>
+</td>
+</tr>
+<? make_maglist($publisher_id,  $owner_pswd_r); ?>
+<tr>
+<td width="45">　</td>
+<td width="175">　</td>
+<td width="100">　</td>
+</tr>
+<? make_maglistkyu($publisher_id); ?>
+</table>
+<p> <font class="text9pt">※休刊中のメルマガを復活させるには、管理ツールの《3.メルマガ情報メンテナンス》より行なってください。</font>
+</p>
+<table width="320" border="0" cellpadding="3" cellspacing="1">
+<tr>
+<td colspan="2" bgcolor="#669900" width="320"><font color="#FFFFCC"><b class="text01">発行者　基本情報</b></font></td>
+</tr>
+<tr>
+<td width="140" bgcolor="#99CC99" class="text9ptnoColor"><b><font color="#336600">基本メールアドレス</font></b></td>
+<td width="180"><? echo $p_mail_add_main ?></td>
+</tr>
+<tr>
+<td width="140" bgcolor="#99CC99" class="text9ptnoColor"><b><font color="#336600">パスワード</font></b></td>
+<td width="180"><? echo $p_owner_pswd ?></td>
+</tr>
+<tr>
+<td width="140" bgcolor="#99CC99" class="text9ptnoColor"><b><font color="#336600">発行者氏名[漢字]</font></b></td>
+<td width="180"><? echo $p_owner_nm_kanj ?></td>
+</tr>
+<tr>
+<td width="140" bgcolor="#99CC99" class="text9ptnoColor"><b><font color="#336600">発行者氏名[カタカナ]</font></b></td>
+<td width="180">
+<p><? echo $p_owner_nm_kana ?></p>
+</td>
+</tr>
+<tr>
+<td width="140" bgcolor="#99CC99" class="text9ptnoColor"><b><font color="#336600">連絡先郵便番号</font></b></td>
+<td width="180"><? echo $p_owner_zip1 . "-" . $p_owner_zip2 ?></td>
+</tr>
+<tr>
+<td width="140" bgcolor="#99CC99" class="text9ptnoColor"><b><font color="#336600">連絡先住所</font></b></td>
+<td width="180"><? echo $p_owner_prefec . $p_owner_add ?></td>
+</tr>
+<tr>
+<td width="140" bgcolor="#99CC99" class="text9ptnoColor"><b><font color="#336600">連絡先電話番号</font></b></td>
+<td width="180"><? echo $p_owner_tel ?></td>
+</tr>
+<tr>
+<td width="140">　</td>
+<td width="180" align="right">
+<form name="form1" action="publisher.php"  method="post">
+<input type="submit" name="Submit332" value="基本情報修正">
+<input type="hidden" value="<? echo $publisher_id ?>"name="publisher_id">
+<input type="hidden" value="<? echo $owner_pswd_r ?>"name="owner_pswd">
+<input type="hidden" value="Edi" name="job_flg">
+</form>
+</td>
+</tr>
+</table>
+<br>
+<table width="320" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td colspan="2" bgcolor="#669900"><font color="#FFFFCC"><b class="text01">保有ポイント</b></font></td>
+</tr>
+<tr>
+<td valign="middle" height="59" colspan="2"><span class="text01">あなたが現在保有しているポイントです。貯まったポイントはチップとして使ったり、さまざまな商品<sup>*</sup>と交換することができます。</span><br>
+<font color="#666666" class="text9pt">（＊商品はただ今準備中です）</font></td>
+</tr>
+<tr>
+<td valign="middle" bgcolor="#E9FEC5" width="158">
+<div align="center"><font color="#FFFFCC"><b><font color="#006600">めろんぱん</font></b></font></div>
+</td>
+<td width="212">
+<div align="right"><? echo $p_pt_melonpan; ?> pt</div>
+</td>
+</tr>
+</table>
+</td>
+<td><img src="../img/shim.gif" width="10" height="1"></td>
+<td valign="top" width="420">
+<table width="420" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td bgcolor="#669900">
+<p><span class="text01"><b><font color="#FFFFCC">管理ツール</font></b></span>
+</td>
+</tr>
+</table>
+<table width="420" border="0" cellpadding="3" cellspacing="1">
+<tr>
+<td width="16" align="center" valign="middle" bgcolor="#669900"><b><font color="#FFFFCC">1</font></b></td>
+<td bgcolor="#E8E8E8">
+<form name="form3" action="./mag-haishin.php"  method="post">
+<div align="center">
+<input type="submit" name="btn_snd_menu" value="　　　メルマガ配信　　　　">
+<input type="hidden" value="<? echo $publisher_id ?>"name="publisher_id">
+<input type="hidden" value="<? echo $owner_pswd_r ?>"name="owner_pswd">
+<input type="hidden" value="NotRun" name="job_flg">
+</div>
+</form>
+</td>
+<td width="299" bgcolor="#E8E8E8" class="text01" valign="top">メルマガを発行するときはここから。いますぐ発行。のんびり発行。一カ月先までの予約ができます。 </td>
+</tr>
+<tr>
+<td width="16" align="center" valign="middle" bgcolor="#669900"><b><font color="#FFFFCC">2</font></b></td>
+<td valign="middle">
+<form name="form4" action="magazine.php"  method="post">
+<div align="center">
+<input type="submit" name="Submit32" value="　 新規メルマガの創刊  　">
+<input type="hidden" value="<? echo $publisher_id ?>"name="publisher_id">
+<input type="hidden" value="<? echo $owner_pswd_r ?>"name="owner_pswd">
+<input type="hidden" value="<? echo $mail_add_main ?>" name="mail_add_main">
+<input type="hidden" value="New2" name="job_flg">
+</div>
+</form>
+</td>
+<td width="299" class="text01" valign="top">新しくメルマガを創刊するときはここから。頑張ってくださいね。</td>
+</tr>
+<tr>
+<td width="16" align="center" valign="middle" bgcolor="#669900"><b><font color="#FFFFCC">3</font></b></td>
+<td bgcolor="#E8E8E8">
+<form name="form5" action="./mag-henkou.php"  method="post">
+<div align="center">
+<input type="submit" name="edit_menu" value="メルマガ情報メンテナンス">
+<input type="hidden" value="<? echo $publisher_id ?>"name="publisher_id">
+<input type="hidden" value="<? echo $owner_pswd_r ?>"name="owner_pswd">
+<input type="hidden" value="<? echo $mail_add_main ?>" name="mail_add_main">
+<input type="hidden" value="MAG_EDIT" name="job_flg">
+</div>
+</form>
+</td>
+<td width="299" bgcolor="#E8E8E8" class="text01" valign="top">あなたのメルマガの基本情報を確認したり変更したくなったらここから。少し休刊しよう、廃刊しようと思ったとき、そんなときもここからです。</td>
+</tr>
+<tr>
+<td width="16" align="center" valign="middle" bgcolor="#669900"><b><font color="#FFFFCC">4</font></b></td>
+<td>
+<form name="form6" action="magazine3.php"  method="post">
+<div align="center">
+<input type="submit" name="Submit4" value="配信済メルマガログ確認">
+<input type="hidden" value="<? echo $publisher_id ?>"name="publisher_id">
+<input type="hidden" value="<? echo $owner_pswd_r ?>"name="owner_pswd">
+<input type="hidden" value="Log1" name="job_flg">
+</div>
+</form>
+</td>
+<td width="299" class="text01" valign="top">すでに配信したメルマガのログを過去３ヵ月分まで見ることができます。
+</td>
+</tr>
+<tr>
+<td width="16" align="center" valign="middle" bgcolor="#669900"><b><font color="#FFFFCC">5</font></b></td>
+<td bgcolor="#E8E8E8">
+<form name="form7" action="magazine2.php"  method="post">
+<div align="center">
+<input type="submit" name="Submit7" value="　　　推薦文一覧　　　　">
+<input type="hidden" value="<? echo $publisher_id ?>"name="publisher_id">
+<input type="hidden" value="<? echo $owner_pswd_r ?>"name="owner_pswd">
+<input type="hidden" value="<? echo $mail_add_main ?>" name="mail_add_main">
+<input type="hidden" value="RECOMEND" name="job_flg">
+</div>
+</form>
+</td>
+<td width="299" bgcolor="#E8E8E8" class="text01" valign="top">読者からあなたのメルマガを推薦するメッセージが届いています。推薦文が増えれば新しい読者ももっと増えるかも!?</td>
+</tr>
+<tr>
+<td width="16" align="center" valign="middle" bgcolor="#669900"><b><font color="#FFFFCC">6</font></b></td>
+<td>
+<form name="form8" action="magazine4.php"  method="post">
+<div align="center">
+<input type="submit" name="Submit8" value="　　　　読者代理解除　　　">
+<input type="hidden" value="<? echo $publisher_id ?>"name="publisher_id">
+<input type="hidden" value="<? echo $owner_pswd_r ?>"name="owner_pswd">
+<input type="hidden" value="MagSelect" name="job_flg">
+</div>
+</form>
+</td>
+<td width="299" class="text01" valign="top">読者に代わって発行者自身でアドレスの解除ができます。すでにそのメールアドレスが登録されているかどうかのチェックもここでできます。</td>
+</tr>
+<tr>
+<td width="16" align="center" valign="middle" bgcolor="#669900"><b><font color="#FFFFCC">7</font></b></td>
+<td bgcolor="#E8E8E8">
+<form name="form8" action="banner_list.php"  method="post">
+<div align="center">
+<input type="submit" name="Submit8" value="メルマガ登録用バナー">
+<input type="hidden" value="<? echo $publisher_id ?>"name="publisher_id">
+<input type="hidden" value="<? echo $owner_pswd_r ?>"name="owner_pswd">
+</div>
+</form>
+</td>
+<td bgcolor="#E8E8E8" class="text01" valign="top">あなたのホームページ上から読者登録ができるバナーを差し上げます。</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</TD>
+			  </TR>
+			</TABLE>
+		  </TD>
+		</TR>
+	  </TABLE>
+	</TD>
+  </TR>
+</TABLE>
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+  <TR>
+	<TD valign="top" colspan="3" align="right">
+	  <HR size="1" width="750">
+	</TD>
+  </TR>
+  <TR>
+
+<TD valign="top" width="200">
+<div align="right"><img src="../img/shim.gif" width="200" height="1"></div>
+</TD>
+
+<TD valign="middle" align="center" width="350"><FONT size="2"><IMG src="../img/shim.gif" width="350" height="1"><BR>
+Copyright &copy; 2000 xxxxxxx, Co.,Ltd. All rights reserved. <br>
+<img src="../img/logo_do.gif" width="50" height="45"> </FONT></TD>
+	<TD valign="top" width="200" align="right"><IMG src="../img/shim.gif" width="200" height="1"></TD>
+  </TR>
+</TABLE>
+</body>
+</html>

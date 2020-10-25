@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>おすすめメルマガ　一覧</TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600" leftmargin="0" marginwidth="0">
+
+<? draw_head2(".."); ?>
+
+<br>
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="600" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="600" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+<TD>
+<p class="midashi14"><B><FONT COLOR="#99CCFF">■</FONT><FONT COLOR="#003399">おすすめメルマガ　一覧</FONT></B></p>
+<p class="text01">おすすめリストから外す場合は、右端のチェックボックスにチェックを入れ、[おすすめリスト削除]ボタンを押してください。</p>
+<TABLE WIDTH="100%" BORDER="0" CELLSPACING="0" CELLPADDING="0" BGCOLOR="#003399">
+<TR>
+<TD>
+<form name="DelList" action="mp-osusume-list.php" method="post">
+<TABLE WIDTH="600" BORDER="0" CELLSPACING="1" CELLPADDING="3">
+<TR>
+<TD BGCOLOR="#99CCFF" CLASS="text9ptnoColor" WIDTH="39">
+<div align="center"><b><font color="#003399">ステータス</font></b></div>
+</TD>
+<TD BGCOLOR="#99CCFF" CLASS="text9ptnoColor" WIDTH="66">
+<div align="center"><b><font color="#003399">選定日</font></b></div>
+</TD>
+<TD BGCOLOR="#99CCFF" CLASS="text9ptnoColor" WIDTH="96">
+<DIV ALIGN="CENTER"><B><FONT COLOR="#003399">カテゴリ</FONT></B></DIV>
+</TD>
+<td bgcolor="#99CCFF" class="text9ptnoColor" width="326">
+<div align="CENTER"><b><font color="#003399">メルマガ名</font></b></div>
+</td>
+<TD BGCOLOR="#99CCFF" CLASS="text9ptnoColor" WIDTH="32">
+<div align="center"><b><font color="#003399">解除</font></b></div>
+</TD>
+</TR>
+<? $next_f = make_list($page_no, $melonpai_id, $melonpai_pswd, $melonpai_name); ?>
+<tr bgcolor="#FFFFFF">
+<td class="text9ptnoColor" valign="MIDDLE" colspan="5" align="right">
+<input type="submit" name="Delete" value="おすすめリストから削除（ナビは絶対に触らないでください）">
+<input type="hidden" value="<? echo $melonpai_id ?>" name="melonpai_id">
+<input type="hidden" value="<? echo $melonpai_pswd ?>" name="melonpai_pswd">
+<input type="hidden" value="<? echo $melonpai_name ?>" name="melonpai_name">
+<input type="hidden" value="<? echo $page_no ?>" name="page_no">
+</td>
+</tr>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+<TABLE WIDTH="600" BORDER="0" CELLSPACING="1" CELLPADDING="2">
+<? make_nextbtn($page_no, $next_f, $melonpai_id, $melonpai_pswd, $melonpai_name); ?>
+</TABLE>
+</form>
+<p>
+<form name="mypage" action="mypage.php" method="post">
+<a href="JavaScript:document.mypage.submit();">
+&lt;&lt;&lt;　メルマガナビ　マイページへ戻る </a>
+<input type="hidden" value="<? echo $melonpai_id ?>" name="melonpai_id">
+<input type="hidden" value="<? echo $melonpai_pswd ?>" name="melonpai_pswd">
+<input type="hidden" value="<? echo $melonpai_name ?>" name="melonpai_name">
+</form></p>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+<table>
+<br>
+<br>
+</table>
+</TD>
+</TR>
+
+<? draw_footer2(".."); ?>
+
+</TABLE>
+</body>
+</html>

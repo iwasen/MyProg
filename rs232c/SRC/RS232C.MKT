@@ -1,0 +1,21 @@
+$(DIR)rs232c_$(MM).lib : $(DIR)rs_$(MM).obj $(DIR)rs1_$(MM).obj \
+		$(DIR)rs2_$(MM).obj $(DIR)rs3_$(MM).obj \
+		$(DIR)timer_$(MM).obj
+	command /c del $(DIR)rs232c_$(MM).lib
+	tlib $(DIR)rs232c_$(MM)+$(DIR)rs_$(MM)+$(DIR)rs1_$(MM)+$(DIR)rs2_$(MM)+$(DIR)rs3_$(MM)+$(DIR)timer_$(MM)
+
+$(DIR)rs_$(MM).obj : rs.c rs232c.h
+	$(CC) -c -K -m$(MM) -o$(DIR)rs_$(MM) rs.c
+
+$(DIR)rs1_$(MM).obj : rs1.c rs232c.h
+	$(CC) -c -K -m$(MM) -o$(DIR)rs1_$(MM) rs1.c
+
+$(DIR)rs2_$(MM).obj : rs2.c rs232c.h
+	$(CC) -c -K -m$(MM) -o$(DIR)rs2_$(MM) rs2.c
+
+$(DIR)rs3_$(MM).obj : rs3.c rs232c.h
+	$(CC) -c -K -m$(MM) -o$(DIR)rs3_$(MM) rs3.c
+
+$(DIR)timer_$(MM).obj : timer.c rs232c.h
+	$(CC) -c -K -m$(MM) -o$(DIR)timer_$(MM) timer.c
+

@@ -1,0 +1,110 @@
+BODY
+{
+}
+DIV.page
+{
+    PAGE-BREAK-BEFORE: always
+}
+A:link
+{
+    COLOR: blue
+}
+A:visited
+{
+    COLOR: blue
+}
+A:active
+{
+    COLOR: blue
+}
+A:hover
+{
+    COLOR: red
+}
+HR.header
+{
+    COLOR: #5673fc
+}
+HR.footer
+{
+    COLOR: #5673fc
+}
+HR.print
+{
+    COLOR: #0000ff
+}
+XMP.print
+{
+    FONT-FAMILY: '‚l‚r –¾’©'
+}
+TABLE.print
+{
+    FONT-WEIGHT: bolder
+}
+TH.sort
+{
+    CURSOR: hand
+}
+TD.m1
+{
+    FONT-WEIGHT: bolder;
+    COLOR: white;
+    BACKGROUND-COLOR: #3366aa
+}
+TD.n1
+{
+    BACKGROUND-COLOR: #d0e0f8
+}
+TD.n1c
+{
+    FONT-SIZE: smaller;
+    BACKGROUND-COLOR: #d0e0f8
+}
+TD.m2
+{
+    FONT-WEIGHT: bolder;
+    COLOR: white;
+    BACKGROUND-COLOR: peru
+}
+TD.n2
+{
+    BACKGROUND-COLOR: #f8e0d0
+}
+TD.n2c
+{
+    FONT-SIZE: smaller
+}
+TD.m3
+{
+    FONT-WEIGHT: bolder;
+    COLOR: white;
+    BACKGROUND-COLOR: #888888
+}
+TD.n3
+{
+    BACKGROUND-COLOR: #dddddd
+}
+TD.m4
+{
+    FONT-WEIGHT: bolder;
+    COLOR: white;
+    BACKGROUND-COLOR: #66bb66
+}
+TD.n4
+{
+    BACKGROUND-COLOR: #eeeedd
+}
+TD.n3c
+{
+    FONT-SIZE: smaller;
+    BACKGROUND-COLOR: #dddddd
+}
+.np
+{
+    FONT-SIZE: 10.5pt;
+    FONT-FAMILY: '‚l‚r ƒSƒVƒbƒN'
+}
+.info
+{
+    FONT-SIZE: 12px
+}

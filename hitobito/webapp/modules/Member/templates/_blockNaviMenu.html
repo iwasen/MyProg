@@ -1,0 +1,137 @@
+<{include file="_blockUserMenu.html"}>
+			<table width="200" border="0" cellspacing="0" cellpadding="0" bgcolor="#99CC00">
+				<tr bgcolor="#FFFFFF">
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="5"></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/n_menu_ttl.gif" width="200" height="28" alt="ナビメニュー"></td>
+				</tr>
+				<tr>
+					<td width="3"><img src="image/spacer.gif" width="3" height="1"></td>
+					<td width="194">
+
+						
+						
+      <table width="194" border="0" cellspacing="0" cellpadding="3">
+        <tr> 
+          <td bgcolor="#FFFFFF"> 
+            <p class ="menuind21"><img src="image/n_menu_link00.gif" width="17" height="12" hspace="2" align="absmiddle"><span class="char120"><b>プロファイル</b></span></p>
+          </td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFFFF"> 
+            <p class ="menuind21"><img src="image/n_menu_link02.gif" width="17" height="12" hspace="2" align="absmiddle"><span class="char120"><a href="index.php?module=Member&amp;action=ModifyProfile" class="cblack">登録情報の編集</a><a href="index.php?module=contents&content_id=21"><img src="image/navi_help.gif" width="60" height="15" border="0"></a></span></p>
+          </td>
+        </tr>
+	<{if count($member_my_navipages) > 0}>
+        <tr> 
+          <td bgcolor="#FFFFFF"> 
+            <p class ="menuind21"><img src="image/n_menu_link00.gif" width="17" height="12" hspace="2" align="absmiddle"><span class="char120"><b>ナビページ</b></span></p>
+          </td>
+        </tr>
+        <{foreach item=item from=$member_my_navipages}> 
+        <tr> 
+          <td bgcolor="#FFFFFF"> 
+            <p class ="menuind21"><img src="image/n_menu_link02.gif" width="17" height="12" hspace="2" align="absmiddle"><span class="char120"><a href="index.php?module=Navi&amp;action=ShowNaviPage&amp;navipage_id=<{$item->getId()}>" class="cblack"><{$item->getAttribute('nvp_title')|escape}></a></span></p>
+          </td>
+        </tr>
+        <{/foreach}> 
+	<{/if}>
+	
+	<{if count($member_assist_navipages) > 0}>
+        <tr> 
+          <td bgcolor="#FFFFFF"> 
+            <p class ="menuind21"><img src="image/n_menu_link00.gif" width="17" height="12" hspace="2" align="absmiddle"><span class="char120"><b>アシストページ</b></span></p>
+          </td>
+        </tr>
+        <{foreach item=item from=$member_assist_navipages}> 
+        <tr> 
+          <td bgcolor="#FFFFFF"> 
+            <p class ="menuind21"><img src="image/n_menu_link02.gif" width="17" height="12" hspace="2" align="absmiddle"><span class="char120"><a href="index.php?module=Navi&amp;action=ShowNaviPage&amp;navipage_id=<{$item->getId()}>" class="cblack"><{$item->getAttribute('nvp_title')|escape}></a></span></p>
+          </td>
+        </tr>
+        <{/foreach}> 
+	<{/if}>
+	<{if $show_edit_menu}> 
+        <tr> 
+          <td bgcolor="#FFFFFF"> 
+            <p class ="menuind21"><img src="image/n_menu_link00.gif" width="17" height="12" hspace="2" align="absmiddle"><span class="char120"><b>編集 
+              / 設定</b></span></p>
+          </td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFFFF"><img src="image/n_menu_link02.gif" width="17" height="12" hspace="2" align="absmiddle"><span class="char120"><a href="index.php?module=Blog&amp;action=PostStory&amp;navipage_id=<{$navipage_id}>" class="cblack">記事新規投稿</a></span></td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFFFF"> 
+            <p class ="menuind21"><img src="image/n_menu_link02.gif" width="17" height="12" hspace="2" align="absmiddle"><span class="char120"><a href="index.php?module=Blog&amp;action=adminShowCategories&amp;navipage_id=<{$navipage_id}>" class="cblack">記事投稿管理</a></span></p>
+          </td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFFFF"> 
+            <p class ="menuind21"><img src="image/n_menu_link02.gif" width="17" height="12" hspace="2" align="absmiddle"><span class="char120"><a href="index.php?module=Blog&action=adminImage&navipage_id=<{$navipage_id}>" class="cblack">画像管理</a></span></p>
+          </td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFFFF"> 
+            <p class ="menuind21"><img src="image/n_menu_link02.gif" width="17" height="12" hspace="2" align="absmiddle"><span class="char120"><a href="index.php?module=Navi&amp;action=adminComment&amp;navipage_id=<{$navipage_id}>" class="cblack">コメント管理</a></span></p>
+          </td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFFFF"> 
+            <p class ="menuind21"><img src="image/n_menu_link02.gif" width="17" height="12" hspace="2" align="absmiddle"><span class="char120"><a href="index.php?module=Navi&amp;action=adminTrackback&amp;navipage_id=<{$navipage_id}>" class="cblack">トラックバック管理</a></span></p>
+          </td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFFFF"> 
+            <p class ="menuind21"><img src="image/n_menu_link02.gif" width="17" height="12" hspace="2" align="absmiddle"><span class="char120"><a href="index.php?module=MailMag&amp;action=ListMailMag&amp;id=<{$navipage_id}>&amp;navipage_id=<{$navipage_id}>" class="cblack">メルマガ管理</a></span></p>
+          </td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFFFF"> 
+            <p class ="menuind21"><img src="image/n_menu_link02.gif" width="17" height="12" hspace="2" align="absmiddle"><span class="char120"><a href="index.php?module=Enquete&action=NaviEnquete&id=<{$navipage_id}>&amp;navipage_id=<{$navipage_id}>" class="cblack">アンケート管理</a></span></p>
+          </td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFFFF"> 
+            <p class ="menuind21"><img src="image/n_menu_link02.gif" width="17" height="12" hspace="2" align="absmiddle"><span class="char120"><a href="index.php?module=Weblinks&amp;action=adminShowCategories&amp;navipage_id=<{$navipage_id}>" class="cblack">リンク集管理</a></span></p>
+          </td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFFFF"> 
+            <p class ="menuind21"><img src="image/n_menu_link02.gif" width="17" height="12" hspace="2" align="absmiddle"><span class="char120"><a href="index.php?module=Contact&amp;action=AdminList&amp;navipage_id=<{$navipage_id}>" class="cblack">問い合わせ管理</a></span></p>
+          </td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFFFF"> 
+            <p class ="menuind21"><img src="image/n_menu_link02.gif" width="17" height="12" hspace="2" align="absmiddle"><span class="char120"><a href="index.php?module=Waiwai&action=EditMenu&id=<{$navipage_id}>&amp;navipage_id=<{$navipage_id}>" class="cblack">ワイワイ会議管理</a></span></p>
+          </td>
+        </tr>
+        <{/if}> 
+      </table>
+					</td>
+					<td width="3"><img src="image/spacer.gif" width="3" height="1"></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/n_menu_split.gif" width="200" height="5"></td>
+				</tr>
+				<tr>
+					<td width="3"><img src="image/spacer.gif" width="3" height="1"></td>
+					<td width="194">
+						<table width="194" border="0" cellspacing="0" cellpadding="3">
+							<tr>
+								<td bgcolor="#FFFFFF">
+									<p class ="menuind21"><img src="image/m_menu_link02.gif" width="17" height="12" hspace="2" align="absmiddle"><span class="char120"><a href="index.php?module=Contact&navipage_id=194&contact_form_id=2" class="cblack">お問い合わせ</a></span></p>
+							  </td>
+							</tr>
+						</table>
+					</td>
+					<td width="3"><img src="image/spacer.gif" width="3" height="1"></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/n_menu_foot.gif" width="200" height="6"></td>
+				</tr>
+				<tr bgcolor="#FFFFFF">
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="5"></td>
+				</tr>
+</table>

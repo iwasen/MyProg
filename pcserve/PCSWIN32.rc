@@ -1,0 +1,444 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "pcswin32res.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 日本語 resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+#ifdef _WIN32
+LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
+#pragma code_page(932)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_LOGIN DIALOG DISCARDABLE  0, 0, 227, 121
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "PCSERVE ﾛｸﾞｲﾝ"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    LTEXT           "PCSERVE にﾛｸﾞｲﾝするためのﾕｰｻﾞ名とﾊﾟｽﾜｰﾄﾞを\r\n入力してください。",
+                    IDC_STATIC,16,10,147,18
+    LTEXT           "ｻｰﾊﾞｰ名",IDC_STATIC,15,39,28,8
+    EDITTEXT        IDC_SERVER_NAME,55,37,102,12,ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    LTEXT           "ﾕｰｻﾞｰID(&U)",IDC_STATIC,15,58,36,8
+    EDITTEXT        IDC_USERID,55,56,102,12,ES_AUTOHSCROLL
+    LTEXT           "ﾊﾟｽﾜｰﾄﾞ(&P)",IDC_STATIC,15,77,34,8
+    EDITTEXT        IDC_PASSWORD,55,75,102,12,ES_PASSWORD | ES_AUTOHSCROLL
+    CONTROL         "ﾊﾟｽﾜｰﾄﾞを保存する(&S)",IDC_SAVE_PASSWORD,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,55,97,81,10
+    DEFPUSHBUTTON   "OK",IDOK,170,8,50,14
+    PUSHBUTTON      "ｷｬﾝｾﾙ",IDCANCEL,170,25,50,14
+    PUSHBUTTON      "ﾊﾟｽﾜｰﾄﾞ変更...",IDC_CHANGE_PASSWORD,170,94,50,14
+END
+
+IDD_CHANGE_PASSWORD DIALOG DISCARDABLE  0, 0, 227, 75
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "PCSERVE ﾊﾟｽﾜｰﾄﾞ変更"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    LTEXT           "PCSERVE の新しいﾊﾟｽﾜｰﾄﾞを入力してください。",IDC_STATIC,
+                    14,7,146,12
+    LTEXT           "新ﾊﾟｽﾜｰﾄﾞ",IDC_STATIC,13,30,32,8
+    EDITTEXT        IDC_NEW_PASSWORD,54,28,102,12,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    LTEXT           "新ﾊﾟｽﾜｰﾄﾞ\r\nの確認",IDC_STATIC,13,46,32,16
+    EDITTEXT        IDC_VERIFY,54,48,102,12,ES_PASSWORD | ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,170,7,50,14
+    PUSHBUTTON      "ｷｬﾝｾﾙ",IDCANCEL,170,24,50,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_LOGIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 220
+        TOPMARGIN, 8
+        BOTTOMMARGIN, 114
+    END
+
+    IDD_CHANGE_PASSWORD, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 220
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 68
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "pcswin32res.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_NORMAL              "エラーはありません"
+    IDS_ERROR_SERVER        "サーバ上のエラー"
+    IDS_ERROR_SERVER_MEMORY "サーバ上でメモリの確保に失敗しました"
+    IDS_ERROR_SERVER_MAXFILES "最大オープン数がオーバしました"
+    IDS_ERROR_SERVER_SEND   "サーバで送信エラーが発生しました"
+    IDS_ERROR_SERVER_RECEIVE "サーバで受信エラーが発生しました"
+    IDS_ERROR_SERVER_NOSUPPORT "サーバで未サポート機能を実行しようとしました"
+    IDS_ERROR_SERVER_MAXCONxxxT "コネクト数がオーバしました"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ERROR_SERVER_CONxxxT "二重化の相手のサーバに接続できません"
+    IDS_ERROR_SERVER_DUPLEX "二重化スレーブサーバのエラーです"
+    IDS_ERROR_SERVER_MULTI  "分散サーバエラーです"
+    IDS_ERROR_SERVER_LICENSE "ライセンスが有効ではありません"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ERROR_CLIENT_MEMORY "クライアントでメモリの確保に失敗しました"
+    IDS_ERROR_CLIENT_SEND   "クライアントで送信エラーが発生しました"
+    IDS_ERROR_CLIENT_RECEIVE "クライアントで受信エラーが発生しました"
+    IDS_ERROR_CLIENT_NOHOST "接続しようとしたホストが存在しません"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ERROR_CLIENT_SOCKET "ソケット関数のエラーです"
+    IDS_ERROR_CLIENT_CONxxxT "サーバに接続できません"
+    IDS_ERROR_CLIENT_NOSUPPORT 
+                            "クライアントで未サポート機能を実行しようとしました"
+    IDS_ERROR_CLIENT_PARAMETER "パラメータが不正です"
+    IDS_ERROR_CLIENT_BUSY   "電話回線が話し中です"
+    IDS_ERROR_CLIENT_NOCARRIER "キャリアが切断されました"
+    IDS_ERROR_CLIENT_MODEM  "モデムの応答がありません"
+    IDS_ERROR_CLIENT_CCB    "CCB が正しくありません"
+    IDS_ERROR_CLIENT_MAXCONxxxT "コネクト数がオーバしました"
+    IDS_ERROR_CLIENT_WINSOCK "winsock.dll がロードできません"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ERROR_DB_MEMORY     "メモリの確保に失敗しました"
+    IDS_ERROR_DB_FOPEN      "ファイルがオープンできません"
+    IDS_ERROR_DB_NOFILE     "オープンするファイルがありません"
+    IDS_ERROR_DB_IDXOVER    "インデックスファイルが多すぎます"
+    IDS_ERROR_DB_TMPFILE    "テンポラリファイルが作れません"
+    IDS_ERROR_DB_NOKEY      "指定されたキーが存在しません"
+    IDS_ERROR_DB_DBLKEY     "キーが重複しています"
+    IDS_ERROR_DB_RECNO      "レコード番号が不正です"
+    IDS_ERROR_DB_EOF        "ＢＯＦまたはＥＯＦです"
+    IDS_ERROR_DB_STRFILE    "構造ファイルが正しくありません"
+    IDS_ERROR_DB_READ       "ファイルから読み込みができません"
+    IDS_ERROR_DB_WRITE      "ファイルに書き込みができません"
+    IDS_ERROR_DB_IDXKEY     "インデックスのキー表現式が不正です"
+    IDS_ERROR_DB_NOINDEX    "インデックスされていません"
+    IDS_ERROR_DB_ARDYOPEN   "他でオープン中です"
+    IDS_ERROR_DB_LOCK       "ファイルロック中です"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ERROR_DB_NOSUPPORT  "未サポート機能を実行しようとしました"
+    IDS_ERROR_DB_PARAMETER  "パラメータが不正です"
+    IDS_ERROR_DB_TIMEOUT    "タイムアウトが発生しました"
+    IDS_ERROR_DB_SIZEOVER   "サイズがオーバしました"
+    IDS_ERROR_DB_NOOPEN     "オープンされていません"
+    IDS_ERROR_DB_PASSWORD   "パスワードが違います"
+    IDS_ERROR_DB_INDEXFILE  "インデックスファイルが壊れています"
+    IDS_ERROR_DB_FIELD      "フィールド情報が不正です"
+    IDS_ERROR_DB_BUFSIZE    "バッファサイズが不足しました"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ERROR_SN_PARAMETER  "パラメータが不正です"
+    IDS_ERROR_SN_EXIST      "既にキーが存在します"
+    IDS_ERROR_SN_NOTFOUND   "キーがありません"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ERROR_CL_PARAMETER  "パラメータが不正です"
+    IDS_ERROR_CL_NOTFOUND   "キーがありません"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ERROR_MS_PARAMETER  "パラメータが不正です"
+    IDS_ERROR_MS_GRPFILE    "メッセージグループファイルのエラーです"
+    IDS_ERROR_MS_BUFSIZE    "バッファサイズが不足しました"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ERROR_EXEC_COMMAND  "コマンド起動に失敗しました"
+    IDS_ERROR_DIRNAME       "ディレクトリ名が登録されていません"
+    IDS_ERROR_FILE_TYPE     "ファイル種別が違います"
+    IDS_ERROR_FILE_HANDLE   "ファイルハンドルが不正です"
+    IDS_ERROR_FILE_PERMISSION "アクセスが許可されていません"
+    IDS_ERROR_USER_PASSWORD "ユーザ名またはパスワードが正しくありません"
+    IDS_ERROR_NOLOGIN       "PCSERVE にログインしていません"
+    IDS_ERROR_UNKNOWN       "未定義のエラーです"
+END
+
+#endif    // 日本語 resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// 英語 (ｱﾒﾘｶ) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_CHANGE_PASSWORD DIALOG DISCARDABLE  0, 0, 254, 75
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "PCSERVE Change Password"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Please input the new password of PCSERVE.",IDC_STATIC,
+                    14,7,139,8
+    LTEXT           "New Password",IDC_STATIC,13,30,46,8
+    EDITTEXT        IDC_NEW_PASSWORD,80,28,102,12,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    LTEXT           "Re-enter Password",IDC_STATIC,13,50,62,8
+    EDITTEXT        IDC_VERIFY,80,48,102,12,ES_PASSWORD | ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,193,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,193,24,50,14
+END
+
+IDD_LOGIN DIALOG DISCARDABLE  0, 0, 227, 121
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "PCSERVE Login"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Please input the user ID and password for logging in to PCSERVE.",
+                    IDC_STATIC,16,10,147,18
+    LTEXT           "Server Name",IDC_STATIC,15,39,42,8
+    EDITTEXT        IDC_SERVER_NAME,60,37,102,12,ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    LTEXT           "User ID",IDC_STATIC,15,58,24,8
+    EDITTEXT        IDC_USERID,60,56,102,12,ES_AUTOHSCROLL
+    LTEXT           "Password",IDC_STATIC,15,77,30,8
+    EDITTEXT        IDC_PASSWORD,60,75,102,12,ES_PASSWORD | ES_AUTOHSCROLL
+    CONTROL         "Save Password",IDC_SAVE_PASSWORD,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,60,97,63,10
+    DEFPUSHBUTTON   "OK",IDOK,170,8,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,170,25,50,14
+    PUSHBUTTON      "&Change Password",IDC_CHANGE_PASSWORD,157,95,63,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_CHANGE_PASSWORD, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 247
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 68
+    END
+
+    IDD_LOGIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 220
+        TOPMARGIN, 8
+        BOTTOMMARGIN, 114
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_NORMAL              "No error"
+    IDS_ERROR_SERVER        "Server error"
+    IDS_ERROR_SERVER_MEMORY "Memory reservation on the server failed"
+    IDS_ERROR_SERVER_MAXFILES "Maximum number of open files exceeded"
+    IDS_ERROR_SERVER_SEND   "Transmission error on server"
+    IDS_ERROR_SERVER_RECEIVE "Receiving error on server"
+    IDS_ERROR_SERVER_NOSUPPORT 
+                            "There was an attempt to execute an unsupported function on the server"
+    IDS_ERROR_SERVER_MAXCONxxxT "Too many open conxxxtions"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ERROR_SERVER_CONxxxT "Cannot conxxxt to back-up server"
+    IDS_ERROR_SERVER_DUPLEX "Back-up slave server error"
+    IDS_ERROR_SERVER_MULTI  "Distributed server error"
+    IDS_ERROR_SERVER_LICENSE "Invalid license"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ERROR_CLIENT_MEMORY "Memory reservation on client failed"
+    IDS_ERROR_CLIENT_SEND   "Transmission error occurred on client"
+    IDS_ERROR_CLIENT_RECEIVE "Reception error occurred on client"
+    IDS_ERROR_CLIENT_NOHOST "Destination host does not exist"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ERROR_CLIENT_SOCKET "Socket function error"
+    IDS_ERROR_CLIENT_CONxxxT "Cannot conxxxt to server"
+    IDS_ERROR_CLIENT_NOSUPPORT 
+                            "There was an attempt to execute an unsupported function on the client"
+    IDS_ERROR_CLIENT_PARAMETER "Invalid parameter"
+    IDS_ERROR_CLIENT_BUSY   "The telephone line is busy"
+    IDS_ERROR_CLIENT_NOCARRIER "Carrier lost"
+    IDS_ERROR_CLIENT_MODEM  "The modem is not responding"
+    IDS_ERROR_CLIENT_CCB    "Invalid CCB"
+    IDS_ERROR_CLIENT_MAXCONxxxT "Too many conxxxtions"
+    IDS_ERROR_CLIENT_WINSOCK "The winsock.dll cannot be loaded"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ERROR_DB_MEMORY     "The memory could not be reserved"
+    IDS_ERROR_DB_FOPEN      "The file could not be opened"
+    IDS_ERROR_DB_NOFILE     "There are no open files"
+    IDS_ERROR_DB_IDXOVER    "There are too many index files"
+    IDS_ERROR_DB_TMPFILE    "The temporary file could not be created"
+    IDS_ERROR_DB_NOKEY      "The specified key does not exist"
+    IDS_ERROR_DB_DBLKEY     "There are duplicate keys"
+    IDS_ERROR_DB_RECNO      "The record number is invalid"
+    IDS_ERROR_DB_EOF        "BOF or EOF"
+    IDS_ERROR_DB_STRFILE    "The structure file is invalid"
+    IDS_ERROR_DB_READ       "Cannot read from the file"
+    IDS_ERROR_DB_WRITE      "Cannot write to the file"
+    IDS_ERROR_DB_IDXKEY     "The index key expression is invalid"
+    IDS_ERROR_DB_NOINDEX    "There is no index"
+    IDS_ERROR_DB_ARDYOPEN   "Already opened by another"
+    IDS_ERROR_DB_LOCK       "The file is locked"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ERROR_DB_NOSUPPORT  "An attempt was made to execute an unsupported function"
+    IDS_ERROR_DB_PARAMETER  "Invalid parameter"
+    IDS_ERROR_DB_TIMEOUT    "A time-out occurred"
+    IDS_ERROR_DB_SIZEOVER   "The size is too large"
+    IDS_ERROR_DB_NOOPEN     "Not open"
+    IDS_ERROR_DB_PASSWORD   "Wrong password"
+    IDS_ERROR_DB_INDEXFILE  "The index file is corrupted"
+    IDS_ERROR_DB_FIELD      "The file information is invalid"
+    IDS_ERROR_DB_BUFSIZE    "Insufficient buffer size"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ERROR_SN_PARAMETER  "Invalid parameter"
+    IDS_ERROR_SN_EXIST      "The key already exists"
+    IDS_ERROR_SN_NOTFOUND   "There is no key."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ERROR_CL_PARAMETER  "Invalid parameter"
+    IDS_ERROR_CL_NOTFOUND   "There is no key"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ERROR_MS_PARAMETER  "Invalid parameter"
+    IDS_ERROR_MS_GRPFILE    "Message group file error"
+    IDS_ERROR_MS_BUFSIZE    "The buffer size was insufficient"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ERROR_EXEC_COMMAND  "Command start-up failed"
+    IDS_ERROR_DIRNAME       "The directory name has not been registered"
+    IDS_ERROR_FILE_TYPE     "The file identifier is wrong"
+    IDS_ERROR_FILE_HANDLE   "The file handle is invalid"
+    IDS_ERROR_FILE_PERMISSION "Access is not authorized"
+    IDS_ERROR_USER_PASSWORD "The user name or password is incorrect."
+    IDS_ERROR_NOLOGIN       "Not logged in to PCSERVE"
+    IDS_ERROR_UNKNOWN       "Ｕｎｋｎｏｗｎ error"
+END
+
+#endif    // 英語 (ｱﾒﾘｶ) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

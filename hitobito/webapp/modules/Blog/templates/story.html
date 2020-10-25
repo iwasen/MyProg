@@ -1,0 +1,203 @@
+		<!-- ここからブログ記事メインブロック -->
+			<table width="592" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+					<td width="10" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="10" height="1"></td>
+					<td width="582" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="582" height="1"></td>
+					<td width="10" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="10" height="1"></td>
+					<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+					
+    <td><img src="image/spacer.gif" width="10" height="8"></td>
+					<td>
+						<table width="582" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td colspan="2"><img src="image/spacer.gif" width="1" height="10"></td>
+							</tr>
+							<tr>
+								<td colspan="2" class="char140"><!-- ブログタイトル --><b><{$obj->getAttribute('bla_title')|escape}></b></td>
+							</tr>
+							<tr>
+								<td class="char140" width="200"><!-- 投稿者名 --><span class="char999999">by </span><{$obj->getPosterName()|escape}></td>
+								<td align="right" class="char140" width="350"><!-- カテゴリ --><span class="char999999"><{$obj->getBlogCategoryName()|escape}></span><span class="char999999"> | </span><!-- 日付 --><span class="char999999"><{$obj->getAttribute('bla_date')|HNbDate:"m"}></span></td>
+							</tr>
+							<tr>
+								<td colspan="2"><img src="image/spacer.gif" width="1" height="10"></td>
+							</tr>
+						</table>
+					</td>
+					<td><img src="image/spacer.gif" width="10" height="1"></td>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+				<tr>
+					<td colspan="5" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="592" height="1"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+					<td><img src="image/spacer.gif" width="10" height="1"></td>
+					<td>
+						<table width="582" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td><img src="image/spacer.gif" width="1" height="10"></td>
+							</tr>
+							<tr>
+								<td class"char140">
+								<!-- ここからメイン記事 -->
+								  <div class"char140">
+								  <{$obj->getAttribute('bla_article_text')|HNbEscape}>
+								  </div>
+								  <{*
+								<span class="char130">五徳がなくて、トッププレー</span>
+									<p class="blogimg"><img src="image/blog_img.jpg" width="240" height="150"></p>
+									<span class="char130">五徳がなくて、トッププレートもフラットなので、その都度さっと拭いただけで<br>
+									きれいに掃除ができちゃうIHクッキングヒーター。<br>
+									お掃除がとっても楽チンだということも人気の大きな要因ですよね。<br>
+									</span>
+									*}>
+									<!-- ここまでメイン記事 -->
+									</td>
+							</tr>
+							<tr>
+								<td><img src="image/spacer.gif" width="1" height="10"></td>
+							</tr>
+						</table>
+					</td>
+					<td><img src="image/spacer.gif" width="10" height="1"></td>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+				<tr>
+					<td colspan="5" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="592" height="1"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+					<td bgcolor="#FDFADF"><img src="image/spacer.gif" width="10" height="1"></td>
+					<td bgcolor="#FDFADF">
+					<!-- トラックバックエリアここから -->
+					<{if $obj->canTrackback()}>
+						<table width="582" border="0" cellspacing="0" cellpadding="0" id="trackback">
+							<tr>
+								<td class="char110"><p class="blogsttl">trackbackURL</P></td>
+							</tr>
+							<tr>
+								<td bgcolor="#F5E156"><!-- トラックバックURL --><p class="blogtburl"><{$obj->getTrackbackUrl()}></p></td>
+							</tr>
+						</table>
+					<{/if}>
+<!-- トラックバックここから -->
+					    <table width="582" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td class="char110">
+									<p class="blogsttl">trackback(<{$obj->getTrackbacksNum()}>)</P>
+								</td>
+							</tr>
+						</table>
+				<!-- トラックバックループ -->
+				<{foreach item=item from=$obj->getTrackbacks()}>
+					    <{$item->updatePageView()}>
+					    <table width="582" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td><img src="image/blog_split498.gif" width="582" height="1"></td>
+							</tr>
+							<tr>
+								<td><img src="image/spacer.gif" width="1" height="10"></td>
+							</tr>
+							<tr>
+								<td class="char130"><a href="<{$item->getUrl()}>"><{$item->getTitle()|escape}></a><br>
+									<{$item->getExcerpt()|escape}></td>
+							</tr>
+							<tr>
+								<td align="right"><img src="image/c_hitobito_16.gif" width="16" height="16" align="absmiddle"><span class="char130"><{$item->getBlog_name()}><font color="#999999"> | <{$item->getDate()|HNbDate:"m"}></font></span></td>
+							</tr>
+							<tr>
+								<td><img src="image/spacer.gif" width="1" height="10"></td>
+							</tr>
+						</table>
+						<{/foreach}>
+				<!-- トラックバックループここまで -->
+
+<!-- トラックバックここまで -->
+					</td>
+					<td bgcolor="#FDFADF"><img src="image/spacer.gif" width="10" height="1"></td>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+				<tr>
+					<td colspan="5" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="592" height="1"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+					<td bgcolor="#E6F2FF"><img src="image/spacer.gif" width="10" height="1"></td>
+					<td bgcolor="#E6F2FF">
+					<!-- コメントエリアここから -->
+						<table width="582" border="0" cellspacing="0" cellpadding="0" id="comment">
+							<tr>
+								<td class="char110">
+									<p class="blogsttl">comment(<{$obj->getCommentsNum()}>)</p>
+								</td>
+							</tr>
+						</table>
+			<!-- コメントループここから -->
+			<{foreach item=item from=$obj->getComments()}>
+						<{$item->updatePageView()}>
+						<table width="582" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td><img src="image/blog_split498.gif" width="582" height="1"></td>
+							</tr>
+							<tr>
+								<td><img src="image/spacer.gif" width="1" height="10"></td>
+							</tr>
+							<tr>
+								<td class="char130">
+								  <{$item->getAttribute('blo_comment')|escape|nl2br}>
+								</td>
+							</tr>
+							<tr>
+								<td align="right"><img src="image/c_hitobito_16.gif" width="16" height="16" align="absmiddle"><span class="char130"><{$item->getAttribute('blo_user_name')|escape}><font color="#999999"> | <{$item->getAttribute('blo_date')|HNbDate:"m"}></font></span></td>
+							</tr>
+							<tr>
+								<td><img src="image/spacer.gif" width="1" height="10"></td>
+							</tr>
+						</table>
+						<{/foreach}>
+					<!-- コメントループここまで -->
+					<!-- ここからコメント投稿フォーム -->
+						<{if $obj->canPoxxxomment()}>
+						<{$blog_comment_form}>
+						<{/if}>
+						<!-- コメント投稿フォームここまで -->
+					</td>
+					<td bgcolor="#E6F2FF"><img src="image/spacer.gif" width="10" height="1"></td>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+				<tr>
+					<td colspan="5" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="592" height="1"></td>
+				</tr>
+			</table>
+			<!-- ここまでブログ記事メイン部分 -->
+			
+			<!-- ナビ記事ナビゲーション -->
+			<table width="592" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td width="265"><!-- ナビ記事トップへリンク --><img src="image/blog_link_top.gif" width="12" height="12" align="absmiddle" hspace="2"><span class="char110"><a href="index.php?module=Blog&amp;navipage_id=<{$hitobitoNaviPageInfo->getId()}>" class="cblack">ナビ記事トップ</a></span></td>
+					<td width="20"><img src="image/spacer.gif" width="20" height="1"></td>
+					<td width="265" align="right">
+					  <{if $prevId}>
+					  <img src="image/blog_link_pre.gif" width="12" height="12" align="absmiddle" hspace="2"><span class="char110"><a href="index.php?module=Blog&amp;action=ViewStory&amp;blog_story_id=<{$prevId}>" class="cblack">前の記事</a></span>
+					  <{/if}>
+					  <{if $nextId && $prevId}>
+					  <span class="char999999"> | </span>
+					  <{/if}>
+					  <{if $nextId}>
+					  <img src="image/blog_link_next.gif" width="12" height="12" align="absmiddle" hspace="2"><span class="char110"><a href="index.php?module=Blog&amp;action=ViewStory&amp;blog_story_id=<{$nextId}>" class="cblack">次の記事</a></span>
+					  <{/if}>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+			</table>
+			<!-- ナビ記事ナビゲーションここまで -->

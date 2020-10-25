@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>メルマガ　バックナンバー</TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600" leftmargin="0" marginwidth="0">
+<? draw_head2(".."); ?>
+<br>
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="660" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="660" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+<TD>
+<p><img src="../img/t_bn.gif" width="660" height="27"> </p>
+<table width="660" border="0" cellspacing="2">
+<tr bgcolor="#FFCC33">
+<td colspan="6"><font color="#336600"><b>バックナンバー <?php echo $mag_id."：".$mag_nm."　第 ".$body_id." 回発行分"; ?></b></font></td>
+</tr>
+<tr align="center" bgcolor="#336600">
+<td width="120"><b><font color="#FFFFCC" class="text9ptnoColor">magID</font></b></td>
+<td width="180"><b><font color="#FFFFCC" class="text9ptnoColor">マガジン名</font></b></td>
+<td width="90"><b><font color="#FFFFCC" class="text9ptnoColor">発行日</font></b></td>
+<td width="90"><b><font color="#FFFFCC" class="text9ptnoColor">配信数</font></b></td>
+</tr>
+<tr>
+<td align=center><?php echo $mag_id; ?>
+<form action=teishi.php method=post>
+<input type=hidden value=000001 name=mag_id>
+<input type=hidden value="メルマガタイトル"name=mag_nm>
+<input type=hidden value=1 name=admin_id>
+<input type=hidden value=sugoizo name=admin_pswd>
+</form>
+</td>
+<td  align="center"><?php echo $mag_nm; ?></td>
+<td  align="center"><?php echo $modefy_dt; ?></td>
+<td  align="right"><?php echo $mag_volume; ?></td>
+</tr>
+<tr>
+<td align=center bgcolor="#336600"><b><font color="#FFFFCC" class="text9ptnoColor">タイトル</font></b></td>
+<td colspan="4"><?php echo $mag_title; ?></td>
+</tr>
+<tr>
+<td align=center bgcolor="#336600"><b><font color="#FFFFCC" class="text9ptnoColor">本文</font></b></td>
+<td colspan="4"><?php echo $mag_body; ?></td>
+</tr>
+</table>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+			<table>
+				<br>
+				<br>
+			</TABLE></TD>
+</TR>
+<TR>
+<TD valign="top" colspan="3" align="right">
+<form>
+  <div align="center"><input type="button" value="　戻　る　" name="B3" onClick="history.back()"></div>
+</form>
+</TD>
+</TR>
+<? draw_footer2(".."); ?>
+</TABLE>
+</body>
+</html>
+
+
+

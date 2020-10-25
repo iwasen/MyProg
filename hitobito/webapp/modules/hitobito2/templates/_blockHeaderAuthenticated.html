@@ -1,0 +1,75 @@
+<!--header-->
+  <table width=800 border=0 cellpadding=0 cellspacing=0 align="center">
+    <tr align="right">
+      <td colspan="2" valign="bottom"><h1>ひとびと・netは、人の知識や経験を「教えられたり教えたり」しながら共有する開かれたコミュニティです。</h1></td>
+    </tr>
+    <tr>
+      <td align="center" valign="middle">
+      <table border="0" cellspacing="3" cellpadding="0">
+        <tr>
+          <td><a href="./index.php"><img src="image/hito2_logo.gif" alt="ひとびと・net" width=163 height=42 border=0></a></td>
+          <td><a href="./index.php?module=contents&content_id=9"><img src="image/happynabi.gif" alt="知りたいあなたをハッピーナビ" width="172" height="65" border="0"></a></td>
+        </tr>
+      </table>    </td>
+      <td align="right" valign="top">
+        <table width="334" border="0" cellpadding="0" cellspacing="0" style="margin:0px 0px 5px 0px;">
+          <tr>
+            <td><a href="./index.php?module=contents&content_id=9#whats" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('menu01','','image/menu_01Ov.gif',1)"><img src="image/menu_01.gif" alt="初めての方へ" name="menu01" width=83 height=13 border=0 id="menu01"></a></td>
+            <td><a href="./index.php?module=contents&content_id=31" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('menu02','','image/menu_02Ov.gif',1)"><img src="image/menu_02.gif" alt="使い方ガイド" name="menu02" width=81 height=13 border=0 id="menu02"></a></td>
+            <td><a href="./index.php?module=contents&content_id=2" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('menu03','','image/menu_03Ov.gif',1)"><img src="image/menu_03.gif" alt="ヘルプ" name="menu03" width=51 height=13 border=0 id="menu03"></a></td>
+            <td><a href="./index.php?module=contents&content_id=1" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('menu04','','image/menu_04Ov.gif',1)"><img src="image/menu_04.gif" alt="サイトマップ" name="menu04" width=75 height=13 border=0 id="menu04"></a></td>
+            <td><a href="./index.php?module=RSS" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('menu05','','image/menu_05Ov.gif',1)"><img src="image/menu_05.gif" alt="RSS" name="menu05" width=44 height=13 border=0 id="menu05"></a></td>
+          </tr>
+        </table>
+    </tr>
+  </table>
+<!--header-->
+<!-- ヘッダーここまで -->
+<!-- 検索窓と告知エリア -->
+<!-- 検索窓と告知エリア -->
+<table width="800" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+        <td colspan="5"><img src="image/spacer.gif" width="1" height="2"></td>
+    </tr>
+    <tr>
+        <td width="1"><img src="image/spacer.gif" width="1" height="1"></td>
+        <td width="468"><{if $hitobito2_banner}><a href="<{$hitobito2_banner.url}>" target="_blank"><img src="<{$hitobito2_banner.image}>" border="0" /></a><{/if}></td>
+        <td width="5"><img src="image/spacer.gif" width="5" height="1"></td>
+        <td width="290" valign="top">
+            <form name="form1" method="GET" action="index.php">
+              <input type="hidden" name="module" value="hitobito2" />
+              <input type="hidden" name="action" value="Search" />
+                <table width="290" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td colspan="3"><img src="image/spacer.gif" width="1" height="3"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" name="search_word" size="30" value="<{$search_word|escape}>" />
+                          <{foreach item=value key=key from=$search_hidden}>
+                          <input type="hidden" name="<{$key}>" value="<{$value}>" />
+                          <{/foreach}>
+                        </td>
+                        <td><img src="image/spacer.gif" width="10" height="1"></td>
+                        <td width="98%">
+                            <input type="image" border="0" name="searchsubmit" src="image/head_search_btn.gif" width="51" height="20">
+                        </td>
+                    </tr>
+                </table>
+                <table width="290" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td class="hsearch">
+                          <{html_radios name=search_target options=$search_target_options selected=$search_target}>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><img src="image/spacer.gif" width="1" height="4"></td>
+                    </tr>
+                </table>
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="5"><img src="image/spacer.gif" width="1" height="1"></td>
+    </tr>
+</table>

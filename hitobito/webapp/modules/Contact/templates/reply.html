@@ -1,0 +1,155 @@
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+  <tr bgcolor="#5B94FD">
+    <td colspan="3"><img src="image/naviedit_inquiry_ttl.gif" width="117" height="25" hspace="10" alt="問い合わせ管理"></td>
+  </tr>
+  <tr>
+    <td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+    <td width="555" valign="top">
+      <{include file=$inquiry_view_template}>
+
+      <{foreach item=item from=$reply_list}>
+      <table width="555" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	  <td bgcolor="#CCCCCC" width="1"><img src="image/spacer.gif" width="1" height="1"></td>
+	  <td bgcolor="#CCCCCC" width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+	  <td bgcolor="#CCCCCC" width="523"><img src="image/spacer.gif" width="523" height="1"></td>
+	  <td bgcolor="#CCCCCC" width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+	  <td bgcolor="#CCCCCC" width="1"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+	  <td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	  <td><img src="image/spacer.gif" width="15" height="1"></td>
+	  <td>
+	    <table width="523" border="0" cellspacing="0" cellpadding="0">
+	      <tr>
+		<td colspan="4"><img src="image/spacer.gif" width="1" height="15"></td>
+	      </tr>
+	      <tr>
+
+		<td width="395" class="char120" valign="top"><font color="#2C75FC"><{$item->getAttribute('nva_subject')|escape}></font></td>
+		<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+
+		<td width="118" align="right" class="char120" valign="top"><{$item->getAttribute('nva_date')|HNbDate:"m"}></td>
+	      </tr>
+	      <tr>
+		<td colspan="4"><img src="image/spacer.gif" width="1" height="8"></td>
+	      </tr>
+	    </table>
+	    <table width="523" border="0" cellspacing="0" cellpadding="0">
+	      <tr>
+		<td class="char120"><{$item->getAttribute('nva_mail_addr')|escape}></td>
+	      </tr>
+	      <tr>
+		<td><img src="image/spacer.gif" width="1" height="8"></td>
+	      </tr>
+	    </table>
+	    <table width="523" border="0" cellspacing="0" cellpadding="0">
+	      <tr>
+		<td><img src="image/spacer.gif" width="1" height="15"></td>
+	      </tr>
+	    </table>
+	  </td>
+	  <td><img src="image/spacer.gif" width="15" height="1"></td>
+	  <td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+	  <td colspan="5" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+	  <td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	  <td colspan="3"><img src="image/spacer.gif" width="1" height="15"></td>
+	  <td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+	  <td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	  <td><img src="image/spacer.gif" width="15" height="1"></td>
+	  <td class="char130">詳細。<br>
+	    <br>
+	    <{$item->getAttribute('nva_content')|escape|nl2br}>
+	  </td>
+	  <td><img src="image/spacer.gif" width="15" height="1"></td>
+	  <td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+	  <td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	  <td colspan="3"><img src="image/spacer.gif" width="1" height="15"></td>
+	  <td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+	  <td colspan="5" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+	  <td colspan="5"><img src="image/spacer.gif" width="1" height="30"></td>
+	</tr>
+      </table>
+      <{/foreach}>
+
+
+      <form name="form3" method="post" action="" enctype="multipart/form-data">
+	<table width="555" border="0" cellspacing="0" cellpadding="0">
+	  <tr>
+	    <td colspan="3"><img src="image/naviedit_inquiry_sttl_reply.gif" width="27" height="13" alt="回答"></td>
+	  </tr>
+	  <tr>
+	    <td colspan="3"><img src="image/spacer.gif" width="1" height="15"></td>
+	  </tr>
+	  <tr>
+	    <td class="char120" valign="top" width="100">送信先アドレス</td>
+	    <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+	    <td width="445">
+	      <input type="text"  name="contact_mail_addr" value="<{$editform->contact_mail_addr|escape}>"  size="12" style="width:180px;" >
+	    </td>
+	  </tr>
+	  <tr>
+	    <td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+	  </tr>
+	  <tr>
+	    <td class="char120" valign="top">SUBJECT</td>
+	    <td><img src="image/spacer.gif" width="10" height="1"></td>
+	    <td>
+	      <input type="text"  name="contact_subject" value="<{$editform->contact_subject|escape}>"  size="12" style="width:180px;">
+	    </td>
+	  </tr>
+	  <tr>
+	    <td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+	  </tr>
+	  <tr>
+	    <td class="char120" valign="top">本文</td>
+	    <td><img src="image/spacer.gif" width="10" height="1"></td>
+	    <td>
+	      <textarea name="contact_content" rows="10" cols="50" style="width:360px;"><{$editform->contact_content|escape}></textarea>
+	    </td>
+	  </tr>
+	  <tr>
+	    <td colspan="3"><img src="image/spacer.gif" width="1" height="30"></td>
+	  </tr>
+	</table>
+	<table width="555" border="0" cellspacing="0" cellpadding="0">
+	  <tr>
+	    <td bgcolor="#5B94FD"><img src="image/spacer.gif" width="1" height="5"></td>
+	  </tr>
+	  <tr>
+	    <td><img src="image/spacer.gif" width="1" height="20"></td>
+	  </tr>
+	  <tr>
+	    <td>
+	      <table width="170" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+		  <td width="70">
+		    <input type="image" border="0" name="imageField2" src="image/naviedit_inquiry_btn_submit.gif" width="70" height="20" alt="送信する" >
+		  </td>
+		  <td width="20">　</td>
+		  <td width="80"><a href="index.php?module=Contact&amp;action=AdminList&amp;navipage_id=<{$hitobitoNaviPageInfo->getId()}>"><img src="image/naviedit_inquiry_btn_cancel.gif" width="80" height="20" alt="一覧に戻る" border="0"></a></td>
+		</tr>
+	      </table>
+	    </td>
+	  </tr>
+	  <tr>
+	    <td><img src="image/spacer.gif" width="1" height="10"></td>
+	  </tr>
+	</table>
+      </form>
+    </td>
+    <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+  </tr>
+</table>

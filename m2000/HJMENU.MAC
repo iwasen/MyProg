@@ -1,0 +1,318 @@
+		title	(( hjmenu ))
+;
+;		meganet 2000	hojo-gyomu-gamen.
+;		86-01-31	xxxxxxxxx electronic inc.
+;				kajibayashi nobuichi. 1960-10-31
+
+				.z80
+
+		include		SUBR.INC
+		.list
+		include		MEMORY.INC
+		.list
+
+		public		hjmenu
+
+		extrn		chr_disp
+		extrn		csr_off
+		extrn		csr_on
+		extrn		date_dsp
+		extrn		reverse
+		extrn		gdmsg
+		extrn		sosain
+		extrn		hchkak
+		extrn		torito
+		extrn		mginit
+		extrn		prm_yy
+		extrn		ramwrt
+
+	cr	equ	0dh
+	esc	equ	1bh
+	beep	equ	0eb39h
+
+	dend	equ	0efh
+	endkey	equ	0f7h
+
+;****************************************
+;*
+;*	#hjmenu#
+;*			hojo-gyomu-gamen
+;*					86-01-31
+;*					kajibayashi.
+;****************************************
+
+hjmenu:
+		call	csr_off		; cursor off
+
+		call	date_dsp	; nen gatsu hi write
+
+		ld	hl,m_hmenu
+		call	kmsg		; hojo-gyomu menu write
+
+		call	sosain		; sosain no. keyin
+		ret	c
+
+	hg10:
+		ld	a,1
+		ld	(gflag),a
+
+	hg20:
+		xor	a
+		ld	(gaid),a
+
+	hg30:
+		ld	bc,hrev_lng	; reverse length
+		ld	hl,hrev_adr	; reverse address
+		call	rev_dsp		; guide reverse
+
+	hg40:
+		call	gaid_dsp	; guide write
+
+		call	csr_on		; cursor on
+	
+		call	xconin
+		
+		cp	endkey		; shuryo key
+		ret	z
+		cp	dend
+		ret	z
+
+		cp	cr		; enter
+		jr	z,hg60
+
+		cp	'1'		; keyin error
+		jr	c,hg50
+
+		cp	'4'		; keyin error
+		jr	nc,hg50
+
+		ld	bc,hrev_lng	; reverse length
+		ld	hl,hrev_adr	; reverse address
+		call	rev_dsp		; guide reverse
+
+		sub	'0'
+		ld	(gflag),a
+		jr	hg20
+
+	hg50:
+		ld	bc,1601h
+		call	beep		; beep
+
+		ld	a,1
+		ld	(gaid),a
+		jr	hg40
+
+	hg60:
+		ld	a,(gflag)
+		dec	a		; keyin 1
+		jr	nz,hg70
+		call	hchkak		; hatchu-kakunin
+
+		ld	hl,m_hkak
+		call	hg90
+
+		jp	hjmenu
+
+	hg70:
+		dec	a		; keyin 2
+		jr	nz,hg80
+		call	torito		; torxxxkisaki-toroku
+
+		call	ramwrt		; ram disk write
+
+		ld	hl,m_trto
+		call	hg90
+		
+		jp	hjmenu
+
+	hg80:
+		call	mginit		; shoki-settei
+
+		call	ramwrt		; ram disk write
+
+		ld	hl,m_mint
+		call	hg90
+
+		jp	hjmenu
+
+	hg90:
+		ld	(c_spsave),sp
+		ld	a,(r_tanto)
+		cp	'1'
+		ret	z		; sosain nashi
+
+		call	k16lmsg		; gyomu title write
+
+		ld	hl,prm_yy
+		ld	b,8
+		call	k8lmsg		; date write
+		
+		ld	hl,sosa
+		call	k8lmsg		; sosain write
+
+		ld	hl,c_tanto
+		ld	b,5
+		call	k8list		; sosain-me write
+
+		ld	de,CR
+		call	klist		; cr output
+
+		ld	hl,aster
+		call	k8lmsg		; aster write
+
+		ret
+
+;****************************************
+;*
+;*	#gaid_dsp#
+;*		in	(gaid) = 0	ok
+;*			       = 1	not
+;*					86-01-31
+;*					kajibayashi.
+;****************************************
+
+gaid_dsp:
+		push	af
+		push	hl
+
+		ld	a,(gaid)
+		or	a
+		jr	nz,gd10
+
+		ld	hl,g_okgaid 
+		call	gdmsg		; ok guide write
+		jr	gd20
+
+	gd10:
+		ld	hl,g_nogaid
+		call	gdmsg
+
+	gd20:
+		ld	a,(gflag)
+		add	a,30h		; hex->ascii
+		ld	(m_gyono+6),a
+		ld	hl,m_gyono
+		call	chr_disp	; gyomu no. write
+
+		pop	hl
+		pop	af
+
+		ret
+
+;****************************************
+;*
+;*	#rev_dsp#
+;*			in	a = conin data
+;*				(gflag) = old select gyomu
+;*					86-01-31
+;*					kajibayashi.
+;****************************************
+
+rev_dsp:
+		push	af
+		push	hl
+
+		ld	a,(gflag)	; old reverse data
+		dec	a
+		ld	l,a
+		ld	h,0
+		add	hl,bc
+		ld	b,(hl)
+		add	a,a
+		ld	e,a
+		ld	d,0
+		pop	hl
+
+		add	hl,de
+		call	reverse		; line reverse
+
+		pop	af
+
+		ret
+
+k8list:
+		ld	d,0
+		ld	e,(hl)
+		inc	hl
+		push	hl
+
+		push	bc
+		
+		call	klist
+
+		pop	bc
+
+		pop	hl
+
+		djnz	k8list
+
+		ret
+
+;****************************************
+;*
+;*	data
+;*
+;****************************************
+
+m_hmenu:
+		dw	0,201h
+		dw	95e2h,8f95h,8bc6h,96b1h,9149h,91f0h
+
+		dw	0,103h
+		dw	8250h,94adh,928dh,8a6dh,9446h
+
+		dw	0,105h
+		dw	8251h,8ee6h,88f8h,90e6h,936fh,985eh
+
+		dw	0,107h
+		dw	8252h,8f89h,8afah,90ddh,92e8h,-1
+
+m_hkak:
+		dw	94adh,928dh,8a6dh,9446h,8140h,8140h,8140h
+		dw	8140h,8140h,8140h,8140h,8140h,-1
+
+m_trto:
+		dw	8ee6h,88f8h,90e6h,936fh,985eh,8140h,8140h
+		dw	8140h,8140h,8140h,8140h,8140h,-1
+
+m_mint:
+		dw	8f89h,8afah,90ddh,92e8h,8140h,8140h,8140h
+		dw	8140h,8140h,8140h,8140h,8140h,-1
+
+hrev_adr:
+		dw	103h
+		dw	105h
+		dw	107h
+
+hrev_lng:
+		db	10,12,10
+
+g_okgaid:
+		db	23,15
+		db	0b7h,0deh,0aeh,0b3h,0d1h,4eh,6fh,0a6h,0b2h,0dah
+		db	0c3h,0e1h,0a6h,0b5h,0bdh,-1
+
+g_nogaid:
+		db	23,15
+		db	0b7h,0deh,0aeh,0b3h,0d1h,4eh,6fh,0b6h,0deh,0c1h
+		db	0b6h,0deh,0b2h,0cfh,0bdh,-1
+
+m_gyono:
+		db	esc,'0'
+		db	esc,"=",' '+7,' '+39
+		db	'1'
+		db	esc,'2'
+		db	esc,"1",-1
+
+sosa:		db	20h,0bfh,0b3h,0bbh,0b2h,0ddh,20h,20h,20h,20h,-1
+
+aster:		db	'****************************************',CR,-1
+
+gaid:		db	0
+
+gflag:		db	0
+
+gkeyin:		db	0
+
+
+		end	hjmenu

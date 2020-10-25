@@ -1,0 +1,42 @@
+		<!-- 最新記事リストここから -->
+			<table width="200" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFCC33">
+				<tr>
+					<td colspan="3"><img src="image/menu_navi_latest_ttl.gif" width="200" height="28" alt="ナビ記事カテゴリー"></td>
+				</tr>
+				<tr>
+					<td width="3"><img src="image/spacer.gif" width="3" height="1"></td>
+					<td width="194" bgcolor="#FFFFFF">
+						<table width="194" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td width="8"><img src="image/spacer.gif" width="8" height="1"></td>
+								<td width="178"><img src="image/spacer.gif" width="178" height="1"></td>
+								<td width="8"><img src="image/spacer.gif" width="8" height="1"></td>
+							</tr>
+							<tr>
+								<td colspan="3"><img src="image/spacer.gif" width="1" height="3"></td>
+							</tr>
+							<!-- ループここから -->
+							<{foreach item=item from=$blog_new_stories}>
+							<tr>
+								<td><img src="image/spacer.gif" width="8" height="1"></td>
+								<td class="char120"><a href="index.php?module=Blog&amp;action=ViewStory&amp;blog_story_id=<{$item->getId()}>"  class="cblack"><{$item->getTitle()|escape}></a></td>
+								<td><img src="image/spacer.gif" width="8" height="1"></td>
+							</tr>
+							<tr>
+								<td colspan="3" align="center"><img src="image/menu_navi_latest_split178.gif" width="178" height="1" vspace="3"></td>
+							</tr>
+							<{/foreach}>
+							<!-- ループここまで -->
+
+						</table>
+					</td>
+					<td width="3"><img src="image/spacer.gif" width="3" height="1"></td>
+				</tr>
+  <tr>
+    <td colspan="3"><img src="image/m_memu_foot.gif" width="200" height="6"></td>
+  </tr>
+  <tr bgcolor="#FFFFFF">
+    <td colspan="3"><img src="image/spacer.gif" width="1" height="5"></td>
+  </tr>
+</table>
+			<!-- 最新記事ここまで -->

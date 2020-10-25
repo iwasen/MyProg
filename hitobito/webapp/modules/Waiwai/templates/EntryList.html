@@ -1,0 +1,130 @@
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+	<tr bgcolor="#F5E156">
+		<td colspan="3"><img src="image/member_ttl_waiwai.gif" width="199" height="25" hspace="10" alt="ワイワイ会議の確認 / 解除"></td>
+	</tr>
+	<tr>
+		<td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+		<td width="555">
+			<table width="555" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="15"></td>
+				</tr>
+				<tr>
+					<td class="char120">登録済みのワイワイ会議一覧を参照することができます。<br>
+						各ワイワイ会議でのニックネームを一括更新することができます。<br>
+					「解除」ボタンを押すことにより登録を解除することができます。</td>
+				</tr>
+<{if $waiwai_msg}>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td class="error"><{$waiwai_msg|escape}></td>
+				</tr>
+<{/if}>
+<{if $waiwai_error_ary}>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td class="error"><{foreach from=$waiwai_error_ary item=waiwai_error}>・<{$waiwai_error|escape}><br><{/foreach}></td>
+				</tr>
+<{/if}>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="25"></td>
+				</tr>
+			</table>
+			<form name="waiwai_entry_list_form" method="post">
+			<table width="555" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td colspan="7" bgcolor="#666666"><img src="image/spacer.gif" width="555" height="1"></td>
+				</tr>
+				<tr>
+					<td align="center" bgcolor="#E6F2FF" width="35" class="char110">
+						<p class="ind0804">No.</p>
+					</td>
+					<td align="center" class="char110" width="132">
+						<p class="ind0804">ワイワイ会議室名</p>
+					</td>
+					<td align="center" bgcolor="#E6F2FF" width="75" class="char110">
+						<p class="ind0804">ナビ</p>
+					</td>
+					<td align="center" width="110" class="char110">
+						<p class="ind0804">ニックネーム</p>
+					</td>
+					<td align="center" bgcolor="#E6F2FF" width="80" class="char110">
+						<p class="ind0804"><nobr>最終<wbr>投稿日</nobr></p>
+					</td>
+					<td align="center" width="45" class="char110" nowrap>
+						<p class="ind0804">状態</p>
+					</td>
+					<td align="center" bgcolor="#E6F2FF" width="78">　</td>
+				</tr>
+				<tr>
+					<td colspan="7" bgcolor="#666666"><img src="image/spacer.gif" width="555" height="1"></td>
+				</tr>
+<{foreach from=$waiwai_entry_list_ary item=waiwai_entry_list name=waiwai_entry_name}>
+				<tr>
+					<td bgcolor="#E6F2FF" align="center" class="char110">
+						<p class="ind0804"><{$waiwai_entry_list.seq_no}></p>
+					</td>
+					<td class="char110">
+						<p class="ind0804"><a href="?module=Waiwai&action=Browse&navipage_id=<{$waiwai_entry_list.navi_page_id}>"><{$waiwai_entry_list.room_name|escape}></a></p>
+					</td>
+					<td bgcolor="#E6F2FF">
+						<table border="0" cellspacing="4" cellpadding="0">
+							<tr>
+								<td><img src="<{$waiwai_entry_list.image_url}>" width="30" height="30"></td>
+								<td nowrap class="char110"><a href="?module=Navi&action=ShowNaviPage&navipage_id=<{$waiwai_entry_list.navi_page_id}>"><{$waiwai_entry_list.navi_name|escape}></a></td>
+							</tr>
+						</table>
+					</td>
+					<td align="center">
+						<input type="text" name="waiwai_nickname[<{$waiwai_entry_list.room_id}>]" size="12" style="width:94px;" value="<{$waiwai_entry_list.nickname|escape}>">
+					</td>
+					<td align="center" bgcolor="#E6F2FF" class="char110">
+						<p class="ind0804"><{$waiwai_entry_list.last_date}></p>
+					</td>
+					<td align="center" class="char110">
+						<p class="ind0804"><{if $waiwai_entry_list.mail_send_flag}>配信<{else}>停止<{/if}></p>
+					</td>
+					<td align="center" bgcolor="#E6F2FF">
+<{if $waiwai_entry_list.mail_send_flag}>
+						<input type="image" border="0" name="waiwai_stop_<{$waiwai_entry_list.room_id}>_btn" src="image/naviedit_waiwai_m_btn_off.gif" width="65" height="20" alt="停止">
+<{else}>
+						<input type="image" border="0" name="waiwai_send_<{$waiwai_entry_list.room_id}>_btn" src="image/naviedit_waiwai_m_btn_on.gif" width="65" height="20" alt="配信">
+<{/if}>
+						<br><input type="image" border="0" name="waiwai_cancel_<{$waiwai_entry_list.room_id}>_btn" src="image/menu_navi_mail_btn_rls.gif" width="65" height="20" alt="解除" onclick="return confirm('ワイワイ会議を解除します。よろしいですか？')">
+					</td>
+				</tr>
+<{if !$smarty.foreach.waiwai_entry_name.last}>
+				<tr>
+					<td colspan="7"><img src="image/member_split555.gif" width="555" height="1"></td>
+				</tr>
+<{/if}>
+<{/foreach}>
+				<tr>
+					<td colspan="7" bgcolor="#666666"><img src="image/spacer.gif" width="555" height="1"></td>
+				</tr>
+				<tr>
+					<td colspan="7"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td>　</td>
+					<td>　</td>
+					<td>
+						<input type="image" border="0" name="waiwai_nickname_update_btn" src="image/member_waiwai_btn_reflesh.gif" width="110" height="20" alt="ニックネーム更新">
+					</td>
+					<td>　</td>
+					<td>　</td>
+				</tr>
+				<tr>
+					<td colspan="7"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+			</table>
+			</form>
+		</td>
+		<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+	</tr>
+</table>

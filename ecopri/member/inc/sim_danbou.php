@@ -1,0 +1,332 @@
+<?
+/******************************************************
+' System :Eco-footprint ²ñ°÷¥Ú¡¼¥¸
+' Content:ÃÈË¼¥¨¥³¿ÇÃÇ½èÍý¥¯¥é¥¹
+'******************************************************/
+
+// ÃÈË¼¥¨¥³¿ÇÃÇ¥¯¥é¥¹
+class sim_danbou {
+	// ¸½¾õ¥Ç¡¼¥¿
+	var $main_heater;		// ¼çÃÈË¼µ¡´ï
+	var $sub_heater;		// Êä½õÃÈË¼µ¡´ï
+	var $temperature;		// ÀßÄê²¹ÅÙ[¡î]
+	var $main_hours1;		// ¼çÃÈË¼»ÈÍÑ»þ´Ö¡Êµ¯¾²¡ÁÃë¡Ë[h]
+	var $main_hours2;		// ¼çÃÈË¼»ÈÍÑ»þ´Ö¡ÊÃë¡ÁÍ¼Êý¡Ë[h]
+	var $main_hours3;		// ¼çÃÈË¼»ÈÍÑ»þ´Ö¡ÊÍ¼Êý°Ê¹ß¡Ë[h]
+	var $sub_hours1;		// Êä½õÃÈË¼»ÈÍÑ»þ´Ö¡Êµ¯¾²¡ÁÃë¡Ë[h]
+	var $sub_hours2;		// Êä½õÃÈË¼»ÈÍÑ»þ´Ö¡ÊÃë¡ÁÍ¼Êý¡Ë[h]
+	var $sub_hours3;		// Êä½õÃÈË¼»ÈÍÑ»þ´Ö¡ÊÍ¼Êý°Ê¹ß¡Ë[h]
+
+	// ¿ÇÃÇ¥Ç¡¼¥¿
+	var $main_heater_e;	// ¼çÃÈË¼µ¡´ï
+	var $sub_heater_e;	// Êä½õÃÈË¼µ¡´ï
+	var $temperature_e;	// ÀßÄê²¹ÅÙ[¡î]
+	var $main_hours1_e;	// ¼çÃÈË¼»ÈÍÑ»þ´Ö¡Êµ¯¾²¡ÁÃë¡Ë[h]
+	var $main_hours2_e;	// ¼çÃÈË¼»ÈÍÑ»þ´Ö¡ÊÃë¡ÁÍ¼Êý¡Ë[h]
+	var $main_hours3_e;	// ¼çÃÈË¼»ÈÍÑ»þ´Ö¡ÊÍ¼Êý°Ê¹ß¡Ë[h]
+	var $sub_hours1_e;	// Êä½õÃÈË¼»ÈÍÑ»þ´Ö¡Êµ¯¾²¡ÁÃë¡Ë[h]
+	var $sub_hours2_e;	// Êä½õÃÈË¼»ÈÍÑ»þ´Ö¡ÊÃë¡ÁÍ¼Êý¡Ë[h]
+	var $sub_hours3_e;	// Êä½õÃÈË¼»ÈÍÑ»þ´Ö¡ÊÍ¼Êý°Ê¹ß¡Ë[h]
+
+	// ¥³¥ó¥¹¥È¥é¥¯¥¿
+	function sim_danbou() {
+		// ¥¯¥é¥¹ÊÑ¿ô¤ò½é´ü²½
+		$this->main_heater = 1;
+		$this->sub_heater = 8;
+		$this->temperature = 18;
+		$this->main_hours1 = 0;
+		$this->main_hours2 = 0;
+		$this->main_hours3 = 0;
+		$this->sub_hours1 = 0;
+		$this->sub_hours2 = 0;
+		$this->sub_hours3 = 0;
+
+		$this->main_heater_e = 1;
+		$this->sub_heater_e = 8;
+		$this->temperature_e = 18;
+		$this->main_hours1_e = 0;
+		$this->main_hours2_e = 0;
+		$this->main_hours3_e = 0;
+		$this->sub_hours1_e = 0;
+		$this->sub_hours2_e = 0;
+		$this->sub_hours3_e = 0;
+	}
+
+	function simulation(&$energy, &$cost, &$co2, &$msg) {
+		// ·×»»¥¯¥é¥¹À¸À®
+		$cal = new cal_danbou;
+
+		// ¸½¾õ¥Ç¡¼¥¿¤Ç·×»»
+		$cal->main_heater = $this->main_heater;
+		$cal->sub_heater = $this->sub_heater;
+		$cal->temperature = $this->temperature;
+		$cal->main_hours1 = $this->main_hours1;
+		$cal->main_hours2 = $this->main_hours2;
+		$cal->main_hours3 = $this->main_hours3;
+		$cal->sub_hours1 = $this->sub_hours1;
+		$cal->sub_hours2 = $this->sub_hours2;
+		$cal->sub_hours3 = $this->sub_hours3;
+		$cal->calculation($calorie_c, $cost_c, $co2_c);
+
+		// ¿ÇÃÇ¾ò·ï¤Ç·×»»
+		$cal->main_heater = $this->main_heater_e;
+		$cal->sub_heater = $this->sub_heater_e;
+		$cal->temperature = $this->temperature_e;
+		$cal->main_hours1 = $this->main_hours1_e;
+		$cal->main_hours2 = $this->main_hours2_e;
+		$cal->main_hours3 = $this->main_hours3_e;
+		$cal->sub_hours1 = $this->sub_hours1_e;
+		$cal->sub_hours2 = $this->sub_hours2_e;
+		$cal->sub_hours3 = $this->sub_hours3_e;
+		$cal->calculation($calorie_e, $cost_e, $co2_e);
+
+		// º¹Ê¬¤ò·×»»
+		$energy = $calorie_c - $calorie_e;
+		$cost = $cost_c - $cost_e;
+		$co2 = $co2_c - $co2_e;
+
+		// ¼çÃÈË¼¼ïÎàÊÑ¹¹¥Á¥§¥Ã¥¯
+		if ($this->main_heater != $this->main_heater_e)
+			$msg_ary[] = '¼çÃÈË¼¤ò' . danbou_shurui_name($this->main_heater_e) . '¤ËÂØ¤¨';
+
+		// ¼çÃÈË¼»ÈÍÑ»þ´ÖÊÑ¹¹¥Á¥§¥Ã¥¯
+		$hours = $this->main_hours1 + $this->main_hours2 + $this->main_hours3;
+		$hours_e = $this->main_hours1_e + $this->main_hours2_e + $this->main_hours3_e;
+		if ($hours > $hours_e)
+			$msg_ary[] = '¼çÃÈË¼¤Î»ÈÍÑ»þ´Ö¤ò' . ($hours - $hours_e) . '»þ´ÖÃ»¤¯¤·';
+		if ($hours_e > $hours)
+			$msg_ary[] = '¼çÃÈË¼¤Î»ÈÍÑ»þ´Ö¤ò' . ($hours_e - $hours) . '»þ´ÖÄ¹¤¯¤·';
+
+		// Êä½õÃÈË¼¼ïÎàÊÑ¹¹¥Á¥§¥Ã¥¯
+		if ($this->sub_heater != $this->sub_heater_e)
+			$msg_ary[] = 'Êä½õÃÈË¼¤ò' . danbou_shurui_name($this->sub_heater_e) . '¤ËÂØ¤¨';
+
+		// Êä½õÃÈË¼»ÈÍÑ»þ´ÖÊÑ¹¹¥Á¥§¥Ã¥¯
+		$hours = $this->sub_hours1 + $this->sub_hours2 + $this->sub_hours3;
+		$hours_e = $this->sub_hours1_e + $this->sub_hours2_e + $this->sub_hours3_e;
+		if ($hours > $hours_e)
+			$msg_ary[] = 'Êä½õÃÈË¼¤Î»ÈÍÑ»þ´Ö¤ò' . ($hours - $hours_e) . '»þ´ÖÃ»¤¯¤·';
+		if ($hours_e > $hours)
+			$msg_ary[] = 'Êä½õÃÈË¼¤Î»ÈÍÑ»þ´Ö¤ò' . ($hours_e - $hours) . '»þ´ÖÄ¹¤¯¤·';
+
+		// ÀßÄê²¹ÅÙÊÑ¹¹¥Á¥§¥Ã¥¯
+		if ($this->temperature > $this->temperature_e)
+			$msg_ary[] = 'ÃÈË¼¤ÎÀßÄê²¹ÅÙ¤ò' . ($this->temperature - $this->temperature_e) . '¡îÄã¤¯¤·';
+		elseif ($this->temperature < $this->temperature_e)
+			$msg_ary[] = 'ÃÈË¼¤ÎÀßÄê²¹ÅÙ¤ò' . ($this->temperature_e - $this->temperature) . '¡î¹â¤¯¤·';
+
+		// ¿ÇÃÇ¥á¥Ã¥»¡¼¥¸½ÐÎÏ
+		if ($msg_ary)
+			$msg = join('¡¢<br>', $msg_ary) . '¤Þ¤¹¡£';
+	}
+
+	// DB¤«¤é¿ÇÃÇ¥Ç¡¼¥¿¤òÆÉ¤ß¹þ¤ß
+	function read_eco_data() {
+		// ¥¨¥³¿ÇÃÇ¥Ç¡¼¥¿¤ò¼èÆÀ
+		$eco_data = read_sim_data(GANBA_DANBOU_LD);
+		if ($eco_data) {
+			// ¥¯¥é¥¹ÊÑ¿ô¤Ë¥»¥Ã¥È
+			$ary = explode(',', $eco_data);
+			$this->main_heater = array_shift($ary);
+			$this->sub_heater = array_shift($ary);
+			$this->temperature = array_shift($ary);
+			$this->main_hours1 = array_shift($ary);
+			$this->main_hours2 = array_shift($ary);
+			$this->main_hours3 = array_shift($ary);
+			$this->sub_hours1 = array_shift($ary);
+			$this->sub_hours2 = array_shift($ary);
+			$this->sub_hours3 = array_shift($ary);
+			$this->main_heater_e = array_shift($ary);
+			$this->sub_heater_e = array_shift($ary);
+			$this->temperature_e = array_shift($ary);
+			$this->main_hours1_e = array_shift($ary);
+			$this->main_hours2_e = array_shift($ary);
+			$this->main_hours3_e = array_shift($ary);
+			$this->sub_hours1_e = array_shift($ary);
+			$this->sub_hours2_e = array_shift($ary);
+			$this->sub_hours3_e = array_shift($ary);
+		}
+	}
+
+	// ¥¨¥³¿ÇÃÇ¥Ç¡¼¥¿¤ò¥«¥ó¥Þ¶èÀÚ¤ê¤Ç¼èÆÀ
+	function get_eco_data() {
+		// ¥¨¥³¿ÇÃÇ¥Ç¡¼¥¿¤ò¥«¥ó¥Þ¶èÀÚ¤ê¤ËÊÔ½¸
+		$ary[] = $this->main_heater;
+		$ary[] = $this->sub_heater;
+		$ary[] = $this->temperature;
+		$ary[] = $this->main_hours1;
+		$ary[] = $this->main_hours2;
+		$ary[] = $this->main_hours3;
+		$ary[] = $this->sub_hours1;
+		$ary[] = $this->sub_hours2;
+		$ary[] = $this->sub_hours3;
+		$ary[] = $this->main_heater_e;
+		$ary[] = $this->sub_heater_e;
+		$ary[] = $this->temperature_e;
+		$ary[] = $this->main_hours1_e;
+		$ary[] = $this->main_hours2_e;
+		$ary[] = $this->main_hours3_e;
+		$ary[] = $this->sub_hours1_e;
+		$ary[] = $this->sub_hours2_e;
+		$ary[] = $this->sub_hours3_e;
+
+		return join(',', $ary);
+	}
+}
+
+// ÃÈË¼·×»»¥¯¥é¥¹
+class cal_danbou {
+	var $main_heater;		// ¼çÃÈË¼µ¡´ï¥³¡¼¥É
+	var $sub_heater;		// Êä½õÃÈË¼µ¡´ï¥³¡¼¥É
+	var $temperature;		// ÀßÄê²¹ÅÙ[¡î]
+	var $main_hours1;		// ¼çÃÈË¼»ÈÍÑ»þ´Ö¡Êµ¯¾²¡ÁÃë¡Ë[h]
+	var $main_hours2;		// ¼çÃÈË¼»ÈÍÑ»þ´Ö¡ÊÃë¡ÁÍ¼Êý¡Ë[h]
+	var $main_hours3;		// ¼çÃÈË¼»ÈÍÑ»þ´Ö¡ÊÍ¼Êý°Ê¹ß¡Ë[h]
+	var $sub_hours1;		// Êä½õÃÈË¼»ÈÍÑ»þ´Ö¡Êµ¯¾²¡ÁÃë¡Ë[h]
+	var $sub_hours2;		// Êä½õÃÈË¼»ÈÍÑ»þ´Ö¡ÊÃë¡ÁÍ¼Êý¡Ë[h]
+	var $sub_hours3;		// Êä½õÃÈË¼»ÈÍÑ»þ´Ö¡ÊÍ¼Êý°Ê¹ß¡Ë[h]
+
+	// ¥«¥í¥ê¡¼¡¢ÎÁ¶â¡¢CO2·×»»
+	function calculation(&$calorie, &$cost, &$co2) {
+		// ¼çÃÈË¼µ¡´ï¾ðÊó¼èÆÀ
+		$this->get_heater_info($this->main_heater, $main_ave_power, $main_max_power, $main_ave_cop, $main_heat_type);
+
+		// »þ´ÖÂÓ¤´¤È¤ÎÇ®Éé²Ù¤ò¹ç·×
+		$th_load = $this->get_th_load(1, 1, $this->main_hours1, $this->temperature)
+						 + $this->get_th_load(1, 2, $this->main_hours2, $this->temperature)
+						 + $this->get_th_load(1, 3, $this->main_hours3, $this->temperature);
+
+		// Ç®³È»¶·¸¿ô
+		$main_th_diffusion = $this->get_th_diffusion($main_heat_type);
+
+		// ¼çÃÈË¼Î©¾å¤¬¤ê±¿Å¾Ê¬
+		$main_startup = $this->get_startup($main_max_power, $main_heat_type, $this->main_hours1, $this->main_hours2, $this->main_hours3);
+
+		// ¼çÃÈË¼¥Õ¥¡¥ó±¿Å¾Ê¬
+		$main_fan = $this->get_fan($main_heat_type, $this->main_hours1, $this->main_hours2, $this->main_hours3);
+
+		// ¼çÃÈË¼¥«¥í¥ê¡¼·×»»
+		$main_calorie = $th_load * $main_th_diffusion / $main_ave_cop + $main_startup + $main_fan;
+
+		// ¼çÃÈË¼ÎÁ¶â¡¢CO2·×»»
+		$this->get_cost_co2($this->main_heater, $main_calorie, $main_cost, $main_co2);
+
+		if ($this->sub_heater) {
+			// Êä½õÃÈË¼µ¡´ï¾ðÊó¼èÆÀ
+			$this->get_heater_info($this->sub_heater, $sub_ave_power, $sub_max_power, $sub_ave_cop, $sub_heat_type);
+
+			// Êä½õÃÈË¼Î©¾å¤¬¤ê±¿Å¾Ê¬
+			$sub_startup = $this->get_startup($sub_max_power, $sub_heat_type, $this->sub_hours1, $this->sub_hours2, $this->sub_hours3);
+
+			// Êä½õÃÈË¼¥Õ¥¡¥ó±¿Å¾Ê¬
+			$sub_fan = $this->get_fan($sub_heat_type, $this->sub_hours1, $this->sub_hours2, $this->sub_hours3);
+
+			// Êä½õÃÈË¼¥«¥í¥ê¡¼ÎÌ·×»»
+			$sub_calorie = $sub_ave_power * ($this->sub_hours1 + $this->sub_hours2 + $this->sub_hours3) * DAYS_DANBOU * KWH_MCAL + $sub_startup + $sub_fan;
+
+			// Êä½õÃÈË¼ÎÁ¶â¡¢CO2·×»»
+			$this->get_cost_co2($this->sub_heater, $sub_calorie, $sub_cost, $sub_co2);
+		}
+
+		// ¼çÃÈË¼¤ÈÊä½õÃÈË¼¤Î¹ç·×
+		$calorie = $main_calorie + $sub_calorie;
+		$cost = $main_cost + $sub_cost;
+		$co2 = $main_co2 + $sub_co2;
+	}
+
+	// Ç®Éé²Ù¼èÆÀ
+	function get_th_load($room_cd, $time_cd, $hours, $temp) {
+		$sql = "SELECT hl_calorie"
+				. " FROM m_heater_load"
+				. " WHERE hl_room_cd=$room_cd AND hl_time_cd=$time_cd AND hl_used_hours=$hours AND hl_temperature=$temp";
+		return db_fetch1($sql);
+	}
+
+	// ÃÈË¼µ¡´ï¾ðÊó¼èÆÀ
+	function get_heater_info($heater_cd, &$ave_power, &$max_power, &$ave_cop, &$heat_type) {
+		$sql = "SELECT hp_ave_power,hp_max_power,hp_ave_cop,hp_heat_type"
+				. " FROM m_heater_prm"
+				. " WHERE hp_heater_cd=$heater_cd AND hp_room_cd=1";
+		$result = db_exec($sql);
+		if (pg_numrows($result)) {
+			$fetch = pg_fetch_object($result, 0);
+			$ave_power = $fetch->hp_ave_power;
+			$max_power = $fetch->hp_max_power;
+			$ave_cop = $fetch->hp_ave_cop;
+			$heat_type = $fetch->hp_heat_type;
+		}
+	}
+
+	// Ç®³È»¶·¸¿ô¼èÆÀ
+	function get_th_diffusion($heat_type) {
+		switch ($heat_type) {
+		case 1:		// ²¹É÷·¿
+			return 1.2;
+		case 2:		// íÕ¼Í·¿
+			return 1.0;
+		}
+	}
+
+	// Î©¾å¤¬¤ê±¿Å¾Ê¬·×»»
+	function get_startup($max_power, $heat_type, $hours1, $hours2, $hours3) {
+		// Î©¾å¤¬¤ê»þ´Ö¼èÆÀ
+		$startup_time = $this->get_startup_time($heat_type, $hours1, $hours2, $hours3);
+
+		return $max_power * $startup_time * DAYS_DANBOU * KWH_MCAL;
+	}
+
+	// ¥Õ¥¡¥ó±¿Å¾Ê¬·×»»
+	function get_fan($heat_type, $hours1, $hours2, $hours3) {
+		// £±Æü¤Î»ÈÍÑ»þ´Ö
+		$total_hours = $hours1 + $hours2 + $hours3;
+
+		// Î©¾å¤¬¤ê»þ´Ö
+		$startup_time = $this->get_startup_time($heat_type, $hours1, $hours2, $hours3);
+
+		return 0.021 * ($total_hours + $startup_time) * DAYS_DANBOU * KWH_MCAL;
+	}
+
+	// Î©¾å¤¬¤ê»þ´Ö¼èÆÀ
+	function get_startup_time($heat_type, $hours1, $hours2, $hours3) {
+		// Î©¾å¤¬¤ê»þ´Ö¼èÆÀ
+		switch ($heat_type) {
+		case 1:		// ²¹É÷·¿
+			$time = 0.25;
+			break;
+		case 2:		// íÕ¼Í·¿
+			$time = 0.5;
+			break;
+		}
+
+		// ±¿Å¾²ó¿ô¼èÆÀ
+		$count = ($hours1 ? 1 : 0) + ($hours2 ? 1 : 0) + ($hours3 ? 1 : 0);
+
+		return $time * $count;
+	}
+
+	// ÎÁ¶â¤ÈCO2·×»»
+	function get_cost_co2($heater, $calorie, &$cost, &$co2) {
+		switch ($heater) {
+		case 1:		// ¥¨¥¢¥³¥óÉáµÚ·¿
+		case 2:		// ¥¨¥¢¥³¥ó¾Ê¥¨¥Í·¿
+		case 6:		// ¥Û¥Ã¥È¥«¡¼¥Ú¥Ã¥È
+		case 7:		// ¤³¤¿¤Ä
+			$kwh = ele_mcal_kwh($calorie);
+			$cost = cnv_ele_mny($kwh);
+			$co2 = cnv_ele_co2($kwh);
+			break;
+		case 3:		// ¥¬¥¹¥Õ¥¡¥ó¥Ò¡¼¥¿
+		case 5:		// ¥¬¥¹²¹¿å¼°¾²ÃÈË¼
+			$m3 = gas_mcal_m3($calorie);
+			$cost = cnv_gas_mny($m3);
+			$co2 = cnv_gas_co2($m3);
+			break;
+		case 4:		// ÀÐÌý¥Õ¥¡¥ó¥Ò¡¼¥¿
+			$l = oil_mcal_l($calorie);
+			$cost = cnv_oil_mny($l);
+			$co2 = cnv_oil_co2($l);
+			break;
+		}
+	}
+}
+?>

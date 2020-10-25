@@ -1,0 +1,67 @@
+	.z80
+
+	public	date_dsp
+	public	prm_yy
+
+	TIMDAT	equ	0eb4eh
+	ESC	equ	1bh
+
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; set default time.
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+date_dsp:
+	ld	c,0
+	ld	de,timfld
+	call	TIMDAT
+
+	ld	a,(timfld)
+	ld	hl,prm_yy
+	call	unpack
+
+	ld	a,(timfld+1)
+	ld	hl,prm_mm
+	call	unpack
+
+	ld	a,(timfld+2)
+	ld	hl,prm_dd
+	call	unpack
+
+	ld	hl,prm_dsp
+	call	chr_disp##
+	ret
+
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; unpack bcd to ascii.
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+unpack:
+	push	af
+	rrca
+	rrca
+	rrca
+	rrca
+	call	upck
+	inc	hl
+	pop	af
+upck:
+	and	0fh
+	or	'0'
+	ld	(hl),a
+	ret
+
+timfld:	db	0,0,0,0,0,0,0
+
+prm_dsp:
+	db	ESC,'=',20h,40h
+prm_yy::
+	db	'00/'
+prm_mm:
+	db	'00/'
+prm_dd:
+	db	'00',-1
+
+
+	end

@@ -1,0 +1,98 @@
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+  <tr bgcolor="#F5E156">
+    <td colspan="3"><img src="image/t_rss.gif" alt="RSS" width="113" height="14" hspace="10" vspace="6"></td>
+  </tr>
+  <tr>
+    <td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+    <td width="555">
+      <table border="0" cellspacing="0" cellpadding="0" width="100%">
+	<tr>
+	  <td class="char120"><img src="image/spacer.gif" width="1" height="15"></td>
+	</tr>
+	<tr>
+	  <td class="char120">RSSとは？</td>
+	</tr>
+	<tr>
+	  <td bgcolor="#F5E156" class="char120"><img src="image/spacer.gif" width="1" height="2"></td>
+	</tr>
+	<tr>
+	  <td class="char120"><img src="image/spacer.gif" width="1" height="15"></td>
+	</tr>
+	<tr>
+	  <td class="char120">
+	    <p>RSS( "RDF Site Summary" 又は "Really Simple Syndication" の略）とは、Webサイトのタイトル・アドレス・見出し・要約・更新時刻などのデータ送受信のために使われているXMLベースのフォーマットです。 最近では、大手のニュースサイトやBlogなどのコンテンツでRSSが利用されており、RSSリーダーと呼ばれるソフトウェアを活用することで、Webサイトの更新情報を効率的に収集できるのが特徴です。
+	    </p></td>
+	</tr>
+      </table>
+      <table border="0" cellspacing="0" cellpadding="0" width="100%">
+	<tr>
+	  <td class="char120"><img src="image/spacer.gif" width="1" height="15"></td>
+	</tr>
+	<tr>
+	  <td class="char120">ひとびと・netで提供しているRSS</td>
+	</tr>
+	<tr>
+	  <td bgcolor="#F5E156" class="char120"><img src="image/spacer.gif" width="1" height="2"></td>
+	</tr>
+	<tr>
+	  <td class="char120"><img src="image/spacer.gif" width="1" height="15"></td>
+	</tr>
+	<tr>
+	  <td class="char120">
+	    <p>ひとびと・netで、RSSの配信を行っているコンテンツを以下に紹介しています。オレンジ色のアイコンをクリックすることで、RSSファイルを閲覧できます。
+	    </p></td>
+	</tr>
+	<tr>
+	  <td class="char120"><img src="image/spacer.gif" width="1" height="10"></td>
+	</tr>
+      </table>
+
+      <table border="0" cellspacing="0" cellpadding="2" width="100%">
+	<!-- RSS -->
+	<tr>
+	  <td class="char120" bgcolor="#F5E156" rowspan="2" width="2"><img src="image/spacer.gif" width="1" height="1"></td>
+	  <td class="char120" rowspan="2" width="150">全体</td>
+	  <td class="char120" width="40"><a href="index.php?module=RSS&amp;action=Stories"><img src="image/new_blog_rss.gif" alt="RSS" width="36" height="13" border="0"></a></td>
+	  <td class="char120"><a href="index.php?module=RSS&amp;action=Stories">新着記事</a></td>
+	</tr>
+	<tr>
+	  <td class="char120"><a href="index.php?module=RSS&amp;action=NaviPage"><img src="image/new_blog_rss.gif" alt="RSS" width="36" height="13" border="0"></a></td>
+	  <td class="char120"><a href="index.php?module=RSS&amp;action=NaviPage">新着ナビページ</a></td>
+	</tr>
+	<{*
+	<tr>
+	  <td class="char120"><a href="#"><img src="image/new_blog_rss.gif" alt="RSS" width="36" height="13" border="0"></a></td>
+	  <td class="char120"><a href="#">ランキング</a></td>
+	</tr>
+  *}>
+	<tr>
+	  <td colspan="4"><img src="image/spacer.gif" width="1" height="5"></td>
+	</tr>
+	<!-- //RSS -->
+	<!-- RSS -->
+	<{foreach item=item from=$itemlist}>
+	<tr>
+	  <td class="char120" bgcolor="#F5E156" rowspan="2" width="2"><img src="image/spacer.gif" width="1" height="1"></td>
+	  <td class="char120" rowspan="2"><{$item->getTitle()|escape}></td>
+	  <td class="char120" width="40"><a href="index.php?module=RSS&amp;action=Stories&amp;category_id=<{$item->getId()}>"><img src="image/new_blog_rss.gif" alt="RSS" width="36" height="13" border="0"></a></td>
+	  <td class="char120"><a href="index.php?module=RSS&amp;action=Stories&amp;category_id=<{$item->getId()}>">新着記事</a></td>
+	</tr>
+	<tr>
+	  <td class="char120"><a href="index.php?module=RSS&amp;action=NaviPage&amp;category_id=<{$item->getId()}>"><img src="image/new_blog_rss.gif" alt="RSS" width="36" height="13" border="0"></a></td>
+	  <td class="char120"><a href="index.php?module=RSS&amp;action=NaviPage&amp;category_id=<{$item->getId()}>">新着ナビページ</a></td>
+	</tr>
+	<{*
+	<tr>
+	  <td class="char120"><a href="#"><img src="image/new_blog_rss.gif" alt="RSS" width="36" height="13" border="0"></a></td>
+	  <td class="char120"><a href="#">ランキング</a></td>
+	</tr>
+  *}>
+	<tr>
+	  <td colspan="4"><img src="image/spacer.gif" width="1" height="5"></td>
+	</tr>
+	<!-- //RSS -->
+	<{/foreach}>
+      </table>
+    </td>
+  </tr>
+</table>

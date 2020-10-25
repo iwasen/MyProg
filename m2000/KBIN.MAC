@@ -1,0 +1,564 @@
+		title	kbin
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	module name	: key or barcode input routine
+;	creation date	: 86.01.11
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+		.z80
+
+		public	kbin
+
+		extrn	brcd
+		extrn	xconin
+
+    	CONOUT  equ	0eb0ch
+	BEEP	equ	0eb39h
+;
+	RET	equ	0dh	; return key code
+	RIGHT	equ	1ch	; right allow key code
+	LEFT	equ	1dh	; left allow key code
+	ESC	equ	1bh	; esc
+	ZERO2	equ	0feh	; 2 zero
+
+;
+;	kbin --- key or barcode input
+;
+;	--- interface ---
+;	<input>
+;		register A	= farst/continue flag
+;					0 : first
+;					1 : continue
+;		register HL	= parameter address
+;	<output>
+;		register A	= input character (0 : barcode input)
+;		register HL	= barcode buffer address
+;		register B	= keyin flag
+;					0 : keyin nashi
+;					1 : keyin ari
+;
+
+kbin:
+		call	kbin1		; key in
+		push	af
+		ld	a,(kbflag)	; set keyin flag
+		ld	b,a		;
+		ld	a,(p_csr)
+		sub	(ix+1)
+		ld	c,a
+		pop	af
+		ret
+
+kbin1:
+		push	hl
+		pop	ix
+		or	a		; first ?
+		jp	nz,kbin10	; * no
+
+		ld	(kbflag),a	; reset keyin flag
+		ld	(pflag),a	; reset shuusuuten input flag
+
+		ld	l,(ix)		; get cursor position (line)
+		ld	h,(ix+1)	; get cursor position (column)
+		ld	(c_csr+2),hl	; set current cursor position
+		ld	a,h
+		ld	(p_csr),a
+
+		ld	l,(ix+4)	; get buffer address (low)
+		ld	h,(ix+5)	; get buffer address (high)
+		ld	(c_pos),hl	; set current buffer position
+kbin10:
+		ld	hl,c_csr	;
+		call	chr_disp	; cursor move
+kbin20:
+		ld	a,(zflag)
+		or	a
+		jr	nz,kb_zero
+
+		push	ix
+		call	brcd		; read barcode
+		pop	ix
+		jr	c,kbin30	; * error or kb input
+
+		push	hl
+		call	chk_cod		; check barcode
+		pop	hl
+		or	a
+		ret	z		; return if barcode input
+		jr	kbin40
+
+kbin30:
+		cp	-1		; barcode read error ?
+		jr	nz,kbin20	; * yes
+
+		push	ix
+		call	xconin		; kb input
+		pop	ix
+
+; kb data check
+kbin40:
+		bit	7,(ix+3)
+		ret	nz
+
+		cp	RET		; return key ?
+		jp	z,kb_ret	; * yes
+		cp	RIGHT		; right allow ?
+		jr	z,kb_right	; * yes
+		cp	LEFT		; left allow ?
+		jp	z,kb_left	; * yes
+		cp	' '		; control key ?
+		jp	c,kb_err	; * yes
+		cp	'.'		; '.' ?
+		jp	z,kb_pt		; * yes
+		cp	'+'		; '+' ?
+		jp	z,kb_plas	; * yes
+		cp	'-'		; '-' ?
+		jp	z,kb_minus	; * yes
+		cp	'0'		; special key ?
+		jp	c,kb_spc	; * yes
+		cp	'9'+1		; ten key ?
+		jp	c,kb_ten	; * yes
+		cp	ZERO2
+		jr	z,kb_zero10
+		cp	0e0h		; item key ?
+		ret	nc		; * yes
+kb_spc:
+		cp	' '
+		jr	nz,kb_spc10
+kb_spc05:
+		bit	6,(ix+3)
+		jp	nz,kb_ten20
+kb_spc10:
+		bit	0,(ix+3)
+		ret	z		; return if input error
+
+		bit	0,(ix+6)
+		jp	nz,kb_ten20
+
+		cp	5bh
+		ret	z
+		cp	5dh
+		jr	c,kb_ten20
+		cp	0a1h
+		ret	c
+		jr	kb_ten20
+;
+kb_zero:
+		sub	a
+		jr	kb_zero20
+kb_zero10:
+		ld	a,1
+kb_zero20:
+		ld	(zflag),a
+		ld	a,'0'
+		jp	kb_ten
+;	right cursor key
+kb_right:
+		ld	a,(c_csr+3)	; get cursor position
+		inc	a
+		cp	(ix+2)		; end of field ?
+		jp	z,kb_err	; * yes
+
+		cp	(ix+6)		; shousuuten ichi ?
+		jr	nz,kb_ri10	; * no
+		ld	(c_csr+3),a
+		push	af
+		ld	hl,c_csr
+		call	chr_disp
+		ld	c,'.'
+		call	CONOUT
+		pop	af
+		inc	a
+kb_ri10:
+		ld	(c_csr+3),a	; set cursor position
+		ld	hl,(c_pos)	; get buffer pointer
+		inc	hl
+		ld	(c_pos),hl	; set buffer pointer
+		jp	kbin10
+;	left cursor key
+kb_left:
+		ld	a,(c_csr+3)	; get cursor position
+		cp	(ix+1)		; first column ?
+		jp	z,kb_err	; * yes
+
+		dec	a
+		cp	(ix+6)		; shousuuten ichi ?
+		jr	nz,kb_le10	; * no
+		dec	a
+kb_le10:
+		ld	(c_csr+3),a	; set cursor position
+		ld	hl,(c_pos)	; get buffer pointer
+		dec	hl
+		ld	(c_pos),hl	; set buffer pointer
+		jp	kbin10
+;	ten key
+kb_ten:
+		push	af
+		bit	2,(ix+3)	; +,- ari ?
+		jr	z,kb_ten10	; * no
+
+		ld	a,(c_csr+3)	;
+		cp	(ix+1)		; 1st column ?
+		jr	nz,kb_ten10	; * no
+
+		inc	a		;
+		ld	(c_csr+3),a	;
+		ld	c,'+'		;
+		ld	hl,(c_pos)	; set "+" code
+		ld	(hl),c		;
+		inc	hl		;
+		ld	(c_pos),hl	;
+		call	CONOUT
+kb_ten10:
+		pop	af
+kb_ten20:
+		ld	hl,(c_pos)	; get buffer pointer
+		ld	(hl),a		; set input character
+		ld	c,a
+		bit	5,(ix+3)	; password ?
+		jr	z,kb_ten30	; * no
+		ld	c,'*'
+kb_ten30:
+		call	CONOUT		; character display
+
+		ld	a,1		; keyin flag on
+		ld	(kbflag),a	;
+
+		ld	a,(c_csr+3)	; get cursor position
+		inc	a
+		ld	(p_csr),a
+		cp	(ix+2)		; end of field ?
+		jp	z,kbin10	; * yes
+
+		jp	kb_right	; cursor right
+;	shousuu ten
+kb_pt:
+		bit	0,(ix+3)
+		jp	nz,kb_spc
+
+		ld	a,(c_csr+3)	; get curcor position
+		sub	(ix+6)
+		jr	c,kb_pt10
+
+		cp	1
+		jp	nz,kb_err
+		jr	kb_pt30
+kb_pt10:
+		bit	2,(ix+3)	; +,- ari ?
+		jr	z,kb_pt20	; * no
+
+		ld	a,(c_csr+3)	;
+		cp	(ix+1)		; 1st column ?
+		jr	nz,kb_pt20	; * no
+
+		ld	hl,(c_pos)	;
+		ld	(hl),'+'	; set "+" code
+		inc	a		;
+		ld	(c_csr+3),a	;
+kb_pt20:
+		ld	a,(ix+2)	;
+		push	af		;
+		ld	a,(ix+6)	;
+		ld	(ix+2),a	; seisuubu right shift
+		call	r_sift		;
+		call	data_dsp	;
+		pop	af		;
+		ld	(ix+2),a	;
+
+		ld	(c_pos),hl	; set buffer pointer
+		ld	a,(ix+6)	; set cursor position
+		ld	(c_csr+3),a	;
+		ld	c,'.'
+		call	CONOUT
+		ld	hl,c_csr+3
+		inc	(hl)
+kb_pt30:
+		ld	a,1
+		ld	(pflag),a
+		jp	kbin10
+;	return key
+kb_ret:
+		ld	a,(p_csr)	; get current cursor position
+		cp	(ix+2)		; last column ?
+		jr	z,kb_ret10	; * yes
+
+		cp	(ix+1)		; first column ?
+		jr	z,kb_ret10	; * yes
+
+		bit	1,(ix+3)	; shousuuten ari ?
+		jr	nz,kb_ret20	; * yes
+
+		bit	3,(ix+3)	; hidari zume ?
+		jr	z,kb_ret15	; * yes
+
+		call	r_sift
+kb_ret10:
+		ld	a,RET
+		ret
+kb_ret15:
+		bit	0,(ix+3)	; eisuuji ?
+		jr	nz,kb_ret10	; * yes
+		bit	4,(ix+3)
+		jr	nz,kb_ret10
+
+		ld	b,(ix+1)
+		ld	l,(ix+4)
+		ld	h,(ix+5)
+kb_ret16:
+		ld	a,(hl)
+		cp	' '
+		jr	nz,kb_ret17
+		ld	(hl),'0'
+kb_ret17:
+		inc	hl
+		inc	b
+		ld	a,b
+		cp	(ix+2)
+		jr	nz,kb_ret16
+		jr	kb_ret10
+kb_ret20:
+		ld	a,(pflag)	;
+		or	a		; pflag on ?
+		jr	nz,kb_ret30	; * yes
+
+		ld	l,(ix+4)
+		ld	h,(ix+5)
+		ld	a,(hl)
+		cp	' '
+		jr	z,kb_ret22
+		ld	a,'0'
+kb_ret22:
+		dec	(ix+2)
+		call	r_sift1
+		inc	(ix+2)
+
+		ld	a,(ix+1)
+		ld	l,(ix+4)
+		ld	h,(ix+5)
+		bit	2,(ix+3)
+		jr	z,kb_ret25
+		inc	a
+		inc	hl
+kb_ret25:
+		inc	a
+		cp	(ix+6)
+		jr	z,kb_ret10
+		ld	a,(hl)
+		cp	'0'
+		jr	nz,kb_ret10
+		ld	(hl),' '
+		jr	kb_ret10
+kb_ret30:
+		ld	l,(ix+4)
+		ld	h,(ix+5)
+		ld	a,(ix+6)
+		sub	(ix+1)
+		ld	c,a
+		ld	b,0
+		add	hl,bc
+		ld	b,(ix+6)
+		inc	b
+		jr	kb_ret16
+;	+,- key
+kb_plas:
+kb_minus:
+		bit	0,(ix+3)	; eisuuji ?
+		jp	nz,kb_ten20	; * yes
+
+		bit	2,(ix+3)	; +,- ari ?
+		jr	z,kb_err1	; * no
+
+		ld	b,a
+		ld	a,(c_csr+3)
+		cp	(ix+1)		; first column ?
+		jr	nz,kb_err	; * yes
+		ld	a,b
+		jp	kb_ten20
+kb_err1:
+		cp	'-'
+		jr	nz,kb_err
+
+		bit	6,(ix+3)
+		jp	z,kb_err
+
+		bit	4,(ix+3)
+		jp	nz,kb_ten20
+;
+;	error shori
+kb_err:
+		ld	bc,1601h
+		call	BEEP
+		jp	kbin20
+;
+; check bar code & convert to character ;;;;;;;;;;;;;;;;;
+;
+chk_cod:
+		cp	8		; 8 length code ?
+		jr	nz,not_chr	; * no
+
+		ld	de,b_chr
+		push	hl
+		call	barchk		; character code ?
+		pop	hl
+		jr	z,chk_c05	; * yes
+
+		ld	de,b_plmi
+		call	barchk		; '+','-' code ?
+		jr	nz,not_chr	; * no
+
+		ld	a,(hl)
+		cp	'0'
+		ld	a,'+'
+		ret	z
+		ld	a,'-'
+		ret
+
+chk_c05:
+		ld	bc,4
+		add	hl,bc
+		ld	b,3
+		sub	a
+chk_c10:
+		add	a,a		;
+		ld	c,a		;
+		add	a,a		; a * 10 -> a
+		add	a,a		;
+		add	a,c		;
+		push	af
+		ld	a,(hl)
+		and	0fh
+		ld	c,a
+		pop	af
+		add	a,c
+		inc	hl
+		djnz	chk_c10
+		ret
+not_chr:
+		sub	a
+		ret
+;
+; right shift ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+r_sift:
+		ld	a,' '
+r_sift1:
+		push	af
+		ld	a,(c_csr+3)	; current cusor x
+		bit	1,(ix+3)
+		jr	z,r_sift00
+		cp	(ix+6)
+		jr	c,r_sift00
+		dec	a
+r_sift00:
+		ld	c,(ix+1)	; start cusor x
+		ld	l,(ix+4)
+		ld	h,(ix+5)	; hl=pointer to buffer
+		bit	2,(ix+3)
+		jr	z,r_sh02
+		inc	c
+		inc	hl
+r_sh02:
+		sub	c
+		jr	nz,r_sh03
+		ld	(hl),'0'
+		inc	a
+r_sh03:
+		dec	a
+		ld	b,a
+		ld	a,(ix+2)	; end cusor x
+		sub	c
+		dec	a
+		push	hl
+		ld	d,0
+		ld	e,a
+		add	hl,de
+		ex	(sp),hl
+		ld	e,b
+		add	hl,de
+		pop	de
+		ld	c,b
+		ld	b,0
+		inc	c
+		lddr
+		pop	af
+		or	a
+		push	de
+		ex	de,hl
+		sbc	hl,de
+		ld	b,l
+		pop	hl
+		ret	z
+r_sh10:		ld	(hl),a
+		dec	hl
+		djnz	r_sh10
+		ret
+
+; shift data display
+data_dsp:
+		ld	a,(ix+1)
+		ld	(c_csr+3),a
+		ld	hl,c_csr
+		call	chr_disp	; set cursor position
+
+		ld	a,(ix+2)	; end cussor x
+		sub	(ix+1)		; field length
+		ld	b,a
+		ld	l,(ix+4)
+		ld	h,(ix+5)	; head of field
+r_sh20:		ld	c,(hl)	
+		inc	hl
+		push	bc
+		push	hl
+		call	CONOUT
+		pop	hl
+		pop	bc
+		djnz	r_sh20
+		ret
+;
+;
+chr_disp:
+m10:		ld	a,(hl)
+		cp	-1
+		ret	z
+;
+		ld	c,a
+    		inc	hl
+		push	hl
+		call	CONOUT 		; display
+		pop	hl
+		jr	m10
+;
+;
+barchk:
+		ld	a,(de)
+		inc	de
+		ld	b,a
+barchk10:
+		ld	a,(de)
+		cp	(hl)
+		ret	nz
+		inc	de
+		inc	hl
+		djnz	barchk10
+		ret
+;
+; input control area ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+c_pos:		dw	0
+c_csr:		db	ESC
+		db	'='
+		db	0,0
+		db	ESC,'3',-1
+p_csr:		db	0
+
+b_chr:		db	4,'0900'
+b_plmi:		db	6,'041000'
+
+kbflag:		db	0
+
+pflag:		db	0
+
+zflag:		db	0
+
+		end

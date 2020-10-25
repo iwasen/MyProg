@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>メルマガ代理解除</TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600">
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="600" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="600" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+<TD><FONT color="#006600"><B>■メルマガ代理解除 </B> </FONT> <BR>
+<BR>
+<table width="550" border="0" cellpadding="3" cellspacing="1" ALIGN="CENTER">
+<tr>
+<td width="120" align="center" bgcolor="#006600" CLASS="text01">
+<DIV ALIGN="CENTER"><B><FONT color="#FFFFCC">メルマガID</FONT></B></DIV>
+</td>
+<td width="430" bgcolor="#006600" CLASS="text01">
+<DIV ALIGN="CENTER"><B><FONT color="#FFFFCC">メルマガ名</FONT></B></DIV>
+</td>
+</tr>
+<tr>
+<td width="120" align="center" bgcolor="#EAEAEA"><? echo $mag_id ?></td>
+<td width="430" bgcolor="#EAEAEA"><? echo $mag_nm ?></td>
+</tr>
+<tr>
+<td COLSPAN="2" align="center">
+<P CLASS="text01">下記メールアドレスの登録を解除しました。
+<P><BR>
+<? echo $mail_addr ?>
+</td>
+</tr>
+</table>
+<form name="form1"  action="./pub_index.php" method="post">
+<p><a href="JavaScript:document.form1.submit();"><br>
+
+&lt;&lt;発行者用管理ページへ戻る</a></p>
+<input type="hidden" value="<? echo $owner_pswd; ?>" name="owner_pswd_r">
+<input type="hidden" value="<? echo $publisher_id; ?>" name="publisher_id">
+</form>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD valign="top" colspan="3" align="right">
+<HR size="1" width="750">
+</TD>
+</TR>
+<TR>
+<TD valign="top" width="200"> <IMG src="../img/shim.gif" width="200" height="1">
+</TD>
+<TD valign="middle" align="center" width="350">
+<div align="center"><FONT size="2"><IMG src="../img/shim.gif" width="350" height="1"><BR>
+Copyright &copy; 2000 xxxxxxx, Co.,Ltd. All rights reserved. <br>
+<a href="http://www.xxxxxxx.co.jp/" target="mm_window"><img src="../img/logo_do.gif" width="50" height="45" border="0"></a>
+</FONT></div>
+</TD>
+<TD valign="top" width="200" align="right"><IMG src="../img/shim.gif" width="200" height="1"></TD>
+</TR>
+</TABLE>
+</body>
+</html>

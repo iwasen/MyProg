@@ -1,0 +1,121 @@
+<table width="555" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td colspan="3" class="char120"><img src="image/spacer.gif" width="1" height="20"></td>
+  </tr>
+  <tr>
+    <td colspan="3" class="char120">
+    </td>
+  </tr>
+  <tr>
+    <td class="char120">ナビアドレス</td>
+    <td><img src="image/spacer.gif" width="10" height="1"></td>
+    <td>
+      <{if $is_new_navi }>
+      <input type="text" name="member_navi_forward_id" value="<{$editform->member_navi_forward_id|escape}>" size="10" style="width:90px" />@navi.hitobito.net
+      <{else}>
+      <{$obj->getAttribute('nav_forward_id')}>@navi.hitobito.net
+      <div class="char120">
+      <{html_radios name="member_navi_forward_flag" options=$forward_options selected=$editform->member_navi_forward_flag separator="&nbsp;"}>
+      </div>
+      <{/if}>
+    </td>
+  </tr>
+  
+  <tr>
+    <td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+  </tr>
+  
+  <tr>
+    <td class="char120">名前</td>
+    <td><img src="image/spacer.gif" width="10" height="1"></td>
+    <td>
+      <input type="text" name="member_navi_name1" value="<{$editform->member_navi_name1|escape}>" size="10" style="width:90px;">
+      <input type="text" name="member_navi_name2" value="<{$editform->member_navi_name2|escape}>" size="10" style="width:90px;">
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+  </tr>
+  <tr>
+    <td class="char120">フリガナ</td>
+    <td><img src="image/spacer.gif" width="10" height="1"></td>
+    <td>
+      <input type="text" name="member_navi_name1_kana" value="<{$editform->member_navi_name1_kana|escape}>" size="10" style="width:90px;">
+      <input type="text" name="member_navi_name2_kana" value="<{$editform->member_navi_name2_kana|escape}>" size="10" style="width:90px;">
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+  </tr>
+  <tr>
+    <td class="char120">性別</td>
+    <td><img src="image/spacer.gif" width="10" height="1"></td>
+    <td class="char120">
+      <{html_radios name="member_navi_sex" options=$sex_radio checked=$editform->member_navi_sex}>
+    </tr>
+  <tr>
+    <td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+  </tr>
+  <tr>
+    <td class="char120">誕生日</td>
+    <td><img src="image/spacer.gif" width="10" height="1"></td>
+    <td>
+      <input type="text" name="member_navi_birth_year" value="<{$editform->member_navi_birth_year}>" size="4" maxlength="4">年　
+      <input type="text" name="member_navi_birth_month"  value="<{$editform->member_navi_birth_month}>"size="2" maxlength="2">月　
+      <input type="text" name="member_navi_birth_day"  value="<{$editform->member_navi_birth_day}>"size="2" maxlength="2">日　
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+  </tr>
+  <tr>
+    <td class="char120">電話番号</td>
+    <td><img src="image/spacer.gif" width="10" height="1"></td>
+    <td><input type="text" name="member_navi_tel" value="<{$editform->member_navi_tel|escape}>" size="20" maxlength="20"></td>
+  </tr>
+  <tr>
+    <td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+  </tr>
+  <tr>
+    <td class="char120">郵便番号</td>
+    <td><img src="image/spacer.gif" width="10" height="1"></td>
+    <td><input type="text" name="member_navi_zip1" value="<{$editform->member_navi_zip1|escape}>" size="3" maxlength="3">　-　<input type="text"  name="member_navi_zip2" value="<{$editform->member_navi_zip2|escape}>"  size="4" maxlength="4"></td>
+  </tr>
+  <tr>
+    <td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>				</tr>
+  <tr>
+    <td class="char120">都道府県</td>
+    <td><img src="image/spacer.gif" width="10" height="1"></td>
+    <td>
+      <{html_options name=member_navi_address1 options=$todofuken_options selected=$editform->member_navi_address1}>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>				</tr>
+  <tr>
+    <td class="char120">住所</td>
+    <td><img src="image/spacer.gif" width="10" height="1"></td>
+    <td>
+      <input name="member_navi_address2" type="text" id="member_navi_address2" style="width:280px;" value="<{$editform->member_navi_address2|escape}>" size="20">
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>				</tr>
+  <tr>
+    <td class="char120">マンション等</td>
+    <td><img src="image/spacer.gif" width="10" height="1"></td>
+    <td><input name="member_navi_address3" type="text" id="member_navi_address3" style="width:280px;" value="<{$editform->member_navi_address3|escape}>" size="20">
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>				</tr>
+  <tr>
+    <td class="char120">職業</td>
+    <td><img src="image/spacer.gif" width="10" height="1"></td>
+    <td>
+      <{html_options name=member_navi_shokugyo options=$shokugyo_options selected=$editform->member_navi_shokugyo}>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3"><img src="image/spacer.gif" width="1" height="20"></td>				</tr>
+</table>

@@ -1,0 +1,6 @@
+sample.exe : sample.obj gwlc.lib
+	$(CC) -mc -K sample.obj gwlc.lib
+
+sample.obj : sample.c
+	$(CC) -c -mc -K -osample sample.c
+

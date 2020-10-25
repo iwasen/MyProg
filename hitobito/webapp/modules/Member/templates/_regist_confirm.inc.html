@@ -1,0 +1,93 @@
+<table width="<{$_form_table_width|default:555}>" border="0" cellspacing="0" cellpadding="5">
+  <tr>
+    <td width="130" class="char120">メールアドレス</td>
+    <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+    <td width="415"><{$editform->member_mail|escape}></td>
+  </tr>
+  <tr>
+    <td colspan="3"><img src="image/spacer.gif" width="1" height="6"></td>
+  </tr>
+  <tr>
+    <td class="char120">パスワード</td>
+    <td><img src="image/spacer.gif" width="10" height="1"></td>
+    <td>********</td>
+  </tr>
+  <tr>
+    <td colspan="3"><img src="image/spacer.gif" width="1" height="6"></td>
+  </tr>
+  <tr>
+    <td class="char120" nowrap>パスワード（確認用）</td>
+    <td><img src="image/spacer.gif" width="10" height="1"></td>
+    <td>********</td>
+  </tr>
+  <{* 2006/6 add st *}>
+  <tr>
+    <td colspan=3><img src="image/member_split555.gif" width="<{$_form_table_width|default:555}>" height="1"></td>
+  </tr>
+  <tr>
+    <td width="130" class="char120">お名前</td>
+    <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+    <td width="415"><{$editform->member_name|escape}></td>
+  </tr>
+  <tr>
+    <td width="130" class="char120">ふりがな</td>
+    <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+    <td width="415"><{$editform->member_name_kana|escape}></td>
+  </tr>
+
+  <tr>
+    <td width="130" class="char120">性別</td>
+    <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+    <td width="415"> <{$editform->getViewSex()}>
+    </td>
+  </tr>
+  <tr>
+    <td width="130" class="char120">生年月日</td>
+    <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+    <td width="415">
+      <{if $editform->member_birth_year && $editform->member_birth_month && $editform->member_birth_day}>
+      <{$editform->member_birth_year}> 年 <{$editform->member_birth_month|escape}>月 <{$editform->member_birth_day|escape}>日
+      <{/if}>
+    </td>
+  </tr>
+  <tr>
+    <td width="130" class="char120">郵便番号</td>
+    <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+    <td width="415">
+      <{if $editform->member_zip_cd1 && $editform->member_zip_cd2}>
+      <{$editform->member_zip_cd1|escape}>-<{$editform->member_zip_cd2|escape}>
+      <{/if}>
+    </td>
+  </tr>
+  <tr>
+    <td width="130" class="char120">都道府県</td>
+    <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+    <td width="415">
+      <{$editform->getViewAddress1()}>
+    </td>
+  </tr>
+  <tr>
+    <td width="130" class="char120">都道府県以下</td>
+    <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+    <td width="415">
+      <{$editform->member_address2|escape}>
+    </td>
+  </tr>
+  <tr>
+    <td width="130" class="char120">電話番号</td>
+    <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+    <td width="415">
+      <{if strlen($editform->member_tel1) && strlen($editform->member_tel2) && strlen($editform->member_tel3) }>
+      <{$editform->member_tel1|escape}>-<{$editform->member_tel2|escape}>-<{$editform->member_tel3|escape}>
+      <{/if}>
+    </td>
+  </tr>
+  <tr>
+    <td width="130" class="char120">自己紹介</td>
+    <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+    <td width="415">
+      <{$editform->member_self_introduction|escape|nl2br}>
+    </td>
+  </tr>
+</table>
+<{* 2006/6 add en *}>

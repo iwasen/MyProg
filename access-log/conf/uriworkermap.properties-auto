@@ -1,0 +1,15 @@
+###################################################################
+# Auto generated configuration. Dated: Wed Mar 05 21:03:15 JST 2003
+###################################################################
+
+#
+# Default worker to be used through our mappings
+#
+default.worker=ajp12
+
+#
+# Root context mounts for Tomcat
+#
+/servlet/*=$(default.worker)
+/*.jsp=$(default.worker)
+

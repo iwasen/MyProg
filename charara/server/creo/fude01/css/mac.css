@@ -1,0 +1,204 @@
+
+
+/* ブラウザチェック用 */
+.check	{
+font-size:12px;
+color:blue;
+}
+
+
+/* ページ全体をピッタリブラウザ枠にくっつける */
+body	{
+	padding:0pt;
+	margin:0pt;
+}
+
+
+/* リンク設定 */
+
+A:link{
+	color: #339999;
+}
+A:visited{
+	color: #336666;
+}
+A:active{
+	color: #ffe6c8;
+}
+A:hover{
+	color: #ffe6c8;
+}
+
+
+/* 第2リンク設定 */
+
+A.ex2:link{
+	color: #cccccc;
+}
+A.ex2:visited{
+	color: #666666;
+}
+A.ex2:active{
+	color: #ffffff;
+}
+A.ex2:hover{
+	color: #ffffff;
+}
+
+/* 第3リンク設定 */
+
+A.ex3:link{
+	color: #6699cc;
+}
+A.ex3:visited{
+	color: #336699;
+}
+A.ex3:active{
+	color: #c3e1ec;
+}
+A.ex3:hover{
+	color: #c3e1ec;
+}
+
+/* 第4リンク設定 */
+
+A.ex4:link{
+	color: #FFFFFF;
+}
+A.ex4:visited{
+	color: #666666;
+}
+A.ex4:active{
+	color: #ffffff;
+}
+A.ex4:hover{
+	color: #a4b8ff;
+}
+
+/* 第5リンク設定 */
+
+A.ex5:link{
+	color: #660000;
+}
+A.ex5:visited{
+	color: #65564a;
+}
+A.ex5:active{
+	color: #ea5e00;
+}
+A.ex5:hover{
+	color: #ea5e00;
+}
+
+/* 第6リンク設定 */
+
+A.ex6:link{
+	color: #ffffff;
+}
+A.ex6:visited{
+	color: #660000;
+}
+A.ex6:active{
+	color: #ffffff;
+}
+A.ex6:hover{
+	color: #ffcc66;
+}
+
+/* font */
+
+.xx-small	{
+	font-size:10px;
+	font-family:Osaka;
+}
+
+.x-small	{
+	font-size:10px;
+	font-family:Osaka;
+}
+
+.small	{
+	font-size:10px;
+	font-family:Osaka;
+}
+
+.medium	{
+	font-size:12px;
+	font-family:Osaka;
+}
+
+.large	{
+	font-size:14px;
+	font-family:Osaka;
+}
+
+.x-large	{
+	font-size:14px;
+	font-family:Osaka;
+}
+
+.xx-large	{
+	font-size:18px;
+	font-family:Osaka;
+}
+
+.xxx-large	{
+	font-size:18px;
+	font-family:Osaka;
+}
+
+/* 行間 */
+
+.gyokan100	{
+line-height: 100%;
+}
+
+.gyokan105	{
+line-height: 105%;
+}
+
+.gyokan110	{
+line-height: 110%;
+}
+
+.gyokan125	{
+line-height: 125%;
+}
+
+.gyokan150	{
+line-height: 150%;
+}
+
+.gyokan200	{
+line-height: 200%;
+}
+
+
+}
+
+.gyokan110	{
+line-height: 110%;
+}
+
+.gyokan125	{
+line-height: 125%;
+}
+
+.gyokan150	{
+line-height: 150%;
+}
+
+.gyokan180	{
+line-height: 180%;
+}
+
+.gyokan200	{
+line-height: 200%;
+}
+
+/*   文字装飾   */
+.copy	{
+	font-size:11px;
+	color: #999999;
+	font-family:Osaka;
+}

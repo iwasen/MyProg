@@ -1,0 +1,38 @@
+###################################################################
+# Auto generated configuration. Dated: Wed Mar 05 21:03:15 JST 2003
+###################################################################
+
+#
+# You will need to merge the content of this file with your 
+# regular obj.conf and then restart (=stop + start) your Netscape server. 
+#
+
+#
+# Loading the redirector into your server
+#
+
+Init fn="load-modules" funcs="jk_init,jk_service" shlib="<put full path to the redirector here>"
+Init fn="jk_init" worker_file="D:/KSCI/nec/NEC/conf/workers.properties" log_level="debug" log_file="D:/KSCI/nec/NEC/logs/netscape_redirect.log"
+
+<Object name=default>
+#
+# Redirecting the root context requests to tomcat.
+#
+NameTrans fn="assign-name" from="/servlet/*" name="servlet"
+NameTrans fn="assign-name" from="/*.jsp" name="servlet"
+
+#######################################################
+# Protecting the web inf directory.
+#######################################################
+PathCheck fn="deny-existence" path="*/WEB-INF/*"
+
+</Object>
+
+#######################################################
+# New object to execute your servlet requests.
+#######################################################
+<Object name=servlet>
+ObjectType fn=force-type type=text/html
+Service fn="jk_service" worker="ajp12" path="/*"
+</Object>
+

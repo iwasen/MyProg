@@ -1,0 +1,91 @@
+<table width="585" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td><img src="image/navi_mm_off.gif" width="126" height="14" alt="メールマガジン解除"></td>
+	</tr>
+	<tr>
+		<td><img src="image/spacer.gif" width="1" height="4"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#FB8A00"><img src="image/spacer.gif" width="585" height="1"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#F5DD52" align="center" class="char120">
+		<p class="ind1003">登録の解除を承りました。</p></td>
+	</tr>
+	<tr>
+		<td class="char120"><img src="image/spacer.gif" width="1" height="8"></td>
+	</tr>
+	<tr>
+		<td class="char120">
+			<table width="100%"  border="0" cellspacing="1" cellpadding="2">
+				<tr>
+					<td class="char120" bgcolor="#F5DD52">メールマガジン名</td>
+					<td bgcolor="#F5F5F5" class="char120"><{$mailmag_info.melmaga_name|escape}></td>
+				</tr>
+				<tr>
+					<td class="char120" bgcolor="#F5DD52">ナビページ名</td>
+					<td bgcolor="#F5F5F5" class="char120"><{$mailmag_info.navi_page_title|escape}></td>
+				</tr>
+				<tr>
+					<td class="char120" bgcolor="#F5DD52">ナビ名</td>
+					<td bgcolor="#F5F5F5" class="char120"><{$mailmag_info.navi_name|escape}></td>
+				</tr>
+				<tr>
+					<td class="char120" bgcolor="#F5DD52">登録メールアドレス</td>
+					<td bgcolor="#F5F5F5" class="char120"><{$mailmag_info.mail_addr|escape}></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="char120"><img src="image/spacer.gif" width="1" height="8"></td>
+	</tr>
+	<tr>
+		<td class="char120">メールマガジンの登録解除を完了いたしました。<br>ご愛読ありがとうございました。</td>
+	</tr>
+	<tr>
+		<td class="char120"><img src="image/spacer.gif" width="1" height="8"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#FB8A00"><img src="image/spacer.gif" width="1" height="2"></td>
+	</tr>
+	<tr>
+		<td class="char120"><img src="image/spacer.gif" width="1" height="8"></td>
+	</tr>
+	<tr>
+		<td class="char120">同じチャネルのナビが発行するメールマガジンはこちら。</td>
+	</tr>
+	<tr>
+		<td class="char120"><img src="image/spacer.gif" width="1" height="8"></td>
+	</tr>
+	<tr>
+		<td class="char120">
+
+			<table width="100%"  border="0" cellspacing="1" cellpadding="2">
+				<tr> 
+					<td class="char120" bgcolor="#F5DD52">メールマガジン名</td>
+					<td class="char120" bgcolor="#F5DD52">ナビページ名</td>
+					<td class="char120" bgcolor="#F5DD52">ナビ名</td>
+					<td class="char120" bgcolor="#F5DD52">申し込み</td>
+				</tr>
+<{foreach from=$mailmag_list_ary item=mailmag_list}>
+				<tr bgcolor="<{$mailmag_list.bgcolor}>"> 
+					<td class="char120"><{$mailmag_list.melmaga_name|escape}></td>
+					<td class="char120"><a href="?module=Navi&action=ShowNaviPage&navipage_id=<{$mailmag_list.navi_page_id}>"><{$mailmag_list.navi_page_title|escape}></a></td>
+					<td class="char120"><{$mailmag_list.navi_name|escape}></td>
+					<td class="char120">
+<{if $mailmag_list.member_id}>
+						購読済み
+<{else}>
+						<form method="post" action="?module=MailMag&action=Subscribe&navipage_id=<{$mailmag_list.navi_page_id}>">
+						<input type="image" border="0" name="mailmag_regist_btn" src="image/menu_navi_mail_btn_rgst.gif" width="64" height="20">
+						<input type="hidden" name="mailmag_mail_addr" value="<{$mailmag_info.mail_addr|escape}>">
+						</form>
+<{/if}>
+					</td>
+				</tr>
+<{/foreach}>
+			</table>
+		</td>
+	</tr>
+</table>

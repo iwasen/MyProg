@@ -1,0 +1,145 @@
+LIBRARY		PCSWIN
+
+DESCRIPTION	'PC-SERVE Windows DLL'
+
+EXETYPE		WINDOWS
+
+CODE		PRELOAD MOVEABLE DISCARDABLE
+DATA		PRELOAD FIXED SINGLE
+
+HEAPSIZE	1024
+
+EXPORTS
+	WEP					@1 RESIDENTNAME
+	PSConnect			@2
+	PSDisconnect		@3
+	PSGetErrCode		@4
+	PSDBOpen			@5
+	PSDBCreate			@6
+	PSDBClose			@7
+	PSDBCloseAll		@8
+	PSDBFlush			@9
+	PSDBFlushAll		@10
+	PSDBIndex			@11
+	PSDBIdxCreate		@12
+	PSDBChgIdx			@13
+	PSDBSearch			@14
+	PSDBSearch2			@15
+	PSDBCount			@16
+	PSDBStore			@17
+	PSDBUpdate			@18
+	PSDBDelete			@19
+	PSDBRecall			@20
+	PSDBDelete2			@21
+	PSDBDelete3			@22
+	PSDBTop				@23
+	PSDBBottom			@24
+	PSDBSet				@25
+	PSDBSkip			@26
+	PSDBReindex			@27
+	PSDBPack			@28
+	PSDBRead			@29
+	PSDBReadNext		@30
+	PSDBReadBack		@31
+	PSDBClrRecord		@32
+	PSDBGetRecord		@33
+	PSDBGetField		@34
+	PSDBSetField		@35
+	PSDBAddRecord		@36
+	PSDBUpdRecord		@37
+	PSDBCopy			@38
+	PSDBCheckDeleted	@39
+	PSDBSetDeleted		@40
+	PSDBLRecNo			@41
+	PSDBLRecCount		@42
+	PSDBLSet			@43
+	PSDBZip				@44
+	PSDBCheckUpdate		@45
+	PSDBLock			@46
+	PSDBUnlock			@47
+	PSDBRecCount		@48
+	PSDBBof				@49
+	PSDBDbf				@50
+	PSDBEof				@51
+	PSDBNField			@52
+	PSDBField			@53
+	PSDBNdx				@54
+	PSDBRecNo			@55
+	PSDBRecSize			@56
+	PSDBGetErrCode		@57
+	PSDBSetErrHandler	@58
+	PSRFOpen			@59
+	PSRFCreate			@60
+	PSRFClose			@61
+	PSRFRead			@62
+	PSRFWrite			@63
+	PSRFSeek			@64
+	PSRFLock			@65
+	PSRFUnlock			@66
+	PSRFNewSize			@67
+	PSCFCopy			@68
+	PSCFDelete			@69
+	PSCFFindFirst		@70
+	PSCFFindNext		@71
+	PSCFRename			@72
+	PSDBStoreUniq		@73
+	PSDBSearchLock		@74
+	PSDBDeleteKey		@75
+	PSDBReadKey			@76
+	PSDBSetFilter		@77
+	PSDBAsync			@78
+	PSDBReadVB			@79
+	PSDBSetReadField	@80
+	PSDBUpdateKey		@81
+	PSSNCreate			@82
+	PSSNGetNo			@83
+	PSSNDelete			@84
+	PSSNSetNo			@85
+	PSDBSetScramble		@86
+	PSCLGetWeek			@87
+	PSCLGetDate			@88
+	PSCLGetCalendar		@89
+	PSADStop			@90
+	PSADLogin			@91
+	PSADOpenFile		@92
+	PSExecCommand		@93
+	PSGetTime			@94
+	PSCFStat			@95
+	PSSetTCPIPPort		@96
+	PSExecSQL			@97
+	PSGetSQL			@98
+	PSADDebug			@99
+	PSDBUpdateOracle	@100
+	PSDBDeleteOracle	@101
+	PSDBSetPassword		@102
+	PSGetVolumeSerialNo	@103
+	PSSetAsyncMode		@104
+	PSGetAsyncStatus	@105
+	PSGWCheckUser		@106
+	PSGWCheckAccess		@107
+	PSGWSetPassword		@108
+	PSADGetStatistics	@109
+	PSADClrStatistics	@110
+	PSDBReadAll			@111
+	PSMSSendRequest		@112
+	PSMSSetMember		@113
+	PSMSDeleteMember	@114
+	PSMSGetMember		@115
+	PSGWCheckTerminal	@116
+	PSADDuplexStatus	@117
+	PSADDuplexSync		@118
+	PSADDuplexGetInfo	@119
+	PSADDuplexSetInfo	@120
+	PSADMultiSync		@121
+	PSCFCreateDirectory	@122
+	PSCFRemoveDirectory	@123
+	PSDBSelect			@124
+	PSDBPackIndex		@125
+	PSDBReadBinary		@126
+	PSDBWriteBinary		@127
+	PSDBGetBinarySize	@128
+	PSADGetIniData		@129
+	PSADSetIniData		@130
+	PSADGetLicenseData	@131
+	PSADSetLicenseData	@132
+	PSLogin				@133

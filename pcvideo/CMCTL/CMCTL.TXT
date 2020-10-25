@@ -1,0 +1,145 @@
+†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+@ƒJƒƒ‰ƒI[ƒvƒ“ˆ—
+†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+int	CMOpen(hostName, option, &handle)
+
+	char	*hostName;	ƒJƒƒ‰ƒ}ƒVƒ“‚ÌƒzƒXƒg–¼
+	int	option;		ƒIƒvƒVƒ‡ƒ“ƒtƒ‰ƒO
+	int	*handle		ƒJƒƒ‰§Œäƒnƒ“ƒhƒ‹iƒGƒ‰[Žž‚Í -1j
+
+	int	•Ô’l		ƒGƒ‰[ƒR[ƒh
+
+†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+@ƒJƒƒ‰ƒNƒ[ƒYˆ—
+†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+int	CMClose(handle)
+
+	int	handle;		ƒJƒƒ‰§Œäƒnƒ“ƒhƒ‹iƒGƒ‰[Žž‚Í -1j
+
+	int	•Ô’l		ƒGƒ‰[ƒR[ƒh
+
+†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+@ƒJƒƒ‰ƒRƒ“ƒgƒ[ƒ‹
+†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+int	CMControl(handle, command)
+
+	int	handle;		ƒJƒƒ‰§Œäƒnƒ“ƒhƒ‹iƒGƒ‰[Žž‚Í -1j
+	int	command;	ƒJƒƒ‰§ŒäƒRƒ}ƒ“ƒh
+
+	int	•Ô’l		ƒGƒ‰[ƒR[ƒh
+
+/*	command 	*/
+#define	CM_HOME_POSITION	0	// ƒz[ƒ€ƒ|ƒWƒVƒ‡ƒ“i’†‰›j‚ÉˆÚ“®
+#define	CM_PAN_RIGHT		1	// ‰EŒü‚«‚ÉˆÚ“®ŠJŽn
+#define	CM_PAN_LEFT		2	// ¶Œü‚«‚ÉˆÚ“®ŠJŽn
+#define	CM_TILT_UP		3	// ãŒü‚«‚ÉˆÚ“®ŠJŽn
+#define	CM_TILT_DOWN		4	// ‰ºŒü‚«‚ÉˆÚ“®ŠJŽn
+#define	CM_STOP			5	// ƒJƒƒ‰Œü‚«ˆÚ“®’âŽ~
+#define	CM_ZOOM_WIDE		6	// ƒƒCƒhiLŠpj‘¤‚ÖƒY[ƒ€ŠJŽn
+#define	CM_ZOOM_TELE		7	// ƒeƒŒi–]‰“j‘¤‚ÖƒY[ƒ€ŠJŽn
+#define	CM_ZOOM_STOP		8	// ƒY[ƒ€’âŽ~
+#define	CM_POWER_ON		9	// ƒpƒ[ƒIƒ“
+#define	CM_POWER_OFF		10	// ƒpƒ[ƒIƒt
+
+†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+@ƒJƒƒ‰ƒIƒvƒVƒ‡ƒ“î•ñŽæ“¾
+†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+int	CMGetInfo(handle, CAMERAINFO *cameraOpt)
+
+	int	handle;		ƒJƒƒ‰§Œäƒnƒ“ƒhƒ‹
+	CAMERAOPT cameraOpt;	ƒJƒƒ‰ƒIƒvƒVƒ‡ƒ“î•ñ
+
+	int	•Ô’l		ƒGƒ‰[ƒR[ƒh
+
+†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+@ƒJƒƒ‰ƒIƒvƒVƒ‡ƒ“î•ñÝ’è
+†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+int	CMSetInfo(handle, CAMERAINFO *cameraOpt)
+
+	int	handle;		ƒJƒƒ‰§Œäƒnƒ“ƒhƒ‹
+	CAMERAOPT cameraOpt;	ƒJƒƒ‰ƒIƒvƒVƒ‡ƒ“î•ñ
+
+	int	•Ô’l		ƒGƒ‰[ƒR[ƒh
+
+†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+@ƒvƒŠƒZƒbƒgî•ñŽæ“¾
+†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+int	CMGetPreset(handle, preset)
+
+	int	handle;		ƒJƒƒ‰§Œäƒnƒ“ƒhƒ‹
+	PRESET	*preset;	ƒvƒŠƒZƒbƒgî•ñ
+
+	int	•Ô’l		ƒGƒ‰[ƒR[ƒh
+
+†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+@ƒvƒŠƒZƒbƒgî•ñÝ’è
+†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+int	CMSetPreset(handle, preset, presetNo)
+
+	int	handle;		ƒJƒƒ‰§Œäƒnƒ“ƒhƒ‹
+	PRESET	*preset;	ƒvƒŠƒZƒbƒgî•ñ
+	int	preset;		ƒvƒŠƒZƒbƒg”Ô†i‚P`‚P‚Oj
+
+	int	•Ô’l		ƒGƒ‰[ƒR[ƒh
+
+†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+@ƒvƒŠƒZƒbƒgˆÊ’u‚ÉˆÚ“®
+†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+int	CMMovePreset(handle, presetNo)
+
+	int	handle;		ƒJƒƒ‰§Œäƒnƒ“ƒhƒ‹
+	int	preset;		ƒvƒŠƒZƒbƒg”Ô†i‚P`‚P‚Oj
+
+	int	•Ô’l		ƒGƒ‰[ƒR[ƒh
+
+†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+@Œ»ƒJƒƒ‰ˆÊ’uî•ñŽæ“¾
+†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+int	CMGetCameraPos(handle, cameraPos)
+
+	int	handle;		ƒJƒƒ‰§Œäƒnƒ“ƒhƒ‹
+	CAMERAPOS *cameraPos;	ƒJƒƒ‰ˆÊ’uî•ñ
+
+	int	•Ô’l		ƒGƒ‰[ƒR[ƒh
+
+†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+@ƒJƒƒ‰ˆÊ’uÝ’è
+†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+int	CMSetCameraPos(handle, cameraPos)
+
+	int	handle;		ƒJƒƒ‰§Œäƒnƒ“ƒhƒ‹
+	CAMERAPOS *cameraPos;	ƒJƒƒ‰ˆÊ’uî•ñ
+
+	int	•Ô’l		ƒGƒ‰[ƒR[ƒh
+
+
+†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+@ƒrƒfƒI‰æ‘œŽæ‚èž‚Ý
+†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+int	CMCaptureVideo(handle, captureMode, buf)
+
+	int	handle;		ƒJƒƒ‰§Œäƒnƒ“ƒhƒ‹
+	CAPTUREMODE *inf;	ƒrƒfƒIƒLƒƒƒvƒ`ƒƒƒ‚[ƒh
+	char	*buf;		ƒrƒfƒIƒf[ƒ^ƒoƒbƒtƒ@
+
+	int	•Ô’l		ƒGƒ‰[ƒR[ƒh
+
+
+†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+@ƒJƒƒ‰ƒRƒ“ƒgƒ[ƒ‹ƒƒbƒN
+†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+int	CMLockCameraControl(handle)
+
+	int	handle;		ƒJƒƒ‰§Œäƒnƒ“ƒhƒ‹
+
+	int	•Ô’l		ƒGƒ‰[ƒR[ƒh
+
+
+†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+@ƒJƒƒ‰ƒRƒ“ƒgƒ[ƒ‹ƒƒbƒN‰ðœ
+†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+int	CMUnlockCameraControl(handle)
+
+	int	handle;		ƒJƒƒ‰§Œäƒnƒ“ƒhƒ‹
+
+	int	•Ô’l		ƒGƒ‰[ƒR[ƒh

@@ -1,0 +1,93 @@
+<table width="555" border="0" cellspacing="0" cellpadding="0">
+								<tr>
+									<td><img src="image/spacer.gif" width="1" height="15"></td>
+								</tr>
+								<tr>
+									<td><img src="image/naviedit_inquiry_sttl_inquiry.gif" width="95" height="14" alt="問い合わせ詳細"></td>
+								</tr>
+								<tr>
+									
+								<td><img src="image/spacer.gif" width="1" height="15"></td>
+								</tr>
+							</table>
+							<table width="555" border="0" cellspacing="0" cellpadding="0">
+								<tr>
+									<td bgcolor="#CCCCCC" width="1"><img src="image/spacer.gif" width="1" height="1"></td>
+									<td bgcolor="#CCCCCC" width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+									<td bgcolor="#CCCCCC" width="523"><img src="image/spacer.gif" width="523" height="1"></td>
+									<td bgcolor="#CCCCCC" width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+									<td bgcolor="#CCCCCC" width="1"><img src="image/spacer.gif" width="1" height="1"></td>
+								</tr>
+								<tr>
+									<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+									<td><img src="image/spacer.gif" width="15" height="1"></td>
+									<td>
+										<table width="523" border="0" cellspacing="0" cellpadding="0">
+											<tr>
+												<td colspan="4"><img src="image/spacer.gif" width="1" height="15"></td>
+											</tr>
+											<tr>
+												
+											<td width="45" valign="top"><img src="<{if $inquiry->getAttribute('nvi_status') == 1}>image/naviedit_inquiry_yet.gif<{else}>image/naviedit_inquiry_done.gif<{/if}>" width="45" height="14"></td>
+												
+											<td width="350" class="char120" valign="top"><font color="#2C75FC"><{$inquiry->getAttribute('nvi_title')|escape}></font></td>
+												<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+												
+											<td width="118" align="right" class="char120" valign="top"><{$inquiry->getAttribute('nvi_date')|HNbDate:"m"}></td>
+											</tr>
+											<tr>
+												<td colspan="4"><img src="image/spacer.gif" width="1" height="8"></td>
+											</tr>
+										</table>
+										<table width="523" border="0" cellspacing="0" cellpadding="0">
+											<tr>
+												<td class="char120"><{$inquiry->getAttribute('nvi_name')|escape}></td>
+											</tr>
+											<tr>
+												<td><img src="image/spacer.gif" width="1" height="8"></td>
+											</tr>
+										</table>
+										<table width="523" border="0" cellspacing="0" cellpadding="8">
+											<tr>
+											<td bgcolor="#EEEEEE" class="char140">メールアドレス : <{$inquiry->getAttribute('nvi_mail_addr')|escape}></td>
+											</tr>
+										</table>
+										<table width="523" border="0" cellspacing="0" cellpadding="0">
+											<tr>
+												<td><img src="image/spacer.gif" width="1" height="15"></td>
+											</tr>
+										</table>
+									</td>
+									<td><img src="image/spacer.gif" width="15" height="1"></td>
+									<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+								</tr>
+								<tr>
+									<td colspan="5" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+								</tr>
+								<tr>
+									<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+									<td colspan="3"><img src="image/spacer.gif" width="1" height="15"></td>
+									<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+								</tr>
+								<tr>
+									<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+									<td><img src="image/spacer.gif" width="15" height="1"></td>
+									<td class="char130">詳細。<br>
+										<br>
+									  <{$inquiry->getAttribute('nvi_content')|escape|nl2br}>
+									</td>
+									  <td><img src="image/spacer.gif" width="15" height="1"></td>
+									<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+								</tr>
+								<tr>
+									<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+									<td colspan="3"><img src="image/spacer.gif" width="1" height="15"></td>
+									<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+								</tr>
+								<tr>
+									<td colspan="5" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+								</tr>
+								<tr>
+									<td colspan="5"><img src="image/spacer.gif" width="1" height="30"></td>
+								</tr>
+							</table>

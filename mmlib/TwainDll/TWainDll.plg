@@ -1,0 +1,56 @@
+<html>
+<body>
+<pre>
+<h1>ﾋﾞﾙﾄﾞのﾛｸﾞ</h1>
+<h3>
+--------------------構成: TWainDll - Win32 Release--------------------
+</h3>
+<h3>ｺﾏﾝﾄﾞ ﾗｲﾝ</h3>
+一時ﾌｧｲﾙ "C:\DOCUME~1\aizawa\LOCALS~1\Temp\RSP34.tmp" を作成し、次の内容を記録します
+[
+/nologo /Zp1 /MT /W3 /WX /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /Fp".\Release/TWainDll.pch" /YX /Fo".\Release/" /Fd".\Release/" /FD /c 
+"D:\AIZAWA\MMLib\TwainDll\DATA.C"
+"D:\AIZAWA\MMLib\TwainDll\DCA_ACQ.C"
+"D:\AIZAWA\MMLib\TwainDll\DCA_GLUE.C"
+"D:\AIZAWA\MMLib\TwainDll\MAIN.C"
+"D:\AIZAWA\MMLib\TwainDll\SCAN.C"
+"D:\AIZAWA\MMLib\TwainDll\TOOL.C"
+]
+Creating command line "cl.exe @C:\DOCUME~1\aizawa\LOCALS~1\Temp\RSP34.tmp" 
+一時ﾌｧｲﾙ "C:\DOCUME~1\aizawa\LOCALS~1\Temp\RSP35.tmp" を作成し、次の内容を記録します
+[
+kernel32.lib user32.lib /nologo /subsystem:windows /dll /incremental:no /pdb:".\Release/Scan32.pdb" /machine:I386 /def:".\SCAN.DEF" /out:".\Release\Scan32.dll" /implib:".\Release/Scan32.lib" 
+.\Release\DATA.OBJ
+.\Release\DCA_ACQ.OBJ
+.\Release\DCA_GLUE.OBJ
+.\Release\MAIN.OBJ
+.\Release\SCAN.OBJ
+.\Release\TOOL.OBJ
+]
+ｺﾏﾝﾄﾞ ﾗｲﾝ "link.exe @C:\DOCUME~1\aizawa\LOCALS~1\Temp\RSP35.tmp" の作成中
+一時ﾌｧｲﾙ "C:\DOCUME~1\aizawa\LOCALS~1\Temp\RSP36.bat" を作成し、次の内容を記録します
+[
+@echo off
+copy .\Release\Scan32.dll ..
+]
+ｺﾏﾝﾄﾞ ﾗｲﾝ "C:\DOCUME~1\aizawa\LOCALS~1\Temp\RSP36.bat" の作成中
+ｺﾝﾊﾟｲﾙ中...
+DATA.C
+DCA_ACQ.C
+DCA_GLUE.C
+MAIN.C
+SCAN.C
+TOOL.C
+ﾘﾝｸ中...
+   ﾗｲﾌﾞﾗﾘ .\Release/Scan32.lib とｵﾌﾞｼﾞｪｸﾄ .\Release/Scan32.exp を作成中
+<h3>ｱｳﾄﾌﾟｯﾄ ｳｨﾝﾄﾞｳ</h3>
+ｶｽﾀﾑ ﾋﾞﾙﾄﾞ ｽﾃｯﾌﾟを実行中 -  .\Release\Scan32.dll
+        1 個のファイルをコピーしました。
+
+
+
+<h3>結果</h3>
+Scan32.dll - ｴﾗｰ 0、警告 0
+</pre>
+</body>
+</html>

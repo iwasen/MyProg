@@ -1,0 +1,620 @@
+		title	(( torito ))
+;
+;		meganet 2000	torxxxkisaki-toroku-gamen
+;		86-02-01	xxxxxxxxx electronic inc.
+;				kajibayashi nobuichi. 1960-10-31
+
+				.z80
+
+		include		SUBR.INC
+		include		MEMORY.INC
+		.list
+
+		public		torito
+
+		extrn		chr_disp
+		extrn		csr_on
+		extrn		csr_off
+		extrn		reverse
+		extrn		gdmsg
+
+	cr	equ	0dh
+	esc	equ	1bh
+	beep	equ	0eb39h
+
+	dend	equ	0efh
+	endkey	equ	0f7h
+	up	equ	0edh
+	down	equ	0eeh
+	right	equ	0e6h
+	left	equ	0e5h
+
+;****************************************
+;*
+;*	#torito#
+;*					torxxxkisaki-toroku-gamen
+;*					86-02-01
+;*					kajibayashi.
+;****************************************
+
+torito:
+		call	csr_off		; cursor off
+
+		ld	hl,m_trto
+		call	chr_disp	; torxxxkisaki-toroku write
+
+	tt05:
+		ld	hl,tri_tbl	; torxxxkisaki display table
+		ld	de,23
+		ld	b,12
+
+	tt10:
+		call	tr_disp		; torxxxkisaki 1-ken write
+		add	hl,de
+		djnz	tt10
+
+		ld	hl,m_engaid
+		call	gdmsg		; end guide write
+
+	tt30:
+		ld	hl,tri_tbl	; torxxxkisaki display table
+
+	tt40:
+		ld	a,1
+		ld	(barflg),a
+		ld	bc,9
+		call	tr_chr 		; torxxxkisaki no. keyin
+
+		cp	0ffh		; all cancel ?
+		jr	z,tt05		; * yes
+
+		call	tr_disp
+
+		push	hl
+		ld	bc,13
+		add	hl,bc
+		ld	e,(hl)
+		inc	hl
+		ld	d,(hl)
+		ld	a,(de)
+		pop	hl
+
+		or	a		; torxxxkisaki no. nashi
+		jr	z,tt50
+
+		ld	a,(retkey)
+		cp	cr
+		jr	nz,tt60
+	tt45:
+		xor	a
+		ld	(barflg),a
+		ld	bc,16
+		call	tr_chr		; torxxxkisaki mei keyin
+
+		cp	0ffh		; all cancel ?
+		jr	z,tt05		; * yes
+
+		push	af
+		call	tr_disp
+		pop	af
+
+		cp	0fdh
+		jr	z,tt45
+
+	tt50:
+		ld	a,(retkey)
+		cp	cr		; cr key
+		jr	nz,tt60
+
+		ld	bc,23
+		add	hl,bc
+		ld	a,l
+		ld	bc,tri_tbe
+		cp	c		; table end
+		jr	nz,tt40
+
+		jr	tt30
+
+	tt60:
+		cp	endkey		; endkey
+		ret	z
+		cp	dend
+		ret	z
+		jr	tt40
+
+;****************************************
+;*
+;*	#tr_disp#
+;*					torxxxkisaki-display
+;*					86-02-01
+;*					kajibayashi.
+;****************************************
+
+tr_disp:
+		push	bc
+		push	de
+		push	hl
+
+		ld	a,(hl)
+		ld	(m_tori+4),a	; key label set
+		ld	bc,9
+		add	hl,bc
+		ld	a,(hl)
+		ld	(m_tori+2),a	; disp crm set
+		inc	hl
+		ld	a,(hl)
+		sub	2
+		ld	(m_tori+3),a	; dsp line set
+		ld	bc,3
+		add	hl,bc
+		ld	e,(hl)
+		inc	hl
+		ld	d,(hl)
+		ld	a,(de)
+		or	a
+		jr	z,tr_d10
+
+		ex	de,hl
+		ld	de,m_tori+6
+		ld	bc,8
+		ldir
+
+		ld	a,(hl)
+		or	a
+		jr	z,tr_d10
+
+		ld	bc,8
+		inc	de
+		ldir
+
+	tr_d10:
+		ld	hl,m_tori
+		call	chr_disp	; torxxxkisaki data write
+
+		ld	a,'_'
+		ld	hl,m_tori+6
+		ld	b,8
+
+	tr_d20:
+		ld	(hl),a
+		dec	b
+		jr	z,tr_d30
+
+		inc	hl
+		jr	tr_d20
+
+	tr_d30:
+		inc	hl
+		inc	hl
+		ld	b,8
+
+	tr_d40:
+		ld	(hl),a
+		dec	b
+		jr	z,tr_d50
+
+		inc	hl
+		jr	tr_d40
+
+	tr_d50:
+		pop	hl
+		pop	de
+		pop	bc
+
+		ret
+
+;****************************************
+;*
+;*	#tr_chr#
+;*					torxxxkisaki keyin
+;*					86-02-01
+;*					kajibayashi.
+;****************************************
+
+tr_chr:
+		push	hl
+
+		add	hl,bc
+		push	hl
+
+		ld	a,(hl)
+		ld	(m_trcs+4),a
+		inc	hl
+		ld	a,(hl)
+		ld	(m_trcs+5),a
+		ld	hl,m_trcs
+		call	chr_disp
+
+		pop	hl
+
+		xor	a
+
+	tr_c10:
+		push	hl
+
+		call	kbin		; keybord input
+
+		ld	(baradr),hl
+		pop	hl
+
+		cp	endkey		; endkey
+		jp	z,tr_c90
+		cp	dend
+		jp	z,tr_c90
+
+		cp	cr		; cr
+		jp	z,tr_c80
+
+		cp	up		; up
+		jr	z,tr_c20
+
+		cp	down		; down
+		jr	z,tr_c30
+
+		cp	right		; right
+		jr	z,tr_c40
+
+		cp	left		; left
+		jr	z,tr_c50
+
+		cp	0fdh		; cancel
+		jp	z,tr_c100
+
+		or	a		; barcode
+		jr	z,tr_c70
+
+		ld	a,(barflg)
+		or	a
+		jr	z,tr_err
+
+		push	hl
+		ld	hl,m_nogaid
+		call	gdmsg		; error guide write
+		pop	hl
+
+	tr_err:
+		push	hl
+		ld	bc,1601h
+		call	beep		; beep
+		pop	hl
+	tr_con:
+		ld	a,1
+		jr	tr_c10
+
+	tr_c20:
+		ld	bc,1
+		jr	tr_c60
+
+	tr_c30:
+		ld	bc,3
+		jr	tr_c60
+
+	tr_c40:
+		ld	b,a
+		ld	a,(barflg)
+		or	a
+		jr	z,tr_c401
+		push	hl
+		pop	ix
+		ld	e,(ix+4)
+		ld	d,(ix+5)
+		ld	a,(de)
+		or	a
+		ld	a,CR
+		jr	nz,tr_c80
+	tr_c401:
+		ld	a,b
+		ld	bc,5
+		jr	tr_c60
+
+	tr_c50:
+		ld	b,a
+		ld	a,(barflg)
+		or	a
+		ld	a,b
+		jr	z,tr_c80
+		ld	bc,7
+
+	tr_c60:
+		pop	ix
+		push	ix
+		add	ix,bc
+		ld	e,(ix)
+		ld	d,(ix+1)
+		inc	d
+		dec	d
+		jr	z,tr_err
+		pop	hl
+		push	de
+		jr	tr_c80
+	tr_c70:
+		ld	a,(barflg)
+		or	a
+		jr	z,tr_err
+
+		push	hl
+
+		ld	hl,(baradr)
+		ld	de,b_torxxxki
+		call	barchk
+
+		ld	(baradr),hl
+		pop	hl
+
+		jr	nz,tr_err
+
+		ld	bc,4
+		add	hl,bc
+		ld	e,(hl)
+		inc	hl
+		ld	d,(hl)
+		ld	hl,(baradr)
+		ld	bc,8
+		ldir
+
+		ld	a,cr
+
+	tr_c80:
+		push	af
+		ld	hl,m_engaid
+		call	gdmsg		; end guide write
+		pop	af
+
+	tr_c90:
+
+		ld	(retkey),a
+		pop	hl
+		ret
+
+	tr_c100:
+		push	hl
+		ld	hl,g_canc1
+		call	gdmsg
+		call	csr_on
+	can10:
+		call	xconin
+		cp	'1'
+		jr	z,can20
+		cp	'2'
+		jr	nz,can10
+	can20:
+		push	af
+		ld	hl,g_canc2
+		call	gdmsg
+		call	csr_on
+	can30:
+		call	xconin
+		cp	'1'
+		jr	z,can40
+		cp	'2'
+		jr	nz,can30
+		pop	af
+		ld	hl,m_engaid
+		call	gdmsg
+		pop	hl
+		jp	tr_con
+	can40:
+		pop	af
+		pop	hl
+		cp	'1'
+		jr	nz,can50
+
+		ld	de,4
+		add	hl,de
+		ld	e,(hl)
+		inc	hl
+		ld	d,(hl)
+		ld	hl,clrdata
+		ld	bc,16
+		ld	a,(barflg)
+		or	a
+		jr	nz,can45
+		ld	bc,8
+	can45:
+		ldir
+		ld	a,0fdh
+		jp	tr_c80
+	can50:
+		ld	de,R_TORxxxKI
+		ld	b,12
+	can60:
+		push	bc
+		ld	hl,clrdata
+		ld	bc,16
+		ldir
+		pop	bc
+		djnz	can60
+		ld	a,0ffh
+		jp	tr_c90
+
+;	bar code check
+;
+barchk::
+		ld	a,(de)
+		inc	de
+		ld	b,a
+barchk10:
+		ld	a,(de)
+		cp	(hl)
+		ret	nz
+		inc	de
+		inc	hl
+		djnz	barchk10
+		ret
+
+;****************************************
+;*
+;*	data
+;*
+;****************************************
+
+m_engaid:
+		db	25,15
+		db	0c4h,0b3h,0dbh,0b8h,0bah,0deh,0bch,0adh,0b3h
+		db	0d8h,0aeh,0b3h,0a6h,0b5h,0bdh,-1
+
+m_nogaid:
+		db	25,15
+		db	0bdh,0b3h,0bch,0deh,0b2h,0b6h,0deh,0b2h,20h
+		db	0cah,20h,0b4h,0d7h,0b0h,-1
+
+m_trto:
+		db	esc,"=",' ',' '
+		db	0b7h,0b0h,' ',' ',0bah,0b0h,0c4h,0deh
+		db	' ',' ',' ',' ',' ',0c5h,0cfh,0b4h
+		db	esc,"=",' ',' '+20
+		db	0b7h,0b0h,' ',' ',0bah,0b0h,0c4h,0deh
+		db	' ',' ',' ',' ',' ',0c5h,0cfh,0b4h,-1
+
+m_tori:
+		db	esc,"=",' ',' '+1
+		db	'@',' ','_','_','_','_','_','_','_','_'
+		db	' ','_','_','_','_','_','_','_','_',-1
+
+m_trcs:
+		db	esc,'2'
+		db	esc,"=",' '+1,' '+2
+		db	esc,'1',-1
+
+b_torxxxki:
+		db	4,'0400'
+
+retkey:		db	0
+
+barflg:		db	0
+
+baradr:		dw	0
+
+clrdata:	db	0,'0000000',0,'       '
+
+tri_tbl:
+		db	'@'
+		dw	0,tri_tbla,tri_tblp,0
+		db	' '+1,' '+2,' '+10,0
+		dw	r_torxxxki
+		db	0
+		db	' '+1,' '+11,' '+19,1
+		dw	r_torxxxki+8
+		db	1
+
+tri_tbla:
+		db	'A'
+		dw	tri_tbl,tri_tblb,tri_tblq,0
+		db	' '+2,' '+2,' '+10,0
+		dw	r_torxxxki+16
+		db	0
+		db	' '+2,' '+11,' '+19,1
+		dw	r_torxxxki+24
+		db	1
+
+tri_tblb:
+		db	'B'
+		dw	tri_tbla,tri_tblh,tri_tblr,0
+		db	' '+3,' '+2,' '+10,0
+		dw	r_torxxxki+32
+		db	0
+		db	' '+3,' '+11,' '+19,1
+		dw	r_torxxxki+40
+		db	1
+
+tri_tblh:
+		db	'H'
+		dw	tri_tblb,tri_tbli,tri_tblx,0
+		db	' '+4,' '+2,' '+10,0
+		dw	r_torxxxki+48
+		db	0
+		db	' '+4,' '+11,' '+19,1
+		dw	r_torxxxki+56
+		db	1
+
+tri_tbli:
+		db	'I'
+		dw	tri_tblh,tri_tblj,tri_tbly,0
+		db	' '+5,' '+2,' '+10,0
+		dw	r_torxxxki+64
+		db	0
+		db	' '+5,' '+11,' '+19,1
+		dw	r_torxxxki+72
+		db	1
+
+tri_tblj:
+		db	'J'
+		dw	tri_tbli,tri_tblp,tri_tblz,0
+		db	' '+6,' '+2,' '+10,0
+		dw	r_torxxxki+80
+		db	0
+		db	' '+6,' '+11,' '+19,1
+		dw	r_torxxxki+88
+		db	1
+
+tri_tblp:
+		db	'P'
+		dw	tri_tblj,tri_tblq,0,tri_tbl
+		db	' '+1,' '+22,' '+30,0
+		dw	r_torxxxki+96
+		db	0
+		db	' '+1,' '+31,' '+39,1
+		dw	r_torxxxki+104
+		db	1
+
+tri_tblq:
+		db	'Q'
+		dw	tri_tblp,tri_tblr,0,tri_tbla
+		db	' '+2,' '+22,' '+30,0
+		dw	r_torxxxki+112
+		db	0
+		db	' '+2,' '+31,' '+39,1
+		dw	r_torxxxki+120
+		db	1
+
+tri_tblr:
+		db	'R'
+		dw	tri_tblq,tri_tblx,0,tri_tblb
+		db	' '+3,' '+22,' '+30,0
+		dw	r_torxxxki+128
+		db	0
+		db	' '+3,' '+31,' '+39,1
+		dw	r_torxxxki+136
+		db	1
+
+tri_tblx:
+		db	'X'
+		dw	tri_tblr,tri_tbly,0,tri_tblh
+		db	' '+4,' '+22,' '+30,0
+		dw	r_torxxxki+144
+		db	0
+		db	' '+4,' '+31,' '+39,1
+		dw	r_torxxxki+152
+		db	1
+
+tri_tbly:
+		db	'Y'
+		dw	tri_tblx,tri_tblz,0,tri_tbli
+		db	' '+5,' '+22,' '+30,0
+		dw	r_torxxxki+160
+		db	0
+		db	' '+5,' '+31,' '+39,1
+		dw	r_torxxxki+168
+		db	1
+
+tri_tblz:
+		db	'Z'
+		dw	tri_tbly,0,0,tri_tblj
+		db	' '+6,' '+22,' '+30,0
+		dw	r_torxxxki+176
+		db	0
+		db	' '+6,' '+31,' '+39,1
+		dw	r_torxxxki+184
+		db	1
+
+tri_tbe:	db	0
+
+g_canc1:	db	25,15
+		db	03fh,020h,031h,03ah,0b7h,0deh,0aeh,0b3h
+		db	020h,032h,03ah,0b5h,0b0h,0d9h,-1
+
+g_canc2:	db	25,15
+		db	03fh,020h,031h,03ah,0b7h,0ach,0ddh,0beh
+		db	0d9h,020h,032h,03ah,0d4h,0d2h,-1
+
+		end

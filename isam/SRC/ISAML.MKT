@@ -1,0 +1,29 @@
+OPT	= -c -ml -K
+
+$(DIR)isaml.lib : $(DIR)db_l.obj $(DIR)dbf_l.obj $(DIR)idx_l.obj \
+		$(DIR)sort_l.obj $(DIR)func_l.obj $(DIR)csub_l.obj \
+		$(DIR)data_l.obj
+	command /c del $(DIR)isaml.lib
+	tlib $(DIR)isaml+$(DIR)db_l+$(DIR)dbf_l+$(DIR)idx_l+$(DIR)sort_l+$(DIR)func_l+$(DIR)csub_l+$(DIR)data_l
+
+$(DIR)db_l.obj : db.c isam.h
+	$(CC) $(OPT) -o$(DIR)db_l db.c
+
+$(DIR)dbf_l.obj : dbf.c isam.h
+	$(CC) $(OPT) -o$(DIR)dbf_l dbf.c
+
+$(DIR)idx_l.obj : idx.c isam.h
+	$(CC) $(OPT) -o$(DIR)idx_l idx.c
+
+$(DIR)sort_l.obj : sort.c isam.h
+	$(CC) $(OPT) -o$(DIR)sort_l sort.c
+
+$(DIR)func_l.obj : func.c isam.h
+	$(CC) $(OPT) -o$(DIR)func_l func.c
+
+$(DIR)csub_l.obj : csub.c isam.h
+	$(CC) $(OPT) -o$(DIR)csub_l csub.c
+
+$(DIR)data_l.obj : data.c isam.h
+	$(CC) $(OPT) -o$(DIR)data_l data.c
+

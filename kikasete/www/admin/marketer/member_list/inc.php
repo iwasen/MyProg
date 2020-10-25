@@ -1,0 +1,14 @@
+<?
+if (isset($_REQUEST['mypro'])) {
+	$mypro = $_REQUEST['mypro'];
+	$_SESSION['ss_mypro'] = $mypro;
+} else
+	$mypro = $_SESSION['ss_mypro'];
+
+if ($mypro == 'my') {
+	$class = 'myenquete';
+	$section = '¥Þ¡¼¥±¥¿¡¼´ÉÍý¡Ã£Í£ù¥¢¥ó¥±¡¼¥È´ÉÍý';
+} else {
+	$class = 'proenquete';
+	$section = '£Ð£ò£ï¥¢¥ó¥±¡¼¥È´ÉÍý';
+}

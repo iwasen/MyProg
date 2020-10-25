@@ -1,0 +1,13 @@
+<?
+	OCIDefinebyname ($stmt, "PUBLISHER_ID", &$publisher_id);
+	OCIDefinebyname ($stmt, "MAIL_ADD_SUB", &$mail_add_sub);
+	OCIDefinebyname ($stmt, "OWNER_NM_KANJ", &$owner_nm_kanj);
+	OCIDefinebyname ($stmt, "OWNER_NM_KANA", &$owner_nm_kana);
+	OCIDefinebyname ($stmt, "OWNER_ZIP", &$owner_zip);
+	OCIDefinebyname ($stmt, "OWNER_PREFEC", &$owner_prefec);
+	OCIDefinebyname ($stmt, "OWNER_ADD", &$owner_add);
+	OCIDefinebyname ($stmt, "OWNER_TEL", &$owner_tel);
+	OCIDefinebyname ($stmt, "OWNER_PSWD", &$owner_pswd);
+	OCIDefinebyname ($stmt, "PT_MELONPAN", &$pt_melonpan);
+	OCIDefinebyname ($stmt, "PT_MELMEL", &$pt_melmel);
+?>

@@ -1,0 +1,2 @@
+	<input type="hidden" value="<? echo $mail_add_main; ?>" name="mail_add_main">
+	<input type="hidden" value="<? echo $publisher_id; ?>" name="publisher_id">

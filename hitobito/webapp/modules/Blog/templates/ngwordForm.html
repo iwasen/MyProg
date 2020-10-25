@@ -1,0 +1,102 @@
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+  <tr bgcolor="#5B94FD">
+
+    <td colspan="3"><img src="image/naviedit_prohibition_ttl.gif" width="168" height="25" hspace="10" alt="¶Ø»ßURL/ŽÜŽ°ŽÄŽÞ´ÉÍý"></td>
+  </tr>
+  <tr>
+    <td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+    <td width="555" valign="top">
+      <table width="555" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	  <td><img src="image/spacer.gif" width="1" height="15"></td>
+	</tr>
+	<tr>
+
+	  <td><img src="image/naviedit_prohibition_edit.gif" width="132" height="14" alt="¶Ø»ßURL/ŽÜŽ°ŽÄŽÞÀßÄê"></td>
+	</tr>
+	<tr>
+	  <td><img src="image/spacer.gif" width="1" height="4"></td>
+	</tr>
+	<tr>
+	  <td bgcolor="#5B94FD"><img src="image/spacer.gif" width="555" height="1"></td>
+	</tr>
+	<tr>
+	  <td><img src="image/spacer.gif" width="1" height="20"></td>
+	</tr>
+	<tr>
+	  <td>
+	    <{$editform->getHtmlErrors()}>
+	  </td>
+	</tr>
+      </table>
+      <form name="form3" method="post" action="" enctype="multipart/form-data">
+
+	<table width="555" border="0" cellspacing="0" cellpadding="0">
+	  <tr>
+	    <td class="char120">¶Ø»ß¹àÌÜ</td>
+	    <td><img src="image/spacer.gif" width="10" height="1"></td>
+	    <td class="char120">
+	      <{html_radios name=blog_type options=$type_options selected=$editform->blog_type}>
+	  </tr>
+	  <tr>
+	    <td colspan="3"><img src="image/spacer.gif" width="1" height="6"></td>
+	  </tr>
+	  <tr>
+	    <td width="85" class="char120">URL/ŽÜŽ°ŽÄŽÞ</td>
+	    <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+	    <td width="460">
+	      <input type="text" name="blog_word" value="<{$editform->blog_word|escape}>" size="20" style="width:350px;">
+	    </td>
+	  </tr>
+	  <tr>
+	    <td colspan="3"><img src="image/spacer.gif" width="1" height="6"></td>
+	  </tr>
+	  <tr>
+	    <td class="char120">ÀßÄêÆü</td>
+	    <td><img src="image/spacer.gif" width="10" height="1"></td>
+	    <td class="char120"><{$obj->getAttribute('bng_date')}></td>
+	  </tr>
+	  <tr>
+	    <td colspan="3"><img src="image/spacer.gif" width="1" height="6"></td>
+	  </tr>
+	  <tr>
+	    <td class="char120">¥¹¥Æ¡¼¥¿¥¹</td>
+	    <td><img src="image/spacer.gif" width="10" height="1"></td>
+	    <td class="char120">
+	      <{html_radios name=blog_status selected=$editform->blog_status options=$status_options}>
+	  </tr>
+	  <tr>
+	    <td colspan="3"><img src="image/spacer.gif" width="1" height="6"></td>
+	  </tr>
+	  <tr>
+	    <td colspan="3"><img src="image/spacer.gif" width="1" height="20"></td>
+	  </tr>
+	</table>
+	<table width="555" border="0" cellspacing="0" cellpadding="0">
+	  <tr>
+	    <td bgcolor="#5B94FD"><img src="image/spacer.gif" width="1" height="5"></td>
+	  </tr>
+	  <tr>
+	    <td><img src="image/spacer.gif" width="1" height="20"></td>
+	  </tr>
+	  <tr>
+	    <td>
+	      <table width="180" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+
+		  <td width="50"><input type="image" src="image/naviedit_btn_regist.gif" width="50" height="20" border="0" alt="ÅÐÏ¿"></td>
+		  <td width="10"><img src="image/spacer.gif" width="20" height="1"></td>
+		  <td width="110"><a href="index.php?module=Blog&amp;action=adminNgword&amp;navipage_id=<{$hitobitoNaviPageInfo->getId()}>"><img src="image/naviedit_btn_cancel.gif" width="110" height="20" border="0" alt="ÅÐÏ¿¤·¤Ê¤¤¤ÇÌá¤ë"></a></td>
+		</tr>
+	      </table>
+	    </td>
+	  </tr>
+	  <tr>
+	    <td><img src="image/spacer.gif" width="1" height="10"></td>
+	  </tr>
+	</table>
+      </form>
+    </td>
+    <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+  </tr>
+</table>

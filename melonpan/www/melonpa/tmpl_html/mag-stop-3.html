@@ -1,0 +1,106 @@
+<?php include("../sub/head.inc"); ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>解除理由</TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600">
+<?php draw_head( ".." ); ?>
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="513" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+<TD>
+<?php
+	if (trim($mag_datas) != "") {
+		print "<P>".$mag_datas. "</P>\n";
+	}
+	if (trim($error_datas) != "") {
+		print "<P><font color=\"#ff0000\">●処理失敗" . $error_datas. "</font></P>\n";
+		print "<div align=right><input type=hidden value=\"戻る\" onClick=\"history.back()\"></div>\n";
+	}
+?>
+<form action="stop_reason_one.php" method=post>
+<?php
+
+	print "<p class=\"text01\">\n";
+	print "よろしければ、解除の理由を教えてください。<br>\n";
+	print "<input type=\"hidden\" value=\"".$mag_id."\" name=\"rsn_mag_id\">\n";
+	print "<input type=\"hidden\" value=\"".trim($mag_nm)."\" name=\"rsn_mag_nm\">\n";
+?>
+</p>
+<p>
+<?php
+//sel_stop_reason($conn);
+$sql = "select STOP_REASON from M_DELREASON where READER_SELECT_FLG = '1' order by stop_code";
+$result = db_exec($sql);
+$nrow = pg_numrows($result);
+for ( $i=0 ; $i<$nrow ; $i++ ){
+	$fetch = pg_fetch_object($result, $i);
+	$reason = $fetch->stop_reason;
+/* **
+	reset ($reason_list);
+	$column = each($reason_list); $reason = $column['value'];
+	echo "<input type=\"radio\" name=\"reason_sel\" value=\"".$reason[$i]."\"> $reason[$i]<br>";
+*/
+	echo "<input type=\"radio\" name=\"reason_sel\" value=\"".$reason."\"> $reason<br>";
+}
+
+?>
+</p>
+<p>
+<?php
+	if ($mail_addr != "") {
+		print "<input type=\"submit\" name=\"rmbott50001\" value=\"　　解除する　　\">\n";
+	} else {
+		print "<input type=\"submit\" name=\"rmbott50002\" value=\"　　解除する　　\">\n";
+	}
+?>
+<input type="hidden" value="<?
+	if ($email != "") {
+ 			print trim($email);
+	} else {
+ 			print trim($mail_addr);
+	}
+?>
+" name="email">
+<input type="hidden" value="<? echo trim($mail_addr) ?>" name="mail_addr">
+<input type="hidden" value="<? echo trim($reader_id) ?>" name="reader_id">
+<input type="hidden" value="<? echo trim($reader_pswd) ?>" name="reader_pswd">
+<input type="hidden" value="" name="reason">
+</p>
+</form>
+<p>　</p>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD valign="top" colspan="3" align="right">
+<HR size="1" width="750">
+</TD>
+</TR>
+<TR>
+<TD valign="top" width="200"> <IMG src="../img/shim.gif" width="200" height="1">
+</TD>
+<TD valign="middle" align="center" width="350">
+<div align="center"><FONT size="2"><IMG src="../img/shim.gif" width="350" height="1"><BR>
+Copyright &copy; 2000 xxxxxxx, Co.,Ltd. All rights reserved. <br>
+<a href="http://www.xxxxxxx.co.jp/" target="mm_window"><img src="../img/logo_do.gif" width="50" height="45" border="0"></a>
+</FONT></div>
+</TD>
+<TD valign="top" width="200" align="right"><IMG src="../img/shim.gif" width="200" height="1"></TD>
+</TR>
+</TABLE>
+</body>
+</html>

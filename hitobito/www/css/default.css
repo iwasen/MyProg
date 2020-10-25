@@ -1,0 +1,612 @@
+body { margin:0px; padding:0px;}
+form { margin:0px; padding:0px; }
+
+
+
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  style for link text
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+a { color:#666666; text-decoration: underline; }
+a:hover { color:#666666; text-decoration: none; }
+a:visited { color:#666666; }
+
+a.cblack { color:#333333; text-decoration: underline; }
+a.cblack:hover { color:#333333; text-decoration: none; }
+a.cgray { color:#666666; text-decoration: underline; }
+a.cgray:hover { color:#666666; text-decoration: none; }
+a.cred { color:#CC3333; text-decoration: underline; }
+a.cred:hover { color:#CC3333; text-decoration: none; }
+.sdesk a { color:#022973; }
+.sdesk a:hover { color:#022973; }
+.hnews a { color:#333333; }
+.hnews a:hover { color:#333333; }
+
+
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  link for 30beauty
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+a.a30bt { color:#CC0033; text-decoration: underline; }
+a.a30bt:visited { color:#CC0033;}
+a.a30bt:hover { color:#CC0033; text-decoration: none; }
+a.a30bt-g { color:#99CC33; text-decoration: underline; }
+a.a30bt-g:visited { color:#99CC33; }
+a.a30bt-g:hover { color:#99CC33; text-decoration: none; }
+
+/* link for 30beauty old */
+a.30bt { color:#CC0033; text-decoration: underline; }
+a.30bt:hover { color:#CC0033; text-decoration: none; }
+a.30bt-g { color:#99CC33; text-decoration: underline; }
+a.30bt-g:visited { color:#99CC33; text-decoration: underline; }
+a.30bt-g:hover { color:#99CC33; text-decoration: none; }
+
+/* link for special */
+a.sp01-g { color:#83AD2C; text-decoration: underline; }
+a.sp01-g:visited { color:#83AD2C; text-decoration: underline; }
+a.sp01-g:hover { color:#83AD2C; text-decoration: none; }
+a.sp01-y { color:#FFCC00; text-decoration: underline; }
+a.sp01-y:visited { color:#FFCC00; text-decoration: underline; }
+a.sp01-y:hover { color:#FFCC00; text-decoration: none; }
+a.sp01-gr { color:#666666; text-decoration: none; }
+a.sp01-gr:visited { color:#666666; text-decoration: none; }
+a.sp01-gr:hover { color:#666666; text-decoration: underline; }
+a.sp01-kouki { color:#666666; text-decoration: underline; }
+a.sp01-kouki:visited { color:#666666; text-decoration: underline; }
+a.sp01-kouki:hover { color:#666666; text-decoration: none; }
+a.sp01-sdori { color:#D60008; text-decoration: underline; }
+a.sp01-sdori:visited { color:#D60008; text-decoration: underline; }
+a.sp01-sdori:hover { color:#D60008; text-decoration: none; }
+
+
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  style for color text
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+.char999999{ color: #999999; }
+.charblog{ color: #FB8A00; }
+.charwaiwai{ color: #2BB906; }
+.charlinks{ color: #2B9CF9; }
+.charnaviedit{ color: #0D61FD; }
+.charguide{ color:#FF6666; }
+.char30btF69{ color:#FF6699; }
+.char30bt0C3{ color:#990033; }
+.charsp9c3{ color:#99CC33; }
+
+
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  header background iamge
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+.hbsearch{
+	background-color: #F5E156;
+	background-image: url(../image/head_search_bg.gif);
+	background-repeat: repeat-x;
+}
+.hbtrack{
+	background-image: url(../image/head_track_bg.gif);
+	background-repeat: repeat-x;
+}
+
+
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  indent for paragraph
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+p.ind1515{ margin-top:0px; margin-bottom:0px; margin-left:15px; margin-right:15px; padding:0px;}
+p.ind1010{ margin-top:0px; margin-bottom:0px; margin-left:10px; margin-right:10px; padding:0px;}
+p.ind0505{ margin-top:0px; margin-bottom:0px; margin-left:5px; margin-right:5px; padding:0px;}
+p.ind1em{ text-indent:-1em;	margin-top:0px; margin-bottom:0px; margin-left:1em; margin-right:0px; padding:0px;}
+
+
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  indent for channel menu
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+.menuind21{	text-indent:-21px; margin-top:0px; margin-bottom:0px; margin-left:21px; margin-right:0px; padding:0px;}
+.menuind16{ text-indent:-16px; margin-top:0px; margin-bottom:0px; margin-left:16px; margin-right:0px; padding:0px;}
+
+
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  style for navipage
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+.navittl{
+	margin-top:0px; margin-bottom:0px; margin-left:15px; margin-right:15px;
+	padding:0px;
+	font-size:20px;
+	color:#333333;
+	font-weight:bold;}
+
+
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  style for calender
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+.cld{
+	font-size:12px;
+	text-align:center;
+}
+.cldtoday{
+	font-size:12px;
+	text-align:center;
+	background-color: #F5DC51;
+}
+.cldmnth{
+	font-size:12px;
+}
+
+
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  style for blog
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+p.blogimg{
+	margin-top:1.2em; margin-bottom:1.2em; margin-left:0px; margin-right:0px;
+	padding:0px;
+	color:#333333;
+}
+p.blogsttl{
+	margin-top:15px; margin-bottom:10px; margin-left:0px; margin-right:0px;
+	padding:0px;
+	color:#333333;
+	font-weight:bold;
+}
+p.blogtburl{
+	margin-top:2px; margin-bottom:2px; margin-left:10px; margin-right:10px;
+	padding:0px;
+	font-size:12px;
+	color:#333333;
+}
+
+
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  style for edit
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+.menuind15{
+	text-indent:-15px;
+	margin-top:0px; margin-bottom:4px; margin-left:15px; margin-right:0px;
+	padding:0px;
+}
+.ind15{
+	margin-top:0px; margin-bottom:0px; margin-left:15px; margin-right:0px;
+	padding:0px;
+}
+p.ind0804{
+	margin-top:4px; margin-bottom:4px; margin-left:8px; margin-right:8px;
+	padding:0px;
+}
+
+
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  style for enquete
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+p.ind0603{
+	margin-top:3px; margin-bottom:3px; margin-left:6px; margin-right:6px;
+	padding:0px;
+}
+.rate{
+	margin-top:3px; margin-bottom:3px; margin-left:0px; margin-right:0px;
+	padding:0px;
+	font-size:12px;
+}
+
+
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  style for search
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+p.ind1003{
+	margin-top:3px; margin-bottom:3px; margin-left:10px; margin-right:10px;
+	padding:0px;
+}
+p.ind1003{
+	margin-top:3px; margin-bottom:3px; margin-left:10px; margin-right:10px;
+	padding:0px;
+}
+
+
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  old
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+tr.bgBlue{ background-color:#E6F2FF;}
+tr.bgWhite{	background-color:#FFFFFF;}
+
+.chanel{ font-size:x-small;	line-height:120%;}
+
+#sitemap .chanel{
+	width:250px;
+	float:left;
+	margin:3px 0 3px 20px;
+	font-size:x-small;
+	line-height:120%;
+}
+
+.error{	font-size:12px;	color:#FF0000; line-height:140%;}
+
+
+
+
+
+
+
+
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  TOP renewal
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+/* box-border */
+.box-border  { border: 3px solid #FFCC00; padding:6px;}
+.box-borderLT{ border-left: 3px solid #FFCC00; border-top: 3px solid #FFCC00; padding:0px 0px 0px 6px;}
+.box-borderT { border-top: 3px solid #FFCC00;}
+.box-borderL { border-left: 3px solid #FFCC00;}
+
+/* list */
+#top ul {margin:0px 1px 0px 8px; padding:0px;}
+#top li {margin:0px 0px 3px 8px; padding:0px; list-style-type:disc;}
+
+/* new icon */
+.new-icon {margin:7px 0px 0px 0px;}
+
+/* form */
+.fbdr { border:1px solid #CCCCCC;
+  scrollbar-face-color: #FFFFFF;
+  scrollbar-3dlight-color: #999999;
+  scrollbar-darkshadow-color: #999999;
+  scrollbar-highlight-color: #DDDDDD;
+  scrollbar-shadow-color: #666666;
+  scrollbar-arrow-color: #333333;
+  scrollbar-track-color: #DDDDDD;
+  font-family: "MS P????", "Osaka"; font-size: 12px;
+  color: #666666;
+}
+
+
+
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  list style
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+ul li{
+	margin-top: 0px;
+	padding: 0px;
+	margin-left: -15px;
+	margin-right: 0px;
+	margin-bottom: 2px;
+	list-style-type: none;
+	line-height:130%;
+}
+
+
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  for SP
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+.sp01-yellow{ color:#FF9900;}
+.sp01-green{ color:#679901;}
+
+
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  for 30autumn
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+.namebg{
+	background-image:url(../image/30anti_autumn/30tmp_namebg.gif);
+	background-repeat:no-repeat;
+}
+
+
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  for shokuiku navi
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+a.shoku { color:#CC3300; text-decoration: underline; }
+a.shoku:visited { color:#CC3300;}
+a.shoku:hover { color:#CC3300; text-decoration: none; }
+#shoku .subtit{ color: #663300;	font-size:16px;	font-weight:bold;}
+#shoku .subtxt{	font-size:10px;	color:#663300; line-height:130%;}
+#shoku .caption{ color: #FF6633; font-size:10px; line-height:130%;}
+#shoku .mmidashi{ color: #FF9900; font-size:14px; font-weight:bold;	line-height:120%;}
+
+
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  for mizu navi
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+a.water { color:#FF6633; text-decoration: underline; }
+a.water:visited { color:#FF6633;}
+a.water:hover { color:#FF6633; text-decoration: none; }
+#water .subtit{ color: #333366;	font-size:16px;	font-weight:bold;}
+#water .subtxt{ font-size:10px; color:#333366; line-height:130%;}
+#water .caption{ color: #333366; font-size:10px; line-height:130%;}
+#water .mmidashi{ color: #333366; font-size:14px; font-weight:bold;	line-height:120%;}
+#water .txt-bg{	background-color:#3399FF; }
+
+
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  for templates
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+/* tmp list */
+#tmp_list .mmidashi {
+	color:#83AD2C;
+	font-weight:bold;
+	border:1px solid #83AD2C;
+	border-left:3px solid #83AD2C;
+	background-color:#FFFCEE;
+	padding:5px;
+	margin:0 0 10px 0;
+}
+
+/* common  */
+#tmp p {
+	font-size:x-small;
+	color:#666666;
+	line-height:140%;
+}
+#tmp .tit {
+	font-size:middle;
+	font-weight:bold;
+	line-height:120%;
+	margin:0 15px 0 15px;
+}
+#tmp .titbg {background-repeat:no-repeat; }
+#tmp .mmidashi {
+	font-size:x-small;
+	font-weight:bold;
+	line-height:130%;
+}
+
+
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  TEMPLATE circle
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+/* link */
+#cir a { color:#663300; text-decoration: underline;}
+#cir a:visited { color:#663300;}
+#cir a:hover {color:#663300; text-decoration: none; }
+
+#cir .titbg-pink {
+	background-image:url(../image/tmp_cir_pink_head.gif);
+	background-repeat:no-repeat;
+}
+
+/* common  */
+#cir .tit {	color:#663300; }
+#cir .mmidashi { color:#663300; }
+
+/* tmp */
+#cir-pink .titbg {
+	background-image:url(../image/tmp_cir_pink_head.gif);
+	background-repeat:no-repeat;
+}
+#cir-pink .mmidashi {
+	background-image:url(../image/tmp_cir_pink_mi.gif);
+	background-repeat:no-repeat;
+	padding:0 0 3px 25px;
+}
+#cir-pink .bgcolor { background-color:#FFF0F0; }
+
+#cir-orange .titbg {
+	background-image:url(../image/tmp_cir_orange_head.gif);
+	background-repeat:no-repeat;
+}
+#cir-orange .mmidashi {
+	background-image:url(../image/tmp_cir_orange_mi.gif);
+	background-repeat:no-repeat;
+	padding:0 0 3px 25px;
+}
+#cir-orange .bgcolor { background-color:#FFE0C1; }
+#cir-green .titbg {
+	background-image:url(../image/tmp_cir_green_head.gif);
+	background-repeat:no-repeat;
+}
+#cir-green .mmidashi {
+	background-image:url(../image/tmp_cir_green_mi.gif);
+	background-repeat:no-repeat;
+	padding:0 0 3px 25px;
+	}
+#cir-green .bgcolor { background-color:#E0F0B2; }
+
+
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  TEMPLATE snow
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+/* link */
+#snow a { color:#3399FF; text-decoration: underline; }
+#snow a:visited { color:#3399FF; }
+#snow a:hover { color:#3399FF; text-decoration: none; }
+
+/* tmp */
+#snow-blue .tit { color:#333333; }
+#snow-blue .titbg {
+	background-image:url(../image/tmp_snow_blue_head.gif);
+	background-repeat:no-repeat;
+}
+#snow-blue .mmidashi {
+	color:#333333;
+	background-image:url(../image/tmp_snow_blue_mi.gif);
+	background-repeat:no-repeat;
+	padding:3px 0 5px 30px;
+}
+#snow-blue .bgcolor { background-color:#E0F0FF; }
+
+#snow-gray .tit { color:#333333; }
+#snow-gray .titbg {
+	background-image:url(../image/tmp_snow_gray_head.gif);
+	background-repeat:no-repeat;
+}
+#snow-gray .mmidashi {
+	color:#333333;
+	background-image:url(../image/tmp_snow_gray_mi.gif);
+	background-repeat:no-repeat;
+	padding:3px 0 5px 30px;
+}
+#snow-gray .bgcolor { background-color:#F2F2F2; }
+
+
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  TEMPLATE simple
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+/* common */
+#simple .tit { color:#FFFFFF; }
+
+/* link */
+#simple a { color:#666666; text-decoration: underline; }
+#simple a:visited { color:#666666; }
+#simple a:hover { color:#666666; text-decoration: none; }
+
+/* tmp */
+#simple-blue .titbg {
+	background-image:url(../image/tmp_simple_blue_head.gif);
+	background-repeat:repeat;
+}
+#simple-blue .mmidashi {
+	color:#336699;
+	border-left:3px solid #336699;
+	background-color:#E0F0FF;
+	padding:3px 0 5px 8px;
+}
+
+#simple-brown .titbg {
+	background-image:url(../image/tmp_simple_brown_head.gif);
+	background-repeat:repeat;
+}
+#simple-brown .mmidashi {
+	color:#996600;
+	border-left:3px solid #996600;
+	background-color:#F2E5D9;
+	padding:3px 0 5px 8px;
+}
+
+#simple-green .titbg {
+	background-image:url(../image/tmp_simple_green_head.gif);
+	background-repeat:repeat;
+}
+#simple-green .mmidashi {
+	color:#669933;
+	border-left:3px solid #669933;
+	background-color:#EEF7DD;
+	padding:3px 0 5px 8px;
+}
+
+#simple-gray .titbg {
+	background-image:url(../image/tmp_simple_gray_head.gif);
+	background-repeat:repeat;
+}
+#simple-gray .mmidashi {
+	color:#333333;
+	border-left:3px solid #333333;
+	background-color:#F2F2F2;
+	padding:3px 0 5px 8px;
+}
+
+
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  TEMPLATE kahun
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+/* link */
+#kahun a { color:#3399FF; text-decoration: underline; }
+#kahun a:visited { color:#3399FF; }
+#kahun a:hover { color:#3399FF; text-decoration: none; }
+
+/* tmp */
+#kahun-blue .tit { color:#000066; margin-left:30px;}
+#kahun-blue .titbg {
+	background-image:url(../image/tmp_kahun_blue_head.gif);
+	background-repeat:repeat;
+}
+#kahun-blue .mmidashi {
+	color:#4B4B4B;
+	background-image:url(../image/tmp_kahun_blue_mi.gif);
+	background-repeat:no-repeat;
+	padding:3px 0 5px 30px;
+	border-bottom:1px dashed #1449A7;
+}
+#kahun-blue .bgcolor { background-color:#FFFFFF; }
+
+#kahun-green .tit { color:#006600; margin-left:30px;}
+#kahun-green .titbg {
+	background-image:url(../image/tmp_kahun_green_head.gif);
+	background-repeat:repeat;
+}
+#kahun-green .mmidashi {
+	color:#4B4B4B;
+	background-image:url(../image/tmp_kahun_green_mi.gif);
+	background-repeat:no-repeat;
+	padding:3px 0 5px 30px;
+	border-bottom:1px dashed #339900;
+}
+#kahun-green .bgcolor { background-color:#FFFFFF; }
+
+#kahun-orange .tit { color:#990000; margin-left:30px;}
+#kahun-orange .titbg {
+	background-image:url(../image/tmp_kahun_orange_head.gif);
+	background-repeat:repeat;
+}
+#kahun-orange .mmidashi {
+	color:#4B4B4B;
+	background-image:url(../image/tmp_kahun_orange_mi.gif);
+	background-repeat:no-repeat;
+	padding:3px 0 5px 30px;
+	border-bottom:1px dashed #FF7814;
+}
+#kahun-orange .bgcolor { background-color:#FFFFFF; }
+
+
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  TEMPLATE valentine
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+/* link */
+#valentine a { color:#663333; text-decoration: underline; }
+#valentine a:visited { color:#663333; }
+#valentine a:hover { color:#663333; text-decoration: none; }
+
+/* tmp */
+#valentine .tit {color:#ECDEDE; padding:0px 0px 0px 10px;}
+#valentine .mmidashi {
+	color:#663300;
+	background-image:url(../image/tmp_valentine_mi.gif);
+	background-repeat:no-repeat;
+	padding:3px 0 5px 30px;
+}
+#valentine .border {
+	width:580px;
+	border-left:2px solid #663300;
+	border-bottom:2px solid #663300;
+	border-right:2px solid #663300;
+	padding-bottom:15px;
+}
+
+
+
+/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  TEMPLATE spring
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+/* link */
+#spr a { color:#FF6600; text-decoration: underline; }
+#spr a:visited { color:#FF6600; }
+#spr a:hover { color:#FF6600; text-decoration: none; }
+
+/* tmp */
+#spr-pink .tit { color:#663300; width:380px; }
+#spr-pink .titbg {
+	background-image:url(../image/tmp_spr_pink_head.gif);
+	background-repeat:no-repeat;
+	background-color:#FFAE07;
+}
+#spr-pink .mmidashi {
+	color:#663300;
+	background-image:url(../image/tmp_spr_pink_mi.gif);
+	background-repeat:no-repeat;
+	padding:2px 0px 2px 25px;
+}

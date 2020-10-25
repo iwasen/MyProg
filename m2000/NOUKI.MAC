@@ -1,0 +1,459 @@
+		title	nouki
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; module name	: nouki toiawase gyoumu
+; creation date	: 86:02:20
+; revised date  : 
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+		.z80
+
+		include	MEMORY.INC
+		include SUBR.INC
+
+		public	nouki
+
+		extrn	slist
+		extrn	list
+		extrn	jrlist
+		extrn	trlist
+		extrn	gdmsg
+		extrn	clrbuf
+		extrn	chr_disp
+		extrn	csr_off
+		extrn	zbin_ch
+
+    	CONOUT		equ	0eb0ch
+	BEEP		equ	0eb39h
+	TIMDAT		equ	0eb4eh
+;
+	CR		equ	0dh	; return key code
+	ESC		equ	1bh	; escape key code
+	GAMEN		equ	0f7h	; gamen shuuryou key code
+	DEND		equ	0efh	; denpyou shuuryou key code
+
+	o_jdata		equ	67
+	s_jdata		equ	30
+	o_tdata		equ	19
+	s_tdata		equ	82
+
+	sflag		equ	M_PARAM+0
+	rst		equ	M_PARAM+1
+	tflag		equ	M_PARAM+3
+	blkadr		equ	M_PARAM+4
+	recno		equ	M_PARAM+6
+	hinmoku		equ	M_PARAM+7
+	sdtime		equ	M_PARAM+9
+	denpyono	equ	M_PARAM+11
+
+;
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	nouki toiawase gyoumu
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+nouki:
+		call	scdisp		; gamen hyouji
+		ret	c
+
+		ld	a,'1'
+		ld	(tflag),a
+		ld	a,20
+		call	overlay		; tsuushin
+
+		call	nlist		; print out
+
+		ld	a,(rst)		;
+		or	a		; tsuushin error ?
+		jr	nz,nouki10	; * yes
+
+		call	toiawase	; toiawade data
+		ret
+nouki10:
+		call	xconin
+		cp	GAMEN
+		ret	z
+		cp	DEND
+		ret	z
+		ld	bc,1601h
+		call	BEEP
+		jr	nouki10
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	gamen hyouji
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+scdisp:
+		call	csr_off		; screen, cursor off
+		ld	hl,m_nouki	; message display 
+		call	kmsg		;
+scdisp10:
+		ld	hl,m_tno	; "toiawase No wo ireru"
+		call	chr_disp	;
+
+		sub	a
+scdisp20:
+		ld	hl,p_nouki
+		call	kbin		; toiawase No. input
+		cp	CR		; return key ?
+		jr	z,sc_ret	; * yes
+		cp	GAMEN		; gamen shuuryou key ?
+		scf			;
+		ret	z		; * yes
+		cp	DEND		; denpyou shuuryou key ?
+		scf			;
+		ret	z		; * yes
+sc_err:
+		ld	bc,1601h
+		call	BEEP
+		ld	a,1
+		jr	scdisp20
+
+sc_ret:
+		ld	a,b
+		or	a
+		jr	z,sc_err
+
+		ld	hl,g_clr	; guide message clear
+		call	gdmsg		;
+
+		ld	hl,m_tno
+		call	chr_disp
+
+		ld	hl,w_tno
+		ld	b,3
+		call	chr_bin
+
+		call	search
+		jr	nc,scdisp30
+
+		ld	bc,1601h
+		call	BEEP
+		ld	hl,g_error
+		call	gdmsg
+		jr	scdisp10
+scdisp30:
+		ld	a,(R_LNSHR)
+		cp	'1'		; kaisen kyouyou ?
+		jr	z,sc_key30	; * yes
+
+		ld	hl,m_nouki2	; "denwa mishiyou nara"
+		call	kmsg		;
+
+sc_keyin:
+		ld	hl,m_nouki3	; "(1:sousin 2:shuuryou)"
+		call	chr_disp	;
+
+		call	xconin		; keyin
+
+		cp	CR		; return key ?
+		jr	z,sc_key20	; * yes
+		cp	'1'		; "1" ?
+		jr	z,sc_key10	; * yes
+		cp	'2'		; "2" ?
+		jr	z,sc_key10	; * yes
+sc_key05:
+		ld	bc,1601h
+		call	BEEP
+		jr	sc_keyin
+sc_key10:
+		ld	(m_nouki3+5),a
+		jr	sc_keyin
+sc_key20:
+		ld	a,(m_nouki3+5)
+		cp	'2'
+		scf
+		ret	z
+		cp	'1'
+		jr	nz,sc_key05
+sc_key30:
+		ld	hl,c_csroff
+		call	chr_disp
+		or	a
+		ret
+;
+;	toiawase data
+;
+toiawase:
+		call	csr_off		; screen, cursor off
+		ld	hl,m_toi1	;
+		call	kmsg		; message display
+		ld	hl,m_toi2	;
+		call	chr_disp	;
+to_keyin:
+		ld	hl,m_toi3	; ":1"
+		call	chr_disp	;
+
+		call	xconin		; keyin
+
+		push	af
+		ld	hl,c_csroff	; cursor off
+		call	chr_disp	;
+		pop	af
+
+		cp	CR		; return key ?
+		jr	z,to_key20	; * yes
+		cp	'1'		; "1" ?
+		jr	z,to_key10	; * yes
+		cp	'2'		; "2" ?
+		jr	z,to_key10	; * yes
+		cp	'3'		; "3" ?
+		jr	z,to_key10
+to_key05:
+		ld	bc,1601h
+		call	BEEP
+		jr	to_keyin
+to_key10:
+		ld	(m_toi3+5),a
+		jr	to_keyin
+to_key20:
+		ld	a,(m_toi3+5)
+		cp	'1'
+		jr	z,toi20
+		cp	'2'
+		ret	z
+		cp	'3'
+		jr	z,toi10
+		jr	to_key05
+toi10:
+		call	dataclr
+		ret
+toi20:
+		sub	a		;
+		ld	(recno),a	;
+		ld	hl,0		; clear work area
+		ld	(sdtime),hl	;
+		ld	(hinmoku),hl	;
+
+		ld	hl,(w_blkadr)	;
+		ld	(blkadr),hl	;
+		ld	a,' '		;
+		ld	(tflag),a	; soushin
+		ld	a,20		;
+		call	overlay		;
+
+		call	slist		; print out
+		ret
+;
+;	list 
+;
+nlist:
+		call	csr_off
+		ld	hl,m_nouki4
+		call	kmsg
+
+		ld	hl,(sdtime)	;
+		sub	a		;
+		ld	de,60		;
+nlist10:				;
+		inc	a		;
+		sbc	hl,de		;
+		jr	nc,nlist10	;
+		dec	a		;
+		add	hl,de		; display soushin jikan
+		push	hl		;
+		ld	e,a		;
+		ld	d,0		;
+		ld	hl,c_ctime	;
+		ld	b,2		;
+		call	zbin_ch		;
+		pop	de		;
+		ld	hl,c_ctime+6	;
+		ld	b,2		;
+		call	zbin_ch		;
+		ld	hl,m_ctime	;
+		call	chr_disp	;
+
+		ld	a,(rst)		;
+		or	a		; tsuushin error ?
+		jr	nz,nlist20	; * yes
+
+		ld	hl,m_nouki5
+		call	kmsg
+nlist20:
+		jp	list
+;
+;	denpyou No. search
+;
+search:
+		ex	de,hl
+		ld	hl,M_ORDER
+		ld	b,10
+search10:
+		push	bc
+		push	hl
+		ld	a,(hl)
+		or	a		; free block ?
+		jr	z,search50	; * yes
+
+		dec	a		; joubi ?
+		jr	nz,search30	; * no
+
+		ld	bc,o_jdata
+		add	hl,bc
+		ld	b,8
+search20:
+		ld	a,(hl)
+		or	a
+		jr	z,search50
+
+		push	hl
+		inc	hl
+		ld	a,(hl)
+		inc	hl
+		ld	h,(hl)
+		ld	l,a
+		or	a
+		sbc	hl,de
+		pop	hl
+		jr	z,search60
+
+		push	bc
+		ld	bc,s_jdata
+		add	hl,bc
+		pop	bc
+		djnz	search20
+		jr	search50
+search30:
+		ld	bc,o_tdata
+		add	hl,bc
+		ld	b,2
+search40:
+		ld	a,(hl)
+		or	a
+		jr	z,search45
+
+		push	hl
+		inc	hl
+		ld	a,(hl)
+		inc	hl
+		ld	h,(hl)
+		ld	l,a
+		or	a
+		sbc	hl,de
+		pop	hl
+		jr	z,search60
+search45:
+		push	bc
+		ld	bc,s_tdata
+		add	hl,bc
+		pop	bc
+		djnz	search40
+search50:
+		pop	hl
+		ld	bc,320
+		add	hl,bc
+		pop	bc
+		djnz	search10
+		scf
+		ret
+search60:
+		pop	hl
+		ld	(w_blkadr),hl
+		pop	bc
+		ld	de,w_data
+		ld	(blkadr),de
+		ld	bc,320
+		ldir
+		or	a
+		ret
+
+;
+;	data clear
+;
+dataclr:
+		ld	hl,(w_blkadr)	; flag clear
+		ld	(hl),0		;
+		ret
+
+;	character to binary convert
+;
+chr_bin:
+		ex	de,hl
+		ld	hl,0
+chr_bin10:
+		push	bc
+		add	hl,hl
+		ld	b,h
+		ld	c,l
+		add	hl,hl
+		add	hl,hl
+		add	hl,bc
+		ld	a,(de)
+		and	0fh
+		ld	c,a
+		ld	b,0
+		add	hl,bc
+		inc	de
+		pop	bc
+		djnz	chr_bin10
+		ret
+
+;
+;	data
+;
+c_csroff:	db	ESC,'2',-1	; cursor off
+
+m_nouki:	dw	0,0101h
+		dw	1b30h,945bh,8afah,96e2h,8d87h,82b9h,1b31h,-1
+
+m_tno:		db	ESC,'=',23h,20h
+		db	0c4h,0b2h,0b1h,0dch,0beh,' No '
+		db	0a6h,0b2h,0dah,0d9h,' : '
+w_tno:		db	'___',-1
+
+m_nouki2:	dw	0,0105h
+		dw	92cah,9862h,9286h,82c5h,82c8h,82afh,82eah,82ceh,-1
+
+m_nouki3:	db	ESC,'=',25h,36h
+		db	':1'
+		db	ESC,'=',24h,39h
+		db	'(1:',0bfh,0b3h,0bch,0ddh,')'
+		db	ESC,'=',25h,39h
+		db	'(2:',0bch,0adh,0b3h,0d8h,0aeh,0b3h,')'
+		db	ESC,'=',25h,37h,ESC,'3',-1
+
+m_nouki4:	dw	0,0103h
+		dw	9197h,904dh,8e9eh,8ad4h,8181h,-1
+
+m_nouki5:	dw	0,0105h
+		dw	88f3h,8dfch,82cch,9286h,9266h,82cdh,8183h
+		dw	88f3h,8dfch,9286h,9266h,8184h,834ch,817ch
+		dw	0,0107h
+		dw	88f3h,8dfch,82cch,8dc4h,8a4ah,82cdh,8183h
+		dw	88f3h,8dfch,8a4ah,8e6eh,8184h,834ch,817ch,-1
+
+m_ctime:	db	ESC,'=',23h,2fh
+c_ctime:	db	' 0 ',0cch,0ddh,'  0 ',0cbh,0deh,0aeh,0b3h,-1
+
+m_toi1:		dw	0,0101h
+		dw	1b30h,96e2h,8d87h,82b9h,8366h,815ch,835eh
+		dw	8148h,1b31h,-1
+
+m_toi2:		db	ESC,'=',23h,20h,'('
+		db	'1:',0b2h,0cfh,020h,0bfh,0b3h,0bch,0ddh,'  '
+		db	'2:',0b1h,0c4h,0c3h,0deh,020h,0bfh,0b3h,0bch,0ddh,'  '
+		db	'3:',0b7h,0ach,0ddh,0beh,0d9h,')',-1
+
+m_toi3:		db	ESC,'=',21h,33h,':1'
+		db	ESC,'=',21h,34h,ESC,'3',-1
+
+p_nouki:	db	23h,30h,33h,08h
+		dw	w_tno
+		db	0
+
+w_blkadr	equ	M_WORK+0
+w_data		equ	M_WORK+2
+
+g_error:	db	25,15
+		db	0bch,0c3h,0b2h,0bch,0c0h,'No'
+		db	0cah,0b1h,0d8h,0cfh,0beh,0ddh,-1
+
+g_clr:		db	25,15,-1
+
+		end

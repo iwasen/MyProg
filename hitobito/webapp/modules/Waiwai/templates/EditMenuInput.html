@@ -1,0 +1,308 @@
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+	<tr bgcolor="#5B94FD">
+		<td colspan="5"><img src="image/naviedit_waiwai_ttl.gif" width="147" height="25" hspace="10" alt="ワイワイ会議室管理"></td>
+	</tr>
+	<tr>
+		<td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+		<td width="270"><img src="image/spacer.gif" width="270" height="1"></td>
+		<td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+		<td width="270"><img src="image/spacer.gif" width="270" height="1"></td>
+		<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+	</tr>
+	<tr>
+		<td colspan="5"><img src="image/spacer.gif" width="1" height="24"></td>
+	</tr>
+<!--お知らせここから-->
+	<tr>
+		<td><img src="image/spacer.gif" width="15" height="1"></td>
+		<td colspan="3">
+			<table width="555" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td bgcolor="#CCCCCC" width="1"><img src="image/spacer.gif" width="1" height="1"></td>
+					<td bgcolor="#CCCCCC" width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+					<td bgcolor="#CCCCCC" width="523"><img src="image/spacer.gif" width="523" height="1"></td>
+					<td bgcolor="#CCCCCC" width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+					<td bgcolor="#CCCCCC" width="1"><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+					<td><img src="image/spacer.gif" width="15" height="1"></td>
+					<td>
+						<table width="523" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td><img src="image/spacer.gif" width="1" height="15"></td>
+							</tr>
+							<tr>
+								<td><img src="image/naviedit_waiwai_sttl_info.gif" width="53" height="14"></td>
+							</tr>
+							<tr>
+								<td><img src="image/spacer.gif" width="1" height="8"></td>
+							</tr>
+							<tr>
+								<td class="char120">
+<{foreach from=$waiwai_notice_ary item=waiwai_notice}>
+<{$waiwai_notice|escape}><br>
+<{foreachelse}>
+お知らせはありません。
+<{/foreach}>
+								</td>
+							</tr>
+							<tr>
+								<td><img src="image/spacer.gif" width="1" height="15"></td>
+							</tr>
+						</table>
+					</td>
+					<td><img src="image/spacer.gif" width="15" height="1"></td>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+				<tr bgcolor="#CCCCCC">
+					<td colspan="5"><img src="image/spacer.gif" width="555" height="1"></td>
+				</tr>
+			</table>
+		</td>
+		<td><img src="image/spacer.gif" width="10" height="1"></td>
+	</tr>
+	<tr>
+		<td colspan="5"><img src="image/spacer.gif" width="1" height="30"></td>
+	</tr>
+<!--お知らせここまで-->
+	<tr>
+		<td><img src="image/spacer.gif" width="15" height="1"></td>
+		<td valign="top">
+			<table width="270" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td><img src="image/naviedit_waiwai_sttl_thread.gif" width="97" height="14" alt="投稿 / 発言管理"></td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="4"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#666666"><img src="image/spacer.gif" width="270" height="1"></td>
+				</tr>
+			</table>
+			<table width="270" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="15"></td>
+				</tr>
+				<tr>
+					
+          <td> 
+            <p class="menuind15"><img src="image/member_link01.gif" width="15" height="12" align="absmiddle"><span class="char120"><a href="?module=Waiwai&action=PostRemark&navipage_id=<{$navi_page_id}>">新規投稿</a><a href="index.php?module=contents&content_id=37#7-2"><img src="image/navi_help.gif" width="60" height="15" border="0"></a></span></p>
+						<p class="ind15"><span class="char120">新規に投稿を行います。</span></p>
+					</td>
+				</tr>
+				<tr>
+					<td><img src="image/naviedit_split270.gif" width="270" height="1" vspace="10"></td>
+				</tr>
+			</table>
+			<table width="270" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					
+          <td> 
+            <p class="menuind15"><img src="image/member_link01.gif" width="15" height="12" align="absmiddle"><span class="char120"><a href="?module=Waiwai&action=EditRemark&navipage_id=<{$navi_page_id}>">発言編集</a><a href="index.php?module=contents&content_id=37#7-3"><img src="image/navi_help.gif" width="60" height="15" border="0"></a></span></p>
+						<p class="ind15"><span class="char120">発言を編集することができます。</span></p>
+					</td>
+				</tr>
+				<tr>
+					<td><img src="image/naviedit_split270.gif" width="270" height="1" vspace="10"></td>
+				</tr>
+			</table>
+			<table width="270" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					
+          <td> 
+            <p class="menuind15"><img src="image/member_link01.gif" width="15" height="12" align="absmiddle"><span class="char120"><a href="?module=Waiwai&action=DeleteRemark&navipage_id=<{$navi_page_id}>">発言削除</a><a href="index.php?module=contents&content_id=37#7-4"><img src="image/navi_help.gif" width="60" height="15" border="0"></a></span></p>
+						<p class="ind15"><span class="char120">発言を削除することができます。</span></p>
+					</td>
+				</tr>
+				<tr>
+					<td><img src="image/naviedit_split270.gif" width="270" height="1" vspace="10"></td>
+				</tr>
+			</table>
+			<table width="270" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					
+          <td> 
+            <p class="menuind15"><img src="image/member_link01.gif" width="15" height="12" align="absmiddle"><span class="char120"><a href="?module=Waiwai&action=MoveThread&navipage_id=<{$navi_page_id}>">スレッド移動</a><a href="index.php?module=contents&content_id=37#7-5"><img src="image/navi_help.gif" width="60" height="15" border="0"></a></span></p>
+						<p class="ind15"><span class="char120">スレッドの付け替え、移動を行ないます。</span></p>
+					</td>
+				</tr>
+				<tr>
+					<td><img src="image/naviedit_split270.gif" width="270" height="1" vspace="10"></td>
+				</tr>
+			</table>
+<{*
+			<table width="270" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td>
+						<p class="menuind15"><img src="image/member_link01.gif" width="15" height="12" align="absmiddle"><span class="char120"><a href="?module=Waiwai&action=ListPublic&navipage_id=<{$navi_page_id}>">ワイワイ会議への質問管理</a><{if $waiwai_notice_flag.public_post == 't'}>　<font color="#2BB906">NEW !</font><{/if}></span></p>
+
+            <p class="ind15"><span class="char120">ワイワイ会議への質問をメーリングリストに反映させます。</span></p>
+					</td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="25"></td>
+				</tr>
+			</table>
+*}>
+			<table width="270" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td><img src="image/naviedit_waiwai_sttl_download.gif" width="80" height="13" alt="ダウンロード"></td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="4"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#666666"><img src="image/spacer.gif" width="270" height="1"></td>
+				</tr>
+			</table>
+			<table width="270" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="15"></td>
+				</tr>
+				<tr>
+					<td>
+						<p class="menuind15"><img src="image/member_link01.gif" width="15" height="12" align="absmiddle"><span class="char120"><a href="?module=Waiwai&action=DownloadLog&navipage_id=<{$navi_page_id}>">発言ダウンロード</a></span></p>
+						
+            <p class="ind15"><span class="char120">今までの発言一覧を取得できます。</span></p>
+					</td>
+				</tr>
+				<tr>
+					<td><img src="image/naviedit_split270.gif" width="270" height="1" vspace="10"></td>
+				</tr>
+			</table>
+			<table width="270" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td>
+						<p class="menuind15"><img src="image/member_link01.gif" width="15" height="12" align="absmiddle"><span class="char120"><a href="?module=Waiwai&action=DownloadRecord&navipage_id=<{$navi_page_id}>">発言録ダウンロード</a></span></p>
+						<p class="ind15"><span class="char120">発言録ダウンロード説明。</span></p>
+					</td>
+				</tr>
+				<tr>
+					<td><img src="image/naviedit_split270.gif" width="270" height="1" vspace="10"></td>
+				</tr>
+			</table>
+			<table width="270" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td>
+						<p class="menuind15"><img src="image/member_link01.gif" width="15" height="12" align="absmiddle"><span class="char120"><a href="?module=Waiwai&action=DownloadCount&navipage_id=<{$navi_page_id}>">発言集計</a></span></p>
+						<p class="ind15"><span class="char120">発言集計説明。</span></p>
+					</td>
+				</tr>
+			</table>
+		</td>
+		<td><img src="image/spacer.gif" width="15" height="1"></td>
+		<td width="270" valign="top">
+			<table width="270" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td><img src="image/naviedit_waiwai_sttl_setting.gif" width="28" height="14" alt="設定"></td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="4"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#666666"><img src="image/spacer.gif" width="270" height="1"></td>
+				</tr>
+			</table>
+			<table width="270" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="15"></td>
+				</tr>
+				<tr>
+					<td>
+						<p class="menuind15"><img src="image/member_link01.gif" width="15" height="12" align="absmiddle"><span class="char120"><a href="?module=Waiwai&action=EditBasic&navipage_id=<{$navi_page_id}>">基本設定</a></span></p>
+						<p class="ind15"><span class="char120">基本的な設定を行なうことができます。</span></p>
+					</td>
+				</tr>
+				<tr>
+					<td><img src="image/naviedit_split270.gif" width="270" height="1" vspace="10"></td>
+				</tr>
+			</table>
+			<table width="270" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td>
+						<p class="menuind15"><img src="image/member_link01.gif" width="15" height="12" align="absmiddle"><span class="char120"><a href="?module=Waiwai&action=EditHeader&navipage_id=<{$navi_page_id}>">ヘッダ / フッタ設定</a></span></p>
+						<p class="ind15"><span class="char120">投稿されるメールのヘッダ / フッタを設定します。</span></p>
+					</td>
+				</tr>
+				<tr>
+					<td><img src="image/naviedit_split270.gif" width="270" height="1" vspace="10"></td>
+				</tr>
+			</table>
+			<table width="270" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td>
+						<p class="menuind15"><img src="image/member_link01.gif" width="15" height="12" align="absmiddle"><span class="char120"><a href="?module=Waiwai&action=EditGuestMail&navipage_id=<{$navi_page_id}>">ゲスト登録メール設定</a></span></p>
+						<p class="ind15"><span class="char120">ゲスト登録メンバーへのメールを設定します。</span></p>
+					</td>
+				</tr>
+				<tr>
+					<td><img src="image/naviedit_split270.gif" width="270" height="1" vspace="10"></td>
+				</tr>
+			</table>
+			<table width="270" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td>
+						<p class="menuind15"><img src="image/member_link01.gif" width="15" height="12" align="absmiddle"><span class="char120"><a href="?module=Waiwai&action=EditRegistMail&navipage_id=<{$navi_page_id}>">入会者メール設定</a></span></p>
+						<p class="ind15"><span class="char120">新規登録メンバーへのメールを設定します。</span></p>
+					</td>
+				</tr>
+				<tr>
+					<td><img src="image/naviedit_split270.gif" width="270" height="1" vspace="10"></td>
+				</tr>
+			</table>
+			<table width="270" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td>
+						<p class="menuind15"><img src="image/member_link01.gif" width="15" height="12" align="absmiddle"><span class="char120"><a href="?module=Waiwai&action=EditResignMail&navipage_id=<{$navi_page_id}>">退会者メール設定</a></span></p>
+						<p class="ind15"><span class="char120">退会メンバーへのメールを設定します。</span></p>
+					</td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="25"></td>
+				</tr>
+			</table>
+			<table width="270" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td><img src="image/naviedit_waiwai_sttl_member.gif" width="81" height="14" alt="メンバー管理"></td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="4"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#666666"><img src="image/spacer.gif" width="270" height="1"></td>
+				</tr>
+			</table>
+			<table width="270" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="15"></td>
+				</tr>
+				<tr>
+					
+          <td> 
+            <p class="menuind15"><img src="image/member_link01.gif" width="15" height="12" align="absmiddle"><span class="char120"><a href="?module=Waiwai&action=ListMember&navipage_id=<{$navi_page_id}>">会議室メンバー一覧</a><a href="index.php?module=contents&content_id=37.html#7-1"><img src="image/navi_help.gif" width="60" height="15" border="0"></a></span></p>
+						<p class="ind15"><span class="char120">メンバー一覧を参照することができます。</span></p>
+					</td>
+				</tr>
+				<tr>
+					<td><img src="image/naviedit_split270.gif" width="270" height="1" vspace="10"></td>
+				</tr>
+			</table>
+			<table width="270" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					
+          <td> 
+            <p class="menuind15"><img src="image/member_link01.gif" width="15" height="12" align="absmiddle"><span class="char120"><a href="?module=Waiwai&action=ListGuest&navipage_id=<{$navi_page_id}>">会議室ゲストメンバー一覧</a><{if 
+              $waiwai_notice_flag.guest_member == 't'}>　<font color="#2BB906">NEW 
+              !</font><{/if}><a href="index.php?module=contents&content_id=37.html#7-1"><img src="image/navi_help.gif" width="60" height="15" border="0"></a></span></p>
+						<p class="ind15"><span class="char120">ゲストメンバーを本登録メンバーに承認します。</span></p>
+					</td>
+				</tr>
+			</table>
+		</td>
+		<td><img src="image/spacer.gif" width="10" height="1"></td>
+	</tr>
+	<tr>
+		<td colspan="5"><img src="image/spacer.gif" width="1" height="40"></td>
+	</tr>
+</table>

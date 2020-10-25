@@ -1,0 +1,17 @@
+void	dsp_str(short, short, char *, short);
+void	dsp_str2(short, short, char *, short);
+void	dsp_font(short, short, short *, short);
+void	dsp_font2(short, short, short *, short);
+void	set_font(int);
+void	setcolor(ushort);
+void	setlinestyle(ushort);
+void	line(short, short, short, short);
+void	box(short, short, short, short, short);
+void	circle(short, short, short, short);
+void	arc(short, short, short, short, short, short, short);
+void	triangle(short, short, short, short, short, short, short);
+void	polygon(struct xycoord *, short, short);
+void	fill(short, short, ushort);
+void	rotate(short *, short *, short);
+void	setclip(short, short, short, short);
+void	resetclip(void);

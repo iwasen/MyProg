@@ -1,0 +1,39 @@
+		<!-- アシストナビ -->
+			<table width="200" border="0" cellspacing="0" cellpadding="0" bgcolor="#F5DC51">
+				<tr>
+					<td colspan="2"><!-- タイトル画像 --><img src="image/menu_navi_ast_ttl.gif" width="200" height="27" alt="アシストナビ"></td>
+				</tr>
+				<tr>
+					<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+					<td width="190" valign="top">
+			<!--アシストナビループここから-->
+					<{foreach item=item from=$navi_assist_navi}>
+						<table width="190" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td width="50" valign="top"><!-- 写真 -->
+								  <{if $item->getAttribute('anv_image_id') >0}>
+								  <img src="image.php?id=<{$item->getAttribute('anv_image_id')}>" width="50" >
+								  <{else}>
+								  <img src="image/navi_ph.gif" width="50" />
+								  <{/if}>
+								</td>
+								<td width="140" valign="top" class="char120">
+									<!-- 名前 --><p class="ind0505"><{$item->getName()|escape}><br>
+									<!-- テキスト --><{$item->getAttribute('anv_self_introduction')|escape|nl2br}></p>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2"><img src="image/spacer.gif" width="1" height="5"></td>
+							</tr>
+						</table>
+						<{/foreach}>
+				<!--アシストナビループここまで-->
+				
+					</td>
+				</tr>
+				
+				<tr bgcolor="#FFFFFF">
+					<td colspan="2"><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+			</table>
+			<!-- アシストナビここまで -->

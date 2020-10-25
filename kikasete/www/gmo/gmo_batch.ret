@@ -1,0 +1,14 @@
+DB INSERT処理 開始時間 2009:06:23 15:30:16
+
+DELETE FROM g_monitor
+を処理しました。
+CREATE TABLE gtmp (mn_monitor_id int,mn_birthday date,mn_sex smallint,mn_mikikon smallint,mn_jitaku_area smallint,mn_shokugyou_cd smallint)
+を処理しました。
+copy gtmp from '/tmp/batch.csv' using delimiters ','
+を処理しました。
+INSERT INTO g_monitor SELECT mn_monitor_id,0,NULL,NULL,1,NULL,NULL,NULL,NULL,mn_birthday,mn_sex,mn_mikikon,NULL,NULL,NULL,NULL,mn_jitaku_area,NULL,NULL,NULL,NULL,NULL,NULL,mn_shokugyou_cd,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL FROM gtmp
+を処理しました。
+DROP TABLE gtmp
+を処理しました。
+
+DB INSERT処理 終了時間 2009:06:23 15:30:40

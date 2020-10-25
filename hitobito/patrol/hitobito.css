@@ -1,0 +1,133 @@
+form {
+	margin: 0px
+}
+.head {
+	background-color: #99CCFF;	/* ÀÄ */
+	color: white;
+	font-weight: bolder
+}
+.head2 {
+	background-color: #ff6633;	/* ÀÖ */
+	color: white;
+	font-weight: bolder
+}
+.head3 {
+	background-color: #ffff66;	/* ²«¿§ */
+	color: #ff6633;
+	font-weight: bolder
+}
+.back {
+	background-color: #FFFFFF;
+	border: auto black none;
+	color: #000000;
+	height: auto;
+	width: auto;
+	font-size: 12px
+}
+.face {
+	background-color: #99CCFF;
+	border: auto black none;
+	color: #FFFFFF; height: auto;
+	font-size: 12px
+}
+.bg1 {
+	background-color: #FFFFFF;
+	font-size: 12px
+}
+.bg2 {
+	background-color: #CCFFFF;
+	font-size: 12px
+}
+.bg3 {
+	background-color: #eeeeee;
+	font-size: 12px
+}
+.headfood {
+	border-top: 3px solid #99CCFF
+}
+.note
+{
+	font-size: smaller;
+	color: forestgreen
+}
+.bg
+{
+	background-color: #fafafa
+}
+.lc
+{
+	padding-top: 3px;
+	padding-bottom: 2px;
+	padding-left: 5px;
+	width: 100%;
+	color: navy;
+/*	background-color: #ffffdd;*/
+	font-size: smaller
+}
+.lt
+{
+	white-space: nowrap;
+}
+.lb
+{
+	text-align: right;
+	white-space: nowrap;
+}
+.tch
+{
+	background-color: #99CCFF;
+	border: auto black none;
+	color: #FFFFFF; height: auto;
+}
+tr.tc0
+{
+	background-color: #CCFFFF;
+}
+tr.tc1
+{
+	background-color: #FFFFFF;
+}
+
+.small
+{
+    font-size: 12px;
+}
+.kanji
+{
+	ime-mode: active
+}
+.alpha
+{
+	ime-mode: inactive
+}
+.number
+{
+	ime-mode: disabled
+}
+.url
+{
+	ime-mode: inactive
+}
+.mail
+{
+	ime-mode: inactive
+}
+
+/********/
+/* ¸å¤Çºï½ü */
+/********/
+.chart {
+	background-color: #FFFFFF;
+	border: auto black none;
+	color: #000000;
+	height:auto;
+	font-size: 12px
+}
+.chart2 {
+	background-color: #CCFFFF;
+	border: auto black none;
+	color: #000000;
+	height: auto;
+	font-size: 12px
+}
+

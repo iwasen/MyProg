@@ -1,0 +1,122 @@
+	title	console
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; module name	: console subroutine
+; creation date	: 86:01:27
+; revised date  : 
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+	.z80
+;
+		include	MEMORY.INC
+
+		public	xconst
+		public 	xconin
+		public	shftinit
+;	
+;
+	CONST		equ	0eb06h
+	CONIN		equ	0eb09h
+  	CONOUT		equ	0eb0ch
+	IMSHFT		equ	0f01ch
+	RWITEMTOP	equ	0cc00h
+	RZIOCTLR	equ	0f006h
+	ZIOCTLR		equ	19h
+	ESC		equ	1bh
+;
+;
+;	console status
+xconst:
+		call	CONST
+		push	af
+		call	shftchk
+		pop	af
+		ret
+;
+;	console input
+xconin:
+		call	xconst
+		or	a
+		jr	z,xconin
+		call	CONIN
+		ret
+;
+;	shift check
+shftchk:
+		ld	a,(IMSHFT)
+		or	a
+		ret	z
+
+		ld	a,(shift)
+		inc	a
+		cp	3
+		jr	nz,sh_10
+shftinit:
+		sub	a
+sh_10:
+		ld	(shift),a
+		push	af
+		rlca
+		rlca
+		rlca
+		rlca
+		ld	c,a
+		ld	hl,RZIOCTLR
+		ld	a,(hl)
+		and	0cfh
+		or	c
+		ld	(hl),a
+		out	(ZIOCTLR),a	; LED	control
+
+		pop	af
+		ld	l,a
+		ld	h,0
+		add	hl,hl
+		add	hl,hl
+		add	hl,hl
+		add	hl,hl
+		add	hl,hl
+		ld	de,codetbl
+		add	hl,de
+
+		ex	de,hl
+		ld	hl,RWITEMTOP
+		ld	b,32
+sh_20:
+		ld	(hl),1
+		inc	hl
+		ld	a,(de)
+		ld	(hl),a
+		inc	de
+		push	bc
+		ld	bc,15
+		add	hl,bc
+		pop	bc
+		djnz	sh_20
+
+		sub	a
+		ld	(IMSHFT),a
+		ret
+
+;
+;	code table
+codetbl:
+		db	0e0h,0e1h,0e2h,0e3h,0e4h,0e5h,0e6h,0e7h
+		db	0e8h,0e9h,0eah,0ebh,0ech,0edh,0eeh,0efh
+		db	0f0h,0f1h,0f2h,0f3h,0f4h,0f5h,0f6h,0f7h
+		db	0f8h,0f9h,0fah,0fbh,0fch,0fdh,020h,000h
+
+		db	040h,041h,042h,043h,044h,045h,046h,047h
+		db	048h,049h,04ah,04bh,04ch,04dh,04eh,04fh
+		db	050h,051h,052h,053h,054h,055h,056h,057h
+		db	058h,059h,05ah,05bh,05ch,05dh,020h,000h
+
+		db	000h,000h,000h,000h,000h,000h,000h,000h
+		db	021h,022h,023h,024h,025h,026h,027h,028h
+		db	029h,05eh,02dh,060h,07bh,07ch,07dh,07eh
+		db	03ah,03bh,03ch,03dh,03eh,03fh,020h,000h
+
+shift:		db	0
+
+		end

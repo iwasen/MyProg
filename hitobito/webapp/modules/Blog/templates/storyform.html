@@ -1,0 +1,271 @@
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+  <tr bgcolor="#5B94FD">
+
+    <td colspan="3">
+      <table width="580" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="115"><img src="image/naviedit_post_ttl.gif" width="105" height="25" hspace="10" alt="記事編集画面"></td>
+        <td align="right"><a href="#"><img src="image/new_entry_help2.gif" alt="記事の作成ヘルプ" width="74" height="13" border="0"></a></td>
+        <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+    <td width="555" align="center" valign="top">	  
+      <form name="storyform" method="post" action="">
+      <table width="500" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td colspan="3"><img src="image/spacer.gif" width="1" height="20"></td>
+        </tr>
+        <tr>
+          <td colspan="3">
+	    <{$editform->getHtmlErrors()}>
+	  </td>
+        </tr>
+        <tr>
+          <td bgcolor="#E6F2FF" class="char120">&nbsp;タイトル</td>
+          <td width="10"><img src="image/spacer.gif" width="5" height="1"></td>
+          <td width="235"><input type="text" name="bla_title" value="<{$editform->bla_title|escape}>"  size="60" style="width:200px;"></td>
+        </tr>
+        <tr>
+          <td colspan="3"><img src="image/spacer.gif" width="1" height="8"></td>
+        </tr>
+        <tr>
+          <td nowrap bgcolor="#E6F2FF" class="char120">&nbsp;カテゴリー</td>
+          <td>&nbsp;</td>
+          <td>
+	    <{html_options options=$categories_options name=bla_blog_category_id selected=$editform->bla_blog_category_id}>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3"><img src="image/spacer.gif" width="1" height="8"></td>
+        </tr>
+        <tr>
+          <td nowrap bgcolor="#E6F2FF" class="char120">&nbsp;日時</td>
+          <td>&nbsp;</td>
+          <td class="char120">
+	      <{html_select_date_j start_year="-5" end_year="+1" time=$editform->bla_date field_array="bla_date" prefix=""}> 
+	      <{html_select_time display_seconds=false time=$editform->bla_date field_array="bla_date" prefix=""}>
+	  </td>
+        </tr>
+        <tr>
+          <td colspan="3"><img src="image/spacer.gif" width="1" height="8"></td>
+        </tr>
+        <tr>
+          <td height="20" nowrap bgcolor="#E6F2FF" class="char120">&nbsp;インデックス画像&nbsp;</td>
+          <td>&nbsp;</td>
+          <td class="char120">
+	    <input type="hidden" name="bla_blog_image_id" value="<{$editform->bla_blog_image_id}>" />
+	    <span id="bla_blog_image_title"><{$blog_image_title}></span>
+	    <a href="javascript:;" onClick="window.open('index.php?module=Blog&amp;action=UploadImage&amp;navipage_id=<{$hitobitoNaviPageInfo->getId()}>&amp;imagemanager=1','popup_addimage','scrollbars=yes,resizable=yes,width=440,height=505')"><img src="image/naviedit_post_btn_image.gif" alt="画像" width="34" height="17" border="0"></a>
+	    <br>※インデックス画像とはナビトップ画面に表示される画像のことです
+	  </td>
+        </tr>
+        <tr>
+          <td colspan="3"><img src="image/spacer.gif" width="1" height="20"></td>
+        </tr>
+      </table>
+      <table border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td align="center"><table width="500" border="0" cellspacing="0" cellpadding="2">
+              <tr>
+                <td bgcolor="#E6F2FF"><table border="0" cellspacing="2" cellpadding="0">
+                    <tr>
+                      <td class="char120">文字装飾：装飾したいテキストをドラッグして反転させ、ボタンをクリックします。</td>
+                    </tr>
+                    <tr>
+                      <td><table border="0" cellspacing="0" cellpadding="2">
+                          <tr>
+                            <td><img src="image/naviedit_post_btn_style_b.gif" alt="太字にする" width="19" height="17" border="0" onclick="boldThis()" ></td>
+                            <td><img src="image/naviedit_post_btn_style_i.gif" alt="斜体にする" width="19" height="17" border="0" onclick="italicThis()"></td>
+                            <td><img src="image/naviedit_post_btn_style_u.gif" alt="下線をつける" width="19" height="17" border="0" onclick="underlineThis()"></td>
+                            <td><img src="image/naviedit_post_btn_align_l2.gif" alt="テキストの左揃え" width="19" height="17" border="0" onclick="alignleftThis()"></td>
+                            <td><img src="image/naviedit_post_btn_align_c.gif" alt="テキストの中央揃え" width="19" height="17" border="0" onclick="aligncenterThis()" ></td>
+                            <td><img src="image/naviedit_post_btn_align_r2.gif" alt="テキストの右揃え" width="19" height="17" border="0" onclick="alignrightThis()"></td>
+                            <td><img src="image/naviedit_post_btn_url4.gif" alt="リンクの挿入" width="22" height="17" border="0" onClick="ahrefThis()"></td>
+                            <td><img src="image/spacer.gif" width="5" height="1"></td>
+                            <td><img src="image/naviedit_post_btn_color_01.gif" width="19" height="17" border="0" onClick="colorThis('#ff0000')"></td>
+                            <td><img src="image/naviedit_post_btn_color_04.gif" width="19" height="17" border="0" onClick="colorThis('#ff6600')"></td>
+                            <td><img src="image/naviedit_post_btn_color_07.gif" width="19" height="17" border="0" onClick="colorThis('#ff33cc')"></td>
+                            <td><img src="image/naviedit_post_btn_color_05.gif" width="19" height="17" border="0" onClick="colorThis('#6633cc')"></td>
+                            <td><img src="image/naviedit_post_btn_color_02.gif" width="19" height="17" border="0" onClick="colorThis('#0033cc')"></td>
+                            <td><img src="image/naviedit_post_btn_color_08.gif" width="19" height="17" border="0" onClick="colorThis('#3399ff')"></td>
+                            <td><img src="image/naviedit_post_btn_color_03.gif" width="19" height="17" border="0" onClick="colorThis('#009900')"></td>
+                            <td><img src="image/naviedit_post_btn_color_06.gif" width="19" height="17" border="0" onClick="colorThis('#999900')"></td>
+                          </tr>
+                      </table></td>
+                    </tr>
+                  </table>
+                    <table border="0" cellspacing="2" cellpadding="0">
+                      <tr>
+                        <td class="char120">画像の挿入：プルダウンより画像を選択し、挿入をクリックします。</td>
+                      </tr>
+                      <tr>
+                        <td><table border="0" cellspacing="0" cellpadding="2">
+                            <tr>
+                              <td>
+				<{html_options options=$image_options name='image_selecter'  }>
+                              </td>
+                              <td><img src="image/naviedit_post_btn_image3.gif" width="34" height="17" alt="画像の挿入" onClick="imageThis('image_selecter')"></td>
+                              <td><img src="image/spacer.gif" width="5" height="1"></td>
+                              <td><a href="javascript:;" onClick="window.open('index.php?module=Blog&amp;action=UploadImage&amp;navipage_id=<{$hitobitoNaviPageInfo->getId()}>&amp;imagemanager=1','popup_addimage','scrollbars=yes,resizable=yes,width=440,height=505')"><img src="image/naviedit_post_btn_image.gif" alt="画像" width="34" height="17" border="0"></a></td>
+                            </tr>
+                        </table></td>
+                      </tr>
+                  </table></td>
+              </tr>
+          </table></td>
+        </tr>
+        <tr>
+          <td align="center">
+	    <textarea name="bla_article_text" rows="20" cols="80" style="width:500px;" id="inputbla_article_text" onkeyup="storeCaret(this); " onclick="storeCaret(this);" onselect="storeCaret(this);"><{$editform->bla_article_text|escape}></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td><img src="image/spacer.gif" width="1" height="10"></td>
+        </tr>
+        <tr>
+          <td align="right">
+	      <script>
+		<!--
+		  document.write('<input type="image" src="image/naviedit_waiwai_t_btn_preview.gif"  width="90" height="20" onClick="window.open(\'index.php?module=Blog&action=PreviewStory\', \'preview\'); return false;" />');
+		  // -->
+	      </script>
+	  </td>
+        </tr>
+        <tr>
+          <td><img src="image/spacer.gif" width="1" height="15"></td>
+        </tr>
+      </table>
+      <table width="555" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td class="char120" nowrap><img src="image/spacer.gif" width="28" height="1">トラックバック先URL ※改行で10個まで入力できます</td>
+        </tr>
+        <tr>
+          <td align="center" nowrap class="char120"><textarea name="trackbacks" rows="5" cols="80" style="width:500px;"><{$editform->trackbacks}></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td><img src="image/naviedit_split555.gif" width="555" height="1" vspace="20"></td>
+        </tr>
+      </table>
+      <table width="555" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="95" class="char120" valign="top">記事アップ先</td>
+          <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+          <td width="450" class="char120">
+          
+          <{if $b_story_id == 0}>
+              <label><input type="radio" name="bla_navi_select_flag" value="0" checked="checked" />ナビ記事のみ</label>
+          <{else}>
+              <{html_radios options=$navi_select_flag_options name=bla_navi_select_flag checked=$editform->bla_navi_select_flag}>
+              <br>※現在ナビセレクトは表示されません。<br>　以前投稿された際にナビセレクトのみに表示されるよう設定された方は、<br>　記事のアップ先を変更して下さい。
+          <{/if}>
+        </td>
+        </tr>
+        <tr>
+          <td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+        </tr>
+        <tr>
+          <td valign="top" class="char120">公開設定</td>
+	  <{*
+	      <{html_radios options=$open_flag_options name=bla_open_flag checked=$editform->bla_open_flag}>
+	  *}>
+          <td><img src="image/spacer.gif" width="10" height="1"></td>
+          <td>
+		  <table border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td><input name="bla_open_flag" type="radio" id="chk2" value="1" <{if $editform->bla_open_flag == 1}>checked<{/if}> /></td>
+              <td class="char120">ナビ記事として公開</td>
+            </tr>
+            <tr>
+              <td colspan="2"><img src="image/spacer.gif" width="1" height="5"></td>
+              </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td class="char120">ナビ記事として公開します。<br>記事blog一覧に表示されます。</td>
+            </tr>
+            <tr>
+              <td colspan="2"><img src="image/spacer.gif" width="1" height="5"></td>
+            </tr>
+            <tr>
+              <td><input name="bla_open_flag" type="radio" id="chk2" value="2" <{if $editform->bla_open_flag == 2}>checked<{/if}> /></td>
+              <td class="char120">限定公開</td>
+            </tr>
+            <tr>
+              <td colspan="2"><img src="image/spacer.gif" width="1" height="5"></td>
+              </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td class="char120">ナビページには表示されませんが、URLを直接指定していただくことでページを表示します。<br>
+			  特定の方のみに閲覧させたい場合などに利用できます。</td>
+            </tr>
+            <tr>
+              <td colspan="2"><img src="image/spacer.gif" width="1" height="5"></td>
+            </tr>
+            <tr>
+              <td><input name="bla_open_flag" type="radio" id="chk2" value="0" <{if $editform->bla_open_flag == 0}>checked<{/if}> /></td>
+              <td class="char120">非公開（草稿）</td>
+            </tr>
+            <tr>
+              <td colspan="2"><img src="image/spacer.gif" width="1" height="5"></td>
+              </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td class="char120">ナビページ編集画面でのみ確認できます。<br>
+			  編集中の記事などを一時的に保存したい場合などに利用できます。</td>
+            </tr>
+          </table>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+        </tr>
+        <tr>
+          <td class="char120">コメント</td>
+          <td><img src="image/spacer.gif" width="10" height="1"></td>
+          <td class="char120">
+	      <{html_radios options=$comment_flag_options name=bla_comment_flag checked=$editform->bla_comment_flag}>
+	  </td>
+        </tr>
+        <tr>
+          <td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+        </tr>
+        <tr>
+          <td class="char120" nowrap>トラックバック</td>
+          <td><img src="image/spacer.gif" width="10" height="1"></td>
+          <td class="char120">
+	      <{html_radios options=$trackback_flag_options name=bla_trackback_flag checked=$editform->bla_trackback_flag}>
+	  </td>
+        </tr>
+        <tr>
+          <td colspan="3"><img src="image/spacer.gif" width="1" height="20"></td>
+        </tr>
+        <tr bgcolor="#5B94FD">
+          <td colspan="3"><img src="image/spacer.gif" width="1" height="3"></td>
+        </tr>
+        <tr>
+          <td colspan="3"><img src="image/spacer.gif" width="1" height="20"></td>
+        </tr>
+        <tr>
+          <td colspan="3">
+	    <script>
+	      <!--
+		document.write('<input type="image" src="image/naviedit_waiwai_t_btn_preview.gif"  width="90" height="20" onClick="window.open(\'index.php?module=Blog&action=PreviewStory\', \'preview\'); return false;" />');
+		// -->
+	    </script>
+	    &nbsp;&nbsp;
+	    <input type="image" border="0" name="imageField" src="image/naviedit_btn_regist.gif" width="50" height="20" alt="登録" >
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+        </tr>
+      </table>
+    </form>
+    </td>
+    <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+  </tr>
+</table>

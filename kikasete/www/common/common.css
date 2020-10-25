@@ -1,0 +1,214 @@
+form
+{
+	margin: 0
+}
+table
+{
+	border-collapse: separate;
+	empty-cells: show
+}
+th
+{
+	white-space: nowrap;
+}
+pre
+{
+	margin: 0px
+}
+div.page
+{
+	page-break-before: always
+}
+a:link
+{
+	color: blue
+}
+a:visited
+{
+	color: blue
+}
+a:active
+{
+	color: blue
+}
+a:hover
+{
+	color: red
+}
+a.thread:link
+{
+	color = blue;
+	text-decoration: none
+}
+a.thread:visited
+{
+	color = blue;
+	text-decoration: none
+}
+a.thread:active
+{
+	color = blue;
+	text-decoration: none
+}
+a.thread:hover
+{
+	color: red;
+	text-decoration: underline
+}
+hr.header
+{
+	color: #5673fc
+}
+hr.footer
+{
+	margin-top: 4px;
+	color: #5673fc
+}
+.kikasete
+{
+	background-color: #282964;
+	color: white;
+	font-weight: bolder
+}
+.monitor
+{
+	background-color: #aa4488;
+	color: white;
+	font-weight: bolder
+}
+.marketer
+{
+	background-color: #44aa88;
+	color: white;
+	font-weight: bolder
+}
+.agent
+{
+	background-color: #aa8844;
+	color: white;
+	font-weight: bolder
+}
+.etc
+{
+	background-color: #9f8fc0;
+	color: white;
+	font-weight: bolder
+}
+th.sort
+{
+	cursor: hand
+}
+.note
+{
+	font-size: smaller;
+	color: forestgreen
+}
+tr.tch
+{
+	background-color: #ffcc99
+}
+tr.tc0
+{
+	background-color: #ddffee
+}
+tr.tc1
+{
+	background-color: #ffffff
+}
+td.tc2
+{
+	background-color: #ffffee
+}
+.np
+{
+	font-size: 10.5pt;
+	font-family: '£Í£Ó ¥´¥·¥Ã¥¯'
+}
+.disabled
+{
+	color: #888888
+}
+td.lt
+{
+	white-space: nowrap;
+}
+td.lb
+{
+	text-align: right;
+	white-space: nowrap;
+}
+td.lc
+{
+	padding-top: 3px;
+	padding-bottom: 2px;
+	padding-left: 5px;
+	width: 100%;
+	color: navy;
+	background-color: #ffffdd;
+	font-size: smaller
+}
+td.ls
+{
+	background-color: #ffffdd;
+	text-align: right
+}
+td.m0
+{
+	font-weight: bold;
+	color: slateblue;
+	white-space: nowrap;
+	vertical-align: bottom;
+	padding-top: 10px;
+	padding-bottom: 0px
+}
+td.m1
+{
+	color: black;
+	white-space: nowrap;
+	background-color: #99d0eb
+}
+td.n1
+{
+	background-color: #eeeeee
+}
+td.m2
+{
+    FONT-WEIGHT: bolder;
+    COLOR: white;
+    WHITE-SPACE: nowrap;
+    BACKGROUND-COLOR: #66bb66
+}
+td.n2
+{
+    BACKGROUND-COLOR: #eeeedd
+}
+td.menuitem
+{
+	border: outset;
+	font-weight: bold;
+	cursor: hand;
+	color: white;
+	text-align: center;
+	white-space: nowrap;
+	background-color: steelblue
+}
+p.msg
+{
+	color: darkblue
+}
+.kanji
+{
+	ime-mode: active
+}
+.alpha
+{
+	ime-mode: inactive
+}
+.number
+{
+	ime-mode: disabled
+}
+.small
+{
+    font-size: smaller
+}

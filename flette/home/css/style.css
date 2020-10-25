@@ -1,0 +1,12 @@
+
+a:link {  color: #003399; text-decoration: none;}
+a:visited {  color: #003399; text-decoration: none;}
+a:hover {  color: #FF3300; text-decoration: underline;}
+
+.t09 {font-size: 9px; font-family: Osaka, '‚l‚r ‚oƒSƒVƒbƒN', sans-serif ; line-height:130%; color:#333333;}
+.t10 {font-size: 10px; font-family: Osaka, '‚l‚r ‚oƒSƒVƒbƒN', sans-serif ; line-height:130%; color:#333333;}
+.t10_11 {font-size: 10px; font-family: Osaka, '‚l‚r ‚oƒSƒVƒbƒN', sans-serif ; line-height:11px; color:#333333;}
+.t12 {font-size: 12px; font-family: Osaka, '‚l‚r ‚oƒSƒVƒbƒN', sans-serif ; line-height:130%; color:#333333;}
+.t14 {font-size: 14px; font-family: Osaka, '‚l‚r ‚oƒSƒVƒbƒN', sans-serif ; line-height:130%; color:#333333;}
+.t16 {font-size: 16px; font-family: Osaka, '‚l‚r ‚oƒSƒVƒbƒN', sans-serif ; line-height:130%; color:#333333;}
+.t18 {font-size: 18px; font-family: Osaka, '‚l‚r ‚oƒSƒVƒbƒN', sans-serif ; line-height:130%; color:#333333;}

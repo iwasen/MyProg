@@ -1,0 +1,116 @@
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td width="20" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="20" height="1"></td>
+		<td width="538" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="538" height="1"></td>
+		<td width="20" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="20" height="1"></td>
+		<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td><img src="image/spacer.gif" width="20" height="1"></td>
+		<td>
+			<table width="538" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td><img src="image/navi_ask_room_ttl.gif" width="147" height="13" vspace="10" alt="ワイワイ会議室で質問する"></td>
+				</tr>
+<{if $waiwai_error_ary}>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td colspan="3" class="error"><{foreach from=$waiwai_error_ary item=waiwai_error}>・<{$waiwai_error|escape}><br><{/foreach}></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+<{/if}>
+				<tr>
+					<td class="char120">登録メンバーでない方でも以下のフォームよりワイワイ会議室に投稿することができます。<br>
+					投稿はナビが確認した後にワイワイ会議室に反映されます。</td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+			</table>
+		</td>
+		<td><img src="image/spacer.gif" width="20" height="1"></td>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr bgcolor="#CCCCCC">
+		<td colspan="5"><img src="image/spacer.gif" width="580" height="1"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td><img src="image/spacer.gif" width="20" height="1"></td>
+		<td>
+			<form name="waiwai_post_question" method="post" action="?module=Waiwai&action=PostQuestion&navipage_id=<{$navi_page_id}>">
+			<table width="538" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="15"></td>
+				</tr>
+				<tr>
+					<td width="95" class="char120">ニックネーム</td>
+					<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+					<td width="433"><input type="text" name="waiwai_nickname" size="12" style="width:180px;" value="<{$waiwai_post.nickname|escape}>"></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td class="char120" nowrap>メールアドレス</td>
+					<td><img src="image/spacer.gif" width="10" height="1"></td>
+					<td><input type="text" name="waiwai_mail_addr" size="12" style="width:180px;" value="<{$waiwai_post.mail_addr|escape}>"></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td class="char120">タイトル</td>
+					<td><img src="image/spacer.gif" width="10" height="1"></td>
+					<td><input type="text" name="waiwai_title" size="12" style="width:180px;" value="<{$waiwai_post.title|escape}>"></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td class="char120" valign="top">本文</td>
+					<td><img src="image/spacer.gif" width="10" height="1"></td>
+					<td><textarea name="waiwai_content" rows="10" cols="50" style="width:360px;"><{$waiwai_post.content|escape}></textarea></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="15"></td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td><img src="image/spacer.gif" width="10" height="1"></td>
+					<td>
+						<input type="image" border="0" name="waiwai_post_btn" src="image/navi_ask_room_btn_submit.gif" width="50" height="20" alt="投稿">
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="15"></td>
+				</tr>
+			</table>
+			</form>
+		</td>
+		<td><img src="image/spacer.gif" width="20" height="1"></td>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td colspan="3" bgcolor="#5FCA44"><img src="image/spacer.gif" width="1" height="3"></td>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td colspan="3" bgcolor="#95DC82"><img src="image/spacer.gif" width="1" height="2"></td>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td colspan="5" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="580" height="1"></td>
+	</tr>
+	<tr>
+		<td colspan="5"><img src="image/spacer.gif" width="1" height="20"></td>
+	</tr>
+</table>

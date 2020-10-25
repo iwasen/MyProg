@@ -1,0 +1,127 @@
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+	<tr bgcolor="#5B94FD">
+		<td colspan="3"><img src="image/naviedit_mail_ttl.gif" width="103" height="25" hspace="10" alt="メルマガ管理"></td>
+	</tr>
+	<tr>
+		<td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+		<td width="555" valign="top">
+			<table width="555" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="15"></td>
+				</tr>
+				<tr>
+					<td><img src="image/naviedit_mail_sttl_setting.gif" width="113" height="14" alt="メルマガ基本設定"></td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="4"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#5B94FD"><img src="image/spacer.gif" width="555" height="1"></td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="20"></td>
+				</tr>
+			</table>
+			<form name="mailmag_basic_setting_form" method="post">
+			<table width="555" border="0" cellspacing="0" cellpadding="0">
+<{if $mailmag_error_ary}>
+				<tr>
+					<td colspan="3" class="error"><{foreach from=$mailmag_error_ary item=mailmag_error}>・<{$mailmag_error|escape}><br><{/foreach}></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+<{/if}>
+				<tr>
+					<td width="105" class="char120" nowrap>メルマガタイトル</td>
+					<td width="10"><img src="image/spacer.gif" width="10" height="8"></td>
+					<td width="440">　</td>
+				</tr>
+				<tr>
+					<td colspan="3" class="char120" nowrap>
+						<input type="text" name="mailmag_name" size="78" value="<{$melmaga_data.melmaga_name|escape}>" style="width:400px;">
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td class="char120" valign="top">メルマガ紹介文</td>
+					<td><img src="image/spacer.gif" width="10" height="8"></td>
+					<td>　</td>
+				</tr>
+				<tr>
+					<td class="char120" valign="top" colspan="3">
+						<textarea name="mailmag_intro" rows="5" cols="74"><{$melmaga_data.melmaga_intro|escape}></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td class="char120" valign="top">デフォルトフッタ</td>
+					<td><img src="image/spacer.gif" width="10" height="8"></td>
+					<td>　</td>
+				</tr>
+				<tr>
+					<td class="char120" valign="top" colspan="3">
+						<textarea name="mailmag_footer" rows="5" cols="74"><{$melmaga_data.melmaga_footer|escape}></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="20"></td>
+				</tr>
+				<tr>
+					<td class="char120">メルマガ機能</td>
+					<td><img src="image/spacer.gif" width="10" height="1"></td>
+					<td class="char120"><{html_radios name="mailmag_status" options=$status selected=$melmaga_data.status separator="　"}></td>
+				</tr>
+				<tr>
+					<td class="char120" colspan="3"><img src="image/spacer.gif" width="1" height="6"></td>
+				</tr>
+				<tr>
+					<td class="char120">バックナンバー</td>
+					<td><img src="image/spacer.gif" width="10" height="1"></td>
+					<td class="char120"><{html_radios name="mailmag_backnumber" options=$backnumber selected=$melmaga_data.backnumber separator="　"}></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="6"></td>
+				</tr>
+				<tr>
+					<td class="char120" nowrap>配信結果<br>通知メール</td>
+					<td><img src="image/spacer.gif" width="10" height="1"></td>
+					<td class="char120"><{html_radios name="mailmag_notify_mail" options=$notify_mail selected=$melmaga_data.notify_mail separator="　"}></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="20"></td>
+				</tr>
+			</table>
+			<table width="555" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td bgcolor="#5B94FD"><img src="image/spacer.gif" width="1" height="5"></td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="20"></td>
+				</tr>
+				<tr>
+					<td>
+						<table width="180" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td width="50">
+									<input type="image" border="0" name="mailmag_regist_btn" src="image/naviedit_btn_regist.gif" width="50" height="20" alt="登録">
+								</td>
+								<td width="10"><img src="image/spacer.gif" width="20" height="1"></td>
+								<td width="110"><a href="index.php?module=MailMag&action=ListMailMag&navipage_id=<{$navi_page_id}>"><img src="image/naviedit_btn_cancel.gif" width="110" height="20" border="0" alt="登録しないで戻る"></a></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+			</table>
+			</form>
+		</td>
+		<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+	</tr>
+</table>

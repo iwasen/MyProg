@@ -1,0 +1,22 @@
+<SCRIPT LANGUAGE=VBScript RUNAT=Server>
+Sub Session_OnStart
+	Session.TimeOut=10
+
+	path = Request.ServerVariables("PATH_TRANSLATED")
+	idx = InStrRev(path , "\")
+	path = Left(path, idx)
+
+	Set MyCon = Server.CreateObject("ADODB.Connection")
+	MyCon.Mode = adModeRead
+	MyCon.Provider = "Microsoft.Jet.OLEDB.4.0"
+	'MyCon.Provider = "Microsoft.Jet.OLEDB.3.51"
+	'MyCon.Open "DRIVER=Microsoft Access Driver (*.mdb);DBQ=" & path & "ihin_ctl.mdb"
+	MyCon.Open path & "mdb\ihin_ctl.mdb"
+	Set Session("IHINDB") = MyCon
+End Sub
+
+Sub Session_OnEnd
+	Set MyCon = Session("IHINDB")
+	MyCon.Close
+End Sub
+</SCRIPT>

@@ -1,0 +1,1644 @@
+.context ISAM
+:z3
+:n‚h‚r‚`‚lƒ‰ƒCƒuƒ‰ƒŠ  ŠÖ”ˆê——
+:l48
+                                                                    \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  ƒf[ƒ^ƒx[ƒX‘€ìŠÖ”
+    †®†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†²
+    †¤  db_open()       db_create()     db_create_from()              †¤
+    †¤  db_close()      db_close_all()  db_flush()      db_flush_all()†¤
+    †¤  db_index()      db_idx_create() db_chgidx()     db_search()   †¤
+    †¤  db_count()      db_store()      db_update()     db_delete()   †¤
+    †¤  db_recall()     db_top()        db_bottom()     db_set()      †¤
+    †¤  db_skip()       db_reindex()    db_pack()       db_read()     †¤
+    †¤  db_copy()       db_delete2()    db_check_deleted()            †¤
+    †¶†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†º
+
+  ƒf[ƒ^ƒtƒ@ƒCƒ‹‘€ìŠÖ”
+    †®†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†²
+    †¤  dbf_open()      dbf_create()    dbf_read()      dbf_write()   †¤
+    †¤  dbf_close()     dbf_flush()     dbf_delete()    dbf_recall()  †¤
+    †¤  dbf_pack()      dbf_check_deleted()             dbf_copy()    †¤
+    †¶†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†º
+
+  ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‘€ìŠÖ”
+    †®†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†²
+    †¤  idx_open()      idx_create()    idx_setinfo()   idx_read()    †¤
+    †¤  idx_getblk()    idx_write()     idx_close()     idx_flush()   †¤
+    †¤  idx_search()    idx_compare()   idx_store()     idx_delete()  †¤
+    †¤  idx_next()      idx_back()      idx_top()       idx_bottom()  †¤
+    †¤  idx_count()                                                   †¤
+    †¶†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†º
+
+  ƒ\[ƒgŠÖ˜Aˆ—
+    †®†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†²
+    †¤  dbf_sort()      idx_make()                                    †¤
+    †¶†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†º
+
+  ‚„‚a‚`‚r‚d‡VŒÝŠ·ŠÖ”
+    †®†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†²
+    †¤  db_reccount()   db_bof()        db_dbf()        db_eof()      †¤
+    †¤  db_field()      db_ndx()        db_recno()      db_recsize()  †¤
+    †¤  set_deleted()                                                 †¤
+    †¶†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†º
+
+  ‹¤’ÊƒTƒuƒ‹[ƒ`ƒ“
+    †®†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†²
+    †¤  db_err_handler()                db_err()        natof()       †¤
+    †¤  natoi()         get_key()       get_field()                   †¤
+    †¶†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†º
+
+                                  -E-
+.context IDX_H
+:z2
+:l19
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+/*      ƒCƒ“ƒfƒbƒNƒXi‚m‚c‚wjƒtƒ@ƒCƒ‹‚Ìƒwƒbƒ_  */
+struct  idx_h   {
+        long    root;           /* ƒ‹[ƒg‚ÌƒuƒƒbƒN‚m‚D */
+        long    n_block;        /* ƒuƒƒbƒN” */
+        long    dummy1;         /* */
+        int     l_key;          /* ƒL[‚Ì’·‚³ */
+        int     order;          /* ŽŸ” */
+        int     type;           /* ƒf[ƒ^Ží•Ê */
+        int     l_rec;          /* ‚PƒŒƒR[ƒh‚Ì’·‚³ */
+        int     dummy2;         /* */
+        int     uniq;           /* ƒ†ƒj[ƒNƒtƒ‰ƒO */
+        char    index[100];     /* ƒCƒ“ƒfƒbƒNƒX•\Œ»Ž® */
+        char    work[388];      /* ƒ[ƒNƒGƒŠƒA */
+};
+typedef struct  idx_h   IDX_H;
+
+                                  -E-
+.context IDX_B
+:z2
+:l14
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+/*      ƒCƒ“ƒfƒbƒNƒXƒuƒƒbƒNî•ñ        */
+struct  idx_b   {
+        char    block[BLOCK_SIZE];      /* ƒuƒƒbƒNî•ñ */
+        char    work[104];      /* ’Ç‰Á—pƒ[ƒNƒGƒŠƒA */
+        long    bno;            /* ƒuƒƒbƒN‚m‚D */
+        int     cp;             /* ƒJƒŒƒ“ƒgƒ|ƒCƒ“ƒ^ */
+        struct  idx_b   *fwp;   /* ƒ`ƒFƒCƒ“ƒ|ƒCƒ“ƒ^ */
+        struct  idx_b   *bwp;   /* ƒ`ƒFƒCƒ“ƒ|ƒCƒ“ƒ^ */
+};
+typedef struct  idx_b   IDX_B;
+
+                                  -E-
+.context IDX
+:z2
+:l16
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+/*      ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹ŠÇ—î•ñ    */
+struct  idx     {
+        char    file_name[80];  /* ƒtƒ@ƒCƒ‹–¼ */
+        FILE    *fp;            /* ƒtƒ@ƒCƒ‹ƒ|ƒCƒ“ƒ^ */
+        IDX_H   *ihp;           /* ƒwƒbƒ_î•ñƒ|ƒCƒ“ƒ^ */
+        IDX_B   *bp;            /* ƒJƒŒƒ“ƒgƒuƒƒbƒNî•ñƒ|ƒCƒ“ƒ^ */
+        IDX_B   *top;           /* ƒuƒƒbƒNî•ñƒ|ƒCƒ“ƒ^ */
+        IDX_B   *bottom;        /* ƒuƒƒbƒNî•ñƒ|ƒCƒ“ƒ^ */
+        char    *keyp;          /* ƒL[ƒ|ƒCƒ“ƒ^ */
+        int     w_flag;         /* ƒwƒbƒ_‘‚«ž‚Ýƒtƒ‰ƒO */
+};
+typedef struct  idx     IDX;
+
+                                  -E-
+.context DBF_H
+:z2
+:l14
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+/*      ƒf[ƒ^i‚c‚a‚ejƒtƒ@ƒCƒ‹‚Ìƒwƒbƒ_        */
+struct  dbf_h   {
+        char    flag;           /* ƒf[ƒ^ƒx[ƒXƒeƒLƒXƒgƒtƒ@ƒCƒ‹•Û—Lƒtƒ‰ƒO */
+        char    date[3];        /* ÅIXV“ú */
+        long    n_rec;          /* ƒŒƒR[ƒh” */
+        int     l_header;       /* ƒwƒbƒ_•”‚Ì’·‚³ */
+        int     l_rec;          /* ‚PƒŒƒR[ƒh‚Ì’·‚³ */
+        char    reserve[20];    /* ƒVƒXƒeƒ€—\–ñ—Ìˆæ */
+};
+typedef struct  dbf_h   DBF_H;
+
+                                  -E-
+.context FIELD
+:z2
+:l16
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+/*      ƒtƒB[ƒ‹ƒhî•ñ  */
+struct  field   {
+        char    name[11];       /* ƒtƒB[ƒ‹ƒh–¼ */
+        char    type;           /* ƒtƒB[ƒ‹ƒhŒ`Ž® */
+        char    far *fad;       /* ƒtƒB[ƒ‹ƒhî•ñ“à—e‚Ìƒƒ‚ƒŠ“àƒAƒhƒŒƒX */
+        u_char  l_field;        /* ƒtƒB[ƒ‹ƒh’· */
+        u_char  l_dec;          /* ¬”ˆÊŒ…” */
+        char    reserve1[5];    /* ƒVƒXƒeƒ€—\–ñ—Ìˆæ */
+        char    flag;           /* SET FIELDS ON/OFF ‚ÌÝ’èƒtƒ‰ƒO */
+        char    reserve2[8];    /* ƒVƒXƒeƒ€—\–ñ—Ìˆæ */
+};
+typedef struct  field   FIELD;
+
+                                  -E-
+.context DBF
+:z2
+:l17
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+/*      ƒf[ƒ^ƒtƒ@ƒCƒ‹ŠÇ—î•ñ  */
+struct  dbf     {
+        char    file_name[80];  /* ƒtƒ@ƒCƒ‹–¼ */
+        FILE    *fp;            /* ƒtƒ@ƒCƒ‹ƒ|ƒCƒ“ƒ^ */
+        DBF_H   *dhp;           /* ƒwƒbƒ_î•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^ */
+        FIELD   *flp;           /* ƒtƒB[ƒ‹ƒhî•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^ */
+        int     n_field;        /* ƒtƒB[ƒ‹ƒh” */
+        char    *rbp;           /* ƒŒƒR[ƒhƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^ */
+        long    rno;            /* ƒJƒŒƒ“ƒgƒŒƒR[ƒh‚m‚D */
+        int     update;         /* XVƒtƒ‰ƒO */
+        int     w_flag;         /* ƒwƒbƒ_‘‚«ž‚Ýƒtƒ‰ƒO */
+};
+typedef struct  dbf     DBF;
+
+                                  -E-
+.context DB
+:z2
+:l16
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+/*      ƒf[ƒ^ƒx[ƒXŠÇ—î•ñ    */
+struct  db      {
+        DBF     *dp;            /* ƒf[ƒ^ƒtƒ@ƒCƒ‹î•ñ */
+        IDX     *ip[MAX_IDX+1]; /* ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹î•ñ */
+        int     master;         /* ƒ}ƒXƒ^[ƒCƒ“ƒfƒbƒNƒX */
+        int     n_idx;          /* ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹” */
+        long    rno;            /* ƒJƒŒƒ“ƒgƒŒƒR[ƒh‚m‚D */
+        int     bof;            /* ‚a‚n‚eƒtƒ‰ƒO */
+        int     eof;            /* ‚d‚n‚eƒtƒ‰ƒO */
+        struct  db      *chain; /* ƒ`ƒFƒCƒ“ƒ|ƒCƒ“ƒ^ */
+};
+typedef struct  db      DB;
+
+                                  -E-
+.context DBF_I
+:z2
+:l12
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+/*      ƒf[ƒ^ƒtƒ@ƒCƒ‹ì¬î•ñ  */
+struct  dbf_i   {
+        char    name[11];       /* ƒtƒB[ƒ‹ƒh–¼ */
+        char    type;           /* ƒtƒB[ƒ‹ƒhŒ`Ž® */
+        u_char  l_field;        /* ƒtƒB[ƒ‹ƒh’· */
+        u_char  l_dec;          /* ¬”ˆÊŒ…” */
+};
+typedef struct  dbf_i   DBF_I;
+
+                                  -E-
+.context db_open
+:z3
+:l15
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   DB     *db_open(file_name);
+
+  \bƒpƒ‰ƒ[ƒ^\b     char   *file_name; ƒf[ƒ^ƒx[ƒXi‚c‚a‚ejƒtƒ@ƒCƒ‹–¼
+
+  \bƒŠƒ^[ƒ“’l\p     ‚c‚aƒ|ƒCƒ“ƒ^iƒI[ƒvƒ“ƒGƒ‰[‚Ìê‡‚Í‚m‚t‚k‚k‚ª•Ô‚éj
+
+  \b‹@”\\b           ƒf[ƒ^ƒx[ƒX‚ðƒI[ƒvƒ“‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   db_close(), db_create()
+                                  -E-
+.context db_create
+:z3
+:l18
+  \i<\p\aˆê——\vISAM\v\i>\p \i<\p\a•â‘«à–¾\vdb_create.des\v\i>\p                                                 \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   DB     *db_create(dbf_file_name, dip, n_field);
+
+  \bƒpƒ‰ƒ[ƒ^\b     char   *dbf_file_name;  ƒf[ƒ^ƒx[ƒXi‚c‚a‚ejƒtƒ@ƒCƒ‹–¼
+\p\p                 DBF_I  *dip;            ƒtƒB[ƒ‹ƒhî•ñ
+\p\p                 int    n_field;         ƒtƒB[ƒ‹ƒh”
+
+  \bƒŠƒ^[ƒ“’l\p     ‚c‚aƒ|ƒCƒ“ƒ^iƒI[ƒvƒ“ƒGƒ‰[‚Ìê‡‚Í‚m‚t‚k‚k‚ª•Ô‚éj
+
+  \b‹@”\\b           <dip> ‚Ì“à—e‚É]‚Á‚ÄV‚½‚Éƒf[ƒ^ƒx[ƒX‚ðì¬‚µ‚Ü‚·B
+\p\p                 idip ‚É‚Â‚¢‚Ä‚Í•â‘«à–¾ŽQÆj
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   db_create_from()
+                                  -E-
+.context db_create.des
+:z3
+:ndb_create() •â‘«à–¾
+:l43
+  \i<\p\aˆê——\vISAM\v\i>\p \i<\p\aŠT—v\vdb_create\v\i>\p                                                     \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  db_create() ‚ðŽg‚Á‚Äƒf[ƒ^ƒtƒ@ƒCƒ‹‚ðì¬‚·‚éê‡‚ÍAƒtƒB[ƒ‹ƒhî•ñ‚ð—\‚ßƒ
+ƒ‚ƒŠã‚É—pˆÓ‚µ‚Ä‚¨‚©‚È‚¯‚ê‚Î‚È‚è‚Ü‚¹‚ñBƒtƒB[ƒ‹ƒhî•ñ‚ÌŒ`Ž®‚ÍŽŸ‚Ì’Ê‚è‚Å‚·B
+
+        struct  dbf_i   {
+                char    name[11];       /* ƒtƒB[ƒ‹ƒh–¼ */
+                char    type;           /* ƒtƒB[ƒ‹ƒhŒ`Ž® */
+                u_char  l_field;        /* ƒtƒB[ƒ‹ƒh’· */
+                u_char  l_dec;          /* ¬”ˆÊŒ…” */
+        };
+        typedef struct  dbf_i   DBF_I;
+
+        name    ƒtƒB[ƒ‹ƒh–¼‚ðÅ‘å‚P‚O•¶ŽšˆÈ“à‚ÅŽw’è‚µ‚Ü‚·B•¶Žš—ñ‚ÌÅŒã‚É‚Í
+                ‚m‚t‚k‚k‚ª•K—v‚Å‚·B
+        type    ƒtƒB[ƒ‹ƒh‚ÌŒ`Ž®‚ðŽw’è‚µ‚Ü‚·BŽw’è‚Å‚«‚é‚Ì‚ÍˆÈ‰º‚Ì•¶Žš‚Å‚·B
+                  'C'  •¶ŽšŒ^
+                  'N'  ”’lŒ^
+                  'D'  “ú•tŒ^
+                  'L'  ˜_—Œ^
+        l_field ƒtƒB[ƒ‹ƒh’·‚ðŽw’è‚µ‚Ü‚·B
+        l_dec   ”’lŒ^‚Ìê‡A¬”•”‚ÌŒ…”‚ðŽw’è‚µ‚Ü‚·B”’lŒ^ˆÈŠO‚Ìê‡‚Í–³
+                Ž‹‚³‚ê‚Ü‚·B
+
+Žg—p—á
+
+  ŽŸ‚Ì‚æ‚¤‚ÈƒtƒB[ƒ‹ƒh‚ðŽ‚Âƒf[ƒ^ƒtƒ@ƒCƒ‹i‚`‚f‚dD‚c‚a‚ej‚ðì¬‚µ‚Ü‚·B
+
+  ƒtƒB[ƒ‹ƒh–¼   Œ`Ž®   ƒtƒB[ƒ‹ƒh’·  ¬”•”Œ…”
+    NUMBER      ”’lŒ^       ‚S           ‚O
+    NAME        •¶ŽšŒ^     ‚Q‚O           |
+    AGE         ”’lŒ^       ‚R           ‚O
+
+
+        static  DBF_I   field[3] = {
+                {"NUMBER", 'N',  4, 0},
+                {"NAME",   'C', 20, 0},
+                {"AGE",    'N',  3, 0}
+        };
+
+        dbp = db_create("AGE.DBF", field, 3);
+                                  -E-
+.context db_create_from
+:z3
+:l17
+  \i<\p\aˆê——\vISAM\v\i>\p \i<\p\a•â‘«à–¾\vdb_create_from.des\v\i>\p                                                 \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   DB     *db_create_from(dbf_file_name, str_file_name);
+
+  \bƒpƒ‰ƒ[ƒ^\b     char   *dbf_file_name;  ƒf[ƒ^ƒx[ƒXi‚c‚a‚ejƒtƒ@ƒCƒ‹–¼
+\p\p                 char   *str_file_name;  \‘¢ƒtƒ@ƒCƒ‹–¼
+
+  \bƒŠƒ^[ƒ“’l\p     ‚c‚aƒ|ƒCƒ“ƒ^iƒI[ƒvƒ“ƒGƒ‰[‚Ìê‡‚Í‚m‚t‚k‚k‚ª•Ô‚éj
+
+  \b‹@”\\b           \‘¢ƒtƒ@ƒCƒ‹‚Ì“à—e‚É]‚Á‚ÄV‚½‚Éƒf[ƒ^ƒx[ƒX‚ðì¬‚µ‚Ü
+\p\p                 ‚·Bi\‘¢ƒtƒ@ƒCƒ‹‚É‚Â‚¢‚Ä‚Í•â‘«à–¾ŽQÆj
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   db_create()
+                                  -E-
+.context db_create_from.des
+:z3
+:ndb_create_from() •â‘«à–¾
+:l14
+  \i<\p\aˆê——\vISAM\v\i>\p \i<\p\aŠT—v\vdb_create_from\v\i>\p                                                     \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  db_create_from() ‚ÍƒtƒB[ƒ‹ƒh‚Ìî•ñ‚ð’è‹`‚µ‚½\‘¢ƒtƒ@ƒCƒ‹‚æ‚èA‚»‚Ìî•ñ‚É
+]‚Á‚ÄV‚½‚Éƒf[ƒ^ƒtƒ@ƒCƒ‹‚ðì¬‚·‚é‚à‚Ì‚Å‚·B\‘¢ƒtƒ@ƒCƒ‹Ž©‘Ì‚à‚c‚a‚eƒtƒ@
+ƒCƒ‹‚ÅA‚»‚ÌŒ`Ž®‚ÍŽŸ‚Ì‚æ‚¤‚É‚È‚Á‚Ä‚¢‚Ü‚·Bi‚„‚a‚`‚r‚d‡V‚‚Œ‚•‚“‚ÅŽg—p‚·‚é
+\‘¢ƒtƒ@ƒCƒ‹‚Æ“¯‚¶Œ`Ž®‚Å‚·j
+
+  ƒtƒB[ƒ‹ƒh–¼    Œ`Ž®   ƒtƒB[ƒ‹ƒh’·  ¬”•”Œ…”
+   FIELD_NAME    •¶ŽšŒ^      ‚P‚O          |
+   FIELD_TYPE    •¶ŽšŒ^        ‚P          |
+   FIELD_LEN     ”’lŒ^        ‚R          ‚O
+   FIELD_DEC     ”’lŒ^        ‚R          ‚O
+                                  -E-
+.context db_close
+:z3
+:l15
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   db_close(dbp);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DB     *dbp;       ‚c‚aƒ|ƒCƒ“ƒ^
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           Žw’è‚³‚ê‚½ƒf[ƒ^ƒx[ƒX‚ðƒNƒ[ƒY‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   db_open(), db_close_all()
+                                  -E-
+.context db_close_all
+:z3
+:l15
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   db_close_all();
+
+  \bƒpƒ‰ƒ[ƒ^\b     ‚È‚µ
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           Œ»ÝƒI[ƒvƒ“’†‚Ìƒf[ƒ^ƒx[ƒX‚ð‚·‚×‚ÄƒNƒ[ƒY‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   db_close()
+                                  -E-
+.context db_flush
+:z3
+:l16
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   db_flush(dbp);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DB     *dbp;       ‚c‚aƒ|ƒCƒ“ƒ^
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           Žw’è‚³‚ê‚½ƒf[ƒ^ƒx[ƒX‚Ìƒtƒ@ƒCƒ‹ƒoƒbƒtƒ@‚ÉŽc‚Á‚Ä‚¢‚é–¢
+\p\p                 ‘‚«ž‚Ý‚Ìƒf[ƒ^‚ð‹­§“I‚Éƒtƒ@ƒCƒ‹‚É‘‚«o‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   db_flush_all()
+                                  -E-
+.context db_flush_all
+:z3
+:l16
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   db_flush_all();
+
+  \bƒpƒ‰ƒ[ƒ^\b     ‚È‚µ
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           Œ»ÝƒI[ƒvƒ“’†‚Ì‚·‚×‚Ä‚Ìƒf[ƒ^ƒx[ƒX‚É‚Â‚¢‚Äƒoƒbƒtƒ@‚ð
+\p\p                 ƒtƒ‰ƒbƒVƒ…‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   db_flush()
+                                  -E-
+.context db_index
+:z3
+:l21
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   int    db_index(dbp, file_name);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DB     *dbp;       ‚c‚aƒ|ƒCƒ“ƒ^
+\p\p                 char   *file_name; ƒCƒ“ƒfƒbƒNƒXi‚m‚c‚wjƒtƒ@ƒCƒ‹–¼
+
+  \bƒŠƒ^[ƒ“’l\p     ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹”Ô†
+\p\p                  iƒI[ƒvƒ“ƒGƒ‰[‚Ì‚Æ‚«‚Í‚O‚ª•Ô‚éj
+
+  \b‹@”\\b           ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚ðƒI[ƒvƒ“‚µ‚Ü‚·Bˆê‚Â‚Ìƒf[ƒ^ƒx[
+\p\p                 ƒX‚É‘Î‚µ‚Ä‚P‚OŒÂ‚Ü‚ÅƒI[ƒvƒ“‚Å‚«‚Ü‚·‚ªAÅ‰‚ÉƒI[ƒvƒ“
+\p\p                 ‚µ‚½ƒCƒ“ƒfƒbƒNƒX‚ªƒ}ƒXƒ^[ƒCƒ“ƒfƒbƒNƒX‚Æ‚È‚è‚Ü‚·BƒŠƒ^
+\p\p                 [ƒ“’l‚Æ‚µ‚ÄƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹”Ô†iƒI[ƒvƒ“‚µ‚½‡‚É
+\p\p                 ‚P‚©‚ç‚P‚O‚Ü‚Åj‚ª•Ô‚è‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   db_chgidx(), db_idx_create()
+                                  -E-
+.context db_idx_create
+:z3
+:l21
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   int    db_idx_create(dbp, file_name, key, uniq);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DB     *dbp;       ‚c‚aƒ|ƒCƒ“ƒ^
+\p\p                 char   *file_name; ƒCƒ“ƒfƒbƒNƒXi‚m‚c‚wjƒtƒ@ƒCƒ‹–¼
+\p\p                 char   *key;       ƒCƒ“ƒfƒbƒNƒX‚ÌƒL[
+\p\p                 int    uniq;       ‚OFƒL[‚Ìd•¡‚ð‹–‚·  ‚PF‹–‚³‚È‚¢
+
+  \bƒŠƒ^[ƒ“’l\p     ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹”Ô†
+\p\p                  iƒI[ƒvƒ“ƒGƒ‰[‚Ì‚Æ‚«‚Í‚O‚ª•Ô‚éj
+
+  \b‹@”\\b           ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚ðV‚½‚Éì¬‚µ‚Ü‚·BƒCƒ“ƒfƒbƒNƒX‚Ì
+\p\p                 ƒL[‚Æ‚µ‚Ä‚Íƒf[ƒ^ƒtƒ@ƒCƒ‹‚ÌƒtƒB[ƒ‹ƒh–¼‹y‚ÑƒtƒB[ƒ‹ƒh
+\p\p                 –¼‚ð + ‚Å˜AŒ‹‚µ‚½‚à‚Ì‚ª‹–‚³‚ê‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   db_index()
+                                  -E-
+.context db_chgidx
+:z3
+:l18
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   db_chgidx(dbp, n);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DB     *dbp;       ‚c‚aƒ|ƒCƒ“ƒ^
+\p\p                 int    n;          ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹”Ô†
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           Žw’è‚³‚ê‚½ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚ðƒ}ƒXƒ^[ƒCƒ“ƒfƒbƒNƒX‚Æ
+\p\p                 ‚µ‚Ü‚·B‚½‚¾‚µA‚O‚ªŽw’è‚³‚ê‚½ê‡‚ÍƒCƒ“ƒfƒbƒNƒX‚ðŽg—p
+\p\p                 ‚µ‚Ü‚¹‚ñB
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   db_index()
+                                  -E-
+.context db_search
+:z3
+:l19
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   db_search(dbp, key, len);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DB     *dbp;       ‚c‚aƒ|ƒCƒ“ƒ^
+\p\p                 char   *key;       ŒŸõ‚·‚é•¶Žš—ñ
+\p\p                 int    len;        ŒŸõ‚·‚é•¶Žš—ñ‚Ì’·‚³
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚É‚æ‚éŒŸõ‚ðs‚¢AƒJƒŒƒ“ƒgƒŒƒR[ƒh
+\p\p                 ƒ|ƒCƒ“ƒ^‚ðƒZƒbƒg‚µ‚Ü‚·BƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚ªƒI[ƒvƒ“
+\p\p                 ‚³‚ê‚Ä‚¢‚È‚¢ê‡‚ÍŒŸõ‚Å‚«‚Ü‚¹‚ñB
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   db_count()
+                                  -E-
+.context db_count
+:z3
+:l17
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   db_count(dbp, key, len);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DB     *dbp;       ‚c‚aƒ|ƒCƒ“ƒ^
+\p\p                 char   *key;       ŒŸõ‚·‚é•¶Žš—ñ
+\p\p                 int    len;        ŒŸõ‚·‚é•¶Žš—ñ‚Ì’·‚³
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           ƒL[‚Éˆê’v‚·‚éƒŒƒR[ƒh”‚ð‹‚ß‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   db_search()
+                                  -E-
+.context db_store
+:z3
+:l17
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   db_store(dbp, rec);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DB     *dbp;       ‚c‚aƒ|ƒCƒ“ƒ^
+\p\p                 char   *rec;       ’Ç‰Á‚·‚éƒŒƒR[ƒhƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           ƒf[ƒ^ƒx[ƒX‚ÉƒŒƒR[ƒh‚ð’Ç‰Á‚µ‚Ü‚·BƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒC
+\p\p                 ƒ‹‚ªƒI[ƒvƒ“‚³‚ê‚Ä‚¢‚éê‡‚ÍA“¯Žž‚ÉXV‚³‚ê‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   db_update()
+                                  -E-
+.context db_update
+:z3
+:l17
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   db_update(dbp, rec);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DB     *dbp;       ‚c‚aƒ|ƒCƒ“ƒ^
+\p\p                 char   *rec;       XV‚·‚éƒŒƒR[ƒhƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           ƒJƒŒƒ“ƒgƒŒƒR[ƒh‚ðXVi’u‚«Š·‚¦j‚µ‚Ü‚·BƒCƒ“ƒfƒbƒNƒX
+\p\p                 ƒtƒ@ƒCƒ‹‚ªƒI[ƒvƒ“‚³‚ê‚Ä‚¢‚éê‡‚ÍA“¯Žž‚ÉXV‚³‚ê‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   db_store(), db_read()
+                                  -E-
+.context db_delete
+:z3
+:l16
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   db_delete(dbp);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DB     *dbp;       ‚c‚aƒ|ƒCƒ“ƒ^
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           ƒJƒŒƒ“ƒgƒŒƒR[ƒh‚ðíœ‚µ‚Ü‚·BŽÀÛ‚É‚ÍƒŒƒR[ƒh‚Éíœƒ}
+\p\p                 [ƒN‚ð‚Â‚¯‚é‚¾‚¯‚ÅAƒŒƒR[ƒh‚»‚Ì‚à‚Ì‚Ííœ‚µ‚Ü‚¹‚ñB
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   db_recall(), db_pack(), set_deleted(), db_delete2()
+                                  -E-
+.context db_delete2
+:z3
+:l16
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   db_delete2(dbp);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DB     *dbp;       ‚c‚aƒ|ƒCƒ“ƒ^
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           ƒJƒŒƒ“ƒgƒŒƒR[ƒh‚ðƒf[ƒ^ƒtƒ@ƒCƒ‹‹y‚ÑƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒC
+\p\p                 ƒ‹‚©‚ç•¨—“I‚Éíœ‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   db_delete()
+                                  -E-
+.context db_recall
+:z3
+:l15
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   db_recall(dbp);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DB     *dbp;       ‚c‚aƒ|ƒCƒ“ƒ^
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           ƒJƒŒƒ“ƒgƒŒƒR[ƒh‚Ìíœƒ}[ƒN‚ðŽæ‚èÁ‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   db_delete(), db_pack()
+                                  -E-
+.context db_top
+:z3
+:l16
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   db_top(dbp);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DB     *dbp;       ‚c‚aƒ|ƒCƒ“ƒ^
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           ƒJƒŒƒ“ƒgƒŒƒR[ƒhƒ|ƒCƒ“ƒ^‚ðæ“ªƒŒƒR[ƒhiƒCƒ“ƒfƒbƒNƒXƒt
+\p\p                 ƒ@ƒCƒ‹‚ª‚ ‚éê‡‚Í˜_—“I‚Èæ“ªƒŒƒR[ƒhj‚ÉƒZƒbƒg‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   db_bottom(), db_set(), db_skip()
+                                  -E-
+.context db_bottom
+:z3
+:l16
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   db_bottom(dbp);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DB     *dbp;       ‚c‚aƒ|ƒCƒ“ƒ^
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           ƒJƒŒƒ“ƒgƒŒƒR[ƒhƒ|ƒCƒ“ƒ^‚ðÅIƒŒƒR[ƒhiƒCƒ“ƒfƒbƒNƒXƒt
+\p\p                 ƒ@ƒCƒ‹‚ª‚ ‚éê‡‚Í˜_—“I‚ÈÅIƒŒƒR[ƒhj‚ÉƒZƒbƒg‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   db_top(), db_set(), db_skip()
+                                  -E-
+.context db_set
+:z3
+:l17
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   db_set(dbp, recno);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DB     *dbp;       ‚c‚aƒ|ƒCƒ“ƒ^
+\p\p                 long   recno;      ƒŒƒR[ƒh”Ô†
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           ƒJƒŒƒ“ƒgƒŒƒR[ƒhƒ|ƒCƒ“ƒ^‚ðŽw’è‚³‚ê‚½ƒŒƒR[ƒh”Ô†‚ÉƒZƒb
+\p\p                 ƒg‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   db_top(), db_bottom(), db_skip()
+                                  -E-
+.context db_skip
+:z3
+:l17
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   db_skip(dbp, n);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DB     *dbp;       ‚c‚aƒ|ƒCƒ“ƒ^
+\p\p                 long   n;          ˆÚ“®ƒŒƒR[ƒh”iƒvƒ‰ƒX‚Ìê‡‚ÍŒã‚ë‚Ö
+\p\p                                    ƒ}ƒCƒiƒX‚Ìê‡‚Í‘O‚ÖˆÚ“®‚·‚éj
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           ƒJƒŒƒ“ƒgƒŒƒR[ƒhƒ|ƒCƒ“ƒ^‚ð‘OŒã‚ÉˆÚ“®‚³‚¹‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   db_top(), db_bottom(), db_set()
+                                  -E-
+.context db_reindex
+:z3
+:l15
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   db_reindex(dbp);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DB     *dbp;       ‚c‚aƒ|ƒCƒ“ƒ^
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           Œ»ÝƒI[ƒvƒ“’†‚ÌƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚ðÄ\’z‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p
+                                  -E-
+.context db_pack
+:z3
+:l16
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   db_pack(dbp);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DB     *dbp;       ‚c‚aƒ|ƒCƒ“ƒ^
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           íœƒŒƒR[ƒh‚ðƒtƒ@ƒCƒ‹‚©‚çíœ‚·‚éBƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒC
+\p\p                 ƒ‹‚ÍÄ\’z‚³‚ê‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   db_reindex()
+                                  -E-
+.context db_read
+:z3
+:l16
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   db_read(dbp, p);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DB     *dbp;       ‚c‚aƒ|ƒCƒ“ƒ^
+\p\p                 char   *p;         ƒŒƒR[ƒh“Ç‚Ýž‚Ýƒoƒbƒtƒ@
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           ƒJƒŒƒ“ƒgƒŒƒR[ƒh‚ðŽw’è‚³‚ê‚½ƒoƒbƒtƒ@‚É“Ç‚Ýo‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p
+                                  -E-
+.context db_copy
+:z3
+:l16
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   db_copy(dbp1, dbp2);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DB     *dbp1;      ƒRƒs[Œ³‚c‚aƒ|ƒCƒ“ƒ^
+\p\p                 char   *dbp2;      ƒRƒs[æ‚c‚aƒ|ƒCƒ“ƒ^
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           ƒf[ƒ^ƒtƒ@ƒCƒ‹‚ðƒRƒs[‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p
+                                  -E-
+.context db_check_deleted
+:z3
+:l18
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   int    db_check_deleted(dbp);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DB     *dbp;       ‚c‚aƒ|ƒCƒ“ƒ^
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           ƒJƒŒƒ“ƒgƒŒƒR[ƒh‚Éíœƒ}[ƒN‚ªƒZƒbƒg‚³‚ê‚Ä‚¢‚é‚©ƒ`ƒFƒb
+\p\p                 ƒN‚µ‚Ü‚·B
+
+  \bƒŠƒ^[ƒ“’l\p     ‚OF’ÊíƒŒƒR[ƒh  ‚PFíœƒŒƒR[ƒh
+
+  \bŠÖ˜A‚·‚éŠÖ”\p
+                                  -E-
+.context dbf_open
+:z3
+:l15
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   DBF    *dbf_open(file_name)
+
+  \bƒpƒ‰ƒ[ƒ^\b     char   *file_name; ‚c‚a‚eƒtƒ@ƒCƒ‹–¼
+
+  \bƒŠƒ^[ƒ“’l\p     ‚c‚a‚eƒ|ƒCƒ“ƒ^iƒGƒ‰[‚Ìê‡‚Í‚m‚t‚k‚k‚ª•Ô‚éj
+
+  \b‹@”\\b           ƒf[ƒ^i‚c‚a‚ejƒtƒ@ƒCƒ‹‚ðƒI[ƒvƒ“‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   dbf_close(), dbf_create()
+                                  -E-
+.context dbf_create
+:z3
+:l17
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   DBF    *dbf_create(file_name, dip, n_field);
+
+  \bƒpƒ‰ƒ[ƒ^\b     char   *file_name; ‚c‚a‚eƒtƒ@ƒCƒ‹–¼
+\p\p                 DBF_I  *dip;       ƒtƒB[ƒ‹ƒhî•ñ
+\p\p                 int    n_field;    ƒtƒB[ƒ‹ƒh”
+
+  \bƒŠƒ^[ƒ“’l\p     ‚c‚a‚eƒ|ƒCƒ“ƒ^iƒGƒ‰[‚Ìê‡‚Í‚m‚t‚k‚k‚ª•Ô‚éj
+
+  \b‹@”\\b           ƒf[ƒ^i‚c‚a‚ejƒtƒ@ƒCƒ‹‚ðV‚½‚Éì¬‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   dbf_open()
+                                  -E-
+.context dbf_read
+:z3
+:l16
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   dbf_read(dp, rno);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DBF    *dp;        ‚c‚a‚eƒ|ƒCƒ“ƒ^
+\p\p                 long   rno;        “Ç‚Ýo‚·ƒŒƒR[ƒh”Ô†
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           Žw’è‚³‚ê‚½ƒŒƒR[ƒh‚ðƒŒƒR[ƒhƒoƒbƒtƒ@‚É“Ç‚Ýž‚Ý‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   dbf_write()
+                                  -E-
+.context dbf_write
+:z3
+:l16
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   dbf_write(dp, rno);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DBF    *dp;        ‚c‚a‚eƒ|ƒCƒ“ƒ^
+\p\p                 long   rno;        ‘‚«ž‚ÞƒŒƒR[ƒh”Ô†
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           ƒŒƒR[ƒhƒoƒbƒtƒ@‚Ì“à—e‚ðŽw’è‚³‚ê‚½ƒŒƒR[ƒh‚É‘‚«ž‚Ý‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   dbf_read()
+                                  -E-
+.context dbf_close
+:z3
+:l15
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   dbf_close(dp);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DBF    *dp;        ‚c‚a‚eƒ|ƒCƒ“ƒ^
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           ƒf[ƒ^i‚c‚a‚ejƒtƒ@ƒCƒ‹‚ðƒNƒ[ƒY‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   dbf_open()
+                                  -E-
+.context dbf_flush
+:z3
+:l16
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   dbf_flush(dp);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DBF    *dp;        ‚c‚a‚eƒ|ƒCƒ“ƒ^
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           –¢‘‚«ž‚Ý‚Ìƒtƒ@ƒCƒ‹ƒoƒbƒtƒ@‚Ì“à—e‚ðƒtƒ@ƒCƒ‹‚É‘‚«o‚µ
+\p\p                 ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p
+                                  -E-
+.context dbf_delete
+:z3
+:l16
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   dbf_delete(dp, rno);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DBF    *dp;        ‚c‚a‚eƒ|ƒCƒ“ƒ^
+\p\p                 long   rno;        ƒŒƒR[ƒh”Ô†
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           Žw’è‚³‚ê‚½ƒŒƒR[ƒh‚Éíœƒ}[ƒN‚ðƒZƒbƒg‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   dbf_recall(), dbf_pack()
+                                  -E-
+.context dbf_recall
+:z3
+:l16
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   dbf_recall(dp, rno);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DBF    *dp;        ‚c‚a‚eƒ|ƒCƒ“ƒ^
+\p\p                 long   rno;        ƒŒƒR[ƒh”Ô†
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           Žw’è‚³‚ê‚½ƒŒƒR[ƒh‚Ìíœƒ}[ƒN‚ðŽæ‚èÁ‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   dbf_delete(), dbf_pack()
+                                  -E-
+.context dbf_pack
+:z3
+:l16
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   dbf_pack(dp);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DBF    *dp;        ‚c‚a‚eƒ|ƒCƒ“ƒ^
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           íœƒ}[ƒN‚ªƒZƒbƒg‚³‚ê‚Ä‚¢‚éƒŒƒR[ƒh‚ðƒtƒ@ƒCƒ‹‚©‚çíœ
+\p\p                 ‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   dbf_delete(), dbf_recall()
+                                  -E-
+.context dbf_check_deleted
+:z3
+:l17
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   int    dbf_check_deleted(dp, rno);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DBF    *dp;        ‚c‚a‚eƒ|ƒCƒ“ƒ^
+\p\p                 long   rno;        ƒŒƒR[ƒh”Ô†
+
+  \bƒŠƒ^[ƒ“’l\p     ‚OF’ÊíƒŒƒR[ƒh  ‚PFíœƒŒƒR[ƒh
+
+  \b‹@”\\b           Žw’è‚³‚ê‚½ƒŒƒR[ƒh‚Éíœƒ}[ƒN‚ªƒZƒbƒg‚³‚ê‚Ä‚¢‚é‚©ƒ`ƒF
+\p\p                 ƒbƒN‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   dbf_delete(), dbf_recall()
+                                  -E-
+.context dbf_copy
+:z3
+:l16
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   dbf_copy(dp1, dp2);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DBF    *dp1;       ƒRƒs[Œ³‚c‚a‚eƒ|ƒCƒ“ƒ^
+\p\p                 DBF    *dp2;       ƒRƒs[æ‚c‚a‚eƒ|ƒCƒ“ƒ^
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           ƒf[ƒ^ƒtƒ@ƒCƒ‹‚ðƒRƒs[‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p
+                                  -E-
+.context idx_open
+:z3
+:l15
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   IDX    *idx_open(file_name);
+
+  \bƒpƒ‰ƒ[ƒ^\b     char   *file_name; ƒCƒ“ƒfƒbƒNƒXi‚m‚c‚wjƒtƒ@ƒCƒ‹–¼
+
+  \bƒŠƒ^[ƒ“’l\p     ‚h‚c‚wƒ|ƒCƒ“ƒ^iƒGƒ‰[‚Ìê‡‚Í‚m‚t‚k‚k‚ª•Ô‚éj
+
+  \b‹@”\\b           ƒCƒ“ƒfƒbƒNƒXi‚m‚c‚wjƒtƒ@ƒCƒ‹‚ðƒI[ƒvƒ“‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   idx_close(), idx_create()
+                                  -E-
+.context idx_create
+:z3
+:l17
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   IDX    *idx_create(file_name, key, uniq);
+
+  \bƒpƒ‰ƒ[ƒ^\b     char   *file_name; ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹–¼
+\p\p                 char   *key;       ƒCƒ“ƒfƒbƒNƒXƒL[
+\p\p                 int    uniq;       ‚OFƒL[‚Ìd•¡‚ð‹–‚·  ‚PF‹–‚³‚È‚¢
+
+  \bƒŠƒ^[ƒ“’l\p     ‚h‚c‚wƒ|ƒCƒ“ƒ^iƒGƒ‰[‚Ìê‡‚Í‚m‚t‚k‚k‚ª•Ô‚éj
+
+  \b‹@”\\b           ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚ðV‚½‚Éì¬‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   idx_open()
+                                  -E-
+.context idx_setinfo
+:z3
+:l17
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   idx_setinfo(ip, type, len);
+
+  \bƒpƒ‰ƒ[ƒ^\b     IDX    *ip;        ‚h‚c‚wƒ|ƒCƒ“ƒ^
+\p\p                 int    type;       ƒf[ƒ^ƒ^ƒCƒv  ‚OF•¶ŽšŒ^  ‚PF”’lŒ^
+\p\p                 int    len;        ƒL[‚Ì’·‚³
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚Ìƒwƒbƒ_[î•ñ‚ðÝ’è‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   idx_create()
+                                  -E-
+.context idx_read
+:z3
+:l16
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   IDX_B  *idx_read(ip, bno);
+
+  \bƒpƒ‰ƒ[ƒ^\b     IDX    *ip;        ‚h‚c‚wƒ|ƒCƒ“ƒ^
+\p\p                 long   bno;        ƒuƒƒbƒN”Ô†
+
+  \bƒŠƒ^[ƒ“’l\p     “Ç‚Ýž‚ñ‚¾ƒuƒƒbƒNî•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+
+  \b‹@”\\b           ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚ÌŽw’è‚³‚ê‚½ƒuƒƒbƒN‚ð“Ç‚Ýž‚Ý‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   idx_getblk(), idx_write()
+                                  -E-
+.context idx_getblk
+:z3
+:l16
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   IDX_B  *idx_getblk(ip, bno);
+
+  \bƒpƒ‰ƒ[ƒ^\b     IDX    *ip;        ‚h‚c‚wƒ|ƒCƒ“ƒ^
+\p\p                 long   bno;        ƒuƒƒbƒN”Ô†
+
+  \bƒŠƒ^[ƒ“’l\p     Šm•Û‚µ‚½ƒuƒƒbƒNî•ñƒGƒŠƒA‚Ö‚Ìƒ|ƒCƒ“ƒ^
+
+  \b‹@”\\b           ƒuƒƒbƒNî•ñƒGƒŠƒA‚ðŠm•Û‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   idx_read(), idx_write()
+                                  -E-
+.context idx_write
+:z3
+:l16
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   idx_write(ip, bp);
+
+  \bƒpƒ‰ƒ[ƒ^\b     IDX    *ip;        ‚h‚c‚wƒ|ƒCƒ“ƒ^
+\p\p                 IDX_B  *bp;        ƒuƒƒbƒNî•ñƒ|ƒCƒ“ƒ^
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚ÉŽw’è‚³‚ê‚½ƒuƒƒbƒN‚ð‘‚«ž‚Ý‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   idx_read(), idx_getblk()
+                                  -E-
+.context idx_close
+:z3
+:l15
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   idx_close(ip);
+
+  \bƒpƒ‰ƒ[ƒ^\b     IDX    *ip;        ‚h‚c‚wƒ|ƒCƒ“ƒ^
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           Žw’è‚³‚ê‚½ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚ðƒNƒ[ƒY‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   idx_open()
+                                  -E-
+.context idx_flush
+:z3
+:l16
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   idx_flush(ip);
+
+  \bƒpƒ‰ƒ[ƒ^\b     IDX    *ip;        ‚h‚c‚wƒ|ƒCƒ“ƒ^
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           –¢‘‚«ž‚Ý‚Ìƒtƒ@ƒCƒ‹ƒoƒbƒtƒ@‚Ì“à—e‚ðƒtƒ@ƒCƒ‹‚É‘‚«o‚µ
+\p\p                 ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p
+                                  -E-
+.context idx_search
+:z3
+:l19
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   long   idx_search(ip, key, len);
+
+  \bƒpƒ‰ƒ[ƒ^\b     IDX    *ip;        ‚h‚c‚wƒ|ƒCƒ“ƒ^
+\p\p                 char   *key;       ŒŸõ‚·‚éƒL[‚Ö‚Ìƒ|ƒCƒ“ƒ^
+\p\p                 int    len;        ƒL[‚Ì’·‚³
+
+  \bƒŠƒ^[ƒ“’l\p     ˆê’v‚µ‚½ƒL[‚Ì‘¶Ý‚·‚éƒŒƒR[ƒh”Ô†
+\p\p                  Œ©‚Â‚©‚ç‚È‚©‚Á‚½ê‡‚Í‚O‚ð•Ô‚·
+
+  \b‹@”\\b           ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚ðŽw’è‚³‚ê‚½ƒL[‚ÅŒŸõ‚µAˆê’v‚·‚é
+\p\p                 ƒL[‚ªŒ©‚Â‚©‚Á‚½ê‡‚»‚ÌƒŒƒR[ƒh”Ô†‚ð•Ô‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   idx_compare()
+                                  -E-
+.context idx_compare
+:z3
+:l19
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   int    idx_compare(ip, key, len);
+
+  \bƒpƒ‰ƒ[ƒ^\b     IDX    *ip;        ‚h‚c‚wƒ|ƒCƒ“ƒ^
+\p\p                 char   *key;       ”äŠr‚·‚éƒL[‚Ö‚Ìƒ|ƒCƒ“ƒ^
+\p\p                 int    len;        ƒL[‚Ì’·‚³
+
+  \bƒŠƒ^[ƒ“’l\p       ‚OFƒL[‚ªˆê’v
+\p\p                   ‚PFŽw’è‚µ‚½ƒL[‚Ì•û‚ª‘å‚«‚¢
+\p\p                 |‚PFŽw’è‚µ‚½ƒL[‚Ì•û‚ª¬‚³‚¢
+
+  \b‹@”\\b           Žw’è‚³‚ê‚½ƒL[‚ÆƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚ÌƒL[‚ð”äŠr‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   idx_search(), idx_count()
+                                  -E-
+.context idx_store
+:z3
+:l17
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   idx_store(ip, key, rno);
+
+  \bƒpƒ‰ƒ[ƒ^\b     IDX    *ip;        ‚h‚c‚wƒ|ƒCƒ“ƒ^
+\p\p                 char   *key;       ’Ç‰Á‚·‚éƒL[‚Ö‚Ìƒ|ƒCƒ“ƒ^
+\p\p                 long   rno;        ƒŒƒR[ƒh”Ô†
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚ÉƒL[‚ð’Ç‰Á‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   idx_delete()
+                                  -E-
+.context idx_delete
+:z3
+:l15
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   idx_delete(ip);
+
+  \bƒpƒ‰ƒ[ƒ^\b     IDX    *ip;        ‚h‚c‚wƒ|ƒCƒ“ƒ^
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚ÌƒL[‚ðíœ‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   idx_store()
+                                  -E-
+.context idx_next
+:z3
+:l15
+      \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   long   idx_next(ip);
+
+  \bƒpƒ‰ƒ[ƒ^\b     IDX    *ip;        ‚h‚c‚wƒ|ƒCƒ“ƒ^
+
+  \bƒŠƒ^[ƒ“’l\p     ŽŸ‚ÌƒŒƒR[ƒh”Ô†iŽŸ‚ÌƒŒƒR[ƒh‚ª‚È‚¢ê‡‚Í‚O‚ð•Ô‚·j
+
+  \b‹@”\\b           ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚æ‚èŽŸ‚ÌƒŒƒR[ƒh”Ô†‚ðŽæ‚èo‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   idx_back()
+                                  -E-
+.context idx_back
+:z3
+:l16
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   long   idx_back(ip);
+
+  \bƒpƒ‰ƒ[ƒ^\b     IDX    *ip;        ‚h‚c‚wƒ|ƒCƒ“ƒ^
+
+  \bƒŠƒ^[ƒ“’l\p     ˆê‚Â‘O‚ÌƒŒƒR[ƒh”Ô†i‘O‚ÌƒŒƒR[ƒh‚ª‚È‚¢ê‡‚Í‚O‚ð•Ô‚·j
+
+  \b‹@”\\b           ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚æ‚èˆê‚Â‘O‚ÌƒŒƒR[ƒh”Ô†‚ðŽæ‚èo‚µ
+\p\p                 ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   idx_next()
+                                  -E-
+.context idx_top
+:z3
+:l15
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   long   idx_top(ip);
+
+  \bƒpƒ‰ƒ[ƒ^\b     IDX    *ip;        ‚h‚c‚wƒ|ƒCƒ“ƒ^
+
+  \bƒŠƒ^[ƒ“’l\p     æ“ª‚ÌƒŒƒR[ƒh”Ô†iƒŒƒR[ƒh‚ª‚PŒ‚à‚È‚¢ê‡‚Í‚O‚ð•Ô‚·j
+
+  \b‹@”\\b           ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚æ‚èæ“ªƒŒƒR[ƒh”Ô†‚ðŽæ‚èo‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   idx_bottom()
+                                  -E-
+.context idx_bottom
+:z3
+:l15
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   long   idx_bottom(ip);
+
+  \bƒpƒ‰ƒ[ƒ^\b     IDX    *ip;        ‚h‚c‚wƒ|ƒCƒ“ƒ^
+
+  \bƒŠƒ^[ƒ“’l\p     ÅI‚ÌƒŒƒR[ƒh”Ô†iƒŒƒR[ƒh‚ª‚PŒ‚à‚È‚¢ê‡‚Í‚O‚ð•Ô‚·j
+
+  \b‹@”\\b           ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚æ‚èÅIƒŒƒR[ƒh”Ô†‚ðŽæ‚èo‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   idx_top()
+                                  -E-
+.context idx_count
+:z3
+:l18
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   long   idx_count(ip, key, len);
+
+  \bƒpƒ‰ƒ[ƒ^\b     IDX    *ip;        ‚h‚c‚wƒ|ƒCƒ“ƒ^
+\p\p                 char   *key;       ŒŸõ‚·‚éƒL[‚Ö‚Ìƒ|ƒCƒ“ƒ^
+\p\p                 int    len;        ƒL[‚Ì’·‚³
+
+  \bƒŠƒ^[ƒ“’l\p     ˆê’v‚µ‚½ƒL[‚ÌŒ”
+
+  \b‹@”\\b           ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚æ‚èAŽw’è‚³‚ê‚½ƒL[‚Éˆê’v‚·‚éƒŒƒR
+\p\p                 [ƒh‚Ì”‚ð‹‚ß‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   idx_search()
+                                  -E-
+.context dbf_sort
+:z3
+:l18
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   dbf_sort(dp, file_name, key);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DBF    *dp;        ‚c‚a‚eƒ|ƒCƒ“ƒ^
+\p\p                 char   *file_name; o—Íƒtƒ@ƒCƒ‹–¼
+\p\p                 char   *key;       ƒ\[ƒg‚·‚éƒL[‚Ö‚Ìƒ|ƒCƒ“ƒ^
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           ‚c‚a‚eƒtƒ@ƒCƒ‹‚ðŽw’è‚³‚ê‚½ƒL[‚Åƒ\[ƒg‚µAV‚½‚È‚c‚a‚e
+\p\p                 ƒtƒ@ƒCƒ‹‚ðì¬‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p
+                                  -E-
+.context idx_make
+:z3
+:l16
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   idx_make(dp, ip);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DBF    *dp;        ‚c‚a‚eƒ|ƒCƒ“ƒ^
+\p\p                 IDX    *ip;        ‚h‚c‚wƒ|ƒCƒ“ƒ^
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚ðÄ\’z‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p
+                                  -E-
+.context db_reccount
+:z3
+:l16
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   long   db_reccount(dbp);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DB     *dbp;       ‚c‚aƒ|ƒCƒ“ƒ^
+
+  \bƒŠƒ^[ƒ“’l\p     ƒŒƒR[ƒh”
+
+  \b‹@”\\b           Žw’è‚³‚ê‚½ƒf[ƒ^ƒx[ƒX‚ÌƒŒƒR[ƒh”‚ðŽæ‚èo‚µ‚Ü‚·B
+\p\p                 iíœƒ}[ƒN‚Ì‚Â‚¢‚½ƒŒƒR[ƒh‚àŠÜ‚Þj
+
+  \bŠÖ˜A‚·‚éŠÖ”\p
+                                  -E-
+.context db_bof
+:z3
+:l15
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   int    db_bof(dbp);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DB     *dbp;       ‚c‚aƒ|ƒCƒ“ƒ^
+
+  \bƒŠƒ^[ƒ“’l\p     ‚OF‚a‚n‚e‚Å‚È‚¢  ‚PF‚a‚n‚e‚Å‚ ‚é
+
+  \b‹@”\\b           ƒJƒŒƒ“ƒgƒŒƒR[ƒhƒ|ƒCƒ“ƒ^‚ª‚a‚n‚e‚Å‚ ‚é‚©’²‚×‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   db_eof()
+                                  -E-
+.context db_dbf
+:z3
+:l15
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   char   *db_dbf(dbp);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DB     *dbp;       ‚c‚aƒ|ƒCƒ“ƒ^
+
+  \bƒŠƒ^[ƒ“’l\p     ‚c‚a‚eƒtƒ@ƒCƒ‹–¼
+
+  \b‹@”\\b           ƒf[ƒ^ƒx[ƒX‚Ìƒtƒ@ƒCƒ‹i‚c‚a‚ej–¼‚ðŽæ‚èo‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   db_ndx()
+                                  -E-
+.context db_eof
+:z3
+:l15
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   int    db_eof(dbp);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DB     *dbp;       ‚c‚aƒ|ƒCƒ“ƒ^
+
+  \bƒŠƒ^[ƒ“’l\p     ‚OF‚d‚n‚e‚Å‚È‚¢  ‚PF‚d‚n‚e‚Å‚ ‚é
+
+  \b‹@”\\b           ƒJƒŒƒ“ƒgƒŒƒR[ƒhƒ|ƒCƒ“ƒ^‚ª‚d‚n‚e‚Å‚ ‚é‚©’²‚×‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   db_bof()
+                                  -E-
+.context db_field
+:z3
+:l17
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   char   *db_field(dbp, n);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DB     *dbp;       ‚c‚aƒ|ƒCƒ“ƒ^
+\p\p                 int    n;          ƒtƒB[ƒ‹ƒh”Ô†
+
+  \bƒŠƒ^[ƒ“’l\p     ƒtƒB[ƒ‹ƒh–¼
+
+  \b‹@”\\b           ƒ}ƒXƒ^[ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚ÌƒtƒB[ƒ‹ƒh–¼‚ðŽæ‚èo‚µ
+\p\p                 ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   db_ndx()
+                                  -E-
+.context db_ndx
+:z3
+:l16
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   char   *db_ndx(dbp, n);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DB     *dbp;       ‚c‚aƒ|ƒCƒ“ƒ^
+\p\p                 int    n;          ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹”Ô†
+
+  \bƒŠƒ^[ƒ“’l\p     ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹–¼
+
+  \b‹@”\\b           ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹–¼‚ðŽæ‚èo‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   db_field()
+                                  -E-
+.context db_recno
+:z3
+:l15
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   long   db_recno(dbp);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DB     *dbp;       ‚c‚aƒ|ƒCƒ“ƒ^
+
+  \bƒŠƒ^[ƒ“’l\p     ƒJƒŒƒ“ƒgƒŒƒR[ƒh”Ô†
+
+  \b‹@”\\b           ƒJƒŒƒ“ƒgƒŒƒR[ƒh”Ô†‚ðŽæ‚èo‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p
+                                  -E-
+.context db_recsize
+:z3
+:l15
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   int    db_recsize(dbp);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DB     *dbp;       ‚c‚aƒ|ƒCƒ“ƒ^
+
+  \bƒŠƒ^[ƒ“’l\p     ƒŒƒR[ƒh’·
+
+  \b‹@”\\b           ƒŒƒR[ƒh’·‚ðŽæ‚èo‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p
+                                  -E-
+.context set_deleted
+:z3
+:l16
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   set_deleted(flag);
+
+  \bƒpƒ‰ƒ[ƒ^\b     int    flag;       ‚OFíœƒŒƒR[ƒh‚àˆ—‚Ì‘ÎÛ‚Æ‚·‚é
+\p\p                                    ‚PFíœƒŒƒR[ƒh‚Íˆ—‚Ì‘ÎÛ‚Æ‚µ‚È‚¢
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           íœƒŒƒR[ƒh‚ðˆ—‚Ì‘ÎÛ‚Æ‚·‚é‚©‚Ç‚¤‚©‚ðÝ’è‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   db_delete()
+                                  -E-
+.context db_err_handler
+:z3
+:l18
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   db_err_handler(func);
+
+  \bƒpƒ‰ƒ[ƒ^\b     void   (*func)();  ƒGƒ‰[ˆ—ŠÖ”‚Ö‚Ìƒ|ƒCƒ“ƒ^
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           ƒGƒ‰[ˆ—ƒ‹[ƒ`ƒ“‚ðÝ’è‚µ‚Ü‚·BˆÈŒãAƒ‰ƒCƒuƒ‰ƒŠ“à‚ÅƒG
+\p\p                 ƒ‰[‚ª”­¶‚µ‚½ê‡Afunc ‚ÅŽw’è‚µ‚½ƒGƒ‰[ˆ—ŠÖ”‚ªŒÄ‚Î
+\p\p                 ‚ê‚Ü‚·BƒGƒ‰[ˆ—ŠÖ”‚É‚Íƒpƒ‰ƒ[ƒ^‚Æ‚µ‚ÄƒGƒ‰[ƒR[ƒh
+\p\p                 ‚ª“n‚³‚ê‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   db_err()
+                                  -E-
+.context db_err
+:z3
+:l17
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   void   db_err(err_code);
+
+  \bƒpƒ‰ƒ[ƒ^\b     int    err_code;   ƒGƒ‰[ƒR[ƒh
+
+  \bƒŠƒ^[ƒ“’l\p     ‚È‚µ
+
+  \b‹@”\\b           ƒ‰ƒCƒuƒ‰ƒŠ“à‚ÅƒGƒ‰[‚ª”­¶‚µ‚½ê‡ŒÄ‚Î‚ê‚Ü‚·BƒGƒ‰[ƒR
+\p\p                 [ƒh‚ðŠO•”•Ï” _db_err_code ‚ÉƒZƒbƒg‚µAƒGƒ‰[ƒnƒ“ƒhƒ‰
+\p\p                 ‚ªƒZƒbƒg‚³‚ê‚Ä‚¢‚½ê‡A‚»‚ê‚ðŒÄ‚Ño‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   db_err_handler()
+                                  -E-
+.context natof
+:z3
+:l16
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   double natof(str, len);
+
+  \bƒpƒ‰ƒ[ƒ^\b     char   *str;       •¶Žš—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+\p\p                 int    len;        •¶Žš—ñ‚Ì’·‚³
+
+  \bƒŠƒ^[ƒ“’l\p     ŽÀ”’l
+
+  \b‹@”\\b           Žw’è‚³‚ê‚½’·‚³‚Ì”Žš‚Ì•¶Žš—ñ‚ðŽÀ”Œ^‚Ìƒf[ƒ^‚É•ÏŠ·‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   natoi()
+                                  -E-
+.context natoi
+:z3
+:l16
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   int    natoi(str, len);
+
+  \bƒpƒ‰ƒ[ƒ^\b     char   *str;       •¶Žš—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+\p\p                 int    len;        •¶Žš—ñ‚Ì’·‚³
+
+  \bƒŠƒ^[ƒ“’l\p     ®”’l
+
+  \b‹@”\\b           Žw’è‚³‚ê‚½’·‚³‚Ì”Žš‚Ì•¶Žš—ñ‚ð®”Œ^‚Ìƒf[ƒ^‚É•ÏŠ·‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p   natof()
+                                  -E-
+.context get_key
+:z3
+:l18
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   int    get_key(dp, ihp, kp);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DBF    *dp;        ‚c‚a‚eƒ|ƒCƒ“ƒ^
+\p\p                 IDX_H  *ihp;       ‚h‚c‚wQ‚gƒ|ƒCƒ“ƒ^
+\p\p                 char   *kp;        ƒL[‚ðŠi”[‚·‚éƒGƒŠƒA
+
+  \bƒŠƒ^[ƒ“’l\p     ‚OF•\Œ»Ž®‚ª³‚µ‚­‚È‚¢  ‚PF³í
+
+  \b‹@”\\b           ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹‚ÌƒL[•\Œ»Ž®‚É]‚Á‚ÄƒŒƒR[ƒh‚æ‚è
+\p\p                 ƒL[‚ðŽæ‚èo‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p
+                                  -E-
+.context get_field
+:z3
+:l16
+  \i<\p\aˆê——\vISAM\v\i>\p                                                            \i<\a\pBack\v!cq.hb\v\i>\p
+  †¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢†¢
+
+  \bƒCƒ“ƒNƒ‹[ƒh\p   "isam.h"
+
+  \bƒvƒƒgƒ^ƒCƒv\p   FIELD  *get_field(dp, field);
+
+  \bƒpƒ‰ƒ[ƒ^\b     DBF    *dp;        ‚c‚a‚eƒ|ƒCƒ“ƒ^
+\p\p                 char   *field;     ƒtƒB[ƒ‹ƒh–¼
+
+  \bƒŠƒ^[ƒ“’l\p     ƒtƒB[ƒ‹ƒhî•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+
+  \b‹@”\\b           ƒtƒB[ƒ‹ƒh–¼‚æ‚è‚»‚ÌƒtƒB[ƒ‹ƒhî•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ð•Ô‚µ‚Ü‚·B
+
+  \bŠÖ˜A‚·‚éŠÖ”\p
+                                  -E-
+

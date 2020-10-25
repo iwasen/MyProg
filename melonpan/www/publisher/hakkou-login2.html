@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>発行者用管理ページログイン</TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600">
+<? include ("header.php") ?>
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="513" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+<TD><FONT color="#006600"><B>■発行者用管理ページログイン</B></FONT><BR>
+<BR>
+<span class="text01">すでに登録済みの発行者の方専用の管理ページにアクセスします。管理ページでは、メルマガの配信や読者数の確認、登録情報の変更などが行なえます。
+<br>
+これからメルマガを創刊しようと考えている方はまず<a href="kiyaku.html">こちら</a>をお読みください。 </span><BR>
+<? pub_login_err($login_err); ?>
+<BR>
+
+<form name="form1" action="login.php" method="post">
+<TABLE WIDTH="450" BORDER="0" CELLSPACING="0" CELLPADDING="0" ALIGN="CENTER">
+<TR BGCOLOR="#336600">
+<TD>
+<TABLE WIDTH="450" BORDER="0" ALIGN="center" CELLPADDING="3" CELLSPACING="1">
+<TR>
+<TD ALIGN="right" CLASS="text9pt" BGCOLOR="#669900" HEIGHT="40" WIDTH="150">
+<DIV ALIGN="CENTER"><FONT COLOR="#FFFFCC"><B>基本メールアドレス</B></FONT></DIV>
+</TD>
+<TD ALIGN="left" BGCOLOR="#FFFFFF" HEIGHT="40" WIDTH="300">
+<INPUT TYPE="text" NAME="mail_add_main" SIZE="30">
+</TD>
+</TR>
+<TR>
+<TD ALIGN="right" CLASS="text9pt" BGCOLOR="#669900" HEIGHT="40" WIDTH="150">
+<DIV ALIGN="CENTER"><FONT COLOR="#FFFFCC"><B>パスワード</B></FONT></DIV>
+</TD>
+<TD ALIGN="left" BGCOLOR="#FFFFFF" HEIGHT="40" WIDTH="300">
+<INPUT TYPE="password" NAME="owner_pswd_r" SIZE="16">
+<INPUT TYPE="submit" VALUE="入室" NAME="nyusitu">
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</form>
+<BR>
+<span class="text01">※基本メールアドレス、パスワードを忘れてしまった方は<a href="mailto:office@melonpan.net">事務局</a>までお問い合わせください。
+</span> </TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD valign="top" width="200">
+<div align="right"><BR>
+</div>
+</TD>
+<table width="750" border="0" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td> 
+      <hr noshade size="1">
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top"> 
+      <div align="center"><span style="font-size: 9pt; font-weight: normal;">Copyright 
+        2006 xx xxxxx Inc. All Rights Reserved. 本サイトは、<a href="http://www.xxxxxxx.co.jp/" target="_blank">株式会社○○○○○○</a>により運営されております。</span></div>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top"> 
+      <div align="right"><span style="font-size: 9pt; font-weight: normal;"><img src="/img/space.gif" width="220" height="10" border="0"></span><br>
+        <table width="220" border="0" cellpadding="1" cellspacing="0">
+          <tr> 
+            <td> 
+              <div align="right"><img src="/img/f_arrow.gif" width="12" height="12"></div>
+            </td>
+            <td width="190"> 
+              <div align="left"><span style="font-size: 9pt; font-weight: normal;"><a href="http://www.xxxxxxx.co.jp/" target="_blank">会社概要（マーケターの皆様へ）</a></span></div>
+            </td>
+          </tr>
+          <tr> 
+            <td> 
+              <div align="right"><img src="/img/f_arrow.gif" width="12" height="12"></div>
+            </td>
+            <td width="190"> 
+              <div align="left"><span style="font-size: 9pt; font-weight: normal;"><a href="http://www.xxxxxxx.co.jp/monitor/" target="_blank">生活者のみなさんへ（モニター登録）</a></span></div>
+            </td>
+          </tr>
+          <tr> 
+            <td> 
+              <div align="right"><img src="/img/f_arrow.gif" width="12" height="12"></div>
+            </td>
+            <td width="190"> 
+              <div align="left"><span style="font-size: 9pt; font-weight: normal;"><a href="http://www.xxxxxxx.co.jp/info/privacypolicy.html" target="_blank">個人情報保護方針</a></span></div>
+            </td>
+          </tr>
+          <tr> 
+            <td> 
+              <div align="right"><img src="/img/f_arrow.gif" width="12" height="12"></div>
+            </td>
+            <td width="190"> 
+              <div align="left"><span style="font-size: 9pt; font-weight: normal;"><a href="http://www.melonpan.net/rule_pesonal.html">ウェブサイトプライバシーポリシー</a></span></div>
+            </td>
+          </tr>
+          <tr> 
+            <td colspan="2">
+              <div align="right"><span style="font-size: 9pt; font-weight: normal;"><img src="/img/space.gif" width="210" height="5" border="0"><a href="http://privacymark.jp" target="_blank"><br>
+                <img src="/img/A820926_01_75.gif" width="75" height="75" border="0"></a></span></div>
+            </td>
+          </tr>
+        </table>
+        <span style="font-size: 9pt; font-weight: normal;"><br>
+        <a href="http://www.xxxxxxx.co.jp/monitor/" target="_blank"><br>
+        </a><a href="http://www.xxxxxxx.co.jp/info/privacypolicy.html" target="_blank"><br>
+        </a><br>
+        <br>
+        </span></div>
+    </td>
+  </tr>
+</table>	
+</TABLE>
+</body>
+</html>
+

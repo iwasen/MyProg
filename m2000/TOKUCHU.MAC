@@ -1,0 +1,2147 @@
+		title	tokuchu
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; module name	: tokuchu lens hacchu gyoumu 
+; creation date	: 86:01:31
+; revised date  : 
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+		.z80
+
+		include	MEMORY.INC
+		include	SUBR.INC
+
+		extrn	zokusei
+		extrn	gdmsg
+		extrn	tclist
+		extrn	clrbuf
+		extrn	chr_disp
+		extrn	csr_on
+		extrn	csr_off
+		extrn	bin_chr
+
+		public	tokuchu
+		public	gdisp
+		public	gdisp1
+		public	p_work
+		public	dcancel
+		public	c_csr
+		public	dosudata
+
+
+    	CONOUT		equ	0eb0ch
+	BEEP		equ	0eb39h
+;
+	CR		equ	0dh 	; return key code
+	ESC		equ	1bh	; escape key code
+	LEFT		equ	0e5h	; left key code
+	RIGHT		equ	0e6h	; right key code
+	LUP		equ	0edh	; up key code
+	LDOWN		equ	0eeh	; down key code
+	DENPYO		equ	0efh	; denpyou key code
+	END		equ	0f7h	; end key code
+	CANCEL		equ	0fdh	; cancel key code
+	ALL		equ	0f3h	; all key code
+	HALF		equ	0f4h	; half key code
+	DOUBLE		equ	0fbh	; double key code
+	REQL		equ	0e7h	; R=L key code
+
+	c_func		equ	M_PARAM+0
+	c_blkadr	equ	M_PARAM+1
+	rlflag		equ	M_PARAM+3
+	c_pflag		equ	M_PARAM+4
+
+	w_flag		equ	M_WORK+0
+	w_choai		equ	M_WORK+1
+	w_chokuso	equ	M_WORK+17
+	w_rdata		equ	M_WORK+19
+	w_ldata		equ	M_WORK+101
+	w_color		equ	M_WORK+183
+	w_allhf		equ	M_WORK+188
+	w_noudo		equ	M_WORK+189
+	w_hachuno	equ	M_WORK+191
+	w_biko		equ	M_WORK+203
+
+;
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	tokuchu lens hacchu gyoumu
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+tokuchu:
+		ld	(spsave),sp	; stack pointer save
+
+		ld	a,(c_func)	;
+		cp	2		; ichiran hyou ?
+		jp	z,ichiran	; * yes
+
+		call	csr_off		; screen & cursor off
+
+		ld	a,(c_func)	;
+		or	a		; shuusei ?
+		jr	nz,t00		; * yes
+
+		call	fbsrch		; free block search
+		ret	c		; return if denpyou full
+		ld	(c_blkadr),hl
+t00:
+		ld	a,(c_func)	;
+		or	a		; shuusei ?
+		jr	nz,t01		; * yes
+
+		sub	a
+		ld	(rlflag),a
+		ld	hl,m_toku1
+		jr	t02
+t01:
+		ld	hl,m_tokus
+		call	kmsg
+		ld	hl,m_toku2
+t02:
+		call	kmsg
+
+		ld	a,(R_CHOKUSO)	;
+		cp	'1'		; chokusou saki ari ?
+		jr	z,t10		; * no
+		ld	hl,m_chokuso
+		call	chr_disp
+t10:
+		ld	hl,m_toku3
+		call	chr_disp
+
+		call	blkinit		; data block initialize
+
+		call	d_choai		;
+		call	d_chokuso	;
+		call	datadsp		;
+		call	d_color		; display denpyou data
+		call	d_allhf		;
+		call	d_noudo		;
+		call	d_hachuno	;
+		call	d_biko		;
+
+		ld	a,(c_func)	;
+		or	a		; shuusei ?
+		jp	nz,hinban	; * yes
+;
+;	chouai saki input
+choai:
+		ld	hl,g_clr	; guide message
+		call	gdisp1		;
+		sub	a
+choai10:
+		ld	hl,p_choai
+		call	kbin		; chouai saki input
+		or	a		; barcode input ?
+		jr	z,cho_bar	; * yes
+		cp	CR		; ret key ?
+		jr	z,cho_ret	; * yes
+		cp	DENPYO		; denpyou key ? 
+		jr	z,cho_den	; * yes
+		cp	END		; end key ?
+		jp	z,hin_end	; * yes
+		ld	hl,w_choai
+		call	tskchk		; torxxxki saki key ?
+		jr	nc,cho_tsk	; * yes
+cho_err:
+		ld	bc,1601h
+		call	BEEP
+		ld	a,1
+		jr	choai10
+;	torxxxki saki key
+cho_tsk:
+		call	d_choai		; display choai saki
+		jr	choai
+;	bar code
+cho_bar:
+		ld	de,b_torxxxki
+		call	barchk		; bar code check
+		jr	nz,cho_err	; jump if error
+
+		ld	de,w_choai
+		ld	bc,8
+		ldir
+		jr	cho_ret10
+;	denpyou key
+cho_den:
+		ld	a,(c_func)	;
+		or	a		; shuusei ?
+		jr	z,cho_err	; * no
+		jp	hin_den
+;	return key
+cho_ret:
+		ld	hl,w_choai
+		ld	a,'0'
+		ld	c,8
+cho_ret02:
+		or	(hl)
+		inc	hl
+		dec	c
+		jr	nz,cho_ret02
+		cp	'0'
+		jr	nz,cho_ret05
+
+		ld	hl,g_tcerr
+		call	gdisp
+		jr	cho_err
+cho_ret05:
+		ld	a,b
+		or	a
+		jr	z,cho_ret20
+cho_ret10:
+		ld	hl,w_choai
+		ld	de,w_choai+8
+		ld	bc,8
+		ldir
+cho_ret20:
+		call	d_choai		; display choai saki
+;
+;	chokusou saki input
+chokuso:
+		ld	a,(R_CHOKUSO)	;
+		cp	'1'		; chokusou saki ari ?
+		jr	z,hinban	; * no
+
+		ld	hl,g_clr	; guide message
+		call	gdisp		;
+chokuso05:
+		sub	a
+chokuso10:
+		ld	hl,p_chokuso
+		call	kbin		; chokusou saki input
+		cp	CR		; return key ?
+		jr	z,cks_ret	; * yes
+		cp	DENPYO		; denpyou key ?
+		jr	z,cks_den	; * yes
+		cp	END		; end key ?
+		jp	z,hin_end	; * yes
+cks_err:
+		ld	bc,1601h
+		call	BEEP
+cks_con:
+		ld	a,1
+		jr	chokuso10
+;	denpyou key
+cks_den:
+		ld	a,(c_func)	;
+		or	a		; shuusei ?
+		jr	z,cks_err	; * no
+		jp	hin_den
+;	return key
+cks_ret:
+		call	d_chokuso	; display chokusou saki
+;
+;	hinban input
+hinban:
+		ld	hl,g_1mai	; guide message
+hinban05:
+		call	gdisp		;
+		sub	a
+hinban10:
+		ld	hl,p_hinban
+		call	kbin1		; hinban input
+		or	a		; barcode input ?
+		jr	z,hin_bar	; * yes
+		cp	CR		; ret key ?
+		jr	z,hin_ret	; * yes
+		cp	LUP		; up key ?
+		jp	z,hin_up	; * yes
+		cp	LDOWN		; down key ?
+		jp	z,hin_dwn	; * yes
+		cp	RIGHT		; right key ?
+		jp	z,sdosu		; * yes
+		cp	CANCEL		; cancel key ?
+		jp	z,hin_can	; * yes
+		cp	DENPYO		; denpyou key ?
+		jp	z,hin_den	; * yes
+		cp	END		; end key ?
+		jp	z,hin_end	; * yes
+		cp	REQL		; R=L key ?
+		jp	z,hin_rel	; * yes
+hin_err:
+		ld	bc,1601h
+		call	BEEP
+hin_con:
+		ld	a,1
+		jr	hinban10
+;	bar code 
+hin_bar:
+		ld	de,b_shohin	;
+		push	hl		;
+		call	barchk		; bar code check
+		pop	hl		;
+		jr	nz,hin_err	; * error
+		ld	de,(p_work+4)
+		ld	bc,13
+		ldir
+;	return key
+hin_ret:
+		ld	hl,(p_work+4)
+		ld	a,(hl)
+		cp	'0'
+		jr	c,hin_ret10
+		cp	'9'+1
+		jr	c,hin_ret20
+hin_ret10:
+		ld	a,c
+		or	a
+		jr	z,hin_ret20
+
+		ld	b,0
+		add	hl,bc
+hin_ret15:
+		cp	13
+		jr	z,hin_ret20
+		ld	(hl),' '
+		inc	hl
+		inc	a
+		jr	hin_ret15
+hin_ret20:
+		call	d_hinban	; display hinban
+		jp	sdosu
+
+;	up key
+hin_up:
+		ld	a,(rlflag)	;
+		or	a		; right ?
+		jr	z,hin_up10	; * yes
+		dec	a
+		ld	(rlflag),a
+		jp	hinban
+hin_up10:
+		ld	a,(c_func)	;
+		or	a		; shuusei ?
+		jp	nz,choai	; * yes
+		jr	hin_err
+;	down key
+hin_dwn:
+		ld	a,(rlflag)	; get R/L flag
+		or	a		; right ?
+		jp	nz,color	; * no
+		inc	a
+		ld	(rlflag),a
+		jp	hinban
+;	cancel key
+hin_can:
+		call	dcancel		; data cancel
+		jp	nc,hin_con
+		call	reccan
+		jp	hinban
+;	denpyou shuuryou key
+hin_den:
+		ld	a,(c_func)	;
+		or	a		; shuusei ?
+		jr	nz,hin_end	; * yes
+
+		call	dcheck		; data check
+		jr	c,hin_derr	; * error
+
+		call	datasv		; input data save
+
+		call	fbsrch		; free block search
+		ret	c		; return if error
+
+		ld	(c_blkadr),hl
+		call	blkinit1	; data block initialize
+
+		sub	a		; clear r/l flag
+		ld	(rlflag),a	;
+
+		call	datadsp		;
+		call	d_color		;
+		call	d_allhf		; data display
+		call	d_noudo		;
+		call	d_hachuno	;
+		call	d_biko		;
+
+		jp	chokuso
+;	gamen shuuryou key
+hin_end:
+		call	dcheck		; data check
+		jr	c,hin_derr	; * error
+
+		call	datasv		; input data save
+		ret
+hin_derr:
+		push	hl
+		ld	bc,1601h
+		call	BEEP
+		pop	hl
+		jp	hinban05
+;	R=L key
+hin_rel:
+		ld	a,(rlflag)
+		or	a
+		jp	z,hin_err
+		ld	hl,w_rdata+3
+		ld	de,w_ldata+3
+		ld	bc,13
+		ldir
+		call	d_hinban	; display hinban
+		jp	hinban
+;
+;	S-dosuu input
+sdosu:
+		ld	hl,g_clr	; guide messge
+		call	gdisp		;
+sdosu05:
+		sub	a
+sdosu10:
+		ld	hl,p_sdosu
+		call	kbin1		; S-dosuu input
+		or	a		; barcode input ?
+		jr	z,sdo_bar	; * yes
+		cp	CR		; ret key ?
+		jp	z,sdo_ret	; * yes
+		cp	LEFT		; left key ?
+		jp	z,hinban	; * yes
+		cp	RIGHT		; right key ?
+		jp	z,cdosu		; * yes
+		cp	CANCEL		; cancel key ?
+		jr	z,sdo_can	; * yes
+		cp	REQL		; R=L key ?
+		jr	z,sdo_rel	; * yes
+sdo_err:
+		ld	bc,1601h
+		call	BEEP
+sdo_con:
+		ld	a,1
+		jr	sdosu10
+;	bar code
+sdo_bar:
+		ld	c,b
+		push	hl
+		ld	de,b_scdosu
+		call	barchk		; barcode check
+		jr	nz,sdo_bar10
+
+		pop	de		; dummy pop
+		ld	de,(p_work+4)
+		call	fugoset		; +,- set (S)
+		ld	bc,5
+		ldir
+		call	fugoset		; +,- set (C)
+		ld	bc,4
+		ldir
+
+		ld	hl,(p_work+4)
+		inc	hl
+		ld	a,(hl)
+		cp	'0'
+		jr	nz,sdo_bar05
+		ld	(hl),' '
+sdo_bar05:
+		call	d_sdosu		; S-dosuu display
+		call	d_cdosu		; C-dosuu display
+		jp	xdosu
+sdo_bar10:
+		pop	hl
+		ld	de,b_dosu
+		call	barchk
+		jr	nz,sdo_err
+
+		ld	de,(p_work+4)
+		dec	c
+		jr	z,sdo_bar20
+		ld	a,'+'
+		ld	(de),a
+sdo_bar20:
+		inc	de
+		ld	a,(hl)
+		cp	'0'
+		jr	nz,sdo_bar30
+		ld	(hl),' '
+sdo_bar30:
+		ld	bc,4
+		ldir
+		jr	sdo_ret
+;	cancel key
+sdo_can:
+		call	dcancel		; data cancel
+		jr	nc,sdo_con
+		call	reccan
+		jp	hinban
+;	R=L key
+sdo_rel:
+		ld	a,(rlflag)
+		or	a
+		jr	z,sdo_err
+		ld	hl,w_rdata+17
+		ld	de,w_ldata+17
+		ld	bc,5
+		ldir
+		call	d_sdosu
+		jp	sdosu
+;	return key
+sdo_ret:
+		call	d_sdosu		; display s-dosuu
+
+		ld	hl,(p_work+4)
+		inc	hl
+		inc	hl
+		inc	hl
+		call	dosuchk		; dosuu check
+		jp	c,sdosu05
+
+		ld	hl,(p_work+4)
+		inc	hl
+		ld	de,max_sdo
+		call	maxchk
+		jp	c,sdosu05
+;
+;	C-dosuu input
+cdosu:
+		ld	hl,g_clr	; guide message
+		call	gdisp		;
+cdosu05:
+		sub	a
+cdosu10:
+		ld	hl,p_cdosu
+		call	kbin1		; C-dosuu input
+		or	a		; barcode ?
+		jr	z,cdo_bar	; * yes
+		cp	CR		; ret key ?
+		jr	z,cdo_ret	; * yes
+		cp	LEFT		; left key ?
+		jp	z,sdosu		; * yes
+		cp	RIGHT		; right key ?
+		jp	z,xdosu		; * yes
+		cp	CANCEL		; cancel key ?
+		jr	z,cdo_can	; * yes
+		cp	REQL		; R=L key ?
+		jr	z,cdo_rel	; * yes
+cdo_err:
+		ld	bc,1601h
+		call	BEEP
+cdo_con:
+		ld	a,1
+		jr	cdosu10
+;	cancel key
+cdo_can:
+		call	dcancel		; data cancel
+		jr	nc,cdo_con
+		call	reccan
+		jp	hinban
+;	R=L key
+cdo_rel:
+		ld	a,(rlflag)	;
+		or	a		; right ?
+		jr	z,cdo_err	; * yes
+
+		ld	hl,w_rdata+22	;
+		ld	de,w_ldata+22	; copy right data -> left data
+		ld	bc,4		;
+		ldir			;
+
+		call	d_cdosu		; display c-dosuu
+		jr	cdosu
+;	bar code
+cdo_bar:
+		ld	c,b
+		ld	de,b_dosu	;
+		call	barchk		; check bar code
+		jr	nz,cdo_err	; * error
+
+		ld	a,(hl)
+		cp	'0'
+		jr	nz,cdo_err
+
+		inc	hl
+		ld	de,(p_work+4)
+		dec	c
+		jr	z,cdo_bar10
+		ld	a,'+'
+		ld	(de),a
+cdo_bar10:
+		inc	de
+		ld	bc,3
+		ldir
+;	return key
+cdo_ret:
+		ld	hl,(p_work+4)
+		inc	hl
+		ld	a,(hl)
+		inc	hl
+		or	(hl)
+		inc	hl
+		or	(hl)
+		cp	'0'
+		jr	nz,cdo_ret10
+		ld	hl,(p_work+4)
+		ld	bc,4
+		ld	a,' '
+		call	clrbuf
+cdo_ret10:
+		call	d_cdosu		; display c-dosuu
+
+		ld	hl,(p_work+4)
+		inc	hl
+		inc	hl
+		call	dosuchk		; dosuu check
+		jp	c,cdosu05
+
+		ld	hl,(p_work+4)
+		inc	hl
+		ld	de,max_cdo
+		call	maxchk
+		jp	c,cdosu05
+;
+;	X-dosuu input
+xdosu:
+		ld	hl,g_clr	; guide message
+		call	gdisp		;
+xdosu05:
+		sub	a
+xdosu10:
+		ld	hl,p_xdosu
+		call	kbin1		; C-dosuu input
+		or	a		; bar code ?
+		jr	z,xdo_bar	; * yes
+		cp	CR		; ret key ?
+		jr	z,xdo_ret	; * yes
+		cp	LEFT		; left key ?
+		jp	z,cdosu		; * yes
+		cp	RIGHT		; right key ?
+		jp	z,kazu		; * yes
+		cp	CANCEL		; cancel key ?
+		jr	z,xdo_can	; * yes
+		cp	REQL		; R=L key ?
+		jr	z,xdo_rel	; * yes
+xdo_err:
+		ld	bc,1601h
+		call	BEEP
+xdo_con:
+		ld	a,1
+		jr	xdosu10
+;	cancel key
+xdo_can:
+		call	dcancel		; data cancel
+		jr	nc,xdo_con
+		call	reccan
+		jp	hinban
+;	R=L key
+xdo_rel:
+		ld	a,(rlflag)	;
+		or	a		; right ?
+		jr	z,xdo_err	; * yes
+
+		ld	hl,w_rdata+26	;
+		ld	de,w_ldata+26	; copy right data -> left data
+		ld	bc,3		;
+		ldir			;
+
+		call	d_xdosu		; display x-dosuu
+		jr	xdosu
+;	bar code
+xdo_bar:
+		ld	de,b_jiku	;
+		call	barchk		; bar code check
+		jr	nz,xdo_err	; * error
+		ld	de,(p_work+4)
+		ld	bc,3
+		ldir
+
+		ld	hl,(p_work+4)
+		ld	a,(hl)
+		cp	'0'
+		jr	nz,xdo_ret
+		ld	(hl),' '
+		inc	hl
+		ld	a,(hl)
+		cp	'0'
+		jr	nz,xdo_ret
+		ld	(hl),' '
+;	return key
+xdo_ret:
+		ld	hl,w_rdata+22
+		ld	a,(rlflag)
+		or	a
+		jr	z,xdo_ret10
+		ld	hl,w_ldata+22
+xdo_ret10:
+		ld	a,(hl)
+		cp	' '
+		jr	z,xdo_ret20
+
+		ld	bc,6
+		add	hl,bc
+		ld	a,(hl)
+		cp	' '
+		jr	nz,xdo_ret20
+
+		ld	hl,g_xinput
+		call	gdisp
+		jr	xdo_err
+xdo_ret20:
+		ld	hl,(p_work+4)	;
+		ld	de,max_xdo	;
+		call	maxchk		; han-i check
+		jp	c,xdosu05	; * error
+
+		call	d_xdosu		; display x-dosuu
+;
+;	kazu input
+kazu:
+		ld	hl,g_clr	; guide message
+		call	gdisp		; 
+		sub	a
+kazu10:
+		ld	hl,p_kazu
+		call	kbin1		; kazu input
+		cp	CR		; return key ?
+		jr	z,kaz_ret	; * yes
+		cp	LEFT		; left key ?
+		jp	z,cdosu		; * yes
+		cp	RIGHT		; right key ?
+		jr	z,kaz_zok	; * yes
+		cp	CANCEL		; cancel key ?
+		jr	z,kaz_can	; * yes
+		cp	REQL		; R=L key ?
+		jr	z,kaz_rel	; * yes
+kaz_err:
+		ld	bc,1601h
+		call	BEEP
+kaz_con:
+		ld	a,1
+		jr	kazu10
+;	cancel key
+kaz_can:
+		call	dcancel		; data cancel
+		jr	nc,kaz_con
+		call	reccan
+		jp	hinban
+;	R=L key
+kaz_rel:
+		ld	a,(rlflag)	;
+		or	a		; right ?
+		jr	z,kaz_err	; * yes
+
+		ld	hl,w_rdata+16	;
+		ld	de,w_ldata+16	; copy right data -> left data
+		ldi			;
+
+		call	d_kazu		; display kazu
+		jr	kazu
+;	return key
+kaz_ret:
+		call	d_kazu		; display kazu
+kaz_zok:
+		ld	hl,csroff	; cursor off
+		call	chr_disp	;
+
+		ld	hl,0e000h	;
+		ld	de,M_RBUFF	; screen save
+		ld	bc,2048		;
+		ldir			;
+
+		call	zokusei		; input zokusei data
+
+		ld	hl,M_RBUFF	;
+		ld	de,0e000h	; screen restore
+		ld	bc,2048		;
+		ldir			;
+
+		ld	a,(rlflag)
+		or	a
+		jr	nz,kaz_ret20
+		inc	a
+		ld	(rlflag),a
+		ld	hl,w_rdata
+		call	flgset
+		jp	hinban
+kaz_ret20:
+		ld	hl,w_ldata
+		call	flgset
+;
+;	color No. input
+color:
+		ld	hl,g_clr	; guide message
+		call	gdisp		;
+		sub	a
+color10:
+		ld	hl,p_color
+		call	kbin		; color No. input
+		or	a		; bar code ?
+		jr	z,col_bar	; * yes
+		cp	CR		; return key ?
+		jr	z,col_ret	; * yes
+		cp	LUP		; up key ?
+		jp	z,hinban	; * yes
+		cp	LDOWN		; down key ?
+		jp	z,hachuno	; * yes
+		cp	RIGHT		; right key ?
+		jp	z,hachuno	; * yes
+		cp	CANCEL		; cancel key ?
+		jr	z,col_can	; * yes
+col_err:
+		ld	bc,1601h
+		call	BEEP
+col_con:
+		ld	a,1
+		jr	color10
+;	cancel key
+col_can:
+		call	dcancel		; data cancel
+		jr	nc,col_con
+		ld	hl,w_color	;
+		ld	bc,5		; color data cancel
+		ld	a,' '		;
+		call	clrbuf		;
+		call	d_color		; display coloy No.
+		jp	color
+;	bar code
+col_bar:
+		ld	de,b_color	;
+		call	barchk		; bar code check
+		jr	nz,col_err	; * error
+		ld	de,w_color
+		ld	bc,5
+		ldir
+;	return key
+col_ret:
+		call	d_color		; display color No.
+		ld	a,(w_color)
+		cp	' '
+		jp	z,hachuno
+;
+;	all/half input
+allhf:
+		ld	hl,g_item	; guide message
+		call	gdisp		;
+
+		sub	a
+allhf10:
+		ld	hl,p_allhf
+		call	kbin		; all/half input
+		or	a		; bar code ?
+		jr	z,all_bar	; * yes
+		cp	CR		; return key ?
+		jr	z,all_ret	; * yes
+		cp	LEFT		; left key ?
+		jp	z,color		; * yes
+		cp	CANCEL		; cancel key ?
+		jr	z,all_can	; * yes
+		cp	ALL
+		jr	z,all_all
+		cp	HALF
+		jr	z,all_hlf
+		cp	DOUBLE
+		jr	z,all_dbl
+
+all_err:
+		ld	bc,1601h
+		call	BEEP
+all_con:
+		ld	a,1
+		jr	allhf10
+all_all:
+		ld	a,'1'
+		jr	all_itm
+all_hlf:
+		ld	a,'2'
+		jr	all_itm
+all_dbl:
+		ld	a,'3'
+all_itm:
+		ld	(w_allhf),a
+		call	d_allhf
+		jr	allhf
+;	cancel key
+all_can:
+		call	dcancel		; data cancel
+		jr	nc,all_con
+		ld	hl,w_allhf	;
+		ld	(hl),'1'	; cancel all/half
+		call	d_allhf		; display all/half
+		jp	allhf
+;	bar code
+all_bar:
+		ld	de,b_allhf	;
+		call	barchk		; bar code check
+		jr	nz,all_err	; * error
+		ld	de,w_allhf
+		ldi
+;	return key
+all_ret:
+		call	d_allhf		; display all/half
+;
+;	noudo input
+noudo:
+		ld	hl,g_clr	; guide message
+		call	gdisp		;
+		sub	a
+noudo10:
+		ld	hl,p_noudo
+		call	kbin		; noudo input
+		or	a		; bar code ?
+		jr	z,nou_bar	; * yes
+		cp	CR		; return key ?
+		jr	z,nou_ret	; * yes
+		cp	LEFT		; left key ?
+		jp	z,color		; * yes
+		cp	CANCEL		; cancel key ?
+		jr	z,nou_can	; * yes
+nou_err:
+		ld	bc,1601h
+		call	BEEP
+nou_con:
+		ld	a,1
+		jr	noudo10
+;	cancel key
+nou_can:
+		call	dcancel		; data cancel
+		jr	nc,nou_con
+		ld	hl,w_noudo	;
+		ld	bc,2		; noudo cancel
+		ld	a,' '		;
+		call	clrbuf		;
+
+		call	d_noudo		; display noudo
+		jp	noudo
+;	bar code
+nou_bar:
+		ld	de,b_noudo	;
+		call	barchk		; bar code check
+		jr	nz,nou_err	; * error
+		ld	de,w_noudo
+		ld	bc,2
+		ldir
+;	return key
+nou_ret:
+		call	d_noudo		; display noudo
+
+		ld	hl,w_color+2
+		ld	b,3
+		ld	a,'9'
+nou_ret10:
+		cp	(hl)
+		jr	nz,nou_ret20
+		inc	hl
+		djnz	nou_ret10
+		jr	hachuno
+nou_ret20:
+		ld	hl,w_noudo+1
+		ld	a,(hl)
+		cp	' '
+		jr	z,nou_err
+;
+;	hachuu No. input
+hachuno:
+		ld	hl,g_clr	; guide message
+		call	gdisp		;
+		sub	a
+hachuno10:
+		ld	hl,p_hachuno
+		call	kbin		; hachuu No. input
+		cp	CR		; return key ?
+		jr	z,hno_ret	; * yes
+		cp	LUP		; up key ?
+		jp	z,color		; * yes
+		cp	LDOWN		; down key ?
+		jp	z,biko		; * yes
+		cp	LEFT		; left key ?
+		jp	z,color		; * yes
+		cp	DENPYO		; denpyou key ?
+		jp	z,hin_den	; * yes
+		cp	END		; end key ?
+		jp	z,hin_end	; * yes
+		cp	CANCEL		; cancel key ?
+		jr	z,hno_can	; * yes
+hno_err:
+		ld	bc,1601h
+		call	BEEP
+hno_con:
+		ld	a,1
+		jr	hachuno10
+;	cancel key
+hno_can:
+		call	dcancel		; data cancel
+		jr	nc,hno_con
+		ld	hl,w_hachuno	;
+		ld	bc,12		; hachuu No. cancel
+		ld	a,' '		;
+		call	clrbuf		;
+
+		call	d_hachuno	; display hachuu No.
+		jp	hachuno
+;	return key
+hno_ret:
+		call	d_hachuno	; display hachuu No.
+;	
+;	bikou	input
+biko:
+		ld	hl,g_clr	; guide message
+		call	gdisp		;
+		sub	a
+biko10:
+		ld	hl,p_biko
+		call	kbin		; bikou input
+		cp	CR		; return key ?
+		jr	z,bik_ret	; * yes
+		cp	LUP		; up key ?
+		jp	z,hachuno	; * yes
+		cp	DENPYO		; denpyou key ?
+		jp	z,hin_den	; * yes
+		cp	END		; end key ?
+		jp	z,hin_end	; * yes
+		cp	CANCEL		; cancel key ?
+		jr	z,bik_can	; * yes
+bik_err:
+		ld	bc,1601h
+		call	BEEP
+bik_con:
+		ld	a,1
+		jr	biko10
+;	cancel key
+bik_can:
+		call	dcancel		; data cancel
+		jr	nc,bik_con
+		ld	hl,w_biko	;
+		ld	bc,20		; bikou cancel
+		ld	a,' '		;
+		call	clrbuf		;
+
+		call	d_biko		; display bikou
+		jp	biko
+;	return key
+bik_ret:
+		call	d_biko		; display bikou
+
+		ld	hl,g_endkey
+		call	gdisp
+
+		call	shftinit	; shift initialize
+		jr	bik_con
+;
+;	data block initialize
+blkinit:
+		ld	a,(c_func)	;
+		or	a		; shuusei ?
+		jr	nz,blkcopy	; * yes
+
+		ld	hl,w_flag
+		ld	(hl),2
+		inc	hl
+
+		ld	bc,w_rdata-w_choai
+		ld	a,' '
+		call	clrbuf
+blkinit1:
+		ld	hl,w_rdata
+		ld	bc,82*2+40
+		ld	a,' '
+		call	clrbuf
+
+		ld	a,'1'
+		ld	(w_allhf),a
+
+		ld	hl,initdata
+		ld	de,w_rdata
+		ld	bc,22
+		ldir
+		ld	hl,initdata
+		ld	de,w_ldata
+		ld	bc,22
+		ldir
+
+		ld	de,(C_DNO)
+		call	dpinc
+		ld	(w_rdata+1),de
+		call	dpinc
+		ld	(w_ldata+1),de
+		ret
+;
+blkcopy:
+		ld	hl,(c_blkadr)
+		ld	de,w_flag
+		ld	bc,223
+		ldir
+		ret
+;
+dpinc:
+		inc	de
+		ld	hl,1000
+		or	a
+		sbc	hl,de
+		ret	nz
+		ld	de,1
+		ret
+;
+;	key or bar code input
+kbin1:
+		push	af
+		call	prmset
+		pop	af
+		jp	kbin
+;
+;	data display
+;
+disp:
+		call	prmset
+		ld	a,'0'
+dispx:
+		ld	(dispwk),a
+
+		push	hl
+		pop	ix
+
+		ld	l,(ix+0)
+		ld	h,(ix+1)
+		ld	(c_csr+2),hl
+		ld	hl,c_csr
+		call	chr_disp	; cursor set
+		ld	a,(ix+1)
+		ld	l,(ix+4)
+		ld	h,(ix+5)
+disp10:
+		cp	(ix+6)
+		jr	nz,disp20
+		inc	a
+		push	af
+		ld	c,'.'
+		ld	a,(dispwk)
+		cp	' '
+		jr	z,disp15
+		ld	a,(hl)
+		cp	' '
+		jr	nz,disp15
+		ld	c,' '
+disp15:
+		push	hl
+		call	CONOUT
+		pop	hl
+		pop	af
+disp20:
+		push	af
+		ld	a,(dispwk)
+		cp	' '
+		ld	c,(hl)
+		jr	nz,disp30
+		ld	c,'_'
+disp30:
+		inc	hl
+		push	hl
+		call	CONOUT
+		pop	hl
+		pop	af
+		inc	a
+		cp	(ix+2)
+		jr	nz,disp10
+		ret
+;
+;
+prmset:
+		ld	de,p_work
+		ld	bc,7
+		ldir
+		ld	a,(rlflag)
+		ld	b,24h
+		ld	de,w_rdata
+		or	a
+		jr	z,prmset10
+		inc	b
+		ld	de,w_ldata
+prmset10:
+		ld	ix,p_work
+		ld	(ix),b
+		ld	l,(ix+4)
+		ld	h,(ix+5)
+		add	hl,de
+		ld	(ix+4),l
+		ld	(ix+5),h
+		ld	hl,p_work
+		ret
+
+;
+;	torxxxki saki key check
+;
+tskchk:
+		push	hl
+		ld	de,tsktbl
+		ld	hl,R_TORxxxKI
+		ld	b,12
+		ld	c,a
+tskchk10:
+		ld	a,(de)
+		cp	c
+		jr	z,tskchk20
+		inc	de
+		push	de
+		ld	de,16
+		add	hl,de
+		pop	de
+		djnz	tskchk10
+tsk_no:
+		pop	hl
+		scf
+		ret
+tskchk20:
+		ld	a,(hl)
+		or	a
+		jr	z,tsk_no
+		pop	de
+		ld	bc,8
+		ldir
+		ld	a,(hl)
+		or	a
+		jr	nz,tskchk30
+		ld	bc,8
+		or	a
+		sbc	hl,bc
+tskchk30:
+		ld	bc,8
+		ldir
+		or	a
+		ret
+;
+;	data display
+datadsp:
+		ld	a,(rlflag)
+		push	af
+		sub	a
+		ld	(rlflag),a
+		call	d_no
+		ld	hl,w_rdata
+		call	datads1
+
+		ld	a,1
+		ld	(rlflag),a
+		call	d_no
+		ld	hl,w_ldata
+		call	datads1
+		pop	af
+		ld	(rlflag),a
+		ret
+datads1:
+		ld	a,(hl)
+		ld	hl,p_hinban
+		call	datads2
+		ld	hl,p_sdosu
+		call	datads2
+		ld	hl,p_cdosu
+		call	datads2
+		ld	hl,p_xdosu
+		call	datads2
+		jp	d_kazu
+datads2:
+		push	af
+		cp	1
+		ld	a,'0'
+		jr	z,datads3
+		ld	a,' '
+datads3:
+		push	af
+		call	prmset
+		pop	af
+		call	dispx
+		pop	af
+		ret
+;
+;	chouai saki display
+d_choai:
+		ld	hl,p_choai
+		ld	de,p_work
+		ld	bc,7
+		ldir
+		ld	hl,w_choai+8
+		ld	(p_work+4),hl
+		ld	a,(hl)
+		ld	hl,p_work
+		jp	dispx
+;
+;	chokusou saki display
+d_chokuso:
+		ld	a,(R_CHOKUSO)
+		cp	'1'
+		ret	z
+		ld	a,(w_chokuso)
+		ld	hl,p_chokuso
+		jp	dispx
+;
+;	denpyou No. display
+d_no:
+		ld	hl,w_rdata+1
+		ld	b,24h
+		ld	a,(rlflag)
+		or	a	
+		jr	z,d_no10
+		ld	hl,w_ldata+1
+		inc	b
+d_no10:
+		ld	a,b
+		ld	(p_no+2),a
+		ld	e,(hl)
+		inc	hl
+		ld	d,(hl)
+		ld	hl,p_no+4
+		ld	b,3
+		call	bin_chr
+		ld	hl,p_no
+		jp	chr_disp
+;
+;	hinban dispaly
+d_hinban:
+		ld	hl,p_hinban
+		jp	disp
+;
+;	S-dosu display
+d_sdosu:
+		ld	hl,p_sdosu
+		jp	disp
+;
+;	C-dosu display
+d_cdosu:
+		ld	hl,p_cdosu
+		jp	disp
+;
+;	X display
+d_xdosu:
+		ld	hl,p_xdosu
+		jp	disp
+;
+;	kazu display
+d_kazu:
+		ld	hl,p_kazu
+		jp	disp
+;
+;	color No. display
+d_color:
+		ld	a,(w_color+4)
+		ld	hl,p_color
+		jp	dispx
+;
+;	all / half display
+d_allhf:
+		ld	a,(w_allhf)
+		ld	hl,dd_allhf+9
+		cp	'4'
+		jr	z,d_all10
+		ld	hl,dd_allhf+6
+		cp	'3'
+		jr	z,d_all10
+		ld	hl,dd_allhf+3
+		cp	'2'
+		jr	z,d_all10
+		ld	hl,dd_allhf
+d_all10:
+		ld	de,dw_allhf+4
+		ld	bc,3
+		ldir
+		ld	hl,dw_allhf
+		jp	chr_disp
+;
+;	noudo display
+d_noudo:
+		ld	a,(w_noudo+1)
+		ld	hl,p_noudo
+		jp	dispx
+;
+;	hachu No. display
+d_hachuno:
+		sub	a
+		ld	b,12
+		ld	hl,w_hachuno
+d_hachuno10:
+		or	(hl)
+		inc	hl
+		djnz	d_hachuno10
+		ld	hl,p_hachuno
+		jp	dispx
+;
+;	bikou display
+d_biko:
+		sub	a
+		ld	b,20
+		ld	hl,w_biko
+d_biko10:
+		or	(hl)
+		inc	hl
+		djnz	d_biko10
+		ld	hl,p_biko
+		jp	dispx
+;
+;	cancel key shori
+dcancel:
+		ld	hl,(msgadr)
+		push	hl
+		ld	hl,g_canc1
+		call	gdisp
+		call	csr_on
+dcan10:
+		call	xconin
+		cp	'1'
+		jr	z,dcan20
+		cp	'2'
+		jr	nz,dcan10
+dcan20:
+		push	af
+		ld	hl,g_canc2
+		call	gdisp
+		call	csr_on
+dcan30:
+		call	xconin
+		cp	'1'
+		jr	z,dcan40
+		cp	'2'
+		jr	nz,dcan30
+		pop	af
+		pop	hl
+		call	gdisp
+		or	a
+		ret
+dcan40:
+		pop	af
+		pop	hl
+		cp	'1'
+		scf
+		ret	z
+		ld	sp,(spsave)
+
+		ld	a,(c_func)	;
+		or	a		; shuusei ?
+		jp	nz,dcan50	; * yes
+
+		call	csr_off
+		jp	t00
+dcan50:
+		ld	hl,w_rdata
+		ld	a,(hl)
+		or	a
+		jr	z,dcan60
+		ld	(hl),2
+dcan60:
+		ld	hl,w_ldata
+		ld	a,(hl)
+		or	a
+		jr	z,dcan70
+		ld	(hl),2
+dcan70:
+		jp	datasv
+;
+;
+reccan:
+		ld	hl,w_rdata
+		ld	a,(rlflag)
+		or	a
+		jr	z,reccan10
+		ld	hl,w_ldata
+reccan10:
+		ld	a,(c_func)	;
+		or	a		; shuusei ?
+		jr	nz,reccan20	; * yes
+
+		ld	(hl),0
+		inc	hl
+		inc	hl
+		inc	hl
+		ex	de,hl
+		ld	hl,initdata+3
+		ld	bc,19
+		ldir
+		ex	de,hl
+		ld	bc,82-22
+		ld	a,' '
+		call	clrbuf
+		jp	datadsp
+reccan20:
+		ld	(hl),2
+		jp	datadsp
+;
+;	data save
+datasv:
+		ld	a,(w_rdata)
+		ld	b,a
+		ld	a,(w_ldata)
+		or	b
+		ret	z
+
+		and	1
+		jr	nz,datasv05
+		ld	(w_flag),a
+datasv05:
+		ld	de,(c_blkadr)
+		ld	hl,w_flag
+		ld	bc,223
+		ldir
+
+		ld	a,(c_func)	;
+		or	a		; shuusei ?
+		jr	nz,datasv10	; * yes
+
+		ld	hl,(w_ldata+1)
+		ld	(C_DNO),hl
+		ld	hl,ledon
+		call	chr_disp
+datasv10:
+		ld	a,(R_CLIST)	;
+		cp	'1'		; check list nashi ?
+		ret	z		; * yes
+
+		ld	(C_SPSAVE),sp
+		ld	hl,(c_blkadr)
+		ld	a,(lstflag)
+		call	tclist
+		ld	a,1
+		ld	(lstflag),a
+		ret
+;
+;	guide message display
+gdisp:
+		ex	de,hl
+		ld	hl,(msgadr)
+		or	a
+		sbc	hl,de
+		ret	z
+		ex	de,hl
+gdisp1:
+		ld	(msgadr),hl
+		call	gdmsg
+		ret
+;
+;	free block search
+fbsrch:
+		ld	hl,M_ORDER	; set order data area address
+		ld	de,320		; set block size
+		ld	b,10		; loop counter
+fb_loop:
+		ld	a,(hl)
+		or	a		; free block ?
+		ret	z		; * yes
+		add	hl,de
+		djnz	fb_loop
+		ld	hl,g_send
+		call	gdisp
+		call	xconin
+		scf			; not found
+		ret
+;
+;	+,- set
+fugoset:
+		ld	a,(hl)
+		ld	(hl),'-'
+		cp	'1'
+		ret	z
+
+		ld	(hl),'+'
+		cp	'2'
+		ret	z
+
+		ld	(hl),' '
+		ret
+;
+;	dosuu check
+dosuchk:
+		ld	b,9
+		ld	d,(hl)
+		inc	hl
+		ld	e,(hl)
+		ld	hl,dosudata
+dosuchk10:
+		ld	a,(hl)
+		inc	hl
+		cp	d
+		jr	nz,dosuchk20
+		ld	a,(hl)
+		cp	e
+		ret	z
+dosuchk20:
+		inc	hl
+		djnz	dosuchk10
+hani_err:
+		ld	bc,1601h
+		call	BEEP
+		ld	hl,g_hanierr
+		call	gdisp
+		scf
+		ret
+;
+;	hani check
+maxchk:
+		ld	a,(de)
+		ld	b,a
+		inc	de
+maxchk10:
+		ld	a,(de)
+		cp	(hl)
+		jr	nz,maxchk20
+		inc	hl
+		inc	de
+		djnz	maxchk10
+		ret
+maxchk20:
+		jr	c,hani_err
+		ret
+;
+;	data check
+;
+dcheck:
+		ld	a,(w_rdata)
+		ld	b,a
+		ld	a,(w_ldata)
+		or	b
+		ret	z
+
+		sub	a		; clear r/l flag
+		ld	(rlflag),a	;
+
+		ld	a,(w_rdata+16)	;
+		ld	hl,w_ldata+16	;
+		or	(hl)		; kazu check
+		cp	'0'		;
+		ld	hl,g_kazuerr	;
+		scf			;
+		ret	z		;
+
+		ld	a,(w_rdata)	;
+		cp	1		;
+		jr	nz,dcheck30	;
+		ld	a,(w_ldata)	;
+		cp	1		;
+		jr	nz,dcheck30	;
+		ld	hl,w_rdata+3	;
+		ld	de,w_ldata+3	; maker code check
+		ld	b,5		;
+dcheck10:				;
+		ld	a,(de)		;
+		cp	(hl)		;
+		jr	nz,dcheck20	;
+		inc	hl		;
+		inc	de		;
+		djnz	dcheck10	;
+		jr	dcheck30	;
+dcheck20:
+		ld	hl,g_hinerr
+		scf
+		ret
+dcheck30:
+		ld	ix,w_rdata	;
+		ld	a,(ix)		;
+		dec	a		; right data check
+		jr	nz,dcheck40	;
+		call	zcheck		;
+		ret	c		;
+dcheck40:
+		ld	a,1
+		ld	(rlflag),a
+
+		ld	ix,w_ldata	;
+		ld	a,(ix)		;
+		dec	a		; left data check
+		jr	nz,dcheck50	;
+		call	zcheck		;
+		ret	c		;
+dcheck50:
+		ld	a,(w_rdata)
+		dec	a
+		jr	nz,dcheck60
+
+		xor	a
+		ld	(rlflag),a
+		ld	a,(w_rdata+16)
+		cp	'0'
+		ld	a,'R'
+		jr	z,dcheck80
+dcheck60:
+		ld	a,(w_ldata)
+		dec	a
+		jr	nz,dcheck70
+
+		ld	a,1
+		ld	(rlflag),a
+		ld	a,(w_ldata+16)
+		cp	'0'
+		ld	a,'L'
+		jr	z,dcheck80
+dcheck70:
+		or	a
+		ret
+dcheck80:
+		ld	(g_kazu1+2),a
+
+		ld	bc,1601h
+		call	BEEP
+
+		ld	hl,g_kazu1
+		call	gdisp
+		call	csr_on
+dcheck90:
+		call	xconin
+		cp	CR
+		jr	nz,dcheck90
+
+		ld	hl,g_kazu2
+		call	gdisp
+		call	csr_on
+dcheck95:
+		call	xconin
+		cp	'1'
+		ret	z
+		cp	'2'
+		jr	nz,dcheck95
+		pop	af		; dummy pop
+		jp	kazu     
+;
+zcheck:
+		ld	a,(ix+3+7)	;
+		cp	'1'		;
+		jr	z,zcheck10	;
+		cp	'2'		; hinban 8 ketame check
+		jr	z,zcheck10	;
+		cp	'4'		;
+		jr	z,zcheck10	;
+		cp	'5'		;
+		jr	z,zcheck10	;
+
+		ld	de,29		;
+		ld	b,3		;
+		call	zrchk		; kanyudo check
+		jr	z,zcheck20	;
+		ld	hl,g_knerr2	;
+		scf			;
+		ret
+zcheck10:
+		ld	de,29		;
+		ld	b,3		;
+		call	zrchk		; kanyudo check
+		jr	nz,zcheck20	;
+		ld	hl,g_knerr1	;
+		scf			;
+		ret
+zcheck20:
+		ld	a,(ix+3+7)	;
+		cp	'1'		;
+		jr	z,zcheck40	; hinban 8 ketame check
+		cp	'4'		;
+		jr	z,zcheck40	;
+
+		ld	de,75		;
+		ld	b,3		;
+		call	zrchk		; kodamasage check
+		jr	z,zcheck30	;
+		ld	hl,g_kserr	;
+		scf			;
+		ret
+zcheck30:
+		ld	de,78		;
+		ld	b,2		;
+		call	zrchk		; kodamayose check
+		jr	z,zcheck40	;
+		ld	hl,g_kyerr	;
+		scf			;
+		ret
+zcheck40:
+		ld	de,57		;
+		ld	b,3		;
+		call	zrchk		;
+		jr	z,zcheck50	;
+		ld	de,60		; chuushin atsu, fuchi atsu check
+		ld	b,3		;
+		call	zrchk		;
+		jr	z,zcheck50	;
+		ld	hl,g_cferr	;
+		scf			;
+		ret
+zcheck50:
+		ld	d,(ix+35)	;
+		ld	e,(ix+41)	;
+		call	hcheck		; prism houkou check
+		ld	hl,g_pherr	;
+		ret	c		;
+
+		ld	d,(ix+44)	;
+		ld	e,(ix+49)	; henshin houkou check
+		call	hcheck		;
+		ld	hl,g_hherr	;
+		ret	c		;
+zcheck60:
+		ld	de,32		;
+		call	prcheck		;
+		ret	c		; prism check
+		ld	de,38		;
+		call	prcheck		;
+		ret	c		;
+
+		ld	de,44		;
+		call	hecheck		;
+		ret	c		; henshin check
+		ld	de,49		;
+		call	hecheck		;
+		ret
+;	
+;	houkou check
+hcheck:
+		ld	iy,hcdata
+		ld	b,8
+hcheck10:
+		ld	h,(iy)
+		inc	iy
+		ld	l,(iy)
+		inc	iy
+		or	a
+		sbc	hl,de
+		jr	z,hcheck20
+		djnz	hcheck10
+		or	a
+		ret
+hcheck20:
+		scf
+		ret
+
+hcdata:		db	'67','76','89','98','66','77','88','99'
+
+;
+prcheck:
+		push	ix
+		pop	hl
+		add	hl,de
+
+		ld	b,3
+		call	spcheck
+		ld	c,a
+		ld	b,3
+		call	spcheck
+
+		cp	' '
+		ld	a,c
+		jr	nz,prcheck10
+
+		cp	' '
+		jr	nz,prc_err
+		ret
+prcheck10:
+		cp	' '
+		jr	z,prc_err
+		or	a
+		ret
+prc_err:
+		ld	hl,g_prerr
+		scf
+		ret
+;
+hecheck:
+		push	ix
+		pop	hl
+		add	hl,de
+
+		ld	c,(hl)
+		inc	hl
+		ld	b,4
+		call	spcheck
+
+		cp	' '
+		ld	a,c
+		jr	nz,hecheck10
+
+		cp	' '
+		jr	nz,hec_err
+		ret
+hecheck10:
+		cp	' '
+		jr	z,hec_err
+		or	a
+		ret
+hec_err:
+		ld	hl,g_heerr
+		scf
+		ret
+;
+spcheck:
+		xor	a
+spcheck10:
+		or	(hl)
+		inc	hl
+		djnz	spcheck10
+		ret
+;
+zrchk:
+		push	ix
+		pop	hl
+		add	hl,de
+		ld	a,'0'
+zrchk10:
+		or	(hl)
+		inc	hl
+		djnz	zrchk10
+		cp	'0'
+		ret
+;
+;	bar code check
+;
+barchk:
+		ld	a,(de)
+		inc	de
+		ld	b,a
+barchk10:
+		ld	a,(de)
+		cp	(hl)
+		ret	nz
+		inc	de
+		inc	hl
+		djnz	barchk10
+		ret
+;
+flgset:
+		push	hl
+		inc	hl
+		inc	hl
+		inc	hl
+		ld	b,13
+flgset10:
+		ld	a,(hl)
+		cp	'0'
+		jr	nz,flgset20
+		inc	hl
+		djnz	flgset10
+		pop	hl
+		ret
+flgset20:
+		pop	hl
+		ld	(hl),1
+		ret
+;
+;	ichiran hyou print out
+;
+ichiran:
+		ld	(C_SPSAVE),sp
+
+		ld	a,(c_pflag)
+		ld	hl,(c_blkadr)
+		call	tclist
+
+		ld	a,0ffh
+		ld	(c_pflag),a
+		ret
+;
+;	data	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	display data
+m_tokus:	dw	0,0101h
+		dw	1b30h,8f43h,93c1h,1b31h,-1	;shuu toku
+
+m_toku1:	dw	0,0101h
+		dw	1b30h,93c1h,1b31h	; toku
+
+m_toku2:	dw	0,0501h
+		dw	92a0h,8d87h,90e6h	; chouai saki
+		dw	0,0103h
+		dw	826dh,828fh		; No
+		dw	0,0803h
+		dw	9569h,94d4h		; hinban
+		dw	0,1003h
+		dw	9378h,9094h		; dosuu
+		dw	0,1d03h
+		dw	9094h			; kazu
+		dw	-1
+
+m_toku3:	db	ESC,'=',24h,24h,'R'
+		db	ESC,'=',24h,33h,'S'
+		db	ESC,'=',24h,3bh,'C'
+		db	ESC,'=',24h,41h,'X'
+		db	ESC,'=',24h,45h,0dfh
+		db	ESC,'=',25h,24h,'L'
+		db	ESC,'=',25h,33h,'S'
+		db	ESC,'=',25h,3bh,'C'
+		db	ESC,'=',25h,41h,'X'
+		db	ESC,'=',25h,45h,0dfh
+		db	ESC,'=',26h,20h,0b6h,0d7h,0b0h,'No'
+		db	ESC,'=',26h,31h,'%'
+		db	ESC,'=',26h,34h,0cah,0afh,0c1h,0adh,0b3h,'No'
+		db	ESC,'=',27h,20h,0cbh,0deh,0bah,0b3h,-1
+
+m_chokuso:	db	ESC,'=',21h,3eh
+		db	0c1h,0aeh,0b8h,0bfh,0b3h,0bbh,0b7h,-1
+;
+;	input parameter
+p_choai:	db	21h,2eh,36h,00h
+		dw	w_choai
+		db	00h
+
+p_chokuso:	db	21h,46h,48h,00h
+		dw	w_chokuso
+		db	00h
+
+p_hinban:	db	24h,25h,32h,01h
+		dw	3
+		db	00h
+
+p_sdosu:	db	24h,34h,3ah,06h
+		dw	17
+		db	37h
+
+p_cdosu:	db	24h,3ch,41h,06h
+		dw	22
+		db	3eh
+
+p_xdosu:	db	24h,42h,45h,08h
+		dw	26
+		db	00h
+
+p_kazu:		db	24h,47h,48h,08h
+		dw	16
+		db	00h
+
+p_color:	db	26h,25h,2ah,00h
+		dw	w_color
+		db	00h
+
+p_allhf:	db	26h,2bh,2ch,80h
+		dw	w_allhf
+		db	00h
+
+p_noudo:	db	26h,2fh,31h,08h
+		dw	w_noudo
+		db	00h
+
+p_hachuno:	db	26h,3ch,48h,01h
+		dw	w_hachuno
+		db	00h
+
+p_biko:		db	27h,24h,38h,01h
+		dw	w_biko
+		db	00h
+
+p_work:		ds	7
+;
+;	barcode
+;
+b_shohin:	db	2,'49'
+b_torxxxki:	db	4,'0400'
+b_dosu:		db	3,'042'
+b_scdosu:	db	3,'048'
+b_jiku:		db	4,'0450'
+b_color:	db	2,'00'
+b_allhf:	db	6,'030000'
+b_noudo:	db	5,'03100'
+;
+;
+tsktbl:		db	0e0h,0e1h,0e2h
+		db	0e8h,0e9h,0eah
+		db	0f0h,0f1h,0f2h
+		db	0f8h,0f9h,0fah
+
+c_csr:		db	ESC,'=','00',-1
+
+p_no:		db	ESC,'=',0,20h,'000',-1
+
+initdata:	db	0,0,0
+		db	'0000000000000'
+		db	'0'
+		db	'- 000'
+
+msgadr:		dw	0
+
+ledon:		db	ESC,0a0h,-1
+
+csroff:		db	ESC,'2',-1
+
+dd_allhf:	db	0b5h,0b0h,0d9h,0cah,0b0h,0cch
+		db	032h,0b2h,0dbh,033h,0b2h,0dbh
+
+dw_allhf:	db	ESC,'=',26h,2bh,'000',-1
+
+dosudata:	db	'  ','00','12','25','37','50','62','75','87'
+
+max_sdo:	db	4,'4000'
+max_cdo:	db	3,'900'
+max_xdo:	db	3,'180'
+
+spsave:		dw	0
+
+lstflag:	db	0
+
+dispwk:		db	0
+
+;
+;	guide message
+;
+g_endkey:	db	25,15
+		db	0bch,0adh,0b3h,0d8h,0aeh,0b3h,0b7h,0b0h
+		db	0a6h,0beh,0ddh,0c0h,0b8h,0bdh,0d9h,-1
+
+g_canc1:	db	25,15
+		db	03fh,020h,031h,03ah,0b7h,0deh,0aeh,0b3h
+		db	020h,032h,03ah,0b5h,0b0h,0d9h,-1
+
+g_canc2:	db	25,15
+		db	03fh,020h,031h,03ah,0b7h,0ach,0ddh,0beh
+		db	0d9h,020h,032h,03ah,0d4h,0d2h,-1
+
+g_item:		db	25,15
+		db	0b1h,0b2h,0c3h,0d1h,0b7h,0b0h,020h,0c3h
+		db	0deh,0bch,0c3h,0b2h,-1
+
+g_1mai:		db	25,15
+		db	031h,0cfh,0b2h,0c9h,0c4h,0b7h,0cah,0e2h
+		db	0b7h,0b0h,0a6h,0b5h,0bdh,-1
+
+g_clr:		db	25,15,-1
+
+g_send:		db	25,15
+		db	0b2h,0c1h,0c4h,0deh,0bfh,0b3h,0bch,0ddh
+		db	0bdh,0d9h,-1
+
+g_hanierr:	db	25,15
+		db	0cah,0ddh,0b2h,020h,0b4h,0d7h,0b0h,-1
+
+g_xinput:	db	25,15
+		db	'X ',0a6h,020h,0b2h,0dah,0d9h,-1
+
+g_kazuerr:	db	25,15
+		db	0b6h,0bdh,0deh,0b6h,0deh,'R=L=0',-1
+
+g_hinerr:	db	25,15
+		db	0cbh,0ddh,0cah,0deh,0ddh,020h,0d2h,0b0h
+		db	0b6h,0b0h,020h,0b4h,0d7h,0b0h,-1
+
+g_knerr1:	db	25,15
+		db	0b6h,0c6h,0adh,0b3h,0c4h,0deh,0a6h,0b2h
+		db	0dah,0d9h,-1
+
+g_knerr2:	db	25,15
+		db	0b6h,0c6h,0adh,0b3h,0c4h,0deh,0a6h,0c4h
+		db	0d9h,-1
+
+g_kserr:	db	25,15
+		db	0bah,0c0h,0deh,0cfh,0bbh,0b9h,0deh,0a6h
+		db	0c4h,0d9h,-1
+
+g_kyerr:	db	25,15
+		db	0bah,0c0h,0deh,0cfh,0d6h,0beh,0a6h,0c4h
+		db	0d9h,-1
+
+g_cferr:	db	25,15
+		db	0c1h,0adh,0b3h,0bch,0ddh,0b1h,0c2h,02ch
+		db	0cch,0c1h,0b1h,0c2h,0a6h,0c4h,0d9h,-1
+
+g_hherr:	db	25,15
+		db	0cdh,0ddh,0bch,0ddh,0ceh,0b3h,0bah,0b3h
+		db	020h,0b4h,0d7h,0b0h,-1
+
+g_pherr:	db	25,15
+		db	0cch,0dfh,0d8h,0bdh,0deh,0d1h,0ceh,0b3h
+		db	0bah,0b3h,020h,0b4h,0d7h,0b0h,-1
+
+g_tcerr:	db	25,15
+		db	0c4h,0d8h,0cbh,0b7h,0bah,0b0h,0c4h,0deh
+		db	020h,0b4h,0d7h,0b0h,-1
+
+g_prerr:	db	25,15
+		db	0cch,0dfh,0d8h,0bdh,0deh,0d1h,020h,0b4h
+		db	0d7h,0b0h,-1
+
+g_heerr:	db	25,15
+		db	0cdh,0ddh,0bch,0ddh,020h,0b4h,0d7h,0b0h,-1
+
+g_kazu1:
+		db	25,15
+		db	052h,0c9h,0b6h,0bdh,0deh,03dh,030h,020h
+		db	0e1h,0a6h,0b5h,0bdh,-1
+
+g_kazu2:	db	25,15
+		db	031h,03ah,04fh,04bh,020h,032h,03ah,0bch
+		db	0adh,0b3h,0beh,0b2h,-1
+
+		end	tokuchu

@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>基本情報を変更する【確認】</TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600">
+<? include("header.php"); ?>
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="513" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+                <TD> 
+                  <table width="501" border="0" cellspacing="0" cellpadding="0">
+                    <tr> 
+                      <td width="251"><font color="#006600"><b>■基本情報を変更する【確認】</b></font> 
+                      </td>
+                      <td width="250" align="right"> 
+                        <form method="post" action="pub_index.php" name="fom_index">
+<a href="JavaScript:document.fom_index.submit();">
+<font size="2">管理ページTOPへ</font></a>
+<input type="hidden" value="<? echo $publisher_id ?>" name="publisher_id">
+<input type="hidden" value="<? echo $owner_pswd ?>" name="owner_pswd_r">
+</form>
+                      </td>
+                    </tr>
+                  </table>
+                  <p CLASS="text01">以下の内容に変更してもよろしいですか？</p>
+<form name="form1"  action="publisher.php" method="post">
+<table width="500" cellpadding="3" cellspacing="1" border="0">
+<tr>
+<td colspan="2" bgcolor="#336600"><FONT color="#FFFFCC"><B>発行者基本情報</B></FONT></td>
+</tr>
+<tr>
+<td width="150" bgcolor="#669900" CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">基本メールアドレス</FONT></B></td>
+<td width="350"> <? echo $mail_add_main ?> </td>
+<input type="hidden" value="<? echo $mail_add_main; ?>" name="mail_add_main">
+<input type="hidden" value="<? echo $mail_add_sub; ?>" name="mail_add_sub">
+</tr>
+<tr>
+<td width="150" bgcolor="#669900" CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">パスワード</FONT></B></td>
+<td width="350"> <? echo $owner_pswd_new; ?> </td>
+<input type="hidden" value="<? echo $owner_pswd_new; ?>" name="owner_pswd_new">
+</tr>
+<tr>
+<td width="150" bgcolor="#669900" CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">発行者氏名[漢字]</FONT></B></td>
+<td width="350"> <? echo stripcslashes($owner_nm_kanj) ?> </td>
+<input type="hidden" value="<? echo htmlspecialchars($owner_nm_kanj); ?>" name="owner_nm_kanj">
+</tr>
+<tr>
+<td width="150" bgcolor="#669900" CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">発行者氏名[カタカナ]</FONT></B></td>
+<td width="350"> <? echo stripcslashes($owner_nm_kana) ?> </td>
+<input type="hidden" value="<? echo htmlspecialchars($owner_nm_kana); ?>" name="owner_nm_kana">
+</tr>
+<tr>
+<td width="150" bgcolor="#669900" CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">連絡先郵便番号</FONT></B></td>
+<td width="350"> <? echo $owner_zip1 . "-" . $owner_zip2; ?> </td>
+<input type="hidden" value="<? echo $owner_zip1; ?>" name="owner_zip1">
+<input type="hidden" value="<? echo $owner_zip2; ?>" name="owner_zip2">
+</tr>
+<tr>
+<td width="150" bgcolor="#669900" CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">連絡先住所</FONT></B></td>
+<td width="350"> <? echo $owner_prefec . stripcslashes($owner_add); ?> </td>
+<input type="hidden" value="<? echo $owner_prefec; ?>" name="owner_prefec">
+<input type="hidden" value="<? echo htmlspecialchars($owner_add); ?>" name="owner_add">
+</tr>
+<tr>
+<td width="150" bgcolor="#669900" CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">連絡先電話番号</FONT></B></td>
+<td width="350"> <? echo $owner_tel; ?> </td>
+<input type="hidden" value="<? echo $owner_tel; ?>" name="owner_tel">
+</tr>
+</table>
+<div align="right">
+<input type="submit" value="変　更">
+<input type="hidden" value="<? echo trim($owner_pswd); ?>" name="owner_pswd">
+<input type="hidden" value="<? echo $publisher_id; ?>" name="publisher_id">
+<input type="hidden" value="<? echo $next_job_flg; ?>" name="job_flg">
+<INPUT type="button" value="戻る" onClick="history.back()" name="button">
+</div>
+</form>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<? include("footer.php"); ?>
+</TABLE>
+</body>
+</html>

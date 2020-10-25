@@ -1,0 +1,261 @@
+		title	edit
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; module name	: shuusei shori
+; creation date	: 86:02:10
+; revised date  : 
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+		.z80
+
+		include	MEMORY.INC
+		include	SUBR.INC
+
+		public	edit
+
+		extrn	gdmsg
+		extrn	chr_disp
+		extrn	csr_off
+		extrn	clrbuf
+		extrn	dpcheck
+
+    	CONOUT		equ	0eb0ch
+	BEEP		equ	0eb39h
+;
+	CR		equ	0dh 	; return key code
+	ESC		equ	1bh	; escape key code
+	GAMEN		equ	0f7h	; gamen shuuryou key code
+	DEND		equ	0efh	; denpyou shuuryou key code
+
+	edflag		equ	M_PARAM+0
+	c_blkadr	equ	M_PARAM+1
+	c_rno		equ	M_PARAM+3
+	rlflag		equ	M_PARAM+3
+
+	o_jdata		equ	67
+	s_jdata		equ	30
+	o_tdata		equ	19
+	s_tdata		equ	82
+
+;
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	shuusei shori
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+edit:
+		ld	de,320
+		ld	hl,M_ORDER
+		ld	b,10
+edit01:
+		ld	a,(hl)
+		or	a
+		jr	nz,edit02
+		add	hl,de
+		djnz	edit01
+		ret
+edit02:
+		call	csr_off		; screen & cursor off
+		ld	hl,m_edit
+		call	kmsg		; display kanji
+
+		ld	hl,w_sno
+		ld	bc,3
+		ld	a,'_'
+		call	clrbuf
+edit05:
+		ld	hl,m_edit1	; message display 
+		call	chr_disp
+
+		sub	a
+edit10:
+		ld	hl,p_edit
+		call	kbin		; shuusei No. input
+		cp	CR		; return key ?
+		jr	z,ed_ret	; * yes
+		cp	GAMEN		; gamen shuuryou key ?
+		ret	z		; * yes
+		cp	DEND		; denpyou shuuryou key ?
+		ret	z		; * yes
+ed_err:
+		ld	bc,1601h
+		call	BEEP
+		ld	a,1
+		jr	edit10
+
+ed_ret:
+		ld	a,b
+		or	a
+		jr	z,ed_err
+
+		ld	hl,m_edit1
+		call	chr_disp
+
+		ld	hl,w_sno
+		ld	b,3
+		call	chr_bin
+
+		ld	a,1
+		ld	(edflag),a
+
+		call	search
+		jr	c,sno_err
+
+		call	overlay
+		call	dpcheck
+		jr	edit
+sno_err:
+		ld	bc,1601h
+		call	BEEP
+		ld	hl,g_error
+		call	gdmsg
+		jr	edit05
+;
+;	character to binary convert
+;
+chr_bin:
+		ex	de,hl
+		ld	hl,0
+chr_bin10:
+		push	bc
+		add	hl,hl
+		ld	b,h
+		ld	c,l
+		add	hl,hl
+		add	hl,hl
+		add	hl,bc
+		ld	a,(de)
+		and	0fh
+		ld	c,a
+		ld	b,0
+		add	hl,bc
+		inc	de
+		pop	bc
+		djnz	chr_bin10
+		ret
+;
+;	denpyou No. search
+;
+search:
+		ex	de,hl
+		ld	hl,M_ORDER
+		ld	b,10
+search10:
+		push	bc
+		push	hl
+		ld	a,(hl)
+		or	a		; free block ?
+		jr	z,search50	; * yes
+
+		dec	a		; joubi ?
+		jr	nz,search30	; * no
+
+		ld	bc,o_jdata
+		add	hl,bc
+		ld	c,1
+search20:
+		ld	a,(hl)
+		or	a
+		jr	z,search50
+
+		push	hl
+		inc	hl
+		ld	a,(hl)
+		inc	hl
+		ld	h,(hl)
+		ld	l,a
+		or	a
+		sbc	hl,de
+		pop	hl
+		jr	z,search60
+
+		push	bc
+		ld	bc,s_jdata
+		add	hl,bc
+		pop	bc
+		inc	c
+		ld	a,c
+		cp	9
+		jr	nz,search20
+		jr	search50
+search30:
+		ld	bc,o_tdata
+		add	hl,bc
+		ld	c,0
+search40:
+		ld	a,(hl)
+		or	a
+		jr	z,search45
+
+		push	hl
+		inc	hl
+		ld	a,(hl)
+		inc	hl
+		ld	h,(hl)
+		ld	l,a
+		or	a
+		sbc	hl,de
+		pop	hl
+		jr	z,search70
+search45:
+		push	bc
+		ld	bc,s_tdata
+		add	hl,bc
+		pop	bc
+		inc	c
+		ld	a,c
+		cp	2
+		jr	nz,search40
+search50:
+		pop	hl
+		ld	bc,320
+		add	hl,bc
+		pop	bc
+		djnz	search10
+		scf
+		ret
+search60:
+		ld	a,c
+		ld	(c_rno),a
+		ld	a,11
+		jr	search80
+search70:
+		ld	a,c
+		ld	(rlflag),a
+		ld	a,12
+search80:
+		pop	hl
+		pop	bc
+		ld	(c_blkadr),hl
+		or	a
+		ret
+
+;
+;	data
+;
+m_edit:		dw	0,0101h
+		dw	1b30h,8f43h,1b31h,-1
+
+m_edit1:	db	ESC,'2',ESC,'=',23h,20h
+		db	0bch,0adh,0b3h,0beh,0b2h,'No '
+		db	0a6h,020h,0b2h,0dah,0d9h,' : '
+w_sno:		db	'___'
+		db	ESC,'=',25h,20h
+		db	0bbh,0b8h,0bch,0deh,0aeh,020h,0cah,020h
+		db	0c2h,0b7h,0deh,0c9h,020h,0b6h,0deh
+		db	0d2h,0ddh,0c3h,0deh,020h
+		db	03ch,0b7h,0ach,0ddh,0beh,0d9h,03eh,0b7h
+		db	0b0h,020h,0a6h,020h,0b5h,0bdh,-1
+
+p_edit:		db	23h,30h,33h,08h
+		dw	w_sno
+		db	00h
+
+g_error:	db	25,15
+		db	0bch,0c3h,0b2h,0bch,0c0h,'No'
+		db	0cah,0b1h,0d8h,0cfh,0beh,0ddh,-1
+
+		end

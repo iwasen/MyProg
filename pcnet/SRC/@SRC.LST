@@ -1,0 +1,43 @@
+ファイル一覧
+
+プログラムソースファイル
+BBS.C		掲示板管理処理
+COM.C		通信処理
+CSUB.C		共通サブルーチン
+DATA.C		外部変数
+FILE.C		ファイル選択処理
+HOSHU.C		ファイル保守
+ISAM.C		データベース操作
+LOGIN.C		ログイン処理
+MAIL.C		メール管理処理
+MAIN.C		メイン処理
+MONITOR.C	モニター処理
+OPERATE.C	ユーザ対話処理
+SALES.C		販売情報入力処理
+SETTEI.C	環境データ設定処理
+TERMINAL.C	ターミナル処理
+USER.C		ユーザ管理処理
+XMODEM.C	ＸＭＯＤＥＭ送受信処理
+
+インクルードファイル
+DEFINE.H	ｄｅｆｉｎｅ定義
+DLG.H		ダイアログインクルードファイル
+EXTERN.H	外部関数定義
+ISAM.H		ＩＳＡＭ関係
+PCNET.H		共通インクルードファイル
+STRUCT.H	構造体定義
+
+リソースファイル
+ACCELTBL.RC	アクセラレータリソースファイル
+HELP.RC		ヘルプリソースファイル
+MENU.RC		メニューリソースファイル
+PCNET.RC	リソースインクルードファイル
+
+その他のファイル
+DLG.DLG		ダイアログ定義
+DLG.RES		ダイアログリソースファイル
+MAKEFILE	メイクファイル
+PCNET.DEF	リンク定義ファイル
+PCNET.ICO	アイコンファイル
+PCNET.ITL	ヘルプテキストファイル
+

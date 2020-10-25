@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>基本情報を変更する</TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600">
+<? include("header.php"); ?>
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="513" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+<TD>
+<P><FONT color="#006600"><B>■基本情報を変更する<BR>
+<BR>
+</B></FONT><SPAN CLASS="text01">以下の内容に変更されました。 </SPAN></P>
+<table width="500" cellpadding="3" cellspacing="1" border="0">
+<tr>
+<td colspan="2" bgcolor="#336600"><FONT color="#FFFFCC"><B>発行者基本情報</B></FONT></td>
+</tr>
+<tr>
+<td width="150" bgcolor="#669900" CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">基本メールアドレス</FONT></B></td>
+<td width="350"> <?echo $mail_add_main ?> </td>
+</tr>
+<tr>
+<td width="150" bgcolor="#669900" CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">パスワード</FONT></B></td>
+<td width="350"> <?echo $owner_pswd_new ?> </td>
+</tr>
+<tr>
+<td width="150" bgcolor="#669900" CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">発行者氏名[漢字]</FONT></B></td>
+<td width="350"> <?echo htmlspecialchars(stripcslashes($owner_nm_kanj)) ?> </td>
+</tr>
+<tr>
+<td width="150" bgcolor="#669900" CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">発行者氏名[カタカナ]</FONT></B></td>
+<td width="350"> <?echo htmlspecialchars(stripcslashes($owner_nm_kana)) ?> </td>
+</tr>
+<tr>
+<td width="150" bgcolor="#669900" CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">連絡先郵便番号</FONT></B></td>
+<td width="350"> <?echo $owner_zip1 . "-" . $owner_zip2; ?> </td>
+</tr>
+<tr>
+<td width="150" bgcolor="#669900" CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">連絡先住所</FONT></B></td>
+<td width="350"> <?echo $owner_prefec . htmlspecialchars(stripcslashes($owner_add)); ?> </td>
+</tr>
+<tr>
+<td width="150" bgcolor="#669900" CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">連絡先電話番号</FONT></B></td>
+<td width="350"> <?echo $owner_tel ?> </td>
+</tr>
+</table><br>
+<form name = "Sform33" action="pub_index.php" method="post">
+<input type="hidden" value="<? echo $publisher_id ?>"name="publisher_id">
+<input type="hidden" value="<? echo $owner_pswd_new ?>"name="owner_pswd_r">
+<a href="JavaScript:document.Sform33.submit();">&lt;&lt;&lt;　発行者用管理ページへ戻る</a>
+<input type="hidden" value="<? echo $publisher_id ?>" name="publisher_id">
+</form>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<? include("footer.php"); ?>
+</TABLE>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>基本情報を変更する</TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600" topmargin="0" marginheight="0" leftmargin="0" marginwidth="0">
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="513" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+<TD><FONT color="#006600"><B>■基本情報を変更する</B></FONT>
+<p class="text01">すでに登録済みの情報を変更することができます。変更箇所を修正し、最後に変更ボタンを押してください。</p>
+<form name="form1" action="publisher.php" method="post">
+<table width="500" cellpadding="3" cellspacing="1" border="0">
+<tr>
+<td colspan="2"><FONT color="#006633"><B>■発行者基本情報</B></FONT></td>
+</tr>
+<tr>
+<td width="150" bgcolor="#669900" nowrap class="text9ptnoColor"><B><FONT color="#FFFFCC">基本メールアドレス</FONT></B></td>
+<td width="350">
+<input type="text" name="mail_add_main" value= "<? echo $mail_add_main; ?>" >
+</td>
+</tr>
+<tr>
+<td width="150" bgcolor="#669900" nowrap class="text9ptnoColor"><B><FONT color="#FFFFCC">パスワード</FONT></B></td>
+<td width="350">
+<input type="password" name="owner_pswd_new" value= "<? echo $owner_pswd; ?>" >
+</td>
+</tr>
+<tr>
+<td width="150" bgcolor="#669900" nowrap class="text9ptnoColor"><B><FONT color="#FFFFCC">発行者氏名[漢字]</FONT></B></td>
+<td width="350">
+<input type="text" name="owner_nm_kanj" value= "<? echo $owner_nm_kanj; ?>" size="40">
+</td>
+</tr>
+<tr>
+<td width="150" bgcolor="#669900" nowrap class="text9ptnoColor"><B><FONT color="#FFFFCC">発行者氏名[カタカナ]</FONT></B></td>
+<td width="350">
+<input type="text" name="owner_nm_kana" value= "<? echo $owner_nm_kana; ?>" size="40">
+</td>
+</tr>
+<tr>
+<td width="150" bgcolor="#669900" nowrap class="text9ptnoColor"><B><FONT color="#FFFFCC">連絡先郵便番号</FONT></B></td>
+<td width="350">
+<input type="text" name="owner_zip1" size="4" maxlength="3" value="<? echo $owner_zip1; ?>">
+-
+<input type="text" name="owner_zip2" size="5" maxlength="4" value="<? echo $owner_zip2; ?>">
+<br>現在海外にお住まいの方は『000-0000』と入力してください
+</td>
+</tr>
+<tr>
+<td width="150" bgcolor="#669900" nowrap class="text9ptnoColor"><B><FONT color="#FFFFCC">連絡先住所</FONT></B></td>
+<td width="350">
+<select name="owner_prefec">
+<? make_prefec_box($owner_prefec); ?>
+</select>
+<br>
+<input type="textarea" name="owner_add" value="<? echo $owner_add; ?>" cols="30" rows="3" size="40">
+</td>
+</tr>
+<tr>
+<td width="150" bgcolor="#669900" nowrap class="text9ptnoColor"><B><FONT color="#FFFFCC">連絡先電話番号</FONT></B></td>
+<td width="350">
+<input type="text" name="owner_tel" value= "<? echo $owner_tel; ?>" size="15">
+</td>
+</tr>
+<tr>
+<td width="150">　</td>
+<td width="350" align="right">
+<input type="submit" name="pub_chg1" value="変更確認">
+<input type="hidden" value="<? echo $publisher_id ?>" name="publisher_id">
+<input type="hidden" value="<? echo $owner_pswd ?>" name="owner_pswd">
+<input type="hidden" value="<? echo $next_job_flg; ?>" name="job_flg">
+</td>
+</tr>
+</table>
+</form>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD valign="top" colspan="3" align="right">
+<HR size="1" width="750">
+</TD>
+</TR>
+<TR>
+<TD valign="top" width="200"> <IMG src="../img/shim.gif" width="200" height="1">
+</TD>
+<TD valign="middle" align="center" width="350">
+<div align="center"><FONT size="2"><IMG src="../img/shim.gif" width="350" height="1"><BR>
+Copyright &copy; 2000 xxxxxxx, Co.,Ltd. All rights reserved. <br>
+<a href="http://www.xxxxxxx.co.jp/" target="mm_window"><img src="../img/logo_do.gif" width="50" height="45" border="0"></a>
+</FONT></div>
+</TD>
+<TD valign="top" width="200" align="right"><IMG src="../img/shim.gif" width="200" height="1"></TD>
+</TR>
+</TABLE>
+</body>
+</html>
+

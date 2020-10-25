@@ -1,0 +1,256 @@
+form
+{
+	margin: 0
+}
+table
+{
+	border-collapse: separate;
+	empty-cells: show
+}
+th
+{
+	white-space: nowrap;
+}
+pre
+{
+	margin: 0px
+}
+div.page
+{
+	page-break-before: always
+}
+a:link
+{
+	color: blue
+}
+a:visited
+{
+	color: blue
+}
+a:active
+{
+	color: blue
+}
+a:hover
+{
+	color: red
+}
+a.thread:link
+{
+	color = blue;
+	text-decoration: none
+}
+a.thread:visited
+{
+	color = blue;
+	text-decoration: none
+}
+a.thread:active
+{
+	color = blue;
+	text-decoration: none
+}
+a.thread:hover
+{
+	color: red;
+	text-decoration: underline
+}
+hr.header
+{
+	color: #5673fc
+}
+hr.footer
+{
+	margin-top: 4px;
+	color: #5673fc
+}
+.login
+{
+	background-color: #282964;
+	color: white;
+	font-weight: bolder
+}
+.menu
+{
+	background-color: #282964;
+	color: white;
+	font-weight: bolder
+}
+.monitor
+{
+	background-color: #6699dd;
+	color: white;
+	font-weight: bolder
+}
+.staff
+{
+	background-color: #44aa88;
+	color: white;
+	font-weight: bolder
+}
+.client
+{
+	background-color: #eebb66;
+	color: white;
+	font-weight: bolder
+}
+.etc
+{
+	background-color: #9f8fc0;
+	color: white;
+	font-weight: bolder
+}
+th.sort
+{
+	cursor: hand
+}
+.note
+{
+	font-size: smaller;
+	color: forestgreen
+}
+.tch
+{
+	background-color: #ffcc99
+}
+tr.tc0
+{
+	background-color: #ddffee
+}
+tr.tc1
+{
+	background-color: #ffffff
+}
+tr.tc2
+{
+	background-color: #ddeeff
+}
+td.tc0
+{
+	background-color: #eeffff
+}
+td.tc1
+{
+	background-color: #ffffff
+}
+.np
+{
+	font-size: 10.5pt;
+	font-family: '£Í£Ó ¥´¥·¥Ã¥¯'
+}
+.disabled
+{
+	color: #888888
+}
+.lt
+{
+	white-space: nowrap;
+}
+.lb
+{
+	text-align: right;
+	white-space: nowrap;
+}
+.lc
+{
+	padding-top: 3px;
+	padding-bottom: 2px;
+	padding-left: 5px;
+	width: 100%;
+	color: navy;
+	background-color: #ffffdd;
+	font-size: smaller
+}
+.m0
+{
+	font-weight: bold;
+	color: slateblue;
+	white-space: nowrap;
+	vertical-align: bottom;
+	padding-top: 10px;
+	padding-bottom: 0px
+}
+.m1
+{
+	color: black;
+	white-space: nowrap;
+	background-color: #99d0eb
+}
+.n1
+{
+	background-color: #eeeeee
+}
+.m2
+{
+    color: black;
+    white-space: nowrap;
+    background-color: #bbeebb
+}
+.n2
+{
+    background-color: #eeeedd
+}
+.m3
+{
+	color: black;
+	white-space: nowrap;
+	background-color: #c9c9ff
+}
+.m4
+{
+	display: none
+}
+.m5
+{
+	display: none
+}
+.q0
+{
+	BACKGROUND-COLOR: #e2f0dc;
+	font-size: smaller
+}
+.q1
+{
+	BACKGROUND-COLOR: #ffe0e0;
+	font-size: smaller
+}
+.q2
+{
+	BACKGROUND-COLOR: #e2e0ec;
+	font-size: smaller
+}
+.menubtn
+{
+	width: 100%;
+	border: 3 outset;
+	font-weight: bold;
+	cursor: hand;
+	color: #4682B4;
+	text-align: center;
+	white-space: nowrap;
+	background-color: #d1efd3;
+}
+p.msg
+{
+	color: darkblue
+}
+.kanji
+{
+	ime-mode: active
+}
+.alpha
+{
+	ime-mode: inactive
+}
+.number
+{
+	ime-mode: disabled
+}
+.small
+{
+    font-size: 90%
+}
+.small2
+{
+    font-size: 80%
+}

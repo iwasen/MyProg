@@ -1,0 +1,125 @@
+<{if !$waiwai_contents or $waiwai_contents.view}>
+<{include file="_WaiwaiHeader.html"}>
+<{include file="_WaiwaiPageInfo.html" waiwai_new_post_action="PostNew"}>
+<{include file="_WaiwaiList.html" waiwai_select_remark_action="Browse"}>
+<{ else }>
+<a name="waiwai"></a>
+<form method="post">
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td colspan="5"><img src="image/spacer.gif" width="1" height="10"></td>
+	</tr>
+	<tr>
+		<td colspan="2" rowspan="3"></td>
+		<td colspan="3" class="char120"><{$waiwai_links.befor_link}></td>
+	</tr>
+	<tr>
+		<td colspan="3" class="char120"><{$waiwai_links.next_link}></td>
+	</tr>
+	<tr>
+		<td align="right" class="char120"><a href="index.php?module=Waiwai&action=Browse&navipage_id=<{$navi_page_id}>&waiwai_id=<{$waiwai_contents.seq_no}>&view=1">投稿一覧に戻る</a></td>
+		<td colspan="2"></td>
+	</tr>
+	<tr>
+		<td colspan="5"><img src="image/spacer.gif" width="1" height="5"></td>
+	</tr>
+	<tr>
+		<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td width="20" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="20" height="1"></td>
+		<td width="538" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="538" height="1"></td>
+		<td width="20" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="20" height="1"></td>
+		<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td><img src="image/spacer.gif" width="20" height="1"></td>
+		<td>
+			<table width="538" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td colspan="2"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td colspan="2" class="char140">[<{$waiwai_contents.seq_no}>] <b><{$waiwai_contents.subject|escape}></b></td>
+				</tr>
+				<tr>
+					<td width="270" class="char140"><span class="char999999">by </span><{$waiwai_contents.nickname|escape}></td>
+					<td width="268" class="char140" align="right"><span class="char999999">
+					  <{$waiwai_contents.date}>
+					</span></td>
+				</tr>
+				<tr>
+					<td colspan="2"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+			</table>
+		</td>
+		<td><img src="image/spacer.gif" width="20" height="1"></td>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td colspan="5" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td><img src="image/spacer.gif" width="20" height="1"></td>
+		<td>
+			<table width="538" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="20"></td>
+				</tr>
+				<tr>
+					<td class="char130">
+					  <{$waiwai_contents.content|escape|HNbEscape}>
+					</td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="20"></td>
+				</tr>
+			</table>
+		</td>
+		<td><img src="image/spacer.gif" width="20" height="1"></td>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td colspan="5" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td bgcolor="#E3F7DF"><img src="image/spacer.gif" width="20" height="1"></td>
+		<td bgcolor="#E3F7DF" align="right">
+			<table width="260" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="6"></td>
+				</tr>
+				<tr>
+					<td width="388"><{if $waiwai_isRoomMember}><a href="?module=Waiwai&action=PostReply&navipage_id=<{$navi_page_id}>&waiwai_id=<{$waiwai_contents.seq_no}>#waiwai"><img src="image/waiwai_btn_reply.gif" width="110" height="20" border="0" alt="この発言に返信"></a><{/if}></td>
+					<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+					<td width="140"><a href="?module=Waiwai&action=SendSelf&navipage_id=<{$navi_page_id}>&waiwai_id=<{$waiwai_contents.seq_no}>#waiwai"><img src="image/waiwai_btn_mailself.gif" width="140" height="20" border="0" alt="この発言を自分に送る"></a></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="6"></td>
+				</tr>
+			</table>
+		</td>
+		<td bgcolor="#E3F7DF"><img src="image/spacer.gif" width="20" height="1"></td>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td colspan="5" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td colspan="5"><img src="image/spacer.gif" width="1" height="10"></td>
+	</tr>
+	<tr>
+		<td colspan="2" rowspan="3"></td>
+		<td colspan="3" class="char120"><{$waiwai_links.befor_link}></td>
+	</tr>
+	<tr>
+		<td colspan="3" class="char120"><{$waiwai_links.next_link}></td>
+	</tr>
+	<tr>
+		<td align="right" class="char120"><a href="index.php?module=Waiwai&action=Browse&navipage_id=<{$navi_page_id}>&waiwai_id=<{$waiwai_contents.seq_no}>&view=1">投稿一覧に戻る</a></td>
+		<td colspan="2"></td>
+	</tr>
+</table>
+</form>
+<{/if}>

@@ -1,0 +1,2025 @@
+TITLE	BAR
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; BARCODE reader routine						;
+;	for MEGANET order-entry-system use only.			;
+;									;
+;	arranged by DoI Fumiaki PASOCOM-system dept. xxxxx.		;
+;									;
+;		Ver	1.0	03-Jun-85.				;
+;				17-Jul-85. [ bell option when if fail ]	;
+;									;
+;	if (ALxxx=1) then beep when success or fail to read barcode.	;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+		include	SUBR.INC
+
+FALxxx		equ	1	; if fail alxxx.
+SALxxx		equ	1	; if success alxxx.
+
+xxxxx		equ	1
+
+meganet	equ	1
+bdos		equ	5
+;
+;	CONST	equ	0eb06h
+	BEEP	equ	0eb39h
+;	extrn	clock
+;
+ANSASC	equ	ANSBU3
+ASCCNT	equ	CHRMAX
+RECBAR	equ	BARREC
+
+_RA	equ	34
+
+.Z80
+
+	page	60
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; barcode macro interface entry.	May-30-85 DoI.f		;
+;	<entry>	call	brcd 					;
+;	(in)	nothing.					;
+;	(out)	carry=off	success to read barcode.	;
+;			A=length of gotten barcode		;
+;			HL=pointer to barcode.			;
+;		     =on					;
+;		and	A=0ffh	some key input,			;
+;				 and break reading barcode.	;
+;			A=100d(64h)	speed slow error	;
+;			A=101d(65h)	speed fast error	;
+;			A=105d(69h)	scan error		;
+;			A=106d(6ah)	check digit error	;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+	cseg
+	public	brcd
+brcd:
+	ld	b,1
+	call	barcode			;Barcode switch on !
+	ld	b,3			;get barcode.
+	call	barcode			;read code from BARCODE-reader.
+	jr	c,keyin		; Some error occure, Keyin or scan error ?
+	push	hl		; Save scaning string pointer.
+;
+	ld	b,2			;Close barcode interface.
+	call	barcode			;Barcode switch off !!
+  IF	SALxxx
+	ld	c,1		; set length 100 msec.
+	ld	b,_RA		; 440 Hz + (1 Octave).
+	call	BEEP		;
+  ENDIF
+	pop	hl		; Restore string pointer.
+	ld	a,(ASCCNT)	; Get number of barcode.
+	or	a		; clear carry.
+;	clc			;
+	ret
+;
+keyin:
+	push	af		; Save error code.
+	ld	b,2
+	call	barcode			; Close barcode interface.
+	pop	af
+	cp	255			; Key interrupt ?
+	jr	nz,rderr		;   Yes, some key input.
+
+	call	xconst			; Get console status.
+	or	a			;
+
+	ld	a,255		;
+	jr	nz,erret	; Sure key input ? Yes.
+
+	jr	brcd
+;
+rderr:
+  IF	FALxxx
+	push	af		; Save error status.
+	ld	c,1		; Set beep length 100 msec.
+	ld	b,_RA-12	; 440 Hz.
+	call	BEEP		;
+	pop	af		; Restore error code.
+  ENDIF
+erret:
+	scf
+	ret
+				;	PINE
+;	dseg	;
+port0:	DW	0F001H
+port1:	DW	0F002H
+port4:	DW	0F53EH
+cstopfg:DW	0F01AH
+bartrg:	DB	0CH		;0000$1100
+isricf:	DB	4
+;	cseg
+
+
+
+;*******************************************************
+;BARCODE ENTRY
+;
+;in..
+;  [B] =1	open
+;  [B] =2	close
+;  [B] =3	input 1 char
+;  [B] =4	loc (how many chars in buffer?)
+;*******************************************************
+;
+BARCODE:
+	DEC	B		;
+	JR	Z,BAROPEN	;open
+	DEC	B		;
+	JR	Z,BARCLOSE	;close
+	DEC	B		;
+	JR	Z,BARIN		;input 1 char
+	DEC	B		;
+	JR	Z,BARLOC	;loc
+	RET			;else nothing done
+
+;**************
+; barcode open
+;**************
+BAROPEN:
+	XOR	A		;
+	LD	(ASCCNT),A	;reset char counter
+iff	meganet
+	LD	A,(HL)		;check for option
+	AND	1		;is it zero suprress?
+else
+	xor	a		; if less than 13 column then not suppress '0'.
+endif
+	LD	(ZEROFG),A	;
+	LD	HL,(PORT0)	;CTLR1 output data
+	LD	A,(HL)		;
+	AND	0F0H		;
+	OR	1		;set bits of select barcode
+	LD	(HL),A		;save it
+	OUT	(CTLR1),A	;done
+	RET			;
+
+;***************
+; barcode close
+;***************
+BARCLOSE:
+	LD	HL,(PORT0)	;CTLR1 output data
+	LD	A,(HL)		;
+	AND	0F0H		;set bits of select barcode
+	LD	(HL),A		;save it
+	OUT	(CTLR1),A	;done
+	RET			;
+
+;**********************
+; barcode 1 char input
+;**********************
+BARIN:	LD	A,(ASCCNT)	;char counter in buffer
+	OR	A		;are any char in buffer?
+	JR	NZ,BARIN2	;yes,
+	CALL	BARSCN		;no, scan barcode
+	RET	C		;return if read error
+	DEC	HL		;
+	LD	(CHRPTR),HL	;init pointer to answer buffer
+BARIN2:	DEC	A		;
+	LD	(ASCCNT),A	;
+	LD	HL,(CHRPTR)	;get buffer pointer
+	INC	HL		;
+	LD	(CHRPTR),HL	;
+	LD	A,(HL)		;get data
+	OR	A		;normal return
+	RET			;
+
+;*************
+; barcode loc
+;*************
+BARLOC:
+	LD	A,(ASCCNT)	;get char number in buffer
+	RET			;
+
+;*********************
+; barcode 1 scan read
+;*********************
+;out...
+;	Cy flag = 0 for normal return
+;		= 1 for error return (contained ctrl/STOP)
+;	Acc	= char numbers to be read (normal)
+;		= error code (error)
+;	HL	= top address of char buffer (normal)
+;
+BARSCN:	CALL	RECBAR		;scan barcode
+	JR	C,CSTOP		;if ctrl/STOP key entered, then error
+	OR	A		;
+	JR	NZ,WAERR	;normal return
+	LD	HL,ANSASC	;buffer address
+	LD	A,(ASCCNT)	;read char numbers
+	RET			;
+CSTOP:	LD	A,255		;ctrl/stop
+WAERR:	SCF			;
+	RET			;set cy flag, error return
+
+;	dseg	;
+CHRPTR:	DS	2		;pointer to answer buffer
+;	cseg
+
+
+;***********************************
+;*  BARCODE  PROGRAM (JAN.EAN.UPC) *
+;*     84/03/26   EDIT             *
+;*             V1.0                *
+;***********************************
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;        EQU   TABLE          ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+BLEN	EQU	1H		;BEEP LENGTH
+BTON	EQU	100H		;BEEP TONE
+WBOOT	EQU	0001H		;WBOOT ADRESS
+BPOFF	EQU	036H		;BEEP OFF SET VALUE
+MINVAL	EQU	200		;MINIMUM WIDTH VALUE
+OVRVAL	EQU	1800H		;OVER FLOW VALUE
+OVER	EQU	1800H		;
+;
+ICRL.C	EQU	00H		;COMMAND
+ICRH.C	EQU	01H		;
+ICRL.B	EQU	02H		;BARCODE
+ICRH.B	EQU	03H		;
+ISR	EQU	04H		;INTRRUPT STATUS REG
+;
+CTLR1	EQU	00H		;CONTROL (W) b3=PW b2b1=EDGE
+CMD	EQU	01H		;COMMAND (W) b2=RES-OVF
+IER	EQU	04H		;INTRRUPT (W) b3=INT3(ICF)
+;
+;	dseg	;
+TIMBU:	DS	140		;TIMER READ BUFFER 140 BYTES
+ANSBU1:	DS	16		;BIT CONVERT BUFFER 16 BYTES
+ANSBU2:	DS	16		;FLAG PATTERN BUFFER 16 BYTES
+ANSBU3:	DS	16		;ASCII CONVERT BUFFER 16 BYTES
+ANSBU4:	DS	16		;BUFFER WORK 16 BYTES
+;
+;;;;;;;;;;;;;;;;;;;;;;;;
+;    WORK  TABLE       ;
+;;;;;;;;;;;;;;;;;;;;;;;;
+;
+E2:	DS	2		;TIMER COUNTER (1.5 MODULE)
+E1:	DS	2		;TIMER COUNTER (1.0 MODULE)
+BARE1:	DS	2		;BAR BASE MODULE TIME
+SPCE1:	DS	2		;SPACE BASE MODULE TIME
+HOSEI:	DS	2		;BASE MODULE CORRECT VALUE
+HOFLAG:	DS	1		;HOSEI (BAR>SPC:0,SPC>BAR:1)
+BITPTN:	DS	1		;BIT PATTERN INPUT WORK
+ERRWK:	DS	1		;ERROR WORK
+BITCNT:	DS	1		;BAR COUNTER (ODD OR EVEN)
+CHRCNT:	DS	1		;CHARACTER COUNTER
+CHRMAX:	DS	1		;CHARACTER MAX COUNTER 8 OR 16
+UPDNCT:	DS	1		;UP-DOWN TIME WORK
+STKWK:	DS	2		;STACK WORK
+POINTX:	DS	2		;X-REG INPUT WORK
+CHDIRE:	DS	1		;CHARACTER DIRECTION FLAG
+TIMX:	DS	2		;TIMER END ADDRESS WORK
+ZEROFG:	DS	1		;OPTION FLAG WORK
+INTINF:	DS	1		;INTRRUPT INFORMATION
+ANSWER:	DS	2		;DIVISION ANSWER WORK
+	cseg
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;     BARREC  ROUTINE            ;
+;   CALL   BARREC (2.1)          ;
+;  IN (ZEROFG)=1 option add      ;
+;              0 option nothing  ;
+;  OUT (CHRMAX)=answer counter   ;
+;      ANSBU3=answer top address ;
+;     A=0   normal               ;
+;       100 speed slow error     ;
+;       101 speed fast error     ;
+;       105 scan error           ;
+;       106 check digit error    ;
+;     C=0  not break             ;
+;       1  break                 ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+BARREC:
+	LD	(STKWK),SP	;STACK SAVE
+	CALL	TIMER		;TIMER READ (MAX 15 CHR)
+;
+	LD	A,L		;TIMER COUNT CHECK
+	CP	60		;60<TIMERCNT>70
+	JR	NC,BREC20	;STANDARD (12 CHR)
+	CP	44		;
+	JR	NC,BREC30	;SHORT (8  CHR)
+	CP	34		;
+	JP	C,ERR		;BAR LACK ERR
+;
+	LD	A,6		;CHRMAX=6(UPC-E)
+	LD	(CHRMAX),A	;
+	JR	BREC40		;START BAR DICIDED
+BREC20:
+	LD	A,12		;CHRMAX=12(STANDARD)
+	LD	(CHRMAX),A	;
+	JR	BREC40		;START BAR DICIDED
+BREC30:
+	LD	A,8		;CHRMAX=8(SHORT)
+	LD	(CHRMAX),A	;
+BREC40:
+	CALL	STRTBR		;START BAR DICIDED
+;
+	LD	A,(CHRMAX)	;NOT UPC OR UPC
+	CP	6		;
+	JR	NZ,BREC50
+;
+	CALL	UPCE		;UPC-E
+	JR	BREC60
+BREC50:
+	CALL	NTUPCE		;NOT UPC-E
+BREC60:
+	CALL	ASCII		;ASCII CODE CONVERT
+;
+	XOR	A		;ERRWK=0
+	LD	(ERRWK),A	;NORMAL RETURN
+  IFF	xxxxx
+	INC	A		;
+  ENDIF
+	JP	ERR10		;
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;    TIMER  READ               ;
+;     CALL  TIMER  (2.1.2)     ;
+;  OUT H=TIMER LOOP COUNT (DEC);
+;      L=TIMER LOOP COUNT (INC);
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+TIMER:
+	LD	IX,TIMBU	;
+	LD	H,70		;LOOP MAX=70
+	LD	L,0		;TIME COUNTER CLEAR
+	PUSH	HL		;
+	LD	BC,OVER		;OVER CNT SET
+	CALL	INTDEA		;INT ALL DISENABLE
+;
+	IN	A,(ICRL.B)	;ICF.B RESET
+	IN	A,(ICRH.B)	;
+  IFF	xxxxx
+	LD	A,(PORT1)	;OVF RESET
+	OR	4		;
+	LD	(PORT1),A	;
+	OUT	(CMD),A		;
+	LD	A,(PORT0)	;POWER ON & EDGE (DOWN)
+	AND	0F1H		;b3b2b1 CLEAR
+	OR	0AH		;BLACK BAR WAIT
+	LD	(PORT0),A	;
+	OUT	(CTLR1),A	;
+  ENDIF
+  IF	xxxxx
+	PUSH	HL
+	LD	HL,(PORT1)
+	LD	A,(HL)
+	OR	4
+	LD	(HL),A
+	OUT	(CMD),A
+	LD	HL,(PORT0)
+	LD	A,(HL)
+	AND	0F1H
+	LD	(HL),A
+	LD	A,(BARTRG)
+	OR	(HL)
+	LD	(HL),A
+	OUT	(CTLR1),A
+	POP	HL
+  ENDIF
+;
+	CALL	BRCK		;BREAK CHECK
+	JR	TIM60		;BARCODE LACH
+;
+TIM30:
+  IFF	xxxxx
+	LD	A,(PORT0)	;EDGE CONVERT
+	XOR	6		;
+	LD	(PORT0),A	;EDGE SET
+	OUT	(CTLR1),A	;
+  ENDIF
+  IF	xxxxx
+	PUSH	HL
+	LD	HL,(PORT0)
+	LD	A,(HL)
+	XOR	6
+	LD	(HL),A
+	OUT	(CTLR1),A
+	POP	HL
+  ENDIF
+TIM40:
+	IN	A,(ISR)		;BRCD TRG READY
+  IFF	xxxxx
+	BIT	3,A		;
+  ENDIF
+  IF	xxxxx
+	PUSH	HL
+	LD	HL,ISRICF
+	AND	(HL)
+	POP	HL
+  ENDIF
+	JR	NZ,TIM60	;BRCD TRG LATCH
+;
+	IN	A,(ICRL.C)	;HL-NOW FRC.C
+	LD	L,A		;
+	IN	A,(ICRH.C)	;
+	LD	H,A		;
+	OR	A		;
+	SBC	HL,DE		;TIMER OVER CHECK
+	OR	A		;
+	SBC	HL,BC		;
+	JR	NC,TIMOVF	;
+	JR	TIM40		;RETRY
+TIM60:
+	IN	A,(ICRL.B)	;ICF.B LATCH
+	LD	L,A		;NEXT TIME
+	IN	A,(ICRH.B)	;
+	LD	H,A		;
+;
+	LD	(IX+1),H	;DATA SAVE
+	LD	(IX),L		;
+;
+	LD	E,L		;OVER FLOW TIMER RENEW
+	LD	D,H		;
+TIM70:
+	INC	IX		;
+	INC	IX		;
+	EX	(SP),HL		;TIMCNT+1 & TMLOOP -1
+	INC	L		;
+	DEC	H		;
+	EX	(SP),HL		;
+	JR	NZ,TIM30	;NOT LOOP END
+TIMOVF:
+	EX	(SP),HL		;BAR COUNT CHECK
+	LD	A,L		;
+	EX	(SP),HL		;
+	CP	32		;
+	JR	NC,TIM90	;BAR COUNT OK!
+;
+  IFF	xxxxx
+	LD	A,(PORT0)	;EDGE CHECK
+	BIT	2,A		;1(BLACK)0(WHITE)
+  ENDIF
+  IF	xxxxx
+	PUSH	HL
+	LD	HL,(PORT0)
+	LD	A,(BARTRG)
+	AND	6
+	XOR	6
+	AND	(HL)
+	POP	HL
+  ENDIF
+	JR	NZ,TIM80	;BAR OVER
+;
+	CALL	INTCAL		;SPACE OVER
+	POP	HL		;
+	JP	TIMER		;
+TIM80:
+	CALL	BRCK		;BREAK CHECK
+	LD	IX,TIMBU	;BAR TIME OVER
+	IN	A,(ICRL.C)	;HL=FRC.C
+	LD	L,A		;
+	IN	A,(ICRH.C)	;
+	LD	H,A		;
+	LD	(TIMBU+2),HL	;SECOND TIME SET
+	OR	A		;
+	SBC	HL,BC		;
+	LD	(TIMBU),HL	;FIRST TIME SET
+;
+	INC	IX		;
+	INC	IX		;
+	EX	(SP),HL		;TIMCNT=1 & TMLOOP=69
+	LD	L,1		;
+	LD	H,69		;
+	EX	(SP),HL		;
+;
+	LD	E,(IX)		;TIMER VALUE DE SET
+	LD	D,(IX+1)	;
+;
+	IN	A,(ICRL.B)	;ICF.B RESET
+	IN	A,(ICRH.B)	;
+	JR	TIM70		;
+TIM90:
+	LD	(TIMX),IX	;TIMER END ADRS SET
+	LD	HL,(TIMBU+2)	;FIRST-SECOND CHECK
+	LD	DE,(TIMBU)	;
+	OR	A		;
+	SBC	HL,DE		;
+	OR	A		;
+	SBC	HL,BC		;TIME VAL=OVER ?
+	JR	NZ,TIM100	;NOT BAR OVER FLOW
+;
+	LD	HL,(TIMBU+6)	;
+	LD	DE,(TIMBU+4)	;
+	OR	A		;
+	SBC	HL,DE		;
+	PUSH	HL		;HL=SECOND BLACK BAR
+	LD	HL,(TIMBU+2)	;
+	POP	BC		;
+	OR	A		;
+	SBC	HL,BC		;
+	LD	(TIMBU),HL	;FIRST=SECOND BLACK BAR
+TIM100:
+	CALL	INTCAL		;INTINF RECALL
+  IFF	xxxxx
+	LD	A,(PORT0)	;POWER OFF
+	AND	0F1H		;
+	LD	(PORT0),A	;
+	OUT	(CTLR1),A	;
+  ENDIF
+  IF	xxxxx
+	LD	HL,(PORT0)
+	LD	A,(HL)
+	AND	0F1H
+	LD	(HL),A
+	OUT	(CTLR1),A
+  ENDIF
+	POP	HL		;
+	RET			;
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;     BREAK CHECK ROUTINE     ;
+;     CALL  BRCK  (2.1.2.1)   ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+BRCK:
+	CALL	INTCAL		;INT RECALL
+;	call	clock
+;
+  IF	meganet
+	YINTPTR	equ	0f00bh
+	YKEYPTR	equ	0f00dh
+
+	ld	a,(YINTPTR)		;
+	push	hl
+	ld	hl,YKEYPTR
+	cp	(hl)			;
+	pop	hl
+	jr	nz,brkout
+ ENDIF
+  IFF	xxxxx
+	LD	A,(BREAK)	;BREAK CHECK
+  ENDIF
+  IF	xxxxx
+	PUSH	HL
+	LD	HL,(CSTOPFG)
+	LD	A,(HL)
+	POP	HL
+  ENDIF
+	OR	A		;
+	JP	Z,BRCK10	;NOT BREAK
+  IF	meganet
+brkout:
+  ENDIF
+	LD	A,10		;BREAK
+	JP	ERR5		;
+
+BRCK10:	CALL	INTDEA		;INT ALL DISENABLE
+	IN	A,(ISR)		;BRCD TRG READY
+  IFF	xxxxx
+	BIT	3,A		;
+  ENDIF
+  IF	xxxxx
+	PUSH	HL
+	LD	HL,ISRICF
+	AND	(HL)
+	POP	HL
+  ENDIF
+	JR	Z,BRCK		;TRG READY
+	RET			;TRG OK!
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;     INTRRUPT ALL ENABLE     ;
+;     CALL  INTDEA  (2.1.2.2) ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+INTDEA:
+  IFF	xxxxx
+	LD	A,(PORT4)	;ICF.B & KEY INT
+	LD	(INTINF),A	;
+	XOR	A		;
+	LD	(PORT4),A	;INT ALL DISENABLE
+	OUT	(IER),A		;
+  ENDIF
+  IF	xxxxx
+	PUSH	HL
+	LD	HL,(PORT4)
+	LD	A,(HL)
+	LD	(INTINF),A
+	XOR	A
+	LD	(HL),A
+	OUT	(IER),A
+	POP	HL
+  ENDIF
+	RET
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;     INTRRUPT RECALL         ;
+;     CALL  INTCAL  (2.1.2.3) ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+INTCAL:
+  IFF	xxxxx
+	LD	A,(PORT4)	;INTINF RECALL
+	LD	A,(INTINF)	;
+	LD	(PORT4),A	;
+	OUT	(IER),A		;
+  ENDIF
+  IF	xxxxx
+	PUSH	HL
+	LD	HL,(PORT4)
+	LD	A,(INTINF)
+	LD	(HL),A
+	OUT	(IER),A
+	POP	HL
+  ENDIF
+	RET
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;     START BAR DICIDED       ;
+;     CALL  STRTBR  (2.1.3)   ;
+; OUT (POINTX)=first character;
+;                timer address;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+STRTBR:
+	LD	IX,TIMBU	;TIME READ BUFFER ADRS
+	LD	A,8		;TRY COUNTER SET
+	PUSH	AF		;
+STRT10:
+	XOR	A		;CHRCNT=0
+	LD	(CHRCNT),A	;
+	LD	A,3		;START UP-DOWN CNT=3
+	LD	(UPDNCT),A	;
+;
+	CALL	RLBAR		;START BAR INITAL
+	LD	(POINTX),IX	;STRT BAR READ POINTER
+;
+	LD	HL,(E1)		;
+	LD	B,H		;
+	LD	C,L		;
+	SRL	H		;0-->b7-->b0-->CY
+	RR	L		;CY-->b7-->b0
+	LD	(BARE1),HL	;BARE1=0.5*E1
+	ADD	HL,BC		;
+	LD	(SPCE1),HL	;SPCE1=1.5*E1
+STRT15:
+	LD	H,(IX+3)	;TIMER (2,X)-(0,X)
+	LD	L,(IX+2)	;
+	LD	D,(IX+1)	;
+	LD	E,(IX)		;
+	OR	A		;CARRY CLEAR
+	SBC	HL,DE		;TIMER VALUE
+	LD	B,H		;TIMER (2,X)-(0,X) SAVE
+	LD	C,L		;
+	OR	A		;CY CLEAR
+	LD	DE,(BARE1)	;
+	SBC	HL,DE		;TIMER-0.5*E1
+	JR	C,STRT20	;
+	LD	H,B		;TIMER
+	LD	L,C		;
+	OR	A		;CY CLEAR
+	LD	DE,(SPCE1)	;
+	SBC	HL,DE		;TIMER-1.5*E1
+	JR	NC,STRT20	;
+	INC	IX		;INDEX+2
+	INC	IX	
+	LD	HL,UPDNCT	;NEXT BAR COUNT-1
+	DEC	(HL)		;
+	JR	NZ,STRT15	;NEXT TRY
+;
+	LD	IX,(POINTX)	;
+	LD	BC,6		;
+	ADD	IX,BC		;IX=IX+6
+	POP	AF		;
+	RET
+STRT20:
+	POP	AF		;RETRY COUNT -1
+	DEC	A		;
+	JP	Z,ERR		;NOT FIND START BAR
+	PUSH	AF		;
+	LD	IX,(POINTX)	;STRT POINTER READ
+	LD	BC,4		;NEXT BLACK BAR
+	ADD	IX,BC		;IX=IX+4
+	JR	STRT10
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;   UPC-E TYPE ROUTINE       ;
+;   CALL UPCE (2.1.4)        ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+UPCE:
+	CALL	EDIRDD		;DIRECTION DICIDED
+	CALL	EBRTBT		;BAR TO BIT CONVERT
+	CALL	EDIRE		;DIRECTION TURN
+	CALL	EPTYFG		;PARITY PATTERN DICIDED
+	CALL	EBTBY		;BIT TO BINARY
+	CALL	EFOMAT		;FORMAT DICIDED
+	CALL	ECHECK		;CHECK DIGIT
+	CALL	EOPTON		;OPTION FORMAT DICIDED
+	RET
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;  E-TYPE DIRECTION DICIDED    ;
+;    CALL EDIRDD (2.1.4.1)     ;
+;  OUT (CHDIRE)=scan direction ;
+;                 0 (L TO R)   ;
+;                 1 (R TO L)   ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+EDIRDD:
+	LD	HL,0		;DIRECTION FLAG CLEAR
+	XOR	A		;A-REG CLEAR
+	LD	(CHDIRE),A	;
+	LD	(CHRCNT),A	;CHRCNT CLEAR
+	LD	(HOSEI),HL	;HOSEI=0
+	LD	(POINTX),IX	;FIRST CHR ADRS POINTER
+;
+	LD	BC,54		;END BAR ADRS POINTER
+	ADD	IX,BC		;IX=IX+54
+	CALL	RLBAR		;E1(BASE MODULE) DICIDED
+;
+	LD	A,3		;UPDOWN COUNT SET
+	LD	(UPDNCT),A
+	CALL	BITCNV		;BIT CONVERT
+	LD	A,(BITPTN)	;BIT PATTERN ?
+	CP	11110101B	;END BAR
+	JR	Z,EDIR20	;END BAR OK !
+EDIR15:
+	JP	ERR		;NOT END BAR
+EDIR20:
+	LD	IX,(POINTX)	;FIRST CHR ADRS POINTER
+	LD	BC,40		;END CHR ADRS OFFSET
+	ADD	IX,BC		;
+	CALL	EE1DI		;E1 & E2 DICIDED
+	LD	IX,(POINTX)	;FIRST CHR ADRS POINTER
+	LD	BC,48		;END BAR ADRS OFFSET
+	ADD	IX,BC		;IF (L TO R) THEN END BAR ADRS
+EDIR30:
+	CALL	ETCK		;R TO L TIMER CHECK
+	OR	A		;
+	JR	Z,EDIR50	;DIRECTION DICIDED
+	LD	A,(CHDIRE)	;CHDIRE +1
+	INC	A		;
+	LD	(CHDIRE),A	;
+	CP	2		;
+	JR	Z,EDIR15	;NOT SCAN ERR
+;
+	LD	IX,(POINTX)	;FIRST CHR ADRS +6
+	LD	BC,6		;
+	ADD	IX,BC		;
+	LD	(POINTX),IX
+;
+	LD	HL,(POINTX)	;STRT ADRS=POINTX-12
+	LD	BC,12		;
+	OR	A		;CY CLEAR
+	SBC	HL,BC		;
+	PUSH	HL		;
+	POP	IX		;IX=POINTX-12
+	CALL	EE1DI		;E1 & E2 DICIDED
+	JR	EDIR30		;(R TO L) DICIDED
+EDIR50:
+	LD	IX,(POINTX)	;
+	RET
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;  E-TYPE E1  DICIDED           ;
+;  CALL  EE1DI (2.1.4.1.A)      ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+EE1DI:
+	LD	H,(IX+21)	;UP DOWN COUNT 10
+	LD	L,(IX+20)	;
+	LD	B,(IX+1)	;
+	LD	C,(IX)		;
+	OR	A		;CY CLEAR
+	SBC	HL,BC		;TIME VALU
+	LD	DE,13		;13 MODULE
+	LD	BC,0D000H	;SHIFT DIVISOR
+	CALL	DIV		;DIVISION
+	LD	(E1),HL		;E1 DICIDED
+	LD	(SPCE1),HL	;
+	LD	(BARE1),HL	;
+	RET
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;  E-TYPE  TIMER  CHECK         ;
+;   OUT A=0 timer check OK      ;
+;        <>0 timer check out    ;
+;   CALL  ETCK  (2.1.4.1.B)     ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+ETCK:
+	LD	HL,(E1)		;CALCULATE 1.5*E1
+	LD	B,H		;
+	LD	C,L		;
+	SRL	H		;b7--->b0-->CY
+	RR	L		;CY-->b7-->b1
+	ADD	HL,BC		;HL<--HL+BC
+	EX	DE,HL		;1.5*E1 TEMPORARY SAVE
+	LD	A,6		;6 UP DOWN TIMER CHECK
+ETCK20:
+	LD	H,(IX+3)	;TIME (2,X)-(0,X)
+	LD	L,(IX+2)	;
+	LD	B,(IX+1)	;
+	LD	C,(IX)		;
+	INC	IX		;IX=IX+2
+	INC	IX		;
+	OR	A		;CY CLEAR
+	SBC	HL,BC		;HL<--HL-BC (TIME)
+	OR	A		;CY CLEAR
+	SBC	HL,DE		;TIME-1.5*E1
+	JR	NC,ETCK30	;TIMER>1.5*E1 (SCAN ERR)
+;
+	DEC	A		;LOOP COUNT -1
+	JR	NZ,ETCK20	;
+ETCK30:
+	RET
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;  E-TYPE  BAR TO BIT CONVERT     ;
+;   CALL  EBRTBT  (2.1.4.2)       ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+EBRTBT:
+	LD	A,1		;CHR COUNT 1 SET
+	LD	(CHRCNT),A	;
+	LD	HL,CHRMAX	;
+	LD	A,(HL)		;
+	SLA	(HL)		;CHRMAX=12
+EBR10:
+	PUSH	AF		;LOOP CONT SET
+	CALL	RLDATA		;BIT CONVERT
+	LD	HL,CHRCNT	;CHRCNT +1
+	INC	(HL)		;
+	POP	AF		;LOOP COUNT -1
+	DEC	A		;
+	JR	NZ,EBR10	;UNTIL CHR END
+	LD	HL,CHRMAX	;CHRMAX=6
+	SRL	(HL)		;
+	RET
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;  E-TYPE DIRECTION TURN           ;
+;    CALL EDIRE  (2.1.4.3)         ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+EDIRE:
+	LD	A,(CHDIRE)	;CHR DIRECTION FLAG
+	OR	A		;CHANGE Z
+	JR	Z,EDIRE4	;(L TO R)
+;
+	LD	E,6		;PARITY PATTERN CONPLEMENT
+	LD	BC,1		;B=0,C=1
+	LD	IX,ANSBU2+1	;
+EDIRE1:
+	LD	A,(IX)
+	OR	A		;CHANGE Z
+	JR	Z,EDIRE2
+	LD	(IX),B		;1-->0
+	JR	EDIRE3		;
+EDIRE2:
+	LD	(IX),C		;0-->1
+EDIRE3:
+	INC	IX		;
+	DEC	E		;LOOP COUNT -1
+	JR	NZ,EDIRE1	;UNTIL CHR END
+;
+	CALL	CRDIRE		;CHR DIRECTION TURN
+EDIRE4:
+	RET
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; E-TYPE PARITY FLAG DICIDED   ;
+;  CALL  EPTYFG  (2.1.4.4)     ;
+;  OUT (ANSBU3+12)=parity      ;
+;                  flag pattern;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+EPTYFG:
+	LD	IX,ANSBU2+1	;PARITY FLAG DICIDED
+	LD	E,0		;PTFLAG CLEAR
+	LD	D,6		;LOOP COUNTER SET
+EPTY10:
+	LD	A,(IX)		;
+	OR	A		;CHANGE Z
+	JR	Z,EPTY20	;0--EVEN PARITY
+	SCF			;1--ODD PARITY
+	RL	E		;
+	JR	EPTY30		;
+EPTY20:
+	SLA	E		;EVEN PARITY
+EPTY30:
+	INC	IX		;
+	DEC	D		;LOOP COUNTER -1
+	JR	NZ,EPTY10	;UNTIL CHR END
+;
+	LD	IX,PRTYTB	;PARITY TABLE SEARCH
+	LD	A,E		;
+	CP	1DH		;INSIDE TABLE ADRS CHECK
+	JR	NC,EPTY40	;ERROR
+;
+	LD	C,A		;BC--TABLE OFF SET
+	LD	B,0		;
+	ADD	IX,BC		;
+	LD	A,(IX)		;
+	LD	IX,ANSBU3+12	;PARITY FLAG SAVE
+	LD	(IX),A		;
+	CP	10		;PARITY FLAG 0-9 ?
+	JR	C,EPTY50	;CHECK OK!
+EPTY40:
+	JP	ERR		;NOT 0-9 OR INSIDE ADRS
+EPTY50:
+	RET
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;   E-TYPE BIT TO BINARY CONVERT   ;
+;    CALL   EBTBY (2.1.4.5)        ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+EBTBY:
+	CALL	SEARCH		;CHR CODE SEARCH
+;
+	LD	IX,ANSBU3+1	;BIT DATA SAVE
+	LD	A,(IX)		;X1<>0
+	OR	A		;CHANGE Z
+	JP	Z,ERR		;X1=0 ERR
+;
+	LD	D,6		;LOOP COUNTER SET
+EBTBY1:
+	LD	A,(IX)		;
+	LD	(IX+15),A	;BIT DATA SAVE TO ANSBU4
+	INC	IX		;
+	DEC	D		;
+	JR	NZ,EBTBY1	;UNTIL CHR END
+	RET
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;  E-TYPE FORMAT DICIDED        ;
+;    CALL  EFOMAT  (2.1.4.6)    ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+EFOMAT:
+	LD	HL,0		;HL=0 SET
+	LD	A,(ANSBU3+6)	;X6 CHECK
+	CP	3		;X6=0,1,2 ?
+	JR	C,EFOM10	;
+	JR	Z,EFOM20	;X6=3
+	CP	4		;
+	JR	Z,EFOM30	;X6=4
+;
+	LD	(ANSBU3+6),HL	;X6=5,6,7,8,9
+	LD	(ANSBU3+8),HL	;NEW DATA FORMAT
+	LD	(ANSBU3+10),A	;"0X1X2X3X4X50000X6"
+	JR	EFOM40		;
+EFOM10:
+	LD	BC,(ANSBU3+3)	;X6=0,1,2
+	LD	(ANSBU3+8),BC	;NEW DATA FORMAT
+	LD	(ANSBU3+3),A	;"0X1X2X60000X3X4X5"
+	LD	A,(ANSBU3+5)	;
+	LD	(ANSBU3+10),A	;
+	LD	(ANSBU3+4),HL	;
+	LD	(ANSBU3+6),HL	;
+	JR	EFOM40		;
+EFOM20:
+	LD	BC,(ANSBU3+4)	;X6=3
+	LD	(ANSBU3+9),BC	;NEW DATA FORMAT
+	LD	(ANSBU3+4),HL	;"0X1X2X300000X4X5"
+	LD	(ANSBU3+6),HL	;
+	XOR	A
+	LD	(ANSBU3+8),A	;
+	JR	EFOM40		;
+EFOM30:
+	LD	A,(ANSBU3+5)	;X6=4
+	LD	(ANSBU3+10),A	;NEW DATA FORMAT
+	LD	(ANSBU3+5),HL	;"0X1X2X3X400000X5"
+	LD	(ANSBU3+7),HL	;
+	XOR	A
+	LD	(ANSBU3+9),A	;
+EFOM40:
+	RET
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;  E-TYPE CHECK DIGIT ROUTINE    ;
+;    CALL  ECHECK  (2.1.4.7)     ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+ECHECK:
+	LD	IX,ANSBU3+10	;BUFFER POINTER +1
+	LD	D,10		;CHR 1 ADRS BACK
+ECHK10:
+	LD	A,(IX)		;
+	LD	(IX+1),A	;
+	DEC	IX		;
+	DEC	D		;LOOP COUNTER -1
+	JR	NZ,ECHK10	;UNTIL CHR END
+	LD	B,0		;B=0 SET
+	LD	(IX),B		;FLAG CHR=00 ADD
+	LD	(IX+1),B	;
+;
+	CALL	CHKDGT		;CHECK DIGIT CALCULATE
+	RET
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;  E-TYPE OPTION FORMAT CONVERT  ;
+;   CALL  EOPTON  (2.1.4.8)      ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+EOPTON:
+	LD	A,(ZEROFG)	;
+	CP	1		;OPTION FLAG=1 ?
+	JR	Z,EOPT20	;
+;
+	LD	IX,ANSBU3+2	;
+	LD	D,6		;LOOP COUNTER SET
+EOPT10:
+	LD	A,(IX+14)	;CHANGE(ANSBU4-->ANSBU3)
+	LD	(IX),A		;
+	INC	IX		;
+	DEC	D		;LOOP COUNTER -1
+	JR	NZ,EOPT10	;UNTIL CHR END
+	LD	A,8		;CHRMAX=8
+	JR	EOPT30		;NORMAL RETURN
+EOPT20:
+	LD	A,13		;CHRMAX=13
+EOPT30:
+	LD	(CHRMAX),A	;
+	RET
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;   NOT  UPC-E TYPE  ROUTINE  ;
+;    CALL NTUPCE  (2.1.5)     ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+NTUPCE:
+	CALL	CRCTBR		;CORRECT BAR DICIDED
+	CALL	BRTOBT		;BAR TO BIT CONVERT
+	CALL	DIREBR		;DATA TURN & DIRECTION DICIDED
+	CALL	BTTOBI		;BIT TO BINARY CONVERT & CHECK
+	RET
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;  CORRECT TIME DICIDED    ;
+;  CALL  CRCTBR (2.1.5.1)  ;
+;  OUT (HOFLAG)=0 bar>space;
+;               1 space>bar;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+CRCTBR:
+	PUSH	IX		;X REG SAVE
+	XOR	A		;D=0 SET
+	LD	(HOFLAG),A	;HOSEI FLAG CLEAR
+	LD	A,(CHRMAX)	;
+	CP	8		;
+	JR	Z,CRCT10	;SHORT BAR
+;
+	LD	BC,16		;HL+16-->HL
+	ADD	IX,BC		;STANDARD (ADRS+16)
+CRCT10:
+	LD	H,(IX+35)	;FIRST CHR (OFF SET)
+	LD	L,(IX+34)	;
+	LD	B,(IX+33)	;
+	LD	C,(IX+32)	;
+	OR	A		;CY CLEAR
+	SBC	HL,BC		;
+	LD	D,H		;
+	LD	E,L		;
+;
+	LD	H,(IX+39)	;
+	LD	L,(IX+38)	;
+	LD	B,(IX+37)	;
+	LD	C,(IX+36)	;
+	OR	A		;CY CLEAR
+	SBC	HL,BC		;
+	ADD	HL,DE		;
+	SRL	H
+	RR	L		;
+	LD	(SPCE1),HL	;CENTER BAR SPACE TIME AVERAGE
+;
+	LD	H,(IX+37)	;
+	LD	L,(IX+36)	;
+	LD	B,(IX+35)	;
+	LD	C,(IX+34)	;
+	OR	A		;CY CLEAR
+	SBC	HL,BC		;
+	LD	D,H		;
+	LD	E,L		;
+	LD	H,(IX+41)	;
+	LD	L,(IX+40)	;
+	LD	B,(IX+39)	;
+	LD	C,(IX+38)	;
+	OR	A		;CY CLEAR
+	SBC	HL,BC		;
+	ADD	HL,DE		;
+	SRL	H		;
+	RR	L		;
+	LD	(BARE1),HL	;CENTER BAR BAR TIME VALUE
+CRCT20:
+	OR	A		;CY CLEAR
+	LD	BC,(SPCE1)	;
+	SBC	HL,BC		;
+	JR	Z,CRCT40	;BAR=SPACE
+	JR	NC,CRCT30	;BAR>SPACE
+	LD	A,1		;
+	LD	(HOFLAG),A	;HOFLAG +1
+	LD	HL,(SPCE1)	;SPACE>BAR
+	LD	BC,(BARE1)	;
+	OR	A		;CY CLEAR
+	SBC	HL,BC		;
+CRCT30:
+	LD	DE,7		;HOSEI=(BAR-SPACE)/7
+	LD	BC,0E000H	;SHIFT DIVISOR
+	CALL	DIV		;
+CRCT40:
+	LD	(HOSEI),HL	;
+	POP	IX		;X REG LOAD
+	RET
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;  BAR TO BIT CONVERT        ;
+;   CALL  BRTOBT (2.1.5.2)   ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+BRTOBT:
+	LD	A,1		;CHRCNT=1 SET
+	LD	(CHRCNT),A	;
+;
+	LD	A,(CHRMAX)	;UNTIL CENTER BAR
+	SRL	A		;
+BRBT10:
+	PUSH	AF		;
+	CALL	RLDATA		;FROM STRT-BAR TO CNT-BAR
+	LD	HL,CHRCNT	;CHR CONT 1 TO 6 (1 TO 4)
+	INC	(HL)		;
+	POP	AF		;
+	DEC	A		;
+	JR	NZ,BRBT10	;
+	CALL	CNTBAR		;CENTER BAR DICIDED
+;
+	LD	BC,10		;IX=IX+10
+	ADD	IX,BC		;
+;
+	LD	A,(CHRMAX)	;UNTIL END BAR
+	SRL	A		;
+BRBT20:
+	PUSH	AF		;
+	CALL	RLDATA		;FROM CNT BAR TO END BAR
+	LD	HL,CHRCNT	;CHR CNT 7 TO 12 (5 TO 8)
+	INC	(HL)		;
+	POP	AF		;
+	DEC	A		;
+	JR	NZ,BRBT20	;
+;
+	CALL	RLBAR		;END BAR DICISION
+	CALL	BITCNV		;
+	LD	A,(BITPTN)	;END BAR="11110010"
+	CP	11110010B	;
+	JP	NZ,ERR		;NOT FIND END BAR
+;
+	RET			;
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;  CENTER BAR BIT CONVERT      ;
+;   CALL  CNTBAR (2.1.5.2.1)   ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+CNTBAR:
+	LD	H,(IX+11)	;END TIME-STRT TIME
+	LD	L,(IX+10)	;
+	LD	B,(IX+1)	;
+	LD	C,(IX)		;
+	OR	A		;CY CLEAR
+	SBC	HL,BC		;
+	JP	Z,ERR		;TIME VALUE=0 ERR
+;
+	LD	DE,5		;5 MODULE
+	LD	BC,0A000H	;SHIFT DIVISOR
+;
+	CALL	DIV		;
+	CALL	SPDCK		;SPEED CHECK
+	RET			;
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; BIT TURN & DIRECTION DICIDED ;
+;  CALL  DIREBR (2.1.5.3)      ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+DIREBR:
+	CALL	DATCMP		;FROM CNT TO END COMPLEMENT
+	CALL	DIRECK		;DIRECTION CHECK
+	CP	0		;CNT TO END FLG PATTERN SUM=0 ?
+	JR	Z,DIBR10	;(L TO R)
+	CALL	CRDIRE		;CHR DIRECTION TURN
+	CALL	DIRECK		;DIRECTION CHECK RETRY
+	CP	0		;
+	JP	NZ,ERR		;NOT FLAG PATTERN SUM=0
+DIBR10:
+	LD	A,(CHRMAX)	;
+	CP	12		;STANDARD
+	JR	Z,DIBR20	;
+;
+	LD	IX,ANSBU2+1	;CHR 1--4 PARITY ADD
+	SRL	A		;LOOP COUNTER SET
+	LD	D,A		;TRANS D-REG
+	XOR	A		;ALL ODD PARITY ?
+DIBR15:
+	ADD	A,(IX)		;
+	INC	IX		;
+	DEC	D		;
+	JR	NZ,DIBR15	;UNTIL CHR HALF
+;
+	CP	4		;
+	JP	NZ,ERR		;NOT ALL ODD PARITY
+DIBR20:
+	RET
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; FROM CENTER TO END BAR DATA COMPLEMENT ;
+;     CALL  DATCMP   (2.1.5.3.1)         ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+DATCMP:
+	LD	IX,ANSBU1+1	;IX=ANSBU1+1+CRHALF
+	LD	A,(CHRMAX)	;
+	SRL	A		;
+	LD	C,A		;TRANS C-REG
+	LD	B,0		;
+	ADD	IX,BC		;
+;
+CMP10:
+	LD	A,(IX)		;FROM CHR HALF
+	CPL			;DATA COMPLEMENT
+	AND	7FH		;b7=0
+	LD	(IX),A		;
+	INC	IX		;
+	DEC	C		;
+	JR	NZ,CMP10	;UNTIL CHR END
+	RET
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;  DIRECTION CHECK         ;
+;  CALL DIRECK (2.1.5.3.2) ;
+;  OUT A=flag pattern sum  ;
+;      from chr half to end;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+DIRECK:
+	LD	IX,ANSBU2+1	;FLAG PATTERN SUM CALCU
+	LD	A,(CHRMAX)	;
+	SRL	A		;
+	LD	C,A		;TRANS C-REG
+	LD	B,0		;
+	ADD	IX,BC		;
+;
+	XOR	A		;
+DIRE10:
+	ADD	A,(IX)		;FROM CHR HALF
+	INC	IX		;
+	DEC	C		;
+	JR	NZ,DIRE10	;UNTIL CHR END
+	RET
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; BIT TO BINARY CONVERT & CHECK DIGIT ;
+;    CALL  BTTOBI  (2.1.5.4)          ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+BTTOBI:
+	CALL	SEARCH		;CHR CODE SEARCH
+	LD	A,(CHRMAX)	;STANDARD ?
+	CP	12		;
+	JR	Z,BTBI30	;STANDARD
+;
+	LD	HL,0		;HL=0 SET
+	XOR	A		;A=0
+	LD	(ANSBU3),A	;X1X2X3X4X5X6X7X8 DATA
+	LD	A,(ANSBU3+8)	;0X1X2X3X4X5X6X70000X8 NEW
+	LD	(ANSBU3+12),A	;
+	LD	(ANSBU3+8),HL	;
+	LD	(ANSBU3+10),HL	;
+;
+	CALL	CHKDGT		;CHECK DIGIT CALCU (SHORT)
+	LD	E,6		;LOOP COUNTER
+BTBI10:
+	LD	A,(IX+1)	;X1X2X3X4X5X600000X7X8 NEW DATA
+	LD	(IX),A		;
+	INC	IX		;
+	DEC	E		;
+	JR	NZ,BTBI10	;
+;
+	LD	A,(IX+1)	;
+	LD	(IX+5),A	;
+	LD	(IX+1),E	;
+	LD	(IX),E		;
+;
+	LD	A,(ZEROFG)	;OPTION FLAG
+	OR	A		;CY CLEAR
+	JR	NZ,BTBI20	;
+;
+	LD	IX,ANSBU3	;OPTION NOTHING
+	LD	A,(IX+11)	;
+	LD	(IX+6),A	;
+	LD	A,(IX+12)	;
+	LD	(IX+7),A	;
+	JR	BTBI40		;
+BTBI30:
+	CALL	CFGCAL		;CHR FLAG DICISION
+	LD	IX,ANSBU3	;
+	LD	(IX),A		;
+	CALL	CHKDGT		;CHECK DIGIT (STANDARD)
+BTBI20:
+	LD	A,13		;CHRMAX=13
+	LD	(CHRMAX),A	;
+BTBI40:
+	RET
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;  CHARACTER FLAG CALCULATE   ;
+;   CALL CFGCAL  (2.1.5.4.1)  ;
+;   OUT A=flag pattern        ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+CFGCAL:
+	LD	IX,ANSBU2+1	;
+	LD	A,(CHRMAX)	;
+	SRL	A		;
+	LD	BC,0		;BC=0 SET
+	OR	A		;CY CLEAR
+CFGC10:
+	RR	(IX)		;1-6 CHR FLAG TO 1 BYTE
+	RL	C		;
+	INC	IX		;
+	DEC	A		;
+	JR	NZ,CFGC10	;
+;
+	LD	A,C		;INSIDE TABLE ADRS
+	SUB	20H		;
+	CP	20H		;
+	JP	NC,ERR		;TABLE OVER ERR
+;
+	LD	IX,FLAGTB	;FLAG TABLE SEARCH
+	LD	C,A		;
+	ADD	IX,BC		;IX=IX+BC(OFF SET)
+	LD	A,(IX)		;
+IFF	xxxxx			;			** Ver. 1.2  85/01/25
+	CP	9		;0--9 CHECK
+ELSE
+	CP	10		;0--10 CHECK
+ENDIF
+	JP	NC,ERR		;NOT 0-9 ERR
+	RET			;
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;   ASCII CODE CONVERT         ;
+;   CALL  ASCII  (2.1.6)       ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+ASCII:
+	LD	IX,ANSBU3	;ASCII CODE CONVERT
+	LD	HL,CHRMAX	;CHRMAX +1
+	LD	A,(HL)		;
+	LD	D,A		;TRANS D-REG
+	INC	(HL)		;
+ASC10:
+	LD	A,(IX)		;
+	ADD	A,30H		;A=A+30H
+	LD	(IX),A		;
+	INC	IX		;
+	DEC	D		;
+	JR	NZ,ASC10	;UNTIL CHR END
+;
+	LD	A,13		;CR CODE INPUT
+	LD	(IX),A		;
+	RET
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;  RIGHT-LEFT GARD BAR BIT CONVERT ;
+;     CALL  RLBAR   (A.1)          ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+RLBAR:
+	LD	A,3		;UP-DOWN CONT 3 SET
+	LD	(UPDNCT),A	;
+	LD	H,(IX+7)	;HL=END TIME
+	LD	L,(IX+6)	;
+	LD	B,(IX+1)	;BC=STRT TIME
+	LD	C,(IX)		;
+	OR	A		;CY CLEAR
+	SBC	HL,BC		;END TIME-STRT TIME
+	JP	Z,ERR		;TIME VALUE=0 ERR
+;
+	LD	DE,3		;3 MODULE
+	LD	BC,0C000H	;SHIFT DIVISOR
+	CALL	DIV		;MODULE CALCU
+	CALL	SPDCK		;SPEED CHECK
+;
+	LD	(E1),HL		;E1=SPCE1=BARE1
+	LD	(SPCE1),HL	;
+	LD	(BARE1),HL	;
+	SRL	H		;
+	RR	L		;
+	LD	B,(IX+1)	;
+	LD	C,(IX)		;
+	ADD	HL,BC		;
+	LD	(E2),HL		;E2=STRT TIME+0.5*E1
+	RET
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;  WARISAN  PROGRAM         ;
+;   CALL DIV   (A.1.1)      ;
+;  IN    HL=dividend        ;
+;        DE=divisor         ;
+;        BC=shift divisor   ;
+;  OUT   HL=answer          ;
+;        DE=mod             ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+DIV:
+	XOR	A		;CLEAR A
+	LD	(ANSWER),A	;ANSWORK CLEAR
+	LD	(ANSWER+1),A	;
+;
+	LD	A,H		;ZERO CHECK
+	OR	L		;
+	JR	NZ,DIVI50	;
+	JP	Z,ERR		;ZERO ERR
+DIVI50:
+	OR	A		;
+	SBC	HL,BC		;DIVIDEND-SHIFT DIVISOR
+	JR	NC,DIVI30	;
+	ADD	HL,BC		;DIVIDEND REBACK
+DIVI30:
+	CCF			;CARRY COMP
+	LD	A,(ANSWER)	;ANSWER SHIFT
+	RLA
+	LD	(ANSWER),A
+	LD	A,(ANSWER+1)
+	RLA
+	LD	(ANSWER+1),A
+;
+	OR	A		;
+	PUSH	DE		;
+	EX	DE,HL		;HL=DIVISOR DE=DIVIDEND
+	SBC	HL,BC		;DIVISOR-SHIFT DIVISOR
+	EX	DE,HL		;HL=DIVIDEND
+	POP	DE		;
+	JR	Z,DIVI90	;DIVISOR=SHIFT DIVISOR
+	SRL	B		;SHIFT DIVISOR RIGHT SHIFT
+	RR	C		;
+	JR	DIVI50		;
+DIVI90:
+	LD	A,(ANSWER)	;DE=ANSWER
+	LD	E,A		;
+	LD	A,(ANSWER+1)	;
+	LD	D,A		;
+	EX	DE,HL		;DE=MOD HL=ANSWER
+	RET
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; SPEED CHECK ROUTINE     ;
+;  CALL SPDCK  (A.1.2)    ;
+;  OUT  HL=base module    ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+SPDCK:
+	PUSH	HL		;
+	PUSH	HL		;
+	LD	BC,MINVAL	;
+	OR	A		;CY CLEAR
+	SBC	HL,BC		;SPEED FAST CHECK
+	JR	C,SPD10		;SPEED FAST
+	LD	HL,OVRVAL	;
+	POP	BC		;
+	OR	A		;CY CLEAR
+	SBC	HL,BC		;SPEED SLOW CHECK
+	JR	C,SPD20		;SPEED SLOW
+	JR	SPD30		;
+SPD10:
+	LD	A,101		;SPEED FAST ERROR
+	JR	SPD25		;
+SPD20:
+	LD	A,100		;SPEED SLOW ERROR
+SPD25:
+	JP	ERR5		;
+SPD30:
+	POP	HL		;
+	RET
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;  BIT CONVERT SUBROUTINE       ;
+;   CALL  BITCNV   (A.2)        ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+BITCNV:
+	LD	A,0FEH		;BIT PATTERN INPUT WORK CLEAR
+	LD	(BITPTN),A	;
+	XOR	A		;A=0 SET
+	LD	(BITCNT),A	;BIT COUNTER  CLEAR
+BIT60:
+	PUSH	IX		;READ TIMER ADRS OVER ?
+	POP	HL		;
+	LD	BC,(TIMX)	;TIMER END ADRS
+	OR	A		;CY CLEAR
+	SBC	HL,BC		;
+	JP	NC,ERR		;NOT READ TIME
+;
+	LD	H,(IX+3)	;HL=END TIME
+	LD	L,(IX+2)	;
+	LD	BC,(E2)		;BC=STRT TIME
+	OR	A		;CY CLEAR
+	SBC	HL,BC		;END TIME-STRT TIME
+	LD	D,H		;TMDATA SAVE
+	LD	E,L		;
+	JR	NC,BIT15	;NORMAL TIME
+	LD	BC,(E1)		;TIMDATA 0.5*E1 CHECK
+	SRL	B		;
+	RR	C		;
+	OR	A		;CY CLEAR
+	SBC	HL,BC		;
+	JR	NC,BIT15	;NORMAL DATA
+	LD	D,0		;TIMDATA=0 SET
+	LD	E,0		;
+BIT15:
+	LD	A,(CHRMAX)	;CHRMAX/2-CHRCNT
+	SRL	A		;
+	LD	HL,(CHRCNT)	;
+	SUB	L		;
+	JR	C,BIT10		;
+;
+	LD	A,(UPDNCT)	;CHRCNT 1 TO 6
+	AND	1		;
+	JR	Z,BIT20		;BAR OR SPACE CHECK
+	CALL	BRBTCN		;BAR BIT CONVERT
+	JR	BIT50		;
+BIT20:
+	CALL	SPBTCN		;SPACE BIT CONVERT
+	JR	BIT50		;
+BIT10:
+	LD	A,(UPDNCT)	;CHRCNT 7 TO 12
+	AND	1		;
+	JR	Z,BIT30		;BAR OR SPACE
+	CALL	SPBTCN		;SPACE BIT CONVERT
+	JR	BIT50		;
+BIT30:
+	CALL	BRBTCN		;BAR BIT CONVERT
+BIT50:
+	INC	IX		;SOURCE ADRS +2
+	INC	IX		;
+	LD	HL,UPDNCT	;LOOP UPDNCT -1
+	DEC	(HL)		;
+	JR	NZ,BIT60	;
+;
+	PUSH	IX		;
+	LD	IX,ANSBU1	;NEW ADRS=ANSBU1+CHRCNT
+	LD	A,(CHRCNT)	;CHRCNT=OFF SET VALUE
+	LD	C,A		;
+	LD	B,0		;
+	ADD	IX,BC		;
+;
+	LD	A,(BITPTN)	;BIT PATTERN SAVE
+	LD	(IX),A		;
+;
+	LD	A,(BITCNT)	;FLAG PATTERN SAVE
+	AND	1		;
+	JR	NZ,BIT70	;
+	XOR	A		;EVEN
+	JR	BIT80		;
+BIT70:
+	LD	A,1		;ODD
+BIT80:
+	LD	(IX+16),A	;
+	POP	IX		;
+	RET			;
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;  BAR BIT CONVERT         ;
+;  CALL BRBTCN  (A.2.1)    ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+BRBTCN:
+	LD	A,(BITPTN)	;
+	LD	BC,10		;TRY COUNTER SET
+BRBTC1:
+	PUSH	BC		;
+	SCF			;BIT PATTERN "1" SET
+	LD	HL,BITCNT	;
+	INC	(HL)		;BAR BIT COUNTER +1
+	CALL	COMBIT		;
+	LD	BC,(BARE1)	;TMDATA-BARE1
+	SBC	HL,BC		;
+	JR	C,BRBTC2	;TMDATA<BARE1 THEN RET
+	POP	BC		;TRY COUNTER -1
+	DEC	C		;
+	JR	NZ,BRBTC1	;TRY AGEIN
+	JP	ERR		;SCAN ERR
+BRBTC2:
+	POP	BC
+	LD	(BITPTN),A	;
+	RET
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;  SPACE  BIT  CONVERT     ;
+;   CALL SPBTCN  (A.2.2)   ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+SPBTCN:
+	LD	A,(BITPTN)	;
+	LD	BC,10		;TRY COUNTER SET
+SPBTC1:
+	PUSH	BC		;
+	OR	A		;BIT PATTEN "0" SET
+	CALL	COMBIT		;
+	LD	BC,(SPCE1)	;TMDATA-SPCE1
+	SBC	HL,BC		;
+	JR	C,SPBTC2	;TMDATA<SPCE1 THEN RET
+	POP	BC		;TRY COUNTER -1
+	DEC	C		;
+	JR	NZ,SPBTC1	;TRY AGEIN
+	JP	ERR		;SCAN ERR
+SPBTC2:
+	POP	BC
+	LD	(BITPTN),A	;
+	RET
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;   COMMOM BIT CONVERT       ;
+;   CALL COMBIT  (A.2.3)     ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+COMBIT:
+	RL	A		;BIT SHIFT
+;
+	LD	HL,(E2)		;E2=E2+E1
+	LD	BC,(E1)		;BC=E1
+	ADD	HL,BC		;
+	LD	(E2),HL		;
+;
+	LD	H,D		;TMDATA=TMDATA-E1
+	LD	L,E		;
+	OR	A		;CY CLEAR
+	SBC	HL,BC		;
+	LD	D,H		;
+	LD	E,L		;
+;
+	ADD	HL,BC		;TMDATA REBACK
+	OR	A		;CY CLEAR
+	RET
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; RIGHT-LEFT DATA BAR BIT CONVERT ;
+;   CALL   RLDATA  (A.3)          ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+RLDATA:
+	LD	A,4		;SPACE BAR 4 TIMES
+	LD	(UPDNCT),A	;
+;
+	LD	H,(IX+9)	;HL=END TIME
+	LD	L,(IX+8)	;
+	LD	B,(IX+1)	;BC=START TIME
+	LD	C,(IX)		;
+	OR	A		;CY CLEAR
+	SBC	HL,BC		;END TIME-STRT TIME
+	JP	Z,ERR		;TIME VALUE=0 ERR
+;
+	LD	DE,7		;7 MODULE
+	LD	BC,0E000H	;SHIFT DIVISOR
+	CALL	DIV		;MODULE CALCU
+	CALL	SPDCK		;SPEED CHECK
+;
+	LD	(E1),HL		;E1 SAVE
+	SRL	H		;
+	RR	L		;
+	LD	B,(IX+1)	;BC=(IX+1)+(IX)
+	LD	C,(IX)		;
+	ADD	HL,BC		;
+	LD	(E2),HL		;E2=STRT TIME+0.5*E1
+;
+	LD	A,(HOFLAG)	;HOSEI FLAG ?
+	OR	A		;CHENGE Z
+	JR	NZ,RLDT5	;
+;
+	LD	HL,(E1)		;BAR>SPACE
+	LD	BC,(HOSEI)	;
+	ADD	HL,BC		;
+	LD	(BARE1),HL	;BARE1=E1+HOSEI
+	LD	HL,(E1)		;
+	OR	A		;CY CLEAR
+	SBC	HL,BC		;
+	LD	(SPCE1),HL	;SPCE1=E1-HOSEI
+	JR	RLDT6		;
+RLDT5:
+	LD	HL,(E1)		;SPACE>BAR
+	LD	BC,(HOSEI)	;
+	ADD	HL,BC		;
+	LD	(SPCE1),HL	;SPCE1=E1+HOSEI
+	LD	HL,(E1)		;
+	OR	A		;CY CLEAR
+	SBC	HL,BC		;
+	LD	(BARE1),HL	;BARE1=E1-HOSEI
+RLDT6:
+	CALL	BITCNV		;BIT PATTERN CONVERT
+	RET
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;  CHARACTER DIRECTION CONVERT  ;
+;   CALL  CRDIRE  (A.4)         ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+CRDIRE:
+	LD	IX,ANSBU1+1	;BIT CONV BUFFER TURN
+	LD	A,(CHRMAX)	;
+	LD	D,A		;A=D=E=B=C=CHRMAX
+	LD	E,D		;
+	LD	B,D		;
+	LD	C,D		;
+DIRE1:
+	LD	A,(IX)		;
+	PUSH	AF		;STACK SAVE
+	INC	IX		;
+	DEC	D		;
+	JR	NZ,DIRE1	;UNTIL CHR END
+;
+	LD	IX,ANSBU1+1	;
+DIRE2:
+	POP	AF		;STACK LOAD
+	LD	(IX),A		;
+	INC	IX		;
+	DEC	E		;
+	JR	NZ,DIRE2	;UNTIL CHR END
+;
+	LD	IX,ANSBU2+1	;FLAG PTAN BUFFER TURN
+DIRE3:
+	LD	A,(IX)		;
+	PUSH	AF		;STACK SAVE
+	INC	IX		;
+	DEC	B		;
+	JR	NZ,DIRE3	;UNTIL CHR END
+;
+	LD	IX,ANSBU2+1	;
+DIRE4:
+	POP	AF		;STACK LOAD
+	LD	(IX),A		;
+	INC	IX		;
+	DEC	C		;
+	JR	NZ,DIRE4	;UNTIL CHR END
+	RET
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;  CHARACTER  CODE  SEARCH    ;
+;  CALL  SEARCH  (A.5)        ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+SEARCH:
+	LD	IX,ANSBU1+1	;X-REG BASE SET
+	LD	A,(CHRMAX)	;
+	LD	D,A		;TRANS D-REG
+SEA1:
+	PUSH	IX		;SOURCE DATA ADRS SAVE
+	LD	A,(IX)		;TABLE ADRS DICIDED
+	CP	40H		;INSIDE TABLE ADRS
+	JP	NC,ERR		;ADRS OVER
+;
+	LD	IX,CRTBL	;
+	LD	C,A		;BC=OFF SET ADRS
+	LD	B,0		;
+	ADD	IX,BC		;IX=IX+BC
+	LD	A,(IX)		;
+	POP	IX		;
+	LD	(IX+32),A	;NEW DATA ADRS=IX+20H
+	CP	10		;0-9 CHECK
+	JP	NC,ERR		;NOT 0--9 ERR
+	INC	IX		;SOURCE ADRS +1
+	DEC	D		;UNTIL CHR END
+	JR	NZ,SEA1		;
+	RET
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;    CHECK DIGIT JUDGEMENT     ;
+;   CALL   CHKDGT   (A.6)      ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+CHKDGT:
+	LD	IX,ANSBU3	;
+;
+	LD	A,(IX+1)	;STEP1 (EVEN ADD)
+	ADD	A,(IX+3)	;
+	ADD	A,(IX+5)	;
+	ADD	A,(IX+7)	;
+	ADD	A,(IX+9)	;
+	ADD	A,(IX+11)	;
+;
+	LD	B,A		;STEP2 (EVEN ADD*3)
+	SLA	A		;
+	ADD	A,B		;
+;
+	ADD	A,(IX)		;SETP4 (ODD ADD)
+	ADD	A,(IX+2)	;
+	ADD	A,(IX+4)	;
+	ADD	A,(IX+6)	;
+	ADD	A,(IX+8)	;
+	ADD	A,(IX+10)	;
+	JP	Z,ERR		;ZERO DIVID ERR
+;
+	SUB	1		;
+	LD	H,0		;HL=DIVIDEND
+	LD	L,A		;
+	LD	D,H		;DE=0
+	LD	E,H		;
+	JR	Z,CHK6		;
+	LD	DE,10		;STEP5(1) CHECK SUM/10
+	LD	BC,0A000H	;SHIFT DIVISOR
+	CALL	DIV		;
+CHK6:
+	LD	HL,9		;9-MOD
+	OR	A		;CY CLEAR
+	SBC	HL,DE		;DE=MOD
+	LD	A,L		;
+	SUB	(IX+12)		;CHECK DIGIT ?
+	JR	Z,CHK15		;NORMAL
+;
+	LD	A,106		;CHECK DIGIT ERR
+	JR	ERR5		;
+CHK15:
+	RET			;
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;  ERROR  SUBROUTINE    ;
+;   CALL  ERR   (A.7)   ;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+ERR:
+	LD	A,105		;SCAN ERR
+ERR5:
+	LD	(ERRWK),A	;
+  IF	xxxxx
+	XOR	A
+	LD	(ASCCNT),A	;if error, reset char counter
+  ENDIF
+  IFF	xxxxx
+	LD	A,5		;
+  ENDIF
+ERR10:
+  IFF	xxxxx
+	PUSH	AF		;
+	LD	IX,(WBOOT)	;BEEP CALL ADRS DICIDED
+	LD	BC,BPOFF	;
+	ADD	IX,BC		;
+	LD	HL,ERR15	;RETURN ADRS
+	PUSH	HL		;
+	LD	C,BLEN		;BEEP CALL
+	LD	DE,BTON		;
+	JP	(IX)		;
+ERR15:
+	POP	AF		;
+	DEC	A		;
+	JR	NZ,ERR10	;
+  ENDIF
+;
+	LD	SP,(STKWK)	;
+	LD	A,(ERRWK)	;
+	OR	A		;NORMAL?
+	JR	Z,ERR20		;NORMAL RETURN
+	CP	10		;BREAK ?
+	JR	NZ,ERR20	;
+	SCF			;CY SET
+ERR20:
+	RET			;
+;
+;  FLAG  TABLE
+;
+FLAGTB:
+	DB	0FFH		;0 OFF SET VALUE
+	DB	0FFH		;1
+	DB	0FFH		;2
+	DB	006H		;3
+	DB	0FFH		;4
+	DB	009H		;5
+	DB	005H		;6
+	DB	0FFH		;7
+	DB	0FFH		;8
+IFF	xxxxx			;			** Ver. 1.2  85/01/25
+	DB	0FFH		;9
+ELSE
+	DB	008H		;9
+ENDIF
+	DB	007H		;A
+	DB	0FFH		;B
+	DB	004H		;C
+	DB	0FFH		;D
+	DB	0FFH		;E
+	DB	0FFH		;F
+	DB	0FFH		;10
+	DB	003H		;11
+	DB	002H		;12
+	DB	0FFH		;13
+	DB	001H		;14
+	DB	0FFH		;15
+	DB	0FFH		;16
+	DB	0FFH		;17
+	DB	0FFH		;18
+	DB	0FFH		;19
+	DB	0FFH		;1A
+	DB	0FFH		;1B
+	DB	0FFH		;1C
+	DB	0FFH		;1D
+	DB	0FFH		;1E
+	DB	000H		;1F
+;
+;   CHARACTER  TABLE
+;
+CRTBL:
+	DB	0FFH		;0---OFF SET VALUE
+	DB	0FFH		;1
+	DB	0FFH		;2
+	DB	0FFH		;3
+	DB	0FFH		;4
+	DB	006H		;5
+	DB	0FFH		;6
+	DB	0FFH		;7
+	DB	0FFH		;8
+	DB	008H		;9
+	DB	0FFH		;A
+	DB	009H		;B
+	DB	0FFH		;C
+	DB	000H		;D
+	DB	0FFH		;E
+	DB	0FFH		;F
+	DB	0FFH		;10
+	DB	007H		;11
+	DB	0FFH		;12
+	DB	002H		;13
+	DB	0FFH		;14
+	DB	0FFH		;15
+	DB	0FFH		;16
+	DB	009H		;17
+	DB	0FFH		;18
+	DB	001H		;19
+	DB	0FFH		;1A
+	DB	002H		;1B
+	DB	0FFH		;1C
+	DB	004H		;1D
+	DB	0FFH		;1E
+	DB	0FFH		;1F
+	DB	0FFH		;20
+	DB	003H		;21
+	DB	0FFH		;22
+	DB	004H		;23
+	DB	0FFH		;24
+	DB	0FFH		;25
+	DB	0FFH		;26
+	DB	000H		;27
+	DB	0FFH		;28
+	DB	0FFH		;29
+	DB	0FFH		;2A
+	DB	0FFH		;2B
+	DB	0FFH		;2C
+	DB	0FFH		;2D
+	DB	0FFH		;2E
+	DB	006H		;2F
+	DB	0FFH		;30
+	DB	005H		;31
+	DB	0FFH		;32
+	DB	001H		;33
+	DB	0FFH		;34
+	DB	0FFH		;35
+	DB	0FFH		;36
+	DB	008H		;37
+	DB	0FFH		;38
+	DB	005H		;39
+	DB	0FFH		;3A
+	DB	007H		;3B
+	DB	0FFH		;3C
+	DB	003H		;3D
+	DB	0FFH		;3E
+	DB	0FFH		;3F
+	DB	0FFH		;40
+;
+;  PARITY PATTERN TABLE
+;
+PRTYTB:
+	DB	0FFH		;0---OFF SET VALUE
+	DB	0FFH		;1
+	DB	0FFH		;2
+	DB	0FFH		;3
+	DB	0FFH		;4
+	DB	0FFH		;5
+	DB	0FFH		;6
+	DB	000H		;7
+	DB	0FFH		;8
+	DB	0FFH		;9
+	DB	0FFH		;A
+	DB	001H		;B
+	DB	0FFH		;C
+	DB	002H		;D
+	DB	003H		;E
+	DB	0FFH		;F
+	DB	0FFH		;10
+	DB	0FFH		;11
+	DB	0FFH		;12
+	DB	004H		;13
+	DB	0FFH		;14
+	DB	007H		;15
+	DB	008H		;16
+	DB	0FFH		;17
+	DB	0FFH		;18
+	DB	005H		;19
+	DB	009H		;1A
+	DB	0FFH		;1B
+	DB	006H		;1C
+;**************
+	END
+;**************

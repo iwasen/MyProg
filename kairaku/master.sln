@@ -1,0 +1,16 @@
+Microsoft Visual Studio Solution File, Format Version 1.00
+Project("{66355F20-A65B-11D0-BFB5-00A0C91EBFA0}") = "master", "master.vjp", "{4289D8D5-408F-47B2-BF98-9129064DC48F}"
+EndProject
+Global
+	GlobalSection(LocalDeployment) = postSolution
+		StartupProject = {4289D8D5-408F-47B2-BF98-9129064DC48F}
+	EndGlobalSection
+	GlobalSection(BuildOrder) = postSolution
+		0 = {4289D8D5-408F-47B2-BF98-9129064DC48F}
+	EndGlobalSection
+	GlobalSection(SourceCodeControl) = preSolution
+		SccAuxPath = 
+	EndGlobalSection
+	GlobalSection(DeploymentRoot) = postSolution
+	EndGlobalSection
+EndGlobal

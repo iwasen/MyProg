@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<title>みつくろい用ヘッダー/フッター入力</title>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600" leftmargin="0" marginwidth="0">
+
+<? draw_head2(".."); ?>
+
+<br>
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="513" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+<TD>
+<p><font color="#003399"><b>■&lt;<?php echo $melonpai_name; ?>&gt; さんのみつくろい用ヘッダー/フッター入力</b></font></p>
+<form name="form1" action="header_footer.php" method="post">
+<input type="hidden" name="job_flg" value="add">
+<input type="hidden" value="<?php echo $melonpai_id; ?>" name="melonpai_id">
+<input type="hidden" value="<?php echo $melonpai_pswd; ?>" name="melonpai_pswd">
+<input type="hidden" value="<?php echo $melonpai_name; ?>" name="melonpai_name">
+<div align="center">
+  <center>
+<table border="0" width="503">
+  <tr>
+    <td width="461" bgcolor="#99CCFF">
+	<font color="#003399"><b>●ヘッダー　</b></font></td>
+    <td width="1" bgcolor="#99CCFF"></td>
+  </tr>
+  <tr>
+    <td width="430" colspan="2"><textarea name="header" cols="80" rows="5"><? echo $header; ?></textarea></td>
+    <td width="20" rowspan="3"></td>
+  </tr>
+  <tr>
+    <td width="461" bgcolor="#99CCFF">
+	<font color="#003399"><b>●フッター　</b></font></td>
+    <td width="1" bgcolor="#99CCFF"><input type="submit" value="ヘッダー/フッター　更新" name="footer"></td>
+  </tr>
+  <tr>
+    <td width="430" colspan="2"><textarea name="footer" cols="80" rows="5"><? echo $footer; ?></textarea></td>
+    <td width="20"></td>
+  </tr>
+</table>
+  </center>
+</div>
+</form>
+<div align="left">
+<form name="mypage" action="mypage.php" method="post">
+<input type="hidden" value="<? echo $melonpai_id ?>" name="melonpai_id">
+<input type="hidden" value="<? echo $melonpai_pswd ?>" name="melonpai_pswd">
+<input type="hidden" value="<? echo $melonpai_name ?>" name="melonpai_name">
+<a href="JavaScript:document.mypage.submit();">
+&lt;&lt;&lt;　メルマガナビ　マイページへ戻る </a>
+</form>
+</div>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+<table>
+<br>
+<br>
+</table>
+</TD>
+</TR>
+
+<? draw_footer2(".."); ?>
+
+</TABLE>
+</body>
+</html>
+

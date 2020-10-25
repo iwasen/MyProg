@@ -1,0 +1,13 @@
+.text10 {  font-size: 10pt; line-height: 125%; color: #000000 !important}
+.list {  color: #3f659e !important}
+.title {  font-size: 10pt; line-height: 125%; color: #000000; background: #ffeda7 !important}
+.detail {  font-size: 10pt; line-height: 125%; color: #000000; background: #e5e5e5 !important}
+.ask {  font-size: 10pt; line-height: 125%; color: #000000; background: #FFFFFF; clip:   rect(   ) !important}
+a:link {  color: #2E4974; text-decoration: none !important}
+a:visited {  color: #2E4974; text-decoration: none !important}
+a:hover {  color: #2E4974; text-decoration: underline !important}
+a:active {  color: #2E4974; text-decoration: underline !important}
+.copyright {  font-size: 8pt; line-height: 125%; color: #000000; background: #FFFFFF !important}
+.price {  position: relative; left: 20px; top: 15px; clip:   rect(   ); height: auto; width: auto !important}
+.midashi {  font-size: 11pt; font-weight: bold; color: #FFFFFF; line-height: 135%; background: #5d84b8 !important}
+

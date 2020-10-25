@@ -1,0 +1,348 @@
+form
+{
+	margin: 0
+}
+hr.header
+{
+	color: #FF0080
+}
+img.photo
+{
+	border-color: #0000dd;
+}
+
+hr.footer
+{
+	margin-top: 4px;
+	color: #FF0080
+}
+.charara
+{
+	background-color: #FF6600;
+	color: white;
+	font-weight: bolder
+}
+.nigaoe_m
+{
+	filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100,FinishOpacity=30,Style=1);
+	color:white;
+	background-color:#FF9999;
+	 width:100%;
+	font-weight: bolder
+}
+.staff_m
+{
+	filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100,FinishOpacity=30,Style=1);
+	color:white;
+	background-color: #FF9900;
+	 width:100%;
+	font-weight: bolder
+}
+.user_m
+{
+	filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100,FinishOpacity=30,Style=1);
+	color:white;
+	background-color: #6699CC;
+	 width:100%;
+	font-weight: bolder
+}
+.mail_m
+{
+	filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100,FinishOpacity=30,Style=1);
+	color:white;
+	background-color: #669933;
+	 width:100%;
+	font-weight: bolder
+}
+.master_m
+{
+	filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100,FinishOpacity=30,Style=1);
+	color:white;
+	background-color: #9f8fc0;
+	 width:100%;
+	font-weight: bolder
+}
+.etc_m
+{
+	filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100,FinishOpacity=30,Style=1);
+	color:white;
+	background-color: #aaaaaa;
+	 width:100%;
+	font-weight: bolder
+}
+.nigaoe
+{
+	background-color:#FF9999;
+	color: white;
+	font-weight: bolder
+}
+.staff
+{
+	background-color: #FF9900;
+	color: white;
+	font-weight: bolder
+}
+.user
+{
+	background-color: #6699CC;
+	color: white;
+	font-weight: bolder
+}
+.master
+{
+	background-color: #9f8fc0;
+	color: white;
+	font-weight: bolder
+}
+.master_st
+{
+	background-color: darkseagreen;
+	color: white;
+	font-weight: bolder
+}
+.etc
+{
+	background-color: #aaaaaa;
+	color: white;
+	font-weight: bolder
+}
+.lb
+{
+	text-align: right;
+	white-space: nowrap;
+}
+.lc
+{
+	padding-top: 3px;
+	padding-bottom: 2px;
+	padding-left: 5px;
+	width: 100%;
+	color: navy;
+	background-color: #ffffdd;
+	font-size: smaller
+}
+
+.m0
+{
+	font-weight: bold;
+	color: #6666FF;
+	white-space: nowrap;
+	vertical-align: bottom;
+	padding-top: 10px;
+	padding-bottom: 0px
+}
+.m1
+{
+	color: black;
+	white-space: nowrap;
+	background-color: moccasin
+}
+.m2
+{
+	color: black;
+	white-space: nowrap;
+	background-color: #ccffcc
+}
+.m3
+{
+	color: black;
+	white-space: nowrap;
+	background-color: lightcyan
+}
+.n1
+{
+	background-color: #eeeeee
+}
+.n2
+{
+	background-color: #EEFFFF
+}
+.n3
+{
+	background-color: #f9f9f9
+}
+.tch
+{
+	background-color: #ffcc99
+}
+tr.tc0
+{
+	background-color: #ddffee
+}
+tr.tc1
+{
+	background-color: #ffffff
+}
+.alpha
+{
+	ime-mode: inactive
+}
+.kanji
+{
+	ime-mode: active
+}
+.number
+{
+	ime-mode: disabled
+}
+
+.note
+{
+	font-size: smaller;
+	color: forestgreen
+}
+.small
+{
+    font-size: 90%
+}
+.small2
+{
+    font-size: 80%
+}
+
+/*
+table
+{
+	border-collapse: separate;
+	empty-cells: show
+}
+th
+{
+	white-space: nowrap;
+}
+pre
+{
+	margin: 0px
+}
+div.page
+{
+	page-break-before: always
+}
+a:link
+{
+	color: blue
+}
+a:visited
+{
+	color: blue
+}
+a:active
+{
+	color: blue
+}
+a:hover
+{
+	color: red
+}
+a.thread:link
+{
+	color = blue;
+	text-decoration: none
+}
+a.thread:visited
+{
+	color = blue;
+	text-decoration: none
+}
+a.thread:active
+{
+	color = blue;
+	text-decoration: none
+}
+a.thread:hover
+{
+	color: red;
+	text-decoration: underline
+}
+th.sort
+{
+	cursor: hand
+}
+.tch
+{
+	background-color: #ffcc99
+}
+td.tc0
+{
+	background-color: #eeffff
+}
+td.tc1
+{
+	background-color: #ffffff
+}
+.np
+{
+	font-size: 10.5pt;
+	font-family: '£Í£Ó ¥´¥·¥Ã¥¯'
+}
+.disabled
+{
+	color: #888888
+}
+.lt
+{
+	white-space: nowrap;
+}
+.m2
+{
+    color: black;
+    white-space: nowrap;
+    background-color: #bbeebb
+}
+.n2
+{
+    background-color: #eeeedd
+}
+.m4
+{
+    color: #555555;
+    white-space: nowrap;
+    background-color: lightcyan
+}
+.m5
+{
+	display: none
+}
+.n3
+{
+    font-size: 13px
+}
+.q0
+{
+	BACKGROUND-COLOR: #e2f0dc;
+	font-size: smaller
+}
+.q1
+{
+	BACKGROUND-COLOR: #ffe0e0;
+	font-size: smaller
+}
+.q2
+{
+	BACKGROUND-COLOR: #e2e0ec;
+	font-size: smaller
+}
+.menubtn
+{
+	width: 100%;
+	border: 3 outset;
+	font-weight: bold;
+	cursor: hand;
+	color: #4682B4;
+	text-align: center;
+	white-space: nowrap;
+	background-color: #d1efd3;
+}
+p.msg
+{
+	color: darkblue
+}
+.small
+{
+    font-size: 90%
+}
+.small2
+{
+    font-size: 80%
+}
+*/

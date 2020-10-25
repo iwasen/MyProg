@@ -1,0 +1,157 @@
+h1 {
+	font-family: "‚l‚r ‚oƒSƒVƒbƒN", "Osaka";
+	font-size: x-small;
+	line-height: 130%;
+	font-weight:normal;
+	margin:5px 0px 10px 0px;
+}
+.char110{
+	font-family: "‚l‚r ‚oƒSƒVƒbƒN", "Osaka";
+	color: #333333;
+	font-size:small;
+	line-height:110%;
+}
+.char110b{
+	font-family: "‚l‚r ‚oƒSƒVƒbƒN", "Osaka";
+	color: #333333;
+	font-size:small;
+	line-height:110%;
+	font-weight:bold;
+}
+.char120{
+	font-family: "‚l‚r ‚oƒSƒVƒbƒN", "Osaka";
+	color: #333333;
+	font-size:small;
+	line-height:120%;
+}
+.char130{
+	font-family: "‚l‚r ‚oƒSƒVƒbƒN", "Osaka";
+	color: #333333;
+	font-size:small;
+	line-height:130%;
+}
+.char130xs{
+	font-family: "‚l‚r ‚oƒSƒVƒbƒN", "Osaka";
+	color: #333333;
+	font-size:small;
+	line-height:130%;
+}
+.char130xxs{
+	font-family: "‚l‚r ‚oƒSƒVƒbƒN", "Osaka";
+	color: #333333;
+	font-size:x-small;
+	line-height:130%;
+	font-weight:normal;
+}
+.char140{
+	font-family: "‚l‚r ‚oƒSƒVƒbƒN", "Osaka";
+	color: #333333;
+	font-size:small;
+	line-height:140%;
+}
+.char140xxs{
+	font-family: "‚l‚r ‚oƒSƒVƒbƒN", "Osaka";
+	color: #333333;
+	font-size:x-small;
+	line-height:140%;
+	font-weight:normal;
+}
+.char100m{
+	font-family: "‚l‚r ‚oƒSƒVƒbƒN", "Osaka";
+	color: #333333;
+	font-size:small;
+}
+
+.hnews{
+	margin-top:8px; margin-bottom:8px; margin-left:10px; margin-right:10px;
+	padding:0px;
+	font-size:small;
+	line-height:140%;
+}
+.hsearch{
+	color: #333333;
+	font-size:small;
+	line-height:110%;
+}
+.htrack{
+	margin-top:5px; margin-bottom:12px; margin-left:15px; margin-right:15px;
+	padding:0px;
+	font-size:small;
+}
+.sdesk{
+	margin-top:5px; margin-bottom:8px; margin-left:5px; margin-right:10px;
+	padding:0px;
+	font-size:small;
+	line-height:110%;
+	color: #022973;
+}
+.hnavi{
+	margin-top:0px; margin-bottom:0px; margin-left:15px; margin-right:15px;
+	padding:0px;
+	font-size:small;
+	line-height:140%;
+}
+
+/* for 30beauty */
+.subtit{
+	color: #CC0033;
+	font-size:16px;
+	font-weight:bold;
+}
+.mmidashi{
+	color: #CC0033;
+	font-size:12px;
+	font-weight:bold;
+	line-height:120%;
+}
+.caption{
+	color: #CC0033;
+	font-size:10px;
+	line-height:130%;
+}
+.bt30-letter{
+	line-height:22px;
+	padding:0 15px 0 15px;
+}
+
+/* for 30beauty autumn */
+#autumn .subtit{
+	color: #660000;
+	font-size:16px;
+	font-weight:bold;
+}
+#autumn .mmidashi{
+	color: #660000;
+	font-size:12px;
+	font-weight:bold;
+	line-height:120%;
+}
+#autumn .subtxt{
+	font-size:10px;
+	color:#663333;
+	line-height:130%;
+}
+
+/* for 30beauty old */
+.30bt-mmidashi{
+	color: #CC0033;
+	font-size:x-small;
+	font-weight:bold;
+}
+.30bt-caption{
+	color: #CC0033;
+	font-size:xx-small;
+	line-height:130%;
+}
+
+/* for sp */
+.sp-mmidashi{
+	font-size:15px;
+	font-weight:bold;
+	line-height:115%;
+}
+.sp-stit{
+	color: #83AD2C;
+	font-size:15px;
+	font-weight:bold;
+}

@@ -1,0 +1,122 @@
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+  <tr bgcolor="#5B94FD">
+
+    <td colspan="3"><img src="image/naviedit_comment_ttl.gif" width="106" height="25" hspace="10" alt="コメント管理"></td>
+  </tr>
+  <tr>
+    <td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+    <td width="555" valign="top">
+      <form name="form3" method="post" action="" enctype="multipart/form-data">
+	<table width="555" border="0" cellspacing="0" cellpadding="0">
+	  <tr>
+	    <td colspan="2"><img src="image/spacer.gif" width="1" height="15"></td>
+	  </tr>
+	  <tr>
+	    <td colspan="2"><img src="image/naviedit_comment_list_ttl.gif" width="132" height="14" alt="コメント一覧"></td>
+	  </tr>
+	  <tr>
+	    <td width="450"><img src="image/spacer.gif" width="450" height="1"></td>
+	    <td width="105"><img src="image/spacer.gif" width="105" height="1"></td>
+	  </tr>
+	  <tr>
+	    <td colspan="2"><img src="image/spacer.gif" width="1" height="7"></td>
+	  </tr>
+	  <tr>
+	    <td valign="top" align="right" class="char120">
+	      <a href="index.php?module=Navi&amp;action=adminComment&amp;navipage_id=<{$hitobitoNaviPageInfo->getId()}>">ナビ記事</a> | 
+	      <a href="index.php?module=Navi&amp;action=adminComment&amp;navipage_id=<{$hitobitoNaviPageInfo->getId()}>&amp;navi_list_target=melmaga">メルマガ</a> | 
+	      <a href="index.php?module=Navi&amp;action=adminComment&amp;navipage_id=<{$hitobitoNaviPageInfo->getId()}>&amp;navi_list_target=enquete">アンケート</a>
+	      <table width="450" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+		  <td colspan="9" bgcolor="#666666"><img src="image/spacer.gif" width="450" height="1"></td>
+		</tr>
+		<tr>
+		  <td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		  <td width="35" align="center">　</td>
+		  <td width="35" bgcolor="#E6F2FF" align="center" class="char120">
+		    <p class="ind0804">No.</p>
+		  </td>
+		  <td width="50" align="center" class="char120">項目</td>
+		  <td width="80" align="center" class="char120" bgcolor="#E6F2FF">
+		    <p class="ind0804">投稿者</p>
+		  </td>
+		  <td width="98" align="center" class="char120">投稿内容</td>
+		  <td width="80" bgcolor="#E6F2FF" align="center" class="char120">
+		    <p class="ind0804">投稿日時</p>
+		  </td>
+		  <td width="50" align="center" class="char120" nowrap>
+		    <p class="ind0804">ステータス</p>
+		  </td>
+		  <td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		</tr>
+		<tr>
+		  <td colspan="9" bgcolor="#666666"><img src="image/spacer.gif" width="450" height="1"></td>
+		</tr>
+		<{foreach item=item from=$itemlist name=itemlist}>
+		<!-- ここから -->
+		<tr>
+		  <td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		  <td align="center">
+		    <input type="radio" name="navi_item_id" value="<{$item->getParentContentsId()}>-<{$item->getCommentNo()}>">
+		  </td>
+		  <td bgcolor="#E6F2FF" align="center" class="char120">
+		    <p class="ind0804"><{$smarty.foreach.itemlist.iteration}></p>
+		  </td>
+		  <td class="char120" align="center"><{$item->getCommentType()}></td>
+		  <td class="char120" align="center" bgcolor="#E6F2FF">
+		    <p class="ind0804"><{$item->getPosterName()|escape}>さん</p>
+		  </td>
+		  <td align="center" class="char120" nowrap><a href="<{$view_url}><{$item->getParentContentsId()}>"><{$item->getShortText()|escape}></a></td>
+		  <td bgcolor="#E6F2FF" align="center" class="char120" nowrap>
+		    <p class="ind0804"><{$item->getDate()|HNbDate:"s"}></p>
+		  </td>
+		  <td align="center" class="char120">
+		    <p class="ind0804"><{if $item->getStatus() ==1}>公開<{else}>非公開<{/if}></p>
+		  </td>
+		  <td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		</tr>
+		<!-- ここまで-->
+		<tr>
+		  <td colspan="9" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="450" height="1"></td>
+		</tr>
+		<{/foreach}>
+	      </table>
+	      <{$navigation->getMoveNavigation()}>
+	    </td>
+	    <td valign="top" align="center">
+	      <table width="65" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+		  <td><input type="image" name="navi_modify_item"  src="image/naviedit_btn_edit.gif" width="65" height="20" alt="編集" border="0"></td>
+		</tr>
+		<tr>
+		  <td><img src="image/spacer.gif" width="1" height="15"></td>
+		</tr>
+		<tr>
+		  <td><input type="image" name="navi_close_item" src="image/naviedit_btn_noopen.gif" width="65" height="20" alt="非公開" border="0"></td>
+		</tr>
+		<tr>
+		  <td><img src="image/spacer.gif" width="1" height="15"></td>
+		</tr>
+		<tr>
+		  <td><input type="image" name="navi_delete_item" src="image/naviedit_btn_delete.gif" width="65" height="20" alt="削除" border="0"></td>
+		</tr>
+		<tr>
+		  <td><img src="image/spacer.gif" width="1" height="15"></td>
+		</tr>
+		<tr>
+		  <td>
+		    <a href="index.php?module=Navi&amp;action=notify_config&amp;navipage_id=<{$hitobitoNaviPageInfo->getId()}>&amp;navi_notify_target=comment" ><img src="image/naviedit_btn_notice.gif" border="0" alt="通知メール" /></a>
+		  </td>
+		</tr>
+	      </table>
+	    </td>
+	  </tr>
+	  <tr>
+	    <td colspan="2"><img src="image/spacer.gif" width="1" height="30"></td>
+	  </tr>
+	</table>
+      </form>
+    </td>
+    <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+  </tr>
+</table>

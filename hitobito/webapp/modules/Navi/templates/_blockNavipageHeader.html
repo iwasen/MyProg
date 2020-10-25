@@ -1,0 +1,51 @@
+<table width="800" border="0" cellspacing="0" cellpadding="0" align="center">
+	<tr>
+		<td colspan="4" bgcolor="#F5E156"><img src="image/spacer.gif" width="1" height="2"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#F5E156"><img src="image/spacer.gif" width="2" height="1"></td>
+		<td colspan="2" background="image/navi_ttl_bg.gif"><img src="image/spacer.gif" width="1" height="18"></td>
+		<td bgcolor="#F5E156"><img src="image/spacer.gif" width="2" height="1"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#F5E156" width="2"><img src="image/spacer.gif" width="2" height="1"></td>
+		<td width="23"><img src="image/spacer.gif" width="23" height="1"></td>
+		<td width="773">
+			<table width="773" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+				  
+          <td width="70" valign="middle" align="center"> <{if $navi_navipage->getPhotoId() 
+            > 0}> <img src="image.php?id=<{$navi_navipage->getPhotoId()}>"> 
+            <{else}> <img src="image/navi_ph.gif" width="80" /> <{/if}> </td>
+					<td width="703" valign="top">
+						<p class="navittl"><{$navi_navipage->getTitle()|escape}></p>
+						<p class="hnavi"><span class="char999999">ナビ : </span><{$navi_navipage->getNaviName()}> <span class="char999999">（ <a href="index.php?module=Navi&amp;action=ShowProfile&amp;navipage_id=<{$navi_navipage->getId()}>">自己紹介</a> | <a href="index.php?module=Contact&amp;navipage_id=<{$navi_navipage->getId()}>&amp;contact_form_id=1">このナビに仕事・取材を依頼</a> | <a href="index.php?module=Contact&amp;navipage_id=<{$navi_navipage->getId()}>&amp;contact_form_id=2">このナビへの問い合わせ</a> ）</span><br>
+						<{$navi_navipage->getDescription()|HNbEscape}></p>
+					</td>
+				</tr>
+				<tr align="right">
+					<td colspan="2">
+						<table width="500" border="0" cellspacing="0" cellpadding="0" ID="Table1">
+							<tr>
+							<{foreach item=tab from=$navipage_header_tablist}>
+								<td><a href="<{$tab->getUrl()}>"><img src="image/<{$tab->getImageFileName()}>" width="90" height="22" alt="<{$tab->getName()}>" border="0"></a></td>
+								<td><img src="image/spacer.gif" width="10" height="1"></td>
+							<{/foreach}>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+		<td bgcolor="#F5E156" width="2"><img src="image/spacer.gif" width="2" height="1"></td>
+	</tr>
+	<tr>
+		<td colspan="4" bgcolor="#FFCC00"><img src="image/spacer.gif" width="1" height="2"></td>
+	</tr>
+	<tr>
+		<td colspan="4" background="image/navi_foot_bg.gif"><img src="image/spacer.gif" width="1" height="10"></td>
+	</tr>
+	<tr>
+		<td colspan="4"><img src="image/spacer.gif" width="1" height="15"></td>
+	</tr>
+</table>

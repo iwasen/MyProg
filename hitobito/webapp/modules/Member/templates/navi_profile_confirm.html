@@ -1,0 +1,44 @@
+<!-- ナビ登録確認画面 -->
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+	<tr bgcolor="#5B94FD">
+		<td colspan="3"><img src="image/navising_ttl.gif" width="67" height="25" hspace="10" alt="ナビ登録"></td>
+	</tr>
+	<tr>
+		<td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+		<td width="555" valign="top">
+			<table width="555" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					
+                <td class="char120"><font color="#FF0000">下記の情報で登録します。ご確認ください。</font></td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="20"></td>
+				</tr>
+			</table>
+			<form name="form3" method="post" action="" enctype="multipart/form-data">
+			  <{include file="_navi_profile_confirm.inc.html"}> 
+
+				<table width="555" border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td bgcolor="#5B94FD"><img src="image/spacer.gif" width="1" height="5"></td>
+					</tr>
+					<tr>
+						<td><img src="image/spacer.gif" width="1" height="20"></td>
+					</tr>
+					<tr>
+						<td>
+						  <input type="hidden" name="save_execute" value="execute" />
+							<input type="image" border="0" name="imageField" src="image/member_sign_btn_submit.gif" width="80" height="20" alt="登録情報更新" >　
+						  <a href="index.php"><img  border="0" name="imageField" src="image/naviedit_btn_cancel.gif" width="110" height="20" alt="登録しないで戻る" ></a>
+						</td>
+					</tr>
+					<tr>
+						<td><img src="image/spacer.gif" width="1" height="10"></td>
+					</tr>
+				</table>
+				</form>
+		</td>
+		<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+	</tr>,
+</table>
+<!-- ナビ登録確認画面 ここまで-->

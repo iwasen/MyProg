@@ -1,0 +1,48 @@
+
+<table width="360" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="260">　</td>
+    <td width="100" align="right">　</td>
+  </tr>
+  <tr> 
+    <td width="260"><img src="image/new_mel_ttl.gif" width="150" height="14" alt="メルマガバックナンバー"></td>
+    <td width="100" align="right">　</td>
+  </tr>
+  <tr> 
+    <td colspan="2"><img src="image/spacer.gif" width="1" height="4"></td>
+  </tr>
+  <tr> 
+    <td colspan="2"><img src="image/new_select_split360.gif" width="360" height="1"></td>
+  </tr>
+</table>
+<!--最新メルマガここまで-->
+<!--メルマガここから-->
+<table width="360" border="0" cellspacing="0" cellpadding="0">
+  <{foreach from=$mailmag.backnumber_ary item=mailmag_backnumber name=mailmag_name}> 
+  <tr> 
+    <td colspan="2" bgcolor="<{$mailmag_backnumber.bgcolor}>"><img src="image/spacer.gif" width="1" height="10"></td>
+  </tr>
+  <tr> 
+    <td class="char120" width="260" bgcolor="<{$mailmag_backnumber.bgcolor}>"><a href="?module=MailMag&action=BacknumberContents&navipage_id=<{$navi_page_id}>&contents_id=<{$mailmag_backnumber.contents_id}>"><{$mailmag_backnumber.subject|escape}></a></td>
+    <td align="right" class="char120" width="100" bgcolor="<{$mailmag_backnumber.bgcolor}>"><{$mailmag_backnumber.send_date}></td>
+  </tr>
+  <{if !$smarty.foreach.mailmag_name.last}> 
+  <tr> 
+    <td colspan="2"><img src="image/spacer.gif" width="1" height="8"></td>
+  </tr>
+  <{/if}> <{/foreach}> 
+</table>
+<!--メルマガここまで-->
+<!--メルマガ一覧ここから-->
+<table width="360" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td><img src="image/spacer.gif" width="1" height="10"></td>
+	</tr>
+	<tr>
+
+		<td align="right"><img src="image/new_select_link.gif" width="12" height="12" align="absmiddle" hspace="2"><span class="char120"><a href="?module=MailMag&action=BacknumberList&navipage_id=<{$navi_page_id}>" class="cblack">最新メルマガ一覧</a></span></td>
+	</tr>
+	<tr>
+		<td><img src="image/spacer.gif" width="1" height="20"></td>
+	</tr>
+</table>

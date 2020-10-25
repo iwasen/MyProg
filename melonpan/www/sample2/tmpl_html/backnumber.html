@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>メルマガバックナンバー</TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600" topmargin="0" marginheight="0" leftmargin="0" marginwidth="0">
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="513" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+<TD>
+<p class="midashi14">■メルマガバックナンバー<br></p>
+<table width="700" border="0" cellspacing="2">
+<tr bgcolor="#FFCCCC">
+<td colspan="6">メルマガバックナンバー <?php echo $mag_id."：".$mag_nm."　第 ".$body_id." 回発行分"; ?></td>
+</tr>
+<tr align="center" bgcolor="#FF9966">
+<td>メルマガID</td>
+<td>メルマガ名</td>
+<td>発行日</td>
+<td>発行部数</td>
+</tr>
+<tr>
+<td align=center><?php echo $mag_id; ?>
+<form action=teishi.php method=post>
+<input type=hidden value=000001 name=mag_id>
+<input type=hidden value="メルマガタイトル"name=mag_nm>
+<input type=hidden value=1 name=admin_id>
+ <input type=hidden value="<?php echo $admin_pswd; ?>" name=admin_pswd></td>
+<td align=center><?php echo $mag_nm; ?></td>
+<td align=center><?php echo $modefy_dt; ?></td>
+<td align=right><?php echo number_format($mag_volume); ?></td>
+</form>
+</tr>
+<tr><td align=center bgcolor="#FF9966">タイトル</td>
+<td colspan=4><?php echo $mag_title; ?></td></tr>
+<tr><td align=center bgcolor="#FF9966">本文</td>
+<td colspan=4><?php echo $mag_body; ?></td></tr>
+</table>
+<p>　 </p>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD valign="top" colspan="3" align="right">
+<form>
+  <div align="center"><input type="button" value="　戻　る　" name="B3" onClick="history.back()"></div>
+</form>
+</TD>
+</TR>
+</TABLE>
+</body>
+</html>

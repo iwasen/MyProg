@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<title></title>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600" leftmargin="0" marginwidth="0">
+
+<? draw_head2(".."); ?>
+
+<br>
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="513" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+<TD>
+<p><FONT COLOR="#99CCFF">■</FONT><font color="#003399">ブックマークの新規作成</font></p>
+<table width="600" border="0">
+<tr>
+<td bgcolor="#CCCCFF" width="100">キーワード</td>
+<td><? echo htmlspecialchars(stripcslashes($keyword)); ?></td></tr>
+<tr><td colspan=2 bgcolor="#99CCFF" height=1></td><tr>
+</table>
+<p class="text01">該当メルマガは<? echo $cnt; ?>件ありました。ブックマークに追加するメルマガにチェックをつけ、最後に[ブックマークに追加]ボタンを押してください。</p>
+<form name="addbm" action="make-bm2.php" method="post">
+<table width="600" border="0">
+<tr class="text9ptnoColor" bgcolor="#99CCFF">
+<td width="80" align="center"><font color="#003399"><b>メルマガID</b></font></td>
+<td width="260" align="center"><font color="#003399"><b>メルマガ名</b></font></td>
+<td width="60" align="center"><font color="#003399"><b>発行回数</b></font></td>
+<td width="100" align="center"><b><font color="#003399">カテゴリ</font></b></td>
+<td width="100" align="center"><font color="#003399"><b>ブックマーク<br>
+に追加</b></font></td>
+</tr>
+<? $next_f =make_list($page_no, $melonpai_id, $melonpai_pswd, $melonpai_name, $keyword); ?>
+<tr>
+<td width="80" align="center">　</td>
+<td width="240" align="left">　</td>
+<td width="80" align="center">　</td>
+<td colspan="2" align="right">
+<br>
+<input type="submit" name="sub_addbm" value="ブックマークに追加">
+</td>
+</tr>
+</table>
+<br>
+<TABLE WIDTH="600" BORDER="0" CELLSPACING="1" CELLPADDING="2">
+<? make_nextbtn($page_no, $next_f); ?>
+</TABLE>
+<input type="hidden" value="<? echo $melonpai_id ?>" name="melonpai_id">
+<input type="hidden" value="<? echo $melonpai_pswd ?>" name="melonpai_pswd">
+<input type="hidden" value="<? echo $melonpai_name ?>" name="melonpai_name">
+<input type="hidden" value="<? echo $page_no ?>" name="page_no">
+<input type="hidden" value="<? echo $keyword ?>" name="keyword">
+</form>
+<p>
+<table><tr><td>
+<form name="editbm" action="edit-bookmark.php" method="post">
+<a href="JavaScript:document.editbm.submit();">&lt;&lt;&lt; 　ブックマーク編集画面へ</a>
+<input type="hidden" value="<? echo $melonpai_id ?>" name="melonpai_id">
+<input type="hidden" value="<? echo $melonpai_pswd ?>" name="melonpai_pswd">
+<input type="hidden" value="<? echo $melonpai_name ?>" name="melonpai_name">
+</form>
+</td><td>
+<form name="mypage" action="mypage.php" method="post">
+　　<a href="JavaScript:document.mypage.submit();">
+&lt;&lt;&lt;　メルマガナビ　マイページへ戻る </a>
+<input type="hidden" value="<? echo $melonpai_id ?>" name="melonpai_id">
+<input type="hidden" value="<? echo $melonpai_pswd ?>" name="melonpai_pswd">
+<input type="hidden" value="<? echo $melonpai_name ?>" name="melonpai_name">
+</form>
+</td></tr></table>
+</p>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+<table>
+<br>
+<br>
+</table>
+</TD>
+</TR>
+
+<? draw_footer2(".."); ?>
+
+</TABLE>
+</body>
+</html>

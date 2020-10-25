@@ -1,0 +1,124 @@
+	title	ram
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; module name	: RAM disk read
+; creation date	: 86:01:28
+; revised date  : 
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+	.z80
+;
+	demo	equ	0
+
+		include	MEMORY.INC
+
+		public	ramdisk
+
+ramdisk:
+		xor	a
+		ld	(dskfcb+33),a
+		ld	c,15
+		ld	de,dskfcb
+		call	0005h		; file open
+
+		cp	0ffh
+		jr	z,rmd10		; file nashi
+
+		ld	de,M_RAMDSK
+		ld	b,3
+loop:
+		push	bc
+		push	de
+
+		ld	c,26
+		call	0005h		; dma address set
+
+		ld	c,20
+		ld	de,dskfcb
+		call	0005h		; file read
+
+		pop	de
+		pop	bc
+		ld	hl,128
+		add	hl,de
+		ex	de,hl
+		djnz	loop
+
+		ld	c,16
+		ld	de,dskfcb	
+		call	0005h		; file close
+		ret
+
+	rmd10:
+		ld	hl,ram_init
+		ld	de,M_RAMDSK
+		ld	bc,ram_end-ram_init
+		ldir
+		ret
+;
+;
+;	RAM disk initial data
+;
+ram_init:
+		db	'1'		; pass word flag
+		db	'      '	; pass word
+		db	'1'		; sousain No.
+		db	'1'		; chokusou saki
+		db	'1'		; check list
+		db	'1'		; kaisen kyouyou
+		db	'1'		; kaisen type
+		db	'        '	; kouri code
+		db	'        '	; ENQ
+		db	'             '	; TID
+		db	'             '	; VAN TEL 1
+		db	'             '	; VAN TEL 2
+	if demo
+		db	'01000600'
+		db	0b1h,0b6h,0b2h,020h,020h,020h,020h,020h
+		db	'01001400'
+		db	0b1h,0d2h,0bch,0deh,0bdh,0c4h,020h,020h
+		db	'01002200'
+		db	0b2h,0b4h,0dbh,0b0h,020h,020h,020h,020h
+		db	'01003000'
+		db	0b5h,0dah,0ddh,0bch,0deh,020h,020h,020h
+		db	'01004900'
+		db	0b5h,0b0h,0dbh,0d7h,020h,020h,020h,020h
+		db	'01100200'
+		db	0b8h,0deh,0d8h,0b0h,0ddh,020h,020h,020h
+		db	'56870800'
+		db	050h,043h,05ah,020h,020h,020h,020h,020h
+		db	'36898900'
+		db	0c3h,0b2h,0bch,0deh,0ddh,020h,020h,020h
+		db	'39259600'
+		db	0c4h,0b3h,0b6h,0b2h,020h,020h,020h,020h
+		db	'39258800'
+		db	0c4h,0b3h,0b7h,0aeh,0b3h,020h,020h,020h
+		db	'39256100'
+		db	0c4h,0b3h,0dah,020h,020h,020h,020h,020h
+		db	'50155700'
+		db	0cah,0afh,0c4h,0d8h,020h,020h,020h,020h
+	else
+		db	0,'       ',0,'       '
+		db	0,'       ',0,'       '
+		db	0,'       ',0,'       '
+		db	0,'       ',0,'       '
+		db	0,'       ',0,'       '
+		db	0,'       ',0,'       '
+		db	0,'       ',0,'       '
+		db	0,'       ',0,'       '
+		db	0,'       ',0,'       '
+		db	0,'       ',0,'       '
+		db	0,'       ',0,'       '
+		db	0,'       ',0,'       '
+	endif
+ram_end:
+;
+dskfcb:
+		db	01h
+		db	'MEGANET '
+		db	'DAT'
+		db	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+
+		end

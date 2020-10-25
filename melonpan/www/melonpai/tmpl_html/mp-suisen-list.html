@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>処理待ち推薦文一覧</TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600" leftmargin="0" marginwidth="0">
+
+<? draw_head2(".."); ?>
+
+<br>
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<!--<FORM NAME="form1">-->
+<TABLE width="600" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="600" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+<TD>
+<p class="midashi14"><B><FONT COLOR="#99CCFF">■</FONT><FONT COLOR="#003399">処理待ち推薦文一覧</FONT></B></p>
+<p class="text01">チェックを行ないたい推薦文の[処理]ボタンを押してください。<br>
+一日に処理できる数には制限がありますので、古い順に制限エラーが出るまで処理をしてください。</p>
+<TABLE WIDTH="100%" BORDER="0" CELLSPACING="0" CELLPADDING="0" BGCOLOR="#003399">
+<TR>
+<TD>
+<TABLE WIDTH="600" BORDER="0" CELLSPACING="1" CELLPADDING="3">
+<TR>
+<TD BGCOLOR="#99CCFF" CLASS="text9ptnoColor" WIDTH="86">
+<DIV ALIGN="CENTER"><B><FONT COLOR="#003399">カテゴリ</FONT></B></DIV>
+</TD>
+<TD BGCOLOR="#99CCFF" CLASS="text9ptnoColor" WIDTH="187">
+<DIV ALIGN="CENTER"><B><FONT COLOR="#003399">対象メルマガ名</FONT></B></DIV>
+</TD>
+<TD BGCOLOR="#99CCFF" CLASS="text9ptnoColor" WIDTH="243">
+<DIV ALIGN="CENTER"><B><FONT COLOR="#003399">タイトル</FONT></B></DIV>
+</TD>
+<TD BGCOLOR="#99CCFF" WIDTH="51">　</TD>
+</TR>
+<? $next_f = make_suisen_list($page_no, $melonpai_id, $melonpai_pswd, $melonpai_name); ?>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+<BR>
+<TABLE WIDTH="600" BORDER="0" CELLSPACING="1" CELLPADDING="2">
+<? make_nextbtn($page_no, $next_f, $melonpai_id, $melonpai_pswd, $melonpai_name); ?>
+</TABLE>
+<p>
+<form name="mypage" action="mypage.php" method="post">
+<a href="JavaScript:document.mypage.submit();">
+&lt;&lt;&lt;　メルマガナビ　マイページへ戻る </a>
+<input type="hidden" value="<? echo $melonpai_id ?>" name="melonpai_id">
+<input type="hidden" value="<? echo $melonpai_pswd ?>" name="melonpai_pswd">
+<input type="hidden" value="<? echo $melonpai_name ?>" name="melonpai_name">
+</form>
+</p>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE><!--</FORM>-->
+<table>
+<br>
+<br>
+</table>
+</TD>
+</TR>
+
+<? draw_footer2(".."); ?>
+
+</TABLE>
+</body>
+</html>

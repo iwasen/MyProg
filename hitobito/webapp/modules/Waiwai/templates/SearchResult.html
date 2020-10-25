@@ -1,0 +1,60 @@
+			<table width="585" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td><img src="image/search_sttl_waiwai.gif" width="148" height="14" alt="ワイワイ会議室検索結果"></td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="4"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#5FCA44"><img src="image/spacer.gif" width="585" height="1"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#F0FFE8" align="right" class="char120">
+						<p class="ind1003"><{$total}>件中 <{$start_num}> - <{$end_num}>件目</p>
+					</td>
+				</tr>
+				<tr>
+					<td class="char120"><img src="image/spacer.gif" width="1" height="8"></td>
+				</tr>
+			</table>
+			<{foreach item=item from=$itemlist}>
+			<{assign var=navipage value=$item->getNaviPageInfo()}>
+			<table width="565" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="8"></td>
+				</tr>
+				<tr>
+					<td class="char140"><a href="index.php?module=Waiwai&amp;action=Browse&amp;navipage_id=<{$navipage->getId()}>&amp;waiwai_id=<{$item->getId()}>#waiwai"><{$item->getAttribute('rmk_subject')|escape}></a><{if $item->getAttribute('rmk_pickup') >0}><span class="charwaiwai">　PICK UP !</span><{/if}></td>
+				</tr>
+				<tr>
+					<td class="char120"><{$item->getAttribute('rmk_content')|escape|mbtruncate:200}><br>
+						<span class="charwaiwai"><{$hitobitoUrl}>index.php?module=Waiwai&amp;action=Browse&amp;navipage_id=<{$navipage->getId()}>&amp;waiwai_id=<{$item->getId()}>#waiwai</span>
+					</td>
+				</tr>
+				<tr>
+					<td align="right" class="char120"><span class="char999999">ナビ : </span><{$navipage->getNaviName()|escape}><span class="char999999"> | </span><a href="index.php?module=Navi&amp;navipage_id=<{$navipage->getId()}>"><{$navipage->getTitle()|escape}></a><span class="char999999"> | <{$item->getAttribute('rmk_date')|HNbDate:"m"}></span></td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="8"></td>
+				</tr>
+				<tr>
+					<td><img src="image/search_split_waiwai.gif" width="562" height="1"></td>
+				</tr>
+			</table>
+			<{/foreach}>
+			<table width="565" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td colspan="2"><img src="image/spacer.gif" width="1" height="8"></td>
+				</tr>
+				<tr>
+					<td width="360" class="char120">
+					  <{$navigation->getListNavigation()}>
+					</td>
+					<td align="right" width="205">
+					  <{$navigation->getMoveNavigation()}>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+			</table>

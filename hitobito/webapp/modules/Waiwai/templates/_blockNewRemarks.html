@@ -1,0 +1,56 @@
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td><img src="image/new_board_ttl.gif" width="132" height="14" alt="ワイワイ会議室最新投稿"></td>
+        <td width="100%" align="right"><a href="index.php?module=contents&content_id=6"><img src="image/new_board_help.gif" width="91" height="13" alt="ワイワイ会議室ヘルプ" border="0"></a></td>
+    </tr>
+    <tr>
+        <td colspan="2"><img src="image/spacer.gif" width="1" height="4"></td>
+    </tr>
+    <tr>
+        <td colspan="2"><img src="image/new_board_split360.gif" width="100%" height="1"></td>
+    </tr>
+</table>
+<{foreach from=$waiwai_list_ary item=waiwai_list}>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+        <td bgcolor="<{$waiwai_list.bgcolor}>">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td colspan="2"><img src="image/spacer.gif" width="1" height="10"></td>
+                </tr>
+                <tr>
+                    <td width="475" class="char120"><a href="?module=Waiwai&action=Browse&navipage_id=<{$waiwai_list.navi_page_id}>&waiwai_id=<{$waiwai_list.seq_no}>#waiwai"><{$waiwai_list.subject|escape}></a></td>
+                    <td width="85" align="right" class="char120"><span class="char999999"><{$waiwai_list.date}></span></td>
+                </tr>
+            </table>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td class="char120"><{$waiwai_list.content|escape|nl2br}>（<{$waiwai_list.nickname|escape}>）</td>
+                </tr>
+                <tr>
+                    <td class="char120" align="right"><span class="char999999">ナビ : </span><a href="?module=Navi&action=ShowNaviPage&navipage_id=<{$waiwai_list.navi_page_id}>" class="cblack"><{$waiwai_list.navi_name|escape}></a><span class="char999999">
+                      | </span><a href="?module=Waiwai&action=Browse&navipage_id=<{$waiwai_list.navi_page_id}>&waiwai_id=<{$waiwai_list.seq_no}>" class="cblack"><{$waiwai_list.room_name|escape}></a></td>
+                </tr>
+                <tr>
+                    <td><img src="image/spacer.gif" width="1" height="10"></td>
+                </tr>
+                <tr>
+                    <td><img src="image/new_board_split350.gif" width="100%" height="1"></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<{/foreach}>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td><img src="image/spacer.gif" width="1" height="10"></td>
+    </tr>
+    <tr>
+        <td align="right"><img src="image/new_board_link.gif" width="12" height="12" align="absmiddle" hspace="2"><span class="char120"><a href="?module=Waiwai&action=ListRemarks<{if $channel_id}>&category_id=<{$channel_id}><{/if}><{if $navi_page_id}>&navipage_id=<{$navi_page_id}><{/if}>" class="cblack">最新投稿一覧</a></span></td>
+    </tr>
+    <tr>
+        <td><img src="image/spacer.gif" width="1" height="20"></td>
+    </tr>
+</table>

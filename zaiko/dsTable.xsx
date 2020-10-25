@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--このファイルは XML スキーマ デザイナで自動生成されています。コンポーネントのレイアウト情報はデザイナ画面に保持されます。-->
+<XSDDesignerLayout layoutVersion="1" viewPortLeft="26952" viewPortTop="-2680">
+    <パーツ種別マスタ_XmlElement left="1635" top="1000" width="5292" height="2646" selected="0" zOrder="4" index="0" />
+    <パーツ展開マスタ_XmlElement left="8197" top="1000" width="5292" height="2646" selected="0" zOrder="5" index="1" />
+    <ユーザマスタ_XmlElement left="14759" top="1000" width="5292" height="2646" selected="0" zOrder="6" index="2" />
+    <顧客マスタ_XmlElement left="21321" top="1000" width="5292" height="2646" selected="0" zOrder="7" index="3" />
+    <在庫変更履歴_XmlElement left="27883" top="1000" width="5292" height="2646" selected="0" zOrder="0" index="4" />
+    <パーツ在庫マスタ_XmlElement left="34445" top="1000" width="5291" height="4631" selected="0" zOrder="2" index="5" />
+    <受注データ_XmlElement left="41012" top="1005" width="5291" height="5028" selected="0" zOrder="8" index="6" />
+</XSDDesignerLayout>

@@ -1,0 +1,253 @@
+		title	(( mgmenu ))
+;
+;		meganet 2000	sentaku-gyomu-gamen.
+;		86-01-16	xxxxxxxxx electronic inc.
+;				Toshxxxde-Yutani.
+
+				.z80
+
+		include		SUBR.INC
+
+		public		mgmenu
+
+		extrn		chr_disp
+		extrn		csr_off
+		extrn		csr_on
+		extrn		date_dsp
+		extrn		reverse
+		extrn		gdmsg
+
+	CR	equ	0dh
+	ESC	equ	1bh
+	BEEP	EQU	0eb39h
+
+	ENDKEY	equ	0f7h
+	DEND	equ	0efh
+
+;****************************************
+;*
+;*	#mgmenu#
+;*			sentaku-gyomu-gamen write
+;*					86-01-16	
+;*					T,yutani.
+;****************************************
+mgmenu:
+		call	csr_off		; corsor off !
+
+		call	date_dsp	; Nen Gatu Hi Write !
+
+		ld	hl,m_gmenu
+		call	kmsg		; Main menu write
+	
+		ld	a,1
+		ld	(gflag),a
+
+	mg10:
+		sub	a
+		ld	(gaid),a
+
+	grevers:
+		ld	bc,rev_lng	; reverse length
+		ld	hl,rev_add	; reverse addres
+		call	rev_dsp		; reverse
+
+	guidedisp:
+		call	gaid_dsp	; Gaid Write !
+
+		call	csr_on		; cursor on
+
+		call	xconin		; Keyin !
+		
+		cp	CR		; Keyin enter ?
+		jr	z,hachiu	; Yes :
+	
+		cp	'1'		; Keyin ok?
+		jr	c,gsenbeep	; No :
+		cp	'5'		; Keyin ok?
+		jr	nc,gsenbeep	; No :
+
+		ld	bc,rev_lng	; reverse iength
+		ld	hl,rev_add	; reverse addres
+		call	rev_dsp		; revers
+
+		sub	'0'		; ascii->hex
+		ld	(gflag),a
+
+		jr	mg10
+
+	gsenbeep:
+		cp	ENDKEY		; end key ?
+		ret	z		; * yes
+		cp	DEND
+		ret	z
+
+		ld	bc,1601h
+		call	BEEP		; beeep
+		ld	a,1
+		ld	(gaid),a	; gaide err message 
+
+		jr	guidedisp
+
+	hachiu:
+
+		ld	a,(gflag)
+		dec	a		; key in 1 ?
+		jr	nz,hachiu$1
+
+		ld	a,01
+		call	overlay		; LENS hachiu
+		jr	hachiu$4
+	
+	hachiu$1:
+		dec	a		; key in 2 ?
+		jr	nz,hachiu$2
+
+		ld	a,99
+		call	overlay		; Flame hachiu
+		jr	hachiu$4
+
+	hachiu$2:
+		dec	a		; key in 3 ?
+		jr	nz,hachiu$3
+
+		ld	a,99
+		call	overlay		; Joho service
+		jr	hachiu$4
+
+	hachiu$3:
+		ld	a,04		; key in 4 ?
+		call	overlay		;Hojo gyomu
+
+	hachiu$4:
+		jr	mgmenu
+
+
+;****************************************
+;*
+;*	#gaid_dsp#
+;*		in	(gaid) = 0	ok
+;*			       = 1	not
+;*					86-01-16
+;*					T,yutani.
+;****************************************
+gaid_dsp:
+
+		push	af
+		push	hl
+
+		ld	a,(gaid)
+		or	a
+		jr	nz,gaidwrite$10
+
+		ld	hl,g_okgaid
+		call	gdmsg		; Ok gaid write
+		jr	gaidwrite$20
+		
+	gaidwrite$10:
+		ld	hl,g_nogaid
+		call	gdmsg		; Not gaid write
+
+	gaidwrite$20:
+		ld	a,(gflag)
+		add	a,30h		; hex->ascii
+	
+		ld	(m_gyono+6),a
+		ld	hl,m_gyono
+		call	chr_disp	; Gyomu No. write
+
+		pop	hl
+		pop	af
+
+		ret
+
+;***************************************
+;*
+;*	#rev_dsp#
+;*			in	a = conin data
+;*				(gflag) = old select gyoumu
+;*					86-01-16
+;*					T,yutani
+;***************************************
+rev_dsp:
+
+		push	af
+		push	hl
+
+		ld	a,(gflag)	; Old revers data
+		dec	a
+		ld	l,a
+		ld	h,0
+		add	hl,bc
+		ld	b,(hl)
+		add	a,a
+		ld	e,a
+		ld	d,0
+		pop	hl
+		add	hl,de
+		
+		call	reverse		; line	reverse
+
+		pop	af
+
+		ret
+
+
+;*****************************************
+;*
+;*	data
+;*
+;*****************************************
+m_gmenu:
+		dw	0,201h
+		dw	8381h,834bh,836ch,8362h,8367h,8bc6h,96b1h,9149h,91f0h
+
+		dw	0,103h
+		dw	8250h,838ch,8393h,8359h,94adh,928dh
+
+		dw	0,105h
+		dw	8251h,8374h,838ch,817ch,8380h,94adh,928dh
+
+		dw	0,107h
+		dw	8252h,8feeh,95f1h,8354h,817ch,8372h,8358h
+
+		dw	0,1103h
+		dw	8253h,95e2h,8f95h,8bc6h,96b1h,-1
+
+rev_add:
+		dw	103h
+		dw	105h
+		dw	107h
+		dw	1103h
+rev_lng:	
+		db	12
+		db	14
+		db	14
+		db	10
+
+g_okgaid:
+		db	23,15
+		db	0b7h,0deh,0aeh,0b3h,0d1h,04eh,06fh,0a6h,0b2h,0dah
+		db	0c3h,0e1h,0a6h,0b5h,0bdh
+		db	-1
+
+g_nogaid:
+		db	23,15
+		db	0b7h,0deh,0aeh,0b3h,0d1h,04eh,06fh,0b6h,0deh,0c1h
+		db	0b6h,0deh,0b2h,0cfh,0bdh
+		db	-1
+
+m_gyono:
+		db	ESC,'0'
+		db	ESC,"=",' '+7,' '+39
+		db	'1'
+		db	ESC,'2'
+		db	ESC,"1",-1
+
+gaid:		db	0
+
+gflag:		db	0
+
+gkeyin:		db	0
+
+
+		end

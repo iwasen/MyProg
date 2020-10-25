@@ -1,0 +1,110 @@
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+				<tr bgcolor="#5B94FD">
+					<td colspan="3"><img src="image/naviedit_links_ttl.gif" width="102" height="25" hspace="10" alt="リンク集管理"></td>
+				</tr>
+				<tr>
+					<td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+					<td width="555" valign="top">
+						<table width="555" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td><img src="image/spacer.gif" width="1" height="15"></td>
+							</tr>
+							<tr>
+								<td><img src="image/naviedit_links_sttl_edit.gif" width="67" height="14" alt="リンク編集"></td>
+							</tr>
+							<tr>
+								<td><img src="image/spacer.gif" width="1" height="4"></td>
+							</tr>
+							<tr>
+								<td bgcolor="#5B94FD"><img src="image/spacer.gif" width="555" height="1"></td>
+							</tr>
+							<tr>
+								<td><img src="image/spacer.gif" width="1" height="20"></td>
+							</tr>
+							<tr>
+							  <td>
+							    <{$editform->getHtmlErrors()}>
+							  </td>
+							</tr>
+						</table>
+						<form name="form3" method="post" action="" enctype="multipart/form-data">
+							
+        <table width="555" border="0" cellspacing="0" cellpadding="0">
+          <tr> 
+            <td width="90" class="char120" nowrap>カテゴリ</td>
+            <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+            <td> <{html_options options=$categories_options name=weblinks_category_id 
+              selected=$editform->weblinks_category_id}> </td>
+          </tr>
+          <tr> 
+            <td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+          </tr>
+          <tr> 
+            <td width="90" class="char120" nowrap>リンク先URL</td>
+            <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+            <td> 
+              <input type="text"  name="weblinks_url" value="<{$editform->weblinks_url|escape}>"  size="20" style="width:180px;">
+            </td>
+          </tr>
+          <tr> 
+            <td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+          </tr>
+          <tr> 
+            <td class="char120">リンク先名称</td>
+            <td><img src="image/spacer.gif" width="10" height="1"></td>
+            <td> 
+              <input type="text"  name="weblinks_title" value="<{$editform->weblinks_title|escape}>"  size="20" style="width:180px;">
+            </td>
+          </tr>
+          <tr> 
+            <td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+          </tr>
+          <tr> 
+            <td class="char120" valign="top">リンク先概要</td>
+            <td><img src="image/spacer.gif" width="10" height="1"></td>
+            <td> 
+              <textarea name="weblinks_outline" rows="5" cols="50" style="width:360px;"><{$editform->weblinks_outline|escape}></textarea>
+            </td>
+          </tr>
+          <tr> 
+            <td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+          </tr>
+          <tr> 
+            <td class="char120">作成ナビ</td>
+            <td><img src="image/spacer.gif" width="10" height="1"></td>
+            <td><{$obj->getPosterName()|escape}></td>
+          </tr>
+          <tr> 
+            <td colspan="3"><img src="image/spacer.gif" width="1" height="20"></td>
+          </tr>
+        </table>
+							<table width="555" border="0" cellspacing="0" cellpadding="0">
+								<tr>
+									<td bgcolor="#5B94FD"><img src="image/spacer.gif" width="1" height="5"></td>
+								</tr>
+								<tr>
+									<td><img src="image/spacer.gif" width="1" height="20"></td>
+								</tr>
+								<tr>
+									<td>
+										<table width="180" border="0" cellspacing="0" cellpadding="0">
+											<tr>
+												<td width="50"><input type="image" border="0" name="imageField" src="image/naviedit_btn_regist.gif" width="50" height="20" alt="登録" ></td>
+												<td width="10"><img src="image/spacer.gif" width="20" height="1"></td>
+												<td width="110">
+												  <a href="index.php?module=Weblinks&amp;action=adminShowItems&amp;navipage_id=<{$hitobitoNaviPageInfo->getId()}><{$return_extra_params}>"><img src="image/naviedit_btn_cancel.gif" width="110" height="20" border="0" alt="登録しないで戻る"></a>
+												</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td><img src="image/spacer.gif" width="1" height="10"></td>
+								</tr>
+							</table>
+							</form>
+					</td>
+					<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+				</tr>
+			</table>
+			

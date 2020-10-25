@@ -1,0 +1,78 @@
+<script type="text/javascript">
+<!--
+function waiwai_move_page(n) {
+	var f = document.waiwai_page_form;
+	f.waiwai_page_move.value = n;
+	f.submit();
+}
+//-->
+</script>
+<form method="post" name="waiwai_page_form">
+<input type="hidden" name="waiwai_page_move">
+<table width="580" border="0" cellspacing="0" cellpadding="0" bgcolor="#5FCA44">
+	<tr>
+		<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+		<td width="275"><img src="image/spacer.gif" width="275" height="1"></td>
+		<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+		<td width="215"><img src="image/spacer.gif" width="215" height="1"></td>
+		<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+		<td width="50"><img src="image/spacer.gif" width="50" height="1"></td>
+		<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+	</tr>
+	<tr>
+		<td colspan="7"><img src="image/spacer.gif" width="1" height="5"></td>
+	</tr>
+	<tr>
+		<td><img src="image/spacer.gif" width="10" height="1"></td>
+		<td class="char120">
+		<select name="waiwai_display_type">
+			<{html_options options=$waiwai_page.display_type_options selected=$waiwai_page.display_type}>
+		</select>&nbsp;
+		<select name="waiwai_page_size">
+			<{html_options options=$waiwai_page.page_size_options selected=$waiwai_page.page_size}>
+		</select></td>
+		<td><img src="image/spacer.gif" width="10" height="1"></td>
+		<td align="right" class="char120">
+		<select name="waiwai_current_page">
+			<{html_options options=$waiwai_page.current_page_options selected=$waiwai_page.current_page}>
+		</select>
+			/<{$waiwai_page.max_page}>ページ　</td>
+		<td><img src="image/spacer.gif" width="10" height="1"></td>
+		<td>
+			<input type="image" name="waiwai_page_update_btn" border="0" src="image/waiwai_btn_reflesh.gif" width="50" height="20" alt="更新">
+		</td>
+		<td><img src="image/spacer.gif" width="10" height="1"></td>
+	</tr>
+	<tr>
+		<td colspan="7"><img src="image/spacer.gif" width="1" height="5"></td>
+	</tr>
+</table>
+<table width="580" border="0" cellspacing="0" cellpadding="0" bgcolor="#E3F7DF">
+	<tr>
+		<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+		<td width="465"><img src="image/spacer.gif" width="465" height="1"></td>
+		<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+		<td width="85"><img src="image/spacer.gif" width="85" height="1"></td>
+		<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+	</tr>
+	<tr>
+		<td colspan="5"><img src="image/spacer.gif" width="1" height="4"></td>
+	</tr>
+	<tr>
+		<td><img src="image/spacer.gif" width="10" height="1"></td>
+		<td align="right"><img src="image/waiwai_btn_pre.gif" width="12" height="12" align="absmiddle" hspace="2"><span class="char120"><{if $waiwai_page.prev_page}><a href="javascript:waiwai_move_page(-1)" class="cblack"><{else}><span class="char999999"><{/if}>前へ<{if $waiwai_page.prev_page}></a><{else}></span><{/if}></span><span class="char999999"> | </span><img src="image/waiwai_btn_next.gif" width="12" height="12" align="absmiddle" hspace="2"><span class="char120"><{if $waiwai_page.next_page}><a href="javascript:waiwai_move_page(1)" class="cblack"><{else}><span class="char999999"><{/if}>次へ<{if $waiwai_page.prev_page}></a><{else}></span><{/if}></span></td>
+		<td><img src="image/spacer.gif" width="10" height="1"></td>
+		<td><{if $waiwai_isRoomMember}><a href="?module=Waiwai&action=<{$waiwai_new_post_action}>&navipage_id=<{$navi_page_id}>&t=<{$waiwai_time}>#waiwai"><img src="image/waiwai_btn_post.gif" width="85" height="20" alt="新規投稿" border="0"></a><{/if}></td>
+		<td><img src="image/spacer.gif" width="10" height="1"></td>
+	</tr>
+	<tr>
+		<td colspan="5"><img src="image/spacer.gif" width="1" height="4"></td>
+	</tr>
+	<tr bgcolor="#CCCCCC">
+		<td colspan="5"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr bgcolor="#FFFFFF">
+		<td colspan="5"><img src="image/spacer.gif" width="1" height="15"></td>
+	</tr>
+</table>
+</form>

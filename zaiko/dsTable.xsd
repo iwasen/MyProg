@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema id="dsTable" targetNamespace="http://tempuri.org/dsTable.xsd" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns="http://tempuri.org/dsTable.xsd" xmlns:mstns="http://tempuri.org/dsTable.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+	<xs:element name="dsTable" msdata:IsDataSet="true">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="パーツ種別マスタ">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="パーツ種別コード" type="xs:string" />
+							<xs:element name="パーツ種別名" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="パーツ展開マスタ">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="商品名称" type="xs:string" />
+							<xs:element name="パーツ1" type="xs:string" minOccurs="0" />
+							<xs:element name="数量1" type="xs:int" minOccurs="0" />
+							<xs:element name="パーツ2" type="xs:string" minOccurs="0" />
+							<xs:element name="数量2" type="xs:int" minOccurs="0" />
+							<xs:element name="パーツ3" type="xs:string" minOccurs="0" />
+							<xs:element name="数量3" type="xs:int" minOccurs="0" />
+							<xs:element name="パーツ4" type="xs:string" minOccurs="0" />
+							<xs:element name="数量4" type="xs:int" minOccurs="0" />
+							<xs:element name="パーツ5" type="xs:string" minOccurs="0" />
+							<xs:element name="数量5" type="xs:int" minOccurs="0" />
+							<xs:element name="パーツ6" type="xs:string" minOccurs="0" />
+							<xs:element name="数量6" type="xs:int" minOccurs="0" />
+							<xs:element name="パーツ7" type="xs:string" minOccurs="0" />
+							<xs:element name="数量7" type="xs:int" minOccurs="0" />
+							<xs:element name="パーツ8" type="xs:string" minOccurs="0" />
+							<xs:element name="数量8" type="xs:int" minOccurs="0" />
+							<xs:element name="パーツ9" type="xs:string" minOccurs="0" />
+							<xs:element name="数量9" type="xs:int" minOccurs="0" />
+							<xs:element name="パーツ10" type="xs:string" minOccurs="0" />
+							<xs:element name="数量10" type="xs:int" minOccurs="0" />
+							<xs:element name="パーツ11" type="xs:string" minOccurs="0" />
+							<xs:element name="数量11" type="xs:int" minOccurs="0" />
+							<xs:element name="パーツ12" type="xs:string" minOccurs="0" />
+							<xs:element name="数量12" type="xs:int" minOccurs="0" />
+							<xs:element name="パーツ13" type="xs:string" minOccurs="0" />
+							<xs:element name="数量13" type="xs:int" minOccurs="0" />
+							<xs:element name="パーツ14" type="xs:string" minOccurs="0" />
+							<xs:element name="数量14" type="xs:int" minOccurs="0" />
+							<xs:element name="パーツ15" type="xs:string" minOccurs="0" />
+							<xs:element name="数量15" type="xs:int" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ユーザマスタ">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ユーザID" type="xs:string" />
+							<xs:element name="パスワード" type="xs:string" minOccurs="0" />
+							<xs:element name="ユーザレベル" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="顧客マスタ">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="並び順" type="xs:int" minOccurs="0" />
+							<xs:element name="顧客コード" type="xs:string" />
+							<xs:element name="顧客名" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="在庫変更履歴">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="通し番号" msdata:AutoIncrement="true" type="xs:int" />
+							<xs:element name="パーツ名称" type="xs:string" minOccurs="0" />
+							<xs:element name="処理日時" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="入出庫区分" type="xs:string" minOccurs="0" />
+							<xs:element name="数量" type="xs:int" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="パーツ在庫マスタ">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="パーツ名称" type="xs:string" />
+							<xs:element name="製造区分" type="xs:string" minOccurs="0" />
+							<xs:element name="パーツ種別" type="xs:string" minOccurs="0" />
+							<xs:element name="現在庫数" type="xs:int" minOccurs="0" default="0" />
+							<xs:element name="発注点警告日" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="発注点数量" type="xs:int" minOccurs="0" />
+							<xs:element name="備考" type="xs:string" minOccurs="0" />
+							<xs:element name="欠品になった日" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="棚卸した日" type="xs:dateTime" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="受注データ">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="顧客コード" type="xs:string" />
+							<xs:element name="受注番号" type="xs:string" />
+							<xs:element name="受注日" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="納期" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="商品名称" type="xs:string" minOccurs="0" />
+							<xs:element name="受注数量" type="xs:int" minOccurs="0" />
+							<xs:element name="在庫引落日時" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="在庫引当処理番号" type="xs:int" minOccurs="0" />
+							<xs:element name="標準商品名称" type="xs:string" minOccurs="0" />
+							<xs:element name="ピッキングリスト出力" type="xs:boolean" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+		<xs:unique name="dsTableKey2" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:パーツ種別マスタ" />
+			<xs:field xpath="mstns:パーツ種別コード" />
+		</xs:unique>
+		<xs:unique name="dsTableKey3" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:パーツ展開マスタ" />
+			<xs:field xpath="mstns:商品名称" />
+		</xs:unique>
+		<xs:unique name="dsTableKey4" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:ユーザマスタ" />
+			<xs:field xpath="mstns:ユーザID" />
+		</xs:unique>
+		<xs:unique name="dsTableKey5" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:顧客マスタ" />
+			<xs:field xpath="mstns:顧客コード" />
+		</xs:unique>
+		<xs:unique name="dsTableKey6" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:在庫変更履歴" />
+			<xs:field xpath="mstns:通し番号" />
+		</xs:unique>
+		<xs:unique name="dsTableKey1" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:パーツ在庫マスタ" />
+			<xs:field xpath="mstns:パーツ名称" />
+		</xs:unique>
+		<xs:unique name="dsTableKey7" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:受注データ" />
+			<xs:field xpath="mstns:顧客コード" />
+			<xs:field xpath="mstns:受注番号" />
+		</xs:unique>
+	</xs:element>
+</xs:schema>

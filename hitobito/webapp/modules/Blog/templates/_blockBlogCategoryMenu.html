@@ -1,0 +1,30 @@
+			<!-- ナビ記事カテゴリーここから -->
+			<table width="200" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFCC33">
+				<tr>
+					<td colspan="3"><img src="image/menu_navi_cat_ttl.gif" width="200" height="28" alt="ナビ記事カテゴリー"></td>
+				</tr>
+				<tr>
+					<td width="3"><img src="image/spacer.gif" width="3" height="1"></td>
+					<td width="194">
+					<!-- 記事タイトルここから -->
+						<table width="194" border="0" cellspacing="0" cellpadding="3">
+						<!-- ループここから -->
+							<{foreach item=item from=$blog_category_list}>
+							<tr>
+								<td bgcolor="#FFFFFF"><p class ="menuind16"><img src="image/menu_ch_link01.gif" width="12" height="12" hspace="2" align="absmiddle"><span class="char120"><a href="index.php?module=Blog&amp;navipage_id=<{$hitobitoNaviPageInfo->getId()}>&amp;blog_category_id=<{$item->getId()}>" class="cblack"><{$item->getAttribute('category_name')|escape}></a></span></p></td>
+							</tr>
+							<{/foreach}>
+						<!-- ループここまで -->
+						</table>
+						<!-- 記事タイトルここまで -->
+					</td>
+					<td width="3"><img src="image/spacer.gif" width="3" height="1"></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/m_memu_foot.gif" width="200" height="6"></td>
+				</tr>
+				<tr bgcolor="#FFFFFF">
+				  <td colspan="3"><img src="image/spacer.gif" width="1" height="5"></td>
+			  </tr>
+</table>
+		<!-- ナビ記事カテゴリーここまで -->

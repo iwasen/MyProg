@@ -1,0 +1,192 @@
+
+  10 Rem ************************
+  20 Rem * T2.PGM
+  30 Rem ************************
+  40 Rem
+  50 Access "RAM:PCMEXT.BIN"
+  60 Access "RAM:PCMEXT.PGM"
+
+  70 Rem Define variables
+  80 Def integer "A-Z"
+  90 Def integer GR_INPST
+ 100 Def integer GR_CMD1
+ 110 Def integer GR_CMD2
+ 120 Def integer GR_AICOAT
+ 130 Dim string GR_NEPID$(20)
+
+ 140 Rem Assign global register
+ 150 SYSLINK GR_INPST,"%R3601",INT16
+ 160 SYSLINK GR_NEPID$,"%R3501"
+ 170 SYSLINK GR_CMD1,"%R3511",INT16
+ 180 SYSLINK GR_CMD2,"%R3512",INT16
+ 190 SYSLINK GR_AICOAT,"%R3513",INT16
+
+ 200 Rem ************************
+ 210 Rem * Main process
+ 220 Rem ************************
+ 230 Rem Open RS-232C (port 2)
+ 240 Open #5,"COM2:"
+ 250 DSP_MODE=0
+
+ 260 Rem Initialize display mode
+ 270 Rem Main loop
+ 280 While 1
+
+ 290   Rem Check PCM1 command
+ 300   SYSREAD GR_CMD1
+ 310   If GR_CMD1<>0 then [
+ 320     On GR_CMD1 gosub DSP_TP
+ 330     GR_CMD1=0;SYSWRITE GR_CMD1
+ 340   ]
+
+ 350   Rem Check touch panel receive data
+ 360   TP$=inchr$(5,1,"",0,0)
+ 370   If TP$<> "" and DSP_MODE<>0 then [
+ 380     On DSP_MODE gosub INP_KAKUNIN,INP_FCOLOR,INP_RCOLOR
+ 390   ]
+ 400 Next
+
+ 410 Rem ********************************
+ 420 Rem * Display touch panel
+ 430 Rem ********************************
+ 440 DSP_TP:
+ 450 SYSREAD GR_NEPID$
+ 460 SYSREAD GR_AICOAT
+ 470 DSP_TP2:
+
+ 480 Rem Display NEPID data
+ 490 Print #5,chr$(27),"W","000F","000B",chr$(13),
+ 500 Print #5,chr$(27),"W","0064","0000",chr$(13),
+ 510 TPADRS=200;TPDAT$=GR_NEPID$(1:2);Gosub WRITE_TP
+ 520 TPADRS=202;TPDAT$=GR_NEPID$(3:3);Gosub WRITE_TP
+ 530 TPADRS=204;TPDAT$=GR_NEPID$(6:2);Gosub WRITE_TP
+ 540 TPADRS=206;TPDAT$=GR_NEPID$(8:3);Gosub WRITE_TP
+ 550 TPADRS=208;TPDAT$=GR_NEPID$(11:1);Gosub WRITE_TP
+ 560 TPADRS=210;TPDAT$=GR_NEPID$(12:3);Gosub WRITE_TP
+ 570 TPADRS=212;TPDAT$=GR_NEPID$(15:2);Gosub WRITE_TP
+ 580 TPADRS=214;TPDAT$=GR_NEPID$(17:3);Gosub WRITE_TP
+ 590 TPADRS=216;TPDAT$=GR_NEPID$(20:1);Gosub WRITE_TP
+ 600 TPADRS=218;TPDAT$=str$(GR_AICOAT,"1I");Gosub WRITE_TP
+ 610 TPADRS=220;TPDAT$=str$(GR_AICOAT,"1I");Gosub WRITE_TP
+ 620 Print #5,chr$(27),"W","0064","0001",chr$(13),
+ 630 A$=inchr$(5,1,"",0,0);If A$<>"" then 630
+ 640 DSP_MODE=1
+ 650 Return
+
+ 660 Rem ********************************
+ 670 Rem Input kakunin key
+ 680 Rem ********************************
+ 690 INP_KAKUNIN:
+ 700 If TP$=" " then [
+
+ 710   Rem Clear touch panel
+ 720   Print #5,chr$(27),"W","0064","0000",chr$(13),
+ 730   TPADRS=200;TPDAT$="  ";Gosub WRITE_TP
+ 740   TPADRS=202;TPDAT$="   ";Gosub WRITE_TP
+ 750   TPADRS=204;TPDAT$="  ";Gosub WRITE_TP
+ 760   TPADRS=206;TPDAT$="   ";Gosub WRITE_TP
+ 770   TPADRS=208;TPDAT$=" ";Gosub WRITE_TP
+ 780   TPADRS=210;TPDAT$="   ";Gosub WRITE_TP
+ 790   TPADRS=212;TPDAT$="  ";Gosub WRITE_TP
+ 800   TPADRS=214;TPDAT$="   ";Gosub WRITE_TP
+ 810   TPADRS=216;TPDAT$=" ";Gosub WRITE_TP
+ 820   TPADRS=218;TPDAT$=" ";Gosub WRITE_TP
+ 830   TPADRS=220;TPDAT$=" ";Gosub WRITE_TP
+ 840   Print #5,chr$(27),"W","0064","0001",chr$(13),
+
+ 850   Rem Send NEPID data
+ 860   SYSWRITE GR_NEPID$
+ 870   GR_CMD2=1;SYSWRITE GR_CMD2
+ 880   DSP_MODE=0
+ 890 ] Else If TP$=chr$(21H) then [
+
+ 900   Rem Display toshoku shiji gamen
+ 910   Print #5,chr$(27),"W","000F","000C",chr$(13),
+ 920   DSP_MODE=2
+ 930 ] Else If TP$=chr$(22H) then [
+
+ 940   Rem Display toshoku shiji gamen
+ 950   Print #5,chr$(27),"W","000F","000C",chr$(13),
+ 960   DSP_MODE=3
+ 970 ] Else If TP$=chr$(23H) then [
+
+ 980   Rem Change front bumper honsuu
+ 990   N=val(GR_NEPID$(11:1))+1;If N>3 then N=0
+1000   GR_NEPID$(11:1)=str$(N,"1I")
+1010   Print #5,chr$(27),"W","0064","0000",chr$(13),
+1020   TPADRS=208;TPDAT$=GR_NEPID$(11:1);Gosub WRITE_TP
+1030   Print #5,chr$(27),"W","0064","0001",chr$(13),
+1040 ] Else If TP$=chr$(24H) then [
+
+1050   Rem Change rear bumper honsuu
+1060   N=val(GR_NEPID$(20:1))+1;If N>3 then N=0
+1070   GR_NEPID$(20:1)=str$(N,"1I")
+1080   Print #5,chr$(27),"W","0064","0000",chr$(13),
+1090   TPADRS=216;TPDAT$=GR_NEPID$(20:1);Gosub WRITE_TP
+1100   Print #5,chr$(27),"W","0064","0001",chr$(13),
+1110 ]
+1120 Return
+
+1130 Rem ********************************
+1140 Rem Input front color code
+1150 Rem ********************************
+1160 INP_FCOLOR:
+1170 COLOR=asc(TP$)-30H;Gosub CVS_COLOR;GR_NEPID$(8:3)=COLOR$
+1180 Gosub DSP_TP2
+1190 Return
+
+1200 Rem ********************************
+1210 Rem Input rear color code
+1220 Rem ********************************
+1230 INP_RCOLOR:
+1240 COLOR=asc(TP$)-30H;Gosub CVS_COLOR;GR_NEPID$(17:3)=COLOR$
+1250 Gosub DSP_TP2
+1260 Return
+1270 WRITE_TP:
+1280 Print #5,chr$(27),"W",str$(TPADRS,"4H4"),
+1290 For I=1 to len(TPDAT$)
+1300   Print #5,str$(asc(TPDAT$(I:1)),"2H2"),
+1310 Next
+1320 Print #5,"00",chr$(13),
+1330 Return
+
+1340 Rem *****************************
+1350 Rem * convert color (bin to str)
+1360 Rem *****************************
+1370 CVS_COLOR:
+1380 If COLOR=0 then [
+1390   COLOR$=""
+1400   Return
+1410 ]
+1420 Restore TBL_COLOR
+1430 While 1
+1440   Read COLOR$,I
+1450   If COLOR$="" or I=COLOR then Exit
+1460 Next
+1470 Return
+1480 TBL_COLOR:
+1490 Data "426",1
+1500 Data "449",2
+1510 Data "462",0
+1520 Data "463",3
+1530 Data "465",4
+1540 Data "505",5
+1550 Data "526",0
+1560 Data "531",6
+1570 Data "549",7
+1580 Data "624",0
+1590 Data "628",8
+1600 Data "AG2",9
+1610 Data "AH3",10
+1620 Data "BG3",11
+1630 Data "BG6",12
+1640 Data "CJ7",13
+1650 Data "DH3",14
+1660 Data "DJ3",15
+1670 Data "EH7",16
+1680 Data "KH3",17
+1690 Data "KJ1",18
+1700 Data "KJ5",19
+1710 Data "LJ0",20
+1720 Data "TH1",21
+1730 Data "",0

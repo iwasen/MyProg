@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>新規登録申請メルマガチェック＆認可メニュー</TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600" leftmargin="0" marginwidth="0">
+
+<? draw_head2(".."); ?>
+
+<br>
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="513" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+<TD>
+<p class="midashi14"><B><FONT COLOR="#99CCFF">■</FONT><FONT COLOR="#003399">発行者詳細</FONT></B></p>
+<table border="0" cellspacing="5" width="600">
+<tr bgcolor="#6699FF">
+<td valign="top" colspan="2"><B><FONT COLOR="#003399">発行者基本情報</FONT></B></td>
+</tr>
+<tr>
+<td valign="top" bgcolor="#99CCFF" width="150"><FONT COLOR="#003399">基本メールアドレス</FONT></td>
+<td> <? echo $mail_add_sub; ?></td>
+</tr>
+<tr>
+<td valign="top" bgcolor="#99CCFF" width="150"><FONT COLOR="#003399">発行者氏名[漢字]</FONT></td>
+<td><? echo $owner_nm_kanj; ?></td>
+</tr>
+<tr>
+<td valign="top" bgcolor="#99CCFF" width="150"><FONT COLOR="#003399">発行者氏名[カタカナ]</FONT></td>
+<td><? echo $owner_nm_kana; ?></td>
+</tr>
+<tr>
+<td valign="top" bgcolor="#99CCFF" width="150"><FONT COLOR="#003399">連絡先郵便番号</FONT></td>
+<td> <? echo $owner_zip1 . "-". $owner_zip2; ?> </td>
+</tr>
+<tr>
+<td valign="top" bgcolor="#99CCFF" width="150"><FONT COLOR="#003399">連絡先住所</FONT></td>
+<td> <? echo $owner_prefec . $owner_add; ?> </td>
+</tr>
+<tr>
+<td valign="top" bgcolor="#99CCFF" width="150"><FONT COLOR="#003399">連絡先電話番号</FONT></td>
+<td> <? echo $owner_tel; ?> </td>
+</tr>
+<tr>
+<td valign="top" bgcolor="#99CCFF" width="150"><FONT COLOR="#003399">パスワード</FONT></td>
+<td><? echo $owner_pswd; ?></td>
+</tr>
+</table>
+<br>
+<table border="0" cellspacing="5" width="600">
+<tr bgcolor="#6699FF">
+<td valign="top" colspan="2"><B><FONT COLOR="#003399">発行メルマガ情報</FONT></B></td>
+</tr>
+<tr bgcolor="#99CCFF">
+<td valign="top" width="150"><FONT COLOR="#003399">magID</FONT></td>
+<td><FONT COLOR="#003399">マガジン名</FONT></td>
+</tr>
+<? make_maglist1($publisher_id, $melonpai_id, $melonpai_pswd, $melonpai_name, $keyword) ?>
+</table>
+<FORM NAME="back">
+<input type="button" value="　戻　る　" onClick="history.back();">
+</FORM>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+<table>
+<br>
+<br>
+</table>
+</TD>
+</TR>
+
+<? draw_head2(".."); ?>
+
+</TABLE>
+</body>
+</html>
+

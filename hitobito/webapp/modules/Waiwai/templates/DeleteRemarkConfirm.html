@@ -1,0 +1,95 @@
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td bgcolor="#5B94FD"><img src="image/naviedit_waiwai_thread_ttl.gif" width="69" height="25" hspace="10" alt="発言管理"></td>
+	</tr>
+	<tr>
+		<td><img src="image/spacer.gif" width="1" height="20"></td>
+	</tr>
+</table>
+<{include file="_WaiwaiHeader.html"}>
+<{include file="_WaiwaiPageInfo.html" waiwai_new_post_action="PostRemark"}>
+<{include file="_WaiwaiList.html" waiwai_select_remark_action="DeleteRemark"}>
+<form method="post">
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td colspan="5"><img src="image/spacer.gif" width="1" height="15"></td>
+	</tr>
+	<tr>
+		<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td width="20" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="20" height="1"></td>
+		<td width="538" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="538" height="1"></td>
+		<td width="20" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="20" height="1"></td>
+		<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td rowspan="3" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td rowspan="3"><img src="image/spacer.gif" width="20" height="1"></td>
+		<td><img src="image/naviedit_waiwai_th_sttl_delete.gif" width="50" height="13" vspace="10" alt="発言削除"></td>
+		<td rowspan="3"><img src="image/spacer.gif" width="20" height="1"></td>
+		<td rowspan="3" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+		<td class="error" valign="top">本当に削除してよろしいですか</td>
+		<td><img src="image/spacer.gif" width="1" height="25"></td>
+	<tr>
+	</tr>
+	<tr>
+		<td colspan="5" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td><img src="image/spacer.gif" width="20" height="1"></td>
+		<td>
+			<table width="538" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td width="70" valign="top" class="char120" nowrap>SUBJECT</td>
+					<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+					<td width="458" class="char140"><b><{$waiwai_contents.subject|escape}></b></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td valign="top" class="char120" nowrap>本文</td>
+					<td><img src="image/spacer.gif" width="10" height="1"></td>
+					<td class="char130"><{$waiwai_contents.content|escape|nl2br}></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="15"></td>
+				</tr>
+			</table>
+		</td>
+		<td><img src="image/spacer.gif" width="10" height="1"></td>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+		<td colspan="5" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td colspan="5"><img src="image/spacer.gif" width="1" height="20"></td>
+	</tr>
+</table>
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td bgcolor="#5B94FD"><img src="image/spacer.gif" width="1" height="5"></td>
+	</tr>
+	<tr>
+		<td><img src="image/spacer.gif" width="1" height="20"></td>
+	</tr>
+	<tr>
+		<td colspan="5">
+			<table border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td><input type="image" name="delete_btn" src="image/naviedit_waiwai_th_btn_delete.gif" width="50" height="20" alt="削除" border="0"></td>
+					<td><img src="image/spacer.gif" width="10" height="1"></td>
+					<td width="39"><input type="image" name="cancel_btn" src="image/naviedit_delete_btn_cancel.gif" width="39" height="20" border="0" alt="戻る"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td><img src="image/spacer.gif" width="1" height="10"></td>
+	</tr>
+</table>
+</form>

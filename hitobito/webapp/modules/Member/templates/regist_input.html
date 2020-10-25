@@ -1,0 +1,106 @@
+<!-- 新規登録 /変更-->
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+	<tr bgcolor="#F5E156">
+		<td colspan="3"><img src="image/member_ttl_sign.gif" width="123" height="25" hspace="10" alt="基本情報の登録 / 変更"></td>
+	</tr>
+	<tr>
+		<td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+		<td width="555">
+			<table width="555" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="15"></td>
+				</tr>
+				<tr>
+					
+          <td class="char120">
+            <p>ひとびと・netへ登録を行ないます。登録したメールアドレス・パスワードはひとびと・netにログインする際に必要となりますので、必ずメモをお願いします。<br>
+              <br>
+              メールアドレスとパスワードは必須登録項目になります。名前から自己紹介までは任意登録項目になります。任意登録項目は特定のワイワイ会議に登録する際に必要となります。</p>
+            </td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="25"></td>
+				</tr>
+				<tr>
+					<td><img src="image/member_split555.gif" width="555" height="1"></td>
+				</tr>
+				<{if $editform->hasError()}>
+				<tr>
+				  <td>
+				    <{$editform->getHtmlErrors()}>
+				  </td>
+				</tr>
+				<tr>
+					<td><img src="image/member_split555.gif" width="555" height="1"></td>
+				</tr>
+				<{/if}>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="25"></td>
+				</tr>
+			</table>
+			<form name="form2" method="post" action="">
+<{include file="_regist_input.inc.html"}>
+        <table width="555" border="0" cellspacing="0" cellpadding="0">
+          <tr> 
+            <td colspan="3"><img src="image/spacer.gif" width="1" height="20"></td>
+          </tr>
+          <tr bgcolor="#666666"> 
+            <td colspan="3"><img src="image/spacer.gif" width="1" height="5"></td>
+          </tr>
+          <tr> 
+            <td colspan="3"><img src="image/spacer.gif" width="1" height="20"></td>
+          </tr>
+          <tr> 
+            <td colspan="3"> 
+              <input type="image" border="0" name="imageField2" src="image/waiwai_member_btn_accept.gif" width="200" height="20" alt="下記に同意して、登録画面へ進む" >
+            </td>
+          </tr>
+          <tr> 
+            <td colspan="3"><img src="image/spacer.gif" width="1" height="30"></td>
+          </tr>
+          <tr>
+            <td colspan="3" class="char120">個人情報保護法について(<a href="index.php?module=contents&content_id=8">利用規約についてはこちら</a>)</td>
+          </tr>
+          <tr>
+            <td colspan="3">　</td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <textarea name="textfield" cols="50" rows="15" style="width:450px;">
+ひとびと・netでは、個人情報の取扱いに対しまして個人情報保護法に合わせ、細心の注意を払っております。そのため、ご登録の際にあなた様より頂戴する個人情報の扱いについて、事前にお知らせし、ご理解いただいております。
+お手数ではございますが、ご登録の前に、この取り組みをご理解いただく上で下記をお読みになりご確認ください。なお、この取り組みによるメンバー登録は、あなた様ご自身の判断によりお決めいただく事ができます。
+何卒この取り組みにご協力いただけますようよろしくお願い申し上げます。
+
+※ご確認・同意いただける場合は、上記の「同意して、登録画面へ進む」のボタンをクリックして先にお進みください。
+
+□個人情報の取扱いについて
+
+（個人情報のご提供にあたって）
+　株式会社○○○○○○（以下、「当社」といいます）の運営するひとびと・netでは、メンバーへの登録から登録後の活動を通じて収集した個人情報を、下記の通り取り扱わせていただきます。
+
+（個人情報の利用）
+当社が収集した個人情報は、当社からご登録者様への情報の送信や、当該活動に必要な物品・謝礼等の送付、活動状況の管理/把握といった、マーケティングサービスの提供という目的達成に必要な範囲内で利用し、それ以外の目的で利用されることは決してございません。また、当該個人情報を第三者へ開示・提供・預託は、以下の場合を除き、一切行ないません。
+・事前にご本人さまに同意をいただけた場合
+・法令等により開示が求められた場合
+ご自身の情報について、内容を確認したり、削除・訂正を要求される際には、このページに記載のお問い合わせ先までご連絡ください。ご連絡いただけましたら合理的な範囲で対応いたします。
+
+（個人情報取り扱いの外部委託）
+　当社がご登録時・ご登録後の活動時に収集した個人情報は、前項の目的の範囲内において、外部に委託することがございます。委託先については、個人情報を適正に取り扱っていると認められる者及び協力会社を選定し、個人情報を厳重に且つ細心の注意を払って管理することを義務付け、徹底いたします。
+
+（個人情報に関する問合せ窓口）
+〒106-0006  東京都港区新橋６−２０−２
+株式会社　○○○○○○　　 ひとびと・net事務局
+お問い合わせアドレス：info@hitobito.net　
+電話：03-5472-7901   FAX：03-5472-7916</textarea>
+            </td>
+          </tr>
+          <tr> 
+            <td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+          </tr>
+        </table>
+			</form>
+		</td>
+		<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+	</tr>
+</table>
+<!-- 新規登録 /変更　ここまで-->

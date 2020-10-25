@@ -1,0 +1,90 @@
+		<!-- ミニカレンダーここから -->
+			<table width="200" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td colspan="5" bgcolor="#F5DC51"><img src="image/spacer.gif" width="1" height="3"></td>
+				</tr>
+				<tr>
+					<td width="3" bgcolor="#F5DC51"><img src="image/spacer.gif" width="3" height="1"></td>
+					<td width="12"><img src="image/spacer.gif" width="12" height="1"></td>
+					<td width="170">
+						<table width="170" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td><img src="image/spacer.gif" width="1" height="10"></td>
+							</tr>
+							<tr>
+								<td class="cld"><{$month->thisYear()}>年<{$month->thisMonth()}>月</td>
+							</tr>
+							<tr>
+								<td><img src="image/spacer.gif" width="1" height="3"></td>
+							</tr>
+						</table>
+						<table width="170" border="0" cellspacing="1" cellpadding="2">
+							<tr>
+								<td width="15%" class="cld">日</td>
+								<td width="14%" class="cld">月</td>
+								<td width="14%" class="cld">火</td>
+								<td width="14%" class="cld">水</td>
+								<td width="14%" class="cld">木</td>
+								<td width="14%" class="cld">金</td>
+								<td width="15%" class="cld">土</td>
+							</tr>
+							<{foreach item=day from=$month->fetchAll()}>
+							<{if $day->isFirst()}>
+							<tr>
+							<{/if}>
+							  <{if $day->isEmpty()}>
+							  <td class="cld">&nbsp;</td>
+							  <{else}>
+							    <td class="<{if $day->isSelected()}>cldtoday<{else}>cld<{/if}>">
+							      <{if in_array($day->thisDay(), $day_list)}>
+							      <a href="index.php?module=Blog&amp;navipage_id=<{$hitobitoNaviPageInfo->getId()}>&amp;blog_date=<{$month->thisYear()}>-<{$month->thisMonth()}>-<{$day->thisDay()}>"><{$day->thisDay()}></a>
+							      <{else}>
+							      <{$day->thisDay()}>
+							      <{/if}>
+							    </td>
+							  <{/if}>
+							<{if $day->isLast()}>
+							</tr>
+							<{/if}>
+							  
+							<{/foreach}>
+							<{*
+							<{$calendarBody}>
+							*}>
+						</table>
+						<table width="170" border="0" cellspacing="3" cellpadding="0">
+							<tr>
+								<td width="50%" class="cldmnth"><a href="index.php?module=Blog&amp;action=Index&amp;navipage_id=<{$hitobitoNaviPageInfo->getId()}>&amp;blog_year_month=<{$prev_year}>-<{$prev_month}>">&lt;<{$prev_year}>年<{$prev_month}>月</a></td>
+								<td align="right" width="50%" class="cldmnth"><a href="index.php?module=Blog&amp;action=Index&amp;navipage_id=<{$hitobitoNaviPageInfo->getId()}>&amp;blog_year_month=<{$next_year}>-<{$next_month}>"><{$next_year}>年<{$next_month}>月&gt;</a></td>
+							</tr>
+						</table>
+						<form name="form3" method="GET" action="index.php">
+						  <input type="hidden" name="module" value="Blog" />
+						  <input type="hidden" name="navipage_id" value="<{$hitobitoNaviPageInfo->getId()}>" />
+							<table width="170" border="0" cellspacing="0" cellpadding="0">
+								<tr>
+									<td><img src="image/spacer.gif" width="1" height="6"></td>
+								</tr>
+								<tr>
+									<td class="cld">
+									  <{html_options options=$year_month_options name=blog_year_month selected=$blog_year_month onChange="submit()"}>
+									</td>
+								</tr>
+								<tr>
+									<td><img src="image/spacer.gif" width="1" height="10"></td>
+								</tr>
+							</table>
+						</form>
+						
+					</td>
+					<td width="12"><img src="image/spacer.gif" width="12" height="1"></td>
+					<td width="3" bgcolor="#F5DC51"><img src="image/spacer.gif" width="3" height="1"></td>
+				</tr>
+				<tr bgcolor="#F5DC51">
+					<td colspan="5"><img src="image/spacer.gif" width="1" height="5"></td>
+				</tr>
+				<tr>
+					<td colspan="5"><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+			</table>
+			<!-- ミニカレンダーここまで -->

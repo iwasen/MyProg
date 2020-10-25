@@ -1,0 +1,119 @@
+<?php include("../sub/head.inc"); ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>Myめろんぱん登録〜登録内容の変更</TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600">
+<?php draw_head( ".." ); ?>
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="513" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+<TD> <form name="rmform105" action = "MelonpanRef.php" method="post">
+<p><img src="../img/t_melonpatouroku.gif" width="511" height="27"><br>
+<br>
+<b><font color="#336600">■Ｍｙめろんぱん登録・内容の変更</font></b></p>
+<p class="text01">変更したいあなたの登録内容を直接修正してください。</p>
+<table width="500" border="0" cellspacing="0" cellpadding="0" bgcolor="#336600">
+<tr>
+<td>
+<table width="500" border="0" cellpadding="3" cellspacing="1">
+<tr>
+<td width="98" bgcolor="#FFCC33" class="text9pt"><font color="#336600"><b>メールアドレス</b></font></td>
+<td width="385" bgcolor="#FFFFCC" class="text9pt"> <? echo trim($mail_addr) ?>
+</td></tr>
+<tr>
+<td width="98" bgcolor="#FFCC33" class="text9pt"><font color="#336600"><b>パスワード</b></font>
+</td>
+<td width="385" bgcolor="#FFFFCC">
+<input type="password" value="<? echo trim($reader_pswd) ?>" name="reader_pswd_new"maxlength="30">
+<br>
+<span class="text9pt">※半角英数で4文字以上、8文字以内で入力してください </span></td>
+</tr>
+<tr>
+<td width="98" bgcolor="#FFCC33" class="text9pt"><font color="#336600"><b>生年月日</b></font></td>
+<td width="385" bgcolor="#FFFFCC" class="text9pt"> <? echo $wk_year ?>年<? echo $wk_month ?>月<? echo $wk_day ?>日
+<font class="text9ptnoColor" color="#990000">※変更できません</font><font class="text9pt">（変更する場合は<a href="mailto:staff@melonpan.net">事務局</a>までご連絡ください）</font></td>
+</tr>
+<tr>
+<td width="98" bgcolor="#FFCC33" class="text9pt"><font color="#336600"><b>性別</b></font></td>
+<td width="385" bgcolor="#FFFFCC" class="text9pt"><? echo pub_mm_sex ($reader_sex)?>　<span class="text9ptnoColor"><font color="#990000">※変更できません</font>（変更する場合は<a href="mailto:staff@melonpan.net">事務局</a>までご連絡ください）</span></td>
+</tr>
+<tr>
+<td width="98" bgcolor="#FFCC33" class="text9pt"><font color="#336600"><b>未既婚</b></font></td>
+<td width="385" bgcolor="#FFFFCC" class="text9pt"> <? make_mrg_box($reader_mrg ); ?>
+</td>
+</tr>
+<tr>
+<td width="98" bgcolor="#FFCC33" class="text9pt"><font color="#336600"><b>郵便番号</b></font></td>
+<td width="385" bgcolor="#FFFFCC" class="text9pt">
+<input type="text"  value="<? echo $reader_zip1 ?>" name="reader_zip1" size="5" maxlength="3">
+-
+<input type="text"  value="<? echo $reader_zip2 ?>" name="reader_zip2" size="7" maxlength="4">
+<br>
+<span class="text9pt">※半角数字７ケタで入力してください。　例：123-4567 <br>
+現在海外にお住まいの方は『000-0000』と入力してください</span></td>
+</tr>
+<tr>
+<td width="98" bgcolor="#FFCC33" class="text9pt"><font color="#336600"><b>職業</b></font></td>
+<td width="385" bgcolor="#FFFFCC" class="text9pt"> <font color="#FFFFCC">
+<select name="reader_occup">
+<? make_occup_box($reader_occup); ?>
+</select>
+</font></td>
+</tr>
+<tr bgcolor="#FFFFCC">
+<td colspan="2">
+<div align="right">
+<input type="submit" name="rmbott10501" value="変更確認"></div>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+<input type="hidden" value="<? echo $reader_id ?>" name="reader_id">
+<input type="hidden" value="<? echo trim($reader_pswd); ?>" name="reader_pswd">
+<input type="hidden" value="<? echo trim($mail_addr) ?>" name="mail_addr">
+<input type="hidden" value="<? echo $reader_sex ?>" name="reader_sex">
+<input type="hidden" value="<? echo $wk_year ?>" name="wk_year">
+<input type="hidden" value="<? echo $wk_month ?>" name="wk_month">
+<input type="hidden" value="<? echo $wk_day ?>" name="wk_day">
+<input type="hidden" value="<? echo $reader_birth ?>" name="reader_birth">
+
+</form>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD valign="top" colspan="3" align="right">
+<HR size="1" width="750">
+</TD>
+</TR>
+<TR>
+<TD valign="top" width="200"> <IMG src="../img/shim.gif" width="200" height="1">
+</TD>
+<TD valign="middle" align="center" width="350">
+<div align="center"><FONT size="2"><IMG src="../img/shim.gif" width="350" height="1"><BR>
+Copyright &copy; 2000 xxxxxxx, Co.,Ltd. All rights reserved. <br>
+<a href="http://www.xxxxxxx.co.jp/" target="mm_window"><img src="../img/logo_do.gif" width="50" height="45" border="0"></a>
+</FONT></div>
+</TD>
+<TD valign="top" width="200" align="right"><IMG src="../img/shim.gif" width="200" height="1"></TD>
+</TR>
+</TABLE>
+</body>
+</html>

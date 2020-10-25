@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<title>メルマガ登録用バナー</title>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<body bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600">
+<? include("header.php"); ?>
+<table width="750" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top" colspan="3" align="center">
+<table width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<tr>
+<td>
+<table width="513" border="0" cellspacing="1" cellpadding="5">
+<tr bgcolor="#FFFFFF">
+<td>
+<p class="midashi14"><font color="#006600"><b>■メルマガ登録用バナー</b></font></p>
+<table width="600" border="0" cellpadding="3" cellspacing="1">
+<tr>
+<td colspan="3" bgcolor="#006600"><font color="#FFFFCC"><b><? echo "【" . $mag_id . "：" . htmlspecialchars(stripcslashes($mag_nm)). "】"; ?></b></font></td>
+</tr>
+<tr>
+<td colspan="3">
+<form name="form1" >
+<div align="center">
+<p align="left">　</p>
+<p align="left" class="text01">下のフォームの中のソースをコピーして、あなたのホームページ上に貼り付けてください。</p>
+<p>
+<textarea name="textfield" cols="80" rows="10">
+&lt;form action=&quot;http://www.melonpan.net/melonpa/register.php&quot; method=&quot;post&quot;&gt;
+&lt;table width=&quot;400&quot; border=&quot;0&quot; cellspacing=&quot;0&quot; cellpadding=&quot;2&quot; height=&quot;60&quot;&gt;
+ &lt;tr bgcolor=&quot;#669933&quot;&gt;
+  &lt;td height=&quot;25&quot; align=&quot;center&quot; colspan=&quot;2&quot;&gt;
+   &lt;font size=&quot;-1&quot; color=&quot;#ffffff&quot;&gt;
+    &lt;b&gt;『<? echo htmlspecialchars(stripcslashes($mag_nm)) ?>』&lt;/b&gt; を購読しませんか？
+   &lt;/font&gt;
+  &lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+  &lt;td width=&quot;90&quot; bgcolor=&quot;#fff9c2&quot;&gt;
+   &lt;a href=&quot;http://www.melonpan.net/&quot; target=&quot;_blank&quot;&gt;
+   &lt;img src=&quot;http://www.melonpan.net/img/banner.gif&quot; border=&quot;0&quot;
+    alt=&quot;めろんぱん&quot; width=&quot;88&quot; height=&quot;31&quot;&gt;
+   &lt;/a&gt;
+  &lt;/td&gt;
+  &lt;td  bgcolor=&quot;#FFF9C2&quot;&gt;
+   &lt;font size=&quot;-1&quot; color=&quot;#006600&quot;&gt;E-mail&lt;/font&gt;
+    &lt;input type=&quot;hidden&quot; name=&quot;mag_id&quot; value=&quot;<? echo $mag_id ?>&quot;&gt;
+    &lt;input type=&quot;text&quot; size=&quot;22&quot; name=&quot;email&quot;&gt;
+    &lt;input type=&quot;submit&quot; value=&quot;購読&quot; name=&quot;regist&quot;&gt;
+    &lt;input type=&quot;submit&quot; value=&quot;解除&quot; name=&quot;unregist&quot;&gt;
+  &lt;/td&gt;
+ &lt;/tr&gt;
+&lt;/table&gt;
+&lt;/form&gt;
+</textarea>
+</p>
+<p class="text9pt">-- 表示例-- </p>
+<table width="400" border="0" cellspacing="0" cellpadding="2">
+<tr bgcolor="#669933">
+<td align="center" height="20" colspan="2">
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+<tr bgcolor="#669933">
+<td height="20" align="center">
+<div align="center"><font size="-1" color="#ffffff"><b> 『<? echo htmlspecialchars(stripcslashes($mag_nm)) ?>』</b> を購読しませんか？</font></div>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td width="100" bgcolor="#FFF9C2">
+<a href="http://www.melonpan.net/" target="mm_window"><img src="../img/banner.gif" border="0" alt="めろんぱん" width="88" height="31"></a>
+</td>
+<td bgcolor="#FFF9C2" align="right">
+<font size="-1" color="#006600">E-mail</font>
+<input type="hidden" name="mag_id2" value="000004">
+<input type="text" size="22" name="email">
+<input type="button" value="購読" name="regist">
+<input type="button" value="解除" name="unregist">
+</td>
+</tr>
+</table>
+</div>
+</form>
+</td>
+</tr>
+</table>
+<form method="post" action="banner_list.php" name="fom_return">
+<p class="text9ptnoColor"> <a href="JavaScript:document.fom_return.submit();">
+&lt;&lt;&lt;　メルマガ一覧へ戻る</a>
+<input type="hidden" value="<? echo $publisher_id ?>" name="publisher_id">
+<input type="hidden" value="<? echo $owner_pswd ?>" name="owner_pswd">
+</form>
+<form method="post" action="pub_index.php" name="fom_index">
+<p class="text9ptnoColor"><a href="JavaScript:document.fom_index.submit();">
+&lt;&lt;&lt;　発行者管理ページへ戻る</a></p>
+<input type="hidden" value="<? echo $publisher_id ?>" name="publisher_id">
+<input type="hidden" value="<? echo $owner_pswd ?>" name="owner_pswd_r">
+</form>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+
+<? include("footer.php"); ?>
+</TABLE>
+</body>
+</html>

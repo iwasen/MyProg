@@ -1,0 +1,20 @@
+<html> 
+  <head> 
+    <title>Preview</title> 
+    <script>
+      function setData(){
+      document.previewform.bla_title.value = window.opener.document.storyform.bla_title.value;
+      document.previewform.bla_article_text.value = window.opener.document.storyform.bla_article_text.value;
+      
+      document.previewform.submit();
+      }
+    </script>
+  </head> 
+  <body onLoad="setData()"> 
+    <form action="index.php?module=Blog&amp;action=PreviewStory" method="POST" name="previewform">
+      <input type="hidden" name="bla_title"> 
+      <input type="hidden" name="bla_article_text"> 
+    </form> 
+    プレビュー作成中
+  </body> 
+</html>

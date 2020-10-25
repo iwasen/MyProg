@@ -1,0 +1,25 @@
+OPT	= -c -ml -K
+
+$(DIR)gwll.lib : $(DIR)wlib_l.obj $(DIR)clib_l.obj $(DIR)tlib_l.obj \
+		$(DIR)glib_l.obj $(DIR)mlib_l.obj $(DIR)dlib_l.obj
+	command /c del $(DIR)gwll.lib
+	tlib $(DIR)gwll+$(DIR)wlib_l+$(DIR)clib_l+$(DIR)tlib_l+$(DIR)glib_l+$(DIR)mlib_l+$(DIR)dlib_l
+
+$(DIR)wlib_l.obj : wlib.c gwlib.h
+	$(CC) $(OPT) -o$(DIR)wlib_l wlib.c
+
+$(DIR)clib_l.obj : clib.c gwlib.h
+	$(CC) $(OPT) -o$(DIR)clib_l clib.c
+
+$(DIR)tlib_l.obj : tlib.c gwlib.h
+	$(CC) $(OPT) -o$(DIR)tlib_l tlib.c
+
+$(DIR)glib_l.obj : glib.c gwlib.h
+	$(CC) $(OPT) -o$(DIR)glib_l glib.c
+
+$(DIR)mlib_l.obj : mlib.c gwlib.h
+	$(CC) $(OPT) -o$(DIR)mlib_l mlib.c
+
+$(DIR)dlib_l.obj : dlib.c gwlib.h
+	$(CC) $(OPT) -o$(DIR)dlib_l dlib.c
+

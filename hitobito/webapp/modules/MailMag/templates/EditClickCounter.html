@@ -1,0 +1,98 @@
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+	<tr bgcolor="#5B94FD">
+		<td colspan="3"><img src="image/naviedit_click_ttl.gif" width="104" height="25" hspace="10" alt="メルマガ管理"></td>
+	</tr>
+	<tr>
+		<td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+		<td width="555" valign="top">
+			<form name="mailmag_form" method="post">
+			<input type="hidden" name="mailmag_contents_id" value="<{$mailmag_contents_data.contents_id}>">
+			<input type="hidden" name="mailmag_subject" value="<{$mailmag_contents_data.subject|escape}>">
+			<input type="hidden" name="mailmag_body" value="<{$mailmag_contents_data.body|escape}>">
+			<input type="hidden" name="mailmag_footer" value="<{$mailmag_contents_data.footer|escape}>">
+			<input type="hidden" name="mailmag_send_year" value="<{$mailmag_contents_data.send_year}>">
+			<input type="hidden" name="mailmag_send_month" value="<{$mailmag_contents_data.send_month}>">
+			<input type="hidden" name="mailmag_send_day" value="<{$mailmag_contents_data.send_day}>">
+			<input type="hidden" name="mailmag_send_hour" value="<{$mailmag_contents_data.send_hour}>">
+			<input type="hidden" name="mailmag_send_minute" value="<{$mailmag_contents_data.send_minute}>">
+			<input type="hidden" name="mailmag_open_flag" value="<{$mailmag_contents_data.open_flag}>">
+			<input type="hidden" name="mailmag_comment_flag" value="<{$mailmag_contents_data.comment_flag}>">
+			<input type="hidden" name="mailmag_trackback_flag" value="<{$mailmag_contents_data.trackback_flag}>">
+			<input type="hidden" name="mailmag_status" value="<{$mailmag_contents_data.status}>">
+			<input type="hidden" name="mailmag_click_counter" value="<{$mailmag_contents_data.click_counter|escape}>">
+			<table width="555" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td colspan="4"><img src="image/spacer.gif" width="1" height="15"></td>
+				</tr>
+				<tr>
+					<td colspan="4"><img src="image/naviedit_mail_sttl_edit.gif" width="85" height="14" alt="メルマガ編集"></td>
+				</tr>
+				<tr>
+					<td colspan="4"><img src="image/spacer.gif" width="1" height="4"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#5B94FD" colspan="4"><img src="image/spacer.gif" width="555" height="1"></td>
+				</tr>
+				<tr>
+					<td colspan="4"><img src="image/spacer.gif" width="1" height="20">
+						<table width="100%" border="0" cellspacing="1" cellpadding="1">
+							<tr class="char120" bordercolor="#000000">
+								<td nowrap>No</td>
+								<td bgcolor="#E6F2FF" nowrap>URL名称</td>
+								<td nowrap>飛び先URL</td>
+								<td bgcolor="#E6F2FF" nowrap>生成URL</td>
+								<td nowrap>生成</td>
+							</tr>
+<{foreach from=$mailmag_click_counter_ary key=mailmag_ctid item=mailmag_click_counter}>
+							<tr class="char120" bordercolor="#000000">
+								<td><{$mailmag_click_counter.no}></td>
+								<td bgcolor="#E6F2FF">
+									<input type="text" name="mailmag_url_name[<{$mailmag_ctid}>]" value="<{$mailmag_click_counter.url_name|escape}>">
+								</td>
+								<td>
+									<input type="text" name="mailmag_jump_url[<{$mailmag_ctid}>]" value="<{$mailmag_click_counter.jump_url|escape}>">
+									<input type="hidden" name="mailmag_org_url[<{$mailmag_ctid}>]" value="<{$mailmag_click_counter.jump_url|escape}>">
+								</td>
+								<td bgcolor="#E6F2FF"><{$mailmag_click_counter.click_url|escape}></td>
+								<td>
+									<input type="checkbox" name="mailmag_check[<{$mailmag_ctid}>]" value="1" checked>
+								</td>
+							</tr>
+<{/foreach}>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td>　</td>
+					<td>　</td>
+					<td>　</td>
+					<td>　</td>
+				</tr>
+			</table>
+			<table width="555" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td bgcolor="#5B94FD"><img src="image/spacer.gif" width="1" height="5"></td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="20"></td>
+				</tr>
+				<tr>
+					<td>
+						<table width="180" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td width="50"><input type="image" name="regist_click_counter_btn" src="image/naviedit_btn_regist.gif" width="50" height="20" border="0" alt="クリックカウンター設定"></td>
+								<td width="10"><img src="image/spacer.gif" width="20" height="1"></td>
+                <td width="110"><input type="image" name="cancel_btn" src="image/naviedit_btn_cancel.gif" width="110" height="20" border="0" alt="登録しないで戻る"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+			</table>
+			</form>
+		</td>
+		<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+	</tr>
+</table>

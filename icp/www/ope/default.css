@@ -1,0 +1,171 @@
+body{
+	font-family: "Osaka";
+	margin: 0px;
+	padding: 0px;
+}
+
+form{
+	margin: 0px;
+}
+
+.copyright{
+	font-family: "Verdana", "Arial", "Helvetica", "sans-serif";
+	font-size: 10px;
+	font-weight: normal;
+	color: #000000;
+	line-height: 120%;
+	margin-top: 5px;
+	border-top-width: 3px;
+	border-top-style: double;
+	border-top-color: #808080;
+	padding-top: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.btn{
+	font-family: "Osaka";
+	font-size: 12px;
+}
+.form{
+	font-family: "Osaka";
+	font-size: 12px;
+}
+.login{
+	font-family: "Osaka";
+	font-size: 12px;
+	font-weight: normal;
+	color: #000000;
+	background-color: #ffffff;
+	line-height: 120%;
+}
+
+.login th{
+	color: #ffffff;
+	background-color: #800000;
+}
+
+.login td{
+	background-color: #FFAAAA;
+}
+
+
+.searchresult{
+	font-family: "Osaka";
+	font-size: 10px;
+	font-weight: normal;
+	color: #000000;
+	line-height: 120%;
+}
+
+.searchresult th{
+	background-color: #d5d7fd;
+}
+
+.menu{
+	font-family: "Osaka";
+	font-size: 12px;
+	font-weight: normal;
+	color: #000000;
+	line-height: 120%;
+}
+
+.head{
+	font-family: "Osaka";
+	font-size: 18px;
+	line-height: 200%;
+	font-weight: bold;
+	color: #ffffff;
+	background-color: #800000;
+	border-bottom-width: 4px;
+	border-bottom-style: solid;
+	border-bottom-color: #FFAAAA;
+}
+
+.head a:link{
+	color: #ffffff;
+	text-decoration: none;
+}
+.head a:visited{
+	color: #ffffff;
+	text-decoration: none;
+}
+.head a:hover{
+	color: #800000;
+	text-decoration: underline;
+	background-color: #FFAAAA;
+}
+.head a:active{
+	color: #800000;
+	text-decoration: underline;
+	background-color: #FFAAAA;
+}
+
+.backtotop{
+	font-family: "Osaka";
+	font-size: 12px;
+	font-weight: normal;
+	color: #000000;
+	line-height: 120%;
+}
+
+.pagetitle{
+	font-family: "Osaka";
+	font-size: 14px;
+	font-weight: bold;
+	color: #000000;
+	background-color: #ededfe;
+	line-height: 120%;
+	padding-bottom: 10px;
+}
+
+.list{
+	font-family: "Osaka";
+	font-size: 12px;
+	font-weight: normal;
+	color: #000000;
+	line-height: 120%;
+}
+
+.list th{
+	color: #ffffff;
+	background-color: #050567;
+}
+
+.list .line1{
+	background-color: #f1f1fe;
+}
+
+.list .line0{
+	background-color: #ffffff;
+}
+
+
+.card{
+	font-family: "Osaka";
+	font-size: 12px;
+	font-weight: normal;
+	color: #000000;
+	line-height: 120%;
+}
+
+.card th{
+	color: #ffffff;
+	background-color: #050567;
+}
+
+.shozoku{
+	margin-left: 25px;
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-left-color: #000000;
+	padding-left: 10px;
+}
+
+.contents{
+	font-family: "Osaka";
+	font-size: 12px;
+	font-weight: normal;
+	color: #000000;
+	line-height: 120%;
+}

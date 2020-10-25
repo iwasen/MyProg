@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE></TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+<script language="JavaScript">
+<!--
+function MM_openBrWindow(theURL,winName,features) { //v2.0
+  window.open(theURL,winName,features);
+}
+//-->
+</script>
+
+<Script Language="JavaScript">
+<!--
+	function data_input(gof) {
+		var sMelonpai_id;
+		var sMelonpai_pswd;
+		var sCho_id;
+		var sInputmag;
+		var sBookmark;
+		var input_mag = new Array(0);
+		var chk_flg;
+		s = "";
+		sHttp = "http://www.melonpan.net/mag.php?";
+		
+    for (i = 0; i < gof.input_mag.length; i++) {
+			if(gof.input_mag[i].checked) {
+				base = gof.input_mag[i].value;
+				sMagid = base.substr(0,6);
+				sBookmark = base + "\r\n" + sHttp + sMagid + "\r\n";
+				sInputmag = gof.input_mag.value;
+				sMelonpai_id = gof.melonpai_id.value;
+				sMelonpai_pswd = gof.melonpai_pswd.value;
+				sCho_id = gof.cho_id.value;
+				s += sBookmark;
+				chk_flg = 1;
+			}
+		}
+		if (chk_flg == 1) {
+			gof.body.value = window.parent.input.document.form1.body.value + s;
+			gof.header.value = window.parent.input.document.form1.header.value;
+			gof.footer.value = window.parent.input.document.form1.footer.value;
+			gof.subject.value = window.parent.input.document.form1.subject.value;
+			window.parent.input.location.href="mitu-return.php?melonpai_id="+sMelonpai_id+"&melonpai_pswd="+sMelonpai_pswd+"&job_flg=add&cho_id="+sCho_id+"&input_mag="+sInputmag;
+		}
+	}
+//-->
+</Script>
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600" leftmargin="0" marginwidth="0">
+<table width="100%" border="0" cellspacing="1" cellpadding="5">
+<tr bgcolor="#FFFFFF">
+<td>
+<p><font color="#003399">■ブックマーク</font></p>
+<p class="text9ptnoColor">チェックを入れたマガジンが返信メールに追加されます。</p>

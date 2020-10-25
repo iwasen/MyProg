@@ -1,0 +1,906 @@
+		TITLE MODULE NAME  ( MDCALL )
+
+ 			.Z80
+
+			.COMMENT				|
+
+*****************************************************************
+*								* 
+*		MODEM CALL					*
+*								*
+*			INPUT :  A = DIAL MODE			*
+*				   = 31H  TONE			*
+*				   = 32H  PULSE	(20 PPS)	*
+*				   = 33H  PULSE (10 PPS)	*
+*								*
+*				HL = DIAL No. ADDRESS		*
+*								*
+*			OUTPUT : A = STATUS			*
+*				   = 0  COMPLETE		*
+*				   = 1  CD OFF			*
+*				   = 9  AC OFF			*
+*								*
+*****************************************************************
+								|
+			PUBLIC	CONNCT		; CONxxxT
+			PUBLIC	DISCON		; DISCONxxxT
+			PUBLIC	RDCOM		; GET DATA
+			PUBLIC	RDSTS		; RECEIVE STATUS CHECK
+			PUBLIC	WRCOM		; PUT DATA
+			PUBLIC	WRSTS		; SEND STATUS CHECK
+			PUBLIC	PREXMT		;
+			PUBLIC	PSTXMT		;
+			PUBLIC	MDCDCHK		; MODEM CD CHECK
+			PUBLIC	MDPWOF		; MODEM POWER OFF
+;
+			PUBLIC	MDCD
+			PUBLIC	MDTCON
+			PUBLIC	MSLRD
+			PUBLIC	WAT10
+			PUBLIC	DELAY
+;
+			EXTRN	HBUF		; 232C PORT BUFFER
+			EXTRN	HBUFSIZ
+
+	EHOOK		EQU	0FFDBH
+
+;		*****  MODEM CONxxxT MAIN ROUTINE  *****
+CONNCT:
+			LD	(DIALMD),A	; SAVE DIAL MODE
+			LD	(DIALNO),HL	; SAVE DIAL No. ADDRESS
+;
+			CALL	ST8255		; 8255 MODE SET
+			CALL	MDCHKAC		; CHECK AC POWER ON
+			OR	A		; ERROR ?
+			RET	NZ		; JMP_RET
+
+			LD	HL,IPDATA	;
+			LD	DE,PRM81	; INITIAL PORT DATA SET
+			LD	BC,5		;
+			LDIR			;
+
+			CALL	MDPWON		; MODEM POWER ON
+			CALL	MDRRST		; RI RESET
+			CALL	MDSET		; MODEM INITIAL SET
+			CALL	IRQEI		; INTERRUPT VECTER
+			CALL	RSINIT		; 8251 RESET
+			CALL	OFHC		; OFF HOOK
+			LD	BC,3200		; 3.2 sec WAIT
+			CALL	WAIT
+			CALL	DIAL		; TEL NO  PUT
+
+			LD	B,56	
+			CALL	LTIMER		; TIMER CHECK
+			OR	A
+			RET	NZ		; ERROR
+
+			CALL	MDOPEN		; 8251 OPEN
+
+			XOR	A
+			RET
+;
+									page
+;		*****  MODEM DISCONxxxT MAIN ROUTINE  *****
+DISCON:
+			CALL	ONHC		; ON HOOK
+			CALL	MDCLOSE		; 8251 CLOSE
+
+			CALL	MDTALK		; SET TALK MODE
+
+			CALL	MDPWOF		; MODEM POWER OFF
+			RET
+;
+									page
+;		*****  8255 MODE SET  *****
+ST8255:
+			LD	A,81h
+			OUT	(PPAR),A	; 8255 MODE SET
+			CALL	WATX		; 0.5msec WAIT
+			RET
+;
+;		*****  8251 RESET  *****
+RSINIT:
+			XOR	A
+			OUT	(PRSC),A
+			OUT	(PRSC),A
+			OUT	(PRSC),A
+			LD	A,40h
+			OUT	(PRSC),A
+			CALL	WATX		; 0.5msec WAIT
+			RET
+;
+									page
+;		*****  MODEM AC POWER CHECK  *****
+
+;			OUTPUT : A = STATUS
+;				   = 0  COMPLETE
+;				   = 9  AC OFF
+
+MDCHKAC:
+			IN	A,(PMDPWR)
+			BIT	3,A		; AC ON ?
+			LD	A,9		; STATUS
+			RET	Z		; NO._RET
+			XOR	A		; STATUS
+			RET
+;
+;		*****  MODEM POWER ON  *****
+MDPWON:
+			LD	A,(PRM86)
+			SET	6,A		; MODEM POWER ON
+			OUT	(PMDPWR),A
+			LD	(PRM86),A
+			LD	BC,100		; 100msec WAIT
+			CALL	WAIT
+			RET
+;
+;		*****  MODEM POWER OFF  *****
+MDPWOF:
+			LD	A,(PRM86)
+			RES	6,A		; MODE POWER OFF
+			OUT	(PMDPWR),A
+			LD	(PRM86),A
+			LD	BC,50		; 50msec WAIT
+			CALL	WAIT
+			RET
+;
+;		*****  RI RESET  *****
+MDRRST:
+			LD	A,(PRM86)
+			SET	4,A		; RI RESET
+  			OUT	(PMDPWR),A
+			LD	(PRM86),A
+			LD	BC,10		; 10msec WAIT
+			CALL	WAIT
+			RET
+;
+									page
+;		*****  MODEM CONTROL  *****
+
+;			INPUT : FDLG = 0  9bit
+;				     = 1  10bit
+
+MDSET:
+			LD	A,(PRM84)
+			OUT	(PMDCTL),A
+
+			LD	A,(PRM85)
+			OUT	(PMDTMF),A
+			RET
+;
+;		*****  SET TALK MODE  *****
+MDTALK:
+			LD	A,(PRM84)
+			SET	2,A
+			RES	3,A
+			CALL	MDRTN		; PARAMETER SET
+			CALL	WAT10		; 10msec WAIT
+			RET
+									page
+;		*****  SELECT CHECK SCRAMBLE "1"  *****
+MSLRD:
+			LD	A,(PRM84)
+			RES	4,A		; SELECT DISCRAMBLE MODE
+			JR	MDRTN
+;
+;		*****  TX CARRIER ON  *****
+MDTCON:
+			LD	A,(PRM84)
+			SET	0,A		; SCRAMBLE ON
+			JR	MDRTN
+;
+;		*****  TX CARRIER OFF  *****
+MDTCOF:
+			LD	A,(PRM84)
+			RES	0,A		; SCRAMBLE OFF
+			JR	MDRTN
+;
+MDRTN:
+			OUT	(PMDCTL),A	; PARAMETER SET
+			LD	(PRM84),A
+			RET
+;
+									page
+;		*****  CD CHECK  *****
+
+;			OUTPUT : Zlfg = OFF  CD ON
+;				      = ON   CD OFF
+
+MDCD:
+			IN	A,(PMDPWR)
+			BIT	1,A
+			LD	A,0
+			JR	Z,MHO
+			OR	A
+			RET
+	MHO:
+			DEC	A
+			RET
+;
+;		*****  CD CHECK ( 270msec LOOP )  *****
+
+;			OUTPUT : A = 0  CD ON
+;				   = 3  CD OFF ( 270msec LOOP )
+
+MDCDCHK:
+			PUSH	BC
+			LD	BC,27		; LOOP COUNT
+	CDCHK01:
+			PUSH	BC
+			CALL	WAT10		; 10 msec WAIT
+			POP	BC
+			CALL	MDCD		; CD ON ? 
+			JR	NZ,CDCHK09	; YES_STATUS
+			DEC	BC		; LOOP COUNT - 1
+			LD	A,B
+			OR	C		; LOOP COUNT = 0 ?
+			JR	NZ,CDCHK01	; NO. LOOP
+			LD	A,3		; STATUS
+			POP	BC
+			RET
+;
+	CDCHK09:
+			XOR	A		; STATUS
+			POP	BC
+			RET
+;
+									page
+;		*****  PULSE / TONE  CHECK  *****
+
+;			INPUT : DIALMD = 31H  TONE
+;				       = 32H  PULSE
+
+DIAL:
+			LD	HL,(DIALNO)
+			LD	A,H
+			OR	L
+			RET	Z
+
+			LD	B,13
+	DIAL01:
+			LD	A,(HL)
+			CP	20h		; 20h ?
+			RET	Z		; RET
+
+			PUSH	BC
+			CP	'-'
+			JR	NZ,DIAL04
+			LD	BC,2000
+			CALL	WAIT
+			JR	DIAL03
+	DIAL04:
+			LD	B,A
+			LD	A,(DIALMD)
+			CP	31H		; PULSE ?
+			LD	A,B
+			JR	NZ,DIAL02	; JMP_PULSE
+			CALL	TTONE		; TONE
+			JR	DIAL03
+	DIAL02:
+			CALL	PULSE		; PULSE
+	DIAL03:
+			INC	HL
+			POP	BC
+			DJNZ	DIAL01
+			RET
+;
+									page
+;		*****  PUSH PHONE  *****
+TTONE:
+			PUSH	HL
+			CALL	TON		; TONE ON
+			LD	BC,100
+			CALL	WAIT
+			CALL	TOFF		; TONE OFF
+			LD	BC,60
+			CALL	WAIT
+			POP	HL
+			RET
+;
+									page
+;		*****  TONE ON  *****
+
+;			INPUT : A = TEL NO
+
+TON:
+			CP	'*'
+			JR	NZ,TON01
+			LD	A,10
+			JR	TON03
+	TON01:
+			CP	'#'
+			JR	NZ,TON02
+			LD	A,12
+			JR	TON03
+	TON02:
+			SUB	30h
+			JR	NZ,TON03
+			LD	A,11
+	TON03:
+			DEC	A
+			LD	HL,TNTBL
+			CALL	CONV
+			LD	B,A
+			LD	A,(PRM85)
+			AND	08h
+			OR	B
+			OUT	(PMDTMF),A
+			LD	(PRM85),A
+			RET
+;
+;		*****  TONE OFF  *****
+TOFF:
+			LD	A,(PRM85)
+			AND	08h
+			OUT	(PMDTMF),A
+			LD	(PRM85),A
+			RET
+;
+									page
+;		*****  DATA CONVERTION  *****
+
+;			OUTPUT : A = DATA
+
+CONV:
+			PUSH	HL
+			PUSH	BC
+			LD	B,0
+			LD	C,A
+			ADD	HL,BC
+			LD	A,(HL)
+			POP	BC
+			POP	HL
+			RET
+;
+	TNTBL:		DB	11h,12h,14h,21h,22h,24h,41h,42h,44h,81h,82h,84h
+;				 1   2   3   4   5   6   7   8   9   *   0   #
+									page
+;		*****  DIAL PHONE  *****
+
+;			INPUT : FPPS = 0  20pps
+;				    <> 0  10pps
+;				   A = TEL NO
+	
+PULSE:
+			SUB	30H
+			JR	NZ,PLS00
+			LD	A,10
+	PLS00:
+			LD	D,A	
+			LD	A,(DIALMD)
+			CP	32H		; 20pps ?
+			JR	Z,PLS02		; JMP
+	PLS01:					; 10pps
+			CALL	ONHC		; ON HOOK
+			LD	BC,67
+			CALL	WAIT
+			CALL	OFHC		; OFF HOOK
+			LD	BC,33
+			CALL	WAIT
+			DEC	D
+			JR	NZ,PLS01
+			JR	PLSRET
+	PLS02:					; 20pps
+			CALL	ONHC		; ON HOOK
+			LD	BC,33
+			CALL	WAIT
+			CALL	OFHC		; OFF HOOK 
+			LD	BC,16
+			CALL	WAIT
+			CALL	WATX		; 0.5msec WAIT
+			DEC	D
+			JR	NZ,PLS02
+;
+	PLSRET:
+			LD	BC,800		; 800msec WAIT
+			CALL	WAIT
+			RET
+;
+									page
+;		*****  ON HOOK  *****
+ONHC:
+			LD	A,(PRM84)
+			RES	1,A
+			OUT	(PMDCTL),A
+			LD	(PRM84),A
+			RET
+;
+;		*****  OFF HOOK  *****
+OFHC:
+			LD	A,(PRM84)
+			SET	1,A
+			OUT	(PMDCTL),A
+			LD	(PRM84),A
+			RET
+;
+									page
+;		*****  8251 OPEN  *****
+
+;			INPUT : BTLNG = 7Fh  7bit
+;				      = FFh  8bit
+
+MDOPEN:
+			XOR	A
+			SET	3,A		; 10bit CHARA BIT LENGTH
+			OUT	(PMDTMF),A
+
+			LD	A,04h
+			LD	(PRM81),A
+			XOR	A
+
+			LD	(HLOC),A
+			LD	(HLOC+1),A
+			LD	HL,HBUF
+			LD	(HGETP),HL
+			LD	(HPUTP),HL
+			CALL	RSINIT		; 8251 RESET
+			LD	A,(PRM811)	; SET MODE
+			OUT	(PRSM),A
+			LD	A,(PRM81)	; SET COMMAND
+			OUT	(PRSC),A
+			RET
+;
+									page
+;		*****  8251 CLOSE  *****
+MDCLOSE:
+			IN	A,(PRSST)
+			BIT	2,A		; TX EMPTY ?
+			JR	Z,MDCLOSE	; NO_LOOP
+			CALL	MDTCOF		; TX CARRIER OFF
+			CALL	ONHC		; ON HOOK
+			CALL	RSINIT		; 8251 RESET
+
+			LD	A,(RZIER)	; IRQ MASK DISABLE
+			RES	4,A
+;		LD	(RZIER),A
+;		OUT	(IER),A		; EHOOK ENABLE
+
+			LD	HL,0EF1FH
+			LD	(EHOOK+1),HL
+			RET
+;
+									page
+;		*****  GET DATA FROM RS-232C PORT  *****
+RDCOM:
+			CALL	RDSTS		; BUFFER CHECK
+			RET	C		; ERROR ? RET
+			JP	NZ,RDDAT
+			JR	RDCOM		; ERROR_LOOP
+;
+									page
+;		*****  CHECK INPUT BUFFER  *****
+RDSTS:
+			PUSH	BC
+			LD	A,(BRKDT)
+			OR	A		; BREAK DETECT ?
+			LD	A,OFF
+			LD	(BRKDT),A	; BREAK FLAG CLEAR
+			LD	A,1		; STATUS
+			JR	NZ,CSTAB	; YES
+	RDS10:
+			XOR	A
+			LD	BC,(HLOC)	; LOAD DATA COUNT
+			CP	C
+			JR	NZ,RDS30
+			CP	B
+			JR	Z,RDS40		; DATA COUNT = 0 THEN JMP
+	RDS30:
+			DEC	A		; Zflg = OFF
+	RDS40:
+			OR	A		; CY = OFF  Zflg = ON
+			POP	BC
+			RET
+;
+	CSTAB:
+			SCF			; CY = ON
+			POP	BC
+			RET
+;
+									page
+;		*****  GET DATA FROM INPUT BUFFER  *****
+
+;			OUTPUT : A = GET DATA
+
+RDDAT:
+			PUSH	BC
+			PUSH	HL
+			di
+			LD	HL,(HGETP)	; INPUT BUFFER
+			LD	A,(HL)		; LOAD RECV DATA 
+			PUSH	AF
+			INC	HL
+			PUSH	HL
+			LD	BC,HBUF+HBUFSIZ	; INPUT BUFFER END + 1
+			OR	A
+			SBC	HL,BC		; BUFFER END ?
+			POP	HL
+			JR	NZ,A014B	; NO
+			LD	HL,HBUF
+;
+A014B:
+			LD	(HGETP),HL	; SAVE NEXT DATA ADDRESS
+			XOR	A
+			LD	(RSFULF),A	; CLEAR FULL FLAG
+			LD	HL,(HLOC)
+			DEC	HL		; DECREMENT DATA COUNT
+			LD	(HLOC),HL
+			ei
+			POP	AF
+			POP	HL
+			POP	BC
+			RET
+;
+									page
+;		*****  PUT DATA TO RS-232C PORT  *****
+WRCOM:
+			JP	WRDAT
+;
+									page
+;		*****  CHECK TXRDY  *****
+WRSTS:
+			CALL	MDCD		; CD ON ?
+			JR	Z,WSFULL	; NO .JMP
+			XOR	A
+			RET
+	WSFULL:
+			OR	A
+			IN	A,(PRSST)
+			BIT	0,A		;CHECK TXRDY ( PUT OK ? )
+			RET
+;
+									page
+;		*****  PUT DATA TO 8251 PORT  ******
+
+;			INPUT : E = SEND DATA 
+			
+WRDAT:	
+			CALL	XMTER
+			OR	A
+			RET
+
+;		*****  RX - OFF  TX - CARRIER ON  *****
+PREXMT:
+			CALL	RXDSB		; RX DISABLE ( GET )
+			CALL	MDTCON		; TX CARRIER ON
+			LD	BC,240		; 24msec
+			CALL	WAIT
+			RET
+;
+;		*****  PUT DATA  &  TX - ON  *****
+XMTER:
+			LD	A,ON
+			LD	(XMTFLG),A	; XMT flg ON
+			LD	A,7FH
+			AND	E		; DATA MASK
+			LD	(XMTDAT),A
+			CALL	TXENB		; TX ENABLE
+	XMT10:
+			IN	A,(PMDCTL)
+			BIT	1,A
+			RET	Z
+			LD	A,(XMTFLG)
+			OR	A
+			JR	NZ,XMT10
+			RET
+;
+;		*****  TX - CARRIER OFF  RX - ON  *****
+PSTXMT:
+	PST10:
+			IN	A,(PMDCTL)
+			BIT	1,A
+			RET	Z
+			IN	A,(PRSST)
+			BIT	2,A		; TX EMPTY ?
+			JR	Z,PST10		; NO. JMP
+			CALL	MDTCOF		; TX CARRIER OFF
+;PST20:
+;		CALL	MDCD		; CHECK CD
+;		JR	NZ,PST20	; JMP
+			CALL	WAT10		; 10msec WAIT
+			CALL	RXENB		; RX ENABLE
+			RET
+;
+									page
+;		*****  COMMAND MODE SET  *****
+RXDSB:
+			LD	A,(PRM81)
+			RES	2,A		; SET RX DISENABLE
+			JR	RSSET
+TXDSB:
+			LD	A,(PRM81)
+			RES	0,A		; SET TX DISENABLE
+			JR	RSSET
+TXENB:
+			LD	A,(PRM81)
+			SET	0,A		; SET TX ENABLE
+			JR	RSSET
+RXENB:
+			LD	A,(PRM81)
+			SET	2,A		; SET RX ENABLE
+			JR	RSSET
+ERRSET:
+			LD	A,(PRM81)
+			SET	4,A		; ERROR FLAG RESET
+RSSET:
+			OUT	(PRSC),A
+			LD	(PRM81),A
+			CALL	DELAY		; 0.02msec WAIT
+			RET
+;
+									page
+;
+;		*****  EHOOK JUMP ADDRESS  *****
+IRQEI:
+			LD	A,(RZIER)	; IRQ MASK ENABLE
+			SET	4,A
+			LD	(RZIER),A
+			OUT	(IER),A		; EHOOK ENABLE
+;
+			LD	HL,INTR		; CHANGE EHOOK TABLE
+			LD	(EHOOK+1),HL
+;
+			RET
+;
+									page
+;		*****  INTERRUPT HANDLER  *****
+INTR:
+			LD	(SP0),SP
+			LD	SP,STACK
+			PUSH	AF
+			PUSH	BC
+			PUSH	HL
+			PUSH	DE
+			IN	A,(PMDST)	; READ MODEM STATUS
+			RRA			; RING ?
+			JR	C,IRNG		; YES
+		
+			IN	A,(PRSST)	; READ 8251 STATUS
+			BIT	1,A
+			JR	NZ,IRXRDY	; RXRDY INTERRUPT
+
+			BIT	0,A
+			JR	NZ,ITXRDY	; TXRDY INTERRUPT
+	INTRT:
+			POP	DE
+			POP	HL
+			POP	BC
+			POP	AF
+			LD	SP,(SP0)
+			RET
+;
+									page
+;		*****  RING INDICATOR INTERRUPT SERVICE ROUTINE  *****
+IRNG:
+			CALL	MDRRST		; RING RESET
+			JR	INTRT
+;
+;
+									page
+;		*****  XMITTER INTERRUPT SERVICE ROUTINE
+ITXRDY:
+			LD	A,(XMTFLG)	; LOAD XMT FLAG
+			OR	A		; ON ?
+			JR	Z,TXRD30	; NO_JMP
+;
+			LD	A,(XMTDAT)
+			OUT	(PRSD),A	; XMT
+			XOR	A 
+			LD	(XMTFLG),A	; XMT END FLAG OFF
+	TXRD30:
+			IN	A,(PRSST)
+			BIT	2,A		; TX EMPTY ?
+			JR	Z,TXRD30	; NO. LOOP
+;
+			CALL	TXDSB		; PUT DISABLE
+			JR	INTRT
+;
+
+									page
+;		*****  RECEIVE NTERRUPT SERVICE ROUTINE
+IRXRDY:
+			IN	A,(PRSST)	; READ STATUS
+
+			BIT	7,A		; CD ON  ?
+			JR	Z,INTH02	; NO
+
+			BIT 	6,A		; BREAK DETECT ?
+			JR	Z,INTH05	; NO
+;
+			IN	A,(PRSD)
+			LD	A,ON
+			LD	(BRKDT),A	; BREAK FLAG ON
+			CALL	ERRSET		; ERROR FLAG RESET
+			JP	INTRT
+	INTH02:
+			IN	A,(PRSD)	; DUMMY READ
+			CALL	ERRSET		; ERROR FLAG RESET
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 87.08.04
+			LD	A,80H		; SET ERROR CODE
+			JR	INTH30
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	INTH05:
+			AND	38h		; ERROR ?
+			JR	NZ,INTH02	; NO
+
+			IN	A,(PRSD)	; READ RECV DATA
+			AND	7FH
+	INTH30:
+			PUSH	AF
+			LD	A,(RSFULF)
+			OR	A		; BUFFER FULL ?
+			JR	Z,INTH50	; NO
+			LD	A,ON
+			LD	(RSOVRF),A	; BUFFER OVER FLAG SET
+			POP	AF
+			JP	INTRT
+	INTH50:
+			LD	HL,(HPUTP)	; HL = PUT POINTER
+			PUSH	HL
+			INC	HL
+			PUSH	HL
+;		
+			LD	BC,HBUF+HBUFSIZ	; BUFFER END + 1
+			OR	A
+			SBC	HL,BC		; BUFFER END ?
+			POP	HL
+			JR	NZ,INTH60	; NO
+			LD	HL,HBUF		; HL = BUFFER TOP ADDRESS
+	INTH60:
+			PUSH	HL
+			LD	BC,(HGETP)
+			OR	A
+			SBC	HL,BC		; BUFFER FULL ?
+			JR	NZ,INTH70	; NO
+			LD	A,ON
+			LD	(RSFULF),A	; BUFFER FULL FLAG SET
+	INTH70:
+			POP	HL
+			LD	(HPUTP),HL	; RESTORE PUT POINTER
+			POP	HL
+			POP	AF
+			LD	(HL),A		; PUT RECVED DATA
+			LD	HL,(HLOC)	; GET LOC. ADDRESS
+			INC	HL
+			LD	(HLOC),HL
+			JP	INTRT
+;
+									page
+;		*****  SPECIAL TIMER  *****
+
+;			INPUT : B = WAIT TIME (10msec)
+
+;			OUTPUT : A = 0  TIME OVER
+;				 CY-ON  CD-OFF
+
+CTIMER:
+			PUSH	BC
+			CALL	WAT10		; WAIT 10msec
+			POP	BC
+;
+			CALL	MDCD		; CD ON ?
+			JR	Z,TMER		; NO.CY_ON
+			DJNZ	CTIMER		; JMP_LOOP
+			XOR	A
+			RET
+;
+	TMER:
+			SCF
+			RET
+;
+;		*****  LONG TIMER  *****
+
+;			INPUT :  B = WAIT TIME (sec)
+;
+;			OUTPUT : A = STATUS
+;				   = 0  CD ON
+;				   = 1  TIME OVER ( CD-OFF )
+
+LTIMER: 
+			LD	HL,FG7508
+			BIT	6,(HL)
+			JR	Z,LTM01
+			RES	6,(HL)
+			DEC	B
+			LD	A,B
+			OR	A
+			LD	A,1		; ERROR STATUS
+			RET	Z
+	LTM01:
+			LD	C,16
+	LTM02:
+			CALL	MDCD
+			JR	Z,LTIMER
+			PUSH	BC
+			CALL	WAT10
+			POP	BC
+			DEC	C
+			JR	NZ,LTM02
+			XOR	A		;STATUS
+			RET
+;
+									page
+;		*****  WAIT ROUTINE  *****
+WAIT:						; msec
+			PUSH	AF
+	WAIT01:
+			LD	A,200
+	WAIT02:
+			DEC	A
+			JR	NZ,WAIT02
+;
+			DEC	BC
+			LD	A,B
+			OR	C
+			JR	NZ,WAIT01
+			POP	AF
+			RET
+;
+WAT10:						; WAIT 10msec 
+			LD	BC,10
+			JR	WAIT
+;
+WATX:						; WAIT 0.5msec
+			PUSH	AF
+	X01:
+			LD	A,100
+	X02:
+			DEC	A
+			JR	NZ,X02
+;
+			POP	AF
+			RET
+;
+DELAY:						; WAIT 0.02msec
+			PUSH	AF
+			LD	A,4
+			JR	X02
+;
+									page
+;		*****  PARAMETER AREA  *****
+
+	PRSD		EQU	80h
+	PRSM		EQU	81h
+	PRSC		EQU	81h
+	PRSST		EQU	81h
+
+	PMDCTL		EQU	84h
+	PMDTMF		EQU	85h
+	PMDST		EQU	86h
+	PMDPWR		EQU	86h
+	PPAR		EQU	87h
+
+	RZIER		EQU	0F53Eh
+	IER		EQU	04h
+	FG7508		EQU	0F4D7h
+	OFF		EQU	0
+	ON		EQU	1
+
+	IPDATA:
+			DB	00H	; PORT 81
+			DB	7BH	; PORT 81
+			DB	08H	; PORT 84
+			DB	08H	; PORT 85
+			DB	0	; PORT 86
+
+	PRM81:		DB	0
+	PRM811:		DB	0
+	PRM84:		DB	0
+	PRM85:		DB	0
+	PRM86:		DB	0
+
+	RSFULF:		DB	0
+	XMTFLG:		DB	0
+	XMTDAT:		DB	0
+	BRKDT:		DB	0
+	RSOVRF:		DB	0
+	DIALMD:		DB	0
+
+	DIALNO:		DW	0
+	HLOC:		DW	0
+	HGETP:		DW	0
+	HPUTP:		DW	0
+	SP0:		DS	4
+			DS	100
+	STACK:
+
+			END

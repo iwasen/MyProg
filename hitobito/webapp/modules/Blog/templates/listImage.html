@@ -1,0 +1,73 @@
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+				<tr bgcolor="#5B94FD">
+					
+          
+    <td colspan="3"><img src="image/naviedit_image_ttl.gif" width="69" height="25" hspace="10" alt="画像管理"></td>
+				</tr>
+				<tr>
+					<td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+					<td width="555" valign="top">
+						<form name="form3" method="post" action="" enctype="multipart/form-data">
+							
+              <table width="555" border="0" cellspacing="0" cellpadding="0">
+                <tr> 
+                  <td colspan="2"><img src="image/spacer.gif" width="1" height="15"><br />
+						<{$navigation->getMoveNavigation()}>
+				        <br /></td>
+                </tr>
+                <tr> 
+                  <td valign="top"> 
+                    <table width="450" border="0" cellspacing="0" cellpadding="0" style="border:2px solid #CCCCCC">
+		      <{* image loop ここから *}>
+		      <{foreach item=item from=$itemlist name=imageloop}>
+		      <{if $smarty.foreach.imageloop.iteration is odd}>
+		      <tr>
+			<{/if}>
+			<td style="border-bottom: 1px solid #CCCCCC">
+			  <div class="char120">
+			    <{$item->getAttribute('bli_title')|escape}>
+			  </div>
+			  <input type="radio" name="blog_image_id" value="<{$item->getId()}>" />
+			  <a href="blogimage.php?id=<{$item->getId()}>" target="_blank"><img src="blogimage.php?id=<{$item->getId()}>" width="50" alt="<{$item->getAttribute('bli_title')|escape}>" border="0"/></a>
+			  <{$item->getAttribute('bli_width')}>X<{$item->getAttribute('bli_height')}>pixl
+			</td>
+		      <{if $smarty.foreach.imageloop.iteration is even}>
+		      </tr>
+		      <{/if}>
+		      <{/foreach}>
+		      <{if $smarty.foreach.imageloop.total is odd}>
+			<td style="border-bottom: 1px solid #CCCCCC">&nbsp;</td>
+		      </tr>
+		      <{/if}>
+                    </table>
+                  </td>
+                  <td valign="top" align="center"> 
+                    <table width="65" border="0" cellspacing="0" cellpadding="0">
+                      <tr> 
+                        <td><a href="index.php?module=Blog&amp;action=UploadImage&amp;navipage_id=<{$hitobitoNaviPageInfo->getId()}>"><img src="image/naviedit_btn_new.gif" width="65" height="20" alt="新規追加" border="0"></a></td>
+                      </tr>
+                      <tr> 
+                        <td><img src="image/spacer.gif" width="1" height="15"></td>
+                      </tr>
+                      <tr> 
+                        <td><input type="image" name="blog_image_edit" src="image/naviedit_btn_edit.gif" width="65" height="20" alt="編集" border="0"></td>
+                      </tr>
+                      <tr> 
+                        <td><img src="image/spacer.gif" width="1" height="15"></td>
+                      </tr>
+                      <tr> 
+                        <td><input type="image" name="blog_image_delete" src="image/naviedit_btn_delete.gif" width="65" height="20" alt="削除" border="0"  onClick="return confirm('削除してもよろしいですか')"></td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr> 
+                  <td colspan="2"><img src="image/spacer.gif" width="1" height="30"></td>
+                </tr>
+              </table>
+							</form>
+						<{$navigation->getMoveNavigation()}>
+					</td>
+					<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+				</tr>
+			</table>

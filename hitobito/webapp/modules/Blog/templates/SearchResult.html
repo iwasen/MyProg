@@ -1,0 +1,57 @@
+			<table width="585" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td><img src="image/search_sttl_blog.gif" width="113" height="14" alt="ナビ記事検索結果"></td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="4"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#FCA73F"><img src="image/spacer.gif" width="585" height="1"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#FDFADF" align="right" class="char120">
+						<p class="ind1003"><{$total}>件中 <{$start_num}> - <{$end_num}>件目</p>
+					</td>
+				</tr>
+				<tr>
+					<td class="char120"><img src="image/spacer.gif" width="1" height="8"></td>
+				</tr>
+			</table>
+			<{foreach item=item from=$itemlist}>
+			<{assign var=navipage value=$item->getNaviPageInfo()}>
+			<table width="565" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="8"></td>
+				</tr>
+				<tr>
+					<td class="char140"><a href="index.php?navipage_id=<{$navipage->getId()}>&amp;module=Blog&amp;action=ViewStory&amp;blog_story_id=<{$item->getId()}>"><{$item->getTitle()|escape}></a><{if $item->getAttribute('bla_pickup') > 0}><span class="charblog">　PICK UP !</span><{/if}></td>
+				</tr>
+				<tr>
+					<td class="char120"><{$item->getBody()|strip_tags|mbtruncate:200}><br>
+						<span class="charblog"><{$hitobitoUrl}>index.php?navipage_id=<{$navipage->getId()}>&amp;module=Blog&amp;action=ViewStory&amp;blog_story_id=<{$item->getId()}></span>
+					</td>
+				</tr>
+				<tr>
+					<td align="right" class="char120"><span class="char999999">ナビ : </span><{$navipage->getNaviName()|escape}><span class="char999999"> | </span><a href="index.php?module=Navi&amp;navipage_id=<{$navipage->getId()}>"><{$navipage->getTitle()|escape}></a><span class="char999999"> | <{$item->getAttribute('bla_date')|HNbDate:"m"}></span></td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="8"></td>
+				</tr>
+				<tr>
+					<td><img src="image/search_split_blog.gif" width="565" height="1"></td>
+				</tr>
+			</table>
+			<{/foreach}>
+
+			<table width="565" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td colspan="2"><img src="image/spacer.gif" width="1" height="8"></td>
+				</tr>
+				<tr>
+					<td width="360" class="char120"><{$navigation->getListNavigation()}></td>
+					<td align="right" width="205"><{$navigation->getMoveNavigation()}></td>
+				</tr>
+				<tr>
+					<td colspan="2"><img src="image/spacer.gif" width="1" height="30"></td>
+				</tr>
+			</table>

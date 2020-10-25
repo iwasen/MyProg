@@ -1,0 +1,859 @@
+		title	mginit
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; module name	: meganet shokisettei
+; creation date	: 86:02:10
+; revised date  : 
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+		.z80
+
+		include	MEMORY.INC
+		include	SUBR.INC
+
+		extrn	gdmsg
+		extrn	clrbuf
+		extrn	chr_disp
+		extrn	csr_off
+
+		public	mginit
+
+
+    	CONOUT		equ	0eb0ch
+	BEEP		equ	0eb39h
+	TIMDAT		equ	0eb4eh
+;
+	RET		equ	0dh 	; return key code
+	ESC		equ	1bh	; escape key code
+	LEFT		equ	0e5h	; left key code
+	RIGHT		equ	0e6h	; right key code
+	LUP		equ	0edh	; up key code
+	LDOWN		equ	0eeh	; down key code
+	END		equ	0f7h	; end key code
+	CANCEL		equ	0fdh	; cancel key code
+	GAMEN		equ	0f7h	; gamen shuuryou key code
+	DEND		equ	0efh	; denpyou shuuryou key code
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	meganet shokisettei data input
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+mginit:
+		call	csr_off		; cursor off
+
+		ld	hl,m_kshoki
+		call	kmsg		; display kanji
+
+		ld	hl,m_shokiset
+		call	chr_disp
+
+		call	datadsp		; data display
+
+		call	ymdisp		; nen tsuki hi ji fun display
+
+	mgin10:
+		ld	a,(r_passwdf)
+		ld	(pasfwk),a
+
+	mgin11:
+		ld	ix,p_passwdf
+
+		call	int_inp		; initial data input
+
+		ld	(endsts),a
+		ld	a,(pasfwk)
+		ld	b,a
+		ld	a,(r_passwdf)
+		cp	b
+		jp	z,mgin19	; passwd input nashi
+
+		cp	'2'
+		jr	nz,mgin13	; passwd nashi
+
+		ld	a,(r_passwd)
+		cp	' '
+		jp	nz,mgin19	; passwd settei-zumi
+
+		ld	a,(endsts)
+		or	a
+		jr	z,mgin12	; ret key
+
+		ld	bc,1601h
+		call	BEEP		; beep
+
+		jr	mgin11
+
+	mgin12:
+		ld	hl,passwk
+		ld	bc,6
+		ld	a,' '
+		call	clrbuf
+
+		ld	ix,p_passwd
+		ld	(ix+3),30h
+		call	int_inp		; initial data input
+
+		cp	1
+		jp	z,mgin11
+
+		or	a
+		jr	z,mgin17	; ret key
+
+		ld	bc,1601h
+		call	BEEP		; beep
+
+		jr	mgin12
+
+	mgin13:
+		ld	a,(endsts)
+		or	a
+		jr	z,mgin14	; ret key
+
+		ld	bc,1601h
+		call	BEEP		; beep
+
+		jr	mgin11
+
+	mgin14:
+		ld	hl,passwk
+		ld	bc,6
+		ld	a,' '
+		call	clrbuf
+
+		ld	ix,p_passwd
+		ld	(ix+3),31h
+		call	int_inp		; initial data input
+
+		cp	1
+		jp	z,mgin11
+
+		or	a
+		jr	nz,mgin16	; ret key
+
+		ld	hl,r_passwd
+		ld	de,passwk
+		ld	b,6
+
+	mgin15:
+		ld	a,(de)
+		cp	(hl)
+		jr	nz,mgin151	; passwd unmatch
+
+		inc	hl
+		inc	de
+		djnz	mgin15		; check not end
+		jr	mgin18
+	mgin151:
+		ld	hl,C_SPASS	; super password
+		ld	de,passwk
+		ld	b,6
+
+	mgin152:
+		ld	a,(de)
+		cp	(hl)
+		jr	nz,mgin16	; passwd unmatch
+
+		inc	hl
+		inc	de
+		djnz	mgin152		; check not end
+		jr	mgin18
+
+	mgin16:
+		ld	bc,1601h
+		call	BEEP		; beep
+		jr	mgin14
+
+	mgin17:
+		ld	de,r_passwd
+		ld	hl,passwk
+		ld	bc,6
+		ldir			; passwd set
+
+	mgin18:
+		ld	ix,p_tanto
+		jr	mgin20
+
+	mgin19:
+		ld	a,(endsts)
+		or	a
+		jr	z,mgin18	; ret key
+
+		cp	-1
+		ret	z		; end key
+
+	mgin20:
+		call	int_inp		; initial data input
+
+		cp	-1
+		ret	z		; end key
+
+		cp	1
+		jp	z,mgin10	; password flag set
+
+		cp	3
+		jr	z,mgin20	; up down left right key
+
+		ld	de,22
+		add	ix,de
+		push	ix
+		pop	hl
+		ld	de,p_lntyp
+		or	a
+		sbc	hl,de
+		jr	nz,mgin30
+		ld	ix,p_nen
+	mgin30:
+		ld	a,(ix)
+		or	a
+		jr	nz,mgin20	; table not end
+
+		call	ymset		; nen tsuki hi set
+
+		ld	ix,p_fun
+		jr	mgin20
+
+int_inp:
+		ld	l,(ix+8)	;
+		ld	h,(ix+9)	; guide message display
+		call	gdmsg		;
+
+		sub	a
+
+zoku30:
+		push	ix
+		push	ix
+		pop	hl
+
+		call	kbin		; key or bar code input
+
+		pop	ix
+
+		or	a		; bar code ?
+		jr	z,zok_err10	; * yes
+		cp	GAMEN		; gamen key ?
+		jr	z,zok_end	; * yes
+		cp	DEND		; denpyou key ?
+		jr	z,zok_end	; * yes
+		cp	LUP		; up key ?
+		jp	z,zok_up	; * yes
+		cp	LDOWN		; down key ?
+		jp	z,zok_dwn	; * yes
+		cp	LEFT		; left key ?
+		jp	z,zok_lft	; * yes
+		cp	RIGHT		; right key ?
+		jp	z,zok_rig	; * yes
+
+		ld	l,(ix+10)
+		ld	h,(ix+11)
+		call	hljump		; check routine call
+		jr	c,zok_err
+
+		or	a
+		jr	z,zoku40
+		cp	-1
+		jr	z,zoku50
+
+		ld	l,(ix+12)
+		ld	h,(ix+13)
+		call	hljump		; display routine call
+
+		jr	int_inp
+
+zoku40:
+		ld	l,(ix+12)
+		ld	h,(ix+13)
+		call	hljump		; display routine call
+
+		xor	a
+		ret
+
+zoku50:
+		ld	hl,g_inperr
+		call	gdmsg		; input err guid display
+
+		jr	zok_err10
+;
+zok_err:
+		ld	hl,g_numerr
+		call	gdmsg		; number err guid display
+
+zok_err10:
+		ld	bc,1601h
+		call	BEEP
+
+zok_con:
+		ld	a,1
+		jr	zoku30
+;
+zok_end:
+		ld	a,-1
+		ret
+;
+zok_dsp:
+		ld	l,(ix+12)
+		ld	h,(ix+13)
+		call	hljump		; display
+		jp	int_inp
+;
+zok_up:
+		ld	l,(ix+14)
+		ld	h,(ix+15)
+zok_up10:
+		ld	a,h
+		or	l
+		jr	z,zok_err10
+
+		cp	1
+		ret	z		; password flag input
+
+		ld	a,3
+		push	hl
+		pop	ix
+		ret
+;
+zok_dwn:
+		ld	l,(ix+16)
+		ld	h,(ix+17)
+		jr	zok_up10
+;
+zok_lft:
+		ld	l,(ix+18)
+		ld	h,(ix+19)
+		jr	zok_up10
+;
+zok_rig:
+		ld	l,(ix+20)
+		ld	h,(ix+21)
+		jr	zok_up10
+;
+hljump:
+		jp	(hl)
+;
+;	data check routine
+;
+c_num:
+		sub	RET
+		ret	z
+		scf
+		ret
+;
+c_yno:
+		cp	RET
+		jr	z,c_yno10
+
+		cp	'1'
+		jr	z,c_yno20
+
+		cp	'2'
+		jr	z,c_yno20
+
+		ld	a,-1
+		or	a
+		ret
+
+	c_yno10:
+		xor	a
+		ret
+
+	c_yno20:
+		ld	l,(ix+4)
+		ld	h,(ix+5)
+		ld	(hl),a
+		ret
+;
+c_lntyp:
+		cp	'3'
+		jr	z,c_yno20
+		jr	c_yno
+;
+c_lnshr:
+		cp	RET
+		jr	z,c_yno10
+
+		cp	'1'
+		jr	z,c_yno20
+
+		cp	'2'
+		jr	z,c_yno20
+
+		ld	hl,(xp)
+		cp	(hl)
+		ld	a,-1
+		jr	nz,c_lnshr10
+		inc	hl
+		ld	(xp),hl
+		ld	a,(hl)
+		cp	-1
+		jr	nz,c_lnshr20
+		ld	a,1
+		ld	ix,p_lntyp
+c_lnshr10:
+		ld	hl,xcom
+		ld	(xp),hl
+c_lnshr20:
+		or	a
+		ret
+;
+;	data display routine
+;
+d_suuchi:
+		ld	a,1
+		ld	(dispwk),a
+		ld	l,(ix+4)
+		ld	h,(ix+5)
+		push	hl
+		ld	b,(ix+7)
+suuchi02:
+		ld	a,(hl)
+		cp	' '
+		jr	nz,suuchi04
+		inc	hl
+		djnz	suuchi02
+		sub	a
+		ld	(dispwk),a
+suuchi04:
+		ld	l,(ix+0)
+		ld	h,(ix+1)
+		ld	a,h
+		push	af
+
+		ld	(c_csr+2),hl
+		ld	hl,c_csr
+		call	chr_disp	; cursor set
+
+		pop	af
+		pop	hl
+
+suuchi10:
+		push	af
+		ld	a,(dispwk)
+		or	a
+		ld	c,(hl)
+		jr	nz,suuchi30
+		ld	c,'_'
+suuchi30:
+		inc	hl
+		push	hl
+		call	CONOUT
+		pop	hl
+		pop	af
+		inc	a
+		cp	(ix+2)
+		jr	nz,suuchi10
+		ret
+;
+d_lntyp:
+		ld	l,(ix+4)
+		ld	h,(ix+5)
+		ld	a,(hl)
+		cp	'3'
+		jr	nz,d_suuchi
+
+		ld	l,(ix+0)
+		ld	h,(ix+1)
+		ld	(c_csr+2),hl
+		ld	hl,c_csr
+		call	chr_disp	; cursor set
+
+		ld	c,'2'
+		call	CONOUT
+		ret
+;
+d_aster:
+		ld	hl,i_aster
+		call	chr_disp	; aster display
+		ret
+;
+;
+datadsp:
+		ld	ix,p_passwdf
+		call	d_suuchi	; suuchi display
+
+		ld	a,(r_passwd)
+		cp	' '
+		jr	z,datadsp05	; passwd mi-seetei
+
+		ld	hl,i_aster
+		jr	datadsp08
+
+	datadsp05:
+		ld	hl,i_under
+
+	datadsp08:
+		call	chr_disp
+
+		ld	ix,p_tanto
+
+datadsp10:
+		ld	l,(ix+12)
+		ld	h,(ix+13)
+		call	hljump		; data display routine call
+
+		ld	de,22
+		add	ix,de
+		ld	a,(ix)
+		or	a
+		jr	nz,datadsp10
+
+ymdisp:
+		ld	de,tim_tbl
+		ld	c,0
+		call	TIMDAT		; time data read
+
+		ld	hl,m_ymdhm+6
+		ld	c,5		; loop counter set
+
+	ymdp10:
+		ld	a,(de)
+		srl	a
+		srl	a
+		srl	a
+		srl	a
+		or	30h
+		ld	(hl),a		; hi-data set
+		inc	hl
+		ld	a,(de)
+		and	0fh
+		or	30h
+		ld	(hl),a		; low-data set
+		inc	hl
+		inc	hl
+		inc	hl
+		inc	de
+		ld	a,c
+		cp	4
+		jr	nz,ymdp20
+
+		inc	hl
+
+	ymdp20:
+		dec	c
+		jr	nz,ymdp10
+
+		ld	hl,m_ymdhm
+		call	chr_disp	; nen tsuki hi display
+
+		ret
+
+
+ymset:
+		xor	a
+		ld	(tim_tbl+5),a	; byo 0 set
+		ld	de,tim_tbl
+		ld	c,0ffh
+		call	TIMDAT		; time data set
+
+		ret
+
+c_nen:
+		cp	RET
+		jr	z,cn10
+
+		ld	a,-1
+		ret
+
+	cn10:
+		ld	hl,(m_ymdhm+6)
+		call	pack
+		ld	(tim_tbl),a	; nen data set
+		xor	a
+		ret
+
+c_tsuki:
+		cp	RET
+		jr	z,ct03
+
+		ld	a,-1
+		ret
+
+	ct03:
+		ld	hl,(m_ymdhm+10)
+		call	pack
+		cp	13h
+		jr	nc,ct05		; input err
+
+		cp	0
+		jr	nz,ct10		; input ok
+
+	ct05:
+		ld	a,-1
+		ret
+
+	ct10:
+		ld	(tim_tbl+1),a
+		xor	a
+		ret
+
+c_hi:
+		cp	RET
+		jr	z,ch03
+
+		ld	a,-1
+		ret
+
+	ch03:
+		ld	hl,(m_ymdhm+15)
+		call	pack
+		cp	32h
+		jr	nc,ch05		; input err
+
+		cp	0
+		jr	nz,ch10		; input ok
+
+	ch05:
+		ld	a,-1
+		ret
+
+	ch10:
+		ld	(tim_tbl+2),a
+		xor	a
+		ret
+
+c_ji:
+		cp	RET
+		jr	z,cj03
+
+		ld	a,-1
+		ret
+
+	cj03:
+		ld	hl,(m_ymdhm+19)
+		call	pack
+		cp	24h
+		jr	nc,cj10		; input err
+
+		ld	(tim_tbl+3),a
+		xor	a
+		ret
+
+	cj10:
+		ld	a,-1
+		ret
+
+c_fun:
+		cp	RET
+		jr	z,cf03
+
+		ld	a,-1
+		ret
+
+	cf03:
+		ld	hl,(m_ymdhm+23)
+		call	pack
+		cp	61h
+		jr	nc,cf10		; input err
+
+		ld	(tim_tbl+4),a
+		xor	a
+		ret
+
+	cf10:
+		ld	a,-1
+		ret
+;
+;
+pack:
+		ld	a,l
+		rlca
+		rlca
+		rlca
+		rlca
+		and	0f0h
+		ld	b,a
+		ld	a,h
+		and	0fh
+		or	b
+		ret
+;
+;	display data
+;
+m_kshoki:	dw	0,0101h
+		dw	1b30h,8f89h,8afah,90ddh,92e8h,1b31h,-1
+
+m_shokiset:	db	ESC,'=',22h,20h,0a5h,0cah,0dfh,0bdh,0dch,0b0h,0c4h
+		db	0deh,3fh,20h,3ah
+		db	ESC,'=',23h,20h,0a5h,0cah,0dfh,0bdh,0dch,0b0h,0c4h
+		db	0deh,3ah
+		db	ESC,'=',24h,20h,0a5h,0bfh,0b3h,0bbh,0b2h,0ddh,04eh
+		db	04fh,03ah
+		db	ESC,'=',25h,20h,0a5h,0c1h,0aeh,0b8h,0bfh,0b3h,0bbh
+		db	0b7h,03ah
+		db	ESC,'=',26h,20h,0a5h,0c1h,0aah,0afh,0b8h,0d8h,0bdh
+		db	0c4h,03ah
+		db	ESC,'=',20h,31h,0a5h,0b6h,0b2h,0beh,0ddh,0b7h,0aeh
+		db	0b3h,0d6h,0b3h,03ah
+		db	ESC,'=',21h,31h,0a5h,0b6h,0b2h,0beh,0ddh,0c0h,0b2h
+		db	0cch,0dfh,020h,03ah
+		db	ESC,'=',22h,31h,0a5h,0bah,0b3h,0d8h,0bah,0b0h,0c4h
+		db	0deh,3ah
+		db	ESC,'=',23h,31h,0a5h,'ENQ    :'
+		db	ESC,'=',24h,31h,0a5h,'TID    :'
+		db	ESC,'=',25h,31h,0a5h,'VAN TEL1:'
+		db	ESC,'=',26h,31h,0a5h,'VAN TEL2:',-1
+
+m_ymdhm:	db	ESC,'1'
+		db	ESC,'=',27h,20h,20h,20h,0c8h,0ddh,20h,20h,0b6h,0deh
+		db	0c2h,20h,20h,0cbh,20h,20h,20h,0bch,0deh,20h,20h
+		db	0cch,0ddh,-1
+;
+;	input parameter
+;
+p_passwdf:	db	22h,2bh,2ch,80h
+		dw	r_passwdf
+		db	0,1
+		dw	g_nari,c_yno,d_suuchi
+		dw	0,p_tanto,0,0
+
+p_passwd:	db	23h,29h,2fh,31h
+		dw	passwk
+		db	0,6
+		dw	g_clr,c_num,d_aster
+		dw	1,0,0,0
+
+p_tanto:	db	24h,29h,2ah,80h
+		dw	r_tanto
+		db	00h,1
+		dw	g_nari,c_yno,d_suuchi
+		dw	1,p_chokuso,0,0
+
+p_chokuso:	db	25h,29h,2ah,80h
+		dw	r_chokuso
+		db	00h,1
+		dw	g_nari,c_yno,d_suuchi
+		dw	p_tanto,p_clist,0,0
+
+p_clist:	db	26h,29h,2ah,80h
+		dw	r_clist
+		db	00h,1
+		dw	g_nari,c_yno,d_suuchi
+		dw	p_chokuso,p_lnshr,0,0
+
+p_lnshr:	db	20h,3ch,3dh,80h
+		dw	r_lnshr
+		db	0,1
+		dw	g_lnshr,c_lnshr,d_suuchi
+		dw	p_clist,p_nen,0,0
+
+p_lntyp:	db	21h,3ch,3dh,80h
+		dw	r_lntyp
+		db	00h,1
+		dw	g_lntyp,c_lntyp,d_lntyp
+		dw	p_lnshr,p_kouri,0,0
+
+p_kouri:	db	22h,3ah,42h,00h
+		dw	r_kouri
+		db	0,8
+		dw	g_end,c_num,d_suuchi
+		dw	p_lntyp,p_enq,1,0
+
+p_enq:		db	23h,3ah,42h,00h
+		dw	r_enq
+		db	00h,8
+		dw	g_end,c_num,d_suuchi
+		dw	p_kouri,p_tid,0,0
+
+p_tid:		db	24h,3ah,47h,00h
+		dw	r_tid
+		db	0,13
+		dw	g_end,c_num,d_suuchi
+		dw	p_enq,p_vantel1,p_tanto,0
+
+p_vantel1:	db	25h,3bh,48h,50h
+		dw	r_vantel1
+		db	00h,13
+		dw	g_end,c_num,d_suuchi
+		dw	p_tid,p_vantel2,p_chokuso,0
+
+p_vantel2:	db	26h,3bh,48h,50h
+		dw	r_vantel2
+		db	00h,13
+		dw	g_end,c_num,d_suuchi
+		dw	p_vantel1,p_nen,p_clist,0
+
+p_nen:		db	27h,20h,22h,0
+		dw	m_ymdhm+6
+		db	00h,2
+		dw	g_end,c_nen,d_suuchi
+		dw	p_lnshr,0,0,p_tsuki
+
+p_tsuki:	db	27h,24h,26h,0
+		dw	m_ymdhm+10
+		db	00h,2
+		dw	g_end,c_tsuki,d_suuchi
+		dw	p_lnshr,0,p_nen,p_hi
+
+p_hi:		db	27h,29h,2bh,0
+		dw	m_ymdhm+15
+		db	00h,2
+		dw	g_end,c_hi,d_suuchi
+		dw	p_lnshr,0,p_tsuki,p_ji
+
+p_ji:		db	27h,2dh,2fh,0
+		dw	m_ymdhm+19
+		db	00h,2
+		dw	g_end,c_ji,d_suuchi
+		dw	p_lnshr,0,p_hi,p_fun
+
+p_fun:		db	27h,31h,33h,0
+		dw	m_ymdhm+23
+		db	00h,2
+		dw	g_end,c_fun,d_suuchi
+		dw	p_lnshr,0,p_ji,0
+
+		db	0
+;
+;	guide message
+;
+g_inperr:	db	23,15
+		db	0c6h,0adh,0b3h,0d8h,0aeh,0b8h,0b4h,0d7h
+		db	0b0h,-1
+
+g_nari:		db	23,15
+		db	31h,3ah,0c5h,0bch,20h,32h,0b1h,0d8h,-1
+
+g_lnshr:	db	23,15
+		db	31h,3ah,0b2h,0b2h,0b4h,20h,32h,3ah,0cah,0b2h,-1
+
+g_lntyp:	db	23,15
+		db	31h,3ah,0cch,0dfh,0bch,0adh,20h,32h,3ah,0c0h
+		db	0deh,0b2h,0d4h,0d9h,-1
+
+g_end:		db	23,15
+		db	0c4h,0b3h,0dbh,0b8h,0bah,0deh,0bch,0adh
+		db	0b3h,0d8h,0aeh,0b3h,0a6h,0b5h,0bdh,-1
+
+g_numerr:	db	23,15
+		db	0bdh,0b3h,0bch,0deh,0b2h,0b6h,0deh,0b2h
+		db	20h,0cah,20h,0b4h,0d7h,0b0h,-1
+		db	0b8h,-1
+
+
+g_clr:		db	23,15,-1
+
+dispwk:		db	0
+
+pasfwk:		db	0
+
+nxptr:		dw	0
+
+i_under:	db	ESC,'=',23h,29h,'______',-1
+
+i_aster:	db	ESC,'=',23h,29h,'******',-1
+
+endsts:		db	0
+
+passwk:		db	20h,20h,20h,20h,20h,20h
+
+c_csr:		db	ESC,'=',0,0,ESC,'1',-1
+
+tim_tbl:	db	0,0,0,0,0,0,0
+
+tim_set:	db	0,0,0,0,0,0,0
+
+xcom:		db	'MEGANET',-1
+xp:		dw	xcom
+
+		end

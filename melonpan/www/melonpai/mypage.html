@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>メルマガナビ　マイページ</TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600" leftmargin="0" marginwidth="0">
+
+<? draw_head2(".."); ?>
+
+<br>
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="513" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+<TD>
+                  <p align="left"><font color="#99CCFF">■</font><font color="#003399"><b>メルマガナビ【 
+                    <? echo $melonpai_name ?>
+                    さん】のマイページ</b></font></p>
+                   
+                  <table width="99%">
+                    <tr> 
+                      <td width="87%" height="16"> 　ご希望のメニューを選択してください。</td>
+                      <td width="13%" height="16">　</td>
+                    </tr>
+                    <tr> 
+                      <td width="87%">　</td>
+                      <td width="13%"><a href="navifaq.htm" target="_blank">≫≫FAQ</a></td>
+                    </tr>
+                  </table>
+                  <table width="100%" border="0" cellspacing="2" cellpadding="1">
+<tr bgcolor="#99CCFF">
+<td colspan="3">
+<div align="center"><b><font color="#003399">メルマガナビ　メニュー</font></b></div>
+</td>
+</tr>
+<tr bgcolor="#F0FBFF">
+<td width="33%" class="text9ptnoColor">
+<form name="mitsukuroi" action="mitsukuroi.php" method="post">
+<div align="center">
+<A HREF="JavaScript:document.mitsukuroi.submit();">「みつくろい」処理待ち一覧<br>（<? echo $mitsukuroi ?>件）</A>
+</div>
+<input type="hidden" value="<? echo $melonpai_id ?>" name="melonpai_id">
+<input type="hidden" value="<? echo $melonpai_pswd ?>" name="melonpai_pswd">
+<input type="hidden" value="<? echo $melonpai_name ?>" name="melonpai_name">
+<input type="hidden" value=1 name="page_no">
+</form>
+</td>
+<form name="makebm" action="make-bm.php" method="post">
+<td width="33%" class="text9ptnoColor">
+<div align="center"><A HREF="JavaScript:document.makebm.submit();">ブックマークを作る<BR>
+（みつくろい用</A><A HREF="JavaScript:document.makebm.submit();">）</A></div>
+</td>
+<input type="hidden" value="<? echo $melonpai_id ?>" name="melonpai_id">
+<input type="hidden" value="<? echo $melonpai_pswd ?>" name="melonpai_pswd">
+<input type="hidden" value="<? echo $melonpai_name ?>" name="melonpai_name">
+</form>
+<td width="33%" class="text9ptnoColor">
+<form name="suisen" action="mp-suisen-list.php" method="post">
+<div align="center"><A HREF="JavaScript:document.suisen.submit();">「推薦文」チェック待ち一覧<br>（<? echo $suisenbun ?>件）</A></div>
+<input type="hidden" value="<? echo $melonpai_id ?>" name="melonpai_id">
+<input type="hidden" value="<? echo $melonpai_pswd ?>" name="melonpai_pswd">
+<input type="hidden" value="<? echo $melonpai_name ?>" name="melonpai_name">
+<input type="hidden" value=1 name="page_no">
+</form>
+</td>
+</tr>
+<tr bgcolor="#F0FBFF">
+<td width="33%" class="text9ptnoColor">
+<form name="search" action="mp-search.php" method="post">
+<div align="center"><a href="JavaScript:document.search.submit();">おすすめメルマガ／<br>
+危ないよメルマガを選ぶ </a></div>
+<input type="hidden" value="<? echo $melonpai_id ?>" name="melonpai_id">
+<input type="hidden" value="<? echo $melonpai_pswd ?>" name="melonpai_pswd">
+<input type="hidden" value="<? echo $melonpai_name ?>" name="melonpai_name">
+<input type="hidden" value=1 name="page_no">
+</form>
+</td>
+<td width="33%" class="text9ptnoColor">
+<form name="osusume" action="mp-osusume-list.php" method="post">
+<div align="center"><a href="JavaScript:document.osusume.submit();">
+おすすめメルマガ一覧 </a></div>
+<input type="hidden" value="<? echo $melonpai_id ?>" name="melonpai_id">
+<input type="hidden" value="<? echo $melonpai_pswd ?>" name="melonpai_pswd">
+<input type="hidden" value="<? echo $melonpai_name ?>" name="melonpai_name">
+<input type="hidden" value=1 name="page_no">
+</form>
+</td>
+<td width="33%" class="text9ptnoColor">
+<form name="abunai" action="mp-abunai-list.php" method="post">
+<div align="center"><a href="JavaScript:document.abunai.submit();">
+危ないよメルマガ一覧</a></div>
+<input type="hidden" value="<? echo $melonpai_id ?>" name="melonpai_id">
+<input type="hidden" value="<? echo $melonpai_pswd ?>" name="melonpai_pswd">
+<input type="hidden" value="<? echo $melonpai_name ?>" name="melonpai_name">
+<input type="hidden" value=1 name="page_no">
+</form>
+</td>
+</tr>
+<tr bgcolor="#F0FBFF">
+<td width="33%" class="text9ptnoColor">
+<form name="header_footer" action="header_footer.php" method="post">
+<div align="center"><A HREF="JavaScript:document.header_footer.submit();">
+みつくろい依頼：固定文入力</A></div>
+<input type="hidden" value="<? echo $melonpai_id ?>" name="melonpai_id">
+<input type="hidden" value="<? echo $melonpai_pswd ?>" name="melonpai_pswd">
+<input type="hidden" value="<? echo $melonpai_name ?>" name="melonpai_name">
+</form>
+</td>
+                      <td width="33%" class="text9ptnoColor">　</td>
+<td width="33%" class="text9ptnoColor">
+<div align="center"><a href="mailto:melonpai@melonpan.net">事務局へのメール</a></div>
+</td>
+</tr>
+</table>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+<table>
+<br>
+<br>
+</table>
+</TD>
+</TR>
+
+<? draw_footer2(".."); ?>
+
+</TABLE>
+</body>
+</html>

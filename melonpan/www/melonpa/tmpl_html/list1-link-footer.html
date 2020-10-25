@@ -1,0 +1,48 @@
+<table width="700" border=0 cellspacing=0>
+<tr>
+<td width="350" height="15" align="right"  bgcolor="#FFCC00">
+<div align=left>　
+<?php
+	//echo $input_read_chk2;
+?>
+</div></td>
+<td width="350" height="15" align="right"  bgcolor="#FFCC00">
+<div align=right>　
+<?php
+	echo $chg_page2;
+?>
+</div>
+</td>
+</tr>
+<tr>
+<td colspan="2" width="700"><div align=right>
+<?php
+	//print $input_data;
+?>
+　
+<?php
+	if ($mail_addr == "") {
+		if ($all_num == 0) {
+		} else {
+			print "<font size=2>メールアドレス：\n";
+			print "<input type=text name=email size=30></font>\n";
+		}
+	} else {
+		print "<input type=hidden name=reader_id value=\"".$reader_id."\">\n";
+		print "<input type=hidden name=reader_pswd value=\"".$reader_pswd."\">\n";
+		print "<input type=hidden name=email value=\"".trim($mail_addr)."\">\n";
+		print trim($mail_addr)."\n";
+	}
+
+	if ($all_num == 0) {
+		print "<form><input type=\"button\" value=\"戻る\" onClick=\"history.back()\"></form>\n";
+	} else {
+		print "<input type=\"submit\" value=\"決定（購読／解除）\" name=\"action\">\n";
+	}
+
+?>
+
+</div>
+</td>
+</tr>
+</table>

@@ -1,0 +1,8 @@
+<!--
+.s1 {  font-family: "‚l‚r ‚oƒSƒVƒbƒN", "Osaka"; font-size: 12px; line-height: 16px; word-spacing: normal}
+.s2 {  font-family: "‚l‚r ‚oƒSƒVƒbƒN", "Osaka"; font-size: 17px; line-height: 20px}
+.s3 {  font-family: "‚l‚r ‚oƒSƒVƒbƒN", "Osaka"; font-size: 9px; font-style: normal; line-height: 12px}
+.s7 {  font-family: "‚l‚r ‚oƒSƒVƒbƒN", "Osaka"; font-size: 32px; line-height: 36px}
+.s5 {  font-family: "‚l‚r ‚oƒSƒVƒbƒN", "Osaka"; font-size: 24px; line-height: 30px}
+.s6 {  font-family: "‚l‚r ‚oƒSƒVƒbƒN", "Osaka"; font-size: 28px; line-height: 30px}
+-->

@@ -1,0 +1,166 @@
+body{
+	font-family: "Osaka";
+	font-size: 12px;
+}
+
+form{
+	margin: 0px;
+}
+
+.form{
+	font-family: "Osaka";
+	font-size: 12px;
+}
+.textbox{
+	font-family: "Osaka";
+	font-size: 12px;
+}
+
+.textbox10{
+	font-family: "Osaka";
+	font-size: 10px;
+}
+
+.button{
+	font-family: "Osaka";
+	font-size: 12px;
+}
+
+.button_s{
+	font-family: "Osaka";
+	font-size: 10px;
+}
+
+.text10{
+	font-family: "Osaka";
+	font-size: 10px;
+	line-height: 125%;
+}
+
+.text12{
+	font-family: "Osaka";
+	font-size: 12px;
+	line-height: 125%;
+}
+
+.text12b{
+	font-family: "Osaka";
+	font-size: 12px;
+	line-height: 125%;
+	font-weight: bold;
+}
+
+.text14{
+	font-family: "Osaka";
+	font-size: 14px;
+	line-height: 125%;
+}
+
+.text14b{
+	font-family: "Osaka";
+	font-size: 14px;
+	line-height: 125%;
+	font-weight: bold;
+}
+
+.text16{
+	font-family: "Osaka";
+	font-size: 16px;
+	line-height: 125%;
+}
+
+.text16b{
+	font-family: "Osaka";
+	font-size: 16px;
+	line-height: 200%;
+	font-weight: bold;
+}
+
+pre{
+	font-family:  "OsakaÅ|ìôïù","ÇlÇr ÉSÉVÉbÉN";
+	font-size: 12px;
+	line-height: 140%;
+}
+
+pre a:link{
+	text-decoration: none;
+	color: #0000a0;
+}
+
+pre a:visited{
+	text-decoration: none;
+	color: #2f2fff;
+}
+
+pre a:hover{
+	text-decoration: underline;
+	color: #ff0000;
+	background-color: #fbfed1;
+}
+
+pre a:active{
+	text-decoration: underline;
+	color: #ff0000;
+	background-color: #fbfed1;
+}
+
+
+#viewoption a:link{
+	text-decoration: none;
+	color: #0000a0;
+}
+
+#viewoption a:visited{
+	text-decoration: none;
+	color: #0000a0;
+}
+
+#viewoption a:hover{
+	text-decoration: underline;
+	color: #0000a0;
+}
+
+#viewoption a:active{
+	text-decoration: underline;
+	color: #0000a0;
+}
+
+#backtotop a:link{
+	font-size: 12px;
+	text-decoration: none;
+	color: #0000a0;
+}
+
+#backtotop a:visited{
+	font-size: 12px;
+	text-decoration: none;
+	color: #0000a0;
+}
+
+#backtotop a:hover{
+	font-size: 12px;
+	text-decoration: underline;
+	color: #0000a0;
+}
+
+#backtotop a:active{
+	font-size: 12px;
+	text-decoration: underline;
+	color: #0000a0;
+}
+
+.line0{
+	background-color: #ffffff;
+}
+
+.line1{
+	background-color: #e4e8f8;
+}
+
+.line2{
+	background-color: #9df9b7;
+}
+
+.red{
+	color: #FF0000;
+}

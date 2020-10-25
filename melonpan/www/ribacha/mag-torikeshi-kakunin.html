@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>メルマガ配信予約取り消し</TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600" topmargin="0" marginheight="0" leftmargin="0" marginwidth="0">
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="513" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+<TD><FONT color="#006600"><B>■メルマガ配信予約取り消し</B></FONT>
+<p> 以下の内容を取り消してもよろしいですか？ </p>
+<form name="form1"  action="./mag-haishin.php" method="post">
+<table width="600" border="0">
+<tr>
+<td width="120" valign="top" align="right" bgcolor="#006600"><B><FONT color="#FFFFCC">メルマガID</FONT></B></td>
+<td width="480"><? echo $mag_id; ?></td>
+</tr>
+<tr>
+<td width="120" valign="top" align="right" bgcolor="#006600"><B><FONT color="#FFFFCC">発行メルマガ</FONT></B></td>
+<td width="480"><? echo $mag_nm; ?></td>
+</tr>
+<tr>
+<td width="120" valign="top" align="right" bgcolor="#006600"><B><FONT color="#FFFFCC">発行日</FONT></B></td>
+<td width="480"> <? echo $resrv_month ." 月 " . $resrv_day . " 日"; ?></td>
+</tr>
+<tr>
+<td width="120" valign="top" align="right" bgcolor="#006600"><B><FONT color="#FFFFCC">配信時間</FONT></B></td>
+<td width="480"> <? echo $resrv_hour_ampm . " 　 " . $resrv_hour_h . ":" . $resrv_hour_m; ?> </td>
+</tr>
+<tr>
+<td width="120" valign="top" align="right" bgcolor="#006600"><B><FONT color="#FFFFCC">タイトル</FONT></B></td>
+<td width="480"> <? echo $mag_titl; ?> </td>
+</tr>
+<tr>
+<td width="120" valign="top" align="right" bgcolor="#006600"><B><FONT color="#FFFFCC">本文</FONT></B></td>
+<td width="480">
+<? echo $mag_body = ereg_replace("\n","<br>",$mag_body); ?>
+</td>
+</tr>
+</table>
+<p align="right">
+<input type="Submit" name="edit_reserv_del" value="取り消し">
+</p>
+<input type="hidden" value="<? echo $index_id ?>" name="index_id">
+<input type="hidden" value="<? echo $publisher_id ?>" name="publisher_id">
+<input type="hidden" value="<? echo $owner_pswd ?>" name="owner_pswd">
+<input type="hidden" value="<? echo $mag_id ?>" name="mag_id">
+<input type="hidden" value="<? echo $mag_nm ?>" name="mag_nm">
+<input type="hidden" value="<? echo $mag_titl ?>" name="mag_titl">
+<input type="hidden" value="<? echo $mag_body ?>" name="mag_body">
+<input type="hidden" value="<? echo $body_id ?>" name="body_id">
+<input type="hidden" value="<? echo $resrv_month ?>" name="resrv_month">
+<input type="hidden" value="<? echo $resrv_day ?>" name="resrv_day">
+<input type="hidden" value="<? echo $resrv_hour_ampm ?>" name="resrv_hour_ampm">
+<input type="hidden" value="<? echo $resrv_hour_h ?>" name="resrv_hour_h">
+<input type="hidden" value="<? echo $resrv_hour_m ?>" name="resrv_hour_m">
+<input type="hidden" value=0 name="resrv_flg">
+</form>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD valign="top" colspan="3" align="right">
+<HR size="1" width="750">
+</TD>
+</TR>
+<TR>
+<TD valign="top" width="200"> <IMG src="../img/shim.gif" width="200" height="1">
+</TD>
+<TD valign="middle" align="center" width="350">
+<div align="center"><FONT size="2"><IMG src="../img/shim.gif" width="350" height="1"><BR>
+Copyright &copy; 2000 xxxxxxx, Co.,Ltd. All rights reserved. <br>
+<a href="http://www.xxxxxxx.co.jp/" target="mm_window"><img src="../img/logo_do.gif" width="50" height="45" border="0"></a>
+</FONT></div>
+</TD>
+<TD valign="top" width="200" align="right"><IMG src="../img/shim.gif" width="200" height="1"></TD>
+</TR>
+</TABLE>
+</body>
+</html>

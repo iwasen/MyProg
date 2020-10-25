@@ -1,0 +1,136 @@
+		title	(( hchkak ))
+;
+;		meganet 2000	hatchu-kakunin-gamen
+;		86-01-31	xxxxxxxxx electronic inc.
+;				kajibayashi nobuichi. 1960-10-31
+
+				.z80
+
+		include		SUBR.INC
+		include		MEMORY.INC
+		.list
+
+		public		hchkak
+
+		extrn		chr_disp
+		extrn		csr_on
+		extrn		csr_off
+		extrn		reverse
+		extrn		gdmsg
+		extrn		zbin_ch
+
+	cr	equ	0dh
+	esc	equ	1bh
+	beep	equ	0eb39h
+
+	dend	equ	0efh
+	endkey	equ	0f7h
+
+;****************************************
+;*
+;*	#hchkak#
+;*			hatchu-kakunin-gamen
+;*					86-01-31
+;*					kajibayashi.
+;****************************************
+
+hchkak:
+		call	csr_off		; cursor off
+
+		ld	hl,m_hkaku
+		call	kmsg		; hatchu-kakunin write
+
+		ld	hl,m_order	; hatchu-data-table
+		ld	bc,0
+		ld	de,320		; record length
+
+	hk10:
+		ld	a,(hl)
+		or	a
+		jr	z,hk20
+
+		inc	b		; mi-soshindenpyo su
+		jr	hk30
+
+	hk20:
+		inc	c
+
+	hk30:
+		ld	a,b
+		add	a,c
+		cp	10		; table serch end
+		jr	z,hk40
+
+		add	hl,de		; table address kashin
+		jr	hk10
+
+	hk40:
+		push	bc
+		ld	e,b
+		ld	d,0		; bin-data
+		ld	b,2		; bin-length
+		ld	hl,m_densu+7	; char-address
+		call	zbin_ch		; bin->char
+
+		pop	de
+		ld	d,0
+		ld	hl,m_densu+14
+		ld	b,2
+		call	zbin_ch		; bin->char
+
+		ld	hl,m_densu
+		call	chr_disp	; denpyo su write
+
+		ld	hl,g_engaid
+		call	gdmsg		; end guide write
+		call	csr_on		; cursor on
+	hk50:
+		call	xconin
+		
+		cp	endkey		; shuryo key
+		ret	z
+		cp	dend
+		ret	z
+
+		ld	bc,1601h
+		call	beep		; beep
+
+		jr	hk50
+
+;****************************************
+;*
+;*	data
+;*
+;****************************************
+
+m_hkaku:
+		dw	0,101h
+		dw	1b30h,94adh,928dh,8a6dh,9446h,1b31h
+
+		dw	0,103h
+		dw	96a2h,9197h,904dh,82cdh
+
+		dw	0,0c03h
+		dw	9360h,955bh
+
+		dw	0,105h
+		dw	82a0h,82c6h
+
+		dw	0,705h
+		dw	9360h,955bh,93fch,97cdh,89c2h,945ch,-1
+
+g_engaid:
+		db	23,15
+		db	0bch,0adh,0b3h,0d8h,0aeh,0b3h,0b7h,0b0h,0a6h,0b5h,0bdh
+		db	-1
+
+m_densu:
+		db	esc,'0'
+		db	esc,"=",' '+3,' '+11
+		db	' ',' ',' '
+		db	esc,"=",' '+5,' '+5
+		db	' ',' ',' '
+		db	esc,"1",-1
+
+
+		end

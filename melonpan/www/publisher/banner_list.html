@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<title>メルマガ登録用バナー</title>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<body bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600">
+<? include("header.php"); ?>
+<table width="750" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top" colspan="3" align="center">
+<table width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<tr>
+<td>
+<table width="513" border="0" cellspacing="1" cellpadding="5">
+<tr bgcolor="#FFFFFF">
+                <td> 
+                  <table width="501" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td width="251"><font color="#006600"><b>■メルマガ登録用バナー</b></font></td>
+                      <td width="250" align="right"> 
+ <form method="post" action="pub_index.php" name="fom_index2">
+<a href="JavaScript:document.fom_index2.submit();">
+<font size="2">管理ページTOPへ</font></a>
+<input type="hidden" value="<? echo $publisher_id ?>" name="publisher_id">
+<input type="hidden" value="<? echo $owner_pswd ?>" name="owner_pswd_r">
+</form>
+
+</td>
+                    </tr>
+                  </table>
+                  <br>
+                  <p class="text01">バナーを発行したいメルマガの[バナー発行]ボタンを押してください。</p>
+  <table width="500" border="0" cellpadding="3" cellspacing="1">
+<tr bgcolor="#006600">
+  <td colspan="3"><font color="#FFFFCC"><b>発行メルマガ一覧</b></font></td>
+</tr>
+<? make_maglist($publisher_id,$owner_pswd); ?>
+</table>
+<p>
+<form>
+<input type="button" name="Submit4" value="戻る" onClick="history.back()">
+</form>
+<b><font color="#CC0000"></font></b><p></p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<? include("footer.php"); ?>
+</TABLE>
+</body>
+</html>
+

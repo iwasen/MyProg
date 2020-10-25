@@ -1,0 +1,99 @@
+		title		(( sosain ))
+
+;		meganet	2000	sosain-input.
+;		86-01-29	xxxxxxxxx electronic inc.
+;				Toshxxxde-Yutani.
+
+				.z80
+
+		include		MEMORY.INC
+		include		SUBR.INC
+
+		public		sosain
+
+		extrn		chr_disp
+		extrn		clrbuf
+
+		CR	equ	0dh
+		ESC	equ	1bh
+		ENDKEY	equ	0f7h
+		DEND	equ	0efh
+		BEEP	equ	0eb39h
+
+;****************************************
+;*
+;*		#sosain input#
+;*
+;*		in	hl=key in set peram
+;*			de=write buff top adres
+;*		out	a =statas
+;*					86-01-29
+;*					T.yutani.
+;****************************************
+
+sosain:
+			ld	a,(r_tanto)
+			cp	'1'		; tanto flag on ?
+			ret	z		; No :
+
+			ld	hl,m_namae
+			ld	bc,5
+			ld	a,'_'
+			call	clrbuf
+			ld	hl,m_sosain
+			call	chr_disp	; sosain :_____
+
+			ld	hl,m_namae
+			ld	bc,5
+			ld	a,' '
+			call	clrbuf		; clear buffer
+
+			sub	a
+
+	set_sosa$10:
+
+			ld	hl,m_tanto
+			call	kbin		; key in data
+			cp	DEND
+			scf
+			ret	z
+			cp	ENDKEY
+			scf
+			ret	z
+
+			cp	CR		; enter ?
+			jr	nz,set_err_sosa	; No :
+
+			ld	hl,m_namae
+			ld	de,c_tanto
+			ld	bc,5
+			ldir
+
+			ld	hl,m_sosain
+			call	chr_disp
+			or	a
+			ret
+
+	set_err_sosa:
+
+			ld	bc,1601h
+			call	BEEP
+			ld	a,1
+			jr	set_sosa$10
+
+m_tanto:
+		db	' '+6
+		db	' '+29
+		db	' '+34
+		db	01h
+		dw	m_namae
+		db	-1
+
+m_sosain:
+		db	ESC,"=",' '+6,' '+22
+		db	0bfh,0b3h,0bbh,0b2h,0ddh,' :'
+m_namae:	db	'_____'
+		db	ESC,"2"
+		db	-1
+
+		end

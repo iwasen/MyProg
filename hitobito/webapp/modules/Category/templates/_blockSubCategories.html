@@ -1,0 +1,38 @@
+<!-- チャンネル一覧ブロック -->
+<table width="200" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFCC33">
+	<!-- チャンネル一覧タイトル -->
+	<tr>
+		<td colspan="3"><img src="image/menu_ch_ttl.gif" width="200" height="28" alt="チャネル一覧"></td>
+	</tr>
+	<tr>
+		<td width="3"><img src="image/spacer.gif" width="3" height="1"></td>
+		<td width="194">
+		<!-- チャンネル一覧ループテーブル -->
+			<table width="194" border="0" cellspacing="0" cellpadding="3">
+			<!-- start Loop -->
+			<{foreach item=category_item from=$category_sub_categories}>
+				<tr>
+				  <td bgcolor="#FFFFFF">
+				    <img src="image/c_menu_ch_link00.gif" width="17" height="12" hspace="2" align="absmiddle"><span class="chanel"><{$category_item->getTitle()|escape}></span>
+				  </td>
+				</tr>
+				<{foreach item=navipage from=$category_item->getNavipages()}>
+				<tr>
+					<td bgcolor="#FFFFFF"><img src="image/spacer.gif" width="10" height="1"><a href="index.php?module=Navi&amp;action=ShowNaviPage&amp;navipage_id=<{$navipage->getId()}>" class="chanel"><{$navipage->getTitle()|escape}></a></td>
+				</tr>
+				<{/foreach}>
+			<{/foreach}>
+			<!-- end Loop -->
+			</table>
+		<!-- チャンネル一覧ループテーブル終わり -->
+		</td>
+		<td width="3"><img src="image/spacer.gif" width="3" height="1"></td>
+	</tr>
+	<tr>
+		<td colspan="3"><img src="image/menu_mem_foot.gif" width="200" height="5"></td>
+	</tr>
+				<tr bgcolor="#FFFFFF">
+				  <td colspan="3"><img src="image/spacer.gif" width="1" height="5"></td>
+			  </tr>
+</table>
+<!-- チャンネル一覧ブロックここまで -->

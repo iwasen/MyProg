@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>メルマガ配信予約修正</TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600">
+<? include("header.php"); ?>
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="650" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="650" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+                <TD> 
+                  <table width="648" border="0" cellspacing="0" cellpadding="0">
+                    <tr> 
+                      <td width="324"><font color="#006600"><b>■メルマガ配信予約修正</b></font></td>
+                      <td width="324" align="right"> 
+                        <form method="post" action="pub_index.php" name="fom_index">
+                          <a href="JavaScript:document.fom_index.submit();"> <font size="2">管理ページTOPへ</font></a> 
+                          <input type="hidden" value="<? echo $publisher_id ?>" name="publisher_id">
+                          <input type="hidden" value="<? echo $owner_pswd ?>" name="owner_pswd_r">
+                        </form>
+                      </td>
+                    </tr>
+                  </table>
+                  <br>
+                  <p>以下の内容に修正しました。</p>
+<table width="650" border="0" align="center">
+<tr>
+<td width="120" valign="top" align="right" bgcolor="#006600" CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">メルマガID</FONT></B></td>
+<td width="530"><? echo $mag_id; ?></td>
+</tr>
+<tr>
+<td width="120" valign="top" align="right" bgcolor="#006600" CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">発行メルマガ</FONT></B></td>
+<td width="530"><? echo $mag_nm; ?></td>
+</tr>
+<tr>
+<td width="120" valign="top" align="right" bgcolor="#006600" CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">発行日</FONT></B></td>
+<td width="530"><? echo $resrv_month ." 月 " . $resrv_day . " 日"; ?></td>
+</tr>
+<tr>
+<td width="120" valign="top" align="right" bgcolor="#006600" CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">配信時間</FONT></B></td>
+<td width="530"> <? echo $resrv_hour_ampm . " 　 " . $resrv_hour_h . ":" . $resrv_hour_m; ?></td>
+</tr>
+<tr>
+<td width="120" valign="top" align="right" bgcolor="#006600" CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">タイトル</FONT></B></td>
+<td width="530">
+<?
+			$mag_titl2 = stripslashes($mag_titl);
+			echo $mag_titl2;
+?> </td>
+</tr>
+<tr>
+<td width="120" valign="top" align="right" bgcolor="#006600" CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">本文</FONT></B></td>
+<td width="530">
+<?
+			$mag_body2 = stripslashes($mag_body);
+			echo $mag_body2 = ereg_replace("\n","<br>",$mag_body2);
+?>
+</td>
+</tr>
+</table><br><br>
+<?php
+	if ($publisher_id == 0) {
+		print "<form name=\"form2\" action=\"../jimukyoku/jm001.php\" method=\"post\">\n";
+		print "<p><a href=\"JavaScript:document.form2.submit();\">&lt;&lt;&lt;　事務局メニューへ戻る</a></p>\n";
+		print "<input type=\"hidden\" value=\"$publisher_id\" name=\"admin_id\">\n";
+		print "<input type=\"hidden\" value=\"$owner_pswd\" name=\"admin_pswd\">\n";
+		print "<input type=\"hidden\" value=\"RetIndex\" name=\"job_flg\">\n";
+		print "</form>\n";
+	} else {
+		print "<form name=\"form1\"  action=\"./pub_index.php\" method=\"post\">\n";
+		print "<input type=\"hidden\" value=\"$publisher_id\" name=\"publisher_id\">\n";
+		print "<input type=\"hidden\" value=\"$owner_pswd\" name=\"owner_pswd_r\">\n";
+		print "<a href=\"JavaScript:document.form1.submit();\">&lt;&lt;&lt;　発行者用管理ページへ戻る </a> \n";
+		print "</form>\n";
+	}
+?>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<? include("footer.php"); ?>
+</TABLE>
+</body>
+</html>
+

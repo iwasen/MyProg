@@ -1,0 +1,87 @@
+form
+{
+	margin: 0
+}
+hr.header
+{
+	color: #9999ff
+}
+hr.footer
+{
+	margin-top: 4px;
+	color: #9999ff
+}
+img.photo
+{
+	border-color: #0000dd;
+}
+.charara
+{
+	background-color: #55bb88;
+	color: white;
+	font-weight: bolder
+}
+.lc
+{
+	padding-top: 3px;
+	padding-bottom: 2px;
+	padding-left: 5px;
+	width: 100%;
+	color: navy;
+	background-color: #ffffdd;
+	font-size: smaller
+}
+
+.m0
+{
+	font-weight: bold;
+	color: #6666FF;
+	white-space: nowrap;
+	vertical-align: bottom;
+	padding-top: 10px;
+	padding-bottom: 0px
+}
+.m1
+{
+	color: black;
+	white-space: nowrap;
+	background-color: #ccccff
+}
+.n1
+{
+	background-color: #eeeeee
+}
+.tch
+{
+	background-color: #ffcc99
+}
+tr.tc0
+{
+	background-color: #ddffee
+}
+tr.tc1
+{
+	background-color: #ffffff
+}
+.alpha
+{
+	ime-mode: inactive
+}
+.kanji
+{
+	ime-mode: active
+}
+.number
+{
+	ime-mode: disabled
+}
+
+.note
+{
+	font-size: smaller;
+	color: forestgreen
+}
+.small
+{
+    font-size: 90%
+}

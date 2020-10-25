@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>発行基本情報者登録【確認】</TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600">
+<? include("header.php"); ?>
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="513" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+<TD><FONT color="#006600"><B>■発行者基本情報登録【確認】</B></FONT>
+<p class="text01">個人情報については責任をもって管理させていただきます。 　<br>
+以下の内容で間違いありませんか？ 　よろしかったら[登録]ボタンを押してください。</p>
+<form name="form1"  action="publisher.php" method="post">
+<table border="0" cellspacing="1" width="500" align="center" cellpadding="3">
+<tr>
+<td valign="top" bgcolor="#669900" width="150" CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">基本メールアドレス</FONT></B></td>
+<td width="350"> <? echo $mail_add_main ?></td>
+<input type="hidden" value="<? echo $mail_add_main; ?>" name="mail_add_main">
+<input type="hidden" value="<? echo $mail_add_sub; ?>" name="mail_add_sub">
+</tr>
+<tr>
+<td valign="top" width="150" bgcolor="#669900" CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">パスワード</FONT></B></td>
+<td width="350"> <? echo $owner_pswd; ?></td>
+<input type="hidden" value="<? echo $owner_pswd; ?>" name="owner_pswd">
+</tr>
+<tr>
+<td valign="top" width="150" bgcolor="#669900" CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">発行者氏名[漢字]</FONT></B></td>
+<td width="350"> <? echo htmlspecialchars(stripcslashes($owner_nm_kanj)) ?></td>
+<input type="hidden" value="<? echo $owner_nm_kanj; ?>" name="owner_nm_kanj">
+</tr>
+<tr>
+<td valign="top" width="150" bgcolor="#669900" CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">発行者氏名[カタカナ]</FONT></B></td>
+<td width="350"> <? echo htmlspecialchars(stripcslashes($owner_nm_kana)) ?></td>
+<input type="hidden" value="<? echo $owner_nm_kana; ?>" name="owner_nm_kana">
+</tr>
+<tr>
+<td valign="top" width="150" bgcolor="#669900" CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">連絡先郵便番号</FONT></B></td>
+<td width="350"> <? echo $owner_zip1 . "-" . $owner_zip2; ?> </td>
+<input type="hidden" value="<? echo $owner_zip1; ?>" name="owner_zip1">
+<input type="hidden" value="<? echo $owner_zip2; ?>" name="owner_zip2">
+</tr>
+<tr>
+<td valign="top" width="150" bgcolor="#669900" CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">連絡先住所</FONT></B></td>
+<td width="350"> <? echo $owner_prefec . htmlspecialchars(stripcslashes($owner_add)); ?> </td>
+<input type="hidden" value="<? echo $owner_prefec; ?>" name="owner_prefec">
+<input type="hidden" value="<? echo $owner_add; ?>" name="owner_add">
+</tr>
+<tr>
+<td valign="top" width="150" bgcolor="#669900" CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">連絡先電話番号</FONT></B></td>
+<td width="350"> <? echo $owner_tel; ?> </td>
+<input type="hidden" value="<? echo $owner_tel; ?>" name="owner_tel">
+</tr>
+<tr>
+<td valign="top" width="150">　</td>
+<td width="350" align="right">
+<INPUT type="submit" value="登録">
+<input type="hidden" value="<? echo $publisher_id; ?>" name="publisher_id">
+<input type="hidden" value="<? echo $next_job_flg; ?>" name="job_flg">
+<INPUT type="button" value="戻る" onClick="history.back()" name="button">
+</td>
+</tr>
+</table>
+</form>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<? include("footer.php"); ?>
+</TABLE>
+</body>
+</html>

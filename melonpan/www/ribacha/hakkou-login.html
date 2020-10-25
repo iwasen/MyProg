@@ -1,0 +1,79 @@
+<?
+function pub_login_err($login_err) {
+	if (strlen($login_err) > 0) {
+		print "<p align=\"center\">　</p>\n";
+		print "<div align=\"center\"><font color=\"#006600\">\n";
+		print "-" . $login_err . "-</font></div><BR>\n";
+	}
+}
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>発行者用管理ページログイン</TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600" topmargin="0" marginheight="0" leftmargin="0" marginwidth="0">
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="513" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+<TD><FONT color="#006600"><B>■発行者用管理ページログイン</B></FONT><BR>
+<BR>
+<span class="text01">すでに登録済みの発行者の方専用の管理ページにアクセスします。管理ページでは、メルマガの配信や読者数の確認、登録情報の変更などが行なえます。
+<br>
+これからメルマガを創刊しようと考えている方はまず<a href="kiyaku.html">こちら</a>をお読みください。 </span><BR>
+<? pub_login_err($login_err); ?>
+<BR>
+<form name="form1" action="pub_index.php" method="post">
+<TABLE width="318" border="0" height="96" align="center">
+<TR>
+<TD align="right" class="text9pt" bgcolor="#CCFFCC"><FONT color="#006633"><B>基本メールアドレス</B></FONT></TD>
+<TD align="left">
+<INPUT type="text" name="mail_add_main" size="30">
+</TD>
+</TR>
+<TR>
+<TD align="right" class="text9pt" bgcolor="#CCFFCC"><FONT color="#006633"><B>パスワード</B></FONT></TD>
+<TD align="left">
+<INPUT type="password" name="owner_pswd_r" size="16">
+<INPUT type="submit" value="入室" name="nyusitu">
+</TD>
+</TR>
+</TABLE>
+</form>
+<BR>
+<BR>
+<span class="text01">※基本メールアドレス、パスワードを忘れてしまった方は<a href="mailto:office@melonpan.net">事務局</a>までお問い合わせください。
+</span> </TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD valign="top" colspan="3" align="right">
+<HR size="1" width="750">
+</TD>
+</TR>
+<TR>
+<TD valign="top" width="200"> <IMG src="../img/shim.gif" width="200" height="1">
+</TD>
+<TD valign="middle" align="center" width="350">
+<div align="center"><FONT size="2"><IMG src="../img/shim.gif" width="350" height="1"><BR>
+Copyright &copy; 2000 xxxxxxx, Co.,Ltd. All rights reserved. <br>
+<a href="http://www.xxxxxxx.co.jp/" target="mm_window"><img src="../img/logo_do.gif" width="50" height="45" border="0"></a>
+</FONT></div>
+</TD>
+<TD valign="top" width="200" align="right"><IMG src="../img/shim.gif" width="200" height="1"></TD>
+</TR>
+</TABLE>
+</body>
+</html>

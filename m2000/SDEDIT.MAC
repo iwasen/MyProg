@@ -1,0 +1,640 @@
+		title	sdedit
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; module name	: sousin data henshuu
+; creation date	: 86:03:13
+; revised date  : 
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+		.z80
+
+		include	MEMORY.INC
+		include	SUBR.INC
+
+		extrn	clrbuf
+		extrn	chr_disp
+		extrn	bin_chr
+		extrn	zbin_ch
+
+		public	sdedit
+		public	gettime
+		public	dtdisp
+		public	erase
+
+    	CONOUT		equ	0eb0ch
+	BEEP		equ	0eb39h
+	TIMER0		equ	0ef8fh
+;
+	STX		equ	02h	; stx code
+	ETX		equ	03h	; etx code
+	CR		equ	0dh	; return code
+	ESC		equ	1bh	; escape code
+
+	sflag		equ	M_PARAM+0
+	rst		equ	M_PARAM+1
+	tflag		equ	M_PARAM+3
+	blkadr		equ	M_PARAM+4
+	recno		equ	M_PARAM+6
+	hinmoku		equ	M_PARAM+7
+	sdtime		equ	M_PARAM+9
+	denpyono	equ	M_PARAM+11
+
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	sousin data henshuu
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+sdedit:
+		ld	a,(sflag)	;
+		or	a		; nouki toiawase ?
+		jr	nz,com40	; * yes
+
+		ld	hl,M_ORDER
+		ld	b,10
+com10:
+		ld	a,(hl)
+		or	a
+		jr	nz,com30
+com20:
+		ld	de,320
+		add	hl,de
+		djnz	com10
+		scf
+		ret
+com30:
+		ld	(blkadr),hl
+		dec	a
+		push	af
+		call	z,jdata		; joubi data henshuu
+		pop	af
+		call	nz,tdata	; tokuchu data henshuu
+
+		or	a
+		ret
+com40:
+		ld	hl,(blkadr)
+		ld	a,(hl)
+		or	a
+		jr	nz,com30
+		scf
+		ret
+;
+;
+jdata:
+		push	hl
+		pop	ix
+		ld	bc,67
+		add	ix,bc
+		ld	b,8
+jdata10:
+		ld	a,(ix)
+		dec	a
+		jr	z,jdata20
+
+		push	bc
+		ld	bc,30
+		add	ix,bc
+		pop	bc
+		djnz	jdata10
+		ret
+jdata20:
+		push	hl
+		push	hl
+
+		ld	de,M_CBUFF
+		call	hdedit		; header henshuu
+
+		ld	a,'2'		; ID
+		ld	(de),a
+		inc	de
+		ld	a,'1'		; format ID
+		ld	(de),a
+		inc	de
+
+		ld	hl,R_KOURI	;
+		ld	b,8		; set kouri code
+		call	sjset		;
+
+		pop	hl
+		push	hl
+		ld	bc,33		;
+		add	hl,bc		; set nounyuu saki
+		ld	b,2		;
+		call	sjset		;
+
+		pop	hl
+		inc	hl
+		push	hl
+		ld	bc,16		;
+		add	hl,bc		; set hachuu saki
+		ld	b,8		;
+		call	sjset		;
+
+		pop	hl
+		ld	b,8		;
+		call	sjset		; set chouai saki
+		ld	bc,24		;
+		add	hl,bc		;
+
+		ld	b,22
+		call	zeroset
+
+		inc	hl
+		inc	hl
+		ld	bc,12		;
+		ldir			; set hachuu No.
+
+		push	hl
+		ex	de,hl		;
+		ld	e,(ix+1)	;
+		ld	d,(ix+2)	;
+		ld	b,3		;
+		call	bin_chr		; set junjo bangou
+		ex	de,hl		;
+		pop	hl
+
+		ld	bc,20		;
+		ldir			; set bikou
+
+		push	ix
+		pop	hl
+		ld	(p_hinban),de
+		inc	hl
+		inc	hl
+		inc	hl
+		ld	bc,13
+		ldir			; set shouhin code
+
+		pop	hl
+		ld	bc,67
+		add	hl,bc
+		ld	b,8
+jdata30:
+		ld	a,(hl)
+		dec	a
+		jr	nz,jdata40
+
+		push	hl
+		push	bc
+		push	de
+		inc	hl
+		inc	hl
+		inc	hl
+		ld	de,(p_hinban)
+		ld	b,13
+		call	strcmp
+		pop	de
+		pop	bc
+		pop	hl
+		jr	nz,jdata40
+
+		push	hl
+		push	bc
+		ld	bc,16
+		add	hl,bc
+		ldi			;
+		ld	b,4		;
+		call	sjset		;
+		ldi			; set dosuu, kazu
+		ld	b,6		;
+		call	sjset		;
+
+		pop	bc
+		pop	hl
+		jr	jdata50
+jdata40:
+		push	bc
+		inc	de		;
+		ld	b,4		; data area clear
+		call	zeroset		;
+		inc	de		;
+		ld	b,6		;
+		call	zeroset		;
+		pop	bc
+jdata50:
+		push	bc
+		ld	bc,30
+		add	hl,bc
+		pop	bc
+		djnz	jdata30
+
+		call	setflg
+		ret
+;
+;
+tdata:
+		push	hl
+
+		ld	de,M_CBUFF
+		call	hdedit		; header henshuu
+
+		ld	a,'2'		; ID
+		ld	(de),a
+		inc	de
+		ld	a,'2'		; format ID
+		ld	(de),a
+		inc	de
+
+		ld	hl,R_KOURI	;
+		ld	b,8		; set kouri code
+		call	sjset		;
+
+		pop	hl
+		push	hl
+		ld	bc,17		;
+		add	hl,bc		; set nounyuu saki
+		ld	b,2		;
+		call	sjset		;
+
+		ld	b,8
+		call	zeroset
+
+		pop	hl		;
+		push	hl		;
+		inc	hl		; set chuai saki
+		ld	b,8		;
+		call	sjset		;
+
+		ld	b,22
+		call	zeroset
+
+		ld	bc,182
+		add	hl,bc
+		ld	bc,12		;
+		ldir			; set hachuu No.
+
+		pop	ix
+		push	ix
+		push	hl
+		ex	de,hl		;
+		ld	e,(ix+20)	;
+		ld	d,(ix+21)	;
+		ld	b,3		;
+		call	bin_chr		; set junjo bangou
+		ex	de,hl		;
+		pop	hl
+
+		ld	bc,20		;
+		ldir			; set bikou
+		
+		pop	hl
+		push	hl
+		ld	bc,19
+		add	hl,bc
+		call	tdset		; set right lens data
+
+		pop	hl
+		push	hl
+		ld	bc,101
+		add	hl,bc
+		call	tdset		; set left lens data
+
+		ex	de,hl
+		ld	bc,6
+		add	hl,bc
+		ex	de,hl
+
+		pop	hl
+		ld	bc,183		;
+		add	hl,bc		; set color
+		ld	a,(hl)		;
+		push	af		;
+		ld	b,5		;
+		call	sjset		;
+
+		ld	b,3		;
+		pop	af		;
+		cp	' '		;
+		push	af		; set all/half, noudo
+		call	z,zeroset	;
+		pop	af		;
+		call	nz,sjset	;
+
+		call	setflg
+		ret
+;
+tdset:
+		ld	a,(hl)
+		dec	a
+		jr	nz,tdset10
+
+		inc	hl
+		inc	hl
+		inc	hl
+		ld	bc,13
+		ldir
+		ld	b,1
+		call	sjset
+		ldi
+		ld	b,4
+		call	sjset
+		ldi
+		ld	b,48
+		call	sjset
+
+		push	hl
+		ld	a,' '
+		ld	b,4
+tdset02:
+		cp	(hl)
+		jr	nz,tdset04
+		inc	hl
+		djnz	tdset02
+		pop	hl
+		ld	bc,4
+		ldir
+		jr	tdset06
+tdset04:
+		pop	hl
+		ld	b,4
+		call	sjset
+tdset06:
+		push	de
+		ld	bc,5
+		ldir
+		ld	b,1
+		call	sjset
+		pop	hl
+		ld	a,(hl)
+		cp	' '
+		ret	nz
+		inc	hl
+		ld	a,(hl)
+		cp	' '
+		ret	z
+		dec	hl
+		ld	(hl),'0'
+		ret
+tdset10:
+		ld	hl,13
+		add	hl,de
+		ex	de,hl
+		ld	b,1
+		call	zeroset
+		inc	de
+		ld	b,4
+		call	zeroset
+		inc	de
+		ld	b,48
+		call	zeroset
+		ld	hl,9
+		add	hl,de
+		ex	de,hl
+		ld	b,1
+		call	zeroset
+		ret
+;
+;
+hdedit:
+		push	de
+		ld	hl,R_TID	;
+		ld	de,tid		; set TID
+		ld	bc,13		;
+		ldir			;
+		pop	de
+		
+		ld	hl,header	;
+		ld	bc,51		; set header data
+		ldir			;
+
+		push	de
+		ex	de,hl		;
+		ld	bc,256		; clear data area
+		ld	a,' '		;
+		call	clrbuf		;
+		pop	de
+		ret
+;
+;
+erase:
+		push	hl
+		pop	ix
+	
+		ld	de,378
+		add	hl,de
+		ld	a,(hl)
+		cp	' '
+		scf
+		ret	nz
+
+		ld	hl,(blkadr)
+		ld	a,(hl)
+		or	a
+		ret	z
+
+		dec	a
+		jr	nz,erase40
+
+		ld	de,67
+		add	hl,de
+		ld	de,98
+		add	ix,de
+		ld	b,8
+		ld	c,0
+erase10:
+		ld	a,(hl)
+		or	a
+		jr	z,erase34
+
+		push	hl
+		ld	de,25
+		add	hl,de
+		ld	a,(hl)
+		inc	hl
+		or	(hl)
+		inc	hl
+		or	(hl)
+		pop	hl
+		cp	'0'
+		jr	z,erase20
+
+		ld	a,(ix+9)
+		or	(ix+10)
+		or	(ix+11)
+		cp	'0'
+		jr	z,erase30
+erase20:
+		push	bc
+		push	hl
+		ld	(hl),2
+		inc	hl
+		inc	hl
+		inc	hl
+		ex	de,hl
+		ld	hl,initdata
+		ld	bc,27
+		ldir
+		pop	hl
+		pop	bc
+erase30:
+		ld	a,(hl)
+		dec	a
+		jr	nz,erase32
+		ld	c,1
+erase32:
+		ld	de,30
+		add	hl,de
+		ld	de,12
+		add	ix,de
+		djnz	erase10
+erase34:
+		ld	hl,(blkadr)
+		dec	c
+		jr	z,erase50
+erase40:
+		ld	(hl),0
+
+		ld	hl,(denpyono)
+		inc	hl
+		ld	(denpyono),hl
+
+		call	dtdisp		; time display
+erase50:
+		or	a
+		ret
+
+;
+;
+dtdisp:
+		ld	de,(denpyono)	;
+		ld	hl,c_denpyo	;
+		ld	b,2		; soushin denpyou
+		call	zbin_ch		;
+
+		ld	hl,(TIMER0)	;
+		ld	de,(tmwork)	;
+		ld	(tmwork),hl	;
+		or	a		; soushin jikan keisan
+		sbc	hl,de		;
+		ld	de,(sdtime)	;
+		add	hl,de		;
+		ld	(sdtime),hl	;
+
+		ld	a,(sflag)	;
+		or	a		; nouki toiawase ?
+		ret	nz		; * yes
+
+		sub	a		;
+		ld	de,60		;
+dtdisp10:				;
+		inc	a		;
+		sbc	hl,de		;
+		jr	nc,dtdisp10	;
+		dec	a		;
+		add	hl,de		; jikan binary -> character
+		push	hl		;
+		ld	e,a		;
+		ld	d,0		;
+		ld	hl,c_cmin	;
+		ld	b,2		;
+		call	zbin_ch		;
+		pop	de		;
+		ld	hl,c_csec	;
+		ld	b,2		;
+		call	zbin_ch		;
+
+		ld	hl,m_denpyo	; display sousin denpyou No.
+		call	chr_disp	; 
+
+		ld	hl,m_ctime	; display sousin jikan
+		call	chr_disp	;
+
+		ret
+;
+;
+strcmp:
+		ld	a,(de)
+		cp	(hl)
+		ret	nz
+		inc	de
+		inc	hl
+		djnz	strcmp
+		ret
+;
+;
+gettime:
+		ld	hl,(TIMER0)	; timer save
+		ld	(tmwork),hl	;
+
+		ld	hl,k_tusin	; display "tsuushin chuu"
+		call	kmsg		;
+		ret
+;
+;	suuji koumoku set
+;
+sjset:
+		ld	a,(hl)
+		cp	' '
+		jr	nz,sjset10
+		ld	a,'0'
+sjset10:
+		ld	(de),a
+		inc	de
+		inc	hl
+		djnz	sjset
+		ret
+;
+;	zero set
+;
+zeroset:
+		ld	a,'0'
+zeroset10:
+		ld	(de),a
+		inc	de
+		djnz	zeroset10
+		ret
+;
+;	nouki shoukai flag set
+;
+setflg:
+		ld	hl,M_CBUFF+51+255
+		ld	a,(tflag)	; set nouki shoukai flag
+		ld	(hl),a		;
+
+		inc	hl		; set separater
+		ld	(hl),'@'	;
+
+		inc	hl		; set stoper
+		ld	(hl),-1		;
+		ret
+;
+;	data
+;
+tmwork:		dw	0
+
+p_hinban:	dw	0		; hinban pointer
+
+m_denpyo:	db	ESC,'=',25h,2fh
+c_denpyo:	db	' 0',-1
+
+m_ctime:	db	ESC,'=',27h,2fh
+c_cmin:		db	' 0'
+		db	ESC,'=',27h,35h
+c_csec:		db	' 0',-1
+
+k_tusin:	dw	0,1901h
+		dw	1b30h,92cah,904dh,9286h,1b31h,-1
+
+dflag:		db	0
+
+initdata:	db	'0000000000000'
+		db	'- 000','    '
+		db	'  1',0,0
+
+header:		db	'0000000000'
+		db	'@'
+		db	'2'
+		db	'2213241'
+tid:		db	'0000000000000'
+		db	'00000'
+		db	'000000'
+		db	'261'
+		db	'@'
+		db	'5'
+		db	'01'
+		db	'@'
+
+		end

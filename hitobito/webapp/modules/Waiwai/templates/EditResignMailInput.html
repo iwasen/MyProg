@@ -1,0 +1,170 @@
+<form method="post">
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+	<tr bgcolor="#5B94FD">
+		<td colspan="3"><img src="image/naviedit_waiwai_t_leave_ttl.gif" width="134" height="25" hspace="10" alt="退会者メール設定"></td>
+	</tr>
+	<tr>
+		<td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+		<td width="555" valign="top">
+			<table width="555" border="0" cellspacing="0" cellpadding="0">
+<{if $waiwai_error_ary}>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td class="error"><{foreach from=$waiwai_error_ary item=waiwai_error}>・<{$waiwai_error|escape}><br><{/foreach}></td>
+				</tr>
+<{/if}>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="20"></td>
+				</tr>
+				<tr>
+					<td align="center">
+						<textarea name="waiwai_resign_mail" rows="25" cols="50" style="width:500px;"><{$waiwai_resign_mail.resign_mail|escape}></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="30"></td>
+				</tr>
+			</table>
+			<table width="555" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td bgcolor="#5B94FD"><img src="image/spacer.gif" width="1" height="5"></td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="20"></td>
+				</tr>
+				<tr>
+					<td>
+						<table width="330" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td width="90">
+									<input type="image" border="0" name="waiwai_update_btn" src="image/naviedit_btn_reflesh.gif" width="90" height="20" alt="登録情報更新">
+								</td>
+								<td width="20"><img src="image/spacer.gif" width="20" height="1"></td>
+								<td width="220">
+									<input type="image" border="0" name="waiwai_default_btn" src="image/naviedit_waiwai_t_btn_default.gif" width="110" height="20" alt="デフォルトに戻す">
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+			</table>
+			<table width="555" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="25"></td>
+				</tr>
+				<tr>
+					<td><img src="image/naviedit_waiwai_t_sttl_keyword.gif" width="136" height="14" alt="使用可能なキーワード"></td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="8"></td>
+				</tr>
+			</table>
+			<table width="555" border="0" cellspacing="0" cellpadding="0">
+				<tr bgcolor="#666666">
+					<td colspan="4"><img src="image/spacer.gif" width="555" height="1"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#CCCCCC" width="1"><img src="image/spacer.gif" width="1" height="1"></td>
+					<td align="center" class="char120" width="177">
+						<p class="ind0804">キーワード</p>
+					</td>
+					<td class="char120" align="center" bgcolor="#EEEEEE" width="376">
+						<p class="ind0804">反映される内容</p>
+					</td>
+					<td bgcolor="#CCCCCC" width="1"><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+				<tr bgcolor="#666666">
+					<td colspan="4"><img src="image/spacer.gif" width="555" height="1"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+					<td class="char120">
+						<p class="ind0804">%ナビページ名%</p>
+					</td>
+					<td class="char120" bgcolor="#EEEEEE">
+						<p class="ind0804"><{$waiwai_keyword.navi_page_name|escape}></p>
+					</td>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+				<tr>
+					<td colspan="4" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="555" height="1"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+					<td class="char120">
+						<p class="ind0804">%ナビページURL%</p>
+					</td>
+					<td class="char120" bgcolor="#EEEEEE">
+						<p class="ind0804"><{$waiwai_keyword.navi_page_url|escape}></p>
+					</td>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+				<tr>
+					<td colspan="4" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="555" height="1"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+					<td class="char120">
+						<p class="ind0804">%会議室名%</p>
+					</td>
+					<td class="char120" bgcolor="#EEEEEE">
+						<p class="ind0804"><{$waiwai_keyword.room_name|escape}></p>
+					</td>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+				<tr>
+					<td colspan="4" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="555" height="1"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+					<td class="char120">
+						<p class="ind0804">%ナビ名%</p>
+					</td>
+					<td class="char120" bgcolor="#EEEEEE">
+						<p class="ind0804"><{$waiwai_keyword.navi_name|escape}></p>
+					</td>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+				<tr>
+					<td colspan="4" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="555" height="1"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+					<td class="char120">
+						<p class="ind0804">%投稿用アドレス%</p>
+					</td>
+					<td class="char120" bgcolor="#EEEEEE">
+						<p class="ind0804"><{$waiwai_keyword.post_addr|escape}></p>
+					</td>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+				<tr>
+					<td colspan="4" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="555" height="1"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+					<td class="char120">
+						<p class="ind0804">%投稿用URL%</p>
+					</td>
+					<td class="char120" bgcolor="#EEEEEE">
+						<p class="ind0804"><{$waiwai_keyword.post_url|escape}></p>
+					</td>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+				<tr bgcolor="#CCCCCC">
+					<td colspan="4"><img src="image/spacer.gif" width="555" height="1"></td>
+				</tr>
+				<tr>
+					<td colspan="4"><img src="image/spacer.gif" width="1" height="30"></td>
+				</tr>
+			</table>
+		</td>
+		<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+	</tr>
+</table>
+</form>

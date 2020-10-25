@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>メルマガ代理解除</TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600">
+<? include("header.php"); ?>
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="600" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="600" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+                <TD> 
+                  <table width="588" border="0" cellspacing="0" cellpadding="0">
+                    <tr> 
+                      <td width="294"><font color="#006600"><b>■メルマガ代理解除</b></font></td>
+                      <td width="294" align="right"> 
+                        <form method="post" action="pub_index.php" name="fom_index">
+<a href="JavaScript:document.fom_index.submit();">
+<font size="2">管理ページTOPへ</font></a>
+<input type="hidden" value="<? echo $publisher_id ?>" name="publisher_id">
+<input type="hidden" value="<? echo $owner_pswd ?>" name="owner_pswd_r">
+</form>
+                      </td>
+                    </tr>
+                  </table>
+                  <span class="text01"><BR>
+発行者が読者の代わりにメルマガの購読解除をすることができます。<br>
+まず解除するメールアドレスが登録されているメルマガを開いてください。 </span><br>
+<br>
+<table width="550" border="0" cellpadding="3" cellspacing="1" ALIGN="CENTER">
+<tr>
+<td width="100" align="center" bgcolor="#006600" CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">メルマガID</FONT></B></td>
+<td bgcolor="#006600" width="300" CLASS="text9ptnoColor">
+<DIV ALIGN="CENTER"><B><FONT color="#FFFFCC">発行メルマガ一覧</FONT></B></DIV>
+</td>
+<td width="100">　</td>
+</tr>
+<? make_maglist($publisher_id,$owner_pswd) ?>
+</table>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<? include("footer.php"); ?>
+</TABLE>
+</body>
+</html>

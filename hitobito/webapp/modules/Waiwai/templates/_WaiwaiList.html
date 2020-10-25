@@ -1,0 +1,12 @@
+<{foreach from=$waiwai_list_ary item=waiwai_list}>
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td width="20"><img src="image/spacer.gif" width="20" height="14"></td>
+<{foreach from=$waiwai_list.level item=waiwai_level}>
+		<td width="30" valign="top"><img src="image/<{$waiwai_level}>.gif" width="30" height="14"></td>
+<{/foreach}>
+		<td width="540" class="char140"><{if $waiwai_contents.seq_no == $waiwai_list.seq_no}><b><{/if}><a href="?module=Waiwai&action=<{$waiwai_select_remark_action}>&navipage_id=<{$navi_page_id}>&waiwai_id=<{$waiwai_list.seq_no}>#waiwai" class="cblack">[<{$waiwai_list.seq_no}>] <{$waiwai_list.subject|escape}></a><span class="char999999">¡¡by </span><{$waiwai_list.nickname|escape}><span class="char999999"> <{$waiwai_list.date}></span><{if $waiwai_contents.seq_no == $waiwai_list.seq_no}></b><{/if}></td>
+		<td width="20"><img src="image/spacer.gif" width="20" height="14"></td>
+	</tr>
+</table>
+<{/foreach}>

@@ -1,0 +1,32 @@
+<!-- ナビランキング＆人気ランキング -->
+<div class="box-border" style="margin:10px 0px 0px 0px;"><img src="image/mi_ranking.gif" width="83" height="13" alt="ナビランキング"></div>
+<div class="box-borderL">
+<div style="padding:8px 0px 0px 8px;">
+<table width="220" border=0 cellpadding="0" cellspacing="0">
+	<!-- ナビランキング1位-->
+	<tr>
+		<td valign="top" nowrap><span class="char110b"><strong>1位</strong></span></td>
+		<td valign="top"><img src="image/spacer.gif" width="8" height="1" alt=""></td>
+		<td valign="top" class="char110b"><a href="index.php?module=Navi&amp;action=ShowNaviPage&amp;navipage_id=<{$navi_ranking_top.id}>"><{$navi_ranking_top.title|escape}></a><br>
+		<span class="char130xxs">ナビ : <{$navi_ranking_top.navi_name|escape}><br><!--<{$navi_ranking_top.description|escape}>--></span></td>
+	</tr>
+	<!-- end　1位 -->
+	<tr>
+		<td colspan="3" valign="top"><img src="image/spacer.gif" width="1" height="4" align=""></td>
+	</tr>
+	<!-- start ナビランキング　2位以下ループ -->
+	<{foreach item=navi_item from=$navi_navi_ranking}>
+	<tr>
+		<td valign="top"><span class="char110"><{$navi_item.rank}>位</span></td>
+		<td valign="top">&nbsp;</td>
+		<td valign="top" class="char110"><a href="index.php?module=Navi&amp;action=ShowNaviPage&amp;navipage_id=<{$navi_item.id}>"><{$navi_item.title|escape}></a></td>
+	</tr>
+	<tr>
+		<td colspan="3" valign="top"><img src="image/spacer.gif" width="1" height="3"></td>
+	</tr>
+	<{/foreach}>
+	<!-- endループ -->
+</table>
+</div>
+</div>
+<!-- ナビランキング＆人気ランキングブロック終わり -->

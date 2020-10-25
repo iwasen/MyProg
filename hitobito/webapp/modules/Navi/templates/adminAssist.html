@@ -1,0 +1,105 @@
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+  <tr bgcolor="#5B94FD">
+    <td colspan="3"><img src="image/naviedit_assist_ttl.gif" width="128" height="25" hspace="10" alt="アシストナビ管理"></td>
+  </tr>
+  <tr>
+    <td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+    <td width="555" valign="top">
+      <form name="form3" method="post" >
+	<table width="555" border="0" cellspacing="0" cellpadding="0">
+	  <tr>
+	    <td colspan="2"><img src="image/spacer.gif" width="1" height="15"></td>
+	  </tr>
+	  <tr>
+	    <td colspan="2"><img src="image/naviedit_assist_sttl_assist.gif" width="111" height="14" alt="アシストナビ一覧"></td>
+	  </tr>
+	  <tr>
+	    <td width="450"><img src="image/spacer.gif" width="450" height="1"></td>
+	    <td width="105"><img src="image/spacer.gif" width="105" height="1"></td>
+	  </tr>
+	  <tr>
+	    <td colspan="2"><img src="image/spacer.gif" width="1" height="7"></td>
+	  </tr>
+	  <tr>
+	    <td valign="top">
+	      <table width="450" border="0" cellspacing="0" cellpadding="0">
+		<tr bgcolor="#666666">
+		  <td colspan="5"><img src="image/spacer.gif" width="450" height="1"></td>
+		</tr>
+		<tr>
+		  <td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		  <td width="35">　</td>
+		  <td width="323" bgcolor="#E6F2FF" align="center" class="char120">
+		    <p class="ind0804">アシストナビ</p>
+		  </td>
+		  <td width="90" align="center" class="char120" nowrap>
+		    <p class="ind0804">ステータス</p>
+		  </td>
+		  <td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		</tr>
+		<tr bgcolor="#666666">
+		  <td colspan="5"><img src="image/spacer.gif" width="450" height="1"></td>
+		</tr>
+		<!-- アシストナビ1ここから -->
+		<{foreach item=item from=$itemlist}>
+		<tr>
+		  <td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		  <td align="center">
+		    <input type="radio" name="navi_navi_id" value="<{$item->getAttribute('anv_navi_id')}>">
+		  </td>
+		  <td class="char120" bgcolor="#E6F2FF">
+		    <p class="ind0804"><{$item->getName()|escape}></p>
+		  </td>
+		  <td align="center" class="char120">
+		    <p class="ind0804"><{if $item->getAttribute('anv_status') ==1}>公開<{else}>非公開<{/if}></p>
+		  </td>
+		  <td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		</tr>
+		<tr bgcolor="#CCCCCC">
+		  <td colspan="5"><img src="image/spacer.gif" width="450" height="1"></td>
+		</tr>
+		<{/foreach}>
+		<!-- アシストナビ1ここまで -->
+	      </table>
+	    </td>
+	    <td valign="top" align="center">
+	      <table width="65" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+		  <td><a href="index.php?module=Navi&amp;action=NewAssist&amp;navipage_id=<{$hitobitoNaviPageInfo->getId()}>"><img src="image/naviedit_btn_new.gif" width="65" height="20" alt="新規追加" border="0"></a></td>
+		</tr>
+		<tr>
+		  <td><img src="image/spacer.gif" width="1" height="15"></td>
+		</tr>
+		<tr>
+		  <td><!-- 記事編集ボタン --><input type="image" name="navi_modify" src="image/naviedit_btn_edit.gif" width="65" height="20" alt="編集" border="0"></td>
+		</tr>
+		<tr>
+		  <td><img src="image/spacer.gif" width="1" height="8"></td>
+		</tr>
+		<tr>
+		  <td><!-- 上へ移動ボタン --><input type="image" name="navi_orderUp"  src="image/naviedit_btn_up.gif" width="65" height="20" alt="上へ移動" border="0"></td>
+		</tr>
+		<tr>
+		  <td><img src="image/spacer.gif" width="1" height="8"></td>
+		</tr>
+		<tr>
+		  <td><!-- 下へ移動ボタン --><input type="image" name="navi_orderDown"   src="image/naviedit_btn_down.gif" width="65" height="20" alt="下へ移動" border="0"></td>
+		</tr>
+		<tr>
+		  <td><img src="image/spacer.gif" width="1" height="15"></td>
+		</tr>
+		<tr>
+		  <td><!-- 削除ボタン --><input type="image" name="navi_delete"  src="image/naviedit_btn_delete.gif" width="65" height="20" alt="削除" border="0" onClick="return confirm('削除してもよろしいですか')"></td>
+		</tr>
+	      </table>
+	    </td>
+	  </tr>
+	  <tr>
+	    <td colspan="2">&nbsp;</td>
+	  </tr>
+	</table>
+      </form>
+    </td>
+    <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+  </tr>
+</table>

@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>メルマガ基本情報　新規メルマガ創刊手続き</TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600">
+<? include("header.php"); ?>
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="513" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+<TD><FONT color="#006600"><B>■メルマガ基本情報　新規メルマガ創刊手続き</B></FONT>
+<p><span class="text01">新規メルマガ創刊手続きを受け付けました。<br>
+ご登録いただいたあなたのメールアドレスに新規メルマガ創刊手続き受付の確認メールをお送りしましたのでご確認ください。<br>
+また、先ほど登録いただいた基本メールアドレスとパスワードで、発行者用管理ページに入室できるようになっています。発行者用管理ページでは、メルマガの配信予約（新規メルマガ創刊手続きの審査が終わるまでご利用いただけません）、登録した情報の修正、読者数の確認などができます。<br>
+
+</span></p>
+<p><span class="text01"> なお、いただいた情報をもとに、新規メルマガ創刊手続きの審査をさせていただきます。新規メルマガ創手続き完了はメールでお知らせいたしますので、今しばらくお待ちください。</span></p>
+<p><span class="text01">今すぐ発行者用管理ページをご利用になる方は下のボタンを押してください。</span></p>
+<p>
+<form name="form1" action="pub_index.php" method="post">
+<div align="center">
+<input type="submit" name="Submit" value="発行者用管理ページへ">
+<input type="hidden" value="<? echo $owner_pswd; ?>" name="owner_pswd_r">
+<input type="hidden" value="<? echo $publisher_id; ?>" name="publisher_id">
+<input type="hidden" value="<? echo $next_job_flg; ?>" name="job_flg">
+</div>
+<p>　 </p>
+</form>
+<form action="http://www.melonpan.net/regist.cgi" method="post">
+<p class="text01">めろんぱんは本気な発行者の気迫のメルマガスタンドです。 意欲ある発行者の方を、精一杯、応援・サポートをさせて頂きます。今後ともどうぞよろしくお願いいたします。また、めろんぱんへの<a href="mailto:office@melonpan.net">ご意見・ご感想</a>もお待ちしております。</p>
+</form>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<? include("footer.php"); ?>
+</TABLE>
+</body>
+</html>
+

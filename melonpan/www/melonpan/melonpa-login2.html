@@ -1,0 +1,139 @@
+<?php
+	include ( "../sub/head.inc");
+?>
+<html><!-- #BeginTemplate "/Templates/index.dwt" -->
+<head>
+<!-- #BeginEditable "doctitle" --> 
+<title>めろんぱん || よりすぐりメルマガサイト</title>
+<!-- #EndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+</head>
+<?php draw_head( ".." );	?>
+<table width="753" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"> 
+      <table width="620" border="0" cellspacing="0" cellpadding="0" align="center">
+        <tr> 
+          <td width="21"><!-- #BeginEditable "1" --><img src="../melonpan/img/melonpa1.gif" width="21" height="21"><!-- #EndEditable --></td>
+          <td width="21"><!-- #BeginEditable "3" --><img src="../melonpan/img/melonpa3.gif" width="21" height="21"><!-- #EndEditable --></td>
+          <td width="557"><!-- #BeginEditable "title1" --><!-- #EndEditable --></td>
+          <td width="21">　</td>
+        </tr>
+        <tr> 
+          <td width="21"><!-- #BeginEditable "2" --><img src="../melonpan/img/melonpa2.gif" width="21" height="21"><!-- #EndEditable --></td>
+          <td width="21" bgcolor="#90c84b"><!-- #BeginEditable "4" --><img src="../melonpan/img/melonpa4.gif" width="21" height="21"><!-- #EndEditable --></td>
+          <td width="557" bgcolor="#90c84b"><!-- #BeginEditable "title2" --><img src="../melonpan/img/kakunin.gif" width="156" height="21"><!-- #EndEditable --></td>
+          <td width="21"><img src="../common/c_rihgt_top.gif" width="21" height="21"></td>
+        </tr>
+        <tr bgcolor="#ffffd3"> 
+          <td colspan="4" bgcolor="#ffffd3" height="21"><!-- #BeginEditable "sub" -->
+      <p>　</p>
+      <p>　</p>
+      <!-- #EndEditable --></td>
+        </tr>
+        <tr> 
+          <td width="21" bgcolor="#ffffd3">　</td>
+          <td width="21" bgcolor="#ffffd3">　</td>
+          <td width="557" bgcolor="#ffffd3"><!-- #BeginEditable "%90%7D" --> 
+      <table width="513" border="0" cellspacing="1" cellpadding="5">
+        <tr> 
+          <td>登録したパスワードを入力して、<b>[ログイン]</b>ボタンを押してください。<br>
+            もしＭｙめろんぱん登録がお済でない方は、<a href="../melonpan/melonpatoha.php"><font color="#33660">こちらからご登録ください。</font></a>
+			
+<?php
+	if ($no_riba_flg == 1) {
+		print "<p align=center>りばっチャは、Ｍｙめろんぱんログインしていないと購読できません。<br>Ｍｙめろんぱんログインするか、Ｍｙめろんぱん登録されてない方は、Ｍｙめろんぱん登録を先に行ってください。</p>\n";
+	} elseif ($pass_error_flg == 1) {
+		print "<p align=center>パスワードが正しく入力されていないようです。</p>\n";
+	} elseif ($no_pass_flg == 1) {
+		print "<p align=center>パスワードが正しく入力されていないようです。</p>\n";
+	} elseif ($no_mail_flg == 1) {
+		//print "<p align=center>メールアドレスが正しく入力されていないようです。<br>登録されたメールアドレスをご確認ください。</p>\n";
+	} else {;}
+?>
+			
+              <table border="0" cellspacing="0" cellpadding="0" bgcolor="#336600">
+                <tr>
+                  <td>
+                    <table border="0" cellspacing="1" cellpadding="2" width="500">
+                      <tr bgcolor="#e2f0c9"> 
+                        <td bgcolor="#D2E2BF" class="text9pt" width="101"> 
+                          <div align="left"> <font color="#336600">メールアドレス</font></div>
+                        </td>
+                        <td width="293" bgcolor="#FFFFFF">
+<!-- 
+                          <div align="left"><input type="text" name="mail_addr" size="35"></div>
+-->
+                          <div align="left"> <font color="#336600"><?php echo $mail_addr; ?></font></div>
+                        </td>
+                      </tr>
+<form action="../melonpa/MelonpanRef.php" method="post">
+<? hakkou_check($log_key_flg) ?>
+                      <tr bgcolor="#e2f0c9"> 
+                        <td bgcolor="#D2E2BF" class="text9pt" width="101"> 
+                          <div align="left"> <font color="#336600">パスワード</font></div>
+                        </td>
+                        <td width="293" bgcolor="#FFFFFF"> 
+<input type="password" name="w_reader_pswd">
+<input type="hidden" value="<? echo trim($mail_addr) ?>" name="mail_addr">
+<!--
+<input type="password" name="reader_pswd" size="35">
+<input type="hidden" value="login1" name="PROCESS_FLG">
+-->
+                        </td>
+                      </tr>
+                    </table></td>
+                </tr>
+              </table>
+              <br>
+<!--
+              <input type="submit" value="ログイン" name="submit">
+-->
+<input type="hidden" value="rmbott70101" name="rmbott70101">
+<input type="submit" name="rmbott70101" value="ログイン">
+              <br>
+            </form>
+            <form name="rmform102" action="../melonpa/MelonpanRef.php" method="post">
+              <p></p>
+              <p><font size="2">※パスワードを忘れた方は<a href="JavaScript:document.rmform102.submit();"><font color="#33660">こちら</font></a></font> 
+<input type="hidden" value="remainder" name="PROCESS_FLG" ;>
+            </form>
+          </td>
+        </tr>
+      </table>
+      <!-- #EndEditable --></td>
+          <td width="21" bgcolor="#ffffd3">　</td>
+        </tr>
+        <tr> 
+          <td width="21"><img src="../common/c_left_bottom.gif" width="21" height="21"></td>
+          <td width="21" bgcolor="#90c84b">　</td>
+          <td width="557" bgcolor="#90c84b">　</td>
+          <td width="21"><img src="../common/c_right_bottom.gif" width="21" height="21"></td>
+        </tr>
+<?php	draw_footer( ".." );	?>
+<!--
+        <tr> 
+          <td colspan="4"> 
+            <div align="center"><br>
+              <br>
+              <img src="../common/dummy.gif" width="468" height="60"><br>
+              <br>
+              <font size="1"><a href="../index.html">めろんぱん</a>は（株）○○○○○○の事業理念「発信する生活者を支援する」に基づいて運営されています。 
+              </font><br>
+              <hr width="85%" size="1">
+              <font size="2"><br>
+              <br>
+              Copyright(c)2000 xxxxxxx, Co., Ltd. All rights reserved.<br>
+              <img src="../common/do_rogo.gif" width="40" height="40"> <br>
+              <br>
+              </font></div>
+          </td>
+        </tr>
+-->
+      </table>
+    </td>
+  </tr>
+</table>
+</body>
+<!-- #EndTemplate --></html>
+

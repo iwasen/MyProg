@@ -1,0 +1,292 @@
+<table width="580" border="0" cellspacing="0" cellpadding="0" bgcolor="#E3F7DF">
+	<tr>
+		<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td width="15" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="15" height="1"></td>
+		<td width="548" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="548" height="1"></td>
+		<td width="15" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="15" height="1"></td>
+		<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td><img src="image/spacer.gif" width="15" height="1"></td>
+		<td class="char120">ナビのためのメーリングリストです。</td>
+		<td><img src="image/spacer.gif" width="15" height="1"></td>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td><img src="image/spacer.gif" width="15" height="1"></td>
+		<td class="char120" align="right">メンバー数 : <{$waiwai_room.member_num}>人</td>
+		<td><img src="image/spacer.gif" width="15" height="1"></td>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td colspan="3"><img src="image/spacer.gif" width="1" height="6"></td>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+</table>
+<table width="580" border="0" cellspacing="0" cellpadding="0" bgcolor="#E3F7DF">
+	<tr>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td><img src="image/spacer.gif" width="15" height="1"></td>
+		<td colspan="5" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="548" height="1"></td>
+		<td><img src="image/spacer.gif" width="15" height="1"></td>
+		<td><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+		<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td width="15" bgcolor="#FFFFFF"><img src="image/spacer.gif" width="15" height="1"></td>
+		<td bgcolor="#FFFFFF" width="516" align="center">
+			<table width="516" border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td><img src="image/spacer.gif" width="1" height="15"></td>
+					</tr>
+					<tr>
+						<td bgcolor="#5FCA44"><img src="image/waiwai_member_ttl.gif" width="253" height="25" hspace="10" alt="ワイワイ会議室メンバー新規登録"></td>
+					</tr>
+					<tr>
+						<td><img src="image/spacer.gif" width="1" height="15"></td>
+				</tr>
+			</table>
+
+			<table width="500" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td><strong><{$waiwai_regist.nickname|escape}>さん</strong></td>
+				</tr>
+				<tr> 
+					<td><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+			</table>
+			<table width="500" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td width="20"><img src="image/spacer.gif" width="20" height="1"></td>
+
+					<td width="480" class="char120"> ご登録ありがとうございます。<br>
+					<{$waiwai_room.name}>会議に参加するには、以下の項目の登録が必要です。</td>
+				</tr>
+			</table>
+			<table width="500" border="0" cellspacing="0" cellpadding="0">
+				<tr> 
+					<td><img src="image/spacer.gif" width="1" height="15"></td>
+				</tr>
+			</table>
+			<form method="post">
+			<input type="hidden" name="waiwai_nickname" value="<{$waiwai_regist.nickname}>">
+			<table width="500" border="0" cellspacing="0" cellpadding="0">
+<{if $waiwai_error_ary}>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td colspan="3" class="error"><{foreach from=$waiwai_error_ary item=waiwai_error}>・<{$waiwai_error|escape}><br><{/foreach}></td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="15"></td>
+				</tr>
+<{/if}>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="30"></td>
+				</tr>
+				<tr>
+					<td width="35"><img src="image/spacer.gif" width="65" height="1"></td>
+					<td width="430" align="left" class="char120">
+						<table border="0" cellpadding="0" cellspacing="0">
+							<tr>
+								<td width="120" class="char120">お 名 前<{$waiwai_regist.required.1}></td>
+								<td><input name="waiwai_name" type="text" value="<{$waiwai_regist.name}>" size="33"></td>
+							</tr>
+						</table>
+					</td>
+					<td width="35"><img src="image/spacer.gif" width="35" height="1"></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td width="35"><img src="image/spacer.gif" width="65" height="1"></td>
+					<td width="430" align="left" class="char120">
+						<table border="0" cellpadding="0" cellspacing="0">
+							<tr>
+								<td width="120" class="char120">ふりがな<{$waiwai_regist.required.2}></td>
+								<td><input name="waiwai_name_kana" type="text" value="<{$waiwai_regist.name_kana}>" size="33"></td>
+							</tr>
+						</table>
+					</td>
+				<td width="35"><img src="image/spacer.gif" width="35" height="1"></td>
+				</tr>
+					<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td width="35"><img src="image/spacer.gif" width="65" height="1"></td>
+					<td width="430" align="left" class="char120">
+						<table border="0" cellpadding="0" cellspacing="0">
+							<tr>
+								<td width="120" class="char120">性　　別<{$waiwai_regist.required.3}></td>
+								<td width="22" align="left" valign="middle"><input name="waiwai_sex_cd" type="radio" value="1" <{$waiwai_regist.sex_1}>></td>
+								<td class="char120">男</td>
+								<td><img src="image/spacer.gif" width="20" height="1"></td>
+								<td width="22" align="left" valign="middle"><input name="waiwai_sex_cd" type="radio" value="2" <{$waiwai_regist.sex_2}>></td>
+								<td class="char120">女</td>
+							</tr>
+						</table>
+					</td>
+					<td width="35"><img src="image/spacer.gif" width="35" height="1"></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td width="35">&nbsp;</td>
+					<td width="430" align="left" class="char120">
+						<table border="0" cellpadding="0" cellspacing="0">
+							<tr>
+								<td width="120" class="char120">生年月日<{$waiwai_regist.required.4}></td>
+								<td align="left" valign="middle">
+								<select name="waiwai_birth_y">
+								<{html_options options=$waiwai_birth_y selected=$waiwai_regist.birth_y}>
+								</select></td>
+								<td width="20"><img src="image/spacer.gif" width="20" height="1"></td>
+								<td align="left" valign="middle">
+								<select name="waiwai_birth_m">
+								<{html_options options=$waiwai_birth_m selected=$waiwai_regist.birth_m}>
+								</select></td>
+								<td width="20"><img src="image/spacer.gif" width="20" height="1"></td>
+								<td align="left" valign="middle">
+								<select name="waiwai_birth_d">
+								<{html_options options=$waiwai_birth_d selected=$waiwai_regist.birth_d}>
+								</select></td>
+							</tr>
+						</table>
+					</td>
+					<td width="35"><img src="image/spacer.gif" width="35" height="1"></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td width="35"><img src="image/spacer.gif" width="65" height="1"></td>
+					<td width="430" align="left" class="char120">
+						<table border="0" cellpadding="0" cellspacing="0">
+							<tr>
+								<td width="120" class="char120">郵便番号<{$waiwai_regist.required.5}></td>
+								<td><input name="waiwai_zip[]" type="text" value="<{$waiwai_regist.zip.0}>" size="5" maxlength="3"> - <input name="waiwai_zip[]" type="text" value="<{$waiwai_regist.zip.1}>" size="8" maxlength="4"></td>
+							</tr>
+						</table>
+					</td>
+					<td width="35"><img src="image/spacer.gif" width="35" height="1"></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td width="35">&nbsp;</td>
+					<td width="430" align="left" class="char120">
+						<table border="0" cellpadding="0" cellspacing="0">
+							<tr>
+								<td width="120" class="char120">都道府県<{$waiwai_regist.required.6}></td>
+								<td align="left" valign="middle">
+								<select name="waiwai_address1">
+								<{html_options options=$waiwai_address1_ary selected=$waiwai_regist.address1}>
+								</select>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td width="35"><img src="image/spacer.gif" width="35" height="1"></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td width="35"><img src="image/spacer.gif" width="65" height="1"></td>
+					<td width="430" align="left" class="char120">
+						<table border="0" cellpadding="0" cellspacing="0">
+							<tr>
+								<td width="120" class="char120">都道府県以下<{$waiwai_regist.required.7}></td>
+								<td><input name="waiwai_address2" type="text" value="<{$waiwai_regist.address2|escape}>" size="33"></td>
+							</tr>
+						</table>
+					</td>
+					<td width="35"><img src="image/spacer.gif" width="35" height="1"></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td width="35"><img src="image/spacer.gif" width="65" height="1"></td>
+					<td width="430" align="left" class="char120">
+						<table border="0" cellpadding="0" cellspacing="0">
+							<tr>
+								<td width="120" class="char120">電話番号<{$waiwai_regist.required.8}></td>
+								<td><input name="waiwai_tel[]" type="text" value="<{$waiwai_regist.tel.0}>" size="5" maxlength="6">
+								- <input name="waiwai_tel[]" type="text" value="<{$waiwai_regist.tel.1}>" size="5" maxlength="4">
+								- <input name="waiwai_tel[]" type="text" value="<{$waiwai_regist.tel.2}>" size="5" maxlength="4"></td>
+							</tr>
+						</table>
+					</td>
+					<td width="35"><img src="image/spacer.gif" width="35" height="1"></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td width="35"><img src="image/spacer.gif" width="65" height="1"></td>
+					<td width="430" align="left" class="char120">
+						<table border="0" cellpadding="0" cellspacing="0">
+							<tr>
+								<td width="120" class="char120">自己紹介<{$waiwai_regist.required.9}></td>
+								<td>
+									<textarea name="waiwai_self_introduction" cols="30" rows="10"><{$waiwai_regist.self_introduction}></textarea>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td width="35"><img src="image/spacer.gif" width="35" height="1"></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="35"></td>
+				</tr>
+			</table>
+			<table width="500" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td align="center"><input type="image" border="0" name="waiwai_confirm_btn" src="image/waiwai_btn_enq_check.gif" width="50" height="20" alt="確認" >&nbsp;&nbsp;<input type="image" border="0" name="waiwai_clear_btn" src="image/waiwai_btn_enq_clear.gif" width="50" height="20" alt="クリア" ></td>
+				</tr>
+				<tr>
+					<td width="500" colspan="3"><img src="image/spacer.gif" width="1" height="25"></td>
+				</tr>
+			</table>
+			</form>
+		</td>
+		<td width="15" bgcolor="#FFFFFF"><img src="image/spacer.gif" width="15" height="1"></td>
+		<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+		<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td><img src="image/spacer.gif" width="15" height="1"></td>
+		<td colspan="5" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="548" height="1"></td>
+		<td><img src="image/spacer.gif" width="15" height="1"></td>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td colspan="7"><img src="image/spacer.gif" width="1" height="15"></td>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr bgcolor="#CCCCCC">
+		<td colspan="9"><img src="image/spacer.gif" width="550" height="1"></td>
+	</tr>
+	<tr bgcolor="#FFFFFF">
+		<td colspan="9"><img src="image/spacer.gif" width="1" height="10"></td>
+	</tr>
+</table>

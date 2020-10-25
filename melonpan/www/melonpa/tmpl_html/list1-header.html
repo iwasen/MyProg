@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>メルマガサーチ結果</TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600">
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="700" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD width="700">
+<table width="700" border="0" cellspacing="1" cellpadding="5">
+<tr bgcolor="#FFFFFF">
+<td>
+<img src="../img/t_kekka.gif" width="700" height="27">
+<table border=0 cellpadding=2 cellspacing=0 width=700>
+<tr align=left valign=top>
+<td width="420">
+<div align="left">
+<b><font color="#990000">全<?php echo $all_num; ?>件</font></b>が該当しました<br>
+<p><span class="text01">購読（解除）を希望するメルマガの[購読]または[解除]チェックボックスを選択し、<br>
+最後に[決定]ボタンを押してください。</span></p>
+</div>
+</td>
+<td width="280">
+<div align="right"> <?php
+	print "<form action=\"search_result.php\" method=post>\n";
+	print "<input type=\"hidden\" name=\"mode\" value=\"".$mode."\">\n";
+	print "<input type=\"hidden\" name=\"reader_id\" value=\"".$reader_id."\">\n";
+	print "<input type=\"hidden\" name=\"reader_pswd\" value=\"".$reader_pswd."\">\n";
+	print "<input type=\"hidden\" name=\"mail_addr\" value=\"".$mail_addr."\">\n";
+	print "<input type=\"hidden\" name=\"email\" value=\"".$mail_addr."\">\n";
+	//print "<input type=\"hidden\" name=\"page\" value=\"".$page."\">\n";
+	print $input_data;
+	print "<input type=\"radio\" name=\"order\" value=\"default\">最新発行日順 \n";
+	print "<input type=\"radio\" name=\"order\" value=\"kari\">創刊日順 \n";
+	print "<input type=\"submit\" value=\"並び替え方法を変えて検索し直す\">\n";
+	print "<br><font size=2 color=\"#ff3333\">※注意：購読/解除のチェックが無効となります。ご注意ください。</font>\n";
+	print "</form>\n";
+?></div>
+</td>
+</tr>
+</table>
+<table width="700" border="0" cellspacing="0" cellpadding="1">
+<tr>
+<td width="100" bgcolor="#339900">
+<div align="center"><font color="#FFCC00" class="text9ptnoColor"><b>マークの見方</b></font></div>
+</td>
+<td width="600"><font color="#006600"><font size="2">　<img src="../img/mark-kari.gif" width="13" height="13">…仮登録メルマガ｜</font><font color="#006600"><font size="2"><img src="../img/mark-new.gif" width="13" height="13"></font></font><font size="2">…新着（新規創刊）｜</font><font color="#006600"><font color="#006600"><font size="2"><img src="../img/mark-rec.gif" width="13" height="13"></font></font></font><font size="2">…めろんパイおすすめ｜</font><font color="#006600"><font color="#006600"><font size="2"><img src="../img/mark-rib.gif" width="13" height="13"></font></font></font><font size="2">…りばっチャメルマガ｜</font></font></td>
+</tr>
+</table>

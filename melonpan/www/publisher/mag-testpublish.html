@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>メルマガテスト配信</TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600">
+<? include("header.php"); ?>
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="513" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+                <TD> 
+                  <table width="501" border="0" cellspacing="0" cellpadding="0">
+                    <tr> 
+                      <td width="251"><font color="#006600"><b>■メルマガテスト配信</b></font></td>
+                      <td width="250" align="right"> 
+                        <form method="post" action="pub_index.php" name="fom_index">
+                          <a href="JavaScript:document.fom_index.submit();"> <font size="2">管理ページTOPへ</font></a> 
+                          <input type="hidden" value="<? echo $publisher_id ?>" name="publisher_id">
+                          <input type="hidden" value="<? echo $owner_pswd ?>" name="owner_pswd_r">
+                        </form>
+                      </td>
+                    </tr>
+                  </table>
+                  <br>
+                  <p class="midashi14"> 
+                    <? msg_print($msg); ?>
+                    <BR>
+                    <SPAN CLASS="text01">数分後にあなたのメールアドレス宛に送信されます。</SPAN></p>
+<p align="center">　</p>
+<p><form name="form1" method="post" action="mag-haishin.php">
+<input type="hidden" value="<? echo $publisher_id ?>" name="publisher_id">
+<input type="hidden" value="<? echo $owner_pswd ?>" name="owner_pswd">
+<input type="hidden" value="<? echo $mag_id ?>" name="mag_id">
+<input type="hidden" value="<? echo trim($mag_nm); ?>" name="mag_nm">
+<input type="hidden" value="<? echo $mag_titl; ?>" name="mag_titl">
+<input type="hidden" value="<? echo $mag_body; ?>" name="mag_body">
+<input type="hidden" value="<? echo $index_id ?>" name="index_id">
+<input type="hidden" value="<? echo $body_id ?>" name="body_id">
+<input type="hidden" value="<? echo $mag_type ?>" name="mag_type">
+<input type="hidden" value="OK_reserv" name="OK_reserv">
+<input type="submit" value="配信予約画面へ戻る">
+<?php
+/* 
+<a href="JavaScript:document.form1.submit();" CLASS="text9ptnoColor">&lt;&lt;&lt;　配信予約画面へ戻る</a></p>
+*/
+?>
+</form>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<? include("footer.php"); ?>
+</TABLE>
+</body>
+</html>

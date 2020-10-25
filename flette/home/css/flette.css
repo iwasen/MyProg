@@ -1,0 +1,92 @@
+/*----- font color -----*/
+
+.kome {
+	color:#CC0000
+}
+
+/*----- font size -----*/
+
+.txt-s {
+	font-family: "‚l‚r ‚oƒSƒVƒbƒN", "Osaka";
+	font-size: 10px;
+	font-style: normal;
+	line-height: 14px;
+}
+
+.txt-m {
+	font-family: "‚l‚r ‚oƒSƒVƒbƒN", "Osaka";
+	font-size: 12px;
+	font-style: normal;
+	line-height: 16px;
+}
+
+.txt-14 {
+	font-family: "‚l‚r ‚oƒSƒVƒbƒN", "Osaka";
+	font-size: 14px;
+	font-style: normal;
+	line-height: 16px;
+}
+
+.txt-16 {
+	font-family: "‚l‚r ‚oƒSƒVƒbƒN", "Osaka";
+	font-size: 16px;
+	font-style: normal;
+	line-height: 18px;
+}
+
+.txt-18 {
+	font-family: "‚l‚r ‚oƒSƒVƒbƒN", "Osaka";
+	font-size: 18px;
+	font-style: normal;
+	line-height: 20px;
+}
+
+.txt-20 {
+	font-family: "‚l‚r ‚oƒSƒVƒbƒN", "Osaka";
+	font-size: 20px;
+	font-style: normal;
+	line-height: 22px;
+}
+
+
+/*----- margin -----*/
+
+.mrg-ss {
+	margin-top:5px;
+}
+
+.mrg-s {
+	margin-top:10px;
+}
+
+.mrg-m {
+	margin-top:15px;
+}
+
+.mrg-l {
+	margin-top:20px;
+}
+
+.mrg-ll {
+	margin-top:25px;
+}
+
+.mrg-xl {
+	margin-top:30px;
+}
+
+form {
+	margin: 0px;
+}
+
+/*----- link -----*/
+
+a.link-foot:link { color:#FFFFFF; text-decoration:none; }
+a.link-foot:visited { color:#FFFFFF; text-decoration:none; }
+a.link-foot:hover { color:#FF9700; text-decoration:none; }
+a.link-foot:active { color:#FFFFFF; text-decoration:none; }
+
+a.link-txt:link { color:#000000; text-decoration:underline; }
+a.link-txt:visited { color:#000000; text-decoration:underline; }
+a.link-txt:hover { color:#FF9700; text-decoration:underline; }
+a.link-txt:active { color:#000000; text-decoration:underline; }

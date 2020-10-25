@@ -1,0 +1,671 @@
+		title	sousin
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; module name	: sousin gyoumu 
+; creation date	: 86:01:24
+; revised date  : 
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+		.z80
+
+	demo	equ	0
+
+		include	MEMORY.INC
+		include SUBR.INC
+
+		public	slist
+		public	list
+
+		extrn	nouki
+		extrn	jrlist
+		extrn	trlist
+		extrn	gdmsg
+		extrn	chr_disp
+		extrn	clrbuf
+		extrn	csr_off
+		extrn	zbin_ch
+
+    	CONOUT		equ	0eb0ch
+	BEEP		equ	0eb39h
+	TIMDAT		equ	0eb4eh
+;
+	CR		equ	0dh	; return key code
+	ESC		equ	1bh	; escape key code
+	GAMEN		equ	0f7h	; gamen shuuryou key code
+	DEND		equ	0efh	; denpyou shuuryou key code
+
+	sflag		equ	M_PARAM+0
+	rst		equ	M_PARAM+1
+	tflag		equ	M_PARAM+3
+	blkadr		equ	M_PARAM+4
+	recno		equ	M_PARAM+6
+	hinmoku		equ	M_PARAM+7
+	sdtime		equ	M_PARAM+9
+	denpyono	equ	M_PARAM+11
+	rst1		equ	M_PARAM+13
+;
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	sousin gyoumu
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+sousin:
+		call	xdenpyo		; denpyo maisuu check
+		or	a		; maisuu = 0 ?
+		ret	z		; * yes
+		ld	(denpyo),a	; save denpyo maisuu
+
+		sub	a		;
+		ld	(recno),a	;
+		ld	hl,0		; work area initialize
+		ld	(hinmoku),hl	;
+		ld	(sdtime),hl	;
+		ld	(denpyono),hl	;
+
+		ld	a,(sflag)	;
+		or	a		; nouki toiawase ?
+		jp	nz,nouki	; * yes
+
+		call	scdisp		; gamen hyouji
+		ret	c
+
+		ld	a,' '
+		ld	(tflag),a
+		ld	hl,M_ORDER
+		ld	(blkadr),hl
+sousin05:
+		ld	a,20		; tsuushin
+		call	overlay		;
+
+		call	slist		; print out
+
+		ld	a,(rst)
+		or	a
+		ret	z
+		inc	a
+		jr	z,sousin05
+sousin10:
+		call	xconin
+		cp	GAMEN
+		ret	z
+		cp	DEND
+		ret	z
+		ld	bc,1601h
+		call	BEEP
+		jr	sousin10
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	gamen hyouji
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+scdisp:
+		ld	a,(denpyo)
+		ld	e,a
+		ld	d,0
+		ld	hl,m_sosin5+17	;
+		ld	b,2		; denpyou maisuu character henkan
+		call	zbin_ch		;
+
+		call	csr_off		; cursor off
+		ld	hl,m_sosin1
+		call	kmsg		; screen dispkay
+
+		ld	a,(R_LNSHR)
+		cp	'1'		; kaisen kyouyou ?
+		jr	z,scdisp10	; * yes
+
+		ld	hl,m_sosin2	; "tsuuwa chuu de nakereba"
+		call	kmsg		;
+
+sc_keyin:
+		ld	hl,m_sosin3	; "(1:sousin 2:shuuryou)"
+		call	chr_disp	;
+
+		call	xconin		; keyin
+		cp	CR		; return key ?
+		jr	z,sc_key20	; * yes
+		cp	'1'		; "1" ?
+		jr	z,sc_key10	; * yes
+		cp	'2'		; "2" ?
+		jr	z,sc_key10	; * yes
+sc_key05:
+		ld	bc,1601h
+		call	BEEP
+		jr	sc_keyin
+sc_key10:
+		ld	(m_sosin3+5),a
+		jr	sc_keyin
+sc_key20:
+		ld	a,(m_sosin3+5)
+		cp	'2'
+		scf
+		ret	z
+		cp	'1'
+		jr	nz,sc_key05
+		ld	hl,c_csroff
+		call	chr_disp
+scdisp10:
+		ld	hl,m_sosin4
+		call	kmsg
+
+		ld	hl,m_sosin5
+		call	chr_disp
+		or	a
+		ret
+;
+;
+slist:
+		ld	a,(rst)		;
+		inc	a		; receive buffer over flow ?
+		jr	nz,slist60	; * no
+
+		ld	hl,m_mclr
+		call	kmsg
+		jp	list50
+slist60:
+		call	csr_off		; screen off,cursor off
+
+		ld	hl,m_sosin6
+		call	kmsg
+list:
+		ld	a,(rst)		;
+		or	a		; error ?
+		jr	nz,list10	; * yes
+
+		ld	hl,m_nmlend	; normal end message
+		call	kmsg		;
+		jr	list50
+list10:
+		ld	a,(rst+1)
+		ld	hl,m_errend	; error end message
+		cp	6
+		jr	nz,list15
+		ld	hl,m_nmlend
+list15:
+		call	kmsg		;
+
+		ld	hl,(rst)	;
+		ld	de,901h		;
+		or	a		;
+		sbc	hl,de		; error message receive ?
+		jr	z,list20	; * yes
+
+		ld	hl,(rst)	;
+		push	hl		;
+		ld	l,h		;
+		ld	h,0		;
+		ld	de,err_tbl	;
+		add	hl,hl		;
+		add	hl,de		;
+		ld	e,(hl)		; display error message
+		inc	hl		;
+		ld	d,(hl)		;
+		ld	(w_errmsg),de	;
+		ld	hl,38		;
+		add	hl,de		;
+		pop	de		;
+		ld	a,d		;
+		call	upck		;
+		ld	a,e		;
+		call	unpack		;
+		ld	hl,(w_errmsg)	;
+		call	gdmsg		;
+		jr	list50
+list20:
+		ld	hl,M_WORK+1
+		ld	a,(hl)
+		cp	'2'
+		jr	nz,list50
+
+		inc	hl
+		ld	de,e_msg9+2
+		ld	bc,16
+		ldir
+		ld	hl,e_msg9
+		call	gdmsg
+list50:
+		call	dsprst1		; display VANTEL1 status
+	if demo
+		ld	(C_SPSAVE),sp
+	else
+		ld	hl,0
+		ld	(C_SPSAVE),hl
+	endif
+		call	getdate		; get date
+
+		ld	hl,M_RBUFF	; set receive buffer address
+list60:
+		ld	a,(recno)
+		or	a
+		jp	z,list_end
+		dec	a
+		ld	(recno),a
+
+		push	hl
+		inc	hl
+		ld	a,(hl)
+		dec	hl
+		cp	'1'
+		push	af
+		call	z,jrlist	; joubi jushin list
+		pop	af
+		call	nz,trlist	; tokuchu jushin list
+		pop	hl
+
+		ld	de,430
+		add	hl,de
+		jr	list60
+;
+;
+list_end:
+		ld	a,(rst)		;
+		or	a		; error ?
+		jr	nz,list70	; * yes
+
+		ld	hl,k_nmlend	; tsuushin seijou shuuryou
+		call	k16lmsg		;
+		jr	list80
+list70:
+		cp	0ffh
+		ret	z
+
+		ld	a,(rst+1)
+		ld	hl,k_errend	; display abnormal end message
+		cp	6
+		jr	nz,list71
+		ld	hl,k_nmlend
+list71:
+		call	k16lmsg		;
+
+		ld	a,(rst+1)	;
+		cp	9		; error message receive ?
+		jr	z,list72	; * yes
+
+		ld	hl,(w_errmsg)
+		inc	hl
+		inc	hl
+		call	k8lmsg
+		ld	de,CR
+		call	klist
+		jr	list80
+list72:
+		ld	hl,M_WORK+1
+		ld	a,(hl)
+		cp	'1'
+		jr	z,list73
+
+		ld	hl,M_WORK+19
+		ld	a,(hl)
+		cp	'1'
+		jr	nz,list80
+list73:
+		inc	hl
+		ld	a,(hl)
+		cp	' '
+		jr	z,list73
+		cp	'*'
+		jr	z,list73
+		cp	0ah
+		jr	z,list73
+
+		ld	(hl),'M'
+		inc	hl
+		ld	(hl),'G'
+		dec	hl
+list74:
+		ld	a,(hl)
+		cp	12h
+		jr	z,list80
+		cp	-1
+		jr	z,list80
+		cp	0ah
+		jr	nz,list76
+		ld	a,CR
+list76:
+		ld	e,a
+		ld	d,0
+		push	hl
+		call	klist
+		pop	hl
+		inc	hl
+		jr	list74
+list80:
+		ld	hl,k_hinmoku	;
+		call	k16lmsg		;
+		ld	hl,c_hinmoku	;
+		ld	de,(hinmoku)	; soushin hinmoku
+		ld	b,3		;
+		call	zbin_ch		;
+		ld	hl,c_hinmoku	;
+		call	k8lmsg		;
+
+		ld	hl,k_ctime	;
+		call	k16lmsg		; tsuushin jikan
+
+		ld	hl,(sdtime)	;
+		sub	a		;
+		ld	de,60		;
+list90:					;
+		inc	a		;
+		sbc	hl,de		;
+		jr	nc,list90	;
+		dec	a		;
+		add	hl,de		; jikan binary -> character
+		push	hl		;
+		ld	e,a		;
+		ld	d,0		;
+		ld	hl,c_ctime	;
+		ld	b,2		;
+		call	zbin_ch		;
+		pop	de		;
+		ld	hl,c_ctime+6	;
+		ld	b,2		;
+		call	zbin_ch		;
+
+		ld	hl,c_ctime	;
+		call	k8lmsg		;
+
+		ld	hl,(rst)	;
+		ld	de,801h		;
+		or	a		;
+		sbc	hl,de		; receive data length error ?
+		ret	nz		; * no
+
+		ld	hl,c_dump	; print "receive data dump list"
+		call	k8lmsg		;
+
+		ld	de,(M_DUMP)
+dump10:
+		push	de
+		ld	hl,dumpbuf
+		ld	bc,40
+		ld	a,' '
+		call	clrbuf
+		pop	de
+		ld	ix,dumpbuf
+		ld	iy,dumpbuf+30
+		ld	b,10
+dump20:
+		ld	hl,(M_DUMP+2)
+		or	a
+		sbc	hl,de
+		jr	z,dump30
+
+		ld	a,(de)
+		call	dump40
+		inc	ix
+		ld	a,(de)
+		cp	20h
+		jr	nc,dump22
+		ld	a,'.'
+dump22:
+		ld	(iy),a
+		inc	iy
+		inc	de
+		ld	hl,(M_DUMP+1000h)
+		or	a
+		sbc	hl,de
+		jr	nz,dump25
+		ld	de,M_DUMP+4
+dump25:
+		djnz	dump20
+
+		push	de
+		ld	hl,dumpbuf
+		call	k8lmsg
+		pop	de
+		jp	dump10
+dump30:
+		ld	hl,dumpbuf
+		call	k8lmsg
+		ld	hl,c_dumpend	; print "dump end"
+		call	k8lmsg		;
+		ret
+;
+dump40:
+		push	af
+		rrca
+		rrca
+		rrca
+		rrca
+		call	dump45
+		pop	af
+dump45:
+		and	0fh
+		add	a,30h
+		cp	3ah
+		jr	c,dump50
+		add	a,7
+dump50:
+		ld	(ix),a
+		inc	ix
+		ret
+;
+;
+dsprst1:
+		ld	de,(rst1)	;
+		ld	a,d		;
+		or	e		; TEL1 error ?
+		ret	z		; * no
+
+		ld	hl,c_tel1+9	;
+		ld	a,d		;
+		call	upck		; set error code
+		ld	a,e		;
+		call	unpack		;
+
+		ld	hl,c_tel1	; display TEL1 error code
+		call	chr_disp	;
+		ret
+;
+;
+xdenpyo:
+		ld	d,0
+		ld	hl,M_ORDER
+		ld	b,10
+xdenpyo10:
+		ld	a,(hl)
+		or	a
+		jr	z,xdenpyo20
+		inc	d
+xdenpyo20:
+		push	bc
+		ld	bc,320
+		add	hl,bc
+		pop	bc
+		djnz	xdenpyo10
+		ld	a,d
+		ret
+;
+;
+getdate:
+		ld	de,timfld
+		ld	c,0
+		call	TIMDAT
+
+		ld	a,(timfld)
+		ld	hl,prm_yy
+		call	unpack
+
+		ld	a,(timfld+1)
+		ld	hl,prm_mm
+		call	unpack
+
+		ld	a,(timfld+2)
+		ld	hl,prm_dd
+		call	unpack
+		ret
+
+;
+;
+unpack:
+		push	af
+		rrca
+		rrca
+		rrca
+		rrca
+		call	upck
+		pop	af
+upck:
+		and	0fh
+		or	'0'
+		ld	(hl),a
+		inc	hl
+		ret
+
+;
+;	data
+;
+timfld: 	ds	7		; timer read area
+
+prm_yy::	db	'00/'		; nen
+prm_mm:		db	'00/'		; tsuki
+prm_dd:		db	'00',-1		; hi
+
+c_csroff:	db	ESC,'2',-1	; cursor off
+
+m_sosin1:	dw	0,0101h
+		dw	1b30h,9197h,904dh,1b31h,-1
+
+m_sosin2:	dw	0,0103h
+		dw	92cah,9862h,9286h,82c5h,82c8h,82afh,82eah,82ceh,-1
+
+m_sosin3:	db	ESC,'=',23h,36h
+		db	':1'
+		db	ESC,'=',22h,39h
+		db	'(1:',0bfh,0b3h,0bch,0ddh,')'
+		db	ESC,'=',23h,39h
+		db	'(2:',0bch,0adh,0b3h,0d8h,0aeh,0b3h,')'
+		db	ESC,'=',23h,37h,ESC,'3',-1
+
+m_sosin4:	dw	0,0105h
+		dw	9197h,904dh,9360h,955bh,8181h
+		dw	0,0107h
+		dw	9197h,904dh,8e9eh,8ad4h,8181h,-1
+
+m_sosin5:	db	ESC,'=',25h,2fh
+		db	' 0 ',0c3h,0deh,0ddh,0cbh,0dfh,0aeh,0b3h
+		db	' /  0 ',0c3h,0deh,0ddh,0cbh,0dfh,0aeh,0b3h
+m_ctime:	db	ESC,'=',27h,2fh
+c_ctime:	db	' 0 ',0cch,0ddh,'  0 ',0cbh,0deh,0aeh,0b3h,CR,CR,-1
+
+m_sosin6:	dw	0,0103h
+		dw	88f3h,8dfch,82cch,9286h,9266h,82cdh,8183h
+		dw	88f3h,8dfch,9286h,9266h,8184h,834ch,817ch
+		dw	0,0105h
+		dw	88f3h,8dfch,82cch,8dc4h,8a4ah,82cdh,8183h
+		dw	88f3h,8dfch,8a4ah,8e6eh,8184h,834ch,817ch,-1
+
+m_nmlend:	dw	0,0101h
+		dw	1b30h,9197h,904dh,90b3h,8fedh,8f49h,97b9h,1b31h,-1
+
+m_errend:	dw	0,0101h
+		dw	1b30h,9197h,904dh,88d9h,8fedh,8f49h,97b9h,1b31h,-1
+
+m_mclr:		dw	0,1901h
+		dw	8140h,8140h,8140h,-1
+
+k_nmlend:	dw	0020h,92cah,904dh,90b3h,8fedh,8f49h,97b9h,CR,-1
+
+k_errend:	dw	0020h,92cah,904dh,88d9h,8fedh,8f49h,97b9h,CR,-1
+
+k_hinmoku:	dw	0020h,9197h,904dh,9569h,96dah,0020h,-1
+
+k_ctime:	dw	0020h,92cah,904dh,8e9eh,8ad4h,0020h,0020h,-1
+
+c_hinmoku:	db	'000 ',0cbh,0ddh,0d3h,0b8h,CR,-1
+
+c_tel1:		db	ESC,'=',20h,40h,'TEL1=xxx',-1
+
+w_errmsg:	dw	0
+
+denpyo:		db	0
+
+c_dump:		db	CR,'*** RECEIVE DATA DUMP LIST ***',CR,CR,-1
+
+c_dumpend:	db	CR,'*** DUMP END ***',CR,CR,-1
+
+dumpbuf:	ds	40
+		db	-1
+;
+;	error message
+;
+err_tbl:	dw	e_msg0,e_msg1,e_msg2,e_msg3,e_msg4,e_msg5,e_msg6
+		dw	e_msg7,e_msg8
+
+e_msg0:		db	1,39
+		db	0d3h,0c3h,0deh,0d1h,0c9h,020h,050h,04fh
+		db	057h,045h,052h,0a6h,020h,0b5h,0ddh,0c6h
+		db	0bch,0c3h,020h,0d3h,0b3h,0b2h,0c1h,0c4h
+		db	0deh,020h,0bch,0deh,0afh,0bah,0b3h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,-1
+
+e_msg1:		db	1,39
+		db	0BEh,0DDh,0C0h,0B0h,020h,0CEh,0BCh,0ADh
+		db	0C1h,0ADh,0B3h,020h,0BCh,0DEh,0B6h,0DDh
+		db	0A6h,020h,0B5h,0B2h,0C3h,020h,0D3h,0B3h
+		db	0B2h,0C1h,0C4h,0DEh,020h,020h,020h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,-1
+
+e_msg2:		db	1,39
+		db	0C2h,0B3h,0BCh,0DDh,0B4h,0D7h,0B0h,020h
+		db	0BCh,0DEh,0B6h,0DDh,0A6h,020h,0B5h,0B2h
+		db	0C3h,020h,0D3h,0B3h,0B2h,0C1h,0C4h,0DEh
+		db	020h,0BCh,0DEh,0AFh,0BAh,0B3h,020h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,-1
+
+e_msg3:		db	1,39
+		db	0D8h,0C4h,0D7h,0B2h,0B4h,0D7h,0B0h,020h
+		db	0BCh,0DEh,0B6h,0DDh,0A6h,020h,0B5h,0B2h
+		db	0C3h,020h,0D3h,0B3h,0B2h,0C1h,0C4h,0DEh
+		db	020h,0BCh,0DEh,0AFh,0BAh,0B3h,020h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,-1
+
+e_msg4:		db	1,39
+		db	0BCh,0AEh,0B7h,0BEh,0AFh,0C3h,0B2h,0B4h
+		db	0D7h,0B0h,020h,0BCh,0AEh,0B7h,0BEh,0AFh
+		db	0C3h,0B2h,0A6h,020h,0D4h,0D8h,0C5h,0B5h
+		db	0BDh,020h,020h,020h,020h,020h,020h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,-1
+
+e_msg5:		db	1,39
+		db	0BCh,0BDh,0C3h,0D1h,0B4h,0D7h,0B0h,020h
+		db	0BCh,0DEh,0D1h,0B7h,0AEh,0B8h,0C6h,020h
+		db	0DAh,0DDh,0D7h,0B8h,0BDh,0D9h,020h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,-1
+
+e_msg6:		db	1,39
+		db	0c3h,0deh,0ddh,0cbh,0dfh,0aeh,0b3h,0c3h
+		db	0deh,0b0h,0c0h,0b4h,0d7h,0b0h,020h,0bch
+		db	0adh,0b3h,0beh,0b2h,0bah,0deh,020h,0d3h
+		db	0b3h,0b2h,0c1h,0c4h,0deh,020h,0bch,0deh
+		db	0afh,0bah,0b3h,020h,020h,020h,020h,-1
+
+e_msg7:		db	1,39
+		db	0c2h,0b3h,0bch,0ddh,020h,0c1h,0adh,0b3h
+		db	0c0h,0deh,0ddh,020h,020h,020h,020h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,-1
+
+e_msg8:		db	1,39
+		db	0bch,0deh,0adh,0bch,0ddh,0c3h,0deh,0ddh
+		db	0cch,0deh,0ddh,0b2h,0bch,0deh,0aeh,0b3h
+		db	020h,0bch,0deh,0b6h,0ddh,0a6h,020h,0b5h
+		db	0b2h,0c3h,020h,0d3h,0b3h,0b2h,0c1h,0c4h
+		db	0deh,020h,020h,020h,020h,020h,020h,-1
+
+e_msg9:		db	1,39
+		db	020h,020h,020h,020h,020h,020h,020h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,020h
+		db	020h,020h,020h,020h,039h,030h,031h,-1
+
+		end	sousin

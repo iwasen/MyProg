@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--このファイルは XML スキーマ デザイナで自動生成されています。コンポーネントのレイアウト情報はデザイナ画面に保持されます。-->
+<XSDDesignerLayout layoutVersion="1" viewPortLeft="-317" viewPortTop="341">
+    <在庫変更履歴_XmlElement left="1005" top="1005" width="5292" height="3043" selected="0" zOrder="0" index="0" />
+    <ピッキングリスト_XmlElement left="900" top="4260" width="5291" height="3043" selected="0" zOrder="2" index="1" />
+    <欠品リスト_XmlElement left="767" top="7646" width="5292" height="2249" selected="0" zOrder="4" index="2" />
+    <発注点警告リスト_XmlElement left="7488" top="1085" width="5292" height="3043" selected="0" zOrder="6" index="3" />
+    <パーツ在庫リスト_XmlElement left="847" top="10134" width="5291" height="2645" selected="0" zOrder="8" index="4" />
+    <棚卸入力_XmlElement left="7277" top="4232" width="5291" height="3043" selected="0" zOrder="10" index="5" />
+    <受注明細_XmlElement left="7276" top="7408" width="5292" height="3837" selected="0" zOrder="12" index="6" />
+    <入出庫入力_XmlElement left="7170" top="11430" width="5292" height="1852" selected="0" zOrder="14" index="7" />
+    <パーツ展開_XmlElement left="13785" top="1005" width="5291" height="14156" selected="0" zOrder="16" index="8" />
+    <パーツ在庫引当_XmlElement left="846" top="13070" width="5292" height="1852" selected="0" zOrder="18" index="9" />
+    <受注ファイル_XmlElement left="7435" top="13520" width="5292" height="3043" selected="0" zOrder="20" index="10" />
+    <月別出庫データ_XmlElement left="926" top="15161" width="5292" height="2249" selected="0" zOrder="22" index="11" />
+</XSDDesignerLayout>

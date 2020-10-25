@@ -1,0 +1,31 @@
+
+<table width="210" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td colspan="3"><img src="image/side_kuchikomi_ttl.gif" width="210" height="21" alt="最新クチコミ情報 by クチコミWEB"></td>
+  </tr>
+  <tr> <{foreach from=$kuchikomi_list_ary item=kuchikomi_list}> 
+  <tr> 
+    <td bgcolor="#CC6666" width="1"><img src="image/spacer.gif" width="1" height="1"></td>
+    <td width="208"> 
+      <table width="208" border="0" cellspacing="5" cellpadding="0">
+        <tr> 
+          <td width="50" valign="top"><a href="<{$kuchikomi_list.page_url}>" target="_blank"><{if 
+            $kuchikomi_list.image_url}><img src="<{$kuchikomi_list.image_url}>" width="50" height="50" border="0" alt="<{$kuchikomi_list.shouhin|escape}>"><{else}><img src="image/kuchikomi.gif" width="50" height="14" border="0" alt="<{$kuchikomi_list.shouhin|escape}>"><{/if}></a></td>
+          <td width="143" valign="top" class="char120"><a href="<{$kuchikomi_list.page_url}>" class="cred" target="_blank"><{$kuchikomi_list.title|escape}></a><br>
+            <{$kuchikomi_list.content|escape}> </td>
+        </tr>
+      </table>
+    </td>
+    <td bgcolor="#CC6666" width="1"><img src="image/spacer.gif" width="1" height="1"></td>
+  </tr>
+  <tr bgcolor="#CC6666"> 
+    <td colspan="3"><img src="image/spacer.gif" width="1" height="1"></td>
+  </tr>
+  <{/foreach}> 
+  <tr> 
+    <td colspan="3" class="char120"><font size="2">クチコミWEBは「ひとびと・net」と兄弟サイトです。近々に楽しいヤリトリが始まります。楽しみにしていてください。</font></td>
+  </tr>
+  <tr>
+    <td colspan="3" class="char120"><img src="image/spacer.gif" width="1" height="20"></td>
+  </tr>
+</table>

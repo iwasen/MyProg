@@ -1,0 +1,73 @@
+#pragma once
+
+#include "item.h"
+
+extern CImageList g_ImageList;
+extern CImageList g_ImageList2;
+extern CTreeCtrl *g_pTreeCtrl;
+extern CString g_StatusInfo;
+extern char g_SectionSettings[];
+extern char g_SectionMainWindow[];
+extern char g_SectionLibrary[];
+extern char g_SectionDetails[];
+extern char g_SectionOptions[];
+extern char g_SectionRecent[];
+extern char g_SectionTransfer[];
+extern char g_SectionFindWindow[];
+extern char g_SectionMailAtt[];
+extern char g_sProgName[];
+extern char g_RegistryName[];
+extern HICON g_hIcon;
+extern int g_tColumnOrder[];
+
+extern UINT g_nCFMMLibrary;
+extern int g_nDetailMode;
+extern BOOL g_bParamOffline;
+extern CFont g_DefaultFont;
+extern int g_nFontSize;
+extern CString g_ViewFontName;
+extern int g_nViewFontSize;
+extern CString g_TempFile;
+extern CItemInbox *g_pItemInbox;
+extern CString g_sImageEditor;
+
+extern void FormatDate(CString &strIn, CString &strOut);
+extern HDIB MakeSmallPicture(HDIB hDIB1, int width, int height);
+extern BOOL CreateDirectoryAll(LPCTSTR pDirPath);
+extern HANDLE CopyHandle(HANDLE h);
+extern void PrintPicture(CDC *pDC, HDIB hDIB);
+extern BOOL SendDocuments(LPCTSTR pFileName);
+extern CString MakeFilterString(FIND_CONDITION *pFindConditions, int nFindType);
+extern CString MakeFilterString2(LPCTSTR pKeyword);
+extern void MakeID(char prefix, DWORD nNumber, CString &id);
+extern int GetPictureBitCount(HDIB hDIB);
+extern short GetMMType(HDIB hDIB);
+extern BOOL MakeTempFile(CItem *pItem, CString &fileName, int nSupportFile, BOOL bReadIniFile, BOOL bDeleteTemp = TRUE);
+extern BOOL MakeMmlFile(CItem *pItem, LPCTSTR pFileName, BOOL bReadIniFile);
+extern BOOL MakePictFile(CItemData *pItemData, CString &tempFile, int nSupportFile, BOOL bReadIniFile);
+extern void DeleteTempFile(CString &fileName);
+extern void CheckFileName(CString &fileName);
+extern int CheckFileType(LPCTSTR pFileName);
+extern void GetLibraryDir(CString &dir);
+extern void GetDefaultLibraryDir(CString &dir);
+extern void GetCacheDir(CString &dir);
+extern void GetDefaultCacheDir(CString &dir);
+extern void GetBackupDir(CString &dir);
+extern void GetDefaultBackupDir(CString &dir);
+extern void GetInboxDir(CString &dir);
+extern void GetDefaultInboxDir(CString &dir);
+extern void GetKeywordDir(CString &dir);
+extern void GetDefaultKeywordDir(CString &dir);
+extern int SetLibraryComboBox(CComboBox &comboBox);
+extern void GetNewFolder(LPCTSTR pDir, LPCTSTR pPrefix, CString &path);
+extern void DeleteDirectory(LPCTSTR pDirName);
+extern int CompareTitle(CString &str1, CString &str2);
+extern CString ConvFileTime(FILETIME *pFileTime);
+extern CString RemoveDir(CString &pathName);
+extern CString RemoveExt(CString &fileName);
+extern CItemInbox *OpenInbox();
+extern void WritePicture(CMMPcsDB *pPcsDB, LPCTSTR pDataID, HDIB hDIB);
+extern CString GetDefaultUserName();
+extern CString &GetString(UINT nID, int nIndex = 0);
+extern void AutoNextNumbering(CString &sCode, int nStep);
+extern void ExecProcess(LPCTSTR pCommand);

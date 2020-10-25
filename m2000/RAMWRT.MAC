@@ -1,0 +1,73 @@
+		title	(( ramwrt ))
+;
+;		meganet 2000	ram disk write
+;		86-02-19	xxxxxxxxx electronic inc.
+;				kajibayashi nobuichi.
+
+				.z80
+
+		include		MEMORY.INC
+		.list
+		.list
+
+		public		ramwrt
+
+		extrn		clrbuf
+
+;****************************************
+;*
+;*	#ramwrt#
+;*			ram disk write
+;*					86-02-19
+;*					kajibayashi.
+;****************************************
+
+ramwrt:
+		ld	hl,dskfcb+12
+		ld	bc,21
+		xor	a
+		call	clrbuf
+
+		ld	c,19
+		ld	de,dskfcb
+		call	0005h		; file delete
+
+		ld	c,22
+		ld	de,dskfcb
+		call	0005h		; file make
+
+		ld	de,M_RAMDSK
+		ld	b,3
+loop:
+		push	bc
+		push	de
+
+		ld	c,26
+		call	0005h		; dma address set
+
+		ld	c,21
+		ld	de,dskfcb
+		call	0005h		; file write
+
+		pop	de
+		pop	bc
+		ld	hl,128
+		add	hl,de
+		ex	de,hl
+		djnz	loop
+
+		ld	c,16
+		ld	de,dskfcb	
+		call	0005h		; file close
+
+		ret
+
+
+dskfcb:
+		db	01h
+		db	'MEGANET '
+		db	'DAT'
+		db	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+
+		end

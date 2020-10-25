@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+  <servlet>
+    <servlet-name>AllAccess</servlet-name>
+    <servlet-class>xxx.AllAccess</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Init</servlet-name>
+    <servlet-class>base.WebAppInitializer</servlet-class>
+    <load-on-startup>0</load-on-startup>
+  </servlet>
+  <servlet>
+    <servlet-name>shtml</servlet-name>
+    <servlet-class>com.borland.jbuilder.webserverglue.shtml.ShtmlLoaderEcho</servlet-class>
+    <init-param>
+      <param-name>docBase</param-name>
+      <param-value>C:/Documents and Settings/kobashi/My Documents/xxxログ解析/xxx/xxx/defaultroot</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>shtml</servlet-name>
+    <url-pattern>*.shtml</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AllAccess</servlet-name>
+    <url-pattern>/AllAccess</url-pattern>
+  </servlet-mapping>
+</web-app>

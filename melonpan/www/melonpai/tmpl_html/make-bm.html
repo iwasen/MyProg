@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<title>めろんぱん||本気な発行者だけの気迫のメルマガスタンド</title>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600" leftmargin="0" marginwidth="0">
+
+<? draw_head2(".."); ?>
+
+<br>
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="513" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+<TD>
+<p><FONT COLOR="#99CCFF">■</FONT><font color="#003399"><b>&lt;<?php echo $melonpai_name ?>さん&gt;のブックマーク作成・編集</b></font></p>
+<p CLASS="text01">みつくろい依頼文の返信時に使用するブックマークを作成・編集します。また、ブックマークの分類に使うカテゴリ（フォルダ）の編集もできます。</p>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr bgcolor="#003399">
+<td>
+<table width="100%" border="0" cellspacing="1" cellpadding="3">
+<form name="editcatg" action="edit-category.php" method="post">
+<tr>
+<td bgcolor="#99CCFF" class="text9ptnoColor" width="30%">
+<div align="center"><font color="#003399"><b>カテゴリの編集</b></font></div>
+</td>
+<td width="70%" bgcolor="#FFFFFF" class="text01">
+<p>ブックマークを分類するオリジナルのカテゴリ（フォルダ）を追加することができます。上限は20個です。</p>
+<p align="right"> <a href="JavaScript:document.editcatg.submit();">●カテゴリ編集　&gt;&gt;&gt; </a></p>
+<input type="hidden" value="<? echo $melonpai_id ?>" name="melonpai_id">
+<input type="hidden" value="<? echo $melonpai_pswd ?>" name="melonpai_pswd">
+<input type="hidden" value="<? echo $melonpai_name ?>" name="melonpai_name">
+</td>
+</tr>
+</form>
+<form name="addbm" action="make-bm2.php" method="post">
+<tr>
+<td bgcolor="#99CCFF" class="text9ptnoColor" width="30%">
+<div align="center"><font color="#003399"><b>ブックマークの新規作成</b></font></div>
+</td>
+<td width="70%" bgcolor="#FFFFFF">
+<p class="text01">ブックマークに加えるメルマガを検索します。キーワードを入力し、検索ボタンを押してください。 </p>
+<INPUT TYPE="text" NAME="keyword" SIZE="30">
+<input type="submit" name="addbm" value="検　索">
+<input type="hidden" value="<? echo $melonpai_id ?>" name="melonpai_id">
+<input type="hidden" value="<? echo $melonpai_pswd ?>" name="melonpai_pswd">
+<input type="hidden" value="<? echo $melonpai_name ?>" name="melonpai_name">
+<input type="hidden" value=1 name="page_no">
+</td>
+</tr>
+</form>
+<form name="editbm" action="edit-bookmark.php" method="post">
+<tr>
+<td bgcolor="#99CCFF" class="text9ptnoColor" width="30%">
+<div align="center"><font color="#003399"><b>ブックマークの削除</b></font></div>
+</td>
+<td width="70%" bgcolor="#FFFFFF" class="text01">
+<p>登録してあるブックマークを削除します。</p>
+<p align="right"> <a href="JavaScript:document.editbm.submit();">●ブックマーク削除　&gt;&gt;&gt;</a></p>
+<input type="hidden" value="<? echo $melonpai_id ?>" name="melonpai_id">
+<input type="hidden" value="<? echo $melonpai_pswd ?>" name="melonpai_pswd">
+<input type="hidden" value="<? echo $melonpai_name ?>" name="melonpai_name">
+</td>
+</tr>
+</form>
+
+</table>
+</td>
+</tr>
+</table>
+<p>
+<form name="mypage" action="mypage.php" method="post">
+<a href="JavaScript:document.mypage.submit();">
+&lt;&lt;&lt;　メルマガナビ　マイページへ戻る </a>
+<input type="hidden" value="<? echo $melonpai_id ?>" name="melonpai_id">
+<input type="hidden" value="<? echo $melonpai_pswd ?>" name="melonpai_pswd">
+<input type="hidden" value="<? echo $melonpai_name ?>" name="melonpai_name">
+</form>
+</p>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+<table>
+<br>
+<br>
+</table>
+</TD>
+</TR>
+
+<? draw_footer2(".."); ?>
+
+</TABLE>
+</body>
+</html>

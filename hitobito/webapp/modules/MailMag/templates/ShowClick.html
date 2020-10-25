@@ -1,0 +1,93 @@
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+	<tr bgcolor="#5B94FD">
+		<td colspan="3"><img src="image/naviedit_menu_count_ttl.gif" width="140" height="25" hspace="10" alt="メルマガ管理"></td>
+	</tr>
+	<tr>
+		<td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+		<td width="555" valign="top">
+			<table width="555" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="15"></td>
+				</tr>
+				<tr class="char120">
+					<td><{$mailmag_contents.subject|escape}></td>
+				</tr>
+				<tr class="char120">
+					<td align="right">発行部数：<{$mailmag_contents.send_num}>通　　配信日：<{$mailmag_contents.send_date}></td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="4"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#5B94FD"><img src="image/spacer.gif" width="555" height="2"></td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="5"></td>
+				</tr>
+			</table>
+			<form name="mailmag_show_click_form" method="post">
+			<table width="555" border="0" cellspacing="0" cellpadding="0">
+				<tr class="char120">
+					<td class="char120" valign="top" width="500"></td>
+					<td class="char120" valign="top"><img src="image/spacer.gif" width="10" height="2"></td>
+					<td class="char120" valign="top">
+						<table border="1" cellspacing="0" cellpadding="0" class="char120">
+							<tr>
+								<td bgcolor="#E6F2FF" nowrap>クリック数　%</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+<{foreach from=$mailmag_contents.contents item=contents}>
+				<tr class="char120">
+					<td class="char120" valign="top"><{$contents.text|escape}></td>
+					<td class="char120" valign="top"><img src="image/spacer.gif" width="10" height="2"></td>
+					<td class="char120" valign="top">
+<{if isset($contents.click)}>
+						<table border="1" cellspacing="0" cellpadding="0" class="char120">
+							<tr>
+								<td bgcolor="#E6F2FF" nowrap><{$contents.click}>click　<{$contents.percent}>%</td>
+							</tr>
+						</table>
+<{/if}>
+					</td>
+				</tr>
+<{/foreach}>
+				<tr>
+					<td>　</td>
+					<td>　</td>
+					<td>　</td>
+				</tr>
+				<tr>
+					<td colspan="3" bgcolor="#5B94FD"><img src="image/spacer.gif" width="555" height="2"></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="555" height="2"></td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="6"></td>
+					<td>　</td>
+					<td>　</td>
+				</tr>
+			</table>
+				<table width="555" border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td bgcolor="#5B94FD"><img src="image/spacer.gif" width="1" height="5"></td>
+					</tr>
+					<tr>
+						<td><img src="image/spacer.gif" width="1" height="20"></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="index.php?module=MailMag&action=ListMailMag&navipage_id=<{$navi_page_id}>"><img src="image/naviedit_delete_btn_cancel.gif" width="39" height="20" border="0" alt="戻る"></a>
+						</td>
+					</tr>
+					<tr>
+						<td><img src="image/spacer.gif" width="1" height="10"></td>
+					</tr>
+				</table>
+			</form>
+		</td>
+		<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+	</tr>
+</table>

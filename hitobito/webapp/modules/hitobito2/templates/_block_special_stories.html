@@ -1,0 +1,41 @@
+<!-- 特集記事ブロック -->
+<table width="219" border="0" cellspacing="0" cellpadding="0">
+	<!-- タイトル -->
+	<tr>
+		<td width="219"><img src="image/side_feature_ttl.gif" width="210" height="15" alt="特集記事"></td>
+	</tr>
+	<!--start　特集記事Loop-->
+	<{foreach item=item from=$hitobito_special_stories}>
+	<tr>
+		<td><img src="image/spacer.gif" width="1" height="5"></td>
+	</tr>
+	<tr>
+		<td>
+			<table width="210" border="0" cellspacing="0" cellpadding="0">
+				<tr bgcolor="#DDDDDD">
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="1"></td>			</tr>
+				<tr>
+					<td bgcolor="#DDDDDD" width="1"><img src="image/spacer.gif" width="1" height="1"></td>
+					<td width="208">
+						<table width="208" border="0" cellspacing="5" cellpadding="0">
+							<tr>
+								<td width="182" valign="top"><a href="<{$item->getAttribute('far_link_url')}>" <{if $item->getAttribute('far_link_page') == 1}>target="_blank" <{/if}>><img src="image.php?id=<{$item->getAttribute('far_image_id')}>&amp;spl=1" width="182" height="61" border="0" alt="<{$item->getAttribute('far_image_alt')}>" /></a></td>
+							</tr>
+						</table>
+					</td>
+					<td bgcolor="#DDDDDD" width="1"><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+				<tr>
+					<td colspan="3" bgcolor="#DDDDDD"><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<{/foreach}>
+	<!-- end　特集記事Loop -->
+
+	<tr>
+		<td><img src="image/spacer.gif" width="1" height="20"></td>
+	</tr>
+</table>
+<!-- 特集記事ブロックここまで -->

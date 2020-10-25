@@ -1,0 +1,176 @@
+<?
+/******************************************************
+' System :Eco-footprint ¶¦ÄÌ
+' Content:CO2´¹»»
+'******************************************************/
+
+// ¥¨¥Í¥ë¥®¡¼Ê¬Îà¥³¡¼¥É
+define('ENG_TYPE_1', 1);		// ÅÅµ¤¡Ê°ìÈÌÅÅÅô¡Ë
+define('ENG_TYPE_2', 2);		// ÅÅµ¤(¿¼ÌëÅÅÅô¡Ë
+define('ENG_TYPE_3', 3);		// ÅÔ»Ô¥¬¥¹
+define('ENG_TYPE_4', 4);		// £Ì£Ð¥¬¥¹
+define('ENG_TYPE_5', 5);		// ¿åÆ»
+define('ENG_TYPE_6', 6);		// ÅôÌý¡ÊµëÅò¥¢¥ê¡Ë
+define('ENG_TYPE_7', 7);		// ÅôÌý(µëÅò¥Ê¥·¡Ë
+define('ENG_TYPE_8', 8);		// ¥´¥ß
+define('ENG_TYPE_9', 9);		// ¥¬¥½¥ê¥ó
+define('ENG_TYPE_10', 10);	// ·ÚÌý
+
+// µëÅò´ï¥¿¥¤¥×¥³¡¼¥É
+define('BOILER_TYPE_1', 1);
+define('BOILER_TYPE_2', 2);
+
+// ¥¬¥¹¼ïÊÌ¥³¡¼¥É
+define('GAS_KIND_1', 1);
+define('GAS_KIND_2', 2);
+
+// ¼Ö¼ï¥³¡¼¥É
+define('CAR_TYPE_1', 1);
+define('CAR_TYPE_2', 2);
+
+// ÅÅµ¤[kWh]
+function cnv_ele_co2($use, $boiler_type = 0) {
+	// ¥¨¥Í¥ë¥®¡¼Ê¬Îà¼èÆÀ
+	switch ($boiler_type) {
+	case BOILER_TYPE_1:
+	case BOILER_TYPE_2:
+		$eng_type = ENG_TYPE_2;
+		break;
+	default:
+		$eng_type = ENG_TYPE_1;
+		break;
+	}
+
+	// ´¹»»ÃÍ¼èÆÀ
+	$cnv_val = get_cnv_val($eng_type);
+
+	// CO2ÇÓ½ÐÎÌ¤ò·×»»
+	return $use * $cnv_val * 0.86;
+}
+
+// ¥¬¥¹[£í3]
+function cnv_gas_co2($use) {
+	// ¥¬¥¹¼ïÊÌ¼èÆÀ
+	$sql = "SELECT mb_gas_kind_cd FROM t_member WHERE mb_seq_no={$_SESSION['ss_seq_no']}";
+	$gas_kind_cd = db_fetch1($sql);
+
+	// ¥¨¥Í¥ë¥®¡¼Ê¬Îà¼èÆÀ
+	switch ($gas_kind_cd) {
+	case GAS_KIND_1:
+		$eng_type = ENG_TYPE_3;
+		break;
+	case GAS_KIND_2:
+		$eng_type = ENG_TYPE_4;
+		break;
+	default:
+		return 0;
+	}
+
+	// ´¹»»ÃÍ¼èÆÀ
+	$cnv_val = get_cnv_val($eng_type);
+
+	// CO2ÇÓ½ÐÎÌ¤ò·×»»
+	switch ($gas_kind_cd) {
+	case GAS_KIND_1:
+		return $use * $cnv_val * gas_calorie();
+	case GAS_KIND_2:
+		return $use * $cnv_val * 26.34;
+	}
+}
+
+// ¿åÆ»[£í3]
+function cnv_wtr_co2($use) {
+	// ´¹»»ÃÍ¼èÆÀ
+	$cnv_val = get_cnv_val(ENG_TYPE_5);
+
+	// CO2ÇÓ½ÐÎÌ¤ò·×»»
+	return $use * $cnv_val;
+}
+
+// ÅôÌý[L]
+function cnv_oil_co2($use, $boiler_type = '') {
+	// ¥¨¥Í¥ë¥®¡¼Ê¬Îà¼èÆÀ
+	if ($boiler_type) {
+		switch ($boiler_type) {
+		case 3:
+			$eng_type = ENG_TYPE_6;
+			break;
+		default:
+			$eng_type = ENG_TYPE_7;
+			break;
+		}
+	} else {
+		$sql = "SELECT mb_boiler_cd FROM t_member WHERE mb_seq_no={$_SESSION['ss_seq_no']}";
+		switch (db_fetch1($sql)) {
+		case 5:		// ÀÐÌý¼°µëÅò´ï
+			$eng_type = ENG_TYPE_6;
+			break;
+		default:
+			$eng_type = ENG_TYPE_7;
+			break;
+		}
+	}
+
+	// ´¹»»ÃÍ¼èÆÀ
+	$cnv_val = get_cnv_val($eng_type);
+
+	// CO2ÇÓ½ÐÎÌ¤ò·×»»
+	return $use * $cnv_val * 8.9;
+}
+
+// ¥¬¥½¥ê¥ó[L]
+function cnv_gso_co2($use, $car_type_cd = '') {
+	if ($car_type_cd) {
+		// ¥¨¥Í¥ë¥®¡¼Ê¬Îà¼èÆÀ
+		switch ($car_type_cd) {
+		case CAR_TYPE_2:
+			$eng_9 = 0;
+			$eng_10 = 1;
+			break;
+		default:
+			$eng_9 = 1;
+			$eng_10 = 0;
+			break;
+		}
+	} else {
+		$sql = "SELECT mb_gcar_num,mb_dcar_num FROM t_member WHERE mb_seq_no={$_SESSION['ss_seq_no']}";
+		$result = db_exec($sql);
+		if (pg_numrows($result)) {
+			$fetch = pg_fetch_object($result, 0);
+			$car_num = $fetch->mb_gcar_num + $fetch->mb_dcar_num;
+			if ($car_num) {
+				$eng_9 = $fetch->mb_gcar_num / $car_num;
+				$eng_10 = $fetch->mb_dcar_num / $car_num;
+			} else {
+				$eng_9 = 1;
+				$eng_10 = 0;
+			}
+		}
+	}
+
+	// ´¹»»ÃÍ¼èÆÀ
+	$cnv_val_9 = get_cnv_val(ENG_TYPE_9);
+	$cnv_val_10 = get_cnv_val(ENG_TYPE_10);
+
+	// CO2ÇÓ½ÐÎÌ¤ò·×»»
+	return $use * ($cnv_val_9 * $eng_9 * 8.4 + $cnv_val_10 * $eng_10 * 9.2);
+}
+
+// ¥´¥ß[kg]
+function cnv_dst_co2($use) {
+
+	// ´¹»»ÃÍ¼èÆÀ
+	$cnv_val = get_cnv_val(ENG_TYPE_8);
+
+	// CO2ÇÓ½ÐÎÌ¤ò·×»»
+	return $use * $cnv_val;
+}
+
+// ´¹»»ÃÍ¼èÆÀ
+function get_cnv_val($eng_type) {
+	$sql = "SELECT co_co2_rate"
+			. " FROM m_co2_rate"
+			. " WHERE co_eng_type_cd=$eng_type";
+	return db_fetch1($sql);
+}
+?>

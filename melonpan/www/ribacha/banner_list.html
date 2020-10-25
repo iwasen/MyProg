@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<title>メルマガ登録用バナー</title>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+
+<body bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600">
+<table width="750" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top" colspan="3" align="center">
+<table width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<tr>
+<td>
+<table width="513" border="0" cellspacing="1" cellpadding="5">
+<tr bgcolor="#FFFFFF">
+<td>
+<p class="midashi14"><font color="#006600"><b>■メルマガ登録用バナー</b></font></p>
+  <p class="text01">バナーを発行したいメルマガの[バナー発行]ボタンを押してください。</p>
+  <table width="500" border="0" cellpadding="3" cellspacing="1">
+<tr bgcolor="#006600">
+  <td colspan="3"><font color="#FFFFCC"><b>発行メルマガ一覧</b></font></td>
+</tr>
+<? make_maglist($publisher_id,$owner_pswd); ?>
+</table>
+<p>
+<form>
+<input type="button" name="Submit4" value="戻る" onClick="history.back()">
+</form>
+<b><font color="#CC0000"></font></b></p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<TD valign="top" colspan="3" align="right">
+<HR size="1" width="750">
+</TD>
+</TR>
+<TR>
+<TD valign="top" width="200"> <IMG src="../img/shim.gif" width="200" height="1">
+</TD>
+<TD valign="middle" align="center" width="350">
+<div align="center"><FONT size="2"><IMG src="../img/shim.gif" width="350" height="1"><BR>
+Copyright &copy; 2000 xxxxxxx, Co.,Ltd. All rights reserved. <br>
+<a href="http://www.xxxxxxx.co.jp/" target="mm_window"><img src="../img/logo_do.gif" width="50" height="45" border="0"></a>
+</FONT></div>
+</TD>
+<TD valign="top" width="200" align="right"><IMG src="../img/shim.gif" width="200" height="1"></TD>
+</TR>
+</TABLE>
+</body>
+</html>

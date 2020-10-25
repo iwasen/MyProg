@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>参考メルマガ検索メニュー</TITLE>
+<link rel="stylesheet" href="http://www.melonpan.net/css/melonpan.css">
+</head>
+
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600">
+<table width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D" align="center">
+<tr>
+<td>
+<table width="513" border="0" cellspacing="1" cellpadding="5">
+<tr bgcolor="#FFFFFF">
+<td>
+<p class="midashi14"><b><font color="#006600">■参考メルマガ検索メニュー</font></b></p>
+<p>どの方法でチェックするかをお選びください。 </p>
+<table width="340" border="0" cellspacing="0" cellpadding="0" bgcolor="#336600" align="center">
+<tr>
+<td>
+<table width="340" border="0" cellspacing="1" cellpadding="3" align="center">
+<tr>
+<td width="20" align="center" bgcolor="#CCFFCC">1</td>
+<form name="formCat" action="category-list.php" method="post">
+<td width="320" align="center" bgcolor="#FFFFFF">
+<input type="hidden" value="" name="job_flg">
+<input type="hidden" value="<?php echo $admin_id; ?>" name="admin_id">
+<input type="hidden" value="<?php echo $admin_pswd; ?>" name="admin_pswd">
+<a href="JavaScript:document.formCat.submit();">カテゴリで探したい</a> </td>
+</form>
+</tr>
+<tr>
+<td width="20" align="center" bgcolor="#CCFFCC">2</td>
+<form name="formKbn" action="feeling-list.php" method="post">
+<td width="320" align="center" bgcolor="#FFFFFF">
+<input type="hidden" value="" name="job_flg2">
+<input type="hidden" value="<?php echo $admin_id; ?>" name="admin_id">
+<input type="hidden" value="<?php echo $admin_pswd; ?>" name="admin_pswd">
+<a href="JavaScript:document.formKbn.submit();">気分でみつけたい</a></td>
+</form>
+</tr>
+<tr>
+<td width="20" align="center" bgcolor="#CCFFCC">3</td>
+<form name="formMuke" action="muke-list.php" method="post">
+<td width="320" align="center" bgcolor="#FFFFFF">
+<input type="hidden" value="" name="job_flg2">
+<input type="hidden" value="<?php echo $admin_id; ?>" name="admin_id">
+<input type="hidden" value="<?php echo $admin_pswd; ?>" name="admin_pswd">
+<a href="JavaScript:document.formMuke.submit();">私向けのメルマガを探したい</a> </td>
+</form>
+</tr>
+<tr>
+<form name="formSearch" action="search_result.php" method="post">
+<input type="hidden" value="" name="job_flg2">
+<input type="hidden" value="<?php echo $admin_id; ?>" name="admin_id">
+<input type="hidden" value="<?php echo $admin_pswd; ?>" name="admin_pswd">
+<td width="20" align="center" bgcolor="#CCFFCC">
+4
+</td>
+<td width="320" align="center" bgcolor="#FFFFFF">キーワードで探したい<br>
+<input type="hidden" name="mode" value="word">
+<input type="text" name="keyword" size="30">
+<input type="submit" name="kensaku" value="検索">
+</td>
+</form>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><form>
+<div align="center">
+<input type="button" name="Submit" value="閉じる"  onClick="window.close()">
+</div></form>
+</body>
+
+</html>
+

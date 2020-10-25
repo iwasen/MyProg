@@ -1,0 +1,1594 @@
+		.z80
+
+		include	MEMORY.INC
+
+		extrn	clrbuf
+		extrn	chr_disp
+		extrn	bin_chr
+		extrn	gettime
+		extrn	dtdisp
+		extrn	sdedit
+		extrn	erase
+
+
+    	CONOUT		equ	0eb0ch
+	BEEP		equ	0eb39h
+	TIMDAT		equ	0eb4eh
+;
+	STX		equ	02h	; stx code
+	ETX		equ	03h	; etx code
+	CR		equ	0dh	; return code
+	ESC		equ	1bh	; escape code
+	EOT		equ	04h
+	ENQ		equ	05h
+	ACK		equ	06h
+	DLE		equ	10h
+	NAK		equ	15h
+	ETB		equ	17h
+
+	sflag		equ	M_PARAM+0
+	rst		equ	M_PARAM+1
+	tflag		equ	M_PARAM+3
+	blkadr		equ	M_PARAM+4
+	recno		equ	M_PARAM+6
+	hinmoku		equ	M_PARAM+7
+	sdtime		equ	M_PARAM+9
+	denpyono	equ	M_PARAM+11
+	rst1		equ	M_PARAM+13
+
+	OVFHOOK	equ	0ffd8h
+
+	s_data	equ	M_CBUFF
+
+	E_MDOFF		equ	001h
+	E_VANM		equ	101h
+	E_TO1		equ	201h
+	E_TO3		equ	203h
+	E_TO4		equ	204h
+	E_TO5		equ	205h
+	E_TO6		equ	206h
+	E_TO7		equ	207h
+	E_EOT4		equ	214h
+	E_EOT6		equ	216h
+	E_EOT7		equ	217h
+	E_DE1		equ	221h
+	E_DE2		equ	222h
+	E_DE3		equ	223h
+	E_DE5		equ	225h
+	E_DE6		equ	226h
+	E_DE7		equ	227h
+	E_RTRYS		equ	301h
+	E_RTRYR		equ	302h
+	E_TEL		equ	401h
+	E_ENQ		equ	402h
+	E_TID		equ	403h
+	E_DATA		equ	601h
+	E_BFOVF		equ	-1
+
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; 	communication main routine
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+com:
+		ld	hl,0		; clear return status
+		ld	(rst),hl	;
+		ld	(rst1),hl	;
+
+		call	prmchk		; parameter check
+		ret	c		; * error
+
+		call	lixxx		; line conxxxt
+		ret	c		; * error
+
+		call	gettime
+
+		call	initim		; initialize timer
+
+		call	pstart
+com10:
+		call	waitev		; wait character receive or time out
+		call	pcom
+
+		ld	a,(status)
+		or	a
+		jr	nz,com10
+
+		call	unitim		; uninitialize timer
+
+		call	discon		; disconxxxt
+
+		call	dtdisp		; time display
+
+		ret
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	wait character receive or time out
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+waitev:
+		sub	a
+		ld	(seqflag),a
+waitev10:
+		ld	hl,(timcnt)	;
+		ld	a,h		;
+		or	l		; time out ?
+		jp	z,we_to		; * yes
+
+		call	rxcheck		;
+		or	a		; character receive ?
+		jr	z,waitev10	; * no
+
+		call	getchr		; get receive character
+		ld	(rxchr),a
+		ld	c,a
+
+		ld	a,(seqflag)
+		dec	a
+		jr	z,we_etbs
+		dec	a
+		jr	z,we_etxs
+		dec	a
+		jr	z,we_eots
+		dec	a
+		jr	z,we_dles
+waitev20:
+		ld	a,c
+		cp	ENQ
+		jr	z,we_enq
+		cp	STX
+		jr	z,we_stx
+		cp	ETB
+		jr	z,we_etb
+		cp	ETX
+		jr	z,we_etx
+		cp	EOT
+		jr	z,we_eot
+		cp	ACK
+		jr	z,we_ack
+		cp	NAK
+		jr	z,we_nak
+		cp	DLE
+		jr	z,we_dle
+
+		ld	e,2
+		ret
+we_to:
+		ld	e,12
+		ret
+we_etbs:
+		ld	a,c
+		ld	(bcc),a
+		ld	e,3
+		ret
+we_etxs:
+		ld	a,c
+		ld	(bcc),a
+		ld	e,4
+		ret
+we_eots:
+		ld	a,c
+		cp	EOT
+		jr	nz,waitev20
+		ld	e,6
+		ret
+we_dles:
+		ld	a,c
+		cp	'{'
+		jr	nz,dle10
+		ld	e,9
+		ret
+dle10:
+		cp	'?'
+		jr	nz,dle20
+		ld	e,10
+		ret
+dle20:
+		cp	EOT
+		jr	nz,waitev20
+		ld	e,11
+		ret
+we_enq:
+		ld	e,0
+		ret
+we_etb:
+		ld	a,1
+sfset:
+		ld	(seqflag),a
+		jp	waitev10
+we_stx:
+		ld	e,1
+		ret
+we_etx:
+		ld	a,2
+		jr	sfset
+we_eot:
+		ld	a,3
+		jr	sfset
+we_ack:
+		ld	e,7
+		ret
+we_nak:
+		ld	e,8
+		ret
+we_dle:
+		ld	a,4
+		jr	sfset
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	shori routine call
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+pcom:
+		ld	a,(status)	;
+		dec	a		;
+		ld	l,a		;
+		ld	h,0		;
+		add	hl,hl		;
+		add	hl,hl		; shori routine address keisan
+		add	hl,hl		;
+		add	hl,hl		;
+		ld	d,0		;
+		add	hl,de		;
+		add	hl,hl		;
+		ld	de,dectbl	;
+		add	hl,de		;
+
+		ld	a,(hl)
+		inc	hl
+		ld	h,(hl)
+		ld	l,a
+		jp	(hl)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	tsuushin shori routine
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+pstart:
+		ld	hl,M_RBUFF	; set receive buffer address
+		ld	(rbufad),hl	;
+
+		ld	a,10		; set ENQ retry counter
+		ld	(rcount1),a	;
+
+		ld	hl,R_ENQ	;
+		ld	de,s_enqseq	; set ENQ data
+		ld	bc,8		;
+		ldir			;
+
+		ld	hl,s_enqseq	; send ENQ seq.
+		call	putchr		;
+
+		ld	bc,30		; set 3 sec. timer
+		call	timset		;
+
+		ld	a,1		; set status
+		ld	(status),a	;
+		ret
+;
+;
+p1_ack:
+		ld	bc,5		; set 0.5 sec. timer
+		call	timset		;
+
+		ld	a,2		; set status
+		ld	(status),a	;
+		ret
+;
+;
+p1_nak:
+		ld	hl,E_VANM
+disc:
+		ld	(rst),hl	; set return status
+disc1:
+		ld	hl,s_dleeot	; send DLE,EOT
+		call	putchr		;
+
+		sub	a		; set status
+		ld	(status),a	;
+		ret
+;
+;
+p1_que:
+p3_que:
+		ld	a,10		; set ENQ retry counter
+		ld	(rcount1),a	;
+
+		ld	bc,30		; set 3 sec. timer
+		call	timset		;
+		ret
+;
+;
+p1_de:
+		ld	hl,E_DE1
+		jp	disc
+;
+;
+p1_to:
+		ld	a,(rcount1)
+		dec	a
+		ld	(rcount1),a
+		jr	nz,p1_to10
+
+		ld	hl,E_VANM
+		jp	disc
+p1_to10:
+		ld	hl,s_enqseq	; send ENQ seq.
+		call	putchr		;
+
+		ld	bc,30		; set 3 sec. timer
+		call	timset		;
+		ret
+;
+;
+p2_de:
+		ld	hl,E_DE2
+		jp	disc
+;
+;
+p2_to:
+		call	sdedit		; edit header
+		jp	c,p5_eot10
+
+		jp	datasend	; send data
+;
+;
+p3_ack:
+		ld	hl,s_eoteot	; send EOT,EOT
+		call	putchr		;
+
+		ld	bc,300		; set 30 sec. timer
+		call	timset		;
+
+		ld	a,4		; set retry counter
+		ld	(rcount2),a	;
+
+		ld	a,4		; set status
+		ld	(status),a	;
+		ret
+;
+;
+p3_nak:
+		ld	hl,rcount2	;
+		dec	(hl)		; dec. retry counter
+
+		jr	nz,p3_nak10
+
+		ld	hl,E_RTRYS
+		jp	disc
+p3_nak10:
+		ld	hl,s_data	; send data
+		call	putchr		;
+
+		ld	bc,30		; set 3 sec. timer
+		call	timset		;
+
+		ld	a,10		; set ENQ retury counter
+		ld	(rcount1),a	;
+		ret
+;
+;
+p3_de:
+		ld	hl,E_DE3
+		jp	disc
+;
+;
+p3_to:
+		ld	hl,rcount1	;
+		dec	(hl)		; dec. retry counter
+		jr	nz,p3_to10
+
+		ld	hl,E_TO3
+		jp	disc
+p3_to10:
+		ld	hl,s_enqenq	; send ENQ,ENQ
+		call	putchr		;
+
+		ld	bc,30		; set 3 sec. timer
+		call	timset		;
+		ret
+;
+;
+p4_enq:
+		ld	hl,s_ack	; send ACK
+		call	putchr		;
+
+		ld	bc,300		; set 30 sec. timer
+		call	timset		;
+
+		ld	a,1		; receive link flag on
+		ld	(rlink),a	;
+
+		ld	a,5		; set status
+		ld	(status),a	;
+		ret
+;
+;
+p4_stx:
+		ld	a,(rlink)
+		or	a
+		ret	z
+
+		jp	p5_stx
+;
+;
+p4_de:
+		jp	disc1
+;
+;
+p4_to:
+		ld	hl,E_TO4
+		jp	disc
+;
+;
+p4_eot:
+		ld	a,(rst)
+		or	a
+		jp	nz,disc1
+
+		call	sdedit		; edit send data
+		jr	c,p4_eot10	; * data nashi
+
+		ld	hl,M_CBUFF-430	;
+		ld	de,(rbufad)	;
+		sbc	hl,de		; receive buffer over flow ?
+		jr	c,p4_eot20	; * yes
+datasend:
+		ld	hl,s_data	; send data
+		call	putchr		;
+
+		ld	bc,30		; set 3 sec. timer
+		call	timset		;
+
+		ld	a,10		; set ENQ retry counter
+		ld	(rcount1),a	;
+
+		ld	a,4		; set data send retry counter
+		ld	(rcount2),a	;
+
+		ld	a,3		; set status
+		ld	(status),a	;
+		ret
+p4_eot10:
+		ld	hl,E_EOT4
+		jp	disc
+p4_eot20:
+		ld	hl,E_BFOVF
+		jp	disc
+;
+;
+p5_stx:
+		ld	hl,(rbufad)	; set receive buffer pointer
+		ld	(rbufp),hl	;
+
+		ld	bc,300		; set 30 sec. timer
+		call	timset		;
+
+		ld	a,6		; set status
+		ld	(status),a	;
+		ret
+;
+;
+p5_eot:
+		ld	a,(rst)
+		or	a
+		jr	nz,p5_eot10
+
+		call	sdedit		; edit send data
+		jr	c,p5_eot10	; * data nashi
+
+		ld	hl,M_CBUFF-430	;
+		ld	de,(rbufad)	;
+		sbc	hl,de		; receive buffer over flow ?
+		jr	c,p5_eot20	; * yes
+
+		jp	datasend
+p5_eot10:
+		ld	hl,s_eoteot	; send EOT,EOT
+		call	putchr		;
+
+		ld	bc,300		; set 30 sec. timer
+		call	timset		;
+
+		ld	a,4		; set status
+		ld	(status),a	;
+		ret
+p5_eot20:
+		ld	hl,E_BFOVF
+		ld	(rst),hl
+		jr	p5_eot10
+;
+;
+p5_de:
+		ld	hl,E_DE5
+		jp	disc
+;
+;
+p5_to:
+		ld	hl,E_TO5
+		jp	disc
+;
+;
+p6_stx:
+		jp	p5_stx
+;
+;
+p6_chr:
+		ld	a,(rxchr)	;
+		ld	hl,(rbufp)	;
+		ld	(hl),a		; reveive character save
+		inc	hl		;
+		ld	(rbufp),hl	;
+		ret
+;
+;
+p6_etb:
+		ld	a,ETB		;
+		call	chkbcc		; bcc check
+		jr	nz,p6_etb10	; * bcc error
+
+		ld	hl,(rbufp)
+		ld	(rbufad),hl
+
+		ld	hl,s_ack	; send ACK
+		call	putchr		;
+
+		ld	bc,300		; set 30 sec. timer
+		call	timset		;
+
+		ld	a,7		; set status
+		ld	(status),a	;
+		ret
+p6_etb10:
+		ld	hl,rcount2	;
+		dec	(hl)		; dec. retry counter
+		jr	nz,p6_etb20
+
+		ld	hl,E_RTRYR
+		jp	disc
+p6_etb20:
+		ld	hl,s_nak	; send NAK
+		call	putchr		;
+
+		ld	bc,300		; set 30 sec. timer
+		call	timset		;
+
+		ld	hl,(rbufad)	; set receive buffer pointer
+		ld	(rbufp),hl	;
+
+		ld	a,7		; set status
+		ld	(status),a	;
+		ret
+;
+;
+p6_etx:
+		ld	a,ETX		;
+		call	chkbcc		; bcc check
+		jr	nz,p6_etx10	; * bcc error
+
+		ld	hl,recno
+		inc	(hl)
+
+		ld	hl,(rbufad)
+		push	hl
+
+		ld	hl,(rbufp)
+		ld	(rbufad),hl
+		pop	hl
+
+		call	erase		; denpyou data erase
+
+		ld	hl,s_ack	; send ACK
+		call	putchr		;
+
+		ld	bc,300		; set 30 sec. timer
+		call	timset		;
+
+		ld	a,5		; set status
+		ld	(status),a	;
+		ret
+p6_etx10:
+		ld	hl,rcount2	;
+		dec	(hl)		; dec. retry counter
+		jr	nz,p6_etx20
+
+		ld	hl,E_RTRYR
+		jp	disc
+p6_etx20:
+		ld	hl,s_nak	; send NAK
+		call	putchr		;
+
+		ld	bc,300		; set 30 sec. timer
+		call	timset		;
+
+		ld	hl,(rbufad)	; set receive buffer pointer
+		ld	(rbufp),hl	;
+
+		ld	a,7		; set status
+		ld	(status),a	;
+		ret
+;
+;
+p6_eot:
+		ld	hl,E_EOT6
+		jp	disc
+;
+;
+p6_de:
+		ld	hl,E_DE6
+		jp	disc
+;
+;
+p6_to:
+		ld	hl,E_TO6
+		jp	disc
+;
+;
+p7_stx:
+		ld	bc,300		; set 30 sec. timer
+		call	timset		;
+
+		ld	a,6		; set status
+		ld	(status),a	;
+		ret
+;
+;
+p7_eot:
+		ld	hl,E_EOT7
+		jp	disc
+;
+;
+p7_de:
+		ld	hl,E_DE7
+		jp	disc
+;
+;
+p7_to:
+		ld	hl,E_TO7
+		jp	disc
+;
+;
+np:
+		ret
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	parameter check
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+prmchk:
+		ld	de,E_TEL
+		ld	a,(R_VANTEL1)
+		cp	' '
+		jr	z,prmchk10	; TEL No. misettei
+
+		ld	de,E_ENQ
+		ld	a,(R_ENQ)
+		cp	' '
+		jr	z,prmchk10	; ENQ code misettei
+
+		ld	de,E_TID
+		ld	a,(R_TID)
+		cp	' '
+		jr	z,prmchk10	; TID misettei
+
+		or	a		; no error
+		ret
+prmchk10:
+		ld	(rst),de	; set error code
+		scf
+		ret
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	line conxxxt
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+lixxx:
+		ld	hl,R_VANTEL1
+		ld	a,(retryf)
+		or	a
+		jr	z,lixxx10
+
+		ld	hl,R_VANTEL2
+lixxx10:
+		ld	a,(R_LNTYP)
+		call	connct
+		or	a
+		ret	z
+
+		ld	hl,E_MDOFF
+		ld	(rst),hl
+lixxx30:
+		scf
+		ret
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	timer subroutine
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+initim:
+		di
+		ld	hl,(OVFHOOK+1)		; Save system vector.
+		ld	(sysovf),hl
+		ld	hl,ovfint		; Set vector.
+		ld	(OVFHOOK+1),hl
+		ei
+		ret
+;
+unitim:
+		di
+		ld	hl,(sysovf)		; Remove interrupt vector for OVF.
+		ld	(OVFHOOK+1),hl
+		ei
+		ret
+;
+timset:
+		ld	(timcnt),bc
+		ret
+;
+ovfint:
+		ld	hl,(timcnt)		; timcnt is 0 ?
+		ld	a,h
+		or	l
+		ret	z			; Yes, no counting.
+
+		dec	hl			; Decrement.
+		ld	(timcnt),hl
+		ret
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	bcc check
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+chkbcc:
+		ld	hl,(rbufp)	;
+		ld	de,(rbufad)	;
+		or	a		; get data length
+		sbc	hl,de		;
+		ld	b,h		;
+		ld	c,l		;
+
+		ex	de,hl
+		ld	d,a		;
+chkbcc10:				;
+		ld	a,(hl)		;
+		xor	d		;
+		ld	d,a		; calculate bcc
+		inc	hl		;
+		dec	bc		;
+		ld	a,b		;
+		or	c		;
+		jr	nz,chkbcc10	;
+
+		ld	a,(bcc)		;
+		xor	d		; check bcc
+		and	7fh		;
+		ret
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	data
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+dectbl:
+		dw	np,np,np,np,np,np,np,p1_ack
+		dw	p1_nak,np,p1_que,p1_de,p1_to,np,np,np
+
+		dw	np,np,np,np,np,np,np,np
+		dw	np,np,np,p2_de,p2_to,np,np,np
+
+		dw	np,np,np,np,np,np,np,p3_ack
+		dw	p3_nak,np,p3_que,p3_de,p3_to,np,np,np
+
+		dw	p4_enq,p4_stx,np,np,np,np,p4_eot,np
+		dw	np,np,np,p4_de,p4_to,np,np,np
+
+		dw	np,p5_stx,np,np,np,np,p5_eot,np
+		dw	np,np,np,p5_de,p5_to,np,np,np
+
+		dw	np,p6_stx,p6_chr,p6_etb,p6_etx,np,p6_eot,np
+		dw	np,np,np,p6_de,p6_to,np,np,np
+
+		dw	np,p7_stx,np,np,np,np,p7_eot,np
+		dw	np,np,np,p7_de,p7_to,np,np,np
+;
+;	send data
+;
+s_enqseq:	db	0,0,0,0,0,0,0,0,ENQ,-1
+s_ack:		db	ACK,-1
+s_nak:		db	NAK,-1
+s_eoteot:	db	EOT,EOT,-1
+s_dleeot:	db	DLE,EOT,-1
+s_enqenq:	db	ENQ,ENQ,-1
+;
+;
+status:		db	0
+seqflag:	db	0
+rxchr:		db	0
+rbufad:		dw	0
+rbufp:		dw	0
+bcc:		db	0
+rcount1:	db	0
+rcount2:	db	0
+rlink:		db	0
+timcnt:		dw	0
+sysovf:		dw	0
+retryf:		db	0
+;
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	line conxxxt
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+connct:
+		ld	bc,5000
+		call	wait
+		sub	a
+		ret
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	line disconxxxt
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+discon:
+		ret
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	data send routine
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;
+putchr:
+		ld	(datap),hl
+putchr10:
+		ld	a,(hl)
+		cp	-1
+		jr	z,putchr20
+		ld	bc,12
+		call	wait
+		inc	hl
+		jr	putchr10
+putchr20:
+		ld	hl,(seqp)
+		ld	a,(hl)
+		inc	hl
+		ld	e,(hl)
+		inc	hl
+		ld	d,(hl)
+		inc	hl
+		ld	(seqp),hl
+		or	a
+		jr	nz,putchr30
+
+		ld	(sdp),de
+		ret
+putchr30:
+		cp	1
+		jr	nz,putchr40
+
+		ld	(seqp),de
+		jr	putchr20
+putchr40:
+		ld	hl,(datap)
+		ld	a,(hl)
+		cp	EOT
+		jr	nz,putchr50
+
+		ld	hl,d_dle
+		ld	(sdp),hl
+		ret
+putchr50:
+		ld	de,buffer
+		ld	a,STX
+		ld	(de),a
+		inc	de
+
+		ld	hl,M_CBUFF+51
+		ld	bc,256
+		ldir
+
+		ld	hl,hdata
+		ld	bc,175
+		ldir
+		push	de
+
+		call	setvandt
+
+		ld	de,buffer+29
+		ld	hl,vandata
+		ld	bc,22
+		ldir
+
+		ld	hl,buffer+13
+		call	torxxxki
+		ld	de,buffer+257
+		ld	bc,20
+		ldir
+
+		ld	hl,buffer+21
+		call	torxxxki
+		ld	de,buffer+277
+		ld	bc,20
+		ldir
+
+		ld	hl,buffer+86
+		call	hinmei
+		ld	de,buffer+297
+		ld	bc,30
+		ldir
+
+		ld	hl,buffer+164
+		call	hinmei
+		ld	de,buffer+327
+		ld	bc,30
+		ldir
+
+		ld	hl,buffer+248
+		call	color
+		ld	de,buffer+369
+		ld	bc,10
+		ldir
+
+		ld	hl,buffer+1
+		ld	bc,431
+		call	calbcc
+		pop	hl
+		ld	(hl),a
+		inc	hl
+		ld	(hl),-1
+		jp	putchr20
+;
+setvandt:
+		ld	c,0
+		ld	de,timfld
+		call	TIMDAT
+
+		ld	b,4
+		ld	de,timfld+1
+		ld	hl,vandata+7
+setv10:
+		ld	a,(de)
+		call	unpack
+		inc	de
+		djnz	setv10
+
+		ld	a,(buffer+2)
+		cp	'1'
+		jr	z,setv30
+
+		ld	a,(timfld+2)
+		add	a,2
+		daa
+		ld	(timfld+2),a
+		cp	29h
+		jr	c,setv20
+		ld	a,1
+		ld	(timfld+2),a
+		ld	a,(timfld+1)
+		add	a,2
+		daa
+		ld	(timfld+1),a
+		cp	13h
+		jr	c,setv20
+		ld	a,1
+		ld	(timfld+1),a
+setv20:
+		ld	hl,vandata+15
+		ld	a,(timfld+1)
+		call	unpack
+		ld	a,(timfld+2)
+		call	unpack
+		ret
+setv30:
+		ld	bc,4
+		ld	a,'0'
+		call	clrbuf
+		ret
+;
+unpack:
+		push	af
+		rrca
+		rrca
+		rrca
+		rrca
+		call	upck
+		pop	af
+upck:
+		and	0fh
+		or	'0'
+		ld	(hl),a
+		inc	hl
+		ret
+
+timfld:	db	0,0,0,0,0,0,0
+
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	data receive check routine
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+rxcheck:
+		ld	hl,(sdp)
+		ld	a,(hl)
+		sub	-1
+		ret
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	data receive routine
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+getchr:
+		ld	bc,12
+		call	wait
+		ld	hl,(sdp)
+		ld	a,(hl)
+		inc	hl
+		ld	(sdp),hl
+		ret
+;
+;	cal. bcc
+;
+calbcc:
+		ld	d,0
+calbcc10:
+		ld	a,(hl)
+		xor	d
+		ld	d,a
+		inc	hl
+		dec	bc
+		ld	a,b
+		or	c
+		jr	nz,calbcc10
+		ld	a,d
+		and	7fh
+		ret
+;
+;
+vandata:
+		DB	'0001248'
+		DB	'00000000'
+		DB	'0000100'
+;
+hdata:
+		DB	'HACHU               '
+		DB	'CHOAI               '
+		DB	'SHOHIN1                       '
+		DB	'SHOHIN2                       '
+		DB	'xxxxxxx'
+		DB	'     '
+		DB	'          '
+		DB	' '
+		DB	'  ','  ','  '
+		DB	'               '
+		DB	'               '
+		DB	'               '
+		DB	ETX
+;
+seqp:
+		dw	seqtbl
+;
+seqtbl:
+		db	0
+		dw	d_ack
+		db	2
+		dw	0
+		db	0
+		dw	d_ack
+		db	0
+		dw	d_enq
+adata1:		db	0
+		dw	buffer
+		db	0
+		dw	d_eot
+		db	2
+		dw	0
+		db	0
+		dw	d_ack
+		db	1
+		dw	adata1
+;
+;
+d_ack:		db	ACK,-1
+d_enq:		db	'123',ENQ,-1
+d_eot:		db	EOT,EOT,-1
+d_dle:		db	DLE,EOT,-1
+d_dummy:	db	-1
+buffer:		ds	440
+sdp:		dw	d_dummy
+datap:		dw	0
+;
+;
+;	*****  WAIT ROUTINE  *****
+WAIT:						; msec
+			PUSH	AF
+	WAIT01:
+			LD	A,200
+	WAIT02:
+			DEC	A
+			JR	NZ,WAIT02
+;
+			DEC	BC
+			LD	A,B
+			OR	C
+			JR	NZ,WAIT01
+			POP	AF
+			RET
+;
+;
+torxxxki:
+		push	de
+		ld	de,t_torxxxki
+tori10:
+		ld	a,(de)
+		or	a
+		jr	z,tori30
+
+		ld	b,8
+		call	strcmp
+		jr	z,tori20
+		ld	bc,8+20
+		ex	de,hl
+		add	hl,bc
+		ex	de,hl
+		jr	tori10
+tori20:
+		ex	de,hl
+		ld	bc,8
+		add	hl,bc
+		pop	de
+		ret
+tori30:
+		ld	hl,space
+		pop	de
+		ret
+;
+;
+hinmei:
+		inc	hl
+		inc	hl
+		push	de
+		ld	de,t_hinmei
+hinmei10:
+		ld	a,(de)
+		or	a
+		jr	z,hinmei30
+
+		ld	b,10
+		call	strcmp
+		jr	z,hinmei20
+		ld	bc,10+30
+		ex	de,hl
+		add	hl,bc
+		ex	de,hl
+		jr	hinmei10
+hinmei20:
+		ex	de,hl
+		ld	bc,10
+		add	hl,bc
+		pop	de
+		ret
+hinmei30:
+		ld	hl,space
+		pop	de
+		ret
+;
+;
+color:
+		push	de
+		ld	de,t_color
+color10:
+		ld	a,(de)
+		or	a
+		jr	z,color30
+
+		ld	b,5
+		call	strcmp
+		jr	z,color20
+		ld	bc,5+10
+		ex	de,hl
+		add	hl,bc
+		ex	de,hl
+		jr	color10
+color20:
+		ex	de,hl
+		ld	bc,5
+		add	hl,bc
+		pop	de
+		ret
+color30:
+		ld	hl,space
+		pop	de
+		ret
+;
+;
+strcmp:
+		push	hl
+		push	de
+strcmp10:
+		ld	a,(de)
+		cp	(hl)
+		jr	nz,strcmp20
+		inc	de
+		inc	hl
+		djnz	strcmp10
+strcmp20:
+		pop	de
+		pop	hl
+		ret
+
+;
+;
+;
+t_torxxxki:
+		db	'01000600'
+		db	0B1h,0B6h,0B2h,020h,0BCh,0AEh,0B3h,0C3h,0DDh,020h
+		db	020h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'01001400'
+		db	0B1h,0D2h,0BCh,0DEh,0BDh,0C4h,020h,0BCh,0AEh,0B3h
+		db	0B6h,0B2h,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'01002200'
+		db	0B2h,0B4h,0DBh,0B0h,020h,0BCh,0AEh,0B3h,0B6h,0B2h
+		db	020h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'01003000'
+		db	0B5h,0DAh,0DDh,0BCh,0DEh,020h,0BCh,0AEh,0B3h,0BCh
+		db	0DEh,020h,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'01004900'
+		db	0B5h,0B0h,0DBh,0D7h,020h,0BCh,0AEh,0B3h,0C3h,0DDh
+		db	020h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'01100200'
+		db	0B8h,0DEh,0D8h,0B0h,0DDh,020h,0BCh,0AEh,0B3h,0C3h
+		db	0DDh,020h,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'01101200'
+		db	0B8h,0DEh,0DAh,0B0h,020h,0BCh,0AEh,0B3h,0BCh,0DEh
+		db	020h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'36898900'
+		db	0C3h,0B2h,0BCh,0DEh,0DDh,0DAh,0DDh,0BDh,0DEh,0B6h
+		db	0CCh,0DEh,0BCh,0B7h,0B6h,0DEh,0B2h,0BCh,0ACh,020h
+
+		db	'39259600'
+		db	0C4h,0B3h,0B6h,0B2h,0BAh,0B3h,0B6h,0DEh,0B8h,0B6h
+		db	0CCh,0DEh,0BCh,0B7h,0B6h,0DEh,0B2h,0BCh,0ACh,020h
+
+		db	'39258800'
+		db	0C4h,0B3h,0B7h,0AEh,0B3h,0BAh,0B3h,0B6h,0DEh,0B8h
+		db	0B6h,0CCh,0DEh,0BCh,0B7h,0B6h,0DEh,0B2h,0BCh,0ACh
+
+		db	'39256100'
+		db	0C4h,0B3h,0DAh,020h,0B6h,0CCh,0DEh,0BCh,0B7h,0B6h
+		db	0DEh,0B2h,0BCh,0ACh,020h,020h,020h,020h,020h,020h
+
+		db	'50155700'
+		db	0B6h,0CCh,0DEh,0BCh,0B7h,0B6h,0DEh,0B2h,0BCh,0ACh
+		db	020h,0CAh,0AFh,0C4h,0D8h,0BEh,0B2h,0BAh,0B3h,020h
+
+		db	'55009400'
+		db	0CCh,0DEh,0D7h,0B3h,0DDh,020h,0BCh,0AEh,0B3h,0B6h
+		db	0B2h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'55001900'
+		db	0CCh,0DEh,0D7h,0AFh,0B8h,020h,0BCh,0AEh,0B3h,0C3h
+		db	0DDh,020h,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'55002700'
+		db	0CCh,0DEh,0D9h,0B0h,020h,0BCh,0AEh,0B3h,0B6h,0B2h
+		db	020h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'56870800'
+		db	0CDh,0DFh,0DDh,0C0h,0AFh,0B8h,0BDh,020h,0B6h,0B0h
+		db	0D9h,0C2h,0A7h,0B2h,0BDh,020h,020h,020h,020h,020h
+
+		db	'59000200'
+		db	0CEh,0DCh,0B2h,0C4h,020h,0BCh,0AEh,0B3h,0BCh,0DEh
+		db	020h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'61000300'
+		db	0CFh,0DBh,0DDh,020h,0BCh,0AEh,0B3h,0B6h,0B2h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'65000500'
+		db	0D1h,0D7h,0BBh,0B7h,020h,0BCh,0AEh,0B3h,0BCh,0DEh
+		db	020h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'89000600'
+		db	0DBh,0B0h,0BEh,0DEh,020h,0BCh,0AEh,0B3h,0C3h,0DDh
+		db	020h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+		db	0
+;
+t_hinmei:
+		db	'6068530030'
+		db	0D9h,0D0h,0C5h,0BDh,0A5h,0CAh,0B0h,0C4h,0DEh,020h
+		db	020h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'6068530288'
+		db	0D9h,0D0h,0C5h,0BDh,0A5h,0CEh,0DEh,0B3h,0C4h,0DEh
+		db	0DDh,0BFh,0DEh,0D2h,020h,020h,020h,020h,020h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'6068530248'
+		db	0D9h,0D0h,0C5h,0BDh,0A5h,0CFh,0D9h,0C1h,0BFh,0DEh
+		db	0D2h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'6068532148'
+		db	0D9h,0D0h,0C5h,0BDh,0A5h,0BDh,0B0h,0CAh,0DFh,0B0h
+		db	0CAh,0C4h,0DEh,0CFh,0D9h,0C1h,020h,054h,020h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'6068532448'
+		db	0D9h,0D0h,0C5h,0BDh,0A5h,0CFh,0D9h,0C1h,0CAh,0B2h
+		db	0BAh,0DDh,020h,047h,04Fh,04Ch,046h,020h,020h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'6068300910'
+		db	0BCh,0DEh,0DAh,0B2h,0BAh,0B0h,0C4h,020h,028h,04Ah
+		db	053h,043h,029h,020h,020h,020h,020h,020h,020h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'6068304910'
+		db	0CDh,0DFh,0C8h,0BAh,0B0h,0C4h,020h,031h,036h,020h
+		db	028h,050h,043h,020h,031h,036h,029h,020h,020h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'6068305920'
+		db	0CDh,0DFh,0C8h,0D9h,0AFh,0B8h,0BDh,020h,031h,036h
+		db	020h,028h,050h,058h,04Dh,020h,031h,036h,029h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'6068306321'
+		db	0CDh,0DFh,0C8h,0D9h,0AFh,0B8h,0BDh,020h,0CCh,0DEh
+		db	0D7h,0B3h,0DDh,020h,031h,036h,020h,028h,050h,058h
+		db	042h,04Dh,020h,031h,036h,029h,020h,020h,020h,020h
+
+		db	'6068308920'
+		db	0CDh,0DFh,0C8h,0D9h,0AFh,0B8h,0BDh,020h,0CAh,0B2h
+		db	0CAh,0DFh,0DCh,0B0h,0CFh,0D9h,0C1h,020h,028h,050h
+		db	058h,04Dh,048h,029h,020h,020h,020h,020h,020h,020h
+
+		db	'6068212720'
+		db	053h,042h,02Dh,032h,035h,020h,0CFh,0D9h,0C1h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'6068212520'
+		db	053h,042h,02Dh,032h,038h,020h,0CFh,0D9h,0C1h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'6068241040'
+		db	043h,042h,02Dh,032h,035h,020h,0CAh,0B0h,0C4h,0DEh
+		db	0CFh,0D9h,0C1h,020h,020h,020h,020h,020h,020h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'6068241540'
+		db	043h,042h,02Dh,032h,038h,020h,0CAh,0B0h,0C4h,0DEh
+		db	0CFh,0D9h,0C1h,020h,020h,020h,020h,020h,020h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'6068243840'
+		db	043h,041h,037h,058h,032h,035h,020h,0CAh,0B0h,0C4h
+		db	0DEh,0CFh,0D9h,0C1h,020h,020h,020h,020h,020h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'6068130121'
+		db	0CFh,0D9h,0C1h,020h,057h,020h,028h,020h,0B6h,0D7h
+		db	0B0h,020h,029h,020h,020h,020h,020h,020h,020h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'6068130430'
+		db	0CAh,0B0h,0C4h,0DEh,043h,020h,034h,037h,020h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'6068131040'
+		db	0CAh,0B0h,0C4h,0DEh,0CFh,0D9h,0C1h,053h,041h,020h
+		db	0BCh,0B0h,0D1h,0DAh,0BDh,020h,020h,020h,020h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'6068137240'
+		db	0CAh,0B0h,0C4h,0DEh,0CFh,0D9h,0C1h,04Bh,043h,020h
+		db	0BCh,0B0h,0D1h,0DAh,0BDh,020h,020h,020h,020h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'6068140800'
+		db	0DAh,0DDh,0BDh,0DEh,04Ch,042h,020h,031h,035h,052h
+		db	020h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'6068404020'
+		db	053h,04Dh,043h,020h,055h,056h,020h,0BDh,0B0h,0CAh
+		db	0DFh,0B0h,020h,020h,020h,020h,020h,020h,020h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'6068407020'
+		db	0C1h,0C0h,0B0h,0D9h,0BDh,0B0h,0CAh,0DFh,0B0h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'6068420029'
+		db	0B8h,0DEh,0D7h,0C0h,0DEh,0B0h,0D9h,020h,048h,053h
+		db	020h,0B3h,0DBh,0CAh,0DFh,0B0h,0D9h,020h,020h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'6068432048'
+		db	0BDh,0C4h,0D7h,0B2h,0C4h,020h,0CAh,0B0h,0C3h,0DEh
+		db	0A8h,020h,0CFh,0D9h,0C1h,020h,0B6h,0D7h,0B0h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'6068453028'
+		db	0BDh,0C4h,0D7h,0B2h,0C4h,020h,0D9h,0B2h,0BCh,0DDh
+		db	020h,0B6h,0D7h,0B0h,020h,020h,020h,020h,020h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'6068630130'
+		db	0BEh,0B2h,0BAh,0B0h,020h,0CCh,0DFh,0D7h,0AFh,0B8h
+		db	0BDh,020h,04Ch,044h,020h,0C0h,0DEh,0B2h,0D4h,0BAh
+		db	0B0h,0C4h,020h,032h,020h,020h,020h,020h,020h,020h
+
+		db	'6068630140'
+		db	0BEh,0B2h,0BAh,0B0h,020h,0CCh,0DFh,0D7h,0AFh,0B8h
+		db	0BDh,020h,0C0h,0DEh,0B2h,0D4h,0CFh,0D9h,0C1h,0BAh
+		db	0B0h,0C4h,020h,032h,020h,020h,020h,020h,020h,020h
+
+		db	'6068630148'
+		db	0BEh,0B2h,0BAh,0B0h,020h,0CAh,0B2h,0DBh,0B0h,0C4h
+		db	0DEh,020h,020h,020h,020h,020h,020h,020h,020h,020h
+		db	020h,020h,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'6068650000'
+		db	0BEh,0B2h,0BAh,0B0h,020h,0CCh,0DFh,0D7h,0AFh,0B8h
+		db	0BDh,020h,050h,02Dh,031h,03Ch,020h,0CFh,0B2h,0D9h
+		db	0C4h,0DEh,020h,03Eh,020h,020h,020h,020h,020h,020h
+
+		db	'6068650230'
+		db	0BEh,0B2h,0BAh,0B0h,020h,0CCh,0DFh,0D7h,0AFh,0B8h
+		db	0BDh,020h,050h,02Dh,031h,03Ch,041h,03Eh,0C0h,0DEh
+		db	0B2h,0D4h,0CFh,0D9h,0C1h,0BAh,0B0h,0C4h,020h,032h
+		db	0
+;
+t_color:
+		db	'01010'
+		db	0CCh,0DEh,0D7h,0B3h,0DDh,020h,020h,020h,020h,020h
+
+		db	'01020'
+		db	0BDh,0D3h,0B0h,0B8h,020h,020h,020h,020h,020h,020h
+
+		db	'01030'
+		db	0CCh,0DEh,0D9h,0B0h,020h,020h,020h,020h,020h,020h
+
+		db	'01040'
+		db	0B8h,0DEh,0D8h,0B0h,0DDh,0BDh,0D3h,0B0h,0B8h,020h
+
+		db	'01050'
+		db	0B2h,0B4h,0DBh,0B0h,020h,020h,020h,020h,020h,020h
+
+		db	'01999'
+		db	0D0h,0CEh,0DDh,020h,020h,020h,020h,020h,020h,020h
+
+		db	'02100'
+		db	04Dh,042h,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'02101'
+		db	04Dh,053h,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'02102'
+		db	055h,04Dh,020h,020h,020h,020h,020h,020h,020h,020h
+
+		db	'02106'
+		db	0B6h,0DEh,0D7h,0BDh,0CCh,0DEh,0D7h,0B3h,0DDh,020h
+
+		db	'02107'
+		db	0B6h,0DEh,0D7h,0BDh,0BDh,0D3h,0B0h,0B8h,020h,020h
+
+		db	'02999'
+		db	0D0h,0CEh,0DDh,020h,020h,020h,020h,020h,020h,020h
+
+		db	'03148'
+		db	0CCh,0DEh,0D7h,0B3h,0DDh,020h,020h,020h,020h,020h
+
+		db	'03248'
+		db	0BDh,0D3h,0B0h,0B8h,0CCh,0DEh,0D7h,0B3h,0DDh,020h
+
+		db	'03348'
+		db	0CCh,0DEh,0D9h,0B0h,020h,020h,020h,020h,020h,020h
+
+		db	'03448'
+		db	0B8h,0DEh,0DAh,0B0h,020h,020h,020h,020h,020h,020h
+
+		db	'03548'
+		db	0DBh,0B0h,0BEh,0DEh,020h,020h,020h,020h,020h,020h
+
+		db	'03999'
+		db	0D0h,0CEh,0DDh,020h,020h,020h,020h,020h,020h,020h
+
+		db	'04001'
+		db	043h,048h,020h,0CCh,0DEh,0D7h,0B3h,0DDh,020h,020h
+
+		db	'04002'
+		db	054h,050h,020h,0CCh,0DEh,0D7h,0B3h,0DDh,020h,020h
+
+		db	'04003'
+		db	043h,04Ch,020h,0B8h,0DEh,0DAh,0B0h,020h,020h,020h
+
+		db	'04004'
+		db	054h,055h,020h,0B8h,0DEh,0DAh,0B0h,020h,020h,020h
+
+		db	'04005'
+		db	043h,04Fh,020h,0CCh,0DEh,0D9h,0B0h,020h,020h,020h
+
+		db	'04999'
+		db	0D0h,0CEh,0DDh,020h,020h,020h,020h,020h,020h,020h
+
+		db	'05011'
+		db	0B1h,0DDh,0CAh,0DEh,0B0h,020h,020h,020h,020h,020h
+
+		db	'05012'
+		db	0CCh,0DEh,0D7h,0B3h,0DDh,020h,020h,020h,020h,020h
+
+		db	'05013'
+		db	0CCh,0DEh,0D9h,0B0h,020h,020h,020h,020h,020h,020h
+
+		db	'05014'
+		db	0D7h,0B2h,0C4h,0CCh,0DEh,0D9h,0B0h,020h,020h,020h
+
+		db	'05015'
+		db	0B8h,0DEh,0DAh,0B0h,020h,020h,020h,020h,020h,020h
+
+		db	'05999'
+		db	0D0h,0CEh,0DDh,020h,020h,020h,020h,020h,020h,020h
+
+		db	'06100'
+		db	0CCh,0DEh,0D7h,0B3h,0DDh,020h,020h,020h,020h,020h
+
+		db	'06200'
+		db	0BDh,0D3h,0B0h,0B8h,0CCh,0DEh,0D7h,0B3h,0DDh,020h
+
+		db	'06300'
+		db	0B8h,0DEh,0DAh,0B0h,020h,020h,020h,020h,020h,020h
+
+		db	'06400'
+		db	0DBh,0B0h,0BEh,0DEh,020h,020h,020h,020h,020h,020h
+
+		db	'06500'
+		db	0CFh,0D8h,0DDh,0CCh,0DEh,0D9h,0B0h,020h,020h,020h
+
+		db	'06999'
+		db	0D0h,0CEh,0DDh,020h,020h,020h,020h,020h,020h,020h
+		db	0
+
+space:		db	'                              '
+
+		end	com

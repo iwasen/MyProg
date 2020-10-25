@@ -1,0 +1,115 @@
+		<!-- プロファイルの編集 -->
+			<table width="580" border="0" cellspacing="0" cellpadding="0">
+				<tr bgcolor="#5B94FD">
+					<td colspan="3"><img src="image/naviedit_profile_ttl.gif" width="147" height="25" hspace="10" alt="プロファイルの編集"></td>
+				</tr>
+				<tr>
+					<td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+					<td width="555" valign="top">
+					  <form method="POST" ENCTYPE="multipart/form-data">
+							<table width="555" border="0" cellspacing="0" cellpadding="0">
+								<tr>
+									<td class="char120" width="180"><img src="image/spacer.gif" width="1" height="20"></td>
+                                    <td class="char120" width="1"><img src="image/spacer.gif" width="1" height="20"></td>
+                                    <td class="char120" width="374"><img src="image/spacer.gif" width="1" height="20"></td>
+								</tr>
+								<tr>
+									<td colspan="3" class="char120">
+									  <{$editform->getHtmlErrors()}>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+								</tr>
+								<tr>
+									<td class="char120" valign="top" nowrap>ナビページタイトル</td>
+									<td><img src="image/spacer.gif" width="10" height="1"></td>
+									<td>
+										
+              <input type="text" name="navi_page_title" value="<{$editform->navi_page_title|escape}>" size="60" />
+									</td>
+								</tr>
+								<tr>
+									<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+								</tr>
+								<tr>
+									<td class="char120" valign="top">概要<br>※ナビページ上部写真の横に表示されます</td>
+									<td><img src="image/spacer.gif" width="10" height="1"></td>
+									
+									<td>
+              <textarea name="navi_page_outline" rows="3" cols="50" style="width:360px;"><{$editform->navi_page_outline|escape}></textarea>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+								</tr>
+								<tr>
+									<td class="char120" valign="top" nowrap>ナビ写真</td>
+									<td><img src="image/spacer.gif" width="10" height="1"></td>
+									<td>
+										<table width="100%" border="0" cellspacing="0" cellpadding="0">
+											<tr>
+												<td width="80"><!-- ナビ写真 -->
+												  <{if $editform->navi_photo_id > 0}>
+												  <img src="image.php?id=<{$editform->navi_photo_id}>" width="80" height="80">
+												  <{else}>
+												  <img src="image/navi_ph.gif" width="80" />
+												  <{/if}>
+												</td>
+												<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+												<td valign="top"><!-- ナビ写真アップロード -->
+													<input type="file" name="navi_photo" style="width:240px;">
+												</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+								</tr>
+								<tr>
+                                    <td class="char120" valign="top">自己紹介<br>※自己紹介ページのナビプロファイルで表示されます</td>
+									<td><img src="image/spacer.gif" width="10" height="1"></td>
+									<td>
+										<textarea name="navi_copy" rows="3" cols="50" style="width:360px;"><{$editform->navi_copy|escape}></textarea>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+								</tr>
+								<tr>
+									<td class="char120" valign="top">ご挨拶<br>※自己紹介ページのご挨拶部分に表示されます</td>
+									<td><img src="image/spacer.gif" width="10" height="1"></td>
+									<td>
+										<textarea name="navi_self_introduction" rows="3" cols="50" style="width:360px;"><{$editform->navi_self_introduction|escape}></textarea>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="3"><img src="image/spacer.gif" width="1" height="20"></td>
+								</tr>
+								<tr bgcolor="#5B94FD">
+									<td colspan="3"><img src="image/spacer.gif" width="1" height="5"></td>
+								</tr>
+							</table>
+							<table width="555" border="0" cellspacing="0" cellpadding="0">
+								<tr>
+									<td bgcolor="#5B94FD"><img src="image/spacer.gif" width="1" height="5"></td>
+								</tr>
+								<tr>
+									<td><img src="image/spacer.gif" width="1" height="20"></td>
+								</tr>
+								<tr>
+									<td>
+										<!-- 登録情報更新ボタン --><input type="image" border="0" name="imageField" src="image/naviedit_btn_reflesh.gif" width="90" height="20" alt="登録" />
+									</td>
+								</tr>
+								<tr>
+									<td><img src="image/spacer.gif" width="1" height="10"></td>
+								</tr>
+							</table>
+							</form>
+					</td>
+					<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+				</tr>
+			</table>
+			<!-- プロファイルの編集ここまで -->

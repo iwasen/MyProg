@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>メルマガ配信予約</TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600">
+<? include("header.php"); ?>
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="513" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+                <TD> 
+                  <table width="501" border="0" cellspacing="0" cellpadding="0">
+                    <tr> 
+                      <td width="251"><font color="#006600"><b>■メルマガ配信予約【確認】</b></font></td>
+                      <td width="250" align="right"> 
+                        <form method="post" action="pub_index.php" name="fom_index">
+                          <a href="JavaScript:document.fom_index.submit();"> <font size="2">管理ページTOPへ</font></a> 
+                          <input type="hidden" value="<? echo $publisher_id ?>" name="publisher_id">
+                          <input type="hidden" value="<? echo $owner_pswd ?>" name="owner_pswd_r">
+                        </form>
+                      </td>
+                    </tr>
+                  </table>
+                  <p class="midashi14">
+                    <!-- <form name="form1" > -->
+                    <!-- 下記の内容で予約しますか？<br> -->
+                    <? yoyak_header($save_flg); ?>
+                    <br>
+                    <br>
+                  </p>
+<table width="500" border="0" cellpadding="3" cellspacing="1" align="center">
+<tr>
+<td width="100" bgcolor="#006600" CLASS="text9ptnoColor">
+<DIV ALIGN="RIGHT"><B><FONT color="#FFFFCC">メルマガID</FONT></B></DIV>
+</td>
+<td width="300"><? echo $mag_id; ?></td>
+</tr>
+<tr>
+<td width="100" bgcolor="#006600" CLASS="text9ptnoColor">
+<DIV ALIGN="RIGHT"><B><FONT color="#FFFFCC">発行メルマガ</FONT></B></DIV>
+</td>
+<td width="300"> <? echo $mag_nm; ?></td>
+</tr>
+<tr>
+<td width="100" bgcolor="#006600" CLASS="text9ptnoColor">
+<DIV ALIGN="RIGHT"><B><FONT color="#FFFFCC">発行日</FONT></B></DIV>
+</td>
+<td width="300"><? echo $resrv_month . "月" . $resrv_day . "日"; ?></td>
+</tr>
+<tr>
+<td width="100" bgcolor="#006600" CLASS="text9ptnoColor">
+<DIV ALIGN="RIGHT"><B><FONT color="#FFFFCC">配信時間</FONT></B></DIV>
+</td>
+<td width="300"><? echo $resrv_hour_ampm ."　" . $resrv_hour_h . "：" . $resrv_hour_m; ?></td>
+</tr>
+</table>
+<? yoyak_footer($save_flg, $publisher_id, $index_id, $mag_id, $mag_nm, $body_id,
+$resrv_month, $resrv_day, $resrv_hour_ampm, $resrv_hour_h, $resrv_hour_m,$owner_pswd); ?>
+<!-- <p align="right"> -->
+<!-- <input type="button" name="Submit2" value="配信予約する" onClick="location.href = 'mag-yoyaku-ok.html'"> -->
+<!-- <input type="button" name="Submit22" value="戻る" onClick="location.href = 'mag-yoyaku.html'"> -->
+<!-- </p> -->
+<!-- </form> -->
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<? include("footer.php"); ?>
+</TABLE>
+</body>
+</html>

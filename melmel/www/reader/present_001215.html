@@ -1,0 +1,223 @@
+<HTML>
+
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=shift_jis">
+<META HTTP-EQUIV="Content-Language" CONTENT="ja">
+<META NAME="GENERATOR" CONTENT="Microsoft FrontPage 4.0">
+<META NAME="ProgId" CONTENT="FrontPage.Editor.Document">
+<TITLE>プレゼント応募フォーム</TITLE>
+</HEAD>
+<SCRIPT LANGUAGE="javascript">
+<!--
+function form_validator()
+{
+//フォームの内容チェック
+	//購読
+	if ((document.form.magazine[0].checked==false) && (document.form.magazine[1].checked==false) && (document.form.magazine[2].checked==false) && (document.form.magazine[3].checked==false))
+        {		// required magazine
+			alert("\メールマガジンの購読の数を選んでください");
+			document.form.magazine[0].focus();
+			return false;
+		}	
+    //名前
+	if ( document.form.nm.value == "" )
+	{
+		alert("お名前: この欄は必ず入力してください。");
+		document.form.nm.focus();
+       return(false);
+	}
+  	//Email
+	if ( document.form.email.value == "" )
+	{
+		alert("メールアドレス : この欄は必ず入力してください。");
+		document.form.email.focus();
+       return(false);
+	}
+    if( isMailAddr( document.form.email.value ) == false ){
+		alert("メールアドレスの記述にミスがあります。");
+		document.form.email.focus();
+       return(false);
+	}
+    //郵便番号
+	if ( document.form.add1.value == "" )
+	{
+		alert("郵便番号 : この欄は必ず入力してください。");
+		document.form.add1.focus();
+       return(false);
+	}
+    //住所
+	if ( document.form.add2.value == "" )
+	{
+		alert("ご住所 : この欄は必ず入力してください。");
+		document.form.add2.focus();
+       return(false);
+	}
+    //tel
+	if ( document.form.tel.value == "" )
+	{
+		alert("電話番号 : この欄は必ず入力してください。");
+		document.form.tel.focus();
+       return(false);
+	}
+       return(true);
+}
+  						
+
+//メールアドレス記入ミスのチェック
+function isMailAddr( str ){
+
+    if( str.indexOf("@") == -1 ){
+        return(false);
+    }
+    if( str.indexOf(".") == -1 ){
+        return(false);
+    }
+    for( i = 0 ; i < str.length ; i ++ ){
+        var c = str.charAt( i );
+        if( ( "a" <= c && c <= "z" ) ||
+            ( "A" <= c && c <= "Z" ) ||
+            ( "0" <= c && c <= "9" ) ||
+             c == "."|| c == "@" || c == "-" || c == "_" )
+        {
+            continue;
+        }else{
+            return(false);
+        }
+    }
+    return(true);
+}
+
+-->
+//-->
+    </SCRIPT>
+<BODY BGCOLOR="#FF9999">
+<TABLE WIDTH="600" BORDER="0" CELLPADDING="3" ALIGN="CENTER" BGCOLOR="#FFFFFF" CELLSPACING="0">
+  <TR BGCOLOR="#FF9999">
+    <TD><A HREF="http://www.melmel.net"><IMG SRC="images/head_logo.gif" BORDER="0" ALT="めるめる・net ロゴ" VSPACE="1" HSPACE="1" WIDTH="252" HEIGHT="96"></A></TD>
+  </TR>
+  <TR BGCOLOR="#FFFF66">
+    <TD><IMG SRC="images/spacer.gif" WIDTH="600" HEIGHT="1"></TD>
+  </TR>
+  <TR>
+    <TD>
+      <P ALIGN="left"><FONT SIZE="3" COLOR="#000080"><B>めるめる･net読者向けページＯＰＥＮを記念して、プレゼントを差し上げます。</B></FONT></P>
+      <P ALIGN="left"><FONT SIZE="3" COLOR="#800080"><U><I><IMG SRC="images/10.gif" WIDTH="492" HEIGHT="53" ALT="抽選で１０名様に、「Ｅメールマーケティグ実践講座」"><BR>
+        </I></U><IMG SRC="images/100.gif" WIDTH="423" HEIGHT="32" ALT="１００名様に、「めるめるちゃんシールセット」"></FONT></P>
+    </TD>
+  </TR>
+  <TR>
+    <TD><FONT SIZE="3" COLOR="#000080">が当たります。<BR>
+      下記のフォームでお申し込みください。<BR>
+      応募受付期間：2000年12月15日まで。<BR>
+      抽選・発表：2000年12月20日。商品の発送を以て発表に代えさせていただきます。<BR>
+      ※なお、お名前やご住所等の個人情報は、プレゼントの発送以外には一切使用いたしませんので、ご安心ください。</FONT></TD>
+  </TR>
+  <TR>
+    <TD> <!--　応募フォーム  -->
+      <FORM ACTION="present2.asp" METHOD="POST" NAME="form" onSubmit="return form_validator()" onreset"return confirmreset()">
+        <TABLE WIDTH="100%" BORDER="0" CELLPADDING="3" CELLSPACING="0">
+          <TR BGCOLOR="#CCFFCC">
+            <TD><IMG SRC="images/spacer.gif" WIDTH="600" HEIGHT="1"></TD>
+          </TR>
+          <TR>
+            <TD><STRONG>めるめる･netにて実際にメールマガジンを購読になりましたか？</STRONG> </TD>
+          </TR>
+          <TR>
+            <TD>
+              <INPUT TYPE="radio" NAME="magazine" VALUE="3誌以上">
+              はい－３誌以上<BR>
+              <INPUT TYPE="radio" NAME="magazine" VALUE="2誌">
+              はい－２誌 <BR>
+              <INPUT TYPE="radio" NAME="magazine" VALUE="1誌">
+              はい－１誌 <BR>
+              <INPUT TYPE="radio" NAME="magazine" VALUE="購読していない">
+              いいえ </TD>
+          </TR>
+          <TR BGCOLOR="#CCFFCC">
+            <TD><IMG SRC="images/spacer.gif" WIDTH="600" HEIGHT="1"></TD>
+          </TR>
+          <TR>
+            <TD><STRONG>何かご質問等があればご記入ください。 </STRONG></TD>
+          </TR>
+          <TR>
+            <TD><STRONG>
+              <TEXTAREA NAME="message" ROWS="5" COLS="65" WRAP="VIRTUAL"></TEXTAREA>
+              </STRONG></TD>
+          </TR>
+          <TR BGCOLOR="#CCFFCC">
+            <TD><IMG SRC="images/spacer.gif" WIDTH="600" HEIGHT="1"></TD>
+          </TR>
+          <TR>
+            <TD><STRONG>連絡先を入力してください</STRONG> </TD>
+          </TR>
+          <TR>
+            <TD>
+              <TABLE WIDTH="100%" BORDER="0" CELLPADDING="3" CELLSPACING="0">
+                <TR>
+                  <TD WIDTH="140" ALIGN="left"> お名前
+                  <TD ALIGN="left">
+                    <INPUT TYPE="text" SIZE="30" NAME="nm">
+
+                </TR>
+                <TR>
+                  <TD WIDTH="140" ALIGN="left"> 電子メールアドレス
+                  <TD ALIGN="left">
+                    <INPUT TYPE="text" SIZE="30" NAME="email">
+
+                </TR>
+                <TR>
+                  <TD WIDTH="140" ALIGN="left">郵便番号
+                  <TD ALIGN="left">
+                    <INPUT TYPE="text" SIZE="20" MAXLENGTH="10" NAME="add1">
+                    （半角入力）
+                </TR>
+                <TR>
+                  <TD WIDTH="140" ALIGN="left"> 住所
+                  <TD ALIGN="left">
+                    <INPUT TYPE="text" SIZE="60" NAME="add2">
+
+                </TR>
+                <TR>
+                  <TD WIDTH="140" ALIGN="left"> 電話番号
+                  <TD ALIGN="left">
+                    <INPUT TYPE="text" SIZE="30" NAME="tel">
+                    （半角入力）
+                </TR>
+              </TABLE>
+            </TD>
+          </TR>
+          <TR ALIGN="CENTER" BGCOLOR="#CCFFCC">
+            <TD><IMG SRC="images/spacer.gif" WIDTH="600" HEIGHT="1"></TD>
+          </TR>
+          <TR ALIGN="CENTER">
+            <TD>
+              <INPUT TYPE="submit" VALUE="プレゼントに応募" NAME="submit">
+              　
+              <INPUT TYPE="reset" VALUE="キャンセル" NAME="reset">
+            </TD>
+          </TR>
+        </TABLE>
+      </FORM>
+    </TD>
+  </TR>
+  <TR ALIGN="CENTER">
+    <TD><FONT SIZE="2">□ めるめる・net事務局 □</FONT><BR>
+      <A HREF="mailto:info@melmel.net"><FONT SIZE="2">info@melmel.net</FONT></A></TD>
+  </TR>
+  <TR BGCOLOR="#0099FF">
+    <TD><IMG SRC="images/spacer.gif" WIDTH="600" HEIGHT="1"></TD>
+  </TR>
+</TABLE>
+
+
+<!----  外枠・ブルー/END  ----> <!-----  bottom logo・(c)  ----->
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" ALIGN="CENTER">
+  <TR>
+<TD ROWSPAN="2" ALIGN="center" VALIGN="bottom" WIDTH="135"><A HREF="http://www.melmel.net"><IMG SRC="images/cara_s.gif" BORDER="0" ALT="めるめる イメージ" WIDTH="66" HEIGHT="49"></A></TD>
+<TD VALIGN="bottom" WIDTH="300" HEIGHT="42" ALIGN="center"><A HREF="http://www.melmel.net"><IMG SRC="images/logo_s.gif" BORDER="0" ALT="めるめる・net ロゴ" WIDTH="155" HEIGHT="42"></A></TD>
+<TR><TD VALIGN="top" HEIGHT="22" ALIGN="center"><FONT SIZE="1">Copyright (C) <%=Year(Date)%> xx xxxxx Inc. All rights reserved.</FONT></TD></TR>
+</TABLE>
+<!-----  bottom logo・(c)/END  ----->
+</BODY>
+
+</HTML>

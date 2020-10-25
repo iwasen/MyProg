@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>メルマガ配信予約</TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600">
+
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="513" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+<TD>
+<!-- <form name="form1" > -->
+<p><FONT color="#006600"><B>■メルマガ配信予約</B></FONT></p>
+<p><br>
+配信を行なうメルマガの[配信予約]ボタンを押してください。 </p>
+<table width="500" border="0" align="center" cellpadding="3" cellspacing="1">
+<tr bgcolor="#669900">
+<td colspan="2"><FONT color="#FFFFCC"><B>発行メルマガ</B></FONT></td>
+</tr>
+<? make_maglist($publisher_id,$owner_pswd); ?>
+</table>
+<br>
+<p class="midashi14"><FONT color="#006600"><B>■配信待ちメルマガ </B></FONT></p>
+<p> ＊[予約の修正／取り消し]ボタンをクリックすると、配信予約済みのメルマガを一時停止し、データを修正または配信予約を取り消すことができます。 </p>
+<table width="500" border="0" cellpadding="3" cellspacing="1">
+<tr bgcolor="#669900">
+<td colspan="3"><font color="#FFFFFF"><b><FONT color="#FFFFCC">現在の配信待ちメルマガ</FONT></b></font></td>
+</tr>
+<tr bgcolor="#CCCCCC">
+<td width="200" align="center"><B>メルマガ名</B></td>
+<td align="center"><B>配信日時</B></td>
+<td width="150">　</td>
+</tr>
+<? make_maglist_ed($publisher_id,$owner_pswd); ?>
+</table>
+<p align="center">
+<form>
+<input type="button" name="Submit5" value="戻る" onClick="history.back()">
+</form>
+</p>
+<p></p>
+<!-- </form> -->
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD valign="top" colspan="3" align="right">
+<HR size="1" width="750">
+</TD>
+</TR>
+<TR>
+<TD valign="top" width="200"> <IMG src="../img/shim.gif" width="200" height="1">
+</TD>
+<TD valign="middle" align="center" width="350">
+<div align="center"><FONT size="2"><IMG src="../img/shim.gif" width="350" height="1"><BR>
+Copyright &copy; 2000 xxxxxxx, Co.,Ltd. All rights reserved. <br>
+<a href="http://www.xxxxxxx.co.jp/" target="mm_window"><img src="../img/logo_do.gif" width="50" height="45" border="0"></a>
+</FONT></div>
+</TD>
+<TD valign="top" width="200" align="right"><IMG src="../img/shim.gif" width="200" height="1"><A href="../index.html"><BR>
+<IMG src="../img/b_home.gif" width="44" height="18" border="0" alt="HOME" hspace="5"></A></TD>
+</TR>
+</TABLE>
+</body>
+</html>
+

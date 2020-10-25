@@ -1,0 +1,265 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<title></title>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600">
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="513" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+<TD>
+<table width="500" border="0" cellspacing="0" cellpadding="0" align="center">
+<tr>
+<td>
+<div align="right"> </div>
+<table border=0 cellpadding=3 cellspacing=1 width=500>
+<tr align=left valign=top bgcolor="#FFCC00">
+<td bordercolor="#990000">
+<p><font color="#336600"><b>【
+<?php
+		$mark = "";
+		if ($resarray[15] == 1) { $mark = "<img src=\"../img/mark-rec.gif\">";}
+		if ($resarray[16] > $mae) { $mark .= "<img src=\"../img/mark-new.gif\">";}
+		if ($resarray[17] == "01") { $mark .= "<img src=\"../img/mark-kari.gif\">";}
+		if ($resarray[18] == 1) { $mark .= "<img src=\"../img/mark-rib.gif\">";}
+		print $mark;
+?>
+ |
+<?php
+	echo "ID ".$resarray[0]." | ".trim($resarray[1]);
+?>
+】</b></font></p>
+</td>
+</tr>
+</table>
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+<tr bgcolor="#CCFFCC">
+<td width="140">
+<div align="center"><b><font size="2"><b>カテゴリ</b></font></b></div>
+</td>
+<td width="100">
+<div align="center"><b><font size="2">発行周期</font></b></div>
+</td>
+<td width="80">
+<div align="center"><b><font size="2">発行回数</font></b></div>
+</td>
+<td width="80">
+<div align="center"><b><font size="2">読者数</font></b></div>
+</td>
+<td width="100">
+<div align="center"><b><font size="2">最終発行日</font></b></div>
+</td>
+</tr>
+<tr>
+<td width="140">
+<div align="center">
+<?php
+	echo trim($resarray[8])."<br>".trim($resarray[9])."\n";
+?>
+</div>
+</td>
+<td width="100">
+<div align="center">
+<?php
+	echo trim($resarray[3])."\n";
+?>
+</div>
+</td>
+<td width="80">
+<div align="right">
+<?php
+	echo trim($resarray[6])."\n";
+?>
+</div>
+</td>
+<td width="80">
+<div align="right">
+<?php
+	echo $resarray_mail[0]."\n";
+?>
+人
+</div>
+</td>
+<td width="100">
+<div align="center">
+<?php
+	if (trim($resarray[7]) == "2000/01/01") {
+		echo "未発行";
+	} else {
+		echo trim($resarray[7])."\n";
+	}
+?>
+</div>
+</td>
+</tr>
+</table>
+<table width="100%">
+<tr align=left valign=top>
+<td bordercolor="#990000" bgcolor="#CCFFCC"><font size="2"><b>説明</b></font></td>
+</tr>
+<tr align=left valign=top>
+<td bordercolor="#990000">
+<?php
+	echo trim($resarray[2])."\n";
+?>
+</td>
+</tr>
+</table>
+<table width="500">
+<tr>
+<td  bgcolor="#CCFFCC" bordercolor="#990000" align="left" valign="top">
+<div align="left"><b><font size="2">読む背景</font></b></div>
+</td>
+<td bordercolor="#990000" width="313" align="left" valign="top">
+<?php
+	echo trim($resarray[13])."／".trim($resarray[14])."\n";
+?>
+</td>
+</tr>
+<tr>
+<td  bgcolor="#CCFFCC" bordercolor="#990000" align="left" valign="top">
+<div align="left"><b><font size="2">ホームページ</font></b></div>
+</td>
+<td  bordercolor="#990000" width="313" align="left" valign="top">
+<?php
+	if (trim($resarray[10]) == "http://") {
+		print "ありません";
+	} else {
+		print "<a href=\"";
+		print trim($resarray[10]);
+		print "\" target=_blank>";
+		print trim($resarray[10]);
+		print "</a>\n";
+	}
+?>
+</td>
+</tr>
+<tr>
+<td bgcolor="#CCFFCC" bordercolor="#990000" align="left" valign="top">
+<div align="left"><b><font size="2">最新のバックナンバー </font></b></div>
+</td>
+<td  bordercolor="#990000" width="313" align="left" valign="top">
+<p><font size="2">
+<?php
+	if ($resarray[19] == 1) {
+		if ( $back_num[0] != "" ) {
+			echo "｜";
+			echo "<a href=\"backnumber.php?back_rid=".$back_num[0]."\">前号</a>\n";
+			echo "｜";
+		}
+		if ( $back_num[1] != "" ) {
+			echo "<a href=\"backnumber.php?back_rid=".$back_num[1]."\">前々号</a>\n";
+			echo "｜";
+		}
+		if ( $back_num[2] != "" ) {
+			echo "<a href=\"backnumber.php?back_rid=".$back_num[2]."\">前々々号</a>\n";
+			echo "｜";
+		}
+	} else {
+			echo "非公開";
+	}
+
+?>
+</font></p>
+</td>
+</tr>
+
+<?php
+if ($resarray[18] == 1) {
+	print "<tr> \n";
+	print "<td bgcolor=\"#C9FEE1\" bordercolor=\"#990000\" align=\"left\">";
+	print "<font size=\"2\"><b>購読できる属性</b></font></td> \n";
+	print "<td width=\"313\">";
+
+		echo riba_zokusei_chk($mag_id);
+
+	print "</td> \n </tr> \n";
+	print "<tr><td  bgcolor=\"#C9FEE1\" bordercolor=\"#990000\" align=\"left\">";
+	print "<b><font size=\"2\">あなたの属性</font></b></td> \n";
+	print "<td width=\"313\">";
+
+		echo user_zokusei_chk($mail_addr);
+
+	print "</td>\n </tr> \n";
+	}
+?>
+
+<tr>
+<td bgcolor="#00CC99" bordercolor="#990000" align="left"> <b><font size="2">購読登録</font></b>
+</td>
+<td width="313">
+<div align="left"><font size="2">
+<form action="mel_reg_one.php" method="post">
+<input type="hidden" name="reader_id" value="<?php echo $reader_id; ?>" size="30">
+<input type="hidden" name="reader_pswd" value="<?php echo $reader_pswd; ?>" size="30">
+<input type="hidden" name="mail_addr" value="<?php echo $mail_addr; ?>" size="30">
+<input type="text" name="email" size="30" value="<?php echo $mail_addr; ?>">
+</font> <font size="2"> </font>
+<input type="hidden" name="read_chk" value="<?php echo $resarray[0]; ?>">
+<input type="submit" name="sub_d" value="購読">
+<input type="submit" name="sub_d" value="解除">
+</div>
+</td>
+</tr>
+<tbody> </tbody>
+</table>
+</form>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr bgcolor="#CCFFCC">
+<td height="20"><span class="midashi14"><b><font size="2">このメルマガの読者推薦文</font></b><font size="2">
+（<?php echo $nrows; ?>件あります）</font></span></td>
+</tr>
+<tr valign="top">
+<td>
+<?php
+	echo $reco_data;
+?>
+<p></p>
+<?php
+	echo $reco_res;
+?>
+</td>
+</tr>
+</table>
+<form>
+<input type="button" name="Submit3" value="&lt;&lt;&lt;　戻る" onClick="history.back()">
+<input type="button" name="Submit3" value="&lt;&lt;&lt;　めろんぱんへ" onClick="location.href='http://www.melonpan.net/'"></form>
+</p>
+</td>
+</tr>
+</table>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD valign="top" colspan="3" align="right">
+<HR size="1" width="750">
+</TD>
+</TR>
+<TR>
+<TD valign="top" width="200"> <IMG src="../img/shim.gif" width="200" height="1">
+</TD>
+<TD valign="middle" align="center" width="350">
+<div align="center"><FONT size="2"><IMG src="../img/shim.gif" width="350" height="1"><BR>
+Copyright &copy; 2000 xxxxxxx, Co.,Ltd. All rights reserved. <br>
+<a href="http://www.xxxxxxx.co.jp/" target="mm_window"><img src="../img/logo_do.gif" width="50" height="45" border="0"></a>
+</FONT></div>
+</TD>
+<TD valign="top" width="200" align="right"><a href="/index.html" target="_top"><IMG src="../img/b_home.gif" width="46" height="20" alt="HOME" hspace="5" border="0" align="absmiddle"></a></TD>
+</TR>
+</TABLE>
+</body>
+</html>

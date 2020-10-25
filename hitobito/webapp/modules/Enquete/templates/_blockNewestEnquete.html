@@ -1,0 +1,62 @@
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td width="10" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="10" height="1"></td>
+		<td width="100%" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="320" height="1"></td>
+        <td width="10" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="10" height="1"></td>
+		<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td><img src="image/spacer.gif" width="10" height="8"></td>
+		<td align="center" class="char130"><a href="?module=Enquete&action=ShowResult&navipage_id=<{$navi_page_id}>&enquete_id=<{$enquete_data.enquete_id}>"><b><{$enquete_data.title|escape}></b></a></td>
+        <td><img src="image/spacer.gif" width="10" height="8"></td>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td colspan="5" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="320" height="1"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td><img src="image/spacer.gif" width="10" height="8"></td>
+		<td>
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td class="char130"><{$enquete_data.start_date}> - <{$enquete_data.end_date}></td>
+					<td align="right"><img src="image/enquete_time_on.gif" width="69" height="13" alt="回答受付中！"></td>
+				</tr>
+				<tr>
+					<td colspan="2"><img src="image/spacer.gif" width="1" height="5"></td>
+				</tr>
+<{foreach from=$enquete_data.option_ary item=enquete_option}>
+				<tr>
+					<td bgcolor="<{$enquete_option.bgcolor}>" class="char120">
+						<p class="ind0603"><{$enquete_option.option_no}>. <{$enquete_option.option_text|escape}></p>
+					</td>
+					<td bgcolor="<{$enquete_option.bgcolor}>">
+						<p class="rate"><img src="image/enquete_bar.gif" width="<{$enquete_option.bar_width}>" height="6" hspace="4" align="absmiddle"><{$enquete_option.percent}>%</p>
+					</td>
+				</tr>
+<{/foreach}>
+				<tr>
+					<td colspan="2"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr align="right">
+					<td colspan="2"><a href="?module=Enquete&action=AnswerEnquete&navipage_id=<{$navi_page_id}>&enquete_id=<{$enquete_data.enquete_id}>"><img src="image/enquete_btn_answer.gif" width="70" height="20" alt="回答する" border="0"></a></td>
+				</tr>
+			</table>
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+			</table>
+		</td>
+        <td><img src="image/spacer.gif" width="10" height="8"></td>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="10"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td colspan="3" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+</table>

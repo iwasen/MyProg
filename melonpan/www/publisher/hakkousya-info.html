@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>発行者基本情報登録</TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600">
+<? include("header.php"); ?>
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="513" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+<TD><FONT color="#006600"><B>■発行者基本情報登録 </B></FONT>
+<p><span class="text01">あなたの個人情報をおたずねします。 <br>
+なお、ここに入力された個人情報は全て非公開ですので、安心してご記入くださ い。</span><BR>
+<BR>
+</p>
+<form name="form1" action="publisher.php"  method="post">
+<table border="0" cellspacing="0" width="500" cellpadding="3" align="center">
+<tr>
+                        <td valign="top" bgcolor="#E8E8E8" width="187" class="text9ptnoColor" height="193"> 
+                          <p><FONT color="#006600"><B>基本メールアドレス（非公開）</B></FONT> </p>
+</td>
+                        <td bgcolor="#E8E8E8" valign="top" width="301" height="193"> 
+                          <p><span class="text01">[半角英数で入力してください] </span></p>
+<p>
+<input type="text" name="mail_add_main" size="40">
+<br>
+<span class="text9pt">念のためもう一度入力してください </span><br>
+<input type="text" name="mail_add_sub" size="40">
+<br>
+<span class="text9pt">※あなたのユーザーIDも兼ねます<br>
+                            ※このメールアドレスは事務局が連絡用に使わせていただくものです。あなたが一番連絡のとれるアドレスを入力して下さい。携帯アドレスはご遠慮ください。また、フリーメールもできるだけご遠慮ください。<br>
+                            ※読者に公開するメールアドレスは次の[メルマガ情報]入力ページで指定できます。</span> </p>
+</td>
+</tr>
+<tr valign="top">
+<td width="187" class="text9ptnoColor">
+<p><FONT color="#006600"><B>パスワード</B></FONT></p>
+</td>
+<td width="301">
+<input type="password" name="owner_pswd">
+<br>
+<span class="text9pt"> ※半角英数、4文字以上8文字以内で記入してください</span></td>
+</tr>
+<tr>
+<td valign="top" bgcolor="#E8E8E8" width="187" class="text9ptnoColor">
+<p><FONT color="#006600"><B>発行者氏名[漢字]</B></FONT></p>
+</td>
+<td bgcolor="#E8E8E8" width="301">
+<input type="text" name="owner_nm_kanj" size="40"><br>
+<span class="text9pt">※本名を記入してください</span></td>
+</tr>
+<tr valign="top">
+<td width="187" class="text9ptnoColor">
+<p><FONT color="#006600"><B>発行者氏名[カタカナ]</B></FONT></p>
+</td>
+<td width="301">
+<input type="text" name="owner_nm_kana" size="40">
+<br>
+<span class="text9pt">※半角カナは使用できません</span> </td>
+</tr>
+<tr>
+<td valign="top" bgcolor="#E8E8E8" width="187" class="text9ptnoColor"><FONT color="#006600"><B>連絡先郵便番号（７ケタ）</B></FONT></td>
+<td bgcolor="#E8E8E8" width="301">
+<input type="text" name="owner_zip1" size="4" maxlength="3">
+-
+<input type="text" name="owner_zip2" size="5" maxlength="4">
+<br>
+<span class="text9pt">※半角数字で入力して下さい <br>
+現在海外にお住まいの方は『000-0000』と入力してください</span></td>
+</tr>
+<tr valign="top">
+<td width="187" class="text9ptnoColor"><FONT color="#006600"><B>連絡先住所</B></FONT></td>
+<td width="301">
+<select name="owner_prefec">
+<option selected>北海道</option>
+<option>青森県</option>
+<option>岩手県</option>
+<option>宮城県</option>
+<option>秋田県</option>
+<option>山形県</option>
+<option>福島県</option>
+<option>茨城県</option>
+<option>栃木県</option>
+<option>群馬県</option>
+<option>埼玉県</option>
+<option>千葉県</option>
+<option>東京都</option>
+<option>神奈川県</option>
+<option>山梨県</option>
+<option>長野県</option>
+<option>新潟県</option>
+<option>富山県</option>
+<option>石川県</option>
+<option>福井県</option>
+<option>岐阜県</option>
+<option>静岡県</option>
+<option>愛知県</option>
+<option>三重県</option>
+<option>滋賀県</option>
+<option>京都府</option>
+<option>大阪府</option>
+<option>兵庫県</option>
+<option>奈良県</option>
+<option>和歌山県</option>
+<option>鳥取県</option>
+<option>島根県</option>
+<option>岡山県</option>
+<option>広島県</option>
+<option>山口県</option>
+<option>徳島県</option>
+<option>香川県</option>
+<option>愛媛県</option>
+<option>高知県</option>
+<option>福岡県</option>
+<option>佐賀県</option>
+<option>長崎県</option>
+<option>熊本県</option>
+<option>大分県</option>
+<option>宮崎県</option>
+<option>鹿児島県</option>
+<option>沖縄県</option>
+<option>海外</option>
+</select>
+<br>
+<textarea name="owner_add" cols="30" rows="3"></textarea>
+<br>
+<span class="text9pt">※アパート・マンションにお住まいの方は、アパート・マンション名も入力してください</span> </td>
+</tr>
+<tr>
+<td valign="top" bgcolor="#E8E8E8" width="187" class="text9ptnoColor">
+<p><FONT color="#336600"><B>連絡先電話番号</B></FONT> </p>
+</td>
+<td bgcolor="#E8E8E8" width="301">
+<input type="text" name="owner_tel" size="40">
+<br>
+<span class="text9pt">※緊急時に事務局から連絡のとれる電話番号を教えてください。<br>
+※市外局番から、<span class="text9pt">半角数字で入力して下さい </span> </span></td>
+</tr>
+<tr>
+<td valign="top" width="187">　</td>
+<td align="right" width="301">
+<INPUT type="submit" value="登録確認">
+<input type="hidden" value="<? echo $publisher_id; ?>" name="publisher_id">
+<input type="hidden" value="<? echo $next_job_flg; ?>" name="job_flg">
+</td>
+</tr>
+</table>
+</form>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<? include("footer.php"); ?>
+</TABLE>
+</body>
+</html>

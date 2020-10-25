@@ -1,0 +1,136 @@
+			<table width="580" border="0" cellspacing="0" cellpadding="0" bgcolor="#E3F7DF">
+				<tr>
+					<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+					<td width="15" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="15" height="1"></td>
+					<td width="548" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="548" height="1"></td>
+					<td width="15" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="15" height="1"></td>
+					<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+					<td><img src="image/spacer.gif" width="15" height="1"></td>
+					<td class="char120"><{$waiwai_room.outline|HNbEscape}></td>
+					<td><img src="image/spacer.gif" width="15" height="1"></td>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+					<td><img src="image/spacer.gif" width="15" height="1"></td>
+					<td class="char120" align="right">メンバー数 : <{$waiwai_room.member_num}>人</td>
+					<td><img src="image/spacer.gif" width="15" height="1"></td>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="6"></td>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+			</table>
+			<table width="580" border="0" cellspacing="0" cellpadding="0" bgcolor="#E3F7DF">
+				<tr>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+					<td><img src="image/spacer.gif" width="15" height="1"></td>
+					<td colspan="5" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="548" height="1"></td>
+					<td><img src="image/spacer.gif" width="15" height="1"></td>
+					<td><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+				<tr>
+					<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+					<td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+					<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+					<td width="15" bgcolor="#FFFFFF"><img src="image/spacer.gif" width="15" height="1"></td>
+					<td bgcolor="#FFFFFF" width="516" align="center">
+						<table width="516" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td><img src="image/spacer.gif" width="1" height="15"></td>
+							</tr>
+							<tr>
+								<td bgcolor="#5FCA44"><img src="image/waiwai_member_ttl.gif" width="253" height="25" hspace="10" alt="ワイワイ会議室メンバー新規登録"></td>
+							</tr>
+							<tr>
+								<td><img src="image/spacer.gif" width="1" height="20"></td>
+							</tr>
+						</table>
+						<table width="500" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td><img src="image/waiwai_member_stl_step1.gif" width="90" height="14" alt="STEP1 仮登録"></td>
+							</tr>
+							<tr>
+								<td><img src="image/spacer.gif" width="1" height="4"></td>
+							</tr>
+							<tr>
+								<td bgcolor="#5FCA44"><img src="image/spacer.gif" width="500" height="1"></td>
+							</tr>
+							<tr>
+								<td><img src="image/spacer.gif" width="1" height="20"></td>
+							</tr>
+							<tr>
+								<td class="char120">この情報で登録します。</td>
+							</tr>
+							<tr>
+								<td><img src="image/spacer.gif" width="1" height="20"></td>
+							</tr>
+						</table>
+						<form name="form3" method="post" action="">
+
+						   <{assign var=_form_table_width value=500}>
+						   <{include file="file:$account_confirm_template" }>
+							
+        <table width="500" border="0" cellspacing="0" cellpadding="0">
+          <tr> 
+            <td colspan="3" class="char120"> 
+              <p class="ind1em">※パスワードはこちらのワイワイ会議室に入室したり、他のワイワイ会議室に登録する際にも必要となります。大切に保管してください。</p>
+              <p class="ind1em">※他のワイワイ会議室に登録している方は、登録したパスワードを入力いただく必要があります。</p>
+              <p class="ind1em">※パスワードをお忘れの方は<a href="index.php?module=Member&amp;action=remindPassword">こちら</a>から取得することができます。</p>
+            </td>
+          </tr>
+          <tr> 
+            <td colspan="3"><img src="image/spacer.gif" width="1" height="20"></td>
+          </tr>
+          <tr> 
+            <td colspan="3" bgcolor="#5FCA44"><img src="image/spacer.gif" width="1" height="5"></td>
+          </tr>
+          <tr> 
+            <td colspan="3"><img src="image/spacer.gif" width="1" height="20"></td>
+          </tr>
+          <tr> 
+            <td colspan="3"> 
+              <input type="hidden" name="save_execute" value="execute" />
+              <input type="image" border="0" name="imageField2" src="image/waiwai_btn_rgst.gif" width="64" height="20" alt="下記に同意して、登録画面へ進む" >
+            </td>
+          </tr>
+          <tr> 
+            <td colspan="3"><img src="image/spacer.gif" width="1" height="30"></td>
+          </tr>
+        </table>
+						</form>
+				  </td>
+					<td width="15" bgcolor="#FFFFFF"><img src="image/spacer.gif" width="15" height="1"></td>
+					<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+					<td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+					<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+					<td><img src="image/spacer.gif" width="15" height="1"></td>
+					<td colspan="5" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="548" height="1"></td>
+					<td><img src="image/spacer.gif" width="15" height="1"></td>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+				<tr>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+					<td colspan="7"><img src="image/spacer.gif" width="1" height="15"></td>
+					<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+				</tr>
+				<tr bgcolor="#CCCCCC">
+					<td colspan="9"><img src="image/spacer.gif" width="550" height="1"></td>
+				</tr>
+				<tr bgcolor="#FFFFFF">
+					<td colspan="9"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+			</table>

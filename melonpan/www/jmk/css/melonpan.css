@@ -1,0 +1,213 @@
+DIV.page
+{
+    PAGE-BREAK-BEFORE: always
+}
+A:link
+{
+    COLOR: blue
+}
+A:visited
+{
+    COLOR: blue
+}
+A:active
+{
+    COLOR: blue
+}
+A:hover
+{
+    COLOR: red
+}
+HR.headerH
+{
+    COLOR: cadetblue;
+}
+
+HR.header
+{
+    COLOR: #5673fc
+}
+HR.footer
+{
+    COLOR: #5673fc
+}
+HR.print
+{
+    COLOR: #0000ff
+}
+XMP.print
+{
+    FONT-FAMILY: '£Í£Ó ÌÀÄ«'
+}
+TABLE.print
+{
+    FONT-WEIGHT: bolder
+}
+TH.sort
+{
+    CURSOR: hand
+}
+.note
+{
+    FONT-SIZE: smaller;
+    COLOR: forestgreen
+}
+TD.m0
+{
+    COLOR: #404040
+}
+TD.m1
+{
+    FONT-WEIGHT: bolder;
+    COLOR: white;
+    BACKGROUND-COLOR: #3366aa
+}
+TD.m2
+{
+    FONT-WEIGHT: bolder;
+    COLOR: white;
+    BACKGROUND-COLOR: peru
+}
+TD.m3
+{
+    FONT-WEIGHT: bolder;
+    COLOR: white;
+    BACKGROUND-COLOR: #888888
+}
+TD.m3s
+{
+    FONT-WEIGHT: bolder;
+    COLOR: white;
+    BACKGROUND-COLOR: #aaaaaa
+}
+TD.m4
+{
+    FONT-WEIGHT: bolder;
+    COLOR: white;
+    BACKGROUND-COLOR: #66bb66
+}
+TD.m5
+{
+    BACKGROUND-COLOR: #99ccff
+}
+TD.m6
+{
+    FONT-WEIGHT: bolder;
+    COLOR: white;
+    BACKGROUND-COLOR: #58a019
+}
+TD.m6s
+{
+    FONT-WEIGHT: bolder;
+    COLOR: white;
+    BACKGROUND-COLOR: #99bc66
+}
+TD.n1
+{
+    BACKGROUND-COLOR: #d0e0f8
+}
+TD.n1c
+{
+    FONT-SIZE: smaller;
+    BACKGROUND-COLOR: #d0e0f8
+}
+
+TD.n2
+{
+    BACKGROUND-COLOR: #f8e0d0
+}
+TD.n2c
+{
+    FONT-SIZE: smaller
+}
+
+TD.n3
+{
+    BACKGROUND-COLOR: #dddddd
+}
+TD.n3c
+{
+    FONT-SIZE: smaller;
+    BACKGROUND-COLOR: #dddddd
+}
+TD.n4
+{
+    BACKGROUND-COLOR: #FFEFD5
+}
+TD.n5
+{
+    BACKGROUND-COLOR: #e1f5ff
+}
+TD.n6
+{
+    BACKGROUND-COLOR: #e2f0dc
+}
+TD.h1
+{
+    BACKGROUND-COLOR: #ffcc99
+}
+TD.h2
+{
+    BACKGROUND-COLOR: #FDF5E6
+}
+TD.h3
+{
+    BACKGROUND-COLOR: #ff9999
+}
+TD.h4
+{
+    BACKGROUND-COLOR: #ffcc33
+}
+TD.h5
+{
+    BACKGROUND-COLOR: #6699ff
+}
+TD.h6
+{
+    BACKGROUND-COLOR: #e0e0e0
+}
+TD.h7
+{
+    BACKGROUND-COLOR: #c0c0c0
+}
+TD.h8
+{
+    BACKGROUND-COLOR: #99ccc5
+}
+TD.h9
+{
+    BACKGROUND-COLOR: #ccffcc
+}
+TD.f1
+{
+    BACKGROUND-COLOR: #99ccff
+}
+TD.f2
+{
+    BACKGROUND-COLOR: #ccff66
+}
+TD.f3
+{
+    BACKGROUND-COLOR: #ffcc00
+}
+TD.f4
+{
+    BACKGROUND-COLOR: #ffccff
+}
+.tc0
+{
+    BACKGROUND-COLOR: #ffffdd
+}
+.tc1
+{
+    BACKGROUND-COLOR: #ffffff
+}
+.np
+{
+    FONT-SIZE: 10.5pt;
+    FONT-FAMILY: '£Í£Ó ¥´¥·¥Ã¥¯'
+}
+.info
+{
+    FONT-SIZE: 12px
+}

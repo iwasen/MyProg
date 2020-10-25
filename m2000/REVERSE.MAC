@@ -1,0 +1,40 @@
+	title	reverse
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;	kanji reverse.
+;
+;	input	b=length
+;		(hl)=xLCD(1-30),yLCD(1-8)
+;	output	(nothing)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+	.z80
+
+reverse::
+		ld	a,(hl)
+		inc	hl
+		ld	l,(hl)
+		ld	h,a
+		dec	h		;
+		dec	l		;
+		ld	de,0e000h
+		add	hl,de
+		ld	c,16
+rev10:
+		push	bc
+		push	hl
+rev20:
+		ld	a,(hl)
+		cpl
+		ld	(hl),a
+		inc	hl
+		djnz	rev20
+
+		pop	hl
+		pop	bc
+		ld	de,32
+		add	hl,de
+		dec	c
+		jr	nz,rev10
+		ret
+
+		end

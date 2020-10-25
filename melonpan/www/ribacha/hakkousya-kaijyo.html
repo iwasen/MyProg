@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>発行者登録を解除する </TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600" topmargin="0" marginheight="0" leftmargin="0" marginwidth="0">
+
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="513" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+<TD>
+<p><FONT color="#006600"><B>■発行者登録を</B></FONT><FONT color="#006600"><B>解除する</B></FONT>
+</p>
+<p class="text9pt">※発行中のメルマガがある場合は、発行者登録を解除することはできません。まず全メルマガの停止手続きを先に行なってください。<br>
+<font color="#ff3333">※未承認、レッドカードのメルマガがある場合は、ご自分で解除できません。事務局までご連絡ください。</font>
+</p>
+<table width="500" cellpadding="3" cellspacing="1" border="0">
+<tr bgcolor="#006600">
+<td colspan="3"><FONT color="#FFFFCC"><B>発行メルマガ一覧</B></FONT>　　<font color="#FFFFFF" size="2">※あなたの現在発行中または休刊中のメルマガの一覧です。</font></td>
+</tr>
+<? make_maglist1($publisher_id); ?>
+</table>
+<br>
+<table width="500" cellpadding="3" cellspacing="1" border="0">
+<tr>
+<td colspan="2" bgcolor="#006600"><FONT color="#FFFFCC"><B CLASS="text9ptnoColor">発行者情報</B></FONT></td>
+</tr>
+<tr>
+<td bgcolor="#669900" nowrap CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">基本メールアドレス</FONT></B></td>
+<td> <? echo $mail_add_main ?> </td>
+</tr>
+<tr>
+<td width="150" bgcolor="#669900" nowrap CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">パスワード</FONT></B></td>
+<td width="350"> <? echo $owner_pswd ?> </td>
+</tr>
+<tr>
+<td width="150" bgcolor="#669900" nowrap CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">発行者氏名[漢字]</FONT></B></td>
+<td width="350"> <? echo $owner_nm_kanj ?> </td>
+</tr>
+<tr>
+<td width="150" bgcolor="#669900" nowrap CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">発行者氏名[カタカナ]</FONT></B></td>
+<td width="350"> <? echo $owner_nm_kana ?> </td>
+</tr>
+<tr>
+<td width="150" bgcolor="#669900" nowrap CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">連絡先郵便番号</FONT></B></td>
+<td width="350"> <? echo $owner_zip1. "-" . $owner_zip2 ?> </td>
+</tr>
+<tr>
+<td width="150" height="18" bgcolor="#669900" nowrap CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">連絡先住所</FONT></B></td>
+<td width="350" height="18"> <? echo $owner_prefec . $owner_add; ?> </td>
+</tr>
+<tr>
+<td width="150" bgcolor="#669900" nowrap CLASS="text9ptnoColor"><B><FONT color="#FFFFCC">連絡先電話番号</FONT></B></td>
+<td width="350"> <? echo $owner_tel ?> </td>
+</tr>
+</table>
+<p align="right">
+<form name = "sform66" action = "publisher.php" method="post">
+<input type="submit" name="pub_del" value="次　へ">
+<input type="hidden" value="<? echo $owner_pswd ?>" name="owner_pswd">
+<input type="hidden" value="<? echo $publisher_id ?>" name="publisher_id">
+<input type="hidden" value="<? echo $next_job_flg; ?>" name="job_flg">
+</form>
+<p></p>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD valign="top" colspan="3" align="right">
+<HR size="1" width="750">
+</TD>
+</TR>
+<TR>
+<TD valign="top" width="200"> <IMG src="../img/shim.gif" width="200" height="1">
+</TD>
+<TD valign="middle" align="center" width="350">
+<div align="center"><FONT size="2"><IMG src="../img/shim.gif" width="350" height="1"><BR>
+Copyright &copy; 2000 xxxxxxx, Co.,Ltd. All rights reserved. <br>
+<a href="http://www.xxxxxxx.co.jp/" target="mm_window"><img src="../img/logo_do.gif" width="50" height="45" border="0"></a>
+</FONT></div>
+</TD>
+<TD valign="top" width="200" align="right"><IMG src="../img/shim.gif" width="200" height="1"></TD>
+</TR>
+</TABLE>
+</body>
+</html>

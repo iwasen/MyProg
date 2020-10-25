@@ -1,0 +1,182 @@
+<script type="text/javascript">
+<!--
+function form_clear(form){
+	var i;
+	var n;
+	var m;
+	var o;
+  
+	//n = document.frmDataList.elements.length;
+	n = form.elements.length;
+	for (i = 0; i < n; i++)
+	{
+		//m = document.frmDataList.elements[i].type;
+		m = form.elements[i].type;
+		switch (m)
+		{
+			case 'text':
+			case 'textarea':
+				//document.frmDataList.elements[i].value = '';
+				form.elements[i].value = '';
+				break;
+			case 'radio':
+			case 'checkbox':
+				//document.frmDataList.elements[i].checked = false;
+				form.elements[i].checked = false;
+				break;
+			case 'submit':
+			case 'reset':
+			default:
+				break;
+		}
+	}
+	return false;
+}
+
+
+//-->
+</script>
+
+
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+  <tr bgcolor="#5B94FD">
+
+    <td colspan="3"><img src="image/naviedit_infomail_ttl.gif" width="170" height="25" hspace="10" alt="お知らせメール管理"></td>
+  </tr>
+  <tr>
+    <td width="15"><img src="image/spacer.gif" width="40" height="1"></td>
+    <td align="left" valign="top">	  
+      <form name="waiwai_enq" id="waiwai_enq" method="POST">
+        <table width="500" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td align="left"><table border="0" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td width="15" align="left" valign="middle"><img src="image/enquete_btn_next.gif" width="12" height="12"></td>
+                    <td class="char120"><strong>デイリーレポート</strong></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" class="char120">
+		      <{$editform->getHtmlErrors()}>
+		    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" class="char120"><img src="image/spacer.gif" width="1" height="5"></td>
+                  </tr>
+                </table>
+                <table border="0" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td><img src="image/spacer.gif" width="20" height="1"></td>
+                    <td class="char120">毎日決まった時刻に前日のレポートをお届けします。</td>
+                  </tr>
+              </table></td>
+          </tr>
+          <tr>
+            <td><img src="image/spacer.gif" width="1" height="10"></td>
+          </tr>
+          <tr>
+            <td align="left">
+	      <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td><img src="image/spacer.gif" width="65" height="1"></td>
+                  <td class="char120">
+		    <{html_radios name=navi_status options=$status_options checked=$editform->navi_status separator="<br />" }>
+		  </td>
+		</tr>
+	      </table>
+	    </td>
+          </tr>
+          <tr>
+            <td><img src="image/spacer.gif" width="1" height="15"></td>
+          </tr>
+          <tr>
+            <td><table border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <td><img src="image/spacer.gif" width="65" height="1"></td>
+                <td class="char120">利用する場合には受信する内容を指定してください。</td>
+              </tr>
+            </table></td>
+          </tr>
+          <tr>
+            <td><img src="image/spacer.gif" width="1" height="15"></td>
+          </tr>
+          <tr>
+            <td><table border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <td><img src="image/spacer.gif" width="85" height="1"></td>
+                <td width="22" align="left" valign="middle"><input name="navi_comment_report" id="navi_comment_report" type="checkbox" value="1" <{if $editform->navi_comment_report == 1}>checked<{/if}> /></td>
+                <td class="char120"><label for="navi_comment_report">コメント件数</label></td>
+              </tr>
+              <tr>
+                <td><img src="image/spacer.gif" width="1" height="1"></td>
+                <td width="22" align="left" valign="middle"><input name="navi_trackback_report" id="navi_trackback_report" type="checkbox" value="1" <{if $editform->navi_trackback_report == 1}>checked<{/if}> /></td>
+                <td class="char120"><label for="navi_trackback_report">トラックバック件数</label></td>
+              </tr>
+              <tr>
+                <td><img src="image/spacer.gif" width="1" height="1"></td>
+                <td width="22" align="left" valign="middle"><input name="navi_contact_report" id="navi_contact_report" type="checkbox" value="1" <{if $editform->navi_contact_report == 1}>checked<{/if}> /></td>
+                <td class="char120"><label for="navi_contact_report">問い合わせ件数</label></td>
+              </tr>
+                <tr>
+                  <td colspan="3"><img src="image/spacer.gif" width="1" height="15"></td>
+                </tr>
+                <tr>
+                  <td><img src="image/spacer.gif" width="1" height="1"></td>
+                  <td width="22" align="left" valign="middle"><input name="navi_page_view_report" id="navi_page_view_report" type="checkbox" value="1" <{if $editform->navi_page_view_report == 1}>checked<{/if}> /></td>
+                  <td class="char120"><label for="navi_page_view_report">ナビページ　ページビュー数</label></td>
+                </tr>
+                <tr>
+                  <td><img src="image/spacer.gif" width="1" height="1"></td>
+                  <td width="22" align="left" valign="middle"><input name="navi_visiter_report" id="navi_visiter_report" type="checkbox" value="1" <{if $editform->navi_visiter_report == 1}>checked<{/if}> /></td>
+                  <td class="char120"><label for="navi_visiter_report">ナビページ　訪問者数</label></td>
+                </tr>
+                <tr>
+                  <td><img src="image/spacer.gif" width="1" height="1"></td>
+                  <td width="22" align="left" valign="middle"><input name="navi_answer_report" id="navi_answer_report" type="checkbox" value="1" <{if $editform->navi_answer_report == 1}>checked<{/if}> /></td>
+                  <td class="char120"><label for="navi_answer_report">アンケート　回答数</label></td>
+                </tr>
+                <tr>
+                  <td colspan="3"><img src="image/spacer.gif" width="1" height="15"></td>
+                </tr>
+                <tr>
+                  <td><img src="image/spacer.gif" width="1" height="1"></td>
+                  <td width="22" align="left" valign="middle"><input name="navi_last_guest_report" id="navi_last_guest_report" type="checkbox" value="1" <{if $editform->navi_last_guest_report == 1}>checked<{/if}> /></td>
+                  <td class="char120"><label for="navi_last_guest_report">ワイワイ会議　新規ゲスト登録者数</label></td>
+                </tr>
+                <tr>
+                  <td><img src="image/spacer.gif" width="1" height="1"></td>
+                  <td width="22" align="left" valign="middle"><input name="navi_last_regist_report" id="navi_last_regist_report" type="checkbox" value="1" <{if $editform->navi_last_regist_report == 1}>checked<{/if}> /></td>
+                  <td class="char120"><label for="navi_last_regist_report">ワイワイ会議　新規登録者数</label></td>
+                </tr>
+                <tr>
+                  <td><img src="image/spacer.gif" width="1" height="1"></td>
+                  <td width="22" align="left" valign="middle"><input name="navi_last_resign_report" id="navi_last_resign_report" type="checkbox"  value="1" <{if $editform->navi_last_resign_report == 1}>checked<{/if}> /></td>
+                  <td class="char120"><label for="navi_last_resign_report">ワイワイ会議　新規解除者数</label></td>
+                </tr>
+                <tr>
+                  <td><img src="image/spacer.gif" width="1" height="1"></td>
+                  <td width="22" align="left" valign="middle"><input name="navi_poster_report" id="navi_poster_report" type="checkbox"  value="1" <{if $editform->navi_poster_report == 1}>checked<{/if}> /></td>
+                  <td class="char120"><label for="navi_poster_report">ワイワイ会議　投稿者数</label></td>
+                </tr>
+                <tr>
+                  <td><img src="image/spacer.gif" width="1" height="1"></td>
+                  <td width="22" align="left" valign="middle"><input name="navi_posts_report" id="navi_posts_report" type="checkbox" value="1" <{if $editform->navi_posts_report == 1}>checked<{/if}> /></td>
+                  <td class="char120"><label for="navi_posts_report">ワイワイ会議　投稿数</label></td>
+                </tr>
+            </table></td>
+          </tr>
+          <tr>
+            <td><img src="image/spacer.gif" width="1" height="25"></td>
+          </tr>
+        </table>
+        <table width="500" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td align="center"><input type="image" border="0" name="imageField" src="image/naviedit_btn_regist.gif" width="50" height="20" alt="登録" >&nbsp;&nbsp; <input type="image" border="0" name="imageField" src="image/waiwai_btn_enq_clear.gif" width="50" height="20" alt="クリア" onClick="form_clear(waiwai_enq);return false;" ></td>
+          </tr>
+          <tr>
+            <td width="500" colspan="3"><img src="image/spacer.gif" width="1" height="25"></td>
+          </tr>
+        </table>
+      </form></td>
+    <td width="10"><img src="image/spacer.gif" width="40" height="1"></td>
+  </tr>
+</table>

@@ -1,0 +1,1898 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// ﾆｭｰﾄﾗﾙ resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEU)
+#ifdef _WIN32
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+#pragma code_page(932)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\PcVideo.ico"
+IDI_CHAT                ICON    DISCARDABLE     "res\\icon1.ico"
+IDI_SPEAKER             ICON    DISCARDABLE     "res\\speaker.ico"
+IDI_MICROPHONE          ICON    DISCARDABLE     "SPK2.ICO"
+IDI_ICON3               ICON    DISCARDABLE     "PHONE04.ICO"
+IDI_ICON4               ICON    DISCARDABLE     "PHONE07.ICO"
+IDI_ICON5               ICON    DISCARDABLE     "PHONE08.ICO"
+IDI_ICON6               ICON    DISCARDABLE     "ICON6.ICO"
+AFX_IDI_STD_FRAME       ICON    DISCARDABLE     "res\\idr_main.ico"
+IDI_MICROPHONE_OFF      ICON    DISCARDABLE     "res\\micropho.ico"
+IDI_SPEAKER_OFF         ICON    DISCARDABLE     "res\\speaker_.ico"
+IDI_VIDEO               ICON    DISCARDABLE     "res\\ico00001.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+DOWND                   BITMAP  DISCARDABLE     "RES\\DOWND.BMP"
+DOWNU                   BITMAP  DISCARDABLE     "RES\\DOWNU.BMP"
+DOWNX                   BITMAP  DISCARDABLE     "RES\\DOWNX.BMP"
+FARD                    BITMAP  DISCARDABLE     "RES\\FARD.BMP"
+FARU                    BITMAP  DISCARDABLE     "RES\\FARU.BMP"
+FARX                    BITMAP  DISCARDABLE     "RES\\FARX.BMP"
+HOMED                   BITMAP  DISCARDABLE     "RES\\HOMED.BMP"
+HOMEU                   BITMAP  DISCARDABLE     "RES\\HOMEU.BMP"
+HOMEX                   BITMAP  DISCARDABLE     "RES\\HOMEX.BMP"
+IDB_CHAT                BITMAP  DISCARDABLE     "RES\\CHAT.BMP"
+IDB_CHAT_MASK           BITMAP  DISCARDABLE     "RES\\CHAT2.BMP"
+IDB_DLL                 BITMAP  DISCARDABLE     "RES\\DLL.BMP"
+IDB_DLL_MASK            BITMAP  DISCARDABLE     "RES\\DLL_MASK.BMP"
+IDB_NONE                BITMAP  DISCARDABLE     "RES\\NONE.BMP"
+IDB_NONE_MASK           BITMAP  DISCARDABLE     "RES\\NONE2.BMP"
+IDB_REFLECT             BITMAP  DISCARDABLE     "RES\\REFLECT.BMP"
+IDB_REFLECT_MASK        BITMAP  DISCARDABLE     "RES\\REFLECT2.BMP"
+IDB_VIDEO               BITMAP  DISCARDABLE     "RES\\VIDEO.BMP"
+IDB_VIDEO_MASK          BITMAP  DISCARDABLE     "RES\\VIDEO2.BMP"
+IDB_VOICE               BITMAP  DISCARDABLE     "RES\\VOICE.BMP"
+IDB_VOICE_MASK          BITMAP  DISCARDABLE     "RES\\VOICE2.BMP"
+LEFTD                   BITMAP  DISCARDABLE     "RES\\LEFTD.BMP"
+LEFTU                   BITMAP  DISCARDABLE     "RES\\LEFTU.BMP"
+LEFTX                   BITMAP  DISCARDABLE     "RES\\LEFTX.BMP"
+NEARD                   BITMAP  DISCARDABLE     "RES\\NEARD.BMP"
+NEARU                   BITMAP  DISCARDABLE     "RES\\NEARU.BMP"
+NEARX                   BITMAP  DISCARDABLE     "RES\\NEARX.BMP"
+RIGHTD                  BITMAP  DISCARDABLE     "RES\\RIGHTD.BMP"
+RIGHTU                  BITMAP  DISCARDABLE     "RES\\RIGHTU.BMP"
+RIGHTX                  BITMAP  DISCARDABLE     "RES\\RIGHTX.BMP"
+TELED                   BITMAP  DISCARDABLE     "RES\\TELED.BMP"
+TELEU                   BITMAP  DISCARDABLE     "RES\\TELEU.BMP"
+TELEX                   BITMAP  DISCARDABLE     "RES\\TELEX.BMP"
+UPD                     BITMAP  DISCARDABLE     "RES\\UPD.BMP"
+UPU                     BITMAP  DISCARDABLE     "RES\\UPU.BMP"
+UPX                     BITMAP  DISCARDABLE     "RES\\UPX.BMP"
+WIDED                   BITMAP  DISCARDABLE     "RES\\WIDED.BMP"
+WIDEU                   BITMAP  DISCARDABLE     "RES\\WIDEU.BMP"
+WIDEX                   BITMAP  DISCARDABLE     "RES\\WIDEX.BMP"
+IDR_CHAT                BITMAP  MOVEABLE PURE   "res\\Toolbar.bmp"
+IDR_MAINFRAME           BITMAP  DISCARDABLE     "RES\\TOOLBAR1.BMP"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS PRELOAD MOVEABLE PURE 
+BEGIN
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY 
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 2,0,1,4
+ PRODUCTVERSION 2,0,1,4
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041104b0"
+        BEGIN
+            VALUE "Comments", "Written by Shinichi Aizawa\0"
+            VALUE "CompanyName", "xxxxxxxxx Electronic Inc.\0"
+            VALUE "FileDescription", "PcVideo executable file\0"
+            VALUE "FileVersion", "2, 0, 1, 4\0"
+            VALUE "InternalName", "PcVideo\0"
+            VALUE "LegalCopyright", "Copyright (C) 2001 xxxxxxxxx Electronic Inc.\0"
+            VALUE "LegalTrademarks", "xxxx\0"
+            VALUE "OriginalFilename", "PcVideo.EXE\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "PcVideo\0"
+            VALUE "ProductVersion", "2, 0, 1, 4\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x411, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_CLOSEHAND           CURSOR  DISCARDABLE     "RES\\HANDCLOS.CUR"
+IDC_HMOVE               CURSOR  DISCARDABLE     "RES\\HMOVE.CUR"
+IDC_MOVE                CURSOR  DISCARDABLE     "MOVE.CUR"
+IDC_OPENHAND            CURSOR  DISCARDABLE     "RES\\HANDOPEN.CUR"
+IDC_VMOVE               CURSOR  DISCARDABLE     "RES\\VMOVE.CUR"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_CHAT TOOLBAR DISCARDABLE  16, 15
+BEGIN
+    BUTTON      ID_FILE_SAVE
+    SEPARATOR
+    BUTTON      ID_EDIT_CUT
+    BUTTON      ID_EDIT_COPY
+    BUTTON      ID_EDIT_PASTE
+    SEPARATOR
+    BUTTON      IDM_CHATCALL
+END
+
+IDR_MAINFRAME TOOLBAR DISCARDABLE  16, 17
+BEGIN
+    BUTTON      IDM_CONxxxT_DIRECT
+    BUTTON      IDM_DISCONxxxT
+    SEPARATOR
+    BUTTON      IDM_SEND_DISP
+    BUTTON      IDM_CHAT
+    BUTTON      IDM_VOICE
+    SEPARATOR
+    BUTTON      IDM_TILE
+END
+
+#endif    // ﾆｭｰﾄﾗﾙ resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// 日本語 resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+#ifdef _WIN32
+LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
+#pragma code_page(932)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 17, 1\r\n"
+    "#pragma code_page(932)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\PcVideo.rc2""  // Microsoft Visual C++ 以外のツールで編集されたリソース\r\n"
+    "#include ""l.jpn\\afxres.rc""          // 標準のコンポーネント\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_CHAT MENU DISCARDABLE 
+BEGIN
+    POPUP "ﾌｧｲﾙ(\036F\037ﾌ)"
+    BEGIN
+        MENUITEM "保存(&S)",                    ID_FILE_SAVE
+        MENUITEM "ﾛｸﾞﾌｧｲﾙ(&L)...",              IDM_LOGFILE
+        MENUITEM "ﾌｫﾝﾄ(&F)...",                 IDM_FONT
+        MENUITEM SEPARATOR
+        MENUITEM "終了(&X)",                    IDM_EXIT
+    END
+    POPUP "編集(&E)"
+    BEGIN
+        MENUITEM "切り取り(&T)\tCtrl+X",        ID_EDIT_CUT
+        MENUITEM "ｺﾋﾟｰ(&C)\tCtrl+C",            ID_EDIT_COPY
+        MENUITEM "貼り付け(&P)\tCtrl+V",        ID_EDIT_PASTE
+    END
+    MENUITEM "呼出し(&C)",                  IDM_CHATCALL
+END
+
+IDR_MAINFRAME MENU DISCARDABLE 
+BEGIN
+    POPUP "ﾌｧｲﾙ(\036F\037ﾌ)"
+    BEGIN
+        MENUITEM "環境設定(&S)...",             IDM_SETTING
+        MENUITEM "接続ﾎｽﾄ設定(&H)...",          IDM_SETHOST
+        MENUITEM SEPARATOR
+        MENUITEM "ﾘﾓｰﾄ設定(&R)...",             IDM_REMOTE_SETTING
+        MENUITEM SEPARATOR
+        MENUITEM "終了(&X)",                    ID_APP_EXIT
+    END
+    POPUP "接続(\036C\037ｺ)"
+    BEGIN
+        MENUITEM SEPARATOR
+        MENUITEM "&0 その他のﾎｽﾄ...",           IDM_CONxxxT
+    END
+    POPUP "画像(\036I\037ｶ)"
+    BEGIN
+        MENUITEM "送信画像表示(&S)",            IDM_SEND_DISP
+        MENUITEM "受信画像表示(&R)",            IDM_RECV_DISP
+        MENUITEM SEPARATOR
+        MENUITEM "送信画像静止(&N)",            IDM_SEND_STILL
+        MENUITEM "受信画像静止(&C)",            IDM_RECV_STILL
+        MENUITEM SEPARATOR
+        MENUITEM "送信ｶﾒﾗｺﾝﾄﾛｰﾙ(&D)...",        IDM_SEND_CAMERA
+        MENUITEM "受信ｶﾒﾗｺﾝﾄﾛｰﾙ(&V)...",        IDM_RECV_CAMERA
+        MENUITEM SEPARATOR
+        MENUITEM "ﾋﾞﾃﾞｵｿｰｽ(&V)...",             IDM_VIDEO_SOURCE
+    END
+    POPUP "ｳｨﾝﾄﾞｳ(\036W\037ｳ)"
+    BEGIN
+        MENUITEM "ﾁｬｯﾄ(&C)...",                 IDM_CHAT
+        MENUITEM "ﾎﾞｲｽ(&V)...",                 IDM_VOICE
+        MENUITEM SEPARATOR
+        MENUITEM "ｳｨﾝﾄﾞｳ整列(&T)",              IDM_TILE
+        MENUITEM "常に手前に表示(&F)",          IDM_FRONT
+        MENUITEM SEPARATOR
+        POPUP "ﾘｽﾄ表示順序"
+        BEGIN
+            MENUITEM "接続順",                      IDM_ORDER_CONxxxT
+            MENUITEM "名前順",                      IDM_ORDER_NAME
+            MENUITEM "IPｱﾄﾞﾚｽ順",                   IDM_ORDER_IPADDRESS
+        END
+        MENUITEM "IPｱﾄﾞﾚｽ表示(&I)",             IDM_IPADDRESS
+    END
+    POPUP "ﾍﾙﾌﾟ(\036H\037ﾍ)"
+    BEGIN
+        MENUITEM "目次(&C)...",                 IDM_HELP_CONTENTS
+        MENUITEM "ｷｰﾜｰﾄﾞで検索(&S)...",         IDM_HELP_KEY
+        MENUITEM "ﾍﾙﾌﾟの使い方(&H)",            ID_HELP_USING
+        MENUITEM SEPARATOR
+        MENUITEM "ﾊﾞｰｼﾞｮﾝ情報(&A)...",          IDM_VERSION
+        MENUITEM SEPARATOR
+        MENUITEM "ｵﾝﾗｲﾝｱｯﾌﾟﾃﾞｰﾄ(&U)...",        IDM_ONLINE_UPDATE
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ANSWER DIALOG DISCARDABLE  0, 0, 185, 84
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    DEFPUSHBUTTON   " は　い ",IDOK,49,62,34,14
+    PUSHBUTTON      " いいえ ",IDCANCEL,102,62,34,14
+    CTEXT           "１２３４５６７８９０１２３４５６７８",IDC_ANSMES,33,12,
+                    145,26
+    CTEXT           "応答しますか？",IDC_ANSMES3,32,45,121,8
+    ICON            IDI_ICON4,IDC_STATIC,11,21,20,20
+END
+
+IDD_CALL DIALOG DISCARDABLE  0, 0, 185, 68
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "呼び出し"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    DEFPUSHBUTTON   " ｷｬﾝｾﾙ ",IDCANCEL,77,50,32,14
+    CTEXT           "１２３４５６７８９０１２３４５６７８",IDC_CALLMES,32,14,
+                    145,27
+    ICON            IDI_ICON4,IDC_STATIC,6,16,20,20
+END
+
+IDD_CAMERA DIALOG DISCARDABLE  0, 0, 236, 134
+STYLE WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "ｶﾒﾗｺﾝﾄﾛｰﾙ"
+FONT 12, "ＭＳ ゴシック"
+BEGIN
+    DEFPUSHBUTTON   "終了",IDOK,180,4,50,14
+    PUSHBUTTON      "ｵﾌﾟｼｮﾝ設定",IDC_CAMERA_OPTION,180,21,50,12
+    GROUPBOX        "ｶﾒﾗ方向",-1,4,4,166,72
+    CONTROL         "HOME",IDC_CAMERA_HOME,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,138,27,12,12
+    CONTROL         "UP",IDC_CAMERA_UP,"Button",BS_OWNERDRAW | WS_TABSTOP,
+                    138,13,12,12
+    CONTROL         "RIGHT",IDC_CAMERA_RIGHT,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,152,27,12,12
+    CONTROL         "DOWN",IDC_CAMERA_DOWN,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,138,41,12,12
+    CONTROL         "LEFT",IDC_CAMERA_LEFT,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,124,27,12,12
+    LTEXT           "Pan :",-1,128,56,21,8
+    LTEXT           "Tilt:",-1,128,64,21,8
+    LTEXT           " --ﾟ",IDC_CAMERA_PAN,148,56,17,8
+    LTEXT           " --ﾟ",IDC_CAMERA_TILT,148,64,17,8
+    GROUPBOX        "ｽﾞｰﾑ",-1,174,36,58,40
+    CONTROL         "TELE",IDC_CAMERA_TELE,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,185,46,16,12
+    CONTROL         "WIDE",IDC_CAMERA_WIDE,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,185,60,16,12
+    LTEXT           "望遠",-1,205,48,17,8
+    LTEXT           "広角",-1,205,62,17,8
+    PUSHBUTTON      "1",IDC_CAMERA_PS1,12,88,12,12
+    PUSHBUTTON      "2",IDC_CAMERA_PS2,24,88,12,12
+    PUSHBUTTON      "3",IDC_CAMERA_PS3,36,88,12,12
+    PUSHBUTTON      "4",IDC_CAMERA_PS4,48,88,12,12
+    PUSHBUTTON      "5",IDC_CAMERA_PS5,60,88,12,12
+    PUSHBUTTON      "6",IDC_CAMERA_PS6,72,88,12,12
+    PUSHBUTTON      "7",IDC_CAMERA_PS7,84,88,12,12
+    PUSHBUTTON      "8",IDC_CAMERA_PS8,96,88,12,12
+    GROUPBOX        "ﾌﾟﾘｾｯﾄ",-1,4,77,144,40
+    PUSHBUTTON      "登録",IDC_CAMERA_PRESET,112,88,28,12
+    LTEXT           "",IDC_CAMERA_COMMENT,12,103,128,10,SS_SUNKEN
+    GROUPBOX        "ﾌｫｰｶｽ",-1,152,77,80,40,WS_GROUP
+    CONTROL         "ｵｰﾄ",IDC_CAMERA_AUTO,"Button",BS_AUTORADIOBUTTON,160,89,
+                    23,10
+    CONTROL         "ﾏﾆｭｱﾙ",IDC_CAMERA_MANUAL,"Button",BS_AUTORADIOBUTTON,
+                    160,101,31,10
+    CONTROL         "FAR",IDC_CAMERA_FAR,"Button",BS_OWNERDRAW | WS_TABSTOP,
+                    200,87,12,12
+    CONTROL         "NEAR",IDC_CAMERA_NEAR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,200,101,12,12
+    LTEXT           "遠",-1,216,89,9,8
+    LTEXT           "近",-1,216,103,9,8
+    LTEXT           "",IDC_CAMERA_STATUS,4,120,188,10,SS_SUNKEN
+    CONTROL         "ﾛｯｸ",IDC_CAMERA_LOCK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,201,120,28,10
+END
+
+IDD_CAMERA_OPTION DIALOG DISCARDABLE  0, 0, 187, 151
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "ｵﾌﾟｼｮﾝ設定"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,132,4,50,14
+    PUSHBUTTON      "ｷｬﾝｾﾙ",IDCANCEL,132,20,50,14
+    LTEXT           "ｼﾘｱﾙﾎﾟｰﾄ",IDC_STATIC,8,8,31,8
+    COMBOBOX        IDC_CAMERA_PORT,49,4,48,36,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "逆光補正",IDC_CAMERA_LIGHTADJUST,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,24,43,10
+    CONTROL         "ｵｰﾄﾎﾜｲﾄﾊﾞﾗﾝｽ",IDC_CAMERA_AUTOWHITE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,60,24,63,10
+    GROUPBOX        "ｶﾒﾗｽﾋﾟｰﾄﾞ",IDC_STATIC,4,38,176,52,WS_GROUP
+    LTEXT           "遅",IDC_STATIC,72,46,9,8
+    LTEXT           "速",IDC_STATIC,140,46,9,8
+    LTEXT           "ﾊﾟﾝ（左右）",IDC_STATIC,12,54,32,8
+    SCROLLBAR       IDC_CAMERA_PANSPEED,72,54,76,9
+    LTEXT           "500pps",IDC_CAMERA_PANPPS,152,54,22,8
+    LTEXT           "ﾁﾙﾄ（上下）",IDC_STATIC,12,66,34,8
+    SCROLLBAR       IDC_CAMERA_TILTSPEED,72,66,76,9
+    LTEXT           "500pps",IDC_CAMERA_TILTPPS,152,66,22,8
+    LTEXT           "ｽﾞｰﾑ",IDC_STATIC,12,78,16,8
+    CONTROL         "低速",IDC_CAMERA_ZOOMLOW,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,72,78,30,10
+    CONTROL         "高速",IDC_CAMERA_ZOOMHIGH,"Button",BS_AUTORADIOBUTTON,
+                    110,78,30,10
+    GROUPBOX        "ｼｬｯﾀｰｽﾋﾟｰﾄﾞ",IDC_STATIC,4,94,176,37,WS_GROUP
+    CONTROL         "ｵｰﾄ",IDC_CAMERA_SHUTTER_AUTO,"Button",
+                    BS_AUTORADIOBUTTON,16,106,29,10
+    CONTROL         "1/60  (60Hz地区用)",IDC_CAMERA_SHUTTER_60,"Button",
+                    BS_AUTORADIOBUTTON,60,106,74,10
+    CONTROL         "1/100 (50Hz地区用)",IDC_CAMERA_SHUTTER_100,"Button",
+                    BS_AUTORADIOBUTTON,60,118,75,10
+    CONTROL         "ﾜｲﾄﾞｺﾝﾊﾞｰﾀ使用",IDC_CAMERA_WIDECONVERTER,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,135,65,10
+END
+
+IDD_CAMERA_PRESET DIALOG DISCARDABLE  0, 0, 147, 73
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "ﾌﾟﾘｾｯﾄ登録／削除"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    DEFPUSHBUTTON   "登録",IDOK,89,4,50,14
+    PUSHBUTTON      "削除",IDC_DELETE,89,20,50,14
+    PUSHBUTTON      "ｷｬﾝｾﾙ",IDCANCEL,89,36,50,14
+    LTEXT           "ﾌﾟﾘｾｯﾄ番号",-1,7,10,35,8
+    LTEXT           "99",IDC_CAMERA_PRESETNO,51,9,18,10,SS_SUNKEN
+    LTEXT           "ﾊﾟﾝ角度",-1,7,26,25,8
+    LTEXT           "-99",IDC_CAMERA_PAN,51,25,18,10,SS_SUNKEN
+    LTEXT           "ﾁﾙﾄ角度",-1,7,42,27,8
+    LTEXT           "-99",IDC_CAMERA_TILT,51,41,18,10,SS_SUNKEN
+    LTEXT           "ｺﾒﾝﾄ",-1,7,58,15,8
+    EDITTEXT        IDC_CAMERA_COMMENT,49,56,92,12,ES_AUTOHSCROLL
+END
+
+IDD_CONxxxT DIALOG DISCARDABLE  0, 0, 183, 51
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "接続"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    LTEXT           "ﾎｽﾄ名",IDC_STATIC,7,12,20,8
+    COMBOBOX        IDC_HOSTNAME,32,10,87,90,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "ﾁｬﾈﾙNo. (0-99)",IDC_STATIC,7,31,47,8
+    EDITTEXT        IDC_CHANNEL_NO,59,29,13,12
+    DEFPUSHBUTTON   "OK",IDOK,126,6,50,14
+    PUSHBUTTON      "ｷｬﾝｾﾙ",IDCANCEL,126,23,50,14
+END
+
+IDD_LICENSE DIALOG DISCARDABLE  0, 0, 176, 43
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "ﾗｲｾﾝｽ登録"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    LTEXT           "登録番号",IDC_STATIC,4,16,33,8
+    EDITTEXT        IDC_REGISTNO,44,14,66,12,ES_PASSWORD
+    DEFPUSHBUTTON   "OK",IDOK,121,8,50,14
+    PUSHBUTTON      "ｷｬﾝｾﾙ",IDCANCEL,121,25,50,14
+END
+
+IDD_LOGFILE DIALOG DISCARDABLE  0, 0, 233, 67
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "ﾛｸﾞﾌｧｲﾙ"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    LTEXT           "ﾌｧｲﾙ名",IDC_STATIC,8,10,24,8
+    EDITTEXT        IDC_LOGFILE,38,8,129,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "参照...",IDC_REFERENCE,176,5,49,14
+    CONTROL         "上書き",IDC_REPLACE,"Button",BS_AUTORADIOBUTTON,38,28,
+                    35,10
+    CONTROL         "追加",IDC_APPEND,"Button",BS_AUTORADIOBUTTON,77,28,30,
+                    10
+    CONTROL         "常時ﾛｸﾞを取る",IDC_ALWAYSLOG,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,38,44,57,10
+    DEFPUSHBUTTON   "OK",IDOK,176,27,49,14
+    PUSHBUTTON      "ｷｬﾝｾﾙ",IDCANCEL,176,45,49,14
+END
+
+IDD_REMOTE DIALOG DISCARDABLE  0, 0, 195, 127
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "リモート管理"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    PUSHBUTTON      "PCVIDEO 再起動",IDC_REMOTE_RESTART,10,5,95,15
+    PUSHBUTTON      "PCVIDEO 終了",IDC_REMOTE_EXIT,10,20,95,15
+    PUSHBUTTON      "チャット開始／終了",IDC_REMOTE_CHAT,10,35,95,15
+    PUSHBUTTON      "ボイス開始／終了",IDC_REMOTE_VOICE,10,50,95,15
+    PUSHBUTTON      "音声送信",IDC_REMOTE_SVOICE,10,65,95,15
+    PUSHBUTTON      "コマンド実行",IDC_REMOTE_EXEC,10,85,60,15
+    EDITTEXT        IDC_REMOTE_COMMAND,75,87,108,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "ダウンロード",IDC_REMOTE_DOWNLOAD,10,105,60,15
+    EDITTEXT        IDC_REMOTE_DOWNLOAD_FILE,75,107,108,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "終了",IDCANCEL,120,5,60,15
+END
+
+IDD_SETHOST DIALOG DISCARDABLE  0, 0, 231, 129
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "接続ﾎｽﾄ設定"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    LISTBOX         IDC_HOSTLIST,4,4,168,72,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "名称",IDC_STATIC,8,82,15,8
+    EDITTEXT        IDC_NAME,44,80,128,12,ES_AUTOHSCROLL
+    LTEXT           "ﾎｽﾄ名",IDC_STATIC,8,98,20,8
+    EDITTEXT        IDC_HOSTNAME,44,96,80,12,ES_AUTOHSCROLL
+    LTEXT           "ﾁｬﾈﾙ番号",IDC_STATIC,8,114,31,8
+    EDITTEXT        IDC_CHANNELNO,44,112,12,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,180,4,48,14
+    PUSHBUTTON      "ｷｬﾝｾﾙ",IDCANCEL,180,21,48,14
+    PUSHBUTTON      "追加",IDC_APPEND,180,38,48,14
+    PUSHBUTTON      "変更",IDC_CHANGE,180,55,48,14
+    PUSHBUTTON      "削除",IDC_DELETE,180,72,48,14
+END
+
+IDD_SETTING DIALOGEX 0, 0, 339, 225
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "環境設定"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    GROUPBOX        "名前",IDC_STATIC,174,8,98,44
+    EDITTEXT        IDC_USERNAME,184,25,76,12,ES_AUTOHSCROLL
+    GROUPBOX        "送信ﾋﾞﾃﾞｵ設定",IDC_STATIC,4,8,163,139
+    LTEXT           "動画ｻｲｽﾞ",IDC_STATIC,12,22,30,8
+    COMBOBOX        IDC_MOVIESIZE,60,20,60,102,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "静止画ｻｲｽﾞ",IDC_STATIC,12,38,36,8
+    COMBOBOX        IDC_STILLSIZE,60,36,60,92,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "色数",IDC_STATIC,12,54,15,8
+    COMBOBOX        IDC_VIDEOCOLORS,60,52,76,71,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "ｶﾒﾗ種類",IDC_STATIC,12,70,26,8
+    COMBOBOX        IDC_CAMERA_TYPE,60,68,76,58,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "画像品質",IDC_STATIC,12,86,28,8
+    EDITTEXT        IDC_VIDEOQUALITY,60,84,25,12,0,WS_EX_RIGHT
+    CONTROL         "Spin1",IDC_VIDEOQUALITY_SPIN,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS,77,83,10,14
+    LTEXT           "(1-100)",IDC_STATIC,89,86,23,8
+    CONTROL         "ｶﾒﾗ切替",IDC_CAMERACHANGE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,124,85,39,10
+    LTEXT           "輪郭強調",IDC_STATIC,12,102,28,8
+    EDITTEXT        IDC_EDGEENHANCE,60,100,25,12,ES_AUTOHSCROLL,WS_EX_RIGHT
+    CONTROL         "Spin1",IDC_EDGEENHANCE_SPIN,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS,77,99,9,14
+    LTEXT           "(0-10, 0:強調なし)",IDC_STATIC,89,102,52,8
+    LTEXT           "送信速度制限",IDC_STATIC,12,118,42,8
+    EDITTEXT        IDC_MAXBPS,60,116,32,12,0,WS_EX_RIGHT
+    CONTROL         "Spin1",IDC_MAXBPS_SPIN,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS,85,114,9,14
+    LTEXT           "kbps",IDC_STATIC,96,118,17,8
+    CONTROL         "制限無し",IDC_MAXSPEED,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,120,117,42,10
+    CONTROL         "情報表示",IDC_SENDINFO,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,12,132,43,10
+    CONTROL         "完全ﾌﾚｰﾑ送信",IDC_FULLFRAME,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,60,132,61,10
+    GROUPBOX        "受信ﾋﾞﾃﾞｵ設定",IDC_STATIC,4,153,163,63
+    CONTROL         "ｳｨﾝﾄﾞｳｻｲｽﾞ可変",IDC_RESIZE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,12,167,66,10
+    CONTROL         "縦横比固定",IDC_FIXEDASPECT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,92,167,50,10
+    CONTROL         "ｳｨﾝﾄﾞｳｻｲｽﾞ固定",IDC_FIXEDSIZE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,12,183,66,10
+    COMBOBOX        IDC_RECVSIZE,88,183,60,56,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "情報表示",IDC_DISPINFO,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,12,199,43,10
+    GROUPBOX        "動作設定",IDC_STATIC,174,153,158,64
+    CONTROL         "ﾋﾞﾃﾞｵｷｬﾌﾟﾁｬを行う",IDC_VIDEO_CAPTURE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,186,169,70,10
+    CONTROL         "接続時にﾋﾞﾃﾞｵ表示を行う",IDC_RECEIVEVIDEO,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,186,183,89,10
+    CONTROL         "ﾘﾓｰﾄ設定を許可する",IDC_REMOTESETTING,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,186,197,77,10
+    DEFPUSHBUTTON   "OK",IDOK,282,8,50,14
+    PUSHBUTTON      "ｷｬﾝｾﾙ",IDCANCEL,282,24,50,14
+    PUSHBUTTON      "ﾗｲｾﾝｽ登録",IDC_LICENSE,282,44,50,14,NOT WS_VISIBLE
+    GROUPBOX        "ﾎﾞｲｽ設定",IDC_STATIC,174,63,158,84
+    LTEXT           "入力ﾃﾞﾊﾞｲｽ",IDC_STATIC,181,81,35,8
+    COMBOBOX        IDC_VOICE_INPUT_DEVICE,221,79,102,56,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "出力ﾃﾞﾊﾞｲｽ",IDC_STATIC,181,99,35,8
+    COMBOBOX        IDC_VOICE_OUTPUT_DEVICE,221,97,102,55,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "ﾊﾞｯﾌｧ数",IDC_STATIC,181,118,25,8
+    EDITTEXT        IDC_VOICE_BUFFER_NUM,221,116,23,12,ES_AUTOHSCROLL,
+                    WS_EX_RIGHT
+    CONTROL         "Spin1",IDC_VOICE_BUFFER_NUM_SPIN,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS,239,115,9,14
+    LTEXT           "音声が途切れがちな場合は数値を大きくしてください。",
+                    IDC_STATIC,248,116,81,20
+END
+
+IDD_VERSION DIALOG DISCARDABLE  0, 0, 178, 79
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "ﾊﾞｰｼﾞｮﾝ情報"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    ICON            AFX_IDI_STD_FRAME,IDC_STATIC,8,8,20,20
+    CTEXT           "ﾏﾙﾁﾒﾃﾞｨｱ ｺﾐｭﾆｹｰｼｮﾝ ｼｽﾃﾑ  PC-VIDEO",IDC_STATIC,34,12,136,
+                    8
+    CTEXT           "Copyright (C) xxxxxxxxx Electronic Inc.",IDC_STATIC,25,
+                    40,136,8
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME,4,52,168,1
+    CTEXT           "Version 2.0.1.4",IDC_VERSION,64,24,44,8
+    PUSHBUTTON      "OK",IDOK,63,60,50,14
+END
+
+IDD_VOICE DIALOG DISCARDABLE  0, 0, 266, 191
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "ﾎﾞｲｽ"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    PUSHBUTTON      "送信",IDC_SEND,216,7,43,34
+    CONTROL         "送受信切替\r\n （受信中）",IDC_SWITCH,"Button",
+                    BS_AUTOCHECKBOX | BS_PUSHLIKE | BS_MULTILINE | 
+                    WS_TABSTOP,215,7,44,34
+    PUSHBUTTON      "呼出し...",ID_VOICECALL,216,47,43,17
+    PUSHBUTTON      "終了(&X)",IDCANCEL,216,92,43,17
+    GROUPBOX        "会話ﾓｰﾄﾞ",IDC_STATIC,165,7,44,101,WS_GROUP
+    CONTROL         "手動",IDC_MANUAL_MODE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,172,26,30,10
+    CONTROL         "自動",IDC_AUTO_MODE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,172,46,30,10
+    CONTROL         "固定",IDC_FIXED_MODE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,172,66,30,10
+    CONTROL         "全二重",IDC_FULL_DUPLEX_MODE,"Button",
+                    BS_AUTORADIOBUTTON,172,86,33,10
+    GROUPBOX        "送信",IDC_STATIC,7,7,152,101,WS_GROUP
+    ICON            IDI_MICROPHONE_OFF,IDC_MIC_ICON,14,21,20,20
+    LTEXT           "入力装置",IDC_STATIC,42,24,28,8
+    COMBOBOX        IDC_INPUT_DEVICE,76,22,68,107,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "入力ﾚﾍﾞﾙ",IDC_STATIC,41,45,29,8
+    CONTROL         "",IDC_INPUT_LEVEL,"Static",SS_GRAYRECT | SS_SUNKEN,76,
+                    43,74,12
+    LTEXT           "自動送信ﾚﾍﾞﾙ",IDC_AUTO_SEND_LEVEL2,27,64,43,8
+    CONTROL         "自動ﾚﾍﾞﾙ調整",IDC_AUTO_LEVEL_CONTROL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,76,63,58,10
+    CONTROL         "Slider3",IDC_AUTO_SEND_LEVEL,"msctls_trackbar32",
+                    TBS_TOP | TBS_NOTICKS | WS_TABSTOP,70,59,86,17
+    LTEXT           "入力ﾎﾞﾘｭｰﾑ",IDC_STATIC,33,86,37,8
+    CONTROL         "Slider1",IDC_INPUT_VOLUME,"msctls_trackbar32",
+                    TBS_AUTOTICKS | TBS_BOTH | WS_TABSTOP,73,77,80,25
+    GROUPBOX        "受信",IDC_STATIC,7,113,252,70,WS_GROUP
+    ICON            IDI_SPEAKER_OFF,IDC_SPEAKER_ICON,14,129,20,20
+    LTEXT           "出力ﾚﾍﾞﾙ",IDC_STATIC,41,135,29,8
+    CONTROL         "",IDC_OUTPUT_LEVEL,"Static",SS_GRAYRECT | SS_SUNKEN,76,
+                    133,74,12
+    LTEXT           "出力ﾎﾞﾘｭｰﾑ",IDC_STATIC,33,161,37,8
+    CONTROL         "Slider1",IDC_OUTPUT_VOLUME,"msctls_trackbar32",
+                    TBS_AUTOTICKS | TBS_BOTH | WS_TABSTOP,73,151,80,25
+    LISTBOX         IDC_SENDER_LIST,159,127,92,48,LBS_NOINTEGRALHEIGHT | 
+                    LBS_NOSEL | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_LOGIN DIALOG DISCARDABLE  0, 0, 227, 109
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "接続"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    LTEXT           "PC-VIDEO ｻｰﾊﾞに接続するためのﾕｰｻﾞIDと\r\nﾊﾟｽﾜｰﾄﾞを入力してください。",
+                    IDC_STATIC,26,10,135,18
+    LTEXT           "ｻｰﾊﾞ名",IDC_STATIC,15,39,23,8
+    EDITTEXT        IDC_SERVER_NAME,55,37,102,12,ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    LTEXT           "ﾕｰｻﾞｰID(&U)",IDC_STATIC,15,56,36,8
+    EDITTEXT        IDC_USERID,55,54,102,12,ES_AUTOHSCROLL
+    LTEXT           "ﾊﾟｽﾜｰﾄﾞ(&P)",IDC_STATIC,15,73,34,8
+    EDITTEXT        IDC_PASSWORD,55,71,102,12,ES_PASSWORD | ES_AUTOHSCROLL
+    CONTROL         "ﾊﾟｽﾜｰﾄﾞを保存する(&S)",IDC_SAVE_PASSWORD,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,55,92,81,10
+    DEFPUSHBUTTON   "OK",IDOK,170,8,50,14
+    PUSHBUTTON      "ｷｬﾝｾﾙ",IDCANCEL,170,25,50,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_CAMERA, DIALOG
+    BEGIN
+        RIGHTMARGIN, 232
+        BOTTOMMARGIN, 131
+    END
+
+    IDD_LOGFILE, DIALOG
+    BEGIN
+        RIGHTMARGIN, 225
+        BOTTOMMARGIN, 59
+    END
+
+    IDD_SETTING, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 221
+    END
+
+    IDD_VOICE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 259
+        VERTGUIDE, 14
+        VERTGUIDE, 73
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 184
+    END
+
+    IDD_LOGIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 220
+        TOPMARGIN, 8
+        BOTTOMMARGIN, 102
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    IDR_MAINFRAME           "PcVideo\n\nPcVide\n\n\nPcVideo.Document\nPcVide Document"
+END
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "PcVideo"
+    AFX_IDS_IDLEMESSAGE     "ﾚﾃﾞｨ"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "上書"
+    ID_INDICATOR_REC        "記録"
+    ID_INDICATOR_KANA       "ｶﾅ"
+    IDS_INDICATOR_FPS       " 0fps"
+    IDS_INDICATOR_BPF       "   0bpf"
+    IDS_INDICATOR_BPS       "  0.0kbps"
+    IDS_INDICATOR_COMPRATE  " 0.0%"
+    IDS_INDICATOR_VIDEO     "ﾋﾞﾃﾞｵ"
+    IDS_INDICATOR_CHAT      "ﾁｬｯﾄ"
+    IDS_INDICATOR_VOICE     "ﾎﾞｲｽ"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_NEW             "新規にﾌｧｲﾙを作成\n新規ﾌｧｲﾙ"
+    ID_FILE_OPEN            "既存のﾌｧｲﾙを開く\n開く"
+    ID_FILE_CLOSE           "作業中のﾌｧｲﾙを閉じる\n閉じる"
+    ID_FILE_SAVE            "ﾁｬｯﾄ内容を保存\n保存"
+    ID_FILE_SAVE_AS         "作業中のﾌｧｲﾙを新しい名前で保存\n名前をつけて保存"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_APP_ABOUT            "ﾌﾟﾛｸﾞﾗﾑの情報、ﾊﾞｰｼﾞｮﾝそして著作権を表示\nﾊﾞｰｼﾞｮﾝ情報"
+    ID_APP_EXIT             "PC-VIDEO を終了\n終了"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_MRU_FILE1       "指定のﾌｧｲﾙを開く"
+    ID_FILE_MRU_FILE2       "指定のﾌｧｲﾙを開く"
+    ID_FILE_MRU_FILE3       "指定のﾌｧｲﾙを開く"
+    ID_FILE_MRU_FILE4       "指定のﾌｧｲﾙを開く"
+    ID_FILE_MRU_FILE5       "指定のﾌｧｲﾙを開く"
+    ID_FILE_MRU_FILE6       "指定のﾌｧｲﾙを開く"
+    ID_FILE_MRU_FILE7       "指定のﾌｧｲﾙを開く"
+    ID_FILE_MRU_FILE8       "指定のﾌｧｲﾙを開く"
+    ID_FILE_MRU_FILE9       "指定のﾌｧｲﾙを開く"
+    ID_FILE_MRU_FILE10      "指定のﾌｧｲﾙを開く"
+    ID_FILE_MRU_FILE11      "指定のﾌｧｲﾙを開く"
+    ID_FILE_MRU_FILE12      "指定のﾌｧｲﾙを開く"
+    ID_FILE_MRU_FILE13      "指定のﾌｧｲﾙを開く"
+    ID_FILE_MRU_FILE14      "指定のﾌｧｲﾙを開く"
+    ID_FILE_MRU_FILE15      "指定のﾌｧｲﾙを開く"
+    ID_FILE_MRU_FILE16      "指定のﾌｧｲﾙを開く"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_NEXT_PANE            "次のｳｨﾝﾄﾞｳに切り替える\n次のﾍﾟｲﾝ"
+    ID_PREV_PANE            "前のｳｨﾝﾄﾞｳに切り替える\n前のﾍﾟｲﾝ"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_WINDOW_SPLIT         "作業中のｳｨﾝﾄﾞｳを分割\n分割"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_EDIT_CLEAR           "選択範囲を消去\n消去"
+    ID_EDIT_CLEAR_ALL       "すべて消去\nすべて消去"
+    ID_EDIT_COPY            "選択範囲をｺﾋﾟｰしてｸﾘｯﾌﾟﾎﾞｰﾄﾞに保存\nｺﾋﾟｰ"
+    ID_EDIT_CUT             "選択範囲を切り取ってｸﾘｯﾌﾟﾎﾞｰﾄﾞに保存\n切り取り"
+    ID_EDIT_FIND            "指定した文字列の検索\n検索"
+    ID_EDIT_PASTE           "ｸﾘｯﾌﾟﾎﾞｰﾄﾞの内容を貼り付け\n貼り付け"
+    ID_EDIT_REPEAT          "直前に行った動作を繰り返す\n繰り返し"
+    ID_EDIT_REPLACE         "指定した文字列を他の文字列で置換\n置換"
+    ID_EDIT_SELECT_ALL      "ﾌｧｲﾙ内のすべてを選択\nすべて選択"
+    ID_EDIT_UNDO            "直前に行った動作を元に戻す\n元に戻す"
+    ID_EDIT_REDO            "直前に行った動作を繰り返す\n繰り返す"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "ﾂｰﾙ ﾊﾞｰの 表示/非表示\nﾂｰﾙ ﾊﾞｰの表示切り替え"
+    ID_VIEW_STATUS_BAR      "ｽﾃｰﾀｽ ﾊﾞｰの 表示/非表示\nｽﾃｰﾀｽ ﾊﾞｰの表示切り替え"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "ｳｨﾝﾄﾞｳのｻｲｽﾞを変更"
+    AFX_IDS_SCMOVE          "ｳｨﾝﾄﾞｳの位置を変更"
+    AFX_IDS_SCMINIMIZE      "ｳｨﾝﾄﾞｳを最小化する"
+    AFX_IDS_SCMAXIMIZE      "ｳｨﾝﾄﾞｳを最大化する"
+    AFX_IDS_SCNEXTWINDOW    "次のｳｨﾝﾄﾞｳに切り替える"
+    AFX_IDS_SCPREVWINDOW    "前のｳｨﾝﾄﾞｳに切り替える"
+    AFX_IDS_SCCLOSE         "作業中のｳｨﾝﾄﾞｳを閉じ、変更したﾌｧｲﾙの保存を指示"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "ｳｨﾝﾄﾞｳを通常のｻｲｽﾞに戻す"
+    AFX_IDS_SCTASKLIST      "ｱﾌﾟﾘｹｰｼｮﾝの切り替え"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDM_EXIT                "PC-VIDEO の終了"
+    IDM_CONxxxT             "接続するﾎｽﾄを入力"
+    IDM_DISCONxxxT          "接続を切る"
+    IDM_SETTING             "PC-VIDEO の環境の設定"
+    IDM_TILE                "ｳｨﾝﾄﾞｳの整列"
+    IDM_FRONT               "ｳｨﾝﾄﾞｳを常に最上位に表示"
+    IDM_CHAT                "ｷｰﾎﾞｰﾄﾞによる会話"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDM_FONT                "ﾌｫﾝﾄの設定"
+    IDM_LOGFILE             "ﾛｸﾞﾌｧｲﾙの設定\nﾛｸﾞ設定"
+    IDM_IPADDRESS           "一覧にＩＰｱﾄﾞﾚｽを表示"
+    IDM_VIDEO_SOURCE        "送信画像の画質調整"
+    IDM_SETHOST             "接続相手の登録"
+    IDM_CHATCALL            "相手をﾁｬｯﾄに呼び出す\n呼び出し"
+    IDM_VOICE               "音声の送受信"
+    IDM_REMOTE_SETTING      "接続相手の環境設定"
+    IDM_VERSION             "PC-VIDEO のﾊﾞｰｼﾞｮﾝ表示"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDM_CONxxxT_DIRECT      "最後に接続した相手に接続"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CAMERA_LOCKED       "%s がﾛｯｸ中です"
+    IDS_CAMERA_DENY         "ｺﾝﾄﾛｰﾙは拒否されました"
+    IDS_CAMERA_NOCONTROL    "ｺﾝﾄﾛｰﾙ不能です"
+    IDS_CAMERA_INIT         "初期化中です"
+    IDS_CAMERA_BUSY         "動作中です"
+    IDS_CAMERA_READY        "ｺﾝﾄﾛｰﾙ可能です"
+    IDS_CAMERA_FOCUS        "ﾌｫｰｶｽ調整中です"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CAMERA_NOSUPPORT    "ｶﾒﾗｺﾝﾄﾛｰﾙがｻﾎﾟｰﾄされていません"
+    IDS_CAMERA_NORESPONSE   "応答がありません"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_STRING3000          "選択したホストに接続"
+    IDS_STRING3001          "選択したホストに接続"
+    IDS_STRING3002          "選択したホストに接続"
+    IDS_STRING3003          "選択したホストに接続"
+    IDS_STRING3004          "選択したホストに接続"
+    IDS_STRING3005          "選択したホストに接続"
+    IDS_STRING3006          "選択したホストに接続"
+    IDS_STRING3007          "選択したホストに接続"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_STRING3008          "選択したホストに接続"
+    IDS_STRING3009          "選択したホストに接続"
+    IDS_STRING3010          "選択したホストに接続"
+    IDS_STRING3011          "選択したホストに接続"
+    IDS_STRING3012          "選択したホストに接続"
+    IDS_STRING3013          "選択したホストに接続"
+    IDS_STRING3014          "選択したホストに接続"
+    IDS_STRING3015          "選択したホストに接続"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDM_ORDER_CONxxxT       "接続順に表示"
+    IDM_ORDER_NAME          "名前順に表示"
+    IDM_ORDER_IPADDRESS     "IPｱﾄﾞﾚｽ順に表示"
+    IDM_SEND_CAMERA         "自分のｶﾒﾗのｺﾝﾄﾛｰﾙ"
+    IDM_RECV_CAMERA         "相手のｶﾒﾗのｺﾝﾄﾛｰﾙ"
+    IDM_SEND_DISP           "送信画像を表示する"
+    IDM_RECV_DISP           "選択された相手の画像を表示"
+    IDM_SEND_STILL          "送信画像の一時停止"
+    IDM_RECV_STILL          "受信画像を静止させる"
+    ID_ON_HELP              "ﾍﾙﾌﾟの目次を表示"
+    IDM_HELP_KEY            "ｷｰﾜｰﾄﾞで検索しﾍﾙﾌﾟを表示"
+    IDM_HELP_CONTENTS       "ﾍﾙﾌﾟの目次を表示"
+    IDM_VIDEO_FORMAT        "ｷｬﾌﾟﾁｬ形式の設定"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDM_ONLINE_UPDATE       "ﾈｯﾄﾜｰｸ経由でｱﾌﾟﾘｹｰｼｮﾝをｱｯﾌﾟﾃﾞｰﾄします。"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CALLING             "<%s> さんを呼び出し中です"
+    IDS_CHAT_CALL           "<%s> さんよりチャットの呼び出しがありました"
+    IDS_VOICE_CALL          "<%s> さんよりボイスの呼び出しがありました"
+    IDS_SEL_CALL            "メインウィンドウで呼び出したい相手を選択してください。"
+    IDS_RESPONSE            "<%s> さんの応答がありました"
+    IDS_NO_RESPONSE         "<%s> さんの応答がありません"
+    IDS_NO_CHAT             "端末はチャット機能がありません"
+    IDS_NO_VOICE            "端末はボイス機能がありません"
+    IDS_ON_CHAT             "端末のチャットは起動中です"
+    IDS_ON_VOICE            "端末のボイスは起動中です"
+    IDS_INPUT_COMMENT       "コメントを入力して下さい"
+    IDS_IMAGE_SIZE          "設定された画像サイズまたは色数はこのキャプチャデバイスではサポートされていません。\nデフォルトのサイズで表示します。"
+    IDS_NO_HOSTNAME         "ホスト名が登録されていません。"
+    IDS_LISENCE_LIMIT       "同時使用数が制限を越えました。\r\nプログラムを終了します。"
+    IDS_NO_YMUPDATE         "YMUPDATE.DLL が見つかりません。"
+    IDS_NO_ONLINEUPDATE     "オンラインアップデートが実行できません。"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CONxxxT             "接続"
+    IDS_DISCONxxxT          "切断"
+    IDS_VIDEO               "ﾋﾞﾃﾞｵ"
+    IDS_CHAT                "ﾁｬｯﾄ"
+    IDS_VOICE               "ﾎﾞｲｽ"
+    IDS_ALIGN               "整列"
+    IDS_MENU_CONxxxT        "接続(&C)"
+    IDS_MENU_DISCONxxxT     "&D 切断"
+    IDS_OTHER_HOST          "&0 その他のホスト..."
+    IDS_SETTING             "環境設定"
+    IDS_REMOTE_SETTING      "リモート設定 - %s"
+    IDS_NO_REMOTE           "%s はリモート設定を許可していません。"
+    IDS_NO_PCVIDEO          "PCVIDEO.EXE がありません。"
+    IDS_RECV_MESSAGE        "%s からのメッセージ：\r\n\r\n%s"
+    IDS_END_PCVIDEO         "PCVIDEO を終了しました。"
+    IDS_NO_PCVSTART         "PCVSTART.EXE がありません。"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PCVIDEO_RESTART     "PCVIDEO を再起動しました。"
+    IDS_NO_FILE             "指定されたファイルがありません。"
+    IDS_DOWNLOAD            "ダウンロードを開始します。"
+    IDS_COLOR_MONO          "256階調モノクロ"
+    IDS_COLOR_HIGH          "32,768色カラー"
+    IDS_COLOR_TRUE          "1,677万色カラー"
+    IDS_OTHER               "その他"
+    IDS_CANNON_VCC1         "Canon VC-C1"
+    IDS_ERR_WINSOCK         "WINSOCK.DLL の初期化に失敗しました。"
+    IDS_ERR_LOCALHOST       "ローカルホスト名が取得できません。"
+    IDS_ERR_LOCAL_IP        "ローカルＩＰアドレスが取得できません。"
+    IDS_ERR_UDP             "ソケットが作成できません。UDP=%d"
+    IDS_ERR_BIND            "ソケットをバインドできません。"
+    IDS_ERR_TCP             "ソケットが作成できません。TCP=%d"
+    IDS_ERR_LISTEN          "ソケットを受信待ち状態にできません。"
+    IDS_DENY_CONxxxT        "%s への接続が拒否されました。\r\n\r\n原因：%s"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_UNDEFINED_ERR       "未定義のエラー"
+    IDS_CAMERA_CONTROL      "カメラコントロール"
+    IDS_CAMERA_CONTROL2     "カメラコントロール - %s"
+    IDS_UNDEFINED_MSG       "未定義メッセージ"
+    IDS_CHAT_FILE           "ﾃｷｽﾄﾌｧｲﾙ(*.txt)|*.txt;全てのﾌｧｲﾙ(*.*)|*.*||"
+    IDS_SAVE_CHAT           "チャットの保存"
+    IDS_REF_LOGFILE         "ﾛｸﾞﾌｧｲﾙの参照"
+    IDS_STILL_IMAGE         "%s（静止画）"
+    IDS_REG_LIMIT           "登録は１５個までです。"
+    IDS_SENDING             "送信中"
+    IDS_SEND                "送信"
+    IDS_SWITCH_SEND         "送受信切替\r\n （送信中）"
+    IDS_SWITCH_RECV         "送受信切替\r\n （受信中）"
+    IDS_ONLINE_UPDATE       "PCVIDEOJ"
+END
+
+#endif    // 日本語 resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// 英語 (ｱﾒﾘｶ) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_CHAT MENU DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&Save",                       ID_FILE_SAVE
+        MENUITEM "&Log File...",                IDM_LOGFILE
+        MENUITEM "&Font...",                    IDM_FONT
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       IDM_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "Cu&t\tCtrl+X",                ID_EDIT_CUT
+        MENUITEM "&Copy\tCtrl+C",               ID_EDIT_COPY
+        MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
+    END
+    MENUITEM "&Call",                       IDM_CHATCALL
+END
+
+IDR_MAINFRAME MENU DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "Environment &setting...",     IDM_SETTING
+        MENUITEM "Conxxxtion &host setting...", IDM_SETHOST
+        MENUITEM SEPARATOR
+        MENUITEM "&Remote setting...",          IDM_REMOTE_SETTING
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "&Conxxxt"
+    BEGIN
+        MENUITEM SEPARATOR
+        MENUITEM "&0 Other host...",            IDM_CONxxxT
+    END
+    POPUP "&Image"
+    BEGIN
+        MENUITEM "Show &transmitting image",    IDM_SEND_DISP
+        MENUITEM "Show &receiving image",       IDM_RECV_DISP
+        MENUITEM SEPARATOR
+        MENUITEM "Still the tra&nsmitting image", IDM_SEND_STILL
+        MENUITEM "Still the re&ceiving image",  IDM_RECV_STILL
+        MENUITEM SEPARATOR
+        MENUITEM "Control trans&mitting camera...", IDM_SEND_CAMERA
+        MENUITEM "Control rec&eiving camera...", IDM_RECV_CAMERA
+        MENUITEM SEPARATOR
+        MENUITEM "&Vide source...",             IDM_VIDEO_SOURCE
+    END
+    POPUP "&Window"
+    BEGIN
+        MENUITEM "&Chat...",                    IDM_CHAT
+        MENUITEM "&Voice...",                   IDM_VOICE
+        MENUITEM SEPARATOR
+        MENUITEM "Window &arrangement",         IDM_TILE
+        MENUITEM "Always &top",                 IDM_FRONT
+        MENUITEM SEPARATOR
+        POPUP "List view order"
+        BEGIN
+            MENUITEM "Conxxxtion",                  IDM_ORDER_CONxxxT
+            MENUITEM "Name",                        IDM_ORDER_NAME
+            MENUITEM "IP address",                  IDM_ORDER_IPADDRESS
+        END
+        MENUITEM "Show &IP address",            IDM_IPADDRESS
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&Contents...",                IDM_HELP_CONTENTS
+        MENUITEM "&Search by keywords...",      IDM_HELP_KEY
+        MENUITEM "&How to use Help...",         ID_HELP_USING
+        MENUITEM SEPARATOR
+        MENUITEM "&Version information...",     IDM_VERSION
+        MENUITEM SEPARATOR
+        MENUITEM "Online &update...",           IDM_ONLINE_UPDATE
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ANSWER DIALOG DISCARDABLE  0, 0, 185, 84
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Yes",IDOK,49,62,34,14
+    PUSHBUTTON      "No",IDCANCEL,102,62,34,14
+    CTEXT           "123456789012345678",IDC_ANSMES,41,12,137,27
+    CTEXT           "Accept?",IDC_ANSMES3,32,45,121,8
+    ICON            IDI_ICON4,IDC_STATIC,11,21,20,20
+END
+
+IDD_CALL DIALOG DISCARDABLE  0, 0, 185, 68
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "????"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Cancel",IDCANCEL,77,50,32,14
+    CTEXT           "123456789012345678",IDC_CALLMES,32,14,145,26
+    ICON            IDI_ICON4,IDC_STATIC,6,16,20,20
+END
+
+IDD_CAMERA DIALOG DISCARDABLE  0, 0, 218, 135
+STYLE WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Camera control"
+FONT 12, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "E&xit",IDOK,166,4,46,14
+    PUSHBUTTON      "Option...",IDC_CAMERA_OPTION,166,21,46,12
+    GROUPBOX        "Camera direction",-1,4,4,156,72
+    CONTROL         "HOME",IDC_CAMERA_HOME,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,128,27,12,12
+    CONTROL         "UP",IDC_CAMERA_UP,"Button",BS_OWNERDRAW | WS_TABSTOP,
+                    128,13,12,12
+    CONTROL         "RIGHT",IDC_CAMERA_RIGHT,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,142,27,12,12
+    CONTROL         "DOWN",IDC_CAMERA_DOWN,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,128,41,12,12
+    CONTROL         "LEFT",IDC_CAMERA_LEFT,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,114,27,12,12
+    LTEXT           "Pan :",-1,118,56,21,8
+    LTEXT           "Tilt:",-1,118,64,21,8
+    LTEXT           " --?",IDC_CAMERA_PAN,138,56,17,8
+    LTEXT           " --?",IDC_CAMERA_TILT,138,64,17,8
+    GROUPBOX        "Zoom",-1,164,36,50,40
+    CONTROL         "TELE",IDC_CAMERA_TELE,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,171,46,16,12
+    CONTROL         "WIDE",IDC_CAMERA_WIDE,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,171,60,16,12
+    LTEXT           "Telephoto",-1,189,48,17,8
+    LTEXT           "Wide",-1,189,62,17,8
+    PUSHBUTTON      "1",IDC_CAMERA_PS1,12,88,10,12
+    PUSHBUTTON      "2",IDC_CAMERA_PS2,22,88,10,12
+    PUSHBUTTON      "3",IDC_CAMERA_PS3,32,88,10,12
+    PUSHBUTTON      "4",IDC_CAMERA_PS4,42,88,10,12
+    PUSHBUTTON      "5",IDC_CAMERA_PS5,52,88,10,12
+    PUSHBUTTON      "6",IDC_CAMERA_PS6,62,88,10,12
+    PUSHBUTTON      "7",IDC_CAMERA_PS7,72,88,10,12
+    PUSHBUTTON      "8",IDC_CAMERA_PS8,82,88,10,12
+    GROUPBOX        "Preset",-1,4,77,133,40
+    PUSHBUTTON      "Register",IDC_CAMERA_PRESET,100,88,30,12
+    LTEXT           "",IDC_CAMERA_COMMENT,12,103,118,10,SS_SUNKEN
+    GROUPBOX        "Focus",-1,142,77,72,40,WS_GROUP
+    CONTROL         "Auto",IDC_CAMERA_AUTO,"Button",BS_AUTORADIOBUTTON,148,
+                    89,26,10
+    CONTROL         "Manual",IDC_CAMERA_MANUAL,"Button",BS_AUTORADIOBUTTON,
+                    148,101,33,10
+    CONTROL         "FAR",IDC_CAMERA_FAR,"Button",BS_OWNERDRAW | WS_TABSTOP,
+                    182,87,12,12
+    CONTROL         "NEAR",IDC_CAMERA_NEAR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,182,101,12,12
+    LTEXT           "Far",-1,196,89,11,8
+    LTEXT           "Near",-1,196,103,15,8
+    LTEXT           "",IDC_CAMERA_STATUS,4,120,180,10,SS_SUNKEN
+    CONTROL         "Lock",IDC_CAMERA_LOCK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,187,120,28,10
+END
+
+IDD_CAMERA_OPTION DIALOG DISCARDABLE  0, 0, 187, 166
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Option"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,132,4,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,132,20,50,14
+    LTEXT           "Serial port",IDC_STATIC,8,8,33,8
+    COMBOBOX        IDC_CAMERA_PORT,49,4,48,36,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "Backlight compensation",IDC_CAMERA_LIGHTADJUST,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,24,89,10
+    CONTROL         "Auto white balance",IDC_CAMERA_AUTOWHITE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,38,75,10
+    GROUPBOX        "Camera speed",IDC_STATIC,4,52,176,52,WS_GROUP
+    LTEXT           "Slow",IDC_STATIC,72,60,16,8
+    LTEXT           "Fast",IDC_STATIC,140,60,14,8
+    LTEXT           "Pan (left/right)",IDC_STATIC,12,68,47,8
+    SCROLLBAR       IDC_CAMERA_PANSPEED,72,68,76,9
+    LTEXT           "500pps",IDC_CAMERA_PANPPS,152,68,23,8
+    LTEXT           "Tilt (up/down)",IDC_STATIC,12,80,44,8
+    SCROLLBAR       IDC_CAMERA_TILTSPEED,72,80,76,9
+    LTEXT           "500pps",IDC_CAMERA_TILTPPS,152,80,23,8
+    LTEXT           "Zoom",IDC_STATIC,12,92,18,8
+    CONTROL         "Slow",IDC_CAMERA_ZOOMLOW,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,72,92,31,10
+    CONTROL         "Fast",IDC_CAMERA_ZOOMHIGH,"Button",BS_AUTORADIOBUTTON,
+                    110,92,29,10
+    GROUPBOX        "Shutter speed",IDC_STATIC,4,108,176,37,WS_GROUP
+    CONTROL         "Auto",IDC_CAMERA_SHUTTER_AUTO,"Button",
+                    BS_AUTORADIOBUTTON,16,120,31,10
+    CONTROL         "1/60 (60Hz region)",IDC_CAMERA_SHUTTER_60,"Button",
+                    BS_AUTORADIOBUTTON,60,120,75,10
+    CONTROL         "1/100 (50Hz region)",IDC_CAMERA_SHUTTER_100,"Button",
+                    BS_AUTORADIOBUTTON,60,132,79,10
+    CONTROL         "Use wide converter",IDC_CAMERA_WIDECONVERTER,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,149,77,10
+END
+
+IDD_CONxxxT DIALOG DISCARDABLE  0, 0, 197, 51
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Conxxxtion"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Host name",IDC_STATIC,7,12,34,8
+    COMBOBOX        IDC_HOSTNAME,45,10,87,90,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "Channel No. (0-99)",IDC_STATIC,7,31,60,8
+    EDITTEXT        IDC_CHANNEL_NO,76,29,13,12
+    DEFPUSHBUTTON   "OK",IDOK,139,6,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,139,23,50,14
+END
+
+IDD_LICENSE DIALOG DISCARDABLE  0, 0, 188, 43
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "License"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Registration No.",IDC_STATIC,4,16,50,8
+    EDITTEXT        IDC_REGISTNO,56,14,66,12,ES_PASSWORD
+    DEFPUSHBUTTON   "OK",IDOK,133,8,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,133,25,50,14
+END
+
+IDD_LOGFILE DIALOG DISCARDABLE  0, 0, 233, 67
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Log file"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "File name",IDC_STATIC,7,10,30,8
+    EDITTEXT        IDC_LOGFILE,38,8,129,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse...",IDC_REFERENCE,176,5,49,14
+    CONTROL         "Overwrite",IDC_REPLACE,"Button",BS_AUTORADIOBUTTON,38,
+                    28,47,10
+    CONTROL         "Add",IDC_APPEND,"Button",BS_AUTORADIOBUTTON,87,28,27,10
+    CONTROL         "Take a log file always",IDC_ALWAYSLOG,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,38,44,79,10
+    DEFPUSHBUTTON   "OK",IDOK,176,27,49,14
+    PUSHBUTTON      "Cancel",IDCANCEL,176,45,49,14
+END
+
+IDD_LOGIN DIALOG DISCARDABLE  0, 0, 227, 109
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Conxxxtion"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Enter user ID and password to conxxxt to the PC-VIDEO server",
+                    IDC_STATIC,23,10,135,18
+    LTEXT           "Server name",IDC_STATIC,12,39,41,8
+    EDITTEXT        IDC_SERVER_NAME,56,37,102,12,ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    LTEXT           "User ID",IDC_STATIC,12,56,24,8
+    EDITTEXT        IDC_USERID,56,54,102,12,ES_AUTOHSCROLL
+    LTEXT           "Password",IDC_STATIC,12,73,30,8
+    EDITTEXT        IDC_PASSWORD,56,71,102,12,ES_PASSWORD | ES_AUTOHSCROLL
+    CONTROL         "&Save password",IDC_SAVE_PASSWORD,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,56,92,61,10
+    DEFPUSHBUTTON   "OK",IDOK,170,8,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,170,25,50,14
+END
+
+IDD_REMOTE DIALOG DISCARDABLE  0, 0, 195, 127
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Remote"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Restart PCVIDE",IDC_REMOTE_RESTART,10,5,95,15
+    PUSHBUTTON      "Close PCVIDEO",IDC_REMOTE_EXIT,10,20,95,15
+    PUSHBUTTON      "Chat",IDC_REMOTE_CHAT,10,35,95,15
+    PUSHBUTTON      "Voice",IDC_REMOTE_VOICE,10,50,95,15
+    PUSHBUTTON      "Send voice",IDC_REMOTE_SVOICE,10,65,95,15
+    PUSHBUTTON      "Execute cmd",IDC_REMOTE_EXEC,10,85,60,15
+    EDITTEXT        IDC_REMOTE_COMMAND,75,87,108,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Download",IDC_REMOTE_DOWNLOAD,10,105,60,15
+    EDITTEXT        IDC_REMOTE_DOWNLOAD_FILE,75,107,108,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "E&xit",IDCANCEL,120,5,60,15
+END
+
+IDD_SETHOST DIALOG DISCARDABLE  0, 0, 231, 129
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Conxxxtion host setting"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LISTBOX         IDC_HOSTLIST,4,4,168,72,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Name",IDC_STATIC,8,82,18,8
+    EDITTEXT        IDC_NAME,48,80,124,12,ES_AUTOHSCROLL
+    LTEXT           "Host name",IDC_STATIC,8,98,34,8
+    EDITTEXT        IDC_HOSTNAME,48,96,80,12,ES_AUTOHSCROLL
+    LTEXT           "Channel No.",IDC_STATIC,8,114,38,8
+    EDITTEXT        IDC_CHANNELNO,48,112,12,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,180,4,48,14
+    PUSHBUTTON      "Cancel",IDCANCEL,180,21,48,14
+    PUSHBUTTON      "&Add",IDC_APPEND,180,38,48,14
+    PUSHBUTTON      "&Change",IDC_CHANGE,180,55,48,14
+    PUSHBUTTON      "&Delete",IDC_DELETE,180,72,48,14
+END
+
+IDD_SETTING DIALOGEX 0, 0, 361, 226
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Setting environment"
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Name",IDC_STATIC,193,8,98,44
+    EDITTEXT        IDC_USERNAME,203,25,76,12,ES_AUTOHSCROLL
+    GROUPBOX        "Transmitting video setting",IDC_STATIC,7,8,179,140
+    LTEXT           "Movie size",IDC_STATIC,15,22,33,8
+    COMBOBOX        IDC_MOVIESIZE,63,20,60,102,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "Still image size",IDC_STATIC,15,38,46,8
+    COMBOBOX        IDC_STILLSIZE,63,36,60,92,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "Color",IDC_STATIC,15,54,18,8
+    COMBOBOX        IDC_VIDEOCOLORS,63,52,76,71,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Camera type",IDC_STATIC,15,70,40,8
+    COMBOBOX        IDC_CAMERA_TYPE,63,68,76,58,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Image quality",IDC_STATIC,15,86,40,8
+    EDITTEXT        IDC_VIDEOQUALITY,63,84,25,12,0,WS_EX_RIGHT
+    CONTROL         "Spin1",IDC_VIDEOQUALITY_SPIN,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS,80,83,10,14
+    LTEXT           "(1-100)",IDC_STATIC,92,86,25,8
+    CONTROL         "Change camera",IDC_CAMERACHANGE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,122,85,60,10
+    LTEXT           "Edge enhancement",IDC_STATIC,15,102,61,8
+    EDITTEXT        IDC_EDGEENHANCE,80,100,25,12,ES_AUTOHSCROLL,WS_EX_RIGHT
+    CONTROL         "Spin1",IDC_EDGEENHANCE_SPIN,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS,97,99,9,14
+    LTEXT           "(0-10)",IDC_STATIC,112,102,21,8
+    LTEXT           "Speed restriction",IDC_STATIC,15,118,55,8
+    EDITTEXT        IDC_MAXBPS,80,116,32,12,0,WS_EX_RIGHT
+    CONTROL         "Spin1",IDC_MAXBPS_SPIN,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS,104,114,9,14
+    LTEXT           "kbps",IDC_STATIC,116,119,14,8
+    CONTROL         "No rest.",IDC_MAXSPEED,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,136,117,41,10
+    CONTROL         "Show information",IDC_SENDINFO,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,134,70,10
+    CONTROL         "Transmit a complete frame",IDC_FULLFRAME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,86,134,98,10
+    GROUPBOX        "Receiving video setting",IDC_STATIC,7,154,179,63
+    CONTROL         "Variable window size",IDC_RESIZE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,168,78,10
+    CONTROL         "Fix the aspect ratio",IDC_FIXEDASPECT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,95,168,76,10
+    CONTROL         "Fixed window size",IDC_FIXEDSIZE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,184,70,10
+    COMBOBOX        IDC_RECVSIZE,91,184,60,56,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "Show information",IDC_DISPINFO,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,200,70,10
+    GROUPBOX        "Operation setting",IDC_STATIC,193,154,158,64
+    CONTROL         "Capture video",IDC_VIDEO_CAPTURE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,205,170,59,10
+    CONTROL         "Display video when conxxxting",IDC_RECEIVEVIDEO,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,205,184,111,10
+    CONTROL         "Permit remote setting",IDC_REMOTESETTING,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,205,198,85,10
+    DEFPUSHBUTTON   "OK",IDOK,301,8,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,301,24,50,14
+    PUSHBUTTON      "Lisence...",IDC_LICENSE,301,44,50,14,NOT WS_VISIBLE
+    GROUPBOX        "Voice setting",IDC_STATIC,193,63,158,84
+    LTEXT           "Input device",IDC_STATIC,200,81,39,8
+    COMBOBOX        IDC_VOICE_INPUT_DEVICE,240,79,102,56,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Output device",IDC_STATIC,200,99,45,8
+    COMBOBOX        IDC_VOICE_OUTPUT_DEVICE,240,97,102,55,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Buffer number",IDC_STATIC,200,118,46,8
+    EDITTEXT        IDC_VOICE_BUFFER_NUM,240,116,23,12,ES_AUTOHSCROLL,
+                    WS_EX_RIGHT
+    CONTROL         "Spin1",IDC_VOICE_BUFFER_NUM_SPIN,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS,258,115,9,14
+    LTEXT           "If you have problems, try to enlarge the buffer size.",
+                    IDC_STATIC,267,116,81,23
+END
+
+IDD_VERSION DIALOG DISCARDABLE  0, 0, 185, 79
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "?????????"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            AFX_IDI_STD_FRAME,IDC_STATIC,8,8,20,20
+    CTEXT           "Multimedia communication system  PC-VIDEO",IDC_STATIC,
+                    34,12,144,8
+    CTEXT           "Copyright (C) xxxxxxxxx Electronic Inc.",IDC_STATIC,34,
+                    40,122,8
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME,4,52,168,1
+    CTEXT           "Version 2.0.1.4",IDC_VERSION,64,24,47,8
+    PUSHBUTTON      "OK",IDOK,68,60,50,14
+END
+
+IDD_VOICE DIALOG DISCARDABLE  0, 0, 288, 191
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Voice"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Transmission",IDC_SEND,233,7,47,34
+    CONTROL         "Switch T/R\r\n(Receiving)",IDC_SWITCH,"Button",
+                    BS_AUTOCHECKBOX | BS_PUSHLIKE | BS_MULTILINE | 
+                    WS_TABSTOP,232,7,48,34
+    PUSHBUTTON      "Call",ID_VOICECALL,233,47,47,17
+    PUSHBUTTON      "E&xit",IDCANCEL,233,92,47,17
+    GROUPBOX        "Mode",IDC_STATIC,171,7,55,101,WS_GROUP
+    CONTROL         "Manual",IDC_MANUAL_MODE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,177,26,37,10
+    CONTROL         "Automatic",IDC_AUTO_MODE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,177,46,46,10
+    CONTROL         "Fix",IDC_FIXED_MODE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,177,66,25,10
+    CONTROL         "Full duplex",IDC_FULL_DUPLEX_MODE,"Button",
+                    BS_AUTORADIOBUTTON,177,86,46,10
+    GROUPBOX        "Send",IDC_STATIC,7,7,158,101,WS_GROUP
+    ICON            IDI_MICROPHONE_OFF,IDC_MIC_ICON,14,21,20,20
+    LTEXT           "Input device",IDC_STATIC,38,24,39,8
+    COMBOBOX        IDC_INPUT_DEVICE,80,22,68,107,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Input level",IDC_STATIC,44,45,33,8
+    CONTROL         "",IDC_INPUT_LEVEL,"Static",SS_GRAYRECT | SS_SUNKEN,80,
+                    43,74,12
+    LTEXT           "Automatic level",IDC_AUTO_SEND_LEVEL2,28,64,49,8
+    CONTROL         "Automatic level control",IDC_AUTO_LEVEL_CONTROL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,76,63,87,10
+    CONTROL         "Slider3",IDC_AUTO_SEND_LEVEL,"msctls_trackbar32",
+                    TBS_TOP | TBS_NOTICKS | WS_TABSTOP,75,59,86,17
+    LTEXT           "Input volume",IDC_STATIC,36,86,41,8
+    CONTROL         "Slider1",IDC_INPUT_VOLUME,"msctls_trackbar32",
+                    TBS_AUTOTICKS | TBS_BOTH | WS_TABSTOP,75,77,80,25
+    GROUPBOX        "Receive",IDC_STATIC,7,113,274,70,WS_GROUP
+    ICON            IDI_SPEAKER_OFF,IDC_SPEAKER_ICON,14,129,20,20
+    LTEXT           "Output level",IDC_STATIC,41,135,39,8
+    CONTROL         "",IDC_OUTPUT_LEVEL,"Static",SS_GRAYRECT | SS_SUNKEN,84,
+                    133,74,12
+    LTEXT           "Output volume",IDC_STATIC,33,161,47,8
+    CONTROL         "Slider1",IDC_OUTPUT_VOLUME,"msctls_trackbar32",
+                    TBS_AUTOTICKS | TBS_BOTH | WS_TABSTOP,81,151,80,25
+    LISTBOX         IDC_SENDER_LIST,170,127,102,48,LBS_NOINTEGRALHEIGHT | 
+                    LBS_NOSEL | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_CAMERA_PRESET DIALOG DISCARDABLE  0, 0, 147, 73
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Preset"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Register",IDOK,89,4,50,14
+    PUSHBUTTON      "Delete",IDC_DELETE,89,20,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,89,36,50,14
+    LTEXT           "Preset Number",-1,7,10,48,8
+    LTEXT           "99",IDC_CAMERA_PRESETNO,58,9,18,10,SS_SUNKEN
+    LTEXT           "Pan angle",-1,7,26,31,8
+    LTEXT           "-99",IDC_CAMERA_PAN,58,25,18,10,SS_SUNKEN
+    LTEXT           "Tilt angle",-1,7,42,28,8
+    LTEXT           "-99",IDC_CAMERA_TILT,58,41,18,10,SS_SUNKEN
+    LTEXT           "Comment",-1,7,58,31,8
+    EDITTEXT        IDC_CAMERA_COMMENT,49,56,92,12,ES_AUTOHSCROLL
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_CAMERA, DIALOG
+    BEGIN
+        RIGHTMARGIN, 214
+        BOTTOMMARGIN, 132
+    END
+
+    IDD_LOGFILE, DIALOG
+    BEGIN
+        RIGHTMARGIN, 225
+        BOTTOMMARGIN, 59
+    END
+
+    IDD_LOGIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 220
+        TOPMARGIN, 8
+        BOTTOMMARGIN, 102
+    END
+
+    IDD_SETTING, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 222
+    END
+
+    IDD_VOICE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 281
+        VERTGUIDE, 14
+        VERTGUIDE, 73
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 184
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    IDR_MAINFRAME           "PcVideo\n\nPcVide\n\n\nPcVideo.Document\nPcVide Document"
+END
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "PcVideo"
+    AFX_IDS_IDLEMESSAGE     "Ready"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+    ID_INDICATOR_KANA       "KANA"
+    IDS_INDICATOR_FPS       " 0fps"
+    IDS_INDICATOR_BPF       "   0bpf"
+    IDS_INDICATOR_BPS       "  0.0kbps"
+    IDS_INDICATOR_COMPRATE  " 0.0%"
+    IDS_INDICATOR_VIDEO     "VIDEO"
+    IDS_INDICATOR_CHAT      "CHAT"
+    IDS_INDICATOR_VOICE     "VOICE"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_NEW             "Create a new file\nNew file"
+    ID_FILE_OPEN            "Open a file\nOpen"
+    ID_FILE_CLOSE           "Close a current working file\nClose"
+    ID_FILE_SAVE            "Save a chat session\nSave"
+    ID_FILE_SAVE_AS         "Save a current working file with a new name\nSave as"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_APP_ABOUT            "Display program information, version number and copyright\nAbout"
+    ID_APP_EXIT             "Exit PC-VIDEO\nExit"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_MRU_FILE1       "Open the specified file"
+    ID_FILE_MRU_FILE2       "Open the specified file"
+    ID_FILE_MRU_FILE3       "Open the specified file"
+    ID_FILE_MRU_FILE4       "Open the specified file"
+    ID_FILE_MRU_FILE5       "Open the specified file"
+    ID_FILE_MRU_FILE6       "Open the specified file"
+    ID_FILE_MRU_FILE7       "Open the specified file"
+    ID_FILE_MRU_FILE8       "Open the specified file"
+    ID_FILE_MRU_FILE9       "Open the specified file"
+    ID_FILE_MRU_FILE10      "Open the specified file"
+    ID_FILE_MRU_FILE11      "Open the specified file"
+    ID_FILE_MRU_FILE12      "Open the specified file"
+    ID_FILE_MRU_FILE13      "Open the specified file"
+    ID_FILE_MRU_FILE14      "Open the specified file"
+    ID_FILE_MRU_FILE15      "Open the specified file"
+    ID_FILE_MRU_FILE16      "Open the specified file"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDM_EXIT                "Exit PC-VIDEO"
+    IDM_CONxxxT             "Enter host name to conxxxt"
+    IDM_DISCONxxxT          "Logout the conxxxtion"
+    IDM_SETTING             "Environmental setting of PC-VIDEO"
+    IDM_TILE                "Arrangement of windows"
+    IDM_FRONT               "Show the window always on the top"
+    IDM_CHAT                "Conversation by keyboard"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDM_FONT                "Font setting"
+    IDM_LOGFILE             "Log file setting"
+    IDM_IPADDRESS           "Show IP address in a list"
+    IDM_VIDEO_SOURCE        "Adjust qualities of transmitting images"
+    IDM_SETHOST             "Register a conxxxted person"
+    IDM_CHATCALL            "Send a chat request"
+    IDM_VOICE               "Voice transmission and reception"
+    IDM_REMOTE_SETTING      "Environmental setting of a conxxxted person"
+    IDM_VERSION             "Show version information of PC-VIDEO"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDM_CONxxxT_DIRECT      "Conxxxt to the person last conxxxted"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CAMERA_LOCKED       "%s is locked"
+    IDS_CAMERA_DENY         "Control was refused"
+    IDS_CAMERA_NOCONTROL    "Control is impossible"
+    IDS_CAMERA_INIT         "Now initializing"
+    IDS_CAMERA_BUSY         "Now working"
+    IDS_CAMERA_READY        "Ready"
+    IDS_CAMERA_FOCUS        "A focus is under adjustment"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CAMERA_NOSUPPORT    "Camera control is not supported"
+    IDS_CAMERA_NORESPONSE   "There is no response."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_STRING3000          "Conxxxt to the selected host"
+    IDS_STRING3001          "Conxxxt to the selected host"
+    IDS_STRING3002          "Conxxxt to the selected host"
+    IDS_STRING3003          "Conxxxt to the selected host"
+    IDS_STRING3004          "Conxxxt to the selected host"
+    IDS_STRING3005          "Conxxxt to the selected host"
+    IDS_STRING3006          "Conxxxt to the selected host"
+    IDS_STRING3007          "Conxxxt to the selected host"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_STRING3008          "Conxxxt to the selected host"
+    IDS_STRING3009          "Conxxxt to the selected host"
+    IDS_STRING3010          "Conxxxt to the selected host"
+    IDS_STRING3011          "Conxxxt to the selected host"
+    IDS_STRING3012          "Conxxxt to the selected host"
+    IDS_STRING3013          "Conxxxt to the selected host"
+    IDS_STRING3014          "Conxxxt to the selected host"
+    IDS_STRING3015          "Conxxxt to the selected host"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDM_ORDER_CONxxxT       "Show in order of conxxxtion"
+    IDM_ORDER_NAME          "Show in order of name"
+    IDM_ORDER_IPADDRESS     "Show in order of IP address"
+    IDM_SEND_CAMERA         "Control of my camera"
+    IDM_RECV_CAMERA         "Control of other's camera"
+    IDM_SEND_DISP           "Show transmitted image"
+    IDM_RECV_DISP           "Show image of selected person"
+    IDM_SEND_STILL          "Pause of a transmitting image"
+    IDM_RECV_STILL          "Still a receiving image"
+    ID_ON_HELP              "Show help contents"
+    IDM_HELP_KEY            "Search by keywords and show help"
+    IDM_HELP_CONTENTS       "Show help contents"
+    IDM_VIDEO_FORMAT        "Set capture type"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDM_ONLINE_UPDATE       "Application is updated via network"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_EDIT_CLEAR           "Erase the selection\nErase"
+    ID_EDIT_CLEAR_ALL       "Erase everything\nErase All"
+    ID_EDIT_COPY            "Copy the selection and put it on the Clipboard\nCopy"
+    ID_EDIT_CUT             "Cut the selection and put it on the Clipboard\nCut"
+    ID_EDIT_FIND            "Find the specified text\nFind"
+    ID_EDIT_PASTE           "Insert Clipboard contents\nPaste"
+    ID_EDIT_REPEAT          "Repeat the last action\nRepeat"
+    ID_EDIT_REPLACE         "Replace specific text with different text\nReplace"
+    ID_EDIT_SELECT_ALL      "Select the entire document\nSelect All"
+    ID_EDIT_UNDO            "Undo the last action\nUndo"
+    ID_EDIT_REDO            "Redo the previously undone action\nRedo"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_WINDOW_SPLIT         "Split the active window into panes\nSplit"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
+    ID_PREV_PANE            "Switch back to the previous window pane\nPrevious Pane"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "Show or hide the toolbar\nToggle ToolBar"
+    ID_VIEW_STATUS_BAR      "Show or hide the status bar\nToggle StatusBar"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "Change the window size"
+    AFX_IDS_SCMOVE          "Change the window position"
+    AFX_IDS_SCMINIMIZE      "Reduce the window to an icon"
+    AFX_IDS_SCMAXIMIZE      "Enlarge the window to full size"
+    AFX_IDS_SCNEXTWINDOW    "Switch to the next document window"
+    AFX_IDS_SCPREVWINDOW    "Switch to the previous document window"
+    AFX_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "Restore the window to normal size"
+    AFX_IDS_SCTASKLIST      "Activate Task List"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CALLING             "Now calling < %s >"
+    IDS_CHAT_CALL           "There is a chat request from %s."
+    IDS_VOICE_CALL          "There is a voice request from %s."
+    IDS_SEL_CALL            "Select a person to call in the main window."
+    IDS_RESPONSE            "There is a response from %s."
+    IDS_NO_RESPONSE         "Thee is no response from %s."
+    IDS_NO_CHAT             "Terminal does not have a chat function."
+    IDS_NO_VOICE            "Terminal does not have a voice function."
+    IDS_ON_CHAT             "Starting chat of terminal."
+    IDS_ON_VOICE            "Starting voice of terminal."
+    IDS_INPUT_COMMENT       "Input comments."
+    IDS_IMAGE_SIZE          "Specified image size or color is not supported by this capture device. Image is displayed by the default size."
+    IDS_NO_HOSTNAME         "Host name is not registered."
+    IDS_LISENCE_LIMIT       "The number of simultaneous use exceeded restriction."
+    IDS_NO_YMUPDATE         "Can't find YMUPDATE.DLL."
+    IDS_NO_ONLINEUPDATE     "Can't execute Online update."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CONxxxT             "Conxxxt"
+    IDS_DISCONxxxT          "Close"
+    IDS_VIDEO               "Video"
+    IDS_CHAT                "Chat"
+    IDS_VOICE               "Voice"
+    IDS_ALIGN               "Align"
+    IDS_MENU_CONxxxT        "&Conxxxt"
+    IDS_MENU_DISCONxxxT     "&Disconxxxt"
+    IDS_OTHER_HOST          "&0 Other host..."
+    IDS_SETTING             "Environmental setting"
+    IDS_REMOTE_SETTING      "Remote setting - %s"
+    IDS_NO_REMOTE           "%s does to permit remote setting."
+    IDS_NO_PCVIDEO          "PCVIDEO.EXE is not found."
+    IDS_RECV_MESSAGE        "Message from %s: \r\n\r\n%s"
+    IDS_END_PCVIDEO         "PCVIDEO has been ended."
+    IDS_NO_PCVSTART         "PCVSTART.EXE is not found."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PCVIDEO_RESTART     "PCVIDEO has been restarted."
+    IDS_NO_FILE             "Specified file is not found."
+    IDS_DOWNLOAD            "Start downloading."
+    IDS_COLOR_MONO          "256 grayscale"
+    IDS_COLOR_HIGH          "32768 colors"
+    IDS_COLOR_TRUE          "16 million colors"
+    IDS_OTHER               "Others"
+    IDS_CANNON_VCC1         "Canon VC-C1"
+    IDS_ERR_WINSOCK         "Initialization failed for WINSOCK.DLL."
+    IDS_ERR_LOCALHOST       "Local host name is not acquirable."
+    IDS_ERR_LOCAL_IP        "Local IP address is not acquirable."
+    IDS_ERR_UDP             "Socket could not be created. UDP=%d"
+    IDS_ERR_BIND            "Socket could not bind."
+    IDS_ERR_TCP             "Socket could not be created. TCP=%d"
+    IDS_ERR_LISTEN          "Socket could not be ready to receive (incoming conxxxtions)."
+    IDS_DENY_CONxxxT        "Conxxxtion to %s is refused. Reason: %s"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_UNDEFINED_ERR       "Undefined error"
+    IDS_CAMERA_CONTROL      "Camera control"
+    IDS_CAMERA_CONTROL2     "Camera control - %s"
+    IDS_UNDEFINED_MSG       "Undefined message"
+    IDS_CHAT_FILE           "Text file(*.txt)|*.txt;All files(*.*)|*.*||"
+    IDS_SAVE_CHAT           "Save a chat session."
+    IDS_REF_LOGFILE         "Reference log file"
+    IDS_STILL_IMAGE         "%s (Still image)"
+    IDS_REG_LIMIT           "Registration is up to 15."
+    IDS_SENDING             "Transmitting"
+    IDS_SEND                "Transmission"
+    IDS_SWITCH_SEND         "Switch T/R\r\n(Transmitting)"
+    IDS_SWITCH_RECV         "Switch T/R\r\n(Receiving)"
+    IDS_ONLINE_UPDATE       "PCVIDEOE"
+END
+
+#endif    // 英語 (ｱﾒﾘｶ) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+#ifdef _WIN32
+LANGUAGE 17, 1
+#pragma code_page(932)
+#endif //_WIN32
+#include "res\PcVideo.rc2"  // Microsoft Visual C++ 以外のツールで編集されたリソース
+#include "l.jpn\afxres.rc"          // 標準のコンポーネント
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

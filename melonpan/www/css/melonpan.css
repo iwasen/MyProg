@@ -1,0 +1,10 @@
+.home {  font-weight: bold; background-color: #CCCCCC}
+.comment {  font-size: 10pt; font-style: italic; color: #CC0000}
+.pagebreak {  page-break-after: always}
+.text01 {  font-size: 10pt; line-height: 130%}
+.text9pt {  font-size: 9pt; line-height: 120%; color: #666600}
+.text12pt { font-size: 12pt; line-height: 120%}
+.text9ptnoColor { font-size: 9pt; line-height: 120%}
+.text8ptnoColor { font-size: 8pt; line-height: 120%}
+.ub { text-decoration: underline}
+.pfont {  font-family: "ÇlÇr ÉSÉVÉbÉN", "OsakaÅ|ìôïù"; font-size: 10pt}

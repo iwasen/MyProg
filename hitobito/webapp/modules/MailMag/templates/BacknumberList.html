@@ -1,0 +1,148 @@
+<table width="540" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+    <td width="20" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="20" height="1"></td>
+    <td width="498" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="498" height="1"></td>
+    <td width="20" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="20" height="1"></td>
+    <td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+  </tr>
+  <tr>
+    <td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+    <td bgcolor="E6F2FF"><img src="image/spacer.gif" width="20" height="1"></td>
+    <td height="30" class="char130" bgcolor="E6F2FF"><b><{$mailmag.melmaga_name|escape}></b></td>
+    <td bgcolor="E6F2FF"><img src="image/spacer.gif" width="20" height="1"></td>
+    <td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+  </tr>
+  <tr>
+    <td colspan="5" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="498" height="1"></td>
+  </tr>
+  <tr>
+    <td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+    <td><img src="image/spacer.gif" width="20" height="1"></td>
+    <td height="30" class="char130">
+      <table width="498" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td class="char130" width="250" colspan="2"><img src="image/spacer.gif" width="260" height="1"></td>
+          <td width="248"><img src="image/spacer.gif" width="238" height="1"></td>
+        </tr>
+        <tr>
+          <td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+        </tr>
+        <tr>
+          <td class="char130" width="150">発行回数</td>
+          <td class="char130" width="150">読者数</td>
+          <td class="char130" width="198">最新発行日</td>
+        </tr>
+        <tr>
+          <td colspan="3" bgcolor="E6F2FF"></td>
+        </tr>
+        <tr>
+          <td class="char130"><{$mailmag.publish_count}>回</td>
+          <td class="char130"><{$mailmag.reader_num}>人</td>
+          <td class="char130"><{$mailmag.last_date}></td>
+        </tr>
+        <tr>
+          <td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+        </tr>
+        <tr>
+          <td colspan="3" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="498" height="1"></td>
+        </tr>
+        <tr>
+          <td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+        </tr>
+        <tr>
+          <td colspan="3" class="char130"><{$mailmag.melmaga_intro|escape|nl2br}></td>
+        </tr>
+        
+        
+        <tr>
+          <td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+        </tr>
+        <tr>
+          <td colspan="3" bgcolor="E6F2FF"></td>
+        </tr>
+        
+        <tr>
+          <td colspan="3">
+            <form name="mailmag_regist_form" method="post" action="?module=MailMag&action=Subscribe&navipage_id=<{$navi_page_id}>">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+                    <tr>
+                        <td class="char110">新規購読申し込み / 解除</td>
+                        <td>
+                            <input type="text" name="mailmag_mail_addr" size="12" style="width:180px;">
+                        </td>
+                        <td><img src="image/spacer.gif" width="1" height="5"></td>
+                        <td>
+                            <input type="image" border="0" name="mailmag_regist_btn" src="image/menu_navi_mail_btn_rgst.gif" width="64" height="20">
+                        </td>
+                        <td><img src="image/spacer.gif" width="10" height="1"></td>
+                        <td>
+                            <input type="image" border="0" name="mailmag_release_btn" src="image/menu_navi_mail_btn_rls.gif" width="64" height="20">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+          </td>
+        </tr>
+        
+        <tr>
+          <td colspan="3" bgcolor="E6F2FF"></td>
+        </tr>
+        <tr>
+          <td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+        </tr>
+        
+        
+        
+        <tr>
+          <td colspan="3" class="char130"><b>バックナンバー</b>　</td>
+        </tr>
+        <tr>
+          <td colspan="3" class="char130">
+            <table width="498" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td colspan="2"><img src="image/spacer.gif" width="1" height="2"></td>
+              </tr>
+<{foreach from=$mailmag.backnumber_ary item=mailmag_backnumber}>
+              <tr>
+                <td colspan="2"><img src="image/spacer.gif" width="1" height="8"></td>
+              </tr>
+              <tr>
+                <td class="char120" width="348" bgcolor="<{$mailmag_backnumber.bgcolor}>"><a href="?module=MailMag&action=BacknumberContents&navipage_id=<{$navi_page_id}>&contents_id=<{$mailmag_backnumber.contents_id}>"><{$mailmag_backnumber.subject|escape}></a></td>
+                <td align="right" class="char120" width="150" bgcolor="<{$mailmag_backnumber.bgcolor}>"><{$mailmag_backnumber.send_date}></td>
+              </tr>
+<{/foreach}>
+              <tr>
+                <td colspan="2"><img src="image/spacer.gif" width="1" height="20"></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" class="char130">　</td>
+        </tr>
+      </table>
+    </td>
+    <td><img src="image/spacer.gif" width="20" height="1"></td>
+    <td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+  </tr>
+  <tr>
+    <td colspan="5" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="540" height="1"></td>
+  </tr>
+  <tr>
+    <td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+    <td colspan="3" bgcolor="#669BFD"><img src="image/spacer.gif" width="1" height="3"></td>
+    <td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+  </tr>
+  <tr>
+    <td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+    <td colspan="3" bgcolor="#82ADFD"><img src="image/spacer.gif" width="1" height="2"></td>
+    <td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+  </tr>
+  <tr>
+    <td colspan="5" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="540" height="1"></td>
+  </tr>
+  <tr>
+    <td colspan="5"><img src="image/spacer.gif" width="1" height="10"></td>
+  </tr>
+</table>

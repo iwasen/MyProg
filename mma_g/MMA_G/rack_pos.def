@@ -1,0 +1,98 @@
+; Rack Position Define
+; <No.>～[POSITION_Z]までを1つのRack位置として記述する
+;========== 各キーの説明 ================
+; <No.> 		通し番号
+; [SELECTION_STRING]	Rack Positionを選択する際に，選択肢として表示される文字列を記述する。
+; [DISPLAY_STRING]	Rack Positionを表示する画面で表示される文字列を記述する。
+; [DIR_X_STRING]	Rack PositionのX方向文字列として表示される文字列を記述する。
+; [DIR_Y_STRING]	Rack PositionのY方向文字列として表示される文字列を記述する。
+; [DIR_Z_STRING]	Rack PositionのZ方向文字列として表示される文字列を記述する。
+; [POSITION_X]		Rack X Position - 数値で記述する。
+; [POSITION_Y]		Rack Y Position - 数値で記述する。
+; [POSITION_Z]		Rack Z Position - 数値で記述する。
+
+;====== FILE HEADER =========================
+%DEFINE_RACK_POSITION_FILE
+%DEFINE_NO = 5			; 全部で何個の位置定義があるかを数値で記入する。
+				; DATA BODYにこの数以上のデータが入っていても，データとして使用できません。
+
+;====== DATA BODY ===========================
+<No.> = 0
+[SELECTION_STRING] = 1:JPM A2 Upper-left	
+[DISPLAY_STRING]   = JPM_A2_Upper-left
+[DIR_X_STRING]     = Overhead
+[DIR_Y_STRING]     = Starboard
+[DIR_Z_STRING]     = Forward
+[POSITION_X]       = 387.475748031
+[POSITION_Y]       = -170.754803150
+[POSITION_Z]       = 156.335826772
+[POSITION_ROLL]    = 0.0
+[POSITION_PITCH]   = 90.0
+[POSITION_YAW]     = 0.0
+[RSU_ID]           = 3007
+[CATEGORY]         = 実験
+[MEASUREMENT_KIND] = 計測種類1
+
+<No.> = 1
+[SELECTION_STRING] = 2:JPM A3 Upper-left
+[DISPLAY_STRING]   = JPM_A3_Upper-left
+[DIR_X_STRING]     = Overhead
+[DIR_Y_STRING]     = Starboard
+[DIR_Z_STRING]     = Forward
+[POSITION_X]       = 387.475748031
+[POSITION_Y]       = -212.754803150
+[POSITION_Z]       = 156.335826772
+[POSITION_ROLL]    = 0.0
+[POSITION_PITCH]   = 90.0
+[POSITION_YAW]     = 0.0
+[RSU_ID]           = 3008
+[CATEGORY]         = 実験装置
+[MEASUREMENT_KIND] = 計測種類2
+
+<No.> = 2
+[SELECTION_STRING] = 3:JPM A3 on FPEF
+[DISPLAY_STRING]   = JPM_A3_on_FPEF
+[DIR_X_STRING]     = Forward
+[DIR_Y_STRING]     = Port
+[DIR_Z_STRING]     = Overhead
+[POSITION_X]       = 393.337952756
+[POSITION_Y]       = -222.707559055
+[POSITION_Z]       = 158.572047244
+[POSITION_ROLL]    = 180.0
+[POSITION_PITCH]   = 0.0
+[POSITION_YAW]     = 0.0
+[RSU_ID]           = 3009
+[CATEGORY]         = システム
+[MEASUREMENT_KIND] = 計測種類3
+
+<No.> = 3
+[SELECTION_STRING] = 4:JPM A3 SCOF REF-CELL
+[DISPLAY_STRING]   = JPM_A3_SCOF_REF-CELL
+[DIR_X_STRING]     = Forward
+[DIR_Y_STRING]     = Port
+[DIR_Z_STRING]     = Overhead
+[POSITION_X]       = 383.378307087
+[POSITION_Y]       = -236.872913386
+[POSITION_Z]       = 191.977559055
+[POSITION_ROLL]    = 180.0
+[POSITION_PITCH]   = 0.0
+[POSITION_YAW]     = 0.0
+[RSU_ID]           = 3010
+[CATEGORY]         = ISS
+[MEASUREMENT_KIND] = 計測種類4
+
+<No.> = 4
+[SELECTION_STRING] = 5:Ground Test
+[DISPLAY_STRING]   = Ground Test
+[DIR_X_STRING]     = N/A
+[DIR_Y_STRING]     = N/A
+[DIR_Z_STRING]     = N/A
+[POSITION_X]       = N/A
+[POSITION_Y]       = N/A
+[POSITION_Z]       = N/A
+[POSITION_ROLL]    = 0.0
+[POSITION_PITCH]   = 0.0
+[POSITION_YAW]     = 0.0
+[RSU_ID]           = 3011
+[CATEGORY]         = その他
+[MEASUREMENT_KIND] = 計測種類5

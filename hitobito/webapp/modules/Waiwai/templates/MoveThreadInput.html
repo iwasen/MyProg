@@ -1,0 +1,118 @@
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td bgcolor="#5B94FD"><img src="image/naviedit_waiwai_thread_ttl.gif" width="69" height="25" hspace="10" alt="発言管理"></td>
+	</tr>
+	<tr>
+		<td><img src="image/spacer.gif" width="1" height="20"></td>
+	</tr>
+</table>
+<{include file="_WaiwaiHeader.html"}>
+<{include file="_WaiwaiPageInfo.html" waiwai_new_post_action="PostRemark"}>
+<{include file="_WaiwaiList.html" waiwai_select_remark_action="MoveThread"}>
+<form method="post">
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td colspan="5"><img src="image/spacer.gif" width="1" height="15"></td>
+	</tr>
+	<tr>
+		<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td width="20" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="20" height="1"></td>
+		<td width="538" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="538" height="1"></td>
+		<td width="20" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="20" height="1"></td>
+		<td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td><img src="image/spacer.gif" width="20" height="1"></td>
+		<td>
+			<table width="538" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td><img src="image/naviedit_waiwai_th_sttl_thread.gif" width="72" height="13" vspace="10" alt="スレッド移動"></td>
+				</tr>
+				<tr>
+					<td class="char120">移動元発言IDと、移動先発言IDを指定してください。<br>
+						（最上位に移動させたい場合は、移動先IDに0を入力してください。
+					</td>
+				</tr>
+				<tr>
+					<td><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+			</table>
+		</td>
+		<td><img src="image/spacer.gif" width="20" height="1"></td>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td colspan="5" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		<td><img src="image/spacer.gif" width="20" height="1"></td>
+		<td>
+			<table width="538" border="0" cellspacing="0" cellpadding="0">
+<{if $waiwai_error_ary}>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td colspan="3" class="error"><{foreach from=$waiwai_error_ary item=waiwai_error}>・<{$waiwai_error|escape}><br><{/foreach}></td>
+				</tr>
+<{/if}>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td width="100" class="char120" nowrap>移動元発言ID</td>
+					<td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+					<td width="428" class="char120"><input type="text" name="waiwai_move_from" size="5" value="<{$waiwai_move.move_from|escape}>"> を
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td class="char120" nowrap>移動先発言ID</td>
+					<td><img src="image/spacer.gif" width="10" height="1"></td>
+					<td class="char120"><input type="text" name="waiwai_move_to" size="5" value="<{$waiwai_move.move_to|escape}>"> の子に移動
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="10"></td>
+				</tr>
+				<tr>
+					<td class="char120">オプション</td>
+					<td><img src="image/spacer.gif" width="10" height="1"></td>
+					<td class="char120"><input type="radio" name="waiwai_move_option" value="1" <{if $waiwai_move.move_option == 1}>checked<{/if}>>指定した発言のみ　<input type="radio" name="waiwai_move_option" value="2" <{if $waiwai_move.move_option == 2}>checked<{/if}>>指定した発言の子スレッド全て</td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="image/spacer.gif" width="1" height="15"></td>
+				</tr>
+			</table>
+		</td>
+		<td><img src="image/spacer.gif" width="20" height="1"></td>
+		<td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td colspan="5" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+	</tr>
+	<tr>
+		<td colspan="5"><img src="image/spacer.gif" width="1" height="20"></td>
+	</tr>
+</table>
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td bgcolor="#5B94FD"><img src="image/spacer.gif" width="1" height="5"></td>
+	</tr>
+	<tr>
+		<td><img src="image/spacer.gif" width="1" height="20"></td>
+	</tr>
+	<tr>
+		<td>
+			<input type="image" border="0" name="imageField" src="image/naviedit_waiwai_th_btn_edit.gif" width="90" height="20" alt="登録情報更新">
+		</td>
+	</tr>
+	<tr>
+		<td><img src="image/spacer.gif" width="1" height="10"></td>
+	</tr>
+</table>
+</form>

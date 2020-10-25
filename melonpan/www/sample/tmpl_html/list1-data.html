@@ -1,0 +1,78 @@
+<table width="650" border="1" cellspacing="0" cellpadding="2">
+<tr>
+<td bgcolor="#336600" width="70" class="text9ptnoColor">
+<div align="center"><font color="#FFCC00"><b>メルマガID</b></font></div>
+</td>
+<td width="60" class="text9ptnoColor">
+<div align="left"><font size="2">
+<?php
+	echo $resarray[0];
+?>
+</font></div>
+</td>
+<td bgcolor="#336600" width="70" class="text9ptnoColor">
+<div align="center"><font color="#FFCC00"><b>メルマガ <br>
+タイトル</b></font></div>
+</td>
+<td  width="205" class="text9ptnoColor" ><b>
+<?php
+	echo trim($resarray[1]);
+?>
+</b></td>
+<td bgcolor="#336600" width="68" class="text9ptnoColor">
+<div align="center"><b><font color="#FFCC00"><b>マーク</b></font></b></div>
+</td>
+<td  width="148" class="text9ptnoColor">
+☆■
+</td>
+</tr>
+<tr>
+<td width="69" bgcolor="#336600" class="text9ptnoColor">
+<div align="center"><b><font color="#FFCC00">最終<br>
+発行日 </font></b></div>
+</td>
+<td width="63" class="text9ptnoColor">
+<?php
+	echo $resarray[9];
+?>
+</td>
+<td width="69" bgcolor="#336600" class="text9ptnoColor">
+<div align="center"><b><font color="#FFCC00"><b>カテゴリ</b></font></b></div>
+</td>
+<td class="text9ptnoColor" width="195" >
+<?php
+	echo trim($resarray[7])."、".trim($resarray[8]);
+?>
+</td>
+<td width="68"  bgcolor="#336600" class="text9ptnoColor">
+<div align="center"><b><font color="#FFCC00">発行周期</font></b></div>
+</td>
+<td width="148" class="text9ptnoColor">
+<?php
+	echo trim($resarray[3]);
+?>
+</td>
+</tr>
+<tr>
+<td bgcolor="#336600" width="69" class="text9ptnoColor">
+<div align="center"><b><font color="#FFCC00" size="2">説明</font></b></div>
+</td>
+<td colspan="3" class="text9ptnoColor" >
+<?php
+	echo trim($resarray[2]);
+?>
+</td>
+<td  bgcolor="#336600" class="text9ptnoColor" width="68">
+<div align="center"><b><font color="#FFCC00">登録</font></b></div>
+</td>
+<td class="text9ptnoColor" width="148" >
+<div align="left"><b>
+<input type="radio" name="read_chk[]" value="on<?php echo $resarray[0]; ?>">
+<font color="#990000">購読</font> 　
+<input type="radio" name="read_chk[]" value="off<?php echo $resarray[0]; ?>">
+<font color="#990000">解除</font> </b></div>
+</td>
+</tr>
+<tr> </tr>
+</table>
+<br>

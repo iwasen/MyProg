@@ -1,0 +1,230 @@
+<!-- 記事投稿管理ここから -->
+<table width="580" border="0" cellspacing="0" cellpadding="0">
+  <tr bgcolor="#5B94FD">
+    <td colspan="3"><img src="image/naviedit_blog_ttl.gif" width="100" height="25" hspace="10" alt="記事投稿管理"></td>
+  </tr>
+  <tr>
+    <td width="15"><img src="image/spacer.gif" width="15" height="1"></td>
+    <td width="555" valign="top">
+      <form name="form3" method="POST" action="index.php" >
+	<input type="hidden" name="module" value="Blog" />
+	<input type="hidden" name="action" value="adminStories" />
+	<input type="hidden" name="navipage_id" value="<{$navipage_id}>" />
+	<!-- 記事カテゴリー一覧 -->
+	<table width="555" border="0" cellspacing="0" cellpadding="0">
+	  <tr>
+	    <td colspan="2"><img src="image/spacer.gif" width="1" height="15"></td>
+	  </tr>
+	  <tr>
+	    <td colspan="2"><img src="image/naviedit_blog_sttl_category.gif" width="113" height="14" alt="記事カテゴリ一覧"></td>
+	  </tr>
+	  <tr>
+	    <td width="450"><img src="image/spacer.gif" width="450" height="1"></td>
+	    <td width="105"><img src="image/spacer.gif" width="105" height="1"></td>
+	  </tr>
+	  <tr>
+	    <td colspan="2"><img src="image/spacer.gif" width="1" height="7"></td>
+	  </tr>
+	  <tr>
+	    <td valign="top">
+	      <table width="450" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+		  <td bgcolor="#CCCCCC" width="1"><img src="image/spacer.gif" width="1" height="1"></td>
+		  <td bgcolor="#CCCCCC" width="448"><img src="image/spacer.gif" width="448" height="1"></td>
+		  <td bgcolor="#CCCCCC" width="1"><img src="image/spacer.gif" width="1" height="1"></td>
+		</tr>
+                <tr> 
+                  <td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+                  <td class="char120" bgcolor="#6699FF"> 
+                    <p class="ind0804"> 
+                      <input type="radio" name="blog_category_id" value="0" <{if !$smarty.request.blog_category_id}> checked <{/if}> /> 
+                      すべて <br>
+                    </p>
+                  </td>
+                  <td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+                </tr>
+		<tr bgcolor="#CCCCCC">
+		  <td colspan="3"><img src="image/spacer.gif" width="450" height="1"></td>
+		</tr>
+		<!-- 記事カテゴリ1ここから -->
+		<{foreach item=item from=$blog_categories}>
+		<tr>
+		  <td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		  <td class="char120">
+		    <p class="ind0804">
+		      <input type="radio" name="blog_category_id" value="<{$item->getId()}>" <{if $smarty.request.blog_category_id==$item->getId()}>checked<{/if}> />
+		      <{$item->getCategoryName()|escape}>
+		      <{if $smarty.get.debug ==1}>
+		      <{$item->getAttribute('category_order')}>
+		      <{/if}>
+		    </p>
+		  </td>
+		  <td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		</tr>
+		<tr bgcolor="#CCCCCC">
+		  <td colspan="3"><img src="image/spacer.gif" width="450" height="1"></td>
+		</tr>
+		<{/foreach}>
+		<!-- 記事カテゴリ1ここまで -->
+	      </table>
+	    </td>
+	    <td valign="top" align="center">
+	      <table width="65" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+
+		  <td><!-- カテゴリ新規追加ボタン --><a href="index.php?module=Blog&amp;action=modifyCategory&amp;navipage_id=<{$navipage_id}>"><img src="image/naviedit_btn_new.gif" width="65" height="20" alt="新規追加" border="0"></a></td>
+		</tr>
+		<tr>
+		  <td><img src="image/spacer.gif" width="1" height="15"></td>
+		</tr>
+		<tr>
+
+		  <td><!-- カテゴリ編集ボタン --><input type="image" border="0" name="blog_modifyCategory"  src="image/naviedit_btn_edit.gif" width="65" height="20" alt="編集"></td>
+		</tr>
+		<tr>
+		  <td><img src="image/spacer.gif" width="1" height="8"></td>
+		</tr>
+		<tr>
+		  <td><!-- カテゴリ上へ移動ボタン --><input type="image" name="blog_orderUpCategory" src="image/naviedit_btn_up.gif" width="65" height="20" alt="上へ移動" border="0"></td>
+		</tr>
+		<tr>
+		  <td><img src="image/spacer.gif" width="1" height="8"></td>
+		</tr>
+		<tr>
+		  <td><!-- カテゴリ下へ移動ボタン--><input type="image" name="blog_orderDownCategory" src="image/naviedit_btn_down.gif" width="65" height="20" alt="下へ移動" border="0"></td>
+		</tr>
+		<tr>
+		  <td><img src="image/spacer.gif" width="1" height="15"></td>
+		</tr>
+		<tr>
+		  <td><!-- カテゴリ削除ボタン --><input type="image" border="0" name="blog_deleteCategory" src="image/naviedit_btn_delete.gif" width="65" height="20" alt="削除" onClick="return confirm('削除してもよろしいですか')"></td>
+		</tr>
+	      </table>
+	    </td>
+	  </tr>
+          <tr> 
+            <td colspan="2"> 
+              <input type="image" name="blog_filter_category" src="image/naviedit_btn_focus.gif" alt="上記カテゴリで絞り込む" width="90" height="20" />
+              </td>
+          </tr>
+	  <tr>
+	    <td colspan="2"><img src="image/spacer.gif" width="1" height="30"></td>
+	  </tr>
+	</table>
+	<!-- 記事カテゴリー一覧ここまで -->
+
+	<!-- カテゴリ内記事一覧 -->
+	<table width="555" border="0" cellspacing="0" cellpadding="0">
+	  <tr>
+	    <td colspan="2"><img src="image/naviedit_blog_sttl_blog.gif" width="154" height="14" alt="上記カテゴリ内記事一覧"></td>
+	  </tr>
+	  <tr>
+	    <td width="450"><img src="image/spacer.gif" width="450" height="1"></td>
+	    <td width="105"><img src="image/spacer.gif" width="105" height="1"></td>
+	  </tr>
+	  <tr>
+	    <td colspan="2"><img src="image/spacer.gif" width="1" height="7"></td>
+	  </tr>
+	  <tr>
+	    <td valign="top">
+	      <table width="450" border="0" cellspacing="0" cellpadding="0">
+		<tr bgcolor="#666666">
+		  <td colspan="7"><img src="image/spacer.gif" width="450" height="1"></td>
+		</tr>
+		<tr>
+		  <td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		  <td width="35" align="center">　</td>
+		  <td width="35" bgcolor="#E6F2FF" align="center" class="char120">
+		    <p class="ind0804">No.</p>
+		  </td>
+		  <td width="198" align="center" class="char120">
+		    <p class="ind0804">タイトル</p>
+		  </td>
+		  <td width="90" bgcolor="#E6F2FF" align="center" class="char120">
+		    <p class="ind0804">公開日</p>
+		  </td>
+		  <td width="90" align="center" class="char120" nowrap>
+		    <p class="ind0804">ステータス</p>
+		  </td>
+		  <td width="1" bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		</tr>
+		<tr bgcolor="#666666">
+		  <td colspan="7"><img src="image/spacer.gif" width="450" height="1"></td>
+		</tr>
+		<!-- 記事1ここから -->
+		<{foreach item=item from=$blog_stories}>
+		<tr>
+		  <td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		  <td align="center">
+		    <input type="radio" name="blog_story_id" value="<{$item->getId()}>" />
+
+		  </td>
+		  <td bgcolor="#E6F2FF" align="center" class="char120">
+		    <p class="ind0804"><{$item->getId()}></p>
+		  </td>
+		  <td class="char120">
+		    <p class="ind0804"><{$item->getTitle()|escape}></p>
+		  </td>
+		  <td bgcolor="#E6F2FF" align="center" class="char120" nowrap>
+		    <p class="ind0804"><{$item->getAttribute('bla_date')}></p>
+		  </td>
+		  <td align="center" class="char120">
+		    <p class="ind0804"><{$item->getOpenStatusText()}></p>
+		  </td>
+		  <td bgcolor="#CCCCCC"><img src="image/spacer.gif" width="1" height="1"></td>
+		</tr>
+		<{/foreach}>
+		<!-- 記事1ここまで-->
+		<tr bgcolor="#CCCCCC">
+		  <td colspan="7"><img src="image/spacer.gif" width="450" height="1"></td>
+		</tr>
+	      </table>
+	    </td>
+	    <td valign="top" align="center">
+	      <table width="65" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+		  <td><!-- 記事新規追加ボタン --><a href="index.php?module=Blog&amp;action=PostStory&amp;navipage_id=<{$navipage_id}>"><img src="image/naviedit_btn_new.gif" width="65" height="20" alt="新規追加" border="0"></a></td>
+		</tr>
+		<tr>
+		  <td><img src="image/spacer.gif" width="1" height="15"></td>
+		</tr>
+		<tr>
+		  <td><!-- 記事編集ボタン --><input type="image" name="blog_modifyStory" src="image/naviedit_btn_edit.gif" width="65" height="20" alt="編集" border="0"></td>
+		</tr>
+		<tr>
+		  <td><img src="image/spacer.gif" width="1" height="8"></td>
+		</tr>
+		<tr>
+		  <td><!-- 上へ移動ボタン --><input type="image" name="blog_orderUpStory"  src="image/naviedit_btn_up.gif" width="65" height="20" alt="上へ移動" border="0"></td>
+		</tr>
+		<tr>
+		  <td><img src="image/spacer.gif" width="1" height="8"></td>
+		</tr>
+		<tr>
+		  <td><!-- 下へ移動ボタン --><input type="image" name="blog_orderDownStory"   src="image/naviedit_btn_down.gif" width="65" height="20" alt="下へ移動" border="0"></td>
+		</tr>
+		<tr>
+		  <td><img src="image/spacer.gif" width="1" height="15"></td>
+		</tr>
+		<tr>
+		  <td><!-- 削除ボタン --><input type="image" name="blog_deleteStory"  src="image/naviedit_btn_delete.gif" width="65" height="20" alt="削除" border="0" onClick="return confirm('削除してもよろしいですか')"></td>
+		</tr>
+		<tr>
+		  <td><img src="image/spacer.gif" width="1" height="15"></td>
+		</tr>
+		<tr>
+		  <td><!-- 画像管理ボタン --><a href="index.php?module=Blog&amp;action=adminImage&amp;navipage_id=<{$navipage_id}>"><img src="image/naviedit_btn_image.gif" width="65" height="20" alt="画像登録" border="0" ></a></td>
+		</tr>
+	      </table>
+	    </td>
+	  </tr>
+	  <tr>
+	    <td colspan="2"><img src="image/spacer.gif" width="1" height="30"></td>
+	  </tr>
+	</table>
+      </form>
+    </td>
+    <td width="10"><img src="image/spacer.gif" width="10" height="1"></td>
+  </tr>
+</table>
+<!-- 記事投稿管理ここまで -->

@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<title>みつくろい依頼</title>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+
+<body bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600">
+<table width="750" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top" colspan="3" align="center">
+<table width="550" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<tr>
+<td>
+<table width="550" border="0" cellspacing="1" cellpadding="5">
+<tr bgcolor="#FFFFFF">
+<td>
+<p><img src="../img/t_mitsukuroi.gif" width="550" height="27"></p><br>
+<p><span class="text01">　たくさんのメルマガから何を読んでいいのか選ぶのに困った時・・・<br>
+　他の検索ではいいメルマガが見つからなかった時・・・<br><br>
+　「めろんパイ」（めろんぱん・パイロット）がお手伝いします。</span></p>
+
+<p><span class="text01"><font color="#99CCFF">■</font><b><font color="#000066">私にぴったりのメルマガをみつくろって！　――めろんパイとは？</font></b></span></p>
+<p><span class="text01">　めろんぱん・パイロットを略して「めろんパイ」と呼んでいます。
+　「こんなメルマガが読みたい！」ってメールを送ると、このめろんパイたちが読みたいメルマガを適当にチョイスしてくれます。めろんパイにお願いすると、検索で見つからなかった素敵なメルマガも、きっと見つけることができますよ。<br>　現在５人のめろんパイたちが、あなたからの依頼を待っています。それぞれ違うタイプの５人から１人選んでください。あなたに合いそうなタイプの人を選ぶのがコツです。</span></p>
+<p><span class="text01"><font color="#99CCFF">■</font><font color="#000066"><b>あなたのめろんパイたち
+</b></font></span></p>
+<p><span class="text01">　私たちがあなたのメルマガをお選びします！　たくさんのメルマガを一生懸命読んで待っていますので、どうぞ遠慮なくご相談ください。<br>
+</span></p>
+<img src="/img/pai_sample.gif">
+<br>
+<table width="550" border="0" cellspacing="1" cellpadding="4">
+<tr bgcolor="#99CCFF">
+<td width="100" class="text9pt">
+<div align="center"><b><font color="#000066">めろんパイ</font></b></div>
+</td>
+<td colspan="2" class="text9pt" width="450">
+<div align="center"><b><font color="#000066">プロフィール</font></b></div>
+</td>
+</tr>
+</table>
+<?php echo $list; ?>
+<br>
+<p class="text9pt"><a href="javascript:history.back()">&lt;&lt;&lt;　前のページへ戻る</a></p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<form name = "TaiForm3" action = "mitsukuroi_0.php">
+<? botdisp1 ($max_taicnt,$taiinno) ?>
+<? botdisp2 ($max_taicnt,$taiinno) ?>
+<input type="hidden" value="<? echo $mail_addr ?> " name="mail_addr">
+<input type="hidden" value="<? echo $max_taicnt?> " name="max_taicnt">
+<input type="hidden" value="<? echo $taiinno ?> " name="taiinno">
+</form>
+</td>
+</tr>
+<tr>
+<td valign="top" colspan="3" align="right">
+<hr size="1" width="750">
+</td>
+</tr>
+<tr>
+<td valign="top" width="200"> <img src="../img/shim.gif" width="200" height="1">
+</td>
+<td valign="middle" align="center" width="350">
+<div align="center"><font size="2"><img src="../img/shim.gif" width="350" height="1"><br>
+Copyright &copy; 2000 xxxxxxx, Co.,Ltd. All rights reserved. <br>
+<a href="http://www.xxxxxxx.co.jp/" target="mm_window"><img src="../img/logo_do.gif" width="50" height="45" border="0"></a>
+</font></div>
+</td>
+<td valign="top" width="200" align="right"><img src="../img/shim.gif" width="200" height="1"></td>
+</tr>
+</table>
+</body>
+</html>

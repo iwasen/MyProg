@@ -1,0 +1,146 @@
+tr.header {
+  text-align: center;
+  background-color: #FFDFB0;
+}
+td.header_no {
+  font-size: 8pt;
+  font-family: Arial, Helvetica, sans-serif;
+}
+td.header_txt {
+  font-size: 8pt;
+}
+td.header_data {
+  font-size: 8pt;
+}
+tr.total {
+  font-size: 9pt;
+  background-color: #666666;
+}
+td.total_txt {
+  color: #FFFFFF;
+  font-size: 8pt;
+  font-weight: bold;
+  text-align: center;
+}
+td.total_num {
+  color: #FFFFFF;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  text-align: right;
+}
+tr.subtotal {
+  font-size: 9pt;
+  background-color: #999999;
+}
+td.subtotal_txt {
+  font-size: 8pt;
+  font-weight: bold;
+  text-align: center;
+}
+td.subtotal_num {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  text-align: right;
+}
+tr.data {
+  font-size: 9pt;
+}
+td.data_no {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  background-color: #CCCCCC;
+}
+td.data_no2 {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  background-color: #E8E8E8;
+}
+td.data_date {
+  text-align: center;
+  background-color: #E8E8E8;
+}
+td.data_category {
+  text-align: center;
+  background-color: #E8E8E8;
+  font-size: 8pt;
+}
+td.data_corner {
+  text-align: center;
+  background-color: #E8E8E8;
+  font-size: 8pt;
+}
+td.data_access {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: right;
+  background-color: #CCCCCC;
+  font-weight: bold;
+}
+td.data_percent {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: right;
+  background-color: #E8E8E8;
+  font-weight: bold;
+}
+td.data_graph {
+  text-align: left;
+  background-color: #D2E9FF;
+  width: 300px;
+}
+td.data_suii {
+  text-align: center;
+  background-color: #E8E8E8;
+}
+td.data_rank1 {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: right;
+  background-color: #FFCCFF;
+  font-weight: bold;
+}
+td.data_rank2 {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: right;
+  background-color: #FFFFCC;
+  font-weight: bold;
+}
+td.data_rank3 {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: right;
+  background-color: #ADE3A2;
+  font-weight: bold;
+}
+td.data_rank4 {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: right;
+  background-color: #D2E9FF;
+  font-weight: bold;
+}
+tr.url {
+  background-color: #D2E9FF;
+  font-size: 9pt;
+}
+td.url_no {
+  text-align: center;
+  background-color: #E8E8E8;
+  font-size: 9pt;
+}
+td.url_url {
+  text-align: left;
+  background-color: #D2E9FF;
+}
+td.url_access {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  text-align: right;
+  background-color: #CCCCCC;
+}
+a.link {
+  color: blue;
+  font-weight: bold;
+  text-decoration: none;
+}
+a:hover {
+  color: red;
+}
+span.other {
+  color: #FF0000;
+}

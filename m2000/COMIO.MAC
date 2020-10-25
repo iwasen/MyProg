@@ -1,0 +1,207 @@
+		title	comio
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; module name	: communication i/o subroutine
+; creation date	: 86:04:07
+; revised date  : 
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+		.z80
+
+		include	MEMORY.INC
+
+		public	putchr
+		public	datasd
+		public	getchr
+		public	rxcheck
+		public	hbuf
+		public	hbufsiz
+
+		extrn	wrsts
+		extrn	wrcom
+		extrn	rdsts
+		extrn	rdcom
+		extrn	prexmt
+		extrn	pstxmt
+		extrn	sdflag
+		extrn	sdptr1
+		extrn	sdptr2
+
+	STX		equ	02h
+	ETX		equ	03h
+	ETB		equ	17h
+
+	BLKLNG		equ	94
+
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	data send routine
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+putchr:
+		call	wrsts
+		jr	z,putchr
+
+		push	hl
+		call	dmyread
+
+		call	prexmt
+		pop	hl
+putchr10:
+		ld	a,(hl)
+		cp	-1
+		jr	z,putchr50
+
+		ld	a,(hl)		; load send data
+		and	80h
+		ld	d,a
+		ld	a,(sdshift)
+		xor	d
+		jr	z,putchr20
+
+		ld	e,0eh
+		ld	a,d
+		ld	(sdshift),a
+		or	a
+		jr	nz,putchr30
+		ld	e,0fh
+		jr	putchr30
+putchr20:
+		ld	e,(hl)
+		inc	hl
+putchr30:
+		push	hl
+		call	wrcom
+		pop	hl
+		jr	putchr10
+putchr50:
+		call	pstxmt
+		or	a
+		ret
+;
+datasd:
+		call	wrsts
+		jr	z,datasd
+
+		call	dmyread
+
+		call	prexmt
+
+		ld	e,STX		;
+		call	wrcom		; send STX
+
+		ld	d,0
+		ld	hl,(sdptr1)
+		ld	bc,BLKLNG
+datasd10:
+		ld	a,(hl)
+		cp	-1
+		jr	z,datasd50
+
+		push	bc
+		ld	a,(hl)		; load send data
+		and	80h
+		ld	b,a
+		ld	a,(sdshift)
+		xor	b
+		jr	z,datasd20
+
+		ld	e,0eh
+		ld	a,b
+		ld	(sdshift),a
+		or	a
+		jr	nz,datasd30
+		ld	e,0fh
+		jr	datasd30
+datasd20:
+		ld	e,(hl)
+		inc	hl
+datasd30:
+		ld	a,d
+		xor	e
+		ld	d,a
+
+		push	de
+		push	hl
+		call	wrcom		; data send
+		pop	hl
+		pop	de
+		pop	bc
+
+		dec	bc
+		ld	a,b
+		or	c
+		jr	nz,datasd10
+
+		sub	a
+		ld	e,ETB
+		jr	datasd60
+datasd50:
+		ld	a,1
+		ld	e,ETX
+datasd60:
+		ld	(sdflag),a
+		ld	(sdptr2),hl
+		push	de
+		call	wrcom		; send ETB or ETX
+		pop	de
+		ld	a,d
+		xor	e
+		ld	e,a
+		call	wrcom		; send BCC
+
+		call	pstxmt
+		ret
+
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	data receive check routine
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+rxcheck:
+		call	rdsts
+		jr	c,rxcheck10
+		jr	z,rxcheck10
+		ld	a,0ffh
+		ret
+rxcheck10:
+		sub	a
+		ret
+
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	data receive routine
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+getchr:
+		call	rdcom		; read data
+		ret
+
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;	dummy read routine
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+dmyread:
+		call	rxcheck
+		or	a
+		ret	z
+		call	getchr
+		jr	dmyread
+;
+;
+sdshift:	db	0
+bcc:		db	0
+hbuf:		ds	512
+hbufsiz		equ	512
+
+		end

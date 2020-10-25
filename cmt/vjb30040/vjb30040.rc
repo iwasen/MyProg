@@ -1,0 +1,220 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 日本語 resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+#ifdef _WIN32
+LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
+#pragma code_page(932)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 17, 1\r\n"
+    "#pragma code_page(932)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\vjb30040.rc2""  // Microsoft Visual C++ 以外のツールで編集されたリソース\r\n"
+    "#include ""l.jpn\\afxres.rc""          // 標準のコンポーネント\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\vjb30040.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_VJB30040_DIALOG DIALOGEX 0, 0, 279, 241
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "媒体入力指示画面（vjb30040）"
+FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x1
+BEGIN
+    CTEXT           "媒体入力指示画面",IDC_LBL_DIALOG_NAME,0,0,279,18,
+                    SS_CENTERIMAGE | SS_SUNKEN
+    LTEXT           "入力媒体",IDC_LABEL_DEVICE_NAME,95,35,28,8
+    COMBOBOX        IDC_COMBO_DEVICE_NAME,137,33,93,69,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "出力先バッチサーバ",IDC_LABEL_SRV_NAME,63,60,60,8
+    COMBOBOX        IDC_COMBO_SRV_NAME,137,58,93,69,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "媒体識別コード",IDC_LABEL_SHIKIBETSU_CODE,77,86,46,8
+    EDITTEXT        IDC_EDIT_SHIKIBETSU_CODE,137,83,62,14,ES_AUTOHSCROLL
+    CONTROL         "ラベルあり",IDC_RADIO_LABEL_ARI,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,77,110,46,10
+    CONTROL         "ラベルなし",IDC_RADIO_LABEL_NASHI,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,137,110,46,10
+    LTEXT           "Volラベル名",IDC_LABEL_VOL_NAME,87,136,36,8
+    LTEXT           "ファイル名/レコード長/テープ本数",IDC_LABEL_FILE_NAME,
+                    22,136,101,8
+    EDITTEXT        IDC_EDIT_VOL_FILE,137,133,119,14,ES_AUTOHSCROLL
+    LTEXT           "Vol本数",IDC_LABEL_VOL_SU,99,163,24,8
+    EDITTEXT        IDC_EDIT_VOL_SU,137,160,35,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "実行",IDC_BUTTON_ZIKOU,104,193,74,27
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041104b0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "vjb30040 MFC ｱﾌﾟﾘｹｰｼｮﾝ\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "vjb30040\0"
+            VALUE "LegalCopyright", "Copyright (C) 2000\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "vjb30040.EXE\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "vjb30040 ｱﾌﾟﾘｹｰｼｮﾝ\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x411, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MSG_312             "VJBS413E\nVol本数の入力値が妥当ではありません。\n\n数値で入力してください。"
+    IDS_MSG_NOT_READY       "VJBS414W\n%sの準備ができていません。"
+    IDS_MSG_DEVICE_SET1     "VJBS415Q\n入力元媒体%sをセットしてください。\n\n媒体識別コード：%s"
+    IDS_MSG_DEVICE_SET2     "VJBS416Q\n入力元媒体%sをセットしてください。\n\n媒体識別コード：%s\n\nVolラベル名：%s"
+    IDS_MSG_DEVICE_SET3     "VJBS417Q\n入力元媒体%sをセットしてください。\n\n媒体識別コード：%s\n\nファイル名/レコード長/テープ本数：%s"
+    IDS_MSG_DIFF_VOLLABEL   "VJBS418W\nVolラベル名が異なるため処理を中止しました。"
+    IDS_MSG_COPY_ERROR      "VJBS419E\n媒体種別コード%sのコピー中にエラーが発生しました。"
+    IDS_MSG_COPY_ERROR2     "VJBS420E\n媒体種別コード%sのコピー中にエラーが発生しました。\n\nエラーコード：0x%04X\n\nエラー内容：%s"
+    IDS_MSG_NTBACKUP_END    "VJBS421Q\nNTBackupは正常に終了しましたか？"
+    IDS_MSG_DIFF_VOLLABEL2  "VJBS422Q\nVolラベル名が異なります。\n\nVolラベル名：%s\n\n入力Volラベル名：%s\n\nテープを交換後、再試行するかキャンセルしてください。"
+    IDS_MSG_DIFF_VOLNUM     "VJBS423W\n入力されたファイル数とCMTに存在するファイルの数が異なります。\n\n処理を終了します。"
+    IDS_MSG_NOTEXIST_DAT    "VJBS424W\n入力されたファイル名／レコード数／テープ本数「%s/%s/%s」のデータがCMTに存在しません。\n\n処理を終了します。"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MSG_300             "VJBS401E\nバッチサーバ指定ファイルが存在しません。\n\n処理を終了します。"
+    IDS_MSG_301             "VJBS402E\n入力媒体が選択されていません。"
+    IDS_MSG_302             "VJBS403E\n出力先バッチサーバが選択されていません。"
+    IDS_MSG_303             "VJBS404E\n識別コードが入力されていません。"
+    IDS_MSG_304             "VJBS405E\nVolラベル名が入力されていません。"
+    IDS_MSG_305             "VJBS406E\nラベルあり、ラベルなしのいずれかにチェックしてください。"
+    IDS_MSG_306             "VJBS407E\nファイル名/レコード長が入力されていません。"
+    IDS_MSG_307             "VJBS408E\nVol本数が入力されていません。"
+    IDS_MSG_308             "VJBS409E\n媒体識別コードは6桁で入力してください。"
+    IDS_MSG_309             "VJBS410E\n媒体識別コードの入力値が妥当ではありません。"
+    IDS_MSG_310             "VJBS411E\nVolラベル名の入力値が妥当ではありません。"
+    IDS_MSG_311             "VJBS412E\nファイル名/レコード長の入力値が妥当ではありません。"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PROGRAM_ID          "VJB30040"
+END
+
+#endif    // 日本語 resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+#ifdef _WIN32
+LANGUAGE 17, 1
+#pragma code_page(932)
+#endif //_WIN32
+#include "res\vjb30040.rc2"  // Microsoft Visual C++ 以外のツールで編集されたリソース
+#include "l.jpn\afxres.rc"          // 標準のコンポーネント
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,1 @@
+<? header('location: ../h.php?id=00002107'); exit; ?>

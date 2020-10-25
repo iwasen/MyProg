@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<TITLE>みつくろい依頼</TITLE>
+<link rel="stylesheet" href="../css/melonpan.css">
+</head>
+<BODY bgcolor="#FFFFFF" text="#666666" link="#336600" vlink="#666600">
+<TABLE width="750" border="0" cellspacing="0" cellpadding="0">
+<TR>
+<TD valign="top" colspan="3" align="center">
+<TABLE width="513" border="0" cellspacing="0" cellpadding="0" bgcolor="#6AB05D">
+<TR>
+<TD>
+<TABLE width="513" border="0" cellspacing="1" cellpadding="5">
+<TR bgcolor="#FFFFFF">
+<TD>
+<p><img src="../img/t_mitsukuroi.gif" width="550" height="27"></p>
+<p class="text01"><font color="#99CCFF">■</font><b><font color="#000066">さあ、めろんパイにみつくろってもらおう！</font></b></p>
+<p class="text01">　ここで書いたあなたからのお願いが、選んだパイロットに届きます。<br>
+
+　あなたの気持ちをタイトルにズバリ込め、<br>
+　あなたが読みたいメルマガの特徴をリクエストにリアルに書いてください。<br>
+　それをもとにめろんパイが、素敵なメルマガをみつくろいます。<br><br>
+
+　あなたが読みたいメルマガはどんなメルマガですか？<br><br>
+
+　読みたいメルマガの特徴を書いたら、最後に「確認」ボタンを押してください。　</p>
+
+
+<table width="550" border="0" cellspacing="1" cellpadding="1">
+<tr>
+<td width="100" class="text9pt" bgcolor="#99CCFF">
+<div align="center"><b><font color="#000066">めろんパイ</font></b></div>
+</td>
+<td class="text9pt" width="450" bgcolor="#99CCFF">
+<div align="center"><b><font color="#000066">プロフィール</font></b></div>
+</td>
+</tr>
+</table><table width="550" border="0" cellspacing="1" cellpadding="4">
+<tr bgcolor="#FFFFFF">
+<td width="100" class="text9pt">
+<div align="center"><?php echo $melonpai_nic ?></div>
+</td>
+<td width="450" class="text9pt"><span class="text01"><?php echo $melonpai_pro ?></span></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td colspan="2" class="text9pt">
+<hr size="1">
+</td>
+</tr>
+</table>
+<form name="form2" method="post" action = "mitsukuroi_3.php">
+<table align="center">
+	<tr>
+	<td>
+		<font size="2">▼どのようなメルマガを読んでみたいか、リクエストをお書きください。<br>
+	</td></tr>
+	<tr><td>タイトル：</font><br>
+	<input type="text"  value = "<?echo $com_title ?>" name="com_title"  size="50 ">
+	</td></tr>
+	<tr><td><font size="2">リクエスト：</font><br>
+	<textarea value = "<?echo $com_text ?>"name="com_text" cols="50" rows="14"></textarea>
+	</td></tr>
+	<tr><td><font size="2">あなたのメールアドレス：</font>
+	<input type="text" name="send_mail_addr" value="<? echo $mail_addr ?>" size="40">
+	<font size="2" color="#990000"><br>
+	</font>
+	</td></tr>
+<tr>
+<td>
+<div align="right">
+
+<input type="submit" name="TaiBot3" value="　確　認　" >
+<input type="button" name="Submit2" value="　キャンセル　" onClick="history.back()">
+<input type="hidden" value="<? echo $melonpai_id ?> " name="melonpai_id">
+<input type="hidden" value="<? echo trim($mail_addr); ?> " name="mail_addr">
+<input type="hidden" value="<? echo trim($reader_id); ?>" name="reader_id">
+<input type="hidden" value="<? echo trim($reader_pswd); ?>" name="reader_pswd">
+</form>
+</div>
+</td>
+</tr>
+</table>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD valign="top" colspan="3" align="right">
+<HR size="1" width="750">
+</TD>
+</TR>
+<TR>
+<TD valign="top" width="200"> <IMG src="../img/shim.gif" width="200" height="1">
+</TD>
+<TD valign="middle" align="center" width="350">
+<div align="center"><FONT size="2"><IMG src="../img/shim.gif" width="350" height="1"><BR>
+Copyright &copy; 2000 xxxxxxx, Co.,Ltd. All rights reserved. <br>
+<a href="http://www.xxxxxxx.co.jp/" target="mm_window"><img src="../img/logo_do.gif" width="50" height="45" border="0"></a>
+</FONT></div>
+</TD>
+<TD valign="top" width="200" align="right"><IMG src="../img/shim.gif" width="200" height="1"></TD>
+</TR>
+</TABLE>
+
+</body>
+</html>
+

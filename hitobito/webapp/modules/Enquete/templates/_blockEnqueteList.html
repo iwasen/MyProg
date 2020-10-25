@@ -1,0 +1,50 @@
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td width="260">　</td>
+		<td width="100%">　</td>
+	</tr>
+	<tr>
+		<td width="260"><img src="image/new_enq_ttl.gif" width="97" height="14" alt="最新アンケート"></td>
+		<td width="100%" align="right">　</td>
+	</tr>
+	<tr>
+		<td colspan="2"><img src="image/spacer.gif" width="1" height="4"></td>
+	</tr>
+	<tr>
+		<td colspan="2"><img src="image/new_select_split360.gif" width="100%" height="1"></td>
+	</tr>
+</table>
+<{foreach from=$enquete_list_ary item=enquete_list}>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="<{$enquete_list.bgcolor}>">
+	<tr>
+		<td colspan="2"><img src="image/spacer.gif" width="1" height="10"></td>
+	</tr>
+	<tr>
+		<td class="char120" width="160"><a href="<{$enquete_list.link}>"><{$enquete_list.title|escape}></a></td>
+		<td align="right" class="char120" width="200"><{$enquete_list.start_date}> - <{$enquete_list.end_date}>　<font color="<{$enquete_list.status_color}>"><{$enquete_list.status_text}></font></td>
+	</tr>
+	<tr>
+		<td colspan="2"><img src="image/spacer.gif" width="1" height="4"></td>
+	</tr>
+	<tr>
+		<td colspan="2" class="char120"><{$enquete_list.question_text|HNbEscape}></td>
+	</tr>
+	<tr>
+		<td colspan="2"><img src="image/spacer.gif" width="1" height="10"></td>
+	</tr>
+	<tr>
+		<td colspan="2"><img src="image/enquete_split498.gif" width="360" height="1"></td>
+	</tr>
+</table>
+<{/foreach}>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td><img src="image/spacer.gif" width="1" height="10"></td>
+	</tr>
+	<tr>
+		<td align="right"><img src="image/new_blog_link.gif" width="12" height="12" align="absmiddle" hspace="2"><span class="char120"><a href="?module=Enquete&action=ListEnquete&navipage_id=<{$navi_page_id}>" class="cblack">最新アンケート一覧</a></span></td>
+	</tr>
+	<tr>
+		<td><img src="image/spacer.gif" width="1" height="20"></td>
+	</tr>
+</table>

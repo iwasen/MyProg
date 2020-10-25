@@ -1,0 +1,1185 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// ﾆｭｰﾄﾗﾙ (標準) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEUD)
+#ifdef _WIN32
+LANGUAGE LANG_NEUTRAL, SUBLANG_DEFAULT
+#pragma code_page(932)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ABOUTBOX            "エンジン組立ライン作業編成システムのバージョン情報(&A)..."
+    IDR_MANUAL_FRAME        "手動編成"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ERR_SYSTEM_INI      "システム用INIファイルが読み込めませんでした。自動編成システムを終了します。"
+    IDS_ERR_SYSTEM_INI_ENG  "Can not read system.ini file. Terminate Application System."
+    IDS_ERR_MESSAGE_FILE    "メッセージファイルが読み込めませんでした。自動編成システムを終了します。"
+    IDS_ERR_MESSAGE_FILE_ENG 
+                            "Can not read message file. Terminate Application System."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDM_TOOL_LINE_KISEI     "\nライン規制マトリクス"
+    IDM_TOOL_KATASHIKI_KISEI "\n型式規制マトリクス"
+    IDM_FILE_SAVE_AS        "\n名前を付けて保存"
+    IDM_FILE_SAVE           "\n上書き保存"
+    IDM_EDIT_UNDO           "\nUndo"
+    IDM_EDIT_REDO           "\nRedo"
+    IDM_WINDOW_SEIRETSU     "\n画面の整列"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDM_FILE_EXPORT         "\nファイルへエクスポート"
+    IDM_VIEW_SLIM_GRAPH     "\nグラフのスリム化"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDM_VIEW_SELECT_SUBLINE "\n表示サブラインの選択"
+    IDM_TOOL_KITTING_SET    "\nキット化設定"
+    IDM_TOOL_KYOTSU_KOTEI   "\n共通工程設定"
+    IDM_HELP_VERSION        "\nバージョン情報"
+    IDM_WINDOW_VIEW_TYPE    "\n画面構成の変更"
+END
+
+#endif    // ﾆｭｰﾄﾗﾙ (標準) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// 日本語 resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+#ifdef _WIN32
+LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
+#pragma code_page(932)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 17, 1\r\n"
+    "#pragma code_page(932)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\WorkScheduler.rc2""  // Microsoft Visual C++ 以外のツールで編集されたリソース\r\n"
+    "#include ""l.jpn\\afxres.rc""          // 標準のコンポーネント\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\WorkScheduler.ico"
+IDI_ICON_TRIA_CYAN      ICON    DISCARDABLE     "res\\icon_tri.ico"
+IDI_IDI_ICON_TRIA_YELLOW ICON    DISCARDABLE     "res\\icon1.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 273, 59
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "エンジン組立ライン作業編成システムのバージョン情報"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "エンジン組立ライン作業編成システム Version %s",
+                    IDC_STATIC_VERSION,40,10,171,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2007",IDC_STATIC,40,42,119,8
+    DEFPUSHBUTTON   "OK",IDOK,216,7,50,14,WS_GROUP
+    CTEXT           "",IDC_STATIC,38,22,119,8
+END
+
+IDD_WORKSCHEDULER_DIALOG DIALOGEX 0, 0, 327, 291
+STYLE DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "作業編成システム"
+MENU IDR_MAIN_MENU
+FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x1
+BEGIN
+    CONTROL         "編成開始",IDC_BUTTON_START,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,7,8,75,24
+    ICON            IDI_IDI_ICON_TRIA_YELLOW,IDC_STATIC,17,36,20,20
+    CONTROL         "編成条件設定",IDC_BUTTON_SET_CONDITIONS,"Button",
+                    BS_OWNERDRAW | WS_TABSTOP,7,61,75,24
+    ICON            IDI_IDI_ICON_TRIA_YELLOW,IDC_STATIC,17,89,20,20
+    CONTROL         "編成実行",IDC_BUTTON_AUTO_SCHEDULING,"Button",
+                    BS_OWNERDRAW | WS_TABSTOP,7,114,75,24
+    ICON            IDI_IDI_ICON_TRIA_YELLOW,IDC_STATIC,17,141,20,20
+    CONTROL         "手動編成",IDC_BUTTON_MANUAL_SCHEDULING,"Button",
+                    BS_OWNERDRAW | WS_TABSTOP,7,167,75,24
+    ICON            IDI_IDI_ICON_TRIA_YELLOW,IDC_STATIC,17,195,20,20
+    CONTROL         "終了",IDC_BUTTON_EXIT,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,7,220,75,24
+    LTEXT           "Sub Window",IDC_STATIC_CHILD_MENU,98,4,36,8,NOT 
+                    WS_VISIBLE | NOT WS_GROUP
+    LTEXT           "",IDC_STATIC_STATUS,7,256,313,12,SS_CENTERIMAGE | 
+                    SS_SUNKEN | NOT WS_GROUP
+    CONTROL         "Progress1",IDC_PROGRESS_BAR,"msctls_progress32",
+                    WS_BORDER,7,272,313,12
+END
+
+IDD_START_MENU DIALOG DISCARDABLE  0, 0, 220, 240
+STYLE DS_CONTROL | WS_CHILD
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    GROUPBOX        "編成開始",IDC_STATIC001,0,0,220,240
+    PUSHBUTTON      "ﾌﾟﾛｼﾞｪｸﾄﾃﾞｰﾀ読込み",IDC_BUTTON_READ_DATA,27,35,100,22
+    LTEXT           "編成対象機種の要素作業表や規制マトリクスを取り込む為のファイルを開きます。",
+                    IDC_STATIC003,28,71,190,29
+    PUSHBUTTON      "Debug1",IDC_BUTTON_DEBUG1,27,152,49,15,NOT WS_VISIBLE
+    PUSHBUTTON      "Debug2",IDC_BUTTON_DEBUG2,89,152,49,15,NOT WS_VISIBLE
+END
+
+IDD_SET_CONDITIONS DIALOG DISCARDABLE  0, 0, 220, 240
+STYLE DS_CONTROL | WS_CHILD
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    GROUPBOX        "編成条件設定",IDC_STATIC001,0,0,220,240
+    PUSHBUTTON      "生産条件設定",IDC_BUTTON_SET_SEISAN_JOKEN,27,17,100,22
+    LTEXT           "編成を行うための各生産条件の入力を行います。",
+                    IDC_STATIC003,27,42,186,8
+    PUSHBUTTON      "キット化設定",IDC_BUTTON_SET_KITTING,27,60,100,22
+    LTEXT           "キット化対象の部品を選択し、設定します。",IDC_STATIC005,
+                    27,85,186,8
+    PUSHBUTTON      "ﾗｲﾝ規制ﾏﾄﾘｸｽ",IDC_BUTTON_SET_LINE_KISEI,27,103,100,22
+    LTEXT           "ライン規制マトリクスファイルを開きます。",IDC_STATIC007,
+                    27,128,186,8
+    PUSHBUTTON      "型式規制ﾏﾄﾘｸｽ",IDC_BUTTON_SET_KATASHIKI_KISEI,27,146,
+                    100,22
+    LTEXT           "型式規制マトリクスファイルを開きます。",IDC_STATIC009,
+                    27,171,186,8
+    PUSHBUTTON      "共通工程設定",IDC_BUTTON_SET_KYOTU_KOTEI,27,189,100,22
+    LTEXT           "共通工程の設定を行います。",IDC_STATIC011,27,215,186,8
+END
+
+IDD_AUTO_SCHEDULING DIALOG DISCARDABLE  0, 0, 220, 240
+STYLE DS_CONTROL | WS_CHILD
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    GROUPBOX        "編成実行",IDC_STATIC001,0,0,219,240
+    GROUPBOX        "編成パターン",IDC_STATIC002,7,15,100,41
+    CONTROL         "工順を入れ替えずに編成",IDC_RADIO_KOJUN1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,12,27,89,10
+    CONTROL         "工順を入れ替えて編成",IDC_RADIO_KOJUN2,"Button",
+                    BS_AUTORADIOBUTTON,12,41,82,10
+    GROUPBOX        "編成パターン",IDC_STATIC004,113,15,100,41,WS_GROUP
+    CONTROL         "目標タクト優先で区切る",IDC_RADIO_MOKUHYO_TACT_YUSEN,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,120,
+                    27,85,10
+    CONTROL         "自動工程優先で区切る",IDC_RADIO_JIDO_KOTEI_YUSEN,"Button",
+                    BS_AUTORADIOBUTTON,120,41,83,10
+    GROUPBOX        "対象サブライン",IDC_STATIC008,7,65,206,109,WS_GROUP
+    PUSHBUTTON      "全選択",IDC_BUTTON_ZENSENTAKU,104,77,44,15
+    PUSHBUTTON      "全解除",IDC_BUTTON_ZENKAIJO,154,77,44,15
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_1,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,19,100,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_2,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,19,114,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_3,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,19,128,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_4,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,19,142,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_5,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,19,156,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_6,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,82,100,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_7,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,82,114,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_8,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,82,128,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_9,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,82,142,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_10,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,82,156,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_11,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,145,100,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_12,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,145,114,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_13,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,145,128,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_14,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,145,142,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_15,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,145,156,60,10
+    LTEXT           "基準機種選択：",IDC_STATIC011,7,183,58,8
+    COMBOBOX        IDC_COMBO_KIJUN_KISHU,66,180,66,90,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "自動編成実行",IDOK,35,202,100,22,WS_GROUP
+END
+
+IDD_MANUAL_SCHEDULING DIALOG DISCARDABLE  0, 0, 220, 240
+STYLE DS_CONTROL | WS_CHILD
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    GROUPBOX        "手動編成",IDC_STATIC001,0,0,220,240
+    GROUPBOX        "対象サブライン",IDC_STATIC002,7,25,206,109
+    PUSHBUTTON      "全選択",IDC_BUTTON_ZENSENTAKU,104,37,44,15
+    PUSHBUTTON      "全解除",IDC_BUTTON_ZENKAIJO,154,37,44,15
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_1,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,19,60,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_2,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,19,74,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_3,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,19,88,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_4,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,19,102,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_5,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,19,116,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_6,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,82,60,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_7,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,82,74,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_8,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,82,88,60,10
+    PUSHBUTTON      "手動編成起動",IDC_BUTTON_MANUAL,27,153,100,24
+    LTEXT           "手動編成画面を開きます。",IDC_STATIC006,27,187,186,8
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_9,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,82,102,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_10,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,82,116,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_11,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,145,60,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_12,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,145,74,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_13,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,145,88,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_14,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,145,102,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_15,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,145,116,60,10
+END
+
+IDD_MANUAL_MOVE DIALOG DISCARDABLE  0, 0, 475, 211
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "工程/要素作業群の移動"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    CONTROL         "工程",IDC_RADIO_KOTEI,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,352,19,56,10
+    CONTROL         "要素作業群",IDC_RADIO_YOSO_SAGYOGUN,"Button",
+                    BS_AUTORADIOBUTTON,412,19,56,10
+    LTEXT           "作業者",IDC_STATIC002,8,7,54,8
+    COMBOBOX        IDC_COMBO_SAGYOSHA1,7,18,54,176,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "List1",IDC_LIST1,"SysListView32",LVS_REPORT | 
+                    LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,7,37,222,137
+    LTEXT           "合計時間：",IDC_STATIC_TOTAL_TIME1,7,185,57,11,
+                    SS_CENTERIMAGE | SS_SUNKEN
+    LTEXT           "作業者",IDC_STATIC008,242,7,54,8
+    COMBOBOX        IDC_COMBO_SAGYOSHA2,245,18,54,176,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "List2",IDC_LIST2,"SysListView32",LVS_REPORT | 
+                    LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,245,37,222,137
+    LTEXT           "合計時間：",IDC_STATIC_TOTAL_TIME2,245,185,57,11,
+                    SS_CENTERIMAGE | SS_SUNKEN
+    PUSHBUTTON      "OK",IDC_BUTTON_SETTEI,309,191,50,14
+    PUSHBUTTON      "キャンセル",IDCANCEL,363,191,50,14
+    PUSHBUTTON      "プレビュー",IDC_BUTTON_PREVIEW,417,191,50,14
+END
+
+IDD_MANUAL_BUNKATSU DIALOG DISCARDABLE  0, 0, 499, 213
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "要素作業群の分割"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    LTEXT           "作業者",IDC_STATIC002,7,7,54,8
+    COMBOBOX        IDC_COMBO_SAGYOSHA,7,18,54,176,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "工程",IDC_STATIC003,66,7,77,8
+    COMBOBOX        IDC_COMBO_KOTEI,66,18,77,176,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "要素作業群",IDC_STATIC004,148,7,77,8
+    COMBOBOX        IDC_COMBO_YOSO_SAGYOGUN,148,18,77,176,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "List1",IDC_LIST1,"SysListView32",LVS_REPORT | 
+                    LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,7,37,222,137
+    LTEXT           "合計時間：",IDC_STATIC_TOTAL_TIME1,7,185,57,11,
+                    SS_CENTERIMAGE | SS_SUNKEN
+    PUSHBUTTON      "->",IDC_BUTTON_RIGHT_MOVE,233,81,34,14
+    PUSHBUTTON      "<-",IDC_BUTTON_LEFT_MOVE,233,101,34,14
+    CONTROL         "List1",IDC_LIST2,"SysListView32",LVS_REPORT | 
+                    LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,270,37,222,137
+    LTEXT           "合計時間：",IDC_STATIC_TOTAL_TIME2,270,185,57,11,
+                    SS_CENTERIMAGE | SS_SUNKEN
+    PUSHBUTTON      "OK",IDC_BUTTON_SETTEI,335,191,50,14
+    PUSHBUTTON      "キャンセル",IDCANCEL,389,191,50,14
+    PUSHBUTTON      "プレビュー",IDC_BUTTON_PREVIEW,442,191,50,14
+    LTEXT           "機種名",IDC_STATIC5,229,7,40,8
+    EDITTEXT        IDC_EDIT_KISHU_NAME,229,18,40,12,ES_AUTOHSCROLL | 
+                    ES_READONLY
+END
+
+IDD_SET_KITTING DIALOG DISCARDABLE  0, 0, 386, 375
+STYLE WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU | 
+    WS_THICKFRAME
+CAPTION "キット化設定"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    LTEXT           "サブライン",IDC_STATIC_SUBLINE,7,7,61,8
+    COMBOBOX        IDC_COMBO_SUBLINE,7,19,62,163,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "全選択",IDC_BUTTON_ZENSENTAKU,82,16,44,15
+    PUSHBUTTON      "全解除",IDC_BUTTON_ZENKAIJO,133,16,44,15
+    PUSHBUTTON      "キット化対象部品表出力",
+                    IDC_BUTTON_KITTING_TAISHO_BUHINHYO,291,16,88,15
+    PUSHBUTTON      "次へ",IDC_BUTTON_NEXT,146,155,44,15
+    PUSHBUTTON      "戻る",IDC_BUTTON_BACK,197,155,44,15
+    LTEXT           "キットなし合計時間",IDC_STATIC_KIT_NASHI_GOKEI_JIKAN,
+                    190,179,56,8
+    EDITTEXT        IDC_EDIT_KIT_NASHI_GOKEI_JIKAN,190,190,54,12,ES_RIGHT | 
+                    ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "キットあり合計時間",IDC_STATIC_KIT_ARI_GOKEI_JIKAN,258,
+                    179,56,8
+    EDITTEXT        IDC_EDIT_KIT_ARI_GOKEI_JIKAN,258,190,54,12,ES_RIGHT | 
+                    ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "差",IDC_STATIC_KIT_SA_JIKAN,326,179,56,8
+    EDITTEXT        IDC_EDIT_KIT_SA_JIKAN,325,190,54,12,ES_RIGHT | 
+                    ES_AUTOHSCROLL | ES_READONLY
+    DEFPUSHBUTTON   "OK",IDOK,275,354,50,14
+    PUSHBUTTON      "ｷｬﾝｾﾙ",IDCANCEL,329,354,50,14
+    CONTROL         "List1",IDC_LIST_BUHIN,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | 
+                    WS_TABSTOP,7,42,372,101
+    CONTROL         "List2",IDC_LIST_KOTEI,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | 
+                    WS_TABSTOP,7,212,183,61
+    CONTROL         "List3",IDC_LIST_YOSO_SAGYOGUN,"SysListView32",
+                    LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | 
+                    WS_BORDER | WS_TABSTOP,7,282,183,61
+    CONTROL         "List4",IDC_LIST_YOSO_SAGYO,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | 
+                    WS_TABSTOP,196,212,183,131
+END
+
+IDD_MANUAL_BAR DIALOG DISCARDABLE  0, 0, 117, 17
+STYLE WS_CHILD
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    CONTROL         "工程表示",IDC_RADIO_GRAPH_KOTEI,"Button",
+                    BS_AUTORADIOBUTTON | BS_PUSHLIKE,3,1,54,14
+    CONTROL         "要素作業群表示",IDC_RADIO_GRAPH_YOSOSAGYOGUN,"Button",
+                    BS_AUTORADIOBUTTON | BS_PUSHLIKE,60,1,53,14
+END
+
+IDD_MANUAL_VIEW_TYPE DIALOG DISCARDABLE  0, 0, 218, 315
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "画面構成の設定"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    LTEXT           "手動編成ウィンドウの画面構成を選択します",IDC_STATIC002,
+                    7,7,204,8
+    GROUPBOX        "画面構成タイプ",IDC_STATIC003,7,29,204,162,WS_GROUP
+    CONTROL         "",IDC_RADIO_VIEW_TYPE1,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,21,51,12,8
+    CONTROL         158,IDC_STATIC,"Static",SS_BITMAP,35,51,58,54
+    CONTROL         "",IDC_RADIO_VIEW_TYPE2,"Button",BS_AUTORADIOBUTTON,21,
+                    124,12,8
+    CONTROL         159,IDC_STATIC,"Static",SS_BITMAP,35,124,58,54
+    CONTROL         "",IDC_RADIO_VIEW_TYPE3,"Button",BS_AUTORADIOBUTTON,119,
+                    51,12,8
+    CONTROL         160,IDC_STATIC,"Static",SS_BITMAP,134,51,58,54
+    CONTROL         "",IDC_RADIO_VIEW_TYPE4,"Button",BS_AUTORADIOBUTTON,119,
+                    124,12,8
+    CONTROL         161,IDC_STATIC,"Static",SS_BITMAP,134,124,58,54
+    GROUPBOX        "各画面の設定",IDC_STATIC004,7,199,204,83,WS_GROUP
+    LTEXT           "画面１：",IDC_STATIC005,18,220,46,8
+    COMBOBOX        IDC_COMBO_VIEW1,71,218,100,57,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "画面２：",IDC_STATIC006,18,240,46,8
+    COMBOBOX        IDC_COMBO_VIEW2,71,238,100,57,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "画面３：",IDC_STATIC007,18,260,46,8
+    COMBOBOX        IDC_COMBO_VIEW3,71,258,100,57,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "OK",IDOK,55,294,50,14
+    PUSHBUTTON      "ｷｬﾝｾﾙ",IDCANCEL,112,294,50,14
+END
+
+IDD_LOGIN DIALOG DISCARDABLE  0, 0, 187, 93
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "ログイン"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    LTEXT           "職番を入力します",IDC_STATIC002,7,7,173,8
+    LTEXT           "職番：",IDC_STATIC003,25,32,40,8
+    EDITTEXT        IDC_EDIT_SHOKUBAN,69,30,68,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,40,72,50,14
+    PUSHBUTTON      "ｷｬﾝｾﾙ",IDCANCEL,97,72,50,14
+END
+
+IDD_SEISAN_JOKEN1 DIALOG DISCARDABLE  0, 0, 315, 264
+STYLE DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "生産条件設定"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    LTEXT           "対象年月を選択、稼働時間、稼働率を入力、算出されたタクトに上下限を入力、\n強制駆動のサブラインにチェックをつけてＯＫします。",
+                    IDC_STATIC002,7,7,301,19
+    COMBOBOX        IDC_COMBO_YEAR,7,29,35,101,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "年",IDC_STATIC_YEAR,44,33,8,8
+    COMBOBOX        IDC_COMBO_MONTH,56,29,26,99,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "月",IDC_STATIC_MONTH,84,33,8,8
+    LTEXT           "生産台数（台数／月）",IDC_STATIC_SEISAN_DAISU,14,49,63,
+                    8
+    EDITTEXT        IDC_EDIT_KISHU1,101,29,36,12,ES_CENTER | ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    EDITTEXT        IDC_EDIT_DAISU1,101,45,36,12,ES_RIGHT | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_KISHU2,141,29,36,12,ES_CENTER | ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    EDITTEXT        IDC_EDIT_DAISU2,141,45,36,12,ES_RIGHT | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_KISHU3,181,29,36,12,ES_CENTER | ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    EDITTEXT        IDC_EDIT_DAISU3,181,45,36,12,ES_RIGHT | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_KISHU4,221,29,36,12,ES_CENTER | ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    EDITTEXT        IDC_EDIT_DAISU4,221,45,36,12,ES_RIGHT | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_KISHU5,261,29,36,12,ES_CENTER | ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    EDITTEXT        IDC_EDIT_DAISU5,261,45,36,12,ES_RIGHT | ES_AUTOHSCROLL
+    PUSHBUTTON      "以降に反映",IDC_BUTTON_IKO_JOGEN,182,66,41,14
+    PUSHBUTTON      "以降に反映",IDC_BUTTON_IKO_KAGEN,224,66,41,14
+    PUSHBUTTON      "OK",IDC_BUTTON_SETTEI,103,243,50,14
+    PUSHBUTTON      "ｷｬﾝｾﾙ",IDCANCEL,161,243,50,14
+    CONTROL         "List1",IDC_LIST001,"SysListView32",LVS_REPORT | 
+                    WS_BORDER | WS_TABSTOP,7,79,301,153
+END
+
+IDD_SEISAN_JOKEN2 DIALOG DISCARDABLE  0, 0, 483, 264
+STYLE DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "生産条件設定"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    PUSHBUTTON      "OK",IDC_BUTTON_SETTEI,187,243,50,14
+    PUSHBUTTON      "ｷｬﾝｾﾙ",IDCANCEL,245,243,50,14
+    LTEXT           "対象年月を選択、生産台数とサブライン毎の条件を入力、算出されたタクトに対する上下限を入力、\n強制駆動ラインにチェックをつけてＯＫします。",
+                    IDC_STATIC002,7,7,413,19
+    COMBOBOX        IDC_COMBO_YEAR,7,29,35,101,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "年",IDC_STATIC_YEAR,44,33,8,8
+    COMBOBOX        IDC_COMBO_MONTH,56,29,26,99,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "月",IDC_STATIC_MONTH,84,33,8,8
+    LTEXT           "生産台数（台数／月）",IDC_STATIC_SEISAN_DAISU,14,49,63,
+                    8
+    EDITTEXT        IDC_EDIT_KISHU1,101,29,36,12,ES_CENTER | ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    EDITTEXT        IDC_EDIT_DAISU1,101,45,36,12,ES_RIGHT | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_KISHU2,141,29,36,12,ES_CENTER | ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    EDITTEXT        IDC_EDIT_DAISU2,141,45,36,12,ES_RIGHT | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_KISHU3,181,29,36,12,ES_CENTER | ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    EDITTEXT        IDC_EDIT_DAISU3,181,45,36,12,ES_RIGHT | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_KISHU4,221,29,36,12,ES_CENTER | ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    EDITTEXT        IDC_EDIT_DAISU4,221,45,36,12,ES_RIGHT | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_KISHU5,261,29,36,12,ES_CENTER | ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    EDITTEXT        IDC_EDIT_DAISU5,261,45,36,12,ES_RIGHT | ES_AUTOHSCROLL
+    PUSHBUTTON      "以降に反映",IDC_BUTTON_IKO_KINMU,59,66,41,14
+    PUSHBUTTON      "以降に反映",IDC_BUTTON_IKO_KYUSOKU,100,66,41,14
+    PUSHBUTTON      "以降に反映",IDC_BUTTON_IKO_KADO,141,66,41,14
+    PUSHBUTTON      "以降に反映",IDC_BUTTON_IKO_KOTAI,182,66,41,14
+    PUSHBUTTON      "以降に反映",IDC_BUTTON_IKO_JOGEN,346,66,41,14
+    PUSHBUTTON      "以降に反映",IDC_BUTTON_IKO_KAGEN,388,66,41,14
+    CONTROL         "List1",IDC_LIST001,"SysListView32",LVS_REPORT | 
+                    WS_BORDER | WS_TABSTOP,7,81,467,153
+END
+
+IDD_SAVE_PROJECT DIALOG DISCARDABLE  0, 0, 211, 79
+STYLE DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "名前を付けて保存"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    LTEXT           "プロジェクト名を入力します。",IDC_STATIC,7,7,84,8
+    LTEXT           "プロジェクト名",IDC_STATIC,7,32,42,8
+    EDITTEXT        IDC_EDIT_PROJECT_NAME,54,29,150,13,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,94,58,50,14
+    PUSHBUTTON      "ｷｬﾝｾﾙ",IDCANCEL,154,58,50,14
+END
+
+IDD_SET_KYOTSU_KOTEI DIALOG DISCARDABLE  0, 0, 402, 255
+STYLE WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU | 
+    WS_THICKFRAME
+CAPTION "共通工程設定"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    LTEXT           "共通工程を指定します",IDC_STATIC002,7,7,388,8
+    LTEXT           "サブライン",IDC_STATIC003,7,25,33,8
+    COMBOBOX        IDC_COMBO_SUBLINE,43,22,61,110,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "OK",IDOK,292,234,50,14
+    PUSHBUTTON      "ｷｬﾝｾﾙ",IDCANCEL,345,234,50,14
+    CONTROL         "List1",IDC_LIST001,"SysListView32",LVS_REPORT | 
+                    LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,42,388,181
+END
+
+IDD_KTASHIKI_KISEI_MATRIX DIALOG DISCARDABLE  0, 0, 187, 109
+STYLE DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "型式規制マトリクス"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    LTEXT           "開く型式規制マトリクスを選択します",IDC_STATIC002,7,7,
+                    173,8
+    GROUPBOX        "型式",IDC_STATIC003,7,24,173,53
+    CONTROL         "Katashiki",IDC_CHECK_KATASHIKI_1,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,18,38,43,10
+    CONTROL         "Katashiki",IDC_CHECK_KATASHIKI_2,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,18,56,43,10
+    CONTROL         "Katashiki",IDC_CHECK_KATASHIKI_3,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,69,38,43,10
+    CONTROL         "Katashiki",IDC_CHECK_KATASHIKI_4,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,69,56,43,10
+    CONTROL         "Katashiki",IDC_CHECK_KATASHIKI_5,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,120,38,43,10
+    DEFPUSHBUTTON   "OK",IDOK,76,88,50,14
+    PUSHBUTTON      "ｷｬﾝｾﾙ",IDCANCEL,130,88,50,14
+END
+
+IDD_MANUAL_SUBLINE DIALOG DISCARDABLE  0, 0, 221, 165
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "表示サブラインの選択"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    LTEXT           "手動編成ウィンドウに表示する対象サブラインを選択します",
+                    IDC_STATIC002,7,7,207,8
+    GROUPBOX        "対象サブライン",IDC_STATIC003,7,25,206,109
+    PUSHBUTTON      "全選択",IDC_BUTTON_ZENSENTAKU,104,37,44,15
+    PUSHBUTTON      "全解除",IDC_BUTTON_ZENKAIJO,154,37,44,15
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_1,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,19,60,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_2,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,19,74,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_3,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,19,88,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_4,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,19,102,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_5,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,19,116,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_6,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,82,60,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_7,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,82,74,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_8,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,82,88,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_9,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,82,102,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_10,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,82,116,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_11,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,145,60,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_12,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,145,74,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_13,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,145,88,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_14,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,145,102,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_15,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,145,116,60,10
+    DEFPUSHBUTTON   "OK",IDOK,57,144,50,14
+    PUSHBUTTON      "ｷｬﾝｾﾙ",IDCANCEL,114,144,50,14
+END
+
+IDD_MANUAL_EDIT DIALOG DISCARDABLE  0, 0, 510, 293
+STYLE WS_MAXIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "工程／要素作業群の編集"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    LTEXT           "以下の項目を入力します",IDC_STATIC002,7,7,496,8
+    LTEXT           "作業者名",IDC_STATIC003,7,27,28,8
+    COMBOBOX        IDC_COMBO_SAGYOSHA,38,24,54,176,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "機種名",IDC_STATIC004,108,27,22,8
+    EDITTEXT        IDC_EDIT_KISHU_NAME,135,24,40,12,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    PUSHBUTTON      "追加",IDC_BUTTON_KOTEI_TSUIKA,124,53,42,14
+    PUSHBUTTON      "削除",IDC_BUTTON_KOTEI_SAKUJO,171,53,42,14
+    GROUPBOX        "工程",IDC_STATIC005,7,44,214,97
+    PUSHBUTTON      "追加",IDC_BUTTON_YOSO_SAGYOGUN_TSUIKA,124,159,42,14
+    PUSHBUTTON      "削除",IDC_BUTTON_YOSO_SAGYOGUN_SAKUJO,171,159,42,14
+    GROUPBOX        "要素作業群",IDC_STATIC013,7,150,214,112
+    PUSHBUTTON      "追加",IDC_BUTTON_YOSO_SAGYO_TSUIKA,406,53,42,14
+    PUSHBUTTON      "削除",IDC_BUTTON_YOSO_SAGYO_SAKUJO,454,53,42,14
+    GROUPBOX        "要素作業",IDC_STATIC018,230,44,273,218
+    PUSHBUTTON      "プレビュー",IDC_BUTTON_PREVIEW,341,272,50,14
+    DEFPUSHBUTTON   "OK",IDOK,397,272,50,14
+    PUSHBUTTON      "ｷｬﾝｾﾙ",IDCANCEL,453,272,50,14
+    CONTROL         "List2",IDC_LIST_KOTEI,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | 
+                    WS_TABSTOP,15,73,199,61
+    CONTROL         "List3",IDC_LIST_YOSO_SAGYOGUN,"SysListView32",
+                    LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | 
+                    WS_BORDER | WS_TABSTOP,15,179,199,71
+    CONTROL         "List4",IDC_LIST_YOSO_SAGYO,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | 
+                    WS_TABSTOP,236,73,261,181
+END
+
+IDD_MANUAL_DSTR DIALOG DISCARDABLE  0, 0, 185, 279
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "DSTR算出"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,74,232,50,14
+    PUSHBUTTON      "ｷｬﾝｾﾙ",IDCANCEL,128,232,50,14
+    LTEXT           "DSTR算出の為の情報を入力します",IDC_STATIC002,7,7,171,
+                    22
+    LTEXT           "1.ﾗｲﾝ実工数（分/台）",IDC_STATIC005,8,65,104,8
+    LTEXT           "標準時間",IDC_STATIC006,15,80,97,8
+    LTEXT           "定期点検時間",IDC_STATIC007,15,95,97,8
+    LTEXT           "品質ﾛｽ",IDC_STATIC008,15,110,97,8
+    LTEXT           "設備不具合ﾛｽ",IDC_STATIC009,15,125,97,8
+    LTEXT           "習熟ﾛｽ",IDC_STATIC010,15,140,97,8
+    LTEXT           "ﾗｲﾝ停止ﾛｽ",IDC_STATIC011,15,155,97,8
+    LTEXT           "編成ﾛｽ",IDC_STATIC012,15,170,97,8
+    LTEXT           "2.複合能率分（分/台）",IDC_STATIC013,8,185,104,8
+    LTEXT           "3.管理停止時間（分/台）",IDC_STATIC014,8,200,104,8
+    LTEXT           "4.DST（分/台）",IDC_STATIC015,8,215,104,8
+    EDITTEXT        IDC_EDIT001,114,63,64,14,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_READONLY
+    EDITTEXT        IDC_EDIT002,114,78,64,14,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_READONLY
+    EDITTEXT        IDC_EDIT003,114,93,64,14,ES_RIGHT | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT004,114,108,64,14,ES_RIGHT | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT005,114,123,64,14,ES_RIGHT | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT006,114,138,64,14,ES_RIGHT | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT007,114,153,64,14,ES_RIGHT | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT008,114,168,64,14,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_READONLY
+    EDITTEXT        IDC_EDIT009,114,183,64,14,ES_RIGHT | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT010,114,198,64,14,ES_RIGHT | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT011,114,213,64,14,ES_RIGHT | ES_AUTOHSCROLL
+    PUSHBUTTON      "計算",IDC_BUTTON_CALC,21,232,50,14
+    LTEXT           "DSTR",IDC_STATIC019,12,258,42,8
+    EDITTEXT        IDC_EDIT012,59,257,119,14,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_READONLY
+    LTEXT           "機種名",IDC_STATIC003,8,37,28,8
+    COMBOBOX        IDC_COMBO_KISHU,39,34,48,55,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_FILE_EXPORT_DIALOG DIALOG DISCARDABLE  0, 0, 225, 245
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "ファイルへエクスポート"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,112,221,50,14
+    PUSHBUTTON      "ｷｬﾝｾﾙ",IDCANCEL,168,221,50,14
+    LTEXT           "出力パターンとサブライン、作業表出力を選択しOKします。",
+                    IDC_STATIC001,7,7,211,25
+    GROUPBOX        "パターン選択",IDC_STATIC003,7,35,211,67
+    CONTROL         "全機種",IDC_CHECK_ZENKISHU,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,14,62,43,10
+    CONTROL         "加重平均",IDC_CHECK_KAJUU_HEIKIN,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,14,77,43,10
+    GROUPBOX        "機種指定",IDC_STATIC004,58,46,155,49
+    CONTROL         "Check",IDC_CHECK_KISHU_1,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,65,61,34,10
+    CONTROL         "Check",IDC_CHECK_KISHU_2,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,65,76,34,10
+    CONTROL         "Check",IDC_CHECK_KISHU_3,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,115,61,34,10
+    CONTROL         "Check",IDC_CHECK_KISHU_4,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,115,76,34,10
+    CONTROL         "Check",IDC_CHECK_KISHU_5,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,165,61,34,10
+    GROUPBOX        "サブライン選択",IDC_STATIC005,7,110,211,106
+    PUSHBUTTON      "全選択",IDC_BUTTON_ZENSENTAKU,113,120,44,15
+    PUSHBUTTON      "全解除",IDC_BUTTON_ZENKAIJO,163,120,44,15
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_1,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,143,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_2,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,157,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_3,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,171,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_4,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,185,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_5,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,199,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_6,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,78,143,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_7,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,78,157,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_8,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,78,171,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_9,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,78,185,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_10,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,78,199,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_11,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,141,143,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_12,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,141,157,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_13,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,141,171,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_14,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,141,185,60,10
+    CONTROL         "Subline",IDC_CHECK_SUBLINE_15,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,141,199,60,10
+    CONTROL         "割付作業出力",IDC_CHECK_WARITUKE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,223,93,10
+END
+
+IDD_MANUAL_KISHU_BAR DIALOG DISCARDABLE  0, 0, 116, 19
+STYLE WS_CHILD
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    COMBOBOX        IDC_COMBO_KISHU,3,3,77,98,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    PUSHBUTTON      "<<",IDC_BACK_REF_KOTEI,87,3,12,14
+    PUSHBUTTON      ">>",IDC_NEXT_REF_KOTEI,100,3,12,14
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 0,1,9,15
+ PRODUCTVERSION 0,1,9,15
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "000004b0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", " \0"
+            VALUE "FileDescription", "WorkScheduler MFC Application\0"
+            VALUE "FileVersion", "0, 1, 9, 15\0"
+            VALUE "InternalName", "WorkScheduler\0"
+            VALUE "LegalCopyright", "Copyright (C) 2006\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "WorkScheduler.EXE\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "WorkScheduler\0"
+            VALUE "ProductVersion", "0, 1, 9, 15\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 266
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 52
+    END
+
+    IDD_WORKSCHEDULER_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 320
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 284
+    END
+
+    IDD_SET_CONDITIONS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 213
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 233
+    END
+
+    IDD_AUTO_SCHEDULING, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 213
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 233
+    END
+
+    IDD_MANUAL_SCHEDULING, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 213
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 233
+    END
+
+    IDD_MANUAL_MOVE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 468
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 205
+    END
+
+    IDD_MANUAL_BUNKATSU, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 492
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 206
+    END
+
+    IDD_SET_KITTING, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 379
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 368
+    END
+
+    IDD_MANUAL_BAR, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 110
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 10
+    END
+
+    IDD_MANUAL_VIEW_TYPE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 211
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 308
+    END
+
+    IDD_LOGIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 86
+    END
+
+    IDD_SEISAN_JOKEN1, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 308
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 257
+    END
+
+    IDD_SEISAN_JOKEN2, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 474
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 257
+    END
+
+    IDD_SAVE_PROJECT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 204
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 72
+    END
+
+    IDD_SET_KYOTSU_KOTEI, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 395
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 248
+    END
+
+    IDD_KTASHIKI_KISEI_MATRIX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 102
+    END
+
+    IDD_MANUAL_SUBLINE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 214
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 158
+    END
+
+    IDD_MANUAL_EDIT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 503
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 286
+    END
+
+    IDD_MANUAL_DSTR, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 178
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 272
+    END
+
+    IDD_FILE_EXPORT_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 218
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 235
+    END
+
+    IDD_MANUAL_KISHU_BAR, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 109
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 12
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MANUAL_FRAME MENU DISCARDABLE 
+BEGIN
+    POPUP "ファイル"
+    BEGIN
+        MENUITEM "名前を付けて保存...",         IDM_FILE_SAVE_AS
+        MENUITEM "上書き保存",                  IDM_FILE_SAVE
+        MENUITEM SEPARATOR
+        MENUITEM "ファイルへエクスポート...",   IDM_FILE_EXPORT
+        MENUITEM SEPARATOR
+        MENUITEM "終了",                        IDM_FILE_CLOSE
+    END
+    POPUP "編集"
+    BEGIN
+        MENUITEM "Undo",                        IDM_EDIT_UNDO
+        MENUITEM "Redo",                        IDM_EDIT_REDO
+    END
+    POPUP "表示"
+    BEGIN
+        MENUITEM "表示サブラインの選択...",     IDM_VIEW_SELECT_SUBLINE
+        MENUITEM "グラフのスリム化",            IDM_VIEW_SLIM_GRAPH, CHECKED
+    END
+    POPUP "ツール"
+    BEGIN
+        MENUITEM "キット化設定...",             IDM_TOOL_KITTING_SET
+        MENUITEM "ライン規制マトリクス...",     IDM_TOOL_LINE_KISEI
+        MENUITEM "型式規制マトリクス...",       IDM_TOOL_KATASHIKI_KISEI
+        MENUITEM "共通工程設定...",             IDM_TOOL_KYOTSU_KOTEI
+    END
+    POPUP "画面"
+    BEGIN
+        MENUITEM "画面構成の変更...",           IDM_WINDOW_VIEW_TYPE
+        MENUITEM "画面の整列",                  IDM_WINDOW_SEIRETSU
+    END
+    POPUP "ヘルプ"
+    BEGIN
+        MENUITEM "バージョン情報...",           IDM_HELP_VERSION
+    END
+END
+
+IDR_MAIN_MENU MENU DISCARDABLE 
+BEGIN
+    POPUP "ファイル"
+    BEGIN
+        MENUITEM "上書き保存",                  IDM_FILE_SAVE
+        MENUITEM "名前を付けて保存...",         IDM_FILE_SAVE_AS
+        MENUITEM SEPARATOR
+        MENUITEM "終了",                        IDC_BUTTON_EXIT
+    END
+    POPUP "ヘルプ"
+    BEGIN
+        MENUITEM "バージョン情報...",           IDM_HELP_VERSION
+    END
+END
+
+IDR_MANUAL_POPUPMENU MENU DISCARDABLE 
+BEGIN
+    POPUP "Popup"
+    BEGIN
+        MENUITEM "工程/要素作業群の編集...",    IDM_MANUAL_EDIT
+        MENUITEM "工程/要素作業群の移動...",    IDM_MANUAL_MOVE
+        MENUITEM "要素作業群の分割...",         IDM_MANUAL_BUNKATSU
+        MENUITEM "工程／要素作業群のコピー",    IDM_MANUAL_COPY
+        MENUITEM "工程／要素作業群の貼り付け",  IDM_MANUAL_PASTE
+        MENUITEM SEPARATOR
+        POPUP "作業者の新規挿入"
+        BEGIN
+            MENUITEM "前に挿入",                    IDM_MANUAL_SAGYOSHA_MAE
+            MENUITEM "後ろに挿入",                  IDM_MANUAL_SAGYOSHA_USHIRO
+
+        END
+        MENUITEM "作業者の削除",                IDM_MANUAL_SAGYOSHA_SAKUJO
+        MENUITEM SEPARATOR
+        MENUITEM "DSTR算出...",                 IDM_MANUAL_DSTR
+    END
+END
+
+IDR_KYOTSU_KOTEI MENU DISCARDABLE 
+BEGIN
+    POPUP "Popup"
+    BEGIN
+        MENUITEM "共通工程全設定",              IDM_KYOTSU_KOTEI_ZEN_SETTEI
+        MENUITEM "共通工程全解除",              IDM_KYOTSU_KOTEI_ZEN_KAIJO
+        MENUITEM "共通工程解除",                IDM_KYOTSU_KOTEI_KAIJO
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MANUAL_FRAME TOOLBAR DISCARDABLE  16, 15
+BEGIN
+    BUTTON      IDM_FILE_SAVE_AS
+    BUTTON      IDM_FILE_SAVE
+    BUTTON      IDM_FILE_EXPORT
+    SEPARATOR
+    BUTTON      IDM_EDIT_UNDO
+    BUTTON      IDM_EDIT_REDO
+    SEPARATOR
+    BUTTON      IDM_VIEW_SELECT_SUBLINE
+    BUTTON      IDM_VIEW_SLIM_GRAPH
+    SEPARATOR
+    BUTTON      IDM_TOOL_KITTING_SET
+    BUTTON      IDM_TOOL_LINE_KISEI
+    BUTTON      IDM_TOOL_KATASHIKI_KISEI
+    BUTTON      IDM_TOOL_KYOTSU_KOTEI
+    SEPARATOR
+    BUTTON      IDM_WINDOW_VIEW_TYPE
+    BUTTON      IDM_WINDOW_SEIRETSU
+    SEPARATOR
+    BUTTON      IDM_HELP_VERSION
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MANUAL_FRAME        BITMAP  DISCARDABLE     "res\\toolbar1.bmp"
+IDB_BITMAP_VIEW_TYPE1   BITMAP  DISCARDABLE     "res\\viewtype1.bmp"
+IDB_BITMAP_VIEW_TYPE2   BITMAP  DISCARDABLE     "res\\viewtype2.bmp"
+IDB_BITMAP_VIEW_TYPE3   BITMAP  DISCARDABLE     "res\\viewtype3.bmp"
+IDB_BITMAP_VIEW_TYPE4   BITMAP  DISCARDABLE     "res\\viewtype4.bmp"
+IDB_BITMAP_KYOTSU_KOTEI BITMAP  DISCARDABLE     "res\\kyotsu_kotei.bmp"
+IDB_BITMAP_POST_DRAG    BITMAP  DISCARDABLE     "res\\bitmap_drag.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_CURSOR1             CURSOR  DISCARDABLE     "res\\cursor1.cur"
+#endif    // 日本語 resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+#ifdef _WIN32
+LANGUAGE 17, 1
+#pragma code_page(932)
+#endif //_WIN32
+#include "res\WorkScheduler.rc2"  // Microsoft Visual C++ 以外のツールで編集されたリソース
+#include "l.jpn\afxres.rc"          // 標準のコンポーネント
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,1131 @@
+		title		(( trlist ))
+;
+;		meganet 2000	tokuchu-lens receive list output.
+;		86-02-07	xxxxxxxxx electronic inc.
+;				kajibayashi nobuichi. 1985-10-31
+
+			.z80
+		include		SUBR.INC
+		include		MEMORY.INC
+
+		public		trlist
+		public		trlste
+
+		extrn		jrlste
+		extrn		prm_yy
+		extrn		clrbuf
+		
+	CR	equ	0dh
+
+	hinmoku		equ	M_PARAM+7
+
+
+trlist:
+
+;		label print out.
+
+		ex	de,hl
+
+		ld	hl,43		;
+		add	hl,de		;
+		ld	a,(hl)		;
+		inc	hl		; set shukkabi kaitou flag
+		or	(hl)		;
+		ld	hl,378		;
+		add	hl,de		;
+		or	(hl)		;
+		sub	'0'		;
+		ld	(skflag),a	;
+
+		ld	hl,255
+		add	hl,de
+		ld	a,(hl)
+		ld	hl,k_nouki##
+		cp	'1'
+		jr	z,trlist10
+		ld	hl,k_tlens
+		ld	a,(skflag)
+		or	a
+		jr	nz,trlist10
+		ld	hl,k_jlens##
+trlist10:
+		call	k16lmsgs	; print tokuchu-lens-jushin-list.
+
+		ld	hl,prm_yy
+		call	k8lmsgs		; print year/month/date
+		call	crout
+
+		ld	a,(r_tanto)
+		cp	'1'		; tantoshiya ari ?
+		jr	z,tl10		; No :
+
+		ld	hl,c_sosain##
+		call	k8lmsgs		; tantoshiya mai print
+
+		ld	hl,c_tanto
+		ld	b,5
+		call	k8list		; print sosain-mei
+
+		call	crout		; cr output
+	tl10:
+		ld	hl,378		;
+		add	hl,de		;
+		ld	a,(hl)		;
+		cp	' '		; error mark off ?
+		jr	z,tl16		; * yes
+
+		push	de		;
+		inc	hl		;
+		push	hl		;
+		ld	hl,385		;
+		add	hl,de		;
+		ex	de,hl		;
+		pop	hl		;
+		ld	b,3		;
+	tl12:				;
+		ld	a,(hl)		;
+		inc	hl		; print error message
+		or	(hl)		;
+		cp	'0'		;
+		jr	z,tl14		;
+		dec	hl		;
+		push	bc		;
+		push	de		;
+		ld	de,c_error##+4	;
+		ld	bc,2		;
+		ldir			;
+		ex	(sp),hl		;
+		inc	de		;
+		ld	bc,15		;
+		ldir			;
+		push	hl		;
+		ld	hl,c_error	;
+		call	k8lmsg		;
+		pop	de		;
+		pop	hl		;
+		pop	bc		;
+		djnz	tl12		;
+	tl14:
+		pop	de
+	tl16:
+		ld	hl,k_recvno##
+		call	k16lmsgs	; print kanji-jushin no.
+
+		ld	hl,28		;
+		add	hl,de		;
+		ld	b,2		;
+		call	k8list		; print	jushin no. data
+		push	hl		;
+		push	de		;
+		ld	de,'-'		;
+		call	klist		;
+		pop	de		;
+		pop	hl		;
+		ld	b,5		;
+		call	k8list		;
+
+		push	de		;
+		ld	hl,k_uketuke##	;
+		call	k16lmsgs	;
+		ld	hl,39		;
+		add	hl,de		;
+		ld	de,c_jikoku##	;
+		ld	b,2		; uketsuke jikoku
+		call	zset		;
+		ld	de,c_jikoku+4	;
+		ld	b,2		;
+		call	zset		;
+		ld	hl,c_jikoku	;
+		call	k8lmsg		;
+		pop	de		;
+
+		ld	hl,k_sendno##	;
+		call	k16lmsgs	; print kanji-hasshin no.
+
+		ld	hl,50		;
+		add	hl,de		;
+		ld	b,12		;
+		call	k8list		; print hasshin no. data
+
+		push	de
+		ld	de,'-'
+		call	klist
+		pop	de
+		ld	hl,62
+		add	hl,de
+		ld	b,3
+		call	k8list		; print data No.
+		call	crout		; cr output
+
+		ld	hl,k_choai##	;
+		call	k16lmsgs	;
+		ld	hl,276		;
+		add	hl,de		;
+		ld	a,(hl)		; print chouai saki
+		cp	' '		;
+		jr	z,tl20		;
+		ld	b,20		;
+		call	k8list		;
+		jr	tl25
+	tl20:
+		ld	hl,20
+		add	hl,de
+		ld	b,8
+		call	k8list		; print choai saki code
+	tl25:
+		call	crout		; cr output
+
+		ld	a,(R_CHOKUSO)	;
+		cp	'1'		;
+		jr	z,tl27		;
+		ld	hl,c_chokuso##	; print chokusou saki
+		call	k8lmsgs		;
+		ld	hl,10		;
+		add	hl,de		;
+		ld	b,2		;
+		call	k8list		;
+		call	crout
+	tl27:
+		ld	hl,85
+		add	hl,de
+		ld	ix,296
+		add	ix,de
+		push	de
+		ld	de,8271h
+		call	zs_prn		; zokusei-r print
+		pop	de
+
+		ld	hl,163
+		add	hl,de
+		ld	ix,326
+		add	ix,de
+		push	de
+		ld	de,826bh
+		call	zs_prn		; zokusei-l print
+		pop	de
+
+		ld	a,(skflag)
+		or	a
+		jr	z,tl80
+
+		ld	hl,247
+		add	hl,de
+		ld	b,5
+		ld	a,'0'
+	tl28:
+		cp	(hl)
+		jr	nz,tl280
+		inc	hl
+		djnz	tl28
+		jp	tl90
+	tl280:
+		ld	hl,kcolno
+		call	k8lmsgs		; print kcolor no.
+
+		ld	hl,368
+		add	hl,de
+		ld	a,(hl)
+		cp	' '
+		jr	z,tl281
+
+		ld	b,10
+		call	k8list		; print color no.
+		ld	a,1
+		jr	tl284
+	tl281:
+		ld	hl,247
+		add	hl,de
+		ld	b,5
+		call	k8list
+		ld	a,6
+	tl284:
+		call	blprn
+		ld	hl,252
+		add	hl,de
+		ld	a,(hl)
+		cp	'0'
+		jr	z,tl30
+
+		cp	'1'		; all
+		jr	z,tl30
+
+		cp	'2'		; harf
+		jr	z,tl40
+
+		cp	'3'		; double
+		jr	z,tl50
+
+		ld	hl,ktriple
+		jr	tl60
+
+	tl30:	
+		ld	hl,kall
+		jr	tl60
+	
+	tl40:
+		ld	hl,kharf
+		jr	tl60
+
+	tl50:
+		ld	hl,kdouble
+
+	tl60:
+		call	k8lmsgs		; print all harf double triple
+
+		ld	hl,253
+		add	hl,de
+		ld	a,(hl)
+		cp	'0'
+		jr	nz,tl70
+		ld	(hl),' '
+	tl70:
+		ld	b,2
+		call	k8list		;
+		ld	hl,parcnt	; print noudo (%)
+		call	k8lmsgs		;
+		jr	tl90
+	tl80:
+		ld	hl,k_basho	;
+		call	k16lmsgs	;
+		ld	hl,356		; print basho
+		add	hl,de		;
+		ld	b,7		;
+		call	k8list		;
+		call	crout
+	tl90:
+		ld	hl,kbiko	;
+		call	k8lmsgs		; print biko
+		ld	hl,65		;
+		add	hl,de		;
+		ld	b,20		;
+		call	k8list		;
+
+		call	crout		; print CR
+
+		ld	hl,378		;
+		add	hl,de		;
+		ld	a,(hl)		;
+		ld	hl,k_msg4##	;
+		cp	' '		; error mark on ?
+		jr	nz,l30		; * yes
+
+		ld	hl,k_msg1##
+		call	k16lmsgs	; print kanji-arigato
+
+		ld	a,(skflag)
+		or	a
+		jp	z,jrlste
+trlste:
+		push	de
+		ld	hl,43
+		add	hl,de
+		ld	de,tukxxx
+		push	de
+		ld	b,2
+		call	zset
+		pop	hl
+		call	k8lmsg		; print tsuki data
+		pop	de
+
+		ld	hl,ktsu
+		call	k16lmsgs	; print kanji-tsuki
+
+		push	de
+		ld	hl,45
+		add	hl,de
+		ld	de,tukxxx
+		push	de
+		ld	b,2
+		call	zset
+		pop	hl
+		call	k8lmsg		; print hi data
+		pop	de
+
+		ld	hl,khi
+		call	k16lmsgs	; print	kanji-hi
+
+		ld	hl,47
+		add	hl,de
+		ld	a,(hl)
+		ld	hl,kam
+		cp	'1'
+		jr	z,l10
+		ld	hl,kpm
+		cp	'2'
+		jr	nz,l20
+	l10:
+		call	k8lmsgs		; print am pm data
+	l20:
+		ld	hl,255
+		add	hl,de
+		ld	a,(hl)
+		cp	'1'
+		ld	hl,koku
+		jr	nz,l30
+		ld	hl,koku1
+	l30:
+		call	k16lmsgs	; print kanji-okuri
+
+		ld	hl,c_aster##
+		call	k8lmsgs		; print aster
+
+		ret
+
+zs_prn:
+		ld	a,(hl)
+		cp	' '		; zokusei data ari
+		ret	z
+		ex	de,hl
+zp10:
+		push	ix
+
+		ld	(khinme),hl
+		ld	hl,khinme
+		call	k16lmsgs	; print kanji-hinmei
+
+		ld	hl,(hinmoku)	;
+		inc	hl		; hinmoku +1
+		ld	(hinmoku),hl	;
+
+		pop	hl
+		ld	a,(hl)
+		cp	' '
+		jr	z,zp101
+		ld	b,30
+		call	k8list		; print hinmei data
+		jr	zp102
+zp101:
+		ld	hl,0
+		add	hl,de
+		ld	b,13
+		call	k8list		; print hinban data
+		call	crout		; cr output
+zp102:
+		call	sethinban	; print no. hinban dosu su
+
+		ld	a,(skflag)
+		or	a
+		ret	z
+
+		ld	a,'0'
+		ld	(zkwork),a
+		ld	ix,pbuf+1
+
+		ld	hl,14
+		add	hl,de
+
+		ld	bc,12
+		add	hl,bc
+		ld	de,knudo+8
+		call	data12		; kanyudo set
+		ld	b,3
+		ld	de,knudo
+		call	pbufset
+
+		ld	bc,25
+		add	hl,bc
+		ld	de,kchus+9
+		call	data21		; chushin atsu set
+		ld	b,3
+		ld	de,kchus
+		call	pbufset
+
+		call	k8lmsgz		; print 1-line-me
+
+		ld	bc,28
+		or	a
+		sbc	hl,bc
+		ld	de,kprizm+8
+		call	data12		; prizumu 1 set
+		ld	b,3
+		ld	de,kprizm
+		call	pbufset
+
+		ld	de,kbase+5
+		call	dataio		; base 1 set
+		ld	b,3
+		ld	de,kbase
+		call	pbufset
+
+		ld	bc,22
+		add	hl,bc
+		ld	de,kfuchi+6
+		call	data21		; fuchiatsu set
+		ld	b,3
+		ld	de,kfuchi
+		call	pbufset
+
+		ld	bc,5
+		add	hl,bc
+		ld	de,kko
+		ldi
+		ld	b,1
+		ld	de,kko
+		call	pbufset
+
+		call	k8lmsgz		; print 2-line-me
+
+		ld	bc,31
+		or	a
+		sbc	hl,bc
+		ld	de,kprizms+8
+		call	data12		; prizumu 2 set
+		ld	b,3
+		ld	de,kprizms
+		call	pbufset
+
+		ld	de,kbases+5
+		call	dataio		; base 2 set
+		ld	b,3
+		ld	de,kbases
+		call	pbufset
+
+		ld	bc,19
+		add	hl,bc
+		ld	de,kx+2
+		ld	a,(hl)
+		cp	'9'
+		jr	z,zp11
+		cp	'8'
+		jr	z,zp12
+
+		call	dataio1		; x set
+
+		jr	zp14
+
+	zp11:
+		push	hl
+		ld	hl,kdai		; dai set
+		jr	zp13
+
+	zp12:
+		push	hl
+		ld	hl,ksho		; sho set
+
+	zp13:
+		ld	bc,4
+		ldir
+
+		pop	hl
+
+		ld	bc,3
+		add	hl,bc
+
+	zp14:
+		ld	b,3
+		ld	de,kx
+		call	pbufset
+
+		ld	de,kd+2
+		call	data2		; d set
+		ld	b,2
+		ld	de,kd
+		call	pbufset
+
+		call	k8lmsgz		; print 3-line-me
+
+		ld	bc,23
+		or	a
+		sbc	hl,bc
+		ld	de,khens+7
+		call	data22		; henshin 1 set
+		ld	b,4
+		ld	de,khens
+		call	pbufset
+
+		ld	bc,5
+		or	a
+		sbc	hl,bc
+		ld	de,khoko+5
+		call	datahk		; hoko 1 set
+		ld	b,1
+		ld	de,khoko
+		call	pbufset
+
+		ld	bc,24
+		add	hl,bc
+		ld	de,kgaike+8
+		call	data2		; gaikei set
+		ld	b,2
+		ld	de,kgaike
+		call	pbufset
+
+		call	k8lmsgz		; print 4-line-me
+
+		ld	bc,21
+		or	a
+		sbc	hl,bc
+		ld	de,khenss+7
+		call	data22		; henshin 2 set
+		ld	b,4
+		ld	de,khenss
+		call	pbufset
+
+		ld	bc,5
+		or	a
+		sbc	hl,bc
+		ld	de,khokos+5
+		call	datahk		; hoko 2 set
+		ld	b,1
+		ld	de,khokos
+		call	pbufset
+
+		ld	bc,21
+		add	hl,bc
+		ld	de,kcurve+5
+
+		push	hl
+		ld	a,' '
+		ld	b,4
+	zp141:
+		or	(hl)
+		inc	hl
+		djnz	zp141
+		cp	'0'
+		jr	nz,zp142
+		push	hl
+		ld	hl,kflat
+		ld	bc,5
+		ldir
+		ld	a,' '
+		ld	(de),a
+		pop	hl
+		pop	de
+		ld	a,'1'
+		ld	de,kcurve
+		call	pbufset1
+		jr	zp143
+	zp142:
+		pop	hl
+		call	data22		; curve set
+		ld	a,'C'
+		ld	(de),a
+
+		ld	b,4
+		ld	de,kcurve
+		call	pbufset
+	zp143:
+		call	k8lmsgz		; print 5-line-me 
+
+		ld	bc,21
+		or	a
+		sbc	hl,bc
+		ld	de,ktsubo+8
+		push	hl
+
+		ld	a,(hl)
+		cp	'1'
+		jr	z,zp15
+
+		jr	nc,zp16
+
+		ld	hl,kspc		; space set
+		jr	zp17
+
+	zp15:
+		ld	hl,khei		; matahei set
+		jr	zp17
+
+	zp16:
+		ld	hl,kro		; mataro set
+
+	zp17:
+		ld	bc,4
+		ldir
+
+		pop	hl
+
+		inc	hl
+		ld	b,1
+		ld	de,ktsubo
+		call	pbufset
+
+		ld	de,knaike+5
+		call	data2		; naike set
+		ld	b,2
+		ld	de,knaike
+		call	pbufset
+
+		ld	bc,18
+		add	hl,bc
+		ld	de,kkodas+8
+		call	data21		; kodamasage set
+		ld	b,3
+		ld	de,kkodas
+		call	pbufset
+
+		call	k8lmsgz		; print 6-line-me
+
+		push	hl
+		ld	bc,2
+		add	hl,bc
+		push	hl
+
+		ld	a,(hl)
+		cp	'2'
+		jr	z,zp20
+
+		cp	'1'
+		jr	nz,zp25
+
+		ld	hl,kari		; ari set
+		jr	zp30
+
+	zp20:
+		ld	hl,knashi	; nashi set
+		jr	zp30
+
+	zp25:
+		ld	hl,kspc		; space set
+
+	zp30:
+		ld	de,kshin+8
+		ld	bc,2
+		ldir
+		pop	hl
+		inc	hl
+		ld	b,1
+		ld	de,kshin
+		call	pbufset
+
+		pop	hl
+		ld	de,kkoday+3
+		ldi
+
+		inc	de
+		ldi
+		ld	b,2
+		ld	de,kkoday
+		call	pbufset
+
+		call	k8lmsgz		; print 7-line-me
+		ret
+
+data12:
+		ldi
+
+	data2a:
+		inc	de
+		ld	bc,2
+		ldir
+		ret
+
+data2:
+		ld	b,2
+		call	zset
+		ret
+
+data21:
+		call	data2
+
+		inc	de
+		ldi
+
+		ret
+
+dataio:
+		ld	a,(hl)
+		cp	'4'
+		jr	nc,dio10
+
+	dataio1:
+		ld	a,' '
+		ld	(de),a
+		inc	de
+		ld	b,3
+		call	zset
+		ret
+
+	dio10:
+		push	hl
+
+		cp	'6'
+		jr	z,dio20
+
+		cp	'7'
+		jr	z,dio30
+
+		cp	'8'
+		jr	z,dio40
+
+		cp	'9'
+		jr	nz,dio45
+
+		ld	hl,kdown	; down set
+		jr	dio50
+
+	dio20:
+		ld	hl,kin		; in set
+		jr	dio50
+
+	dio30:
+		ld	hl,kout		; out set
+		jr	dio50
+
+	dio40:
+		ld	hl,kup		; up set
+		jr	dio50
+
+	dio45:
+		ld	hl,kspc		; space set
+
+	dio50:
+		ld	bc,4
+		ldir
+
+		pop	hl
+
+		ld	bc,3
+		add	hl,bc
+		ret
+
+data22:
+		call	data2
+
+		call	data2a
+
+		ret
+
+datahk:
+		ld	a,(Hl)
+		call	dio10
+
+		dec	hl
+		dec	hl
+		ret
+
+pbufset:
+		push	hl
+		push	bc
+		ld	c,b
+		ld	b,0
+		or	a
+		sbc	hl,bc
+		pop	bc
+		ld	a,'0'
+	pbufset10:
+		or	(hl)
+		inc	hl
+		djnz	pbufset10
+		pop	hl
+pbufset1:
+		ld	c,a
+		ld	a,(zkwork)
+		or	c
+		ld	(zkwork),a
+	pbufset20:
+		ld	a,(de)
+		cp	-1
+		ret	z
+		ld	a,c
+		cp	'0'
+		ld	a,' '
+		jr	z,pbufset30
+		ld	a,(de)
+	pbufset30:
+		ld	(ix),a
+		inc	ix
+		inc	de
+		jr	pbufset20
+
+sethinban:
+		ld	hl,kdosu
+		call	k16lmsgs	; print kanji-dosu
+
+		push	de
+		ld	hl,13
+		add	hl,de
+		ld	a,(hl)
+		push	af
+		inc	hl
+
+		ld	de,sdosu	; set area addres
+		ld	a,(skflag)
+		or	a
+		jr	nz,seth10
+		ld	de,sdosu1
+	seth10:
+		push	de
+		inc	de
+		ldi			;
+		ld	b,2		;
+		call	zset		; set s-dosu
+		inc	de		;
+		ld	bc,2		;
+		ldir			;
+
+		inc	de		
+		inc	de
+	
+		ld	b,4		;
+		call	zcheck##	;
+		ld	bc,2		;
+		ldir			;
+		inc	de		; set c-dosu
+		ld	bc,2		;
+		ldir			;
+
+		ld	a,(skflag)
+		or	a
+		jr	z,seth20
+
+		inc	de
+		inc	de
+
+		ld	b,3		;
+		call	zcheck		;
+		ld	b,3		;
+		call	zset		; set xdosu
+	seth20:
+		pop	hl		;
+		call	k8lmsgs		; print dosu
+
+		ld	hl,kkazu	;
+		call	k16lmsgs	;
+		pop	af		; print kazu
+		ld	hl,kazu		;
+		ld	(hl),a		;
+		call	k8lmsgs		;
+
+		pop	de
+		ret
+
+;
+;
+zset:
+		ld	c,' '
+zset10:
+		ld	a,(hl)
+		cp	'0'
+		jr	nz,zset20
+		push	bc
+		dec	b
+		pop	bc
+		jr	z,zset30
+		ld	a,c
+		jr	zset30
+zset20:
+		ld	c,'0'
+zset30:
+		ld	(de),a
+		inc	de
+		inc	hl
+		djnz	zset10
+		ret
+blprn:
+
+		push	de
+
+		ld	b,a
+	blank$10:
+		ld	d,0
+		ld	e,' '
+
+		push	bc
+		call	klist		; print blank
+		pop	bc
+
+		djnz	blank$10
+
+		pop	de
+
+		ret
+
+k16lmsgs:
+		push	de
+		call	k16lmsg
+		pop	de
+		ret
+
+k8lmsgs:
+		push	de
+		call	k8lmsg
+		pop	de
+		ret
+
+k8lmsgz:
+		push	hl
+		ld	hl,pbuf
+		ld	(ix),CR
+		ld	(ix+1),-1
+		ld	a,(zkwork)
+		cp	'0'
+		call	nz,k8lmsgs
+		ld	a,'0'
+		ld	(zkwork),a
+		ld	ix,pbuf+1
+		pop	hl
+		ret
+
+k8list:
+		push	de
+k8list10:
+		ld	d,0
+		ld	e,(hl)
+		inc	hl
+		push	hl
+		push	bc
+		call	klist
+		pop	bc
+		pop	hl
+		djnz	k8list10
+		pop	de
+		ret
+
+crout:
+		push	de
+		ld	de,CR
+		call	klist
+		pop	de
+		ret
+
+
+;-------------- DATA --------------------
+
+k_tlens::	dw	93c1h,928dh,838ch,8393h,8359h,8ef3h,904dh,838ah,8358h
+		dw	8367h,8140h,0020h,-1
+
+khinme:		dw	8140h,9569h,96bch,0020h,0020h,-1
+
+kdosu:		dw	8140h,9378h,9094h,0020h,-1
+
+kgokei:		dw	8140h,8140h,8140h,8140h,8140h,8140h,8140h,8140h
+		dw	0020h,8183h,8d87h,8c76h,8184h,-1
+
+sdosu:		db	'S   .   C  .   X   ',0dfh,'  ',-1
+
+sdosu1:		db	'S   .   C  .     ',-1
+
+kkazu:		dw	9094h,0020h,-1
+
+kazu:		db	'0',CR,-1
+
+knudo:		db	0a5h,0b6h,0c6h,0adh,0b3h,0c4h,0deh
+		db	' 0.00           ',-1
+
+kchus:		db	0a5h,0c1h,0adh,0b3h,0bch,0ddh,0b1h,0c2h
+		db	' 00.0'
+		db	0d0h,0d8h,-1
+
+kprizm:		db	0a5h,0cch,0dfh,0d8h,0bdh,0deh,0d1h
+		db	' 0.00 ',-1
+
+kbase:		db	0cdh,0deh,0b0h,0bdh
+		db	' 0000 ',-1
+
+kfuchi:		db	0a5h,0cch,0c1h,0b1h,0c2h
+		db	' 00.0'
+		db	0d0h,0d8h,'  ',-1
+
+kko:		db	'0',-1
+
+kprizms:	db	'        0.00 ',-1
+
+kbases:		db	'     0000  ',-1
+
+kx:		db	'X 0000',0dfh,' ',-1
+
+kd:		db	'D 00'
+		db	0d0h,0d8h,-1
+
+khens:		db	0a5h,0cdh,0ddh,0bch,0ddh
+		db	'  00.00 ',-1
+
+khoko:		db	0ceh,0b3h,0bah,0b3h
+		db	' 0000 ',-1
+
+kgaike:		db	0a5h,0b6h,0deh,0b2h,0b9h,0b2h
+		db	'  00'
+		db	0d0h,0d8h,-1
+
+khenss:		db	'       00.00 ',-1
+
+khokos:		db	'     0000 ',-1
+
+kcurve:		db	0a5h,0b6h,0b0h,0cch,0deh
+		db	'00.00'
+		db	'C',-1
+
+ktsubo:		db	0a5h,0c2h,0ceh,0deh,0b8h,0d8h
+		db	'  0000 ',-1
+
+knaike:		db	0b9h,0b2h
+		db	'   00',0d0h,0d8h,' ',-1
+
+kkodas:		db	0a5h,0bah,0c0h,0deh,0cfh,0bbh,0b9h,0deh
+		db	'00.0'
+		db	0d0h,0d8h,-1
+
+kshin:		db	0a5h,0bch,0c6h,0ddh,0b8h,0deh
+		db	'  00                  ',-1
+
+kkoday:		db	0d6h,0beh
+		db	' 0.0 '
+		db	0d0h,0d8h,-1
+
+kcolno:		db	020h,0a5h,0b6h,0d7h,0b0h
+		db	'    ',-1
+
+kall:		db	0b5h,0b0h,0d9h,'  ',-1
+
+kharf:		db	0cah,0b0h,0cch,'  ',-1
+
+kdouble:	db	0c0h,0deh,0cch,0deh,0d9h,-1
+
+ktriple:	db	0c4h,0d8h,0cch,0dfh,0d9h,-1
+
+kdai:		db	0c0h,0deh,0b2h,20h
+
+ksho:		db	0bch,0aeh,0b3h,20h
+
+khei:		db	0cfh,0c0h,0cdh,0b2h
+
+kro:		db	0cfh,0c0h,0dbh,0b3h
+
+kspc:		db	20h,20h,20h,20h
+
+parcnt:		db	'%',CR,-1
+
+kari:		db	0b1h,0d8h
+
+knashi:		db	0c5h,0bch
+
+kup:		db	'UP  '
+
+kdown:		db	'DOWN'
+
+kin:		db	'IN  '
+
+kout:		db	'OUT '
+
+kflat:		db	' FLAT'
+
+k_basho:	dw	8140h,8feah,8f8ah,0020h,-1
+
+kbiko:		db	020h,0a5h,0cbh,0deh,0bah,0b3h,'   ',-1
+
+ktsu:		dw	8c8eh,-1
+
+khi:		dw	93fah,-1
+
+kam:		db	'AM',-1
+
+kpm:		db	'PM',-1
+
+tukxxx:		db	'  ',-1
+
+koku:		dw	0020h,82c9h,82a8h,9197h,82e8h,9276h,82b5h,82dch,82b7h
+		dw	8142h,CR,-1
+
+koku1:		dw	0020h,82c9h,82a8h,9197h,82e8h,82c5h,82abh,82dch,82b7h
+		dw	8142h,CR,-1
+
+zkwork:		db	'0'
+
+skflag:		db	0
+
+pbuf:		db	' '
+		ds	40
+
+		end
+
